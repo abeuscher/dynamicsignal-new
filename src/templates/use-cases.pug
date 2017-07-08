@@ -1,0 +1,89 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Use Cases 2017
+    */
+block content
+  section#page-top.use_cases_hero_header
+    .container
+      .row
+        h3.use-case-hero-title Inform And Engage Your Employees
+        h3.use-case-hero-subtitle Companies that transform the way they communicate will have more connected and productive employees.
+  section.home-page-use-cases-grid
+    .container-fluid
+      .container.grid-container
+        .row.hidden-xs
+          a(href='/mobile-employee-communications/')
+            #grid-use-cases-redesign-0.col-md-2.col-sm-2.removal-top-border.removal-left-border
+              h2.use-cases-text Internal Communications
+          a(href='/mobile-intranet/')
+            #grid-use-cases-redesign-1.col-md-2.col-sm-2.removal-top-border
+              h2.use-cases-text
+                | Mobile
+                br
+                |  Intranet
+          a(href='/deskless-workers/')
+            #grid-use-cases-redesign-2.col-md-2.col-sm-2.removal-top-border
+              h2.use-cases-text
+                | Deskless and Stuff
+                br
+                |  Workers
+          a(href='/employee-advocacy/')
+            #grid-use-cases-redesign-3.col-md-2.col-sm-2.removal-top-border
+              h2.use-cases-text
+                | Employee
+                br
+                |  Advocacy
+          a(href='/company-news/')
+            #grid-use-cases-redesign-4.col-md-2.col-sm-2.removal-top-border.removal-right-border
+              h2.use-cases-text
+                | Company
+                br
+                |  News
+        .row.hidden-xs
+          a(href='/social-selling-use-case/')
+            #grid-use-cases-redesign-5.col-md-2.col-sm-2.removal-bottom-border.removal-left-border
+              h2.use-cases-text
+                | Social
+                br
+                |  Selling
+          a(href='/recruiting-communications/')
+            #grid-use-cases-redesign-6.col-md-2.col-sm-2.removal-bottom-border
+              h2.use-cases-text
+                | Recruiting
+                br
+                |  & Talent
+          a(href='/executive-communications/')
+            #grid-use-cases-redesign-7.col-md-2.col-sm-2.removal-bottom-border
+              h2.use-cases-text Executive Communications
+          a(href='/crisis-communications/')
+            #grid-use-cases-redesign-8.col-md-2.col-sm-2.removal-bottom-border
+              h2.use-cases-text Urgent/Crisis Communications
+          a(href='/change-management/')
+            #grid-use-cases-redesign-9.col-md-2.col-sm-2.removal-bottom-border.removal-right-border
+              h2.use-cases-text Change Management/ M&A
+  section.use-cases.use-cases-page-tabs.remove-padding
+    .container.visible-xs
+      .row
+        ul.nav.nav-tabs
+          li.col-md-2.col-md-offset-2.col-xs-12.hidden-md
+            a.use-cases__link.btn.btn--outline.btn--teal.btn--round(href='/mobile-employee-communications/') Internal Communications
+          li.col-md-2.col-xs-12
+            a.use-cases__link.btn.btn--outline.btn--teal.btn--round(href='/mobile-intranet/') Mobile Intranet
+          li.col-md-2.col-xs-12
+            a.use-cases__link.btn.btn--outline.btn--teal.btn--round(href='/deskless-workers/') Deskless and stuff  Workers
+          li.col-md-2.col-xs-12
+            a.use-cases__link.btn.btn--outline.btn--teal.btn--round(href='/employee-advocacy/') Employee Advocacy
+          li.col-md-2.col-xs-12
+            a.use-cases__link.btn.btn--outline.btn--teal.btn--round(href='/company-news/') Company News
+          li.col-md-2.col-xs-12
+            a.use-cases__link.btn.btn--outline.btn--teal.btn--round(href='/social-selling-use-case/') Social Selling
+          li.col-md-2.col-xs-12
+            a.use-cases__link.btn.btn--outline.btn--teal.btn--round(href='/recruiting-communications/') Recruiting and Talent
+          li.col-md-2.col-xs-12
+            a.use-cases__link.btn.btn--outline.btn--teal.btn--round(href='/executive-communications/') Executive Communications
+          li.col-md-2.col-xs-12
+            a.use-cases__link.btn.btn--outline.btn--teal.btn--round(href='/crisis-communications/') Urgent/Crisis Communications
+          li.col-md-2.col-xs-12
+            a.use-cases__link.btn.btn--outline.btn--teal.btn--round(href='/change-management/') Change Management/ M&A

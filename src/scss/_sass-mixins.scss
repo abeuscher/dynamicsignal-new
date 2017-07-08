@@ -1,0 +1,39 @@
+@import "./_variables.scss";
+$mq-support:true;
+
+
+@mixin bp($bp, $clamp: false, $prop: "min-width") {
+	$queries: ();
+	@each $bp-name, $bp-value in $bps {
+		$map-2: (#{$bp-name}: $bp-value);
+		$queries: map-merge($queries, $map-2);
+	}
+
+	$mq-cutoff: 5;
+
+	@if $mq-support {
+		$bp-width: map-get($queries, $bp);
+		$keys: map-keys($queries);
+		$bp-index: index($keys, $bp);
+		$next-bp: if(length($keys) > $bp-index, nth($keys, $bp-index + 1), null);
+		$prev-bp: if($bp-index > 1, nth($keys, $bp-index - 1), null);
+
+		@if $clamp and $prop == "min-width" and $next-bp {
+			@media only screen
+				and (min-width: #{$bp-width})
+				and (max-width: #{map-get($queries, $next-bp)})
+				{ @content; }
+		} @else if $clamp and $prop == "max-width" and $prev-bp {
+			@media only screen
+				and (max-width: #{$bp-width})
+				and (min-width: #{map-get($queries, $prev-bp)})
+				{ @content; }
+		} @else {
+			@media only screen and (#{$prop}: #{$bp-width}) { @content; }
+		}
+	} @else {
+		@if index(map-keys($queries), $bp) >= $mq-cutoff {
+			@content;
+		}
+	}
+}

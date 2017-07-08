@@ -1,0 +1,53 @@
+//config
+$cdn-path:"/";
+$img-path:$cdn-path+"img/";
+$font-path:"/fonts/";
+
+//Breakpoints
+$bps: (xs: 0, s:641px, m:1025px, l:1321px,xl:1921px);
+
+//color-values
+$white:#ffffff;
+$gray:#cccccc;
+$blue-gray:#aab6c5;
+$mystery-blue:#7a7f87;
+$coral-blue:#353e7f;
+$light-blue:#8083a4;
+$salmon:#ff595c;
+$black:#000000;
+
+//font-values
+@font-face {
+  font-family: 'proximanova';
+  src: url('#{$font-path}proximanova-regular-webfont.ttf')  format('truetype');
+}
+@font-face {
+  font-family: 'proximanova-bold';
+  src: url('#{$font-path}proximanova-bold-webfont.ttf')  format('truetype');
+}
+@font-face {
+  font-family: 'proximanova-light';
+  src: url('#{$font-path}proximanova-light-webfont.ttf')  format('truetype');
+}
+@font-face {
+  font-family: 'proximanova-regitalic';
+  src: url('#{$font-path}proximanova-regularitalic-webfont.ttf')  format('truetype');
+}
+@font-face {
+  font-family: 'proximanova-semibold';
+  src: url('#{$font-path}proximanova-semibold-webfont.ttf')  format('truetype');
+}
+@font-face {
+  font-family: 'proximanova-thing';
+  src: url('#{$font-path}proximanova-thing-webfont.ttf') format('truetype');
+}
+
+//colors
+$body-bg-color:linear-gradient(90deg, rgb(41, 44, 99) 0%, rgb(54, 64, 125) 100%);
+$body-text-color:$white;
+$body-link-color:$white;
+$header-color:$white;
+
+//fonts
+$body-font:'proximanova',sans-serif;
+$header-font:'proximanova', sans-serif;
