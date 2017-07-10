@@ -1,0 +1,79 @@
+nav.navbar.navbar-default {
+	&.navbar-redesign {
+		text-transform: uppercase;
+		background-color: $white;
+		height: 60px;
+		.dropdown.open .dropdown-toggle {
+			color: $teal;
+			background-color: $white;
+		}
+	}
+	.navbar-brand {
+		padding: 10px 15px;
+	}
+	.navbar-logo {
+		width: 160px;
+	}
+	.dropdown.open {
+		.dropdown-menu {
+			padding-bottom: 1em;
+			text-align: left;
+			background-color: $white;
+		}
+		li a {
+			color: $grey;
+			&:hover {
+				background-color: $white;
+				color: $teal;
+			}
+			&:focus {
+				background-color: $white;
+				color: $teal;
+			}
+		}
+	}
+	.dropdown-menu.new-width {
+		width: 100%;
+		left: 0;
+		background-color: $white;
+		text-align: left;
+		&:after {
+			color: $white;
+			display: none;
+		}
+	}
+	li a {
+		font-weight: 600;
+		font-size: 12px;
+		letter-spacing: 1px;
+		padding-top: 20px;
+		color: $grey;
+		text-decoration: none;
+		text-transform: uppercase;
+		&:hover {
+			color: $teal;
+		}
+		&.btn {
+			background-color: $white;
+			padding: 5px 10px;
+			border-color: $teal;
+			color: $teal;
+			margin-top: 13px;
+			margin-right: 1em;
+			font-size: 10px;
+			min-width: initial;
+			border: 1px solid;
+			&:hover {
+				background-color: $teal;
+				color: $white;
+			}
+		}
+		.caret {
+			margin-top: -2px;
+			margin-left: 0;
+		}
+	}
+}
+.navbar-collapse.big-menu {
+	max-height: 100%;
+}

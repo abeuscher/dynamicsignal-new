@@ -23,6 +23,7 @@
     "factor-bundle": "^2.5.0",
     "font-awesome": "^4.7.0",
     "fs": "0.0.2",
+    "gsap": "^1.20.2",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-clean": "0.3.2",
