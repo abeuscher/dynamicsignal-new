@@ -1,0 +1,45 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Home Page
+    */
+block content
+  -
+    var pageData = {
+    "header":"Your Mobile-First Company Communications Platforms",
+    "subheader":"Keep employees informed and engaged.<br>Increase productivity and empower advocacy.",
+    "logoCopy":"Dynamic Signal is trusted by hundreds of the world's largest enterprises, more than any other provider.",
+    "testimonialBg":"problem-bg.jpg",
+    "logoGridHeader":"Trusted Industry Leader",
+    "logoGridSubheader":"Hundreds of the world’s largest enterprises, including customers in 21 countries around the globe, trust the Dynamic Signal platform to deliver company and industry news, and content to the right employee, at the right time."
+    };
+  section.hero
+    .bg-video(data-video="hero-background-new.mp4")
+    .mobile-header(data-mobile-bg="Hero7.png")
+    h1!=pageData.header
+    h2!=pageData.subheader
+    a.cta(href="/requestdemo/") Request a Demo
+  :php
+    echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos_strip_gray_icons' ),JSON_UNESCAPED_SLASHES)
+    .",'testimonials':".json_encode(get_field('testimonial_quotes'),JSON_UNESCAPED_SLASHES)
+    .",'mobileProducts':".json_encode(get_field('products_carousel_mobile'),JSON_UNESCAPED_SLASHES)
+    .",'desktopProducts':".json_encode(get_field('products_carousel_desktop'),JSON_UNESCAPED_SLASHES)
+    .",'gridLogos':".json_encode(get_field('logos_grid'),JSON_UNESCAPED_SLASHES)
+    ."};</script>";
+  section.container
+    #logo-strip.home-gallery
+  include ./inc/use-cases-grid.pug
+  section.testimonials.container(data-bg=pageData.testimonialBg)
+    #testimonial-strip.home-gallery
+  section
+    #product-display
+  section.product-cta
+    a.cta(href="/product/") Learn More About Our Product
+  section.logo-grid
+    .container
+      .row
+        .col-md-12
+          h1!=pageData.logoGridHeader
+          p!=pageData.logoGridSubheader
+      #logo-grid

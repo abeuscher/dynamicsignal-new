@@ -1,0 +1,52 @@
+.home-gallery {
+  position:relative;
+  .row {
+    width:100%;
+    text-align: center;
+    img {
+      max-width:100%;
+
+    }
+  }
+}
+section.testimonials.container {
+  margin:0;
+  padding:140px 0 450px;
+  background-position:center bottom;
+  width:100%;
+}
+#logo-strip {
+  height:50px;
+  margin:50px auto;
+}
+#testimonial-strip {
+  height:100px;
+  margin:50px auto;
+}
+.product-image {
+  display:none;
+  min-height:400px;
+  background-position:center center;
+  background-repeat:no-repeat;
+
+  &.active {
+    display:block;
+  }
+  background-size:contain;
+}
+.product-tiles {
+  a.product-tile {
+    display:block;
+    transition:all .1s ease-in;
+    &:hover {
+      background:rgba(0,0,0,.5);
+    }
+  }
+}
+#logo-grid {
+  img {
+    max-height:50px;
+    width:auto;
+    max-width:100%;
+  }
+}

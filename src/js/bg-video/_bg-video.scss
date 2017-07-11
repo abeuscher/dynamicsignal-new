@@ -1,0 +1,35 @@
+@import "sass-library/spinner";
+@import "sass-library/center";
+
+canvas.bg-video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	background-color: #000;
+}
+
+.gray-spinner {
+	&:before {
+		@include spinner();
+	}
+}
+
+canvas.bg-video:not([data-isactive]) {
+    display: none;
+}
+
+.bg-video-spinner {
+	background-color: #000;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	&:before {
+		content: "";
+		display: block;
+		@include center("both");
+		position: absolute;
+	}
+}

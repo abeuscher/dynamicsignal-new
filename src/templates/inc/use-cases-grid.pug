@@ -1,0 +1,58 @@
+-
+    pageData.header = "Benefits for Every Department of the Enterprise";
+    pageData.useCases = [{
+      "title":"Internal<br>Comunications",
+      "url":"/mobile-employee-communications/"
+    },{
+      "title":"Mobile<br>Intranet",
+      "url":"/mobile-intranet/"
+    },{
+      "title":"Deskless<br>Workers",
+      "url":"/deskless-workers/"
+    },{
+      "title":"Employee<br>Advocacy",
+      "url":"/employee-advocacy/"
+    },{
+      "title":"Company<br>News",
+      "url":"/company-news/"
+    },{
+      "title":"Social<br>Selling",
+      "url":"/social-selling-use-case/"
+    },{
+      "title":"Recruiting<br>&amp; Talent",
+      "url":"/recruiting-communications/"
+    },{
+      "title":"Executive<br>Communications",
+      "url":"/executive-communications/"
+    },{
+      "title":"Crisis<br>Communications",
+      "url":"/crisis-communications"
+    },{
+      "title":"Change Management<br>/ M &amp; A",
+      "url":"/change-management/"
+    }];
+  function getClass(idx) {
+    var thisClass="use-col ";
+    thisClass += idx<5 ? "removal-top-border " : "";
+    thisClass += idx>4 ? "removal-bottom-border " : "";
+    thisClass += idx == 5 || idx == 0 ? "removal-left-border " : "";
+    thisClass += idx == 4 || idx == 9 ? "removal-right-border " : "";
+    return thisClass;
+  }
+include ./hero.pug
+section.use-cases-grid
+  .container-fluid
+    .container.grid-container
+      .row.hidden-xs
+        for useCase,key in pageData.useCases
+          a(href=useCase.url)
+            div(id="grid-use-cases-redesign-"+key,class=getClass(key))
+              h2.use-cases-text!=useCase.title
+
+section.use-cases.use-cases-page-tabs.remove-padding
+  .container.visible-xs
+    .row
+      ul.nav.nav-tabs
+        for useCase,key in pageData.useCases
+          li.col-xs-12
+            a.button(href=useCase.url)!=useCase.title
