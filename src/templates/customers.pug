@@ -1,0 +1,13 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Customers Page
+    */
+block content
+  -
+    var pageData = {
+    "header":"The Trusted Industry Leader",
+    "subheader":"Hundreds of the world’s largest organizations, in countries around the globe, trust Dynamic Signal."
+    };
+  include ./inc/hero.pug

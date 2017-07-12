@@ -2,6 +2,7 @@ require("dom4");
 
 var Flickity = require("flickity");
 var TweenMax = require("gsap/TweenMax");
+var JobList = require("./job-handler/index.js");
 
 var siteSettings = {
   "imagePath":"/wp-content/themes/ds-new/images/"
@@ -9,7 +10,8 @@ var siteSettings = {
 var templates = {
   "homePageLogo":require("./inc/home-logo-slide.pug"),
   "testimonialSlide":require("./inc/testimonial-slide.pug"),
-  "productDisplay":require("./inc/product-display.pug")
+  "productDisplay":require("./inc/product-display.pug"),
+  "jobListing":require("./inc/job-listing.pug")
 }
 
 window.addEventListener("load", function() {
@@ -19,7 +21,7 @@ window.addEventListener("load", function() {
   }
 
 
-  //Write logo slider
+  //Write home page logo slider
   if (document.getElementById("logo-strip")) {
     var logoGall = new Flickity("#logo-strip",{"prevNextButtons": false});
     for (i in pageData.logos) {
@@ -33,6 +35,8 @@ window.addEventListener("load", function() {
       thisRow.appendChild(parseHTML(templates.homePageLogo(pageData.logos[i])));
     }
   }
+
+  //Write Home page logo grid
   if (document.getElementById("logo-grid")) {
     var gridGall = new Flickity("#logo-grid",{"prevNextButtons":false});
     for (i in pageData.gridLogos) {
@@ -65,6 +69,19 @@ window.addEventListener("load", function() {
       testimonialGall.append(parseHTML(templates.testimonialSlide(pageData.testimonials[i])));
     }
   }
+
+  //Write Jobs
+  if (document.getElementById("job-list")) {
+    var opts = {
+      "jobs":pageData.jobs,
+      "template":templates.jobListing,
+      "container":document.getElementById("job-list")
+    }
+
+    var theJobs = new JobList(opts);
+
+  }
+
 
   //Write Product carousels
   if (document.getElementById("product-display")) {

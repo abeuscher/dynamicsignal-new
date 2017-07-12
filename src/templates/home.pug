@@ -12,7 +12,9 @@ block content
     "logoCopy":"Dynamic Signal is trusted by hundreds of the world's largest enterprises, more than any other provider.",
     "testimonialBg":"problem-bg.jpg",
     "logoGridHeader":"Trusted Industry Leader",
-    "logoGridSubheader":"Hundreds of the world’s largest enterprises, including customers in 21 countries around the globe, trust the Dynamic Signal platform to deliver company and industry news, and content to the right employee, at the right time."
+    "logoGridSubheader":"Hundreds of the world’s largest enterprises, including customers in 21 countries around the globe, trust the Dynamic Signal platform to deliver company and industry news, and content to the right employee, at the right time.",
+    "ctaHeader":"Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders",
+    "ctaLabel":"Request a Demo"
     };
   section.hero
     .bg-video(data-video="hero-background-new.mp4")
@@ -43,3 +45,6 @@ block content
           h1!=pageData.logoGridHeader
           p!=pageData.logoGridSubheader
       #logo-grid
+  section.cta-bottom
+    h2!=pageData.ctaHeader
+    a.cta(href="/requestdemo/")!=pageData.ctaLabel

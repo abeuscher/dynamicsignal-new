@@ -43,34 +43,6 @@
   }
 }
 .product-video {
-  .video-thumb {
-    color:$white;
-    background-size:contain;
-    @include aspect-ratio(16,9);
-    .content {
-      width:auto;
-      margin:80px 50px 30px 40%;
-      p {
-        font-size: 36px;
-        line-height: 44px;
-        font-weight: 500;
-        font-style: italic;
-      }
-      cite {
-        font-size: 30px;
-        line-height: 30px;
-        font-weight: 300;
-        display:block;
-      }
-      a.cta {
-        border-radius:50px;
-        color:$grey;
-        background:$white;
-        display:inline-block;
-        padding:17px;
 
-      }
-    }
-  }
 
 }
