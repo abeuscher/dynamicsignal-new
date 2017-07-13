@@ -1,0 +1,33 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Team Page
+    */
+block content
+  -
+    var pageData = {
+    "header":"Meet Our Team",
+    "subheader":"From our founders to our board of directors... across our entire staff - We believe Communications Technology is a critical component for the success of world-class organizations."
+    };
+  include ./inc/hero.pug
+  :php
+    if( have_rows('ds_team_section') ) {
+      while ( have_rows('ds_team_section') ) {
+          $res = the_row();
+  .row
+    .col-md-12
+      h2
+        :php
+          echo $res["ds_team_section_name"];
+  .row
+      :php
+        foreach($res["ds_team_member"] as $key=>$player) {
+      .col-md-3
+        :php
+          echo $player["ds_team_member_first_name"];
+      :php
+        }
+  :php
+        }
+      }

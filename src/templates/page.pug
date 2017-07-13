@@ -2,14 +2,14 @@ extends inc/page.pug
 block template
   :php
     /*
-    Template Name: Blog Page
+    Template Name: Blank Page
     */
 block content
-  section.container#main-content
+  section.container.content
     :php
       if( have_posts() ): while( have_posts() ): the_post();
-    article.blog-post
-      .blog-post-body
+    article.row
+      .blog-post-body.col-md-12
         :php
           the_content();
     :php

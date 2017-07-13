@@ -10,14 +10,14 @@
       .product-tiles.col-md-6
         for product,key in locals.mobileProducts
           a.mobile-product-tile(href="#",data-target="mobile-product-"+key)
-            h2!=product.header
+            h3!=product.header
             p!=product.copy
   .row
     if locals.desktopProducts
       .product-tiles.col-md-6
         for product,key in locals.desktopProducts
           a.desktop-product-tile(href="#",data-target="desktop-product-"+key)
-            h2!=product.header
+            h3!=product.header
             p!=product.copy
       .product-images.col-md-6
         for product,key in locals.desktopProducts

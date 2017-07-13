@@ -5,7 +5,8 @@ var TweenMax = require("gsap/TweenMax");
 var JobList = require("./job-handler/index.js");
 
 var siteSettings = {
-  "imagePath":"/wp-content/themes/ds-new/images/"
+  "imagePath":"/wp-content/themes/ds-new/images/",
+  "videoPath":"/wp-content/themes/ds-new/video/"
 }
 var templates = {
   "homePageLogo":require("./inc/home-logo-slide.pug"),
@@ -19,11 +20,22 @@ window.addEventListener("load", function() {
   if (parallax.length>0) {
     scrollSite();
   }
-
+  if (document.getElementById("map-container")) {
+    console.log("found map");
+    var box = document.getElementById("map-container");
+    var map = document.getElementById("the-contact-map");
+    box.addEventListener("click", function(e) {
+      console.log("click");
+      map.classList.add("clicked");
+      this.addEventListener("mouseleave", function() {
+        map.classList.remove("clicked");
+      });
+    });
+  }
 
   //Write home page logo slider
   if (document.getElementById("logo-strip")) {
-    var logoGall = new Flickity("#logo-strip",{"prevNextButtons": false});
+    var logoGall = new Flickity("#logo-strip",{"prevNextButtons": false,"lazyLoad":6});
     for (i in pageData.logos) {
       if (i == 0 || (parseInt(i)) % 6 == 0) {
         if (i!=0) {
@@ -35,10 +47,18 @@ window.addEventListener("load", function() {
       thisRow.appendChild(parseHTML(templates.homePageLogo(pageData.logos[i])));
     }
   }
+  if (document.getElementById("home-hero-video")) {
+    var videoBucket = document.getElementById("home-hero-video");
+    var video = document.createElement("video");
+    video.src = siteSettings.videoPath + videoBucket.getAttribute("data-video");
+    video.setAttribute("autoplay",true);
+    video.setAttribute("loop",true);
+    videoBucket.appendChild(video);
+  }
 
   //Write Home page logo grid
   if (document.getElementById("logo-grid")) {
-    var gridGall = new Flickity("#logo-grid",{"prevNextButtons":false});
+    var gridGall = new Flickity("#logo-grid",{"prevNextButtons":false, lazyLoad:24});
     for (i in pageData.gridLogos) {
       if (i == 0 || (parseInt(i)) % 24 == 0) {
         console.log("new slide");
@@ -120,7 +140,54 @@ window.addEventListener("load", function() {
     }
   }
   activateImages();
+  activateMenu();
+  function activateMenu() {
+      // Navbar and dropdowns
+      var toggle = document.getElementsByClassName('navbar-toggle')[0],
+          collapse = document.getElementsByClassName('navbar-collapse')[0],
+          dropdowns = document.getElementsByClassName('dropdown');;
+      // Toggle if navbar menu is open or closed
+      function toggleMenu(e) {
+          e.stopPropagation();
+          var collapse = document.getElementsByClassName('navbar-collapse')[0]
+          collapse.classList.toggle('collapse');
+          collapse.classList.toggle('in');
+      }
 
+      // Close all dropdown menus
+      function closeMenus() {
+          for (var j = 0; j < dropdowns.length; j++) {
+              dropdowns[j].getElementsByClassName('dropdown-toggle')[0].classList.remove('dropdown-open');
+              dropdowns[j].classList.remove('open');
+          }
+      }
+
+      // Add click handling to dropdowns
+      for (var i = 0; i < dropdowns.length; i++) {
+          dropdowns[i].addEventListener('click', function() {
+                  var open = this.classList.contains('open');
+                  closeMenus();
+                  if (!open) {
+                      this.getElementsByClassName('dropdown-toggle')[0].classList.toggle('dropdown-open');
+                      this.classList.toggle('open');
+                  }
+          });
+      }
+
+      // Close dropdowns when screen becomes big enough to switch to open by hover
+      function closeMenusOnResize() {
+          if (document.body.clientWidth >= 768) {
+              closeMenus();
+              collapse.classList.add('collapse');
+              collapse.classList.remove('in');
+          }
+      }
+
+      // Event listeners
+      window.addEventListener('resize', closeMenusOnResize, false);
+      toggle.addEventListener('click', toggleMenu, false);
+
+    }
   function parseHTML(data) {
     var div = document.createElement("div");
     div.innerHTML = data;

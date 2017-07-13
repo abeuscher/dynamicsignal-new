@@ -1,0 +1,52 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Events Page
+    */
+block content
+  -
+    var pageData = {
+    "header":"Events",
+    "subheader":"Explore our events schedule below, connect with us online or in person"
+    };
+  include ./inc/hero.pug
+  :php
+    $event_time = ( $_GET['events'] === 'past' ) ? '<' : '>=';
+    $sort_direction = ( $_GET['events'] === 'past' ) ? 'DESC' : 'ASC';
+    $event_type = 'cswebinar';
+    $op = '!=';
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $today = current_time('Y-m-d');
+    $args = array(
+        'paged' => $paged,
+        'post_type' => 'event',
+        'order' => $sort_direction,
+        'orderby' => 'meta_value',
+        'meta_key'  => 'event_start_date',
+        'meta_query' => array(
+            'relation' => 'AND',
+            array(
+                'key'     => 'event_start_date',
+                'compare' => $event_time,
+                'value'   => $today,
+            ),
+            array(
+               'key' => 'ds_event_type',
+                'value' => $event_type,
+                'compare' => $op
+            )
+        )
+    );
+
+    $events = new WP_Query( $args );
+    if( $events->have_posts() ) {
+        while( $events->have_posts() ) {
+
+            $events->the_post();
+
+  .row
+    .col-md-12
+      p Entry
+  :php
+      }}
