@@ -9,11 +9,37 @@
     }
   }
 }
+section.hero.home-hero {
+  color:$white;
+  padding-bottom:100px;
+  h1,h2,.cta {
+    position:relative;
+    color:$white;
+  }
+  h1 {
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 72px;
+  }
+  .cta {
+    display:inline-block;
+    width:auto;
+  }
+}
+.bg-video video {
+  width:100%;
+}
 section.testimonials.container {
   margin:0;
   padding:140px 0 450px;
   background-position:center bottom;
   width:100%;
+}
+.logo-strip-bucket {
+  display:none;
+  @include bp(m) {
+    display:block;
+  }
 }
 #logo-strip {
   height:50px;

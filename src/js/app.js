@@ -16,12 +16,10 @@ var templates = {
 }
 
 window.addEventListener("load", function() {
-  var parallax = document.getElementsByClassName("parallax");
-  if (parallax.length>0) {
+  if (document.getElementById("parallax")) {
     scrollSite();
   }
   if (document.getElementById("map-container")) {
-    console.log("found map");
     var box = document.getElementById("map-container");
     var map = document.getElementById("the-contact-map");
     box.addEventListener("click", function(e) {
@@ -61,7 +59,6 @@ window.addEventListener("load", function() {
     var gridGall = new Flickity("#logo-grid",{"prevNextButtons":false, lazyLoad:24});
     for (i in pageData.gridLogos) {
       if (i == 0 || (parseInt(i)) % 24 == 0) {
-        console.log("new slide");
         if (i!=0) {
           thisSlide.appendChild(thisRow);
           gridGall.append(thisSlide);
@@ -184,8 +181,8 @@ window.addEventListener("load", function() {
       }
 
       // Event listeners
-      window.addEventListener('resize', closeMenusOnResize, false);
-      toggle.addEventListener('click', toggleMenu, false);
+      //window.addEventListener('resize', closeMenusOnResize, false);
+      // toggle.addEventListener('click', toggleMenu, false);
 
     }
   function parseHTML(data) {
@@ -201,10 +198,13 @@ window.addEventListener("load", function() {
   }
 
   function scrollSite() {
+    //console.log("fire");
     var win = window;
     var doc = document;
     var body = document.body;
     var h = window.innerHeight;
+    var parallax = document.getElementById("parallax");
+    parallax.style.height = h + "px";
     var slides = document.getElementsByClassName("slide");
     var bgHeight = h*slides.length;       //height of the background image;
     var docHeight, winHeight, maxScroll;
@@ -222,8 +222,12 @@ window.addEventListener("load", function() {
     }
 
     function moveParallax(){
-      var bgYPos = -(bgHeight-winHeight)* (win.pageYOffset / maxScroll);
-      TweenLite.to(body, 0.1, {backgroundPosition: "50% " + bgYPos + "px"});
+      console.log(window.scrollY);
+      if (window.scrollY>=parallax.offsetTop) {
+        parallax.classList.add("locked");
+      }
+      //var bgYPos = -(bgHeight-winHeight)* (win.pageYOffset / maxScroll);
+      //TweenLite.to(body, 0.1, {backgroundPosition: "50% " + bgYPos + "px"});
     }
 
     win.addEventListener("scroll", moveParallax);

@@ -59,7 +59,7 @@ block content
     }
     };
   include ./inc/hero.pug
-  section.parallax
+  section#parallax
     .inner
       for slide,key in pageData.slides
         .slide(data-bg=slide.image,id="slide-"+key)

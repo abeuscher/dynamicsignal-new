@@ -7,7 +7,7 @@ block template
 block content
   -
     var pageData = {
-    "header":"Your Mobile-First Company Communications Platform",
+    "header":"Your Mobile-First Company<br>Communications Platform",
     "subheader":"Keep employees informed and engaged.<br>Increase productivity and empower advocacy.",
     "logoCopy":"Dynamic Signal is trusted by hundreds of the world's largest enterprises, more than any other provider.",
     "testimonialBg":"problem-bg.jpg",
@@ -28,8 +28,8 @@ block content
     .mobile-header(data-mobile-bg="Hero7.png")
     h1!=pageData.header
     h2!=pageData.subheader
-    a.cta(href="/requestdemo/") Request a Demo
-  section.container
+    a.button-red.cta(href="/requestdemo/") Request a Demo
+  section.container.logo-strip-bucket
     #logo-strip.home-gallery
   include ./inc/use-cases-grid.pug
   section.testimonials.container(data-bg=pageData.testimonialBg)
