@@ -1,84 +1,89 @@
 extends inc/page.pug
 block template
-  :php
-    /*
-    Template Name: Product Page
-    */
+	:php
+		/*
+		Template Name: Product Page
+		*/
 block content
-  -
-    var pageData = {
-    "header":"Cut Through The Noise With Dynamic Signal",
-    "subheader":"Deliver relevant, timely, approved content anywhere, anytime that employees can safely share.",
-    "slides" : [{
-    "header":"News",
-    "subheader":"Keep Employees Connected and Aligned",
-    "text":"Dynamic Signal provides companies with a way to keep their employees more informed with relevant company and industry news, on the channels and devices they prefer. Ensure your workforce is engaged and aligned with the company, by delivering them targeted content anytime, anywhere, within an easy to use mobile app.",
-    "image":"news.jpg",
-    "mobileImage":"news-mobile.png"
-    },
-    {
-    "header":"Communications",
-    "subheader":"Engage Employees with Real-Time Notifications",
-    "text":"Deliver the right message to the right employees at exactly the right time, all while tracking delivery and readership. Our advanced broadcast functionality enables a company to stay in touch with hard to reach employees whether they are behind a desk, in a store, or on a factory floor. Keeps all of your employees engaged, even those without a company email address.",
-    "image":"sharing-screen.jpg",
-    "mobileImage":"communications-mobile.png"
-    },
-    {
-    "header":"Advocacy",
-    "subheader":"Empower Advocacy & Drive Organic Reach",
-    "text":"Give employees a safe and easy way to share approved company communications on social media. Perfect for both beginners and pros, Dynamic Signal is built to simplify the user experience, with features like suggested messaging, scheduling, and support for international social networks.",
-    "image":"analytics.jpg",
-    "mobileImage":"advocacy-mobile.png"
-    },
-    {
-    "header":"Analytics",
-    "subheader":"Control the Message and Track it All",
-    "text":"Dynamic Signal allows administrators to easily measure the effectiveness and impact of their company communications. With robust reporting and analytics companies gain insight into employee adoption, viewer-ship, and engagement.",
-    "image":"activities.jpg",
-    "mobileImage":"laptop.png"
-    },
-    {
-    "header":"Engagement",
-    "subheader":"Activate and Encourage Employees",
-    "text":"With a direct, real-time connection, companies create more alignment with their employees, fostering a culture that inspires advocacy. Surveys, quizzes, and custom activities give companies the ability to elicit feedback and encourage ongoing engagement from their employees.",
-    "image":"messaging.jpg",
-    "mobileImage":"engagement-mobile.png"
-    }],
-    "coverflow": {
-    "header":"Connected with Your Current Stack",
-    "text":"Dynamic Signal seamlessly integrates with your current enterprise, messaging, and social platforms. With support for Single-Sign-On, availability in more than 15 languages, and robust APIs you can ensure your employees will have a seamless user experience.",
-    "image":"Dynamic-Signal-Integrations.png"
-    },
-    "videoInfo": {
-      "id":"",
-      "type":"",
-      "quote":"Mobile was particularly important for our in-store staff. It gives them the ability to access the program while in the store, and share information to their networks.",
-      "cite":"Kristian Lorenzon - <span class='position'>Head of Social Media</span>, <span class='company'>O2</span>",
-      "cta":"Play Video",
-      "image":"product_video.png"
-    }
-    };
-  include ./inc/hero.pug
-  section#parallax
-    .inner
-      for slide,key in pageData.slides
-        .slide(data-bg=slide.image,id="slide-"+key)
-          .col-md-5.thumb(data-src=slide.mobileImage)
-          .col-md-7.content
-            h2!=slide.header
-            h3!=slide.subheader
-            .text-content!=slide.text
-  section.products-coverflow
-    .container-fluid
-      .row
-        h1!=pageData.coverflow.header
-        p!=pageData.coverflow.text
-        a(href='/connectors/',data-src=pageData.coverflow.image)
-  section.product-video
-    .container-fluid
-      .row
-        .video-thumb(video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
-          .content
-            p!="\"" + pageData.videoInfo.quote + "\""
-            cite!=pageData.videoInfo.cite
-            a.cta(href="#")!=pageData.videoInfo.cta
+	-
+		var pageData = {
+		"header":"Cut Through The Noise With Dynamic Signal",
+		"subheader":"Deliver relevant, timely, approved content anywhere, anytime that employees can safely share.",
+		"slides" : [{
+		"header":"News",
+		"subheader":"Keep Employees Connected and Aligned",
+		"text":"Dynamic Signal provides companies with a way to keep their employees more informed with relevant company and industry news, on the channels and devices they prefer. Ensure your workforce is engaged and aligned with the company, by delivering them targeted content anytime, anywhere, within an easy to use mobile app.",
+		"image":"news.jpg",
+		"mobileImage":"news-mobile.png"
+		},
+		{
+		"header":"Communications",
+		"subheader":"Engage Employees with Real-Time Notifications",
+		"text":"Deliver the right message to the right employees at exactly the right time, all while tracking delivery and readership. Our advanced broadcast functionality enables a company to stay in touch with hard to reach employees whether they are behind a desk, in a store, or on a factory floor. Keeps all of your employees engaged, even those without a company email address.",
+		"image":"sharing-screen.jpg",
+		"mobileImage":"communications-mobile.png"
+		},
+		{
+		"header":"Advocacy",
+		"subheader":"Empower Advocacy & Drive Organic Reach",
+		"text":"Give employees a safe and easy way to share approved company communications on social media. Perfect for both beginners and pros, Dynamic Signal is built to simplify the user experience, with features like suggested messaging, scheduling, and support for international social networks.",
+		"image":"analytics.jpg",
+		"mobileImage":"advocacy-mobile.png"
+		},
+		{
+		"header":"Analytics",
+		"subheader":"Control the Message and Track it All",
+		"text":"Dynamic Signal allows administrators to easily measure the effectiveness and impact of their company communications. With robust reporting and analytics companies gain insight into employee adoption, viewer-ship, and engagement.",
+		"image":"activities.jpg",
+		"mobileImage":"laptop.png"
+		},
+		{
+		"header":"Engagement",
+		"subheader":"Activate and Encourage Employees",
+		"text":"With a direct, real-time connection, companies create more alignment with their employees, fostering a culture that inspires advocacy. Surveys, quizzes, and custom activities give companies the ability to elicit feedback and encourage ongoing engagement from their employees.",
+		"image":"messaging.jpg",
+		"mobileImage":"engagement-mobile.png"
+		}],
+		"coverflow": {
+		"header":"Connected with Your Current Stack",
+		"text":"Dynamic Signal seamlessly integrates with your current enterprise, messaging, and social platforms. With support for Single-Sign-On, availability in more than 15 languages, and robust APIs you can ensure your employees will have a seamless user experience.",
+		"image":"Dynamic-Signal-Integrations.png"
+		},
+		"videoInfo": {
+			"id":"",
+			"type":"",
+			"quote":"Mobile was particularly important for our in-store staff. It gives them the ability to access the program while in the store, and share information to their networks.",
+			"cite":"Kristian Lorenzon - <span class='position'>Head of Social Media</span>, <span class='company'>O2</span>",
+			"cta":"Play Video",
+			"image":"product_video.png"
+		}
+		};
+		var backgrounds = [];
+		for (i in pageData.slides) {
+			backgrounds.push(pageData.slides[i].image);
+		}
+	include ./inc/hero.pug
+	section#parallax
+		.inner
+			#bg-slides(data-backgrounds=JSON.stringify(backgrounds))
+			for slide,key in pageData.slides
+				.content-slide.row(id="slide-"+key)
+					.col-md-5.thumb(data-src=slide.mobileImage)
+					.col-md-7.content
+						h2!=slide.header
+						h3!=slide.subheader
+						.text-content!=slide.text
+	section.products-coverflow
+		.container-fluid
+			.row
+				h1!=pageData.coverflow.header
+				p!=pageData.coverflow.text
+				a(href='/connectors/',data-src=pageData.coverflow.image)
+	section.product-video
+		.container-fluid
+			.row
+				.video-thumb(video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
+					.content
+						p!="\"" + pageData.videoInfo.quote + "\""
+						cite!=pageData.videoInfo.cite
+						a.cta(href="#")!=pageData.videoInfo.cta

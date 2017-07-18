@@ -1,7 +1,7 @@
 {
-  "name": "amp-landing-pages",
+  "name": "dynamic-signal",
   "version": "0.0.1",
-  "description": "AMP landing page workspace",
+  "description": "DS New Site Theme",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -43,6 +43,7 @@
     "lodash": "^4.17.4",
     "path": "^0.11.14",
     "run-sequence": "^1.1.2",
+    "scrollmagic": "^2.0.5",
     "stringify": "^3.1.0",
     "susy": "^3.0.0",
     "vinyl-buffer": "^1.0.0",

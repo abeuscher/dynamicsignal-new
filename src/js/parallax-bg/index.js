@@ -1,42 +1,92 @@
+var ScrollMagic = require("scrollmagic");
+require('../../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
+
 var isElement = require("../utils/is-element.js");
 
-function ScrollSite() {
+function ScrollSite(siteSettings) {
+  this.ss = siteSettings
+  this.makeBackgroundSlides();
   this.init();
 }
+
 ScrollSite.prototype.init = function() {
-  //console.log("fire");
-  var win = window;
-  var doc = document;
-  var body = document.body;
+  var self = this;
+  var controller = new ScrollMagic.Controller();
   var h = window.innerHeight;
   var parallax = document.getElementById("parallax");
-  parallax.style.height = h + "px";
-  var slides = document.getElementsByClassName("slide");
-  var bgHeight = h*slides.length;       //height of the background image;
+  var slides = document.getElementsByClassName("content-slide");
+  parallax.style.height = h * slides.length + "px";
+  var parallaxTop = getPosition(parallax).y;
+  var parallaxHeight = h*slides.length;
   var docHeight, winHeight, maxScroll;
-  for (i in slides) {
-    if (isElement(slides[i])) {
-      var thisSlide = slides[i];
-      thisSlide.style.height = h+"px";
-    }
-  }
-  function onResize(){
-    docHeight = doc.innerHeight;
-    winHeight = win.innerHeight;
-    maxScroll = docHeight - winHeight;
-    moveParallax();
+  
+  //Lock Background layer
+  new ScrollMagic.Scene({
+    offset:h/2,
+          triggerElement:"#bg-slides",
+          duration:h*(slides.length-.5)
+      })
+      .setPin("#bg-slides")
+      .addTo(controller);
+
+  for (i=0;i<slides.length;i++) {
+    var thisSlide = slides[i];
+    thisSlide.style.height = h+"px";
+    //Swap Background Image
+    new ScrollMagic.Scene({
+      offset:h/2,
+      triggerElement:"#slide-"+i,
+      duration:i==slides.length-1 ? h*1.5 : h
+    })
+    .on("enter leave", function(e) { self.swapBg(e); })
+    .addTo(controller)
+    .id = i;
   }
 
-  function moveParallax(){
-    console.log(window.scrollY);
-    if (window.scrollY>=parallax.offsetTop) {
-      parallax.classList.add("locked");
+}
+ScrollSite.prototype.swapBg = function(e) {
+  for (i=0;i<this.divs.length;i++) {
+    var thisDiv = this.divs[i];
+    thisDiv.className = "";
+    if (i==e.currentTarget.id) {
+      thisDiv.classList.add("bg-slide","show")
     }
-    //var bgYPos = -(bgHeight-winHeight)* (win.pageYOffset / maxScroll);
-    //TweenLite.to(body, 0.1, {backgroundPosition: "50% " + bgYPos + "px"});
-  }
+    else {
+      thisDiv.classList.add("bg-slide","hide")
+    }
 
-  win.addEventListener("scroll", moveParallax);
-  win.addEventListener("resize", onResize);
+  }
+}
+ScrollSite.prototype.makeBackgroundSlides = function() {
+  var bgBucket = document.getElementById("bg-slides");
+  var bgArray = JSON.parse(bgBucket.getAttribute("data-backgrounds"));
+  this.divs = [];
+  bgBucket.style.height = window.innerHeight + "px";
+  for (i in bgArray) {
+    var div = document.createElement("div");
+    div.id = "bg-slide-"+i;
+    if (i>0) {
+      div.classList.add("bg-slide","hide");
+    }
+    else {
+      div.classList.add("bg-slide");
+    }
+    div.style.background = "url('"+this.ss.imagePath+bgArray[i]+"') center left / cover no-repeat";
+    div.style.height = window.innerHeight + "px";
+    bgBucket.appendChild(div);
+    this.divs.push(div);
+  }
+}
+function getPosition(element) {
+    var xPosition = 0;
+    var yPosition = 0;
+
+    while(element) {
+        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+    }
+
+    return { x: xPosition, y: yPosition };
 }
 module.exports = ScrollSite;
