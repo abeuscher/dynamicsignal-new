@@ -1,0 +1,40 @@
+.use-case-bottom, .use-case-cta {
+  text-align: center;
+  padding:$gutter-width*2 0;
+}
+.use-case-bottom {
+  .button-teal {
+
+  }
+}
+section#parallax.use-cases-parallax {
+  #bg-slides {
+    .bg-slide {
+      &:after {
+        content:'';
+        position:absolute;
+        top:0;
+        bottom:0;
+        width:100%;
+        background: linear-gradient(to left, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+      }
+    }
+  }
+  .content-slide {
+    width:50%;
+    margin-left:50%;
+    .content {
+      h1, h2, .text-content {
+        color:$white;
+      }
+    }
+  }
+}
+.logo-strip {
+  .col-centered {
+    text-align:center;
+  }
+  img {
+    max-height:50px;
+  }
+}

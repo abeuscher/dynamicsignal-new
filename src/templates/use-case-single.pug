@@ -5,8 +5,105 @@ block template
     Template Name: Use Case Single Entry Page
     */
 block content
+  :php
+    echo '<script>var useCaseBackgrounds = '. json_encode(array(get_field("solution_1_image"),get_field("solution_2_image"),get_field("solution_3_image")),JSON_UNESCAPED_SLASHES).'; var useCaseQuotes = '. json_encode(get_field("proof_points")).';</script>';
   section.hero#page-top
     .container
       .row
-        h1 Name
-        h2 Title
+        h1
+          :php
+            the_title();
+        h2
+          :php
+            the_field("subheader");
+  :php
+    if( have_rows('logos') ) {
+  section.logo-strip.gray.container
+    .row
+      :php
+        $logos = array();
+        $count = 0;
+        while( have_rows('logos') ): the_row();
+          $logos[$count] = array("name"=>get_sub_field('company_name'),"image"=>get_sub_field('company_logo'));
+          $count++;
+        endwhile;
+        foreach($logos as $idx=>$logo) {
+          if ($idx==0) {
+            echo "<div class='col-sm-2 col-xs-6 col-centered'><img class='use-case-statement-logo' src='".$logo["image"]["url"]."' alt='".$logo["name"]."' /></div>";
+          }
+          else {
+            echo "<div class='col-sm-2 col-xs-6 col-centered'><img class='use-case-statement-logo' src='".$logo["image"]["url"]."' alt='".$logo["name"]."' /></div>";
+          }
+        }
+  :php
+    }
+  section.three-pane.container
+    .row
+      .col-md-12
+        :php
+          if (get_field("problem_statement_header")!="") {
+            echo "<h2>".get_field("problem_statement_header")."</h2>";
+          }
+          else {
+            echo "<h2>The Problems We Solve</h2>";
+          }
+        h3
+          :php
+            the_field("problem_statement");
+    .row
+      .col-md-4
+        .problem-arrow
+        .problem_statement
+          :php
+            the_field("pain_point_1");
+      .col-md-4
+        .problem-arrow
+        .problem_statement
+          :php
+            the_field("pain_point_2");
+      .col-md-4
+        .problem-arrow
+        .problem_statement
+          :php
+            the_field("pain_point_3");
+  section#parallax.use-cases-parallax
+    .inner
+      #bg-slides(data-backgrounds)
+      .content-slide.row(id="slide-0")
+        .col-md-12.content
+          h2
+            :php
+              the_field("solution_1_header");
+          .text-content
+            :php
+              the_field("solution_1_content");
+      .content-slide.row(id="slide-1")
+        .col-md-12.content
+          h2
+            :php
+              the_field("solution_2_header");
+          .text-content
+            :php
+              the_field("solution_2_content");
+      .content-slide.row(id="slide-2")
+        .col-md-12.content
+          h2
+            :php
+              the_field("solution_3_header");
+          .text-content
+            :php
+              the_field("solution_3_content");
+  section.container
+    #use-case-quotes
+  section.container.use-case-bottom
+    .row
+      .col-md-12
+        h1 Benefits for Every Department of the Enterprise
+        a.button-teal.big.cta(href="/use-cases/") See All Use Cases
+  section.container.use-case-cta
+    .row
+      .col-md-12
+        h2
+          :php
+            the_field("cta_header");
+        a.cta.button-red(href="/requestdemo/") Request a Demo

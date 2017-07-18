@@ -28,6 +28,7 @@ $fa-font-path: "/wp-content/themes/ds-new/fonts/";
 @import "./_footer.scss";
 @import "./_home.scss";
 @import "./_use-cases.scss";
+@import "./_use-cases-single.scss";
 @import "./_products.scss";
 
 h1 {
@@ -48,6 +49,7 @@ h2 {
 }
 a {
   text-decoration:none;
+  cursor:pointer;
 }
 ul.nav-items li a.button-teal, .button-teal {
   background-color: white;
@@ -58,6 +60,19 @@ ul.nav-items li a.button-teal, .button-teal {
   font-size: 10px;
   border-radius:25px;
   border:1px solid $teal;
+  transition:all .2s ease-in;
+  &:hover {
+    background-color:$teal;
+    color:$white;
+  }
+  &.big {
+    border-radius:$gutter-width*2;
+    font-size:24px;
+    padding:$gutter-width $gutter-width*2;
+    text-transform: uppercase;
+    font-weight:700;
+    line-height:3;
+  }
 }
 .button-red {
   background:$red;
@@ -72,6 +87,15 @@ ul.nav-items li a.button-teal, .button-teal {
   letter-spacing:1.5px;
   &:hover {
     background:darken($red,20%);
+  }
+  &.knockout {
+    background:$white;
+    color:$red;
+    border:2px solid $red;
+    &:hover {
+      background:$red;
+      color:$white;
+    }
   }
 }
 section.hero {
@@ -91,6 +115,11 @@ section.hero {
 .video-thumb {
   color:$white;
   background-size:contain;
+  cursor:pointer;
+  iframe {
+    width:100%;
+    height:100%;
+  }
   @include aspect-ratio(16,9);
   .content {
     width:auto;

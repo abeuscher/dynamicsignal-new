@@ -28,7 +28,9 @@ window.addEventListener("load", function() {
     }
   }
   activateImages();
+  activateVideos();
 });
+
 
 var siteActions = [{
     "element": "parallax",
@@ -202,4 +204,26 @@ function activateImages() {
       thisElement.appendChild(img);
     }
   }
+}
+
+function activateVideos() {
+  var videos = document.querySelectorAll(".video-thumb");
+  for (i=0;i<videos.length;i++) {
+    thisVideo = videos[i];
+    thisVideo.addEventListener("click", function() {
+      var thisContent = this.querySelectorAll(".content")[0];
+      var thisPlayer = makeVideo(this.getAttribute("data-video-id"));
+      thisContent.classList.add("hide");
+      this.replaceChild(thisPlayer,thisContent);
+    });
+  }
+}
+function makeVideo(id) {
+  var video = document.createElement("iframe");
+  video.src = "https://player.vimeo.com/video/"+id+"?title=0&byline=0&portrait=0";
+  video.setAttribute("webkitallowfullscreen","true");
+  video.setAttribute("mozallowfullscreen","true");
+  video.setAttribute("allowfullscreen","true");
+  video.classList.add("vimeo-video");
+  return video;
 }

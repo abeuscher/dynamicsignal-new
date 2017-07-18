@@ -31,9 +31,28 @@ section.hero.home-hero {
 }
 section.testimonials.container {
   margin:0;
-  padding:140px 0 450px;
+  padding:140px 0 600px;
   background-position:center bottom;
   width:100%;
+  .quote {
+    font-size:30px;
+    line-height:36px;
+    font-weight:300;
+    .text--bold {
+      font-weight:600;
+    }
+    .text--teal {
+      color:$teal;
+    }
+  }
+  cite {
+    display:block;
+    text-align:center;
+    font-size:24px;
+    margin-top:30px;
+    font-weight:300;
+    font-style:normal;
+  }
 }
 .logo-strip-bucket {
   display:none;
@@ -45,27 +64,71 @@ section.testimonials.container {
   height:50px;
   margin:50px auto;
 }
+.cta-bottom {
+  padding:$gutter-width*2 0;
+  h2 {
+    max-width:960px;
+    margin:0 auto;
+  }
+}
+.logo-grid {
+  padding:$gutter-width*2 0;
+}
+.cta-bottom, .product-cta, .logo-grid {
+  text-align: center;
+}
 #testimonial-strip {
   height:100px;
-  margin:50px auto;
+  margin:$gutter-width*2 auto;
+}
+#product-display {
+  padding-top:$gutter-width*2;
+}
+#bg-mobile-product {
+    background:url($img-path+'product-mobile.svg') no-repeat center top;
+    @include aspect-ratio(356,745);
+    position:absolute;
+    width:64%;
+    left:18%;
+    top:0;
+}
+.product-images {
+  position:relative;
+}
+.mobile-products {
+  .product-image {
+    background-position: center 21%;
+    background-repeat: no-repeat;
+    background-size: 54% 54%;
+    @include aspect-ratio(356,655);
+  }
 }
 .product-image {
   display:none;
-  min-height:400px;
-  background-position:center center;
-  background-repeat:no-repeat;
-
   &.active {
     display:block;
   }
-  background-size:contain;
 }
 .product-tiles {
-  a.product-tile {
-    display:block;
-    transition:all .1s ease-in;
+  h3 {
+    text-transform: uppercase;
+  }
+  p {
+    font-weight:300;
+    font-size:16px;
+    line-height:24px;
+    letter-spacing:1px;
+  }
+  a {
+    display: block;
+    padding:0 $gutter-width/2;
+    margin:0 0 $gutter-width;
+    color:$grey;
+    border:2px solid transparent;
+    transition:all .25s ease-in;
+    border-radius:5px;
     &:hover {
-      background:rgba(0,0,0,.5);
+      border-color:$teal;
     }
   }
 }

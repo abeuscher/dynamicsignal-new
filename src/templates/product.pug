@@ -50,8 +50,8 @@ block content
 		"image":"Dynamic-Signal-Integrations.png"
 		},
 		"videoInfo": {
-			"id":"",
-			"type":"",
+			"id":"208713647",
+			"type":"vimeo",
 			"quote":"Mobile was particularly important for our in-store staff. It gives them the ability to access the program while in the store, and share information to their networks.",
 			"cite":"Kristian Lorenzon - <span class='position'>Head of Social Media</span>, <span class='company'>O2</span>",
 			"cta":"Play Video",
@@ -82,7 +82,7 @@ block content
 	section.product-video
 		.container-fluid
 			.row
-				.video-thumb(video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
+				.video-thumb(data-video-id=pageData.videoInfo.id,data-video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
 					.content
 						p!="\"" + pageData.videoInfo.quote + "\""
 						cite!=pageData.videoInfo.cite

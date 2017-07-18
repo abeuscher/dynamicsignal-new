@@ -37,14 +37,14 @@ block content
   section
     #product-display
   section.product-cta
-    a.cta(href="/product/") Learn More About Our Product
+    a.button-red.knockout.cta(href="/product/") Learn More About Our Product
   section.logo-grid
     .container
       .row
         .col-md-12
           h1!=pageData.logoGridHeader
-          p!=pageData.logoGridSubheader
+          h2!=pageData.logoGridSubheader
       #logo-grid
   section.cta-bottom
     h2!=pageData.ctaHeader
-    a.cta(href="/requestdemo/")!=pageData.ctaLabel
+    a.button-red.cta(href="/requestdemo/")!=pageData.ctaLabel

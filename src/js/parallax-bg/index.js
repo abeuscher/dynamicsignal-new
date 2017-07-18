@@ -19,7 +19,7 @@ ScrollSite.prototype.init = function() {
   var parallaxTop = getPosition(parallax).y;
   var parallaxHeight = h*slides.length;
   var docHeight, winHeight, maxScroll;
-  
+
   //Lock Background layer
   new ScrollMagic.Scene({
     offset:h/2,
@@ -59,7 +59,7 @@ ScrollSite.prototype.swapBg = function(e) {
 }
 ScrollSite.prototype.makeBackgroundSlides = function() {
   var bgBucket = document.getElementById("bg-slides");
-  var bgArray = JSON.parse(bgBucket.getAttribute("data-backgrounds"));
+  var bgArray = typeof useCaseBackgrounds !== "undefined" ? useCaseBackgrounds : JSON.parse(bgBucket.getAttribute("data-backgrounds"));
   this.divs = [];
   bgBucket.style.height = window.innerHeight + "px";
   for (i in bgArray) {
@@ -71,7 +71,13 @@ ScrollSite.prototype.makeBackgroundSlides = function() {
     else {
       div.classList.add("bg-slide");
     }
-    div.style.background = "url('"+this.ss.imagePath+bgArray[i]+"') center left / cover no-repeat";
+    if (typeof useCaseBackgrounds !== "undefined") {
+      div.style.background = "url('"+bgArray[i].sizes.medium_large+"') center left / cover no-repeat";
+    }
+    else {
+      div.style.background = "url('"+this.ss.imagePath+bgArray[i]+"') center left / cover no-repeat";
+    }
+
     div.style.height = window.innerHeight + "px";
     bgBucket.appendChild(div);
     this.divs.push(div);
