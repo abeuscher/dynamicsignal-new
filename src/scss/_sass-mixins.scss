@@ -37,3 +37,32 @@ $mq-support:true;
 		}
 	}
 }
+@mixin aspect-ratio($width, $height) {
+	position: relative;
+	&:after {
+		content: "";
+		display: block;
+		padding-top: $height / $width * 100%;
+	}
+
+	& > * {
+		display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+	}
+}
+@mixin no-padding($side) {
+  @if $side == "all" {
+    .no-padding {
+      padding: 0 !important;
+    }
+  }
+  @else {
+    .no-padding-#{$side} {
+      padding-#{$side}: 0 !important;
+    }
+  }
+}

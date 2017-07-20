@@ -1,0 +1,13 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Career Single Entry Page
+    */
+block content
+  -
+    var pageData = {
+    "header":"Join Our Team",
+    "subheader":"We build communications technology for the world's largest enterprises."
+    };
+  include ./inc/hero.pug

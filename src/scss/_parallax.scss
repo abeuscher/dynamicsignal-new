@@ -1,0 +1,59 @@
+#parallax {
+  overflow:hidden;
+  #bg-slides {
+    width:100%;
+    position:absolute;
+    top:0;
+    div {
+      z-index:0;
+
+    }
+    .bg-slide {
+      position:absolute;
+      top:0;
+      width:100%;
+      transition:all .5s ease-in;
+      &.p-show {
+        opacity:1;
+      }
+      &.p-hide {
+        opacity:0;
+      }
+    }
+  }
+  .inner {
+    position:relative;
+  }
+  .content-slide {
+      padding-top:10%;
+      .thumb {
+        text-align:center;
+        margin-top:15%;
+        img {
+          max-width:100%;
+          max-height:500px;
+          width:auto;
+        }
+      }
+      .content {
+        color:$off-black;
+        h2 {
+          text-transform:uppercase;
+          font-size:30px;
+          opacity:.6;
+        }
+        h3 {
+          font-size:34px;
+          height:44px;
+          font-weight:300;
+        }
+        .text-content {
+          color:$light-grey;
+          padding: 60px 115px 0 0;
+          line-height: 37px;
+          font-size: 21px;
+          font-weight: 400;
+        }
+      }
+  }
+}

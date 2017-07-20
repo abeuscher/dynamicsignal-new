@@ -1,0 +1,55 @@
+#partners-logo-strip {
+  height:80px;
+}
+
+/* Photo Banner */
+
+$logo-count: 10;
+$logo-width: 350px;
+$logo-height: 80px;
+
+.marquee-bucket {
+  width: 100%;
+  padding:0;
+  height: $logo-height;
+  overflow: hidden;
+  background:$white;
+  padding:$gutter-width 0;
+  box-sizing:content-box;
+}
+
+.marquee {
+  height: $logo-height;
+  width: ($logo-width * $logo-count);
+  margin-bottom: 5px;
+  font-size: 0;
+
+  img {
+    display:inline-block;
+    width:auto;
+    margin-bottom: $gutter-width;
+    margin-right: $gutter-width*4;
+    padding:0 $gutter-width*2;
+    height: $logo-height;
+    width: auto;
+    transition: all 0.5s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+    &:first-child {
+      animation: bannermove 30s linear infinite;
+    }
+  }
+}
+
+/* Keyframe animations*/
+
+@keyframes "bannermove" {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -2130px;
+  }
+}

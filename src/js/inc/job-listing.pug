@@ -1,0 +1,14 @@
+article
+  .row
+    .col-md-6
+      h3
+        for category,key in locals.categories
+          if category.cat_name!="Careers"
+            span=category.cat_name
+      h2=locals.post_title
+    .col-md-6.text-right
+      a.button-red(href="/career/"+locals.post_name) Apply
+  .row
+    .col-md-12.job-listing-bottom
+      .job-description!=locals.post_content
+      a.job-link(href="/career/"+locals.post_name) Read more

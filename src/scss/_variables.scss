@@ -1,22 +1,27 @@
 //config
-$cdn-path:"/";
-$img-path:$cdn-path+"img/";
-$font-path:"/fonts/";
+$cdn-path:"/wp-content/themes/ds-new/";
+$img-path:$cdn-path+"images/";
+$font-path:$cdn-path+"/fonts/";
 
 //Breakpoints
 $bps: (xs: 0, s:641px, m:1025px, l:1321px,xl:1921px);
 
+$gutter-width:24px;
+
 //color-values
-$grey: #4E4B4E;
-$red: #D3484D;
-$teal: #1A9697;
-$beige: #F2EEE7;
 $white:#ffffff;
 $black:#000000;
 $off-black:#4a4a4a;
+$grey: #4E4B4E;
 $light-grey:#9b9b9b;
+$middle-grey:#d7d7d7;
+$red: #D3484D;
+$teal: #1A9697;
+$beige: #F2EEE7;
+
 
 //font-values
+/*
 @font-face {
   font-family: 'proximanova';
   src: url('#{$font-path}proximanova-regular-webfont.ttf')  format('truetype');
@@ -41,6 +46,7 @@ $light-grey:#9b9b9b;
   font-family: 'proximanova-thing';
   src: url('#{$font-path}proximanova-thing-webfont.ttf') format('truetype');
 }
+*/
 
 //colors
 $body-bg-color:linear-gradient(90deg, rgb(41, 44, 99) 0%, rgb(54, 64, 125) 100%);
@@ -50,29 +56,4 @@ $header-color:$white;
 
 //fonts
 $body-font:'proximanova',sans-serif;
-$header-font:'proximanova', sans-serif;
-
-// Global
-
-@mixin no-padding($side) {
-  @if $side == "all" {
-    .no-padding {
-      padding: 0 !important;
-    }
-  }
-  @else {
-    .no-padding-#{$side} {
-      padding-#{$side}: 0 !important;
-    }
-  }
-}
-
-@include no-padding("left");
-
-@include no-padding("right");
-
-@include no-padding("top");
-
-@include no-padding("bottom");
-
-@include no-padding("all");
+$header-font:'proximanova-bold', sans-serif;

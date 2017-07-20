@@ -84,7 +84,10 @@ function bundle() {
 
 gulp.task('compile-sass-autoprefixed-minified', function() {
     return gulp.src(sassDir + '*.scss')
-        .pipe(sass())
+        .pipe(sass({
+          outputStyle: 'compressed',
+          includePaths: ['node_modules/susy/sass']
+      }))
         .on('error', function(error) {
             console.log(error);
             this.emit('end');
