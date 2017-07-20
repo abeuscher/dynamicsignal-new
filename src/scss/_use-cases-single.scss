@@ -1,13 +1,94 @@
 .use-case-bottom, .use-case-cta {
   text-align: center;
-  padding:$gutter-width*2 0;
 }
-.use-case-bottom {
-  .button-teal {
-
+.use-case-quotes {
+  display:block;
+  min-height:300px;
+  width:100%;
+  .use-case-quote {
+    padding:$gutter-width*2 0 $gutter-width;
+   width:100%;
+   h3 {
+     font-size:44px;
+     line-height:52px;
+     font-weight:300;
+     width:80%;
+     margin:0 10%;
+     text-align: center;
+   }
   }
 }
+.use-cases-logo-strip {
+  text-align:center;
+  background:$beige;
+  padding:$gutter-width*2 0;
+}
+ul.gray-logos {
+  margin:0;
+  padding:0;
+  li {
+    display:inline-block;
+    text-align: center;
+    padding:0 $gutter-width;
+    img {
+      max-height:50px;
+      width:auto;
+      max-width:100%;
+    }
+  }
+}
+.problem-statement {
+  font-size: 36px;
+  line-height: 44px;
+  text-align: center;
+  font-weight:300;
+}
+.problem-arrow {
+  position:relative;
+  display:block;
+  border:1px dashed $grey;
+  margin:$gutter-width*2 5%;
+  width:90%;
+  &:before {
+    content:'';
+    position:absolute;
+    left:-5%;
+    background:$red;
+    border:3px solid $white;
+    box-shadow:  0px 0px 0px 2px $grey;
+    width:17px;
+    height:17px;
+    border-radius:50%;
+    top:-9px;
+  }
+  &:after {
+    content:'';
+    position:absolute;
+    right:-5px;
+    width:15px;
+    height:15px;
+    transform:rotate(45deg);
+    border-right:2px solid $grey;
+    border-top:2px solid $grey;
+    top:-8px;
+  }
+}
+.three-pane {
+    padding:$gutter-width*2 0;
+    text-align:center;
+    h2 {
+      font-size:36px;
+      line-height:44px;
+      font-weight:300;
+    }
+    h3 {
+      font-size:24px;
+      line-height:36px;
+      font-weight:300;
+    }
+}
 section#parallax.use-cases-parallax {
+  padding:$gutter-width*2 0;
   #bg-slides {
     .bg-slide {
       &:after {
@@ -28,13 +109,5 @@ section#parallax.use-cases-parallax {
         color:$white;
       }
     }
-  }
-}
-.logo-strip {
-  .col-centered {
-    text-align:center;
-  }
-  img {
-    max-height:50px;
   }
 }

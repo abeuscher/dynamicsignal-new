@@ -24,7 +24,7 @@ ScrollSite.prototype.init = function() {
   new ScrollMagic.Scene({
     offset:h/2,
           triggerElement:"#bg-slides",
-          duration:h*(slides.length-.5)
+          duration:h*(slides.length-1)
       })
       .setPin("#bg-slides")
       .addTo(controller);
@@ -34,9 +34,9 @@ ScrollSite.prototype.init = function() {
     thisSlide.style.height = h+"px";
     //Swap Background Image
     new ScrollMagic.Scene({
-      offset:h/2,
+      offset:h/3,
       triggerElement:"#slide-"+i,
-      duration:i==slides.length-1 ? h*1.5 : h
+      duration:h
     })
     .on("enter leave", function(e) { self.swapBg(e); })
     .addTo(controller)

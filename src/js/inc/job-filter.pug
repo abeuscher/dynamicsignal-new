@@ -1,0 +1,10 @@
+.job-filter
+  .row
+    .col-md-12
+      a#show-all.filter-button.active(href="#",type="checkbox",value="showAll") Filter - All
+  .row
+    for category in locals
+      if category.cat_name!="Careers"
+        .col-md-12
+          a.filter-button(href="#",id=category.slug,type="checkbox",data-value=JSON.stringify(category))=category.cat_name
+            span.job-total=category.total_entries

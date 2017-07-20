@@ -3,6 +3,7 @@ require("dom4");
 var Flickity = require("flickity");
 
 var JobList = require("./job-handler/index.js");
+var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
 
 var parseHTML = require("./utils/parse-html.js");
@@ -13,9 +14,12 @@ var siteSettings = {
   "videoPath": "/wp-content/themes/ds-new/video/",
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
+    "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
     "testimonialSlide": require("./inc/testimonial-slide.pug"),
     "productDisplay": require("./inc/product-display.pug"),
-    "jobListing": require("./inc/job-listing.pug")
+    "useCaseQuote": require("./inc/use-case-quote.pug"),
+    "jobListing": require("./inc/job-listing.pug"),
+    "jobFilter": require("./inc/job-filter.pug")
   }
 }
 
@@ -53,11 +57,30 @@ var siteActions = [{
     }
   },
   {
+    "element": "use-case-quotes",
+    "action": function() {
+      var quoteGall = new Flickity("#use-case-quotes", {"prevNextButtons": false});
+      for (i in useCaseQuotes) {
+        quoteGall.append(parseHTML(siteSettings.templates.useCaseQuote(useCaseQuotes[i])));
+        console.log(useCaseQuotes[i]);
+      }
+
+    }
+  },
+  {
+    "element": "customers-grid",
+    "action": function() {
+      console.log(customerData);
+
+    }
+  },
+  {
     "element": "logo-strip",
     "action": function() {
       var logoGall = new Flickity("#logo-strip", {
         "prevNextButtons": false,
-        "lazyLoad": 6
+        "lazyLoad": 6,
+        "autoPlay":5000
       });
       for (i in pageData.logos) {
         if (i == 0 || (parseInt(i)) % 6 == 0) {
@@ -68,6 +91,22 @@ var siteActions = [{
           thisRow.classList.add("row");
         }
         thisRow.appendChild(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
+      }
+    }
+  },
+  {
+    "element": "partners-logo-marquee",
+    "action": function() {
+      var bucket = document.getElementById("partners-logo-marquee");
+      for (i in pageData.logos) {
+        fetch(pageData.logos[i].logo.url)
+          .then(function(data) {
+            console.log(data);
+            var img = document.createElement("img");
+            img.src = data.url;
+            img.alt = "";
+            bucket.appendChild(img);
+          })
       }
     }
   },
@@ -87,7 +126,8 @@ var siteActions = [{
     "action": function() {
       var gridGall = new Flickity("#logo-grid", {
         "prevNextButtons": false,
-        lazyLoad: 24
+        lazyLoad: 24,
+        "autoPlay":10000
       });
       for (i in pageData.gridLogos) {
         if (i == 0 || (parseInt(i)) % 24 == 0) {
@@ -134,6 +174,13 @@ var siteActions = [{
         "container": document.getElementById("job-list")
       }
       var theJobs = new JobList(opts);
+      var opts = {
+        "categories":pageData.categories,
+        "template":siteSettings.templates.jobFilter,
+        "container":document.getElementById("job-filter"),
+        "jobList":theJobs
+      }
+      var theFilter = new JobFilter(opts);
     }
   },
   {

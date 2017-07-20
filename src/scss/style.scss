@@ -22,15 +22,33 @@ $fa-font-path: "/wp-content/themes/ds-new/fonts/";
 @import "./_flickity.scss";
 
 @import "./_parallax.scss";
-@import "./_header.scss";
 @import "./_nav.scss";
 @import "./_grid.scss";
 @import "./_footer.scss";
 @import "./_home.scss";
+@import "./_partners.scss";
 @import "./_use-cases.scss";
+@import "./_careers.scss";
 @import "./_use-cases-single.scss";
 @import "./_products.scss";
 
+@include no-padding("left");
+
+@include no-padding("right");
+
+@include no-padding("top");
+
+@include no-padding("bottom");
+
+@include no-padding("all");
+body {
+  font-family:$body-font;
+  color:$grey;
+  font-weight:300;
+}
+h1,h2,h3,h4,h5,h6  {
+  font-family:$header-font;
+}
 h1 {
   font-size: 48px;
   color: $off-black;
@@ -50,10 +68,19 @@ h2 {
 a {
   text-decoration:none;
   cursor:pointer;
+  &:hover {
+    text-decoration:none;
+    color:$teal;
+  }
+}
+section {
+  padding-top:$gutter-width*2;
+  padding-bottom:$gutter-width*2;
 }
 ul.nav-items li a.button-teal, .button-teal {
   background-color: white;
   padding: 5px 10px;
+  line-height:20px;
   color: $teal;
   margin-top: 13px;
   margin-right: 1em;
@@ -98,6 +125,33 @@ ul.nav-items li a.button-teal, .button-teal {
     }
   }
 }
+section.logo-strip-bucket {
+  display:none;
+  @include bp(m) {
+    display:block;
+    text-align:center;
+    background:$beige;
+  }
+  .logo-strip {
+    height:50px;
+    margin:50px auto;
+    position:relative;
+    .row {
+      width:100%;
+      text-align: center;
+      .col-xs-2 {
+        vertical-align: middle;
+      }
+
+      img {
+        display:inline-block;
+        max-width:100%;
+        padding:0 5px;
+      }
+    }
+  }
+}
+
 section.hero {
   position:relative;
   margin-top: 60px;
@@ -179,4 +233,13 @@ section.hero {
 }
 .contact-map iframe.clicked{
 	pointer-events: auto;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
 }

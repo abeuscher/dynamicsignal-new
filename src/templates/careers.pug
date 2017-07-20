@@ -52,17 +52,26 @@ block content
 		$args = array( 'post_type' => 'career', 'posts_per_page' => 100 );
 		$jobs = get_posts( $args );
 		$categories = [];
+		$category_count=[];
 		foreach($jobs as $key => $job) {
-			$cat = get_the_category($job->ID)[0];
-			$categories[$key]=$cat;
-			$job->category = $cat->cat_ID;
+			$cat = get_the_category($job->ID);
+			foreach($cat as $key=>$category) {
+				$category_count[$category->cat_ID] = $category_count[$category->cat_ID] ? $category_count[$category->cat_ID]+1 : 1;
+				if (!in_array($category,$categories)) {
+					array_push($categories,$category);
+				}
+			}
+			$job->categories = $cat;
 			$jobs[$key] = $job;
+		}
+		foreach($categories as $key=>$category) {
+			$categories[$key]->total_entries = $category_count[$category->cat_ID];
 		}
 		echo "<script>var pageData = {'jobs':".json_encode($jobs,JSON_UNESCAPED_SLASHES)
 		.",'categories':".json_encode($categories,JSON_UNESCAPED_SLASHES)
 		."};</script>";
 	include ./inc/hero.pug
-	section.career-links
+	section.careers-links
 		.container.hidden-sm
 			.row
 				ul.nav.careers-tabs
@@ -72,13 +81,13 @@ block content
 								a(href="#"+link.class,id="icon-"+link.class)=link.label
 						else
 							li
-								a(href="#"+link.class)=link.label
-	section#about.container
+								a(href="#"+link.class,id="icon-"+link.class)=link.label
+	section#about.container.careers-about
 		.row
 			.col-md-12
 				h2!=pageData.aboutHeader
 				p!=pageData.aboutSubheader
-		.row
+		.row.careers-panes
 			for pane in pageData.aboutPanes
 				.col-md-3
 					h3!=pane.title

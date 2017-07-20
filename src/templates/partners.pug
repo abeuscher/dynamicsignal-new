@@ -1,0 +1,51 @@
+extends inc/page.pug
+block template
+	:php
+		/*
+		Template Name: Partners Page
+		*/
+block content
+	:php
+		echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
+		."};</script>";
+	-
+		var pageData = {
+		"header":"Grow Your Agency",
+		"subheader":"Employee Advocacy Increases Client Value and Drives Revenue"
+		};
+	include ./inc/hero.pug
+	section.marquee-bucket
+		#partners-logo-marquee.marquee
+	:php
+		if( have_posts() ) {
+		while( have_posts() ) {
+			the_post();
+	p.subheader
+		:php
+			the_field('content_top');
+
+			$testimonials = get_field('agency_testimonials');
+			 echo '<script>var testimonials = '. json_encode($testimonials).';</script>';
+
+				// Uber Embed
+				if ( have_rows( 'uber_embed' ) ) :
+					$count = 0;
+					echo '<section class="uber-embed">';
+						while ( have_rows( 'uber_embed' ) ) : the_row();
+							$tile = get_sub_field('embed');
+							$first = ( $count === 0 ) ? 'first' : '';
+
+							printf( '<div class="one-third %s">%s</div>', $first, $tile );
+
+							$count++;
+						endwhile;
+					echo '</section>';
+				endif;
+				// END Uber Embeds
+
+				// eBook Download
+				echo '<section class="agency-ebook">';
+					the_field( 'ebook' );
+				echo '</section>';
+
+				}}

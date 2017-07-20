@@ -22,10 +22,8 @@ nav.header-nav
           a(href='/careers/') Careers
         li
           a(href='/blog/') Blog
-        li.dropdown.collapsed
-          a.dropdown-toggle(href='#', data-toggle='collapse', data-target='.redesign-dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-            | More
-            span.caret
+        li.dropdown
+          a.dropdown-toggle(href='#') More
           ul.dropdown-menu
             li
               a(href='/contact-us/') Contact Us
@@ -40,4 +38,4 @@ nav.header-nav
             li
               a(href='/agency/') Partners
         li
-          a.button-teal(href='/requestdemo/') Request Demo
+          a.button-teal.button-demo(href='/requestdemo/') Request Demo

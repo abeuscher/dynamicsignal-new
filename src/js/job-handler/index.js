@@ -1,8 +1,9 @@
 var filter = require("lodash/filter");
+var parseHTML = require("../utils/parse-html.js");
 
 function JobList(opts) {
   this.opts = opts;
-  this.sortList(0,10,false);
+  this.sortList(0, false, false);
   this.writeList();
 }
 JobList.prototype.writeList = function() {
@@ -12,13 +13,23 @@ JobList.prototype.writeList = function() {
     this.opts.container.appendChild(parseHTML(this.opts.template(thisJob)));
   }
 };
-JobList.prototype.sortList = function(startIndex,limit,category) {
-  var allJobs = category ? filter(this.opts.jobs,{"category":category}) : this.opts.jobs;
-  this.currentJobs = allJobs.splice(startIndex,limit);
+JobList.prototype.sortList = function(startIndex, limit, category) {
+  this.currentJobs = [];
+  var currentJobs = [];
+
+  if (category) {
+    for (i = 0; i < this.opts.jobs.length; i++) {
+      for (c in this.opts.jobs[i].categories) {
+        if (this.opts.jobs[i].categories[c].cat_ID == category.cat_ID) {
+          currentJobs.push(this.opts.jobs[i]);
+        }
+      }
+    }
+  } else {
+    var currentJobs = this.opts.jobs;
+  }
+  limit = limit ? limit : this.opts.jobs.length;
+  this.currentJobs = currentJobs.slice(startIndex, limit);
 }
-function parseHTML(data) {
-  var div = document.createElement("div");
-  div.innerHTML = data;
-  return div.firstElementChild;
-}
+
 module.exports = JobList;

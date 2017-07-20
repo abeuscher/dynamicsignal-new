@@ -18,8 +18,8 @@ block content
             the_field("subheader");
   :php
     if( have_rows('logos') ) {
-  section.logo-strip.gray.container
-    .row
+  section.use-cases-logo-strip
+    ul.gray-logos
       :php
         $logos = array();
         $count = 0;
@@ -28,12 +28,7 @@ block content
           $count++;
         endwhile;
         foreach($logos as $idx=>$logo) {
-          if ($idx==0) {
-            echo "<div class='col-sm-2 col-xs-6 col-centered'><img class='use-case-statement-logo' src='".$logo["image"]["url"]."' alt='".$logo["name"]."' /></div>";
-          }
-          else {
-            echo "<div class='col-sm-2 col-xs-6 col-centered'><img class='use-case-statement-logo' src='".$logo["image"]["url"]."' alt='".$logo["name"]."' /></div>";
-          }
+            echo "<li><img class='use-case-statement-logo' src='".$logo["image"]["url"]."' alt='".$logo["name"]."' /></li>";
         }
   :php
     }
@@ -53,17 +48,17 @@ block content
     .row
       .col-md-4
         .problem-arrow
-        .problem_statement
+        .problem-statement
           :php
             the_field("pain_point_1");
       .col-md-4
         .problem-arrow
-        .problem_statement
+        .problem-statement
           :php
             the_field("pain_point_2");
       .col-md-4
         .problem-arrow
-        .problem_statement
+        .problem-statement
           :php
             the_field("pain_point_3");
   section#parallax.use-cases-parallax
@@ -93,7 +88,7 @@ block content
           .text-content
             :php
               the_field("solution_3_content");
-  section.container
+  section.container.use-case-quotes
     #use-case-quotes
   section.container.use-case-bottom
     .row

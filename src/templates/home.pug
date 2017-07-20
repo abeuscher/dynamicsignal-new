@@ -29,8 +29,12 @@ block content
     h1!=pageData.header
     h2!=pageData.subheader
     a.button-red.cta(href="/requestdemo/") Request a Demo
-  section.container.logo-strip-bucket
-    #logo-strip.home-gallery
+  section.logo-strip-bucket
+    .container
+      .row
+        .col-md-12
+          p=pageData.logoCopy
+          #logo-strip.logo-strip
   include ./inc/use-cases-grid.pug
   section.testimonials.container(data-bg=pageData.testimonialBg)
     #testimonial-strip.home-gallery

@@ -48,11 +48,3 @@ section.use-cases-grid
           a(href=useCase.url)
             div(id="grid-use-cases-redesign-"+key,class=getClass(key))
               h2.use-cases-text!=useCase.title
-
-section.use-cases.use-cases-page-tabs.remove-padding
-  .container.visible-xs
-    .row
-      ul.nav.nav-tabs
-        for useCase,key in pageData.useCases
-          li.col-xs-12
-            a.button(href=useCase.url)!=useCase.title
