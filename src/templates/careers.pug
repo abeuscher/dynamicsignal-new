@@ -37,8 +37,8 @@ block content
 			"title":"Empowered Work Environment",
 			"copy":"Our employees are surrounded by a culture that inspires them to learn, grow, and lead by example."}],
 			"videoInfo": {
-				"id":"",
-				"type":"",
+				"id":"211114192",
+				"type":"vimeo",
 				"header":"It’s Who You Do It With That Matters",
 				"quote":"Our team is as talented, diverse, and innovative as they come. In this candid video you get a first hand look at the people behind the Dynamic Signal technology, what they are passionate about, and why they love their work.",
 				"cta":"Play Video",
@@ -93,11 +93,13 @@ block content
 					h3!=pane.title
 					p!=pane.copy
 	section#video
-		.video-thumb(video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
-			.content
+		.video-thumb(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
+			.content.left
 				h2!=pageData.videoInfo.header
-				p!=pageData.videoInfo.quote
-				a.cta(href="#")!=pageData.videoInfo.cta
+				p.no-quote!=pageData.videoInfo.quote
+				a.video-play(href="#")
+					span.cta!=pageData.videoInfo.cta
+					i.fa.fa-play
 	section#culture.container
 		.row
 			.col-md-12

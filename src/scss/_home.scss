@@ -63,23 +63,39 @@ section.testimonials.container {
 #product-display {
   padding-top:$gutter-width*2;
 }
-#bg-mobile-product {
-    background:url($img-path+'product-mobile.svg') no-repeat center top;
-    @include aspect-ratio(356,745);
-    position:absolute;
-    width:64%;
-    left:18%;
-    top:0;
-}
 .product-images {
   position:relative;
 }
 .mobile-products {
   .product-image {
-    background-position: center 21%;
+    width:60%;
+    margin-left:40%;
+    background:url($img-path+'product-mobile.svg') no-repeat center top;
     background-repeat: no-repeat;
-    background-size: 54% 54%;
-    @include aspect-ratio(356,655);
+    background-size: 100%;
+    @include aspect-ratio(1,2.5);
+    img {
+      width: 86%;
+      height: auto;
+      margin: 27% 0 0 7.3%;
+    }
+  }
+}
+.container.product-display {
+  width:100%;
+}
+.desktop-products {
+  .product-image {
+    background:url($img-path+'product-desktop.svg') no-repeat left top;
+    background-repeat: no-repeat;
+    background-size: 200%;
+    overflow:hidden;
+    @include aspect-ratio(3,4);
+    img {
+      width: 144%;
+      height: auto;
+      margin: 11.4% 0 0 27.7%;
+    }
   }
 }
 .product-image {
@@ -87,6 +103,10 @@ section.testimonials.container {
   &.active {
     display:block;
   }
+}
+.mobile-product-tile {
+  width:70%;
+  margin-right:30%;
 }
 .product-tiles {
   h3 {
@@ -106,7 +126,7 @@ section.testimonials.container {
     border:2px solid transparent;
     transition:all .25s ease-in;
     border-radius:5px;
-    &:hover {
+    &:hover, &.active {
       border-color:$teal;
     }
   }

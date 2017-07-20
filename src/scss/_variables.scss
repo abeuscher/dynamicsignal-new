@@ -21,6 +21,7 @@ $beige: #F2EEE7;
 
 
 //font-values
+/*
 @font-face {
   font-family: 'proximanova';
   src: url('#{$font-path}proximanova-regular-webfont.ttf')  format('truetype');
@@ -45,6 +46,7 @@ $beige: #F2EEE7;
   font-family: 'proximanova-thing';
   src: url('#{$font-path}proximanova-thing-webfont.ttf') format('truetype');
 }
+*/
 
 //colors
 $body-bg-color:linear-gradient(90deg, rgb(41, 44, 99) 0%, rgb(54, 64, 125) 100%);

@@ -49,10 +49,10 @@ ScrollSite.prototype.swapBg = function(e) {
     var thisDiv = this.divs[i];
     thisDiv.className = "";
     if (i==e.currentTarget.id) {
-      thisDiv.classList.add("bg-slide","show")
+      thisDiv.classList.add("bg-slide","p-show")
     }
     else {
-      thisDiv.classList.add("bg-slide","hide")
+      thisDiv.classList.add("bg-slide","p-hide")
     }
 
   }
@@ -66,7 +66,7 @@ ScrollSite.prototype.makeBackgroundSlides = function() {
     var div = document.createElement("div");
     div.id = "bg-slide-"+i;
     if (i>0) {
-      div.classList.add("bg-slide","hide");
+      div.classList.add("bg-slide","p-hide");
     }
     else {
       div.classList.add("bg-slide");

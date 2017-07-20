@@ -13,10 +13,10 @@
       top:0;
       width:100%;
       transition:all .5s ease-in;
-      &.show {
+      &.p-show {
         opacity:1;
       }
-      &.hide {
+      &.p-hide {
         opacity:0;
       }
     }

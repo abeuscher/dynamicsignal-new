@@ -29,6 +29,7 @@ $fa-font-path: "/wp-content/themes/ds-new/fonts/";
 @import "./_partners.scss";
 @import "./_use-cases.scss";
 @import "./_careers.scss";
+@import "./_team.scss";
 @import "./_use-cases-single.scss";
 @import "./_products.scss";
 
@@ -41,6 +42,15 @@ $fa-font-path: "/wp-content/themes/ds-new/fonts/";
 @include no-padding("bottom");
 
 @include no-padding("all");
+.hide {
+  display:none !important;
+}
+.show {
+  display:block;
+  &.inline {
+    display:inline-block;
+  }
+}
 body {
   font-family:$body-font;
   color:$grey;
@@ -60,9 +70,9 @@ h1 {
 h2 {
   padding-bottom: 30px;
   color: $off-black;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 300;
-  line-height: 36px;
+  line-height: 1;
   letter-spacing: normal;
 }
 a {
@@ -165,6 +175,12 @@ section.hero {
     z-index:2;
     position:relative;
   }
+  h2 {
+    font-size:24px;
+    line-height:30px;
+    margin-bottom:0;
+    font-weight:300;
+  }
 }
 .video-thumb {
   color:$white;
@@ -177,26 +193,52 @@ section.hero {
   @include aspect-ratio(16,9);
   .content {
     width:auto;
-    margin:80px 50px 30px 40%;
+    height:auto;
+    //background:Rgba(0,0,0,.3);
+    padding:$gutter-width;
+    //border-radius:$gutter-width;
+    margin:80px 50px 30px 50%;
+    &.left {
+      margin:80px 50% 30px 50px;
+    }
+    h2 {
+      color:$white;
+    }
     p {
       font-size: 36px;
       line-height: 44px;
       font-weight: 500;
       font-style: italic;
+      margin:0 0 $gutter-width;
+      &.no-quote {
+        font-size:24px;
+        line-height:30px;
+        font-weight:300;
+        font-style:normal;
+      }
     }
     cite {
+      margin-top:$gutter-width;
+      font-style:normal;
       font-size: 30px;
       line-height: 30px;
       font-weight: 300;
       display:block;
     }
-    a.cta {
+    a.video-play {
+      margin-top:$gutter-width;
       border-radius:50px;
       color:$grey;
       background:$white;
       display:inline-block;
-      padding:17px;
-
+      padding:8px 12px;
+      font-size:1.4em;
+      .cta {
+        margin-top:-1.5em;
+      }
+      .fa {
+        margin-left:1em;
+      }
     }
   }
 }
@@ -220,10 +262,6 @@ section.hero {
     -webkit-transform: translateZ(100px);
     transform: translateZ(100px);
   }
-}
-.content {
-  margin-top:55px;
-  padding-top:100px;
 }
 .contact-map iframe {
   pointer-events:none;

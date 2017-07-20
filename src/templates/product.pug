@@ -86,4 +86,6 @@ block content
 					.content
 						p!="\"" + pageData.videoInfo.quote + "\""
 						cite!=pageData.videoInfo.cite
-						a.cta(href="#")!=pageData.videoInfo.cta
+						a.video-play(href="#")
+							span.cta!=pageData.videoInfo.cta
+							i.fa.fa-play

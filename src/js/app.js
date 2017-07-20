@@ -1,6 +1,7 @@
 require("dom4");
 
 var Flickity = require("flickity");
+var Vimeo = require('@vimeo/player');
 
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
@@ -194,6 +195,7 @@ var siteActions = [{
           var thisButton = buttons[i];
           thisButton.addEventListener("click", function(e) {
             e.preventDefault();
+            addClass(this,"active","mobile-product-tile");
             displayTile(this.getAttribute("data-target"), "mobile-image");
             return false;
           });
@@ -223,7 +225,16 @@ var siteActions = [{
     }
   }
 ];
-
+function addClass(el,classname,groupclass) {
+  var els = document.getElementsByClassName(groupclass);
+  for (i=0;i<els.length;i++) {
+    var thisEl = els[i];
+    if (thisEl.classList.item(classname)) {
+      thisEl.classList.remove(classname);
+    }
+  }
+  el.classList.add(classname);
+}
 function activateImages() {
   var backgroundImages = document.querySelectorAll("[data-bg]");
   for (i in backgroundImages) {
@@ -256,13 +267,24 @@ function activateImages() {
 function activateVideos() {
   var videos = document.querySelectorAll(".video-thumb");
   for (i=0;i<videos.length;i++) {
-    thisVideo = videos[i];
-    thisVideo.addEventListener("click", function() {
-      var thisContent = this.querySelectorAll(".content")[0];
-      var thisPlayer = makeVideo(this.getAttribute("data-video-id"));
-      thisContent.classList.add("hide");
-      this.replaceChild(thisPlayer,thisContent);
-    });
+    var thisBucket = videos[i];
+    var thisContent = thisBucket.querySelectorAll(".content")[0];
+    var thisPlayer = makeVideo(thisBucket.getAttribute("data-video-id"));
+    var vimeoPlayer = new Vimeo(thisPlayer);
+    thisBucket.appendChild(thisPlayer);
+    thisBucket.addEventListener("click", onStart);
+    vimeoPlayer.on('pause', onFinish);
+  }
+  function onStart(e) {
+      e.preventDefault();
+      thisContent.classList.toggle("hide");
+      thisPlayer.classList.toggle("hide");
+      vimeoPlayer.play();
+  }
+  function onFinish(e) {
+      vimeoPlayer.unload();
+      thisContent.classList.toggle("hide");
+      thisPlayer.classList.toggle("hide");
   }
 }
 function makeVideo(id) {
@@ -272,5 +294,6 @@ function makeVideo(id) {
   video.setAttribute("mozallowfullscreen","true");
   video.setAttribute("allowfullscreen","true");
   video.classList.add("vimeo-video");
+  video.classList.add("hide");
   return video;
 }

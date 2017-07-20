@@ -1,18 +1,25 @@
-.container
+.container.product-display
   .row.mobile-products
     if locals.mobileProducts
       .product-images.col-md-6
         #bg-mobile-product
         for product,key in locals.mobileProducts
           if key==0
-            .product-image.mobile-image.active(data-bg=product.image,id="mobile-product-"+key)
+            .product-image.mobile-image.active(id="mobile-product-"+key)
+              img(src=product.image)
           else
-            .product-image.mobile-image(data-bg=product.image,id="mobile-product-"+key)
+            .product-image.mobile-image(id="mobile-product-"+key)
+              img(src=product.image)
       .product-tiles.col-md-6
         for product,key in locals.mobileProducts
-          a.mobile-product-tile(href="#",data-target="mobile-product-"+key)
-            h3!=product.header
-            p!=product.copy
+          if key==0
+            a.mobile-product-tile.active(href="#",data-target="mobile-product-"+key)
+              h3!=product.header
+              p!=product.copy
+          else
+            a.mobile-product-tile(href="#",data-target="mobile-product-"+key)
+              h3!=product.header
+              p!=product.copy
   .row.desktop-products
     if locals.desktopProducts
       .product-tiles.col-md-6
@@ -25,6 +32,8 @@
         #bg-desktop-product
         for product,key in locals.desktopProducts
           if key==0
-            .product-image.desktop-image.active(data-bg=product.image,id="desktop-product-"+key)
+            .product-image.desktop-image.active(id="desktop-product-"+key)
+              img(src=product.image)
           else
-            .product-image.desktop-image(data-bg=product.image,id="desktop-product-"+key)
+            .product-image.desktop-image(id="desktop-product-"+key)
+              img(src=product.image)
