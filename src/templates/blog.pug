@@ -17,38 +17,34 @@ block content
 				h1!=pageData.header
 				h2
 					a(href=pageData.ctaLink)!=pageData.ctaLabel
-	section.blog-entries.container
+	section.blog-entries
 		:php
-			error_reporting(E_ALL);
 			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 			$query = new WP_Query( array('post_type' => 'post','paged' => $paged) );
 			if( $query->have_posts() ) {
 					while( $query->have_posts() ) {
 							$query->the_post();
 		article
-			.row
-				.col-md-12.blog-thumb
+			:php
+				echo "<a class='blog-header' href='".get_the_permalink()."'><div class='blog-thumb'>";
+				the_post_thumbnail( 'full', array('class' => 'img-responsive') );
+				echo "</div>";
+				echo "<span class='blog-date'>".get_the_date()."</span>";
+				echo "</a>";
+			.blog-info
+				h1.blog-title
 					:php
-						echo "<a href='".get_the_permalink()."'>";
-						echo the_post_thumbnail( 'full', array('class' => 'img-responsive') );
-						echo "</a>";
-			.row
-				.col-md-12.blog-header
+						the_title();
+				.blog-excerpt
+					:php
+						the_excerpt();
+				.blog-tags
 					:php
 						if( has_tag() ) {
 							echo "<p class='blog-tags'>";
 							the_tags( false );
 							echo "</p>";
 						}
-						echo "<h1><a href='". esc_attr( get_permalink() ) ."'>".get_the_title()."</a></h1>";
-			.row
-				.col-md-12.blog-excerpt
-					:php
-						the_excerpt();
-			.row
-				.col-md-12.blog-author
-					:php
-						the_author_posts_link();
 
 		:php
 			}};
