@@ -2,7 +2,7 @@ extends inc/page.pug
 block template
 	:php
 		/*
-		Template Name: Blog Page
+		Template Name: Blog Roll
 		*/
 block content
 	-
@@ -29,12 +29,13 @@ block content
 				echo "<a class='blog-header' href='".get_the_permalink()."'><div class='blog-thumb'>";
 				the_post_thumbnail( 'full', array('class' => 'img-responsive') );
 				echo "</div>";
+			h1.blog-title
+				:php
+					the_title();
+			:php
 				echo "<span class='blog-date'>".get_the_date()."</span>";
 				echo "</a>";
 			.blog-info
-				h1.blog-title
-					:php
-						the_title();
 				.blog-excerpt
 					:php
 						the_excerpt();
@@ -45,7 +46,6 @@ block content
 							the_tags( false );
 							echo "</p>";
 						}
-
 		:php
 			}};
 		.row
@@ -53,9 +53,9 @@ block content
 				:php
 					$big = 999999999;
 						echo paginate_links( array(
-																				'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-																				'format' => '?paged=%#%',
-																				'current' => max( 1, get_query_var('paged') ),
-																				'total' => $query->max_num_pages
-																			)
+								'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+								'format' => '?paged=%#%',
+								'current' => max( 1, get_query_var('paged') ),
+								'total' => $query->max_num_pages
+							)
 						);
