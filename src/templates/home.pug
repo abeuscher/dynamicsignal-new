@@ -24,8 +24,7 @@ block content
     .",'gridLogos':".json_encode(get_field('logos_grid'),JSON_UNESCAPED_SLASHES)
     ."};</script>";
   section.hero.home-hero
-    #home-hero-video.bg-video(data-video="hero-background-new.mp4")
-    .mobile-header(data-mobile-bg="Hero7.png")
+    #home-hero-video.bg-video(data-video="hero-background-new.mp4",data-mobile-bg="Hero7.png")
     h1!=pageData.header
     h2!=pageData.subheader
     a.button-red.cta(href="/requestdemo/") Request a Demo

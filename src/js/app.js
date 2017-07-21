@@ -21,6 +21,13 @@ var siteSettings = {
     "useCaseQuote": require("./inc/use-case-quote.pug"),
     "jobListing": require("./inc/job-listing.pug"),
     "jobFilter": require("./inc/job-filter.pug")
+  },
+  "breakpoints":{
+    "xs": 0,
+    "s":641,
+    "m":1025,
+    "l":1321,
+    "xl":1921
   }
 }
 
@@ -49,11 +56,21 @@ var siteActions = [{
       var box = document.getElementById("map-container");
       var map = document.getElementById("the-contact-map");
       box.addEventListener("click", function(e) {
-        console.log("click");
         map.classList.add("clicked");
         this.addEventListener("mouseleave", function() {
           map.classList.remove("clicked");
         });
+      });
+    }
+  },
+  {
+    "element": "toggle-main-drop",
+    "action": function() {
+      var menuToggle = document.getElementById("toggle-main-drop");
+      var drop = document.getElementById("mobile-drop");
+      menuToggle.addEventListener("click", function() {
+        drop.classList.toggle("expanded");
+        menuToggle.classList.toggle("active");
       });
     }
   },
@@ -114,12 +131,25 @@ var siteActions = [{
   {
     "element": "home-hero-video",
     "action": function() {
-      var videoBucket = document.getElementById("home-hero-video");
-      var video = document.createElement("video");
-      video.src = siteSettings.videoPath + videoBucket.getAttribute("data-video");
-      video.setAttribute("autoplay", true);
-      video.setAttribute("loop", true);
-      videoBucket.appendChild(video);
+      function resizeBanner() {
+        var videoBucket = document.getElementById("home-hero-video");
+        if (window.innerWidth<siteSettings.breakpoints.m) {
+          videoBucket.innerHTML = "";
+          videoBucket.style.background = "url('"+siteSettings.imagePath + videoBucket.getAttribute("data-mobile-bg")+"') no-repeat center top";
+          videoBucket.style.backgroundSize = "cover";
+        }
+        else {
+          if (videoBucket.querySelectorAll("video").length<1) {
+            var video = document.createElement("video");
+            video.src = siteSettings.videoPath + videoBucket.getAttribute("data-video");
+            video.setAttribute("autoplay", true);
+            video.setAttribute("loop", true);
+            videoBucket.appendChild(video);
+          }
+        }
+      }
+      window.addEventListener("resize", resizeBanner);
+      resizeBanner();
     }
   },
   {

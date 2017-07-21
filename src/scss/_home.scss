@@ -6,9 +6,21 @@ section.hero.home-hero {
     color:$white;
   }
   h1 {
-    font-size: 60px;
+    font-size:36px;
+    line-height:44px;
     font-weight: 700;
-    line-height: 72px;
+    @include bp(m) {
+      font-size: 60px;
+
+      line-height: 72px;
+    }
+  }
+  h2 {
+    font-size:18px;
+    margin-bottom:$gutter-width;
+    @include bp(m) {
+      font-size:30px;
+    }
   }
   .cta {
     display:inline-block;

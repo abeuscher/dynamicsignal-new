@@ -1,14 +1,14 @@
 nav.header-nav
   .container-fluid
     .navbar-header
-      button.navbar-toggle.collapsed(type='button')
+      button.navbar-toggle#toggle-main-drop(type='button')
         span.sr-only Toggle navigation
         span.icon-bar
         span.icon-bar
         span.icon-bar
       a.logo-header(href='/')
         img(src=themeDir + 'images/dynamicsignal-logo.svg')
-    .navbar-container
+    .navbar-container#mobile-drop
       ul.nav-items
         li
           a(href='/product/') Product
