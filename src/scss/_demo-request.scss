@@ -1,0 +1,67 @@
+.demo-list {
+list-style:none;
+}
+.demo-list li {
+  margin-bottom:1em;
+}
+.demo-list .fa {
+  color: white;
+padding:0 1em 0 1em;
+  text-shadow:
+   -1px -1px 0 #1a9697,
+    1px -1px 0 #1a9697,
+    -1px 1px 0 #1a9697,
+     1px 1px 0 #1a9697;
+}
+section#main-content-signup {
+  padding:0 0 4em;
+}
+#mktoForm_1753, #mktoForm_1163 {
+width:auto !important;
+border:1px solid #ccc;
+padding:2em;
+border-radius:3px;
+}
+.customers-hero {
+  height:auto !important;
+}
+#required-warning {
+font-size:.8em;
+color:red;
+margin:1em 0 4em;
+}
+.asterisk {
+color:red;
+}
+section.signup-form-bucket {
+  padding:2em 0;
+  font-size:1.4em;
+}
+.signup-form-bucket p {
+  font-size:1em;
+}
+.signup-form-bucket img {
+  width:75% !important;
+  max-width:75% !important;
+}
+.signup-form-bucket blockquote {
+  font-style:italic;
+}
+.signup-form-bucket cite {
+  font-size:.8em; font-style:italic;
+  padding-left:2em;
+  padding-bottom:2em;
+}
+.signup-video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.signup-video iframe {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}

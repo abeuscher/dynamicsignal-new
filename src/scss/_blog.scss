@@ -63,3 +63,23 @@
 h1.blog-title {
   margin:$gutter-width 0;
 }
+.pagination {
+  padding:$gutter-width*2 0 $gutter-width*4;
+  border-top:1px solid $middle-grey;
+  text-align:center;
+  text-transform: uppercase;
+  letter-spacing:3px;
+  .current {
+    color:$teal;
+    font-weight:700;
+  }
+  a {
+    color:$grey;
+  }
+  .prev {
+    margin-right:1em;
+  }
+  .next {
+    margin-left:1em;
+  }
+}
