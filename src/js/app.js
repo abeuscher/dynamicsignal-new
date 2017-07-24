@@ -110,6 +110,7 @@ var siteActions = [{
         }
         thisRow.appendChild(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
       }
+      logoGall.resize();
     }
   },
   {
@@ -194,6 +195,7 @@ var siteActions = [{
       for (i in pageData.testimonials) {
         testimonialGall.append(parseHTML(siteSettings.templates.testimonialSlide(pageData.testimonials[i])));
       }
+      testimonialGall.resize();
     }
   },
   {

@@ -32,9 +32,13 @@ section.hero.home-hero {
 }
 section.testimonials.container {
   margin:0;
-  padding:140px 0 600px;
+  padding:50px 0 640px;
   background-position:center bottom;
   width:100%;
+  text-align:center;
+  .row {
+    width:100%;
+  }
   .quote {
     font-size:30px;
     line-height:36px;
@@ -80,8 +84,12 @@ section.testimonials.container {
 }
 .mobile-products {
   .product-image {
-    width:60%;
-    margin-left:40%;
+    width:40%;
+    margin-left:30%;
+    @include bp(m) {
+      width:60%;
+      margin-left:40%;
+    }
     background:url($img-path+'product-mobile.svg') no-repeat center top;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -117,12 +125,27 @@ section.testimonials.container {
   }
 }
 .mobile-product-tile {
-  width:70%;
-  margin-right:30%;
+  @include bp(m) {
+    width:70%;
+    margin-right:30%;
+  }
+
+}
+.desktop-product-tile {
+  @include bp(m) {
+    width:70%;
+    margin-left:30%;
+  }
 }
 .product-tiles {
   h3 {
     text-transform: uppercase;
+  }
+  h2 {
+    @include bp(m) {
+      width:70%;
+      margin-left:30%;
+    }
   }
   p {
     font-weight:300;
@@ -133,7 +156,7 @@ section.testimonials.container {
   a {
     display: block;
     padding:0 $gutter-width/2;
-    margin:0 0 $gutter-width;
+    margin-bottom:$gutter-width;
     color:$grey;
     border:2px solid transparent;
     transition:all .25s ease-in;
