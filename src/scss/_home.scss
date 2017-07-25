@@ -6,12 +6,15 @@ section.hero.home-hero {
     color:$white;
   }
   h1 {
-    font-size:36px;
+    font-size:30px;
     line-height:44px;
     font-weight: 700;
+    margin-top:$gutter-width;
+    @include bp(s) {
+      font-size:36px;
+    }
     @include bp(m) {
       font-size: 60px;
-
       line-height: 72px;
     }
   }
@@ -35,7 +38,6 @@ section.testimonials.container {
   padding:50px 0 640px;
   background-position:center bottom;
   width:100%;
-  text-align:center;
   .row {
     width:100%;
   }
@@ -59,19 +61,11 @@ section.testimonials.container {
     font-style:normal;
   }
 }
-.cta-bottom {
-  padding:$gutter-width*2 0;
-  h2 {
-    max-width:960px;
-    margin:0 auto;
-  }
-}
+
 .logo-grid {
   padding:$gutter-width*2 0;
 }
-.cta-bottom, .product-cta, .logo-grid {
-  text-align: center;
-}
+
 #testimonial-strip {
   height:100px;
   margin:$gutter-width*2 auto;

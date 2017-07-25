@@ -1,11 +1,11 @@
 require("dom4");
 
 var Flickity = require("flickity");
-var Vimeo = require('@vimeo/player');
 
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
+var ActivateVideos = require("./video-handler/index.js");
 
 var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
@@ -40,14 +40,26 @@ window.addEventListener("load", function() {
     }
   }
   activateImages();
-  activateVideos();
+  new ActivateVideos();
 });
 
 
 var siteActions = [{
     "element": "parallax",
     "action": function() {
-      return new ScrollSite(siteSettings);
+      var Gallery = false;
+      function activateScroll() {
+        if (window.innerWidth>siteSettings.breakpoints.m) {
+          Gallery = new ScrollSite(siteSettings);
+        }
+        else {
+          if (Gallery) {
+            Gallery.destroy();
+          }
+        }
+      }
+      window.addEventListener("resize", activateScroll)
+      activateScroll();
     }
   },
   {
@@ -294,38 +306,4 @@ function activateImages() {
       thisElement.appendChild(img);
     }
   }
-}
-
-function activateVideos() {
-  var videos = document.querySelectorAll(".video-thumb");
-  for (i=0;i<videos.length;i++) {
-    var thisBucket = videos[i];
-    var thisContent = thisBucket.querySelectorAll(".content")[0];
-    var thisPlayer = makeVideo(thisBucket.getAttribute("data-video-id"));
-    var vimeoPlayer = new Vimeo(thisPlayer);
-    thisBucket.appendChild(thisPlayer);
-    thisBucket.addEventListener("click", onStart);
-    vimeoPlayer.on('pause', onFinish);
-  }
-  function onStart(e) {
-      e.preventDefault();
-      thisContent.classList.toggle("hide");
-      thisPlayer.classList.toggle("hide");
-      vimeoPlayer.play();
-  }
-  function onFinish(e) {
-      vimeoPlayer.unload();
-      thisContent.classList.toggle("hide");
-      thisPlayer.classList.toggle("hide");
-  }
-}
-function makeVideo(id) {
-  var video = document.createElement("iframe");
-  video.src = "https://player.vimeo.com/video/"+id+"?title=0&byline=0&portrait=0";
-  video.setAttribute("webkitallowfullscreen","true");
-  video.setAttribute("mozallowfullscreen","true");
-  video.setAttribute("allowfullscreen","true");
-  video.classList.add("vimeo-video");
-  video.classList.add("hide");
-  return video;
 }

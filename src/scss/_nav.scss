@@ -15,7 +15,7 @@ nav.header-nav {
   position: relative;
   float: right;
   padding: 9px 10px;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-right: 15px;
   margin-bottom: 8px;
   background-color: transparent;
@@ -45,8 +45,10 @@ nav.header-nav {
   }
 }
 .navbar-container {
-  display:none;
-  &.expanded {
+  @media only screen and (max-width: 1024px) {
+    overflow:hidden;
+    max-height:0;
+    transition:all .5s ease-in;
     display:block;
     position:absolute;
     left:0;
@@ -72,6 +74,10 @@ nav.header-nav {
           }
         }
       }
+    }
+    &.expanded {
+      max-height:1000px;
+      height:auto;
     }
   }
   @include bp(m) {
