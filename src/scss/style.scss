@@ -200,8 +200,8 @@ ul.nav-items li a.button-teal {
 
   &.big {
     border-radius: $gutter-width*2;
-    font-size: 24px;
-    padding: $gutter-width $gutter-width*2;
+    font-size: 18px;
+    padding: 1em 2em;
     text-transform: uppercase;
     font-weight: 700;
     line-height: 3;
@@ -252,10 +252,8 @@ section.logo-strip-bucket {
 
 
   .logo-strip {
-    height: 50px;
-    margin: 50px auto;
     position: relative;
-
+    margin-bottom:$gutter-width;
     .row {
       width: 100%;
       text-align: center;

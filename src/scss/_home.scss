@@ -41,6 +41,9 @@ section.testimonials.container {
   .row {
     width:100%;
   }
+  .quote, cite {
+      padding-left:$gutter-width;
+  }
   .quote {
     font-size:30px;
     line-height:36px;
@@ -161,6 +164,9 @@ section.testimonials.container {
   }
 }
 #logo-grid {
+  .row,.container {
+    width:100%;
+  }
   img {
     max-height:50px;
     width:auto;

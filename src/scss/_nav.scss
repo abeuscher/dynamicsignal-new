@@ -62,11 +62,10 @@ nav.header-nav {
       li {
         text-align:left;
         display:block;
-        margin-left:30px;
         a {
-          padding:0 0 $gutter-width;
+          padding:0 0 $gutter-width 30px;
           &.button-teal.button-demo {
-            padding:0 0 $gutter-width;
+            padding:0 0 $gutter-width 30px;
             margin:0;
             border:none;
             font-size:12px;

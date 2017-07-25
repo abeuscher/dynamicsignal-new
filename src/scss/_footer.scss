@@ -9,12 +9,32 @@ footer .container {
 
   ul {
     margin:0;
-    padding:0;
+    padding:0 0 $gutter-width;
     list-style:none;
+    &.social-links {
+      text-align:center;
+      li {
+        display:inline-block;
+      }
+      p {
+        display:none
+      }
+      @include bp(m) {
+        li {
+          display:block;
+        }
+        p {
+          display:inline-block;
+        }
+      }
+    }
     li, a {
       color:$white;
       line-height:24px;
       text-align:center;
+      @include bp(m) {
+        text-align:left;
+      }
     }
     li {
       &.footer-address {
@@ -70,7 +90,7 @@ footer .container {
     font-size:16px;
     letter-spacing: 1px;
     text-align: center;
-    margin:$gutter-width 0 0;
+    margin:$gutter-width 0 $gutter-width/2;
     @include bp(m) {
       text-align: left;
     }
