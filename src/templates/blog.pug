@@ -35,17 +35,23 @@ block content
 			:php
 				echo "<span class='blog-date'>".get_the_date()."</span>";
 				echo "</a>";
-			.blog-info
-				.blog-excerpt
-					:php
-						the_excerpt();
-				.blog-tags
-					:php
-						if( has_tag() ) {
-							echo "<p class='blog-tags'>";
-							the_tags( false );
-							echo "</p>";
-						}
+			.container.blog-excerpt-row
+				.row
+					.col-md-12
+						p By 
+							:php
+								echo get_author_name();
+						.blog-info
+							.blog-excerpt
+								:php
+									the_excerpt();
+							.blog-tags
+								:php
+									if( has_tag() ) {
+										echo "<p class='blog-tags'>";
+										the_tags( false );
+										echo "</p>";
+									}
 		:php
 			}};
 		.row

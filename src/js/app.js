@@ -16,6 +16,7 @@ var siteSettings = {
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
     "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
+    "partnersTestimonial": require("./inc/partner-testimonial.pug"),
     "testimonialSlide": require("./inc/testimonial-slide.pug"),
     "productDisplay": require("./inc/product-display.pug"),
     "useCaseQuote": require("./inc/use-case-quote.pug"),
@@ -28,11 +29,26 @@ var siteSettings = {
     "m":1025,
     "l":1321,
     "xl":1921
-  }
+  },
+  "validDomains":["dynamicsignal.com","staging.dynamicsignal.flywheelsites.com"]
 }
 
 
 window.addEventListener("load", function() {
+  if (siteSettings.validDomains.indexOf(window.location.hostname)>-1) {
+    (function(d) {
+        var config = {
+          kitId: 'hao2kje',
+          scriptTimeout: 0,
+          async: false
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=false;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+  }
+  else {
+    console.log("Font not supported in this domain");
+  }
+  document.body.classList.remove("loading");
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
@@ -92,7 +108,6 @@ var siteActions = [{
       var quoteGall = new Flickity("#use-case-quotes", {"prevNextButtons": false});
       for (i in useCaseQuotes) {
         quoteGall.append(parseHTML(siteSettings.templates.useCaseQuote(useCaseQuotes[i])));
-        console.log(useCaseQuotes[i]);
       }
 
     }
@@ -101,6 +116,13 @@ var siteActions = [{
     "element": "customers-grid",
     "action": function() {
       console.log(customerData);
+
+    }
+  },
+  {
+    "element": "events-list",
+    "action": function() {
+      console.log(pageData.events);
 
     }
   },
@@ -132,12 +154,20 @@ var siteActions = [{
       for (i in pageData.logos) {
         fetch(pageData.logos[i].logo.url)
           .then(function(data) {
-            console.log(data);
             var img = document.createElement("img");
             img.src = data.url;
             img.alt = "";
             bucket.appendChild(img);
           })
+      }
+    }
+  },
+  {
+    "element": "partners-testimonials",
+    "action": function() {
+      var bucket = document.getElementById("partners-testimonials");
+      for (i in pageData.testimonials) {
+        bucket.appendChild(parseHTML(siteSettings.templates.partnersTestimonial(pageData.testimonials[i])));
       }
     }
   },

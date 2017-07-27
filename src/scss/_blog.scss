@@ -39,8 +39,9 @@
     font-size:12px;
   }
 }
-.blog-info {
-  padding:0 $gutter-width;
+.blog-excerpt-row {
+  margin-top:$gutter-width;
+  margin-bottom:$gutter-width*3;
 }
 .blog-excerpt {
   line-height:1.8;

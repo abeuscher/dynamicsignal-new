@@ -1,0 +1,24 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Career Single Entry Page
+    */
+block content
+  :php
+    if( have_posts() ){
+     while( have_posts() ) {
+      the_post();
+  section.hero
+    h1
+      :php
+        the_title();
+  section.container.blog-content
+    .row
+      .col-md-12
+        article.blog-post
+          .blog-post-body
+            :php
+              the_content();
+        :php
+          }}

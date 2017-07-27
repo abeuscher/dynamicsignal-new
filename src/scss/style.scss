@@ -24,6 +24,7 @@ $fa-font-path: "/wp-content/themes/ds-new/fonts/"; //@import "../../node_modules
 @import "./_blog.scss";
 @import "./_use-cases.scss";
 @import "./_demo-request.scss";
+@import "./_support.scss";
 @import "./_careers.scss";
 @import "./_team.scss";
 @import "./_use-cases-single.scss";
@@ -55,7 +56,14 @@ body {
   font-family: $body-font;
   color: $grey;
   font-weight: 300;
+  opacity: 1;
+  transition: opacity .4s ease-in-out;
+  &.loading {
+    opacity: 0;
+  }
 }
+
+
 @each $bp-name, $bp-value in $bps {
   .col-#{$bp-name}-center {
     text-align:inherit;
@@ -110,10 +118,10 @@ h2 {
 a {
   text-decoration: none;
   cursor: pointer;
-
+  color:$teal;
   &:hover {
     text-decoration: none;
-    color: $teal;
+    color: $grey;
   }
 }
 

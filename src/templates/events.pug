@@ -40,13 +40,13 @@ block content
     );
 
     $events = new WP_Query( $args );
+    $all_events = [];
     if( $events->have_posts() ) {
         while( $events->have_posts() ) {
-
             $events->the_post();
 
-  .row
-    .col-md-12
-      p Entry
-  :php
-      }}
+
+            }}
+        echo "<script>var pageData = {'events':".json_encode(get_posts(),JSON_UNESCAPED_SLASHES)."};</script>";
+  section.events-list.container
+    #events-list

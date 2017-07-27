@@ -11,7 +11,7 @@ function ScrollSite(siteSettings) {
 
 ScrollSite.prototype.init = function() {
   var self = this;
-  this.controller = new ScrollMagic.Controller();
+  this.controller = new ScrollMagic.Controller({"loglevel":0});
   var h = window.innerHeight;
   this.parallax = document.getElementById("parallax");
   this.slides = document.getElementsByClassName("content-slide");
@@ -24,7 +24,8 @@ ScrollSite.prototype.init = function() {
   new ScrollMagic.Scene({
     offset:h/2,
           triggerElement:"#bg-slides",
-          duration:h*(self.slides.length-1)
+          duration:h*(self.slides.length-1),
+          loglevel:0
       })
       .setPin("#bg-slides")
       .addTo(self.controller);
@@ -32,9 +33,9 @@ ScrollSite.prototype.init = function() {
   for (i=0;i<this.slides.length;i++) {
     var thisSlide = this.slides[i];
     thisSlide.style.height = h+"px";
-    //Swap Background Image
+
     new ScrollMagic.Scene({
-      offset:h/3,
+      offset:h/4,
       triggerElement:"#slide-"+i,
       duration:h
     })

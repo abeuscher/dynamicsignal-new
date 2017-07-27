@@ -69,10 +69,6 @@ section.testimonials.container {
   padding:$gutter-width*2 0;
 }
 
-#testimonial-strip {
-  height:100px;
-  margin:$gutter-width*2 auto;
-}
 #product-display {
   padding-top:$gutter-width*2;
 }
@@ -84,8 +80,8 @@ section.testimonials.container {
     width:40%;
     margin-left:30%;
     @include bp(m) {
-      width:60%;
-      margin-left:40%;
+      width:50%;
+      margin-left:50%;
     }
     background:url($img-path+'product-mobile.svg') no-repeat center top;
     background-repeat: no-repeat;

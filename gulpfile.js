@@ -4,9 +4,11 @@ var sassDir = srcDir + 'scss/';
 var cssDir = buildDir;
 var jsSrcDir = srcDir + 'js/';
 var jsBuildDir = buildDir + 'js/';
-var viewsSrcDir = srcDir + 'templates/'
-var miscSrcDir = srcDir + 'public_transfer/'
-var viewsBuildDir = buildDir
+var viewsSrcDir = srcDir + 'templates/';
+var miscSrcDir = srcDir + 'public_transfer/';
+var viewsBuildDir = buildDir;
+var embedSrcDir = srcDir + 'embed/';
+var embedBuildDir = buildDir + 'embed/';
 
 // Include gulp
 var watchify = require('watchify');
@@ -37,13 +39,22 @@ var opts = assign({}, watchify.args, {
     debug: true,
     paths: ['./bower_components', './node_modules']
 });
+var copts = assign({}, watchify.args, {
+    entries: [embedSrcDir+'app.js'],
+    debug: true,
+    paths: ['./bower_components', './node_modules']
+});
 
 var b = watchify(browserify(opts));
+var c = watchify(browserify(copts));
+
 
 b.on('update', bundle);
+c.on('update', bundle);
 b.on('log', gutil.log);
 
 b.transform(require("pugify"));
+c.transform(require("pugify"));
 
 b.transform(stringify({
     extensions: ['.html'],
@@ -69,7 +80,7 @@ b.transform(stringify({
             lint: false,
             keepClosingSlash: false,
             caseSensitive: false,
-            minifyJS: false,
+            minifyJS: true,
             minifyCSS: false,
             minifyURLs: false
         }
@@ -80,6 +91,11 @@ function bundle() {
     return b.bundle()
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(fs.createWriteStream(jsBuildDir + 'bundle.js'));
+}
+function cbundle() {
+    return c.bundle()
+        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+        .pipe(fs.createWriteStream(embedBuildDir + 'app.js'));
 }
 
 gulp.task('compile-sass-autoprefixed-minified', function() {
@@ -109,6 +125,7 @@ gulp.task('watch-files', function() {
 });
 
 gulp.task('bundle-js', bundle);
+gulp.task('bundle-embed', cbundle);
 
 gulp.task('uglify-js', function() {
     return gulp.src(jsBuildDir + '*.js')
@@ -125,7 +142,10 @@ gulp.task('build-js', function() {
     if (!fs.existsSync(jsBuildDir)){
         fs.mkdirSync(jsBuildDir);
     }
-    runSequence('bundle-js', 'uglify-js');
+    if (!fs.existsSync(embedBuildDir)){
+        fs.mkdirSync(embedBuildDir);
+    }
+    runSequence('bundle-js', 'uglify-js','bundle-embed');
 });
 
 gulp.task('build-views', function() {
@@ -148,5 +168,10 @@ gulp.task('move-files', function() {
   gulp.src([miscSrcDir + "*/**",miscSrcDir + ".*"])
     .pipe(gulp.dest(buildDir));
 });
+gulp.task('move-thumb', function() {
+  gulp.src([srcDir+"*.png"])
+    .pipe(gulp.dest(buildDir));
+});
+
 // Default Task
-gulp.task('default', ['compile-sass-autoprefixed-minified', 'build-js', 'build-views', 'watch-files','move-files']);
+gulp.task('default', ['compile-sass-autoprefixed-minified', 'build-js', 'build-views', 'watch-files','move-files','move-thumb']);
