@@ -21,6 +21,7 @@ var siteSettings = {
     "productDisplay": require("./inc/product-display.pug"),
     "useCaseQuote": require("./inc/use-case-quote.pug"),
     "jobListing": require("./inc/job-listing.pug"),
+    "eventListing": require("./inc/event-listing.pug"),
     "jobFilter": require("./inc/job-filter.pug")
   },
   "breakpoints":{
@@ -123,6 +124,10 @@ var siteActions = [{
     "element": "events-list",
     "action": function() {
       console.log(pageData.events);
+      var bucket = document.getElementById("events-list");
+      for(i=0;i<pageData.events.length;i++) {
+        bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
+      }
 
     }
   },

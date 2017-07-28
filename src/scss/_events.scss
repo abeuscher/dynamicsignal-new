@@ -1,0 +1,125 @@
+.event-listing {
+  margin-bottom:$gutter-width*4;
+}
+.event-type-banner {
+  background:$middle-grey;
+  color:$classic-grey;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding-top:$gutter-width/3;
+  padding-bottom:$gutter-width/3;
+  margin-bottom:$gutter-width;
+  margin-top:80px;
+}
+.button-events-back {
+  float:right;
+}
+.event-thumb {
+  width:100%;
+  height:0;
+  padding-bottom:100%;
+  border-radius:25px;
+  position:relative;
+  background-size:90% 90%;
+  background-repeat:no-repeat;
+  background-position: center;
+  display:block;
+  float:none;
+  transition:none;
+  &:before, .month,.date,.time {
+    display:none;
+  }
+
+  &:before {
+    content:'';
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+    border-radius:25px;
+    background:rgba(0,0,0,.8);
+  }
+  .month,.date,.time {
+    position:absolute;
+    width:100%;
+    text-align:center;
+    color:$white;
+    line-height:1;
+  }
+  .month, .time {
+    top:24px;
+    font-weight:500;
+    font-size:20px;
+    text-transform: uppercase;
+  }
+  .date {
+    top:42px;
+    font-size:72px;
+    font-weight:700;
+  }
+  .time {
+    top:110px;
+    font-weight:300;
+  }
+  @include bp(s) {
+    float:left;
+    width:150px;
+    height:150px;
+    padding-bottom:0;
+    transition:all .5s ease-in;
+    background-size:contain;
+    &:before, .month,.date,.time {
+      display:block;
+      transition:opacity .5s ease-in;
+      opacity:1;
+    }
+    &:hover{
+      border-radius:0;
+      &:before, .month,.date,.time {
+        opacity:0;
+      }
+    }
+  }
+  @include bp(m) {
+    width:250px;
+    height:250px;
+
+    .month, .time {
+      top:20px;
+      font-size:30px;
+    }
+    .date {
+      top:52px;
+      font-size:150px;
+      font-weight:700;
+    }
+    .time {
+      top:200px;
+      font-weight:300;
+    }
+  }
+
+}
+.event-info {
+  display: block;
+  margin-left:0;
+  h2 {
+    margin:0;
+    padding-bottom:$gutter-width/2;
+    border-bottom:1px solid $middle-grey;
+    font-size:24px;
+    font-weight:700;
+  }
+  .button-red {
+    margin-right:$gutter-width/2;
+  }
+  p {
+    line-height:1.5;
+  }
+  @include bp(s) {
+    margin-left:174px;
+  }
+  @include bp(m) {
+    margin-left:300px;
+  }
+}

@@ -20,6 +20,7 @@ $fa-font-path: "/wp-content/themes/ds-new/fonts/"; //@import "../../node_modules
 @import "./_grid.scss";
 @import "./_footer.scss";
 @import "./_home.scss";
+@import "./_events.scss";
 @import "./_partners.scss";
 @import "./_blog.scss";
 @import "./_use-cases.scss";
@@ -187,8 +188,19 @@ section {
     }
   }
 }
-
-.button-teal,
+.social-share-menu {
+  text-align: right;
+  ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    li {
+      display:inline-block;
+      margin-right:$gutter-width/2;
+    }
+  }
+}
+a.button-teal,
 ul.nav-items li a.button-teal {
   background-color: white;
   padding: 5px 10px;
@@ -196,7 +208,8 @@ ul.nav-items li a.button-teal {
   color: $teal;
   margin-top: 13px;
   margin-right: 1em;
-  font-size: 10px;
+  font-size: 12px;
+  font-weight:400;
   border-radius: 25px;
   border: 1px solid $teal;
   transition: all 0.2s ease-in;
@@ -204,6 +217,7 @@ ul.nav-items li a.button-teal {
   &:hover {
     background-color: $teal;
     color: $white;
+    text-decoration: none;
   }
 
   &.big {
@@ -232,6 +246,7 @@ ul.nav-items li a.button-teal {
   &:hover {
     background: darken($red,20%);
     color: $white;
+    text-decoration: none;
   }
 
   &.knockout {
