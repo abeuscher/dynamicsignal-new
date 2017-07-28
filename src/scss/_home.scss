@@ -6,9 +6,24 @@ section.hero.home-hero {
     color:$white;
   }
   h1 {
-    font-size: 60px;
+    font-size:30px;
+    line-height:44px;
     font-weight: 700;
-    line-height: 72px;
+    margin-top:$gutter-width;
+    @include bp(s) {
+      font-size:36px;
+    }
+    @include bp(m) {
+      font-size: 60px;
+      line-height: 72px;
+    }
+  }
+  h2 {
+    font-size:18px;
+    margin-bottom:$gutter-width;
+    @include bp(m) {
+      font-size:30px;
+    }
   }
   .cta {
     display:inline-block;
@@ -20,9 +35,15 @@ section.hero.home-hero {
 }
 section.testimonials.container {
   margin:0;
-  padding:140px 0 600px;
+  padding:50px 0 640px;
   background-position:center bottom;
   width:100%;
+  .row {
+    width:100%;
+  }
+  .quote, cite {
+      padding-left:$gutter-width;
+  }
   .quote {
     font-size:30px;
     line-height:36px;
@@ -43,23 +64,11 @@ section.testimonials.container {
     font-style:normal;
   }
 }
-.cta-bottom {
-  padding:$gutter-width*2 0;
-  h2 {
-    max-width:960px;
-    margin:0 auto;
-  }
-}
+
 .logo-grid {
   padding:$gutter-width*2 0;
 }
-.cta-bottom, .product-cta, .logo-grid {
-  text-align: center;
-}
-#testimonial-strip {
-  height:100px;
-  margin:$gutter-width*2 auto;
-}
+
 #product-display {
   padding-top:$gutter-width*2;
 }
@@ -68,8 +77,12 @@ section.testimonials.container {
 }
 .mobile-products {
   .product-image {
-    width:60%;
-    margin-left:40%;
+    width:40%;
+    margin-left:30%;
+    @include bp(m) {
+      width:50%;
+      margin-left:50%;
+    }
     background:url($img-path+'product-mobile.svg') no-repeat center top;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -105,12 +118,27 @@ section.testimonials.container {
   }
 }
 .mobile-product-tile {
-  width:70%;
-  margin-right:30%;
+  @include bp(m) {
+    width:70%;
+    margin-right:30%;
+  }
+
+}
+.desktop-product-tile {
+  @include bp(m) {
+    width:70%;
+    margin-left:30%;
+  }
 }
 .product-tiles {
   h3 {
     text-transform: uppercase;
+  }
+  h2 {
+    @include bp(m) {
+      width:70%;
+      margin-left:30%;
+    }
   }
   p {
     font-weight:300;
@@ -121,7 +149,7 @@ section.testimonials.container {
   a {
     display: block;
     padding:0 $gutter-width/2;
-    margin:0 0 $gutter-width;
+    margin-bottom:$gutter-width;
     color:$grey;
     border:2px solid transparent;
     transition:all .25s ease-in;
@@ -132,6 +160,9 @@ section.testimonials.container {
   }
 }
 #logo-grid {
+  .row,.container {
+    width:100%;
+  }
   img {
     max-height:50px;
     width:auto;

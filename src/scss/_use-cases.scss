@@ -1,12 +1,10 @@
 section.use-cases-grid {
-  padding: 40px 0 71px 0;
+  padding: 40px 0 71px;
   background-color: white;
-
   @include bp(xs) {
-    padding: 20px 0 20px 0;
+    padding: 20px 0;
     background-color: white;
   }
-
 
   .container-fluid {
     .row {
@@ -25,30 +23,46 @@ section.use-cases-grid {
         .row {
           a {
             div.use-col {
-              width:20%;
-              padding:0;
-              float:left;
-              background-color: transparent;
-              border: 1px solid #979797;
 
+              @include bp(m) {
+                width: 20%;
+                padding: 0;
+                float: left;
+                background-color: transparent;
+                border: 1px solid #979797;
+              }
               h2.use-cases-text {
-                color: #4E4B4E;
+                color: $grey;
                 font-family: "proxima-nova", sans-serif;
-                font-size: 23px;
+                font-size: 12px;
                 font-weight: 600;
-                line-height: 26px;
-                padding: 120px 0 0 0;
+                color:$teal;
                 letter-spacing: normal;
                 text-align: center;
+                text-transform:uppercase;
+                border: 2px solid #1A9697;
+                border-radius: 50px;
+                padding: 1em;
+                position: relative;
+                display: block;
+                letter-spacing:1.5px;
 
-                @include bp(m) {
-                  font-size: 17px;
+                br {
+                  content:' ';
+                  margin-right:.3em;
                 }
-
-
-                @include bp(s) {
+                @include bp(m) {
+                  br {
+                    content:auto;
+                    margin:auto;
+                    display:block;
+                  }
+                  text-transform:none;
                   font-size: 17px;
-                  font-weight: 500;
+                  line-height:26px;
+                  padding: 120px 0 $gutter-width;
+                  border:none;
+                  color:$grey;
                 }
               }
 
@@ -70,104 +84,105 @@ section.use-cases-grid {
               &.removal-right-border {
                 border-right: none;
               }
+              @include bp(m) {
+                &#grid-use-cases-redesign-0 {
+                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/EmployeeEngagement.png");
+                  background-position: 50% 25%;
+                  background-repeat: no-repeat;
 
-              &#grid-use-cases-redesign-0 {
-                background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/EmployeeEngagement.png");
-                background-position: 50% 25%;
-                background-repeat: no-repeat;
-
-                &:hover {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/EmployeeEngagement.png");
+                  &:hover {
+                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/EmployeeEngagement.png");
+                  }
                 }
-              }
 
-              &#grid-use-cases-redesign-1 {
-                background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/MobileIntranet.png");
-                background-position: 50% 25%;
-                background-repeat: no-repeat;
+                &#grid-use-cases-redesign-1 {
+                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/MobileIntranet.png");
+                  background-position: 50% 25%;
+                  background-repeat: no-repeat;
 
-                &:hover {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/MobileIntranet.png");
+                  &:hover {
+                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/MobileIntranet.png");
+                  }
                 }
-              }
 
-              &#grid-use-cases-redesign-2 {
-                background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/OutdatedIntranet.png");
-                background-position: 50% 25%;
-                background-repeat: no-repeat;
+                &#grid-use-cases-redesign-2 {
+                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/OutdatedIntranet.png");
+                  background-position: 50% 25%;
+                  background-repeat: no-repeat;
 
-                &:hover {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/OutdatedIntranet.png");
+                  &:hover {
+                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/OutdatedIntranet.png");
+                  }
                 }
-              }
 
-              &#grid-use-cases-redesign-3 {
-                background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/EmployeeAdvocacy.png");
-                background-position: 50% 25%;
-                background-repeat: no-repeat;
+                &#grid-use-cases-redesign-3 {
+                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/EmployeeAdvocacy.png");
+                  background-position: 50% 25%;
+                  background-repeat: no-repeat;
 
-                &:hover {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/EmployeeAdvocacy.png");
+                  &:hover {
+                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/EmployeeAdvocacy.png");
+                  }
                 }
-              }
 
-              &#grid-use-cases-redesign-4 {
-                background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/CompanyNews.png");
-                background-position: 50% 25%;
-                background-repeat: no-repeat;
+                &#grid-use-cases-redesign-4 {
+                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/CompanyNews.png");
+                  background-position: 50% 25%;
+                  background-repeat: no-repeat;
 
-                &:hover {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/CompanyNews.png");
+                  &:hover {
+                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/CompanyNews.png");
+                  }
                 }
-              }
 
-              &#grid-use-cases-redesign-5 {
-                background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/SocialSelling.png");
-                background-position: 50% 25%;
-                background-repeat: no-repeat;
+                &#grid-use-cases-redesign-5 {
+                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/SocialSelling.png");
+                  background-position: 50% 25%;
+                  background-repeat: no-repeat;
 
-                &:hover {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/SocialSelling.png");
+                  &:hover {
+                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/SocialSelling.png");
+                  }
                 }
-              }
 
-              &#grid-use-cases-redesign-6 {
-                background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/SocialRecruiting.png");
-                background-position: 50% 25%;
-                background-repeat: no-repeat;
+                &#grid-use-cases-redesign-6 {
+                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/SocialRecruiting.png");
+                  background-position: 50% 25%;
+                  background-repeat: no-repeat;
 
-                &:hover {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/SocialRecruiting.png");
+                  &:hover {
+                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/SocialRecruiting.png");
+                  }
                 }
-              }
 
-              &#grid-use-cases-redesign-7 {
-                background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/LeadGeneration.png");
-                background-position: 50% 25%;
-                background-repeat: no-repeat;
+                &#grid-use-cases-redesign-7 {
+                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/LeadGeneration.png");
+                  background-position: 50% 25%;
+                  background-repeat: no-repeat;
 
-                &:hover {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/LeadGeneration.png");
+                  &:hover {
+                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/LeadGeneration.png");
+                  }
                 }
-              }
 
-              &#grid-use-cases-redesign-8 {
-                background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/BrandAwareness.png");
-                background-position: 50% 25%;
-                background-repeat: no-repeat;
+                &#grid-use-cases-redesign-8 {
+                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/BrandAwareness.png");
+                  background-position: 50% 25%;
+                  background-repeat: no-repeat;
 
-                &:hover {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/BrandAwareness.png");
+                  &:hover {
+                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/BrandAwareness.png");
+                  }
                 }
-              }
 
-              &#grid-use-cases-redesign-9 {
-                background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/InternalComms.png");
-                background-position: 50% 25%;
-                background-repeat: no-repeat;
+                &#grid-use-cases-redesign-9 {
+                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/InternalComms.png");
+                  background-position: 50% 25%;
+                  background-repeat: no-repeat;
 
-                &:hover {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/InternalComms.png");
+                  &:hover {
+                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/InternalComms.png");
+                  }
                 }
               }
 
@@ -291,18 +306,13 @@ section.overview-quotes-section {
     // border-top: 1px solid #4E4B4E;
   }
 
-
   #carousel-use-cases-quotes {
     @include bp(s) {
       height: 250px;
     }
-
-
     @include bp(xs) {
       height: 250px;
     }
-
-
     @include bp(xs) {
       height: 250px;
       padding: 15px 0;
@@ -311,32 +321,24 @@ section.overview-quotes-section {
 
   ol.carousel-indicators {
     bottom: -180px;
-
     @include bp(s) {
       bottom: -70px;
     }
-
-
     @include bp(xs) {
       bottom: -55px;
     }
-
-
     @include bp(xs) {
       bottom: -30px;
     }
 
-
     li {
       border-color: $teal;
-      margin: 0px 12px 0px 12px;
+      margin: 0 12px;
       width: 14px;
       height: 14px;
-
       @include bp(xs) {
-        margin: 0px 6px 0px 6px;
+        margin: 0 6px;
       }
-
 
       &.active {
         background-color: $teal;
@@ -344,28 +346,21 @@ section.overview-quotes-section {
       }
     }
   }
-
   height: 260px;
   background-color: #fff;
   opacity: 0.85;
   padding-bottom: 25px;
-
   @include bp(s) {
     height: 260px;
     max-height: 478px;
   }
-
-
   @include bp(xs) {
     height: 250px;
     max-height: 478px;
   }
-
-
   @include bp(xs) {
     height: 215px;
   }
-
 
   .use-cases-carousel-quotes {
     &__text {
@@ -377,15 +372,12 @@ section.overview-quotes-section {
       line-height: 36px;
       text-align: center;
       padding: 0;
-
       @include bp(s) {
         max-height: none;
         height: auto;
         font-size: 27px;
         line-height: 40px;
       }
-
-
       @include bp(xs) {
         text-align: left;
         color: #4e4b4e;
@@ -397,8 +389,6 @@ section.overview-quotes-section {
         height: auto;
         padding: 15px;
       }
-
-
       @include bp(xs) {
         margin-top: 35px;
         text-align: center;
@@ -419,7 +409,6 @@ section.overview-quotes-section {
       line-height: 36px;
       text-align: center;
       padding-top: 15px;
-
       @include bp(xs) {
         text-align: center;
         color: #4e4b4e;
@@ -436,5 +425,32 @@ section.overview-quotes-section {
       font-size: 48px;
       color: $teal;
     }
+  }
+}
+.testimonials-use-case {
+  .row {
+    width:100%;
+  }
+  .quote, cite {
+      padding-left:$gutter-width;
+  }
+  .quote {
+    font-size:30px;
+    line-height:36px;
+    font-weight:300;
+    .text--bold {
+      font-weight:600;
+    }
+    .text--teal {
+      color:$teal;
+    }
+  }
+  cite {
+    display:block;
+    text-align:center;
+    font-size:24px;
+    margin-top:30px;
+    font-weight:300;
+    font-style:normal;
   }
 }

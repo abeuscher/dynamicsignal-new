@@ -1,0 +1,20 @@
+section.social-share-menu.container
+  .row
+    .col-md-12    
+      ul
+        li
+          :php
+            echo "<a href='https://www.facebook.com/sharer/sharer.php?u=".urlencode(get_permalink())."'>";
+          span.fa-1x.fa-stack
+            i.fa.fa-circle.fa-stack-2x
+            i.fa.fa-stack-1x.fa-inverse.fa-facebook
+          :php
+            echo "</a>";
+        li
+          :php
+            echo "<a href='https://twitter.com/home?status=".urlencode(get_permalink())."'>";
+          span.fa-1x.fa-stack
+            i.fa.fa-circle.fa-stack-2x
+            i.fa.fa-stack-1x.fa-inverse.fa-twitter
+          :php
+            echo "</a>";

@@ -1,7 +1,7 @@
 .container.product-display
   .row.mobile-products
     if locals.mobileProducts
-      .product-images.col-md-6
+      .product-images.col-md-6.no-padding
         #bg-mobile-product
         for product,key in locals.mobileProducts
           if key==0
@@ -28,7 +28,7 @@
           a.desktop-product-tile(href="#",data-target="desktop-product-"+key)
             h3!=product.header
             p!=product.copy
-      .product-images.col-md-6
+      .product-images.col-md-6.no-padding
         #bg-desktop-product
         for product,key in locals.desktopProducts
           if key==0

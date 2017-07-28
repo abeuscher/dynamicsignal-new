@@ -64,30 +64,13 @@ block content
   section#parallax.use-cases-parallax
     .inner
       #bg-slides(data-backgrounds)
-      .content-slide.row(id="slide-0")
-        .col-md-12.content
-          h2
-            :php
-              the_field("solution_1_header");
-          .text-content
-            :php
-              the_field("solution_1_content");
-      .content-slide.row(id="slide-1")
-        .col-md-12.content
-          h2
-            :php
-              the_field("solution_2_header");
-          .text-content
-            :php
-              the_field("solution_2_content");
-      .content-slide.row(id="slide-2")
-        .col-md-12.content
-          h2
-            :php
-              the_field("solution_3_header");
-          .text-content
-            :php
-              the_field("solution_3_content");
+      :php
+        for ($i=0;$i<3;$i++) {
+          echo "<div class='content-slide row' id='slide-$i' data-bg='".get_field("solution_".($i+1)."_image")["sizes"]["medium_large"]."'>";
+          echo "<div class='col-md-12 content no-padding'>";
+          echo "<h2>".get_field("solution_".($i+1)."_header")."</h2>";
+          echo "<div class='text-content'>".get_field("solution_".($i+1)."_content")."</div></div></div>";
+        }
   section.container.use-case-quotes
     #use-case-quotes
   section.container.use-case-bottom

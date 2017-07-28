@@ -9,8 +9,9 @@ function JobList(opts) {
 JobList.prototype.writeList = function() {
   this.opts.container.innerHTML = "";
   for (i in this.currentJobs) {
-    var thisJob = this.currentJobs[i];
-    this.opts.container.appendChild(parseHTML(this.opts.template(thisJob)));
+    var thisJob = parseHTML(this.opts.template(this.currentJobs[i]));
+    this.opts.container.appendChild(thisJob);
+    thisJob.classList.add("fade-in");
   }
 };
 JobList.prototype.sortList = function(startIndex, limit, category) {

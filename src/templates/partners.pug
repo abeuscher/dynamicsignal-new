@@ -6,8 +6,11 @@ block template
 		*/
 block content
 	:php
-		echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
-		."};</script>";
+		if( have_posts() ) {
+		while( have_posts() ) {
+			the_post();
+			echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
+			.", 'testimonials':".json_encode(get_field('agency_testimonials'),JSON_UNESCAPED_SLASHES)."};</script>";
 	-
 		var pageData = {
 		"header":"Grow Your Agency",
@@ -16,36 +19,29 @@ block content
 	include ./inc/hero.pug
 	section.marquee-bucket
 		#partners-logo-marquee.marquee
-	:php
-		if( have_posts() ) {
-		while( have_posts() ) {
-			the_post();
-	p.subheader
-		:php
-			the_field('content_top');
 
-			$testimonials = get_field('agency_testimonials');
-			 echo '<script>var testimonials = '. json_encode($testimonials).';</script>';
-
-				// Uber Embed
+	section.partners-top.container
+		p.subheader
+			:php
+				the_field('content_top');
+	section.partners-testimonials.container
+		#partners-testimonials
+	section.uber-embed.container
+		.row
+			:php
 				if ( have_rows( 'uber_embed' ) ) :
 					$count = 0;
-					echo '<section class="uber-embed">';
 						while ( have_rows( 'uber_embed' ) ) : the_row();
 							$tile = get_sub_field('embed');
 							$first = ( $count === 0 ) ? 'first' : '';
-
-							printf( '<div class="one-third %s">%s</div>', $first, $tile );
-
+							printf( '<div class="col-md-4 %s">%s</div>', $first, $tile );
 							$count++;
 						endwhile;
-					echo '</section>';
 				endif;
-				// END Uber Embeds
-
-				// eBook Download
-				echo '<section class="agency-ebook">';
+	section.partners-ebook.container
+		.row
+			.col-md-12
+				:php
 					the_field( 'ebook' );
-				echo '</section>';
-
+	:php
 				}}

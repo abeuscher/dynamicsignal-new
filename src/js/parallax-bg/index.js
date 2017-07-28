@@ -11,38 +11,45 @@ function ScrollSite(siteSettings) {
 
 ScrollSite.prototype.init = function() {
   var self = this;
-  var controller = new ScrollMagic.Controller();
+  this.controller = new ScrollMagic.Controller({"loglevel":0});
   var h = window.innerHeight;
-  var parallax = document.getElementById("parallax");
-  var slides = document.getElementsByClassName("content-slide");
-  parallax.style.height = h * slides.length + "px";
-  var parallaxTop = getPosition(parallax).y;
-  var parallaxHeight = h*slides.length;
+  this.parallax = document.getElementById("parallax");
+  this.slides = document.getElementsByClassName("content-slide");
+  this.parallax.style.height = h * this.slides.length + "px";
+  var parallaxTop = getPosition(this.parallax).y;
+  var parallaxHeight = h*this.slides.length;
   var docHeight, winHeight, maxScroll;
 
   //Lock Background layer
   new ScrollMagic.Scene({
     offset:h/2,
           triggerElement:"#bg-slides",
-          duration:h*(slides.length-1)
+          duration:h*(self.slides.length-1),
+          loglevel:0
       })
       .setPin("#bg-slides")
-      .addTo(controller);
+      .addTo(self.controller);
 
-  for (i=0;i<slides.length;i++) {
-    var thisSlide = slides[i];
+  for (i=0;i<this.slides.length;i++) {
+    var thisSlide = this.slides[i];
     thisSlide.style.height = h+"px";
-    //Swap Background Image
+
     new ScrollMagic.Scene({
-      offset:h/3,
+      offset:h/4,
       triggerElement:"#slide-"+i,
       duration:h
     })
     .on("enter leave", function(e) { self.swapBg(e); })
-    .addTo(controller)
+    .addTo(self.controller)
     .id = i;
   }
-
+}
+ScrollSite.prototype.destroy = function() {
+  this.controller.destroy();
+  for (i=0;i<this.slides.length;i++) {
+    this.slides[i].style.height = "auto";
+  }
+  this.parallax.style.height = "auto";
 }
 ScrollSite.prototype.swapBg = function(e) {
   for (i=0;i<this.divs.length;i++) {

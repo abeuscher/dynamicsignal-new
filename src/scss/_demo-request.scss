@@ -1,0 +1,100 @@
+.demo-list {
+  list-style: none;
+
+  li {
+    margin-bottom: 1em;
+  }
+
+  .fa {
+    color: white;
+    padding: 0 1em;
+    text-shadow: -1px -1px 0 #1a9697, 1px -1px 0 #1a9697, -1px 1px 0 #1a9697, 1px 1px 0 #1a9697;
+  }
+}
+
+section#main-content-signup {
+  padding: 0 0 4em;
+}
+
+#mktoForm_1163,
+#mktoForm_1753 {
+  width: auto !important;
+  border: 1px solid #ccc;
+  padding: 2em;
+  border-radius: 3px;
+
+  label {
+    display: none;
+  }
+
+  input,
+  select {
+    width: 100% !important;
+    font-size: 18px;
+    line-height: 1.5;
+    border: 1px solid $middle-grey;
+  }
+
+  input {
+    text-indent: 0.25em;
+    padding: 0.5em;
+  }
+
+  select {
+    height: 2.5em;
+  }
+}
+
+.customers-hero {
+  height: auto !important;
+}
+
+#required-warning {
+  font-size: 0.8em;
+  color: red;
+  margin: 1em 0 4em;
+}
+
+.asterisk {
+  color: red;
+}
+
+section.signup-form-bucket {
+  padding: 2em 0;
+  font-size: 1.4em;
+
+  p {
+    font-size: 1em;
+  }
+
+  img {
+    width: 75% !important;
+    max-width: 75% !important;
+  }
+
+  blockquote {
+    font-style: italic;
+  }
+
+  cite {
+    font-size: 0.8em;
+    font-style: italic;
+    padding-left: 2em;
+    padding-bottom: 2em;
+  }
+}
+
+.signup-video {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.signup-video iframe {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
