@@ -1,6 +1,7 @@
 require("dom4");
 
 var Flickity = require("flickity");
+var uniqBy = require("lodash/uniqBy");
 
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");

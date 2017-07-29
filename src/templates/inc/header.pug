@@ -6,7 +6,7 @@ nav.header-nav
       span.icon-bar
       span.icon-bar
     a.logo-header(href='/')
-      img(src=themeDir + 'images/dynamicsignal-logo.svg')
+      img(src='https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/dynamicsignal/assets/custom-redesign/images/dynamicsignal-logo.svg')
   .navbar-container#mobile-drop
     ul.nav-items
       li
@@ -14,27 +14,53 @@ nav.header-nav
       li
         a(href='/use-cases/') Use Cases
       li
-        a(href='/customers/') Customers
-      li
-        a(href='https://dynamicsignal.uberflip.com/') Resources
-      li
-        a(href='/careers/') Careers
-      li
         a(href='/blog/') Blog
+      li
+        a(href='/events/') Events
       li.dropdown
-        a.dropdown-toggle(href='#') More
-        ul.dropdown-menu
-          li
-            a(href='/contact-us/') Contact Us
-          li
-            a(href='/events/') Events
-          li
-            a(href='/team/') Meet the Team
-          li
-            a(href='/resources/#ufh-c-206867-news/') News
-          li
-            a(href='/resources/#ufh-c-208133-press/') Press Releases
-          li
-            a(href='/agency/') Partners
+        a.dropdown-toggle(href='#') Company
+        div.dropdown-menu
+          .inner
+            ul.half
+              li.nav-header Connect
+              li
+                a(href='/careers/') Careers
+              li
+                a(href='/contact-us/') Contact Us
+              li
+                a(href='/support/') Support
+
+            ul.half
+              li.nav-header Who We Are
+              li
+                a(href='/customers/') Customers
+              li
+                a(href='/team/') Team
+              li
+                a(href='/agency/') Partners
+            .toplink
+      li.dropdown
+        a.dropdown-toggle(href='#') Resources
+        div.dropdown-menu
+          .inner
+            ul.third
+              li.nav-header News
+              li
+                a(href='https://dynamicsignal.uberflip.com/news') News
+              li
+                a(href='https://dynamicsignal.uberflip.com/press-releases') Press Releases
+            ul.third
+              li.nav-header Educational
+              li
+                a(href='https://dynamicsignal.uberflip.com/case-studies') Case Studies
+              li
+                a(href='https://dynamicsignal.uberflip.com/ebooks') eBooks & Guides
+            ul.third
+              li.nav-header Multimedia
+              li
+                a(href='https://dynamicsignal.uberflip.com/webinars') Webinars
+              li
+                a(href='https://dynamicsignal.uberflip.com/videos') Videos
+            .toplink
       li
         a.button-teal.button-demo(href='/requestdemo/') Request Demo

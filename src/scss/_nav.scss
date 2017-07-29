@@ -10,79 +10,96 @@ nav.header-nav {
 .navbar-container {
   display: inline-block;
   float: right;
+  position: relative;
 }
+
 .navbar-toggle {
   position: relative;
-  float: right;
+  float: left;
   padding: 9px 10px;
   margin-top: 10px;
-  margin-right: 15px;
+  margin-left: $gutter-width;
   margin-bottom: 8px;
   background-color: transparent;
   background-image: none;
   border: 1px solid #ddd;
   border-radius: 4px;
-  outline:none;
+  outline: none;
+
   &.active {
-    border-color:$teal;
-    background:$beige;
+    border-color: $teal;
+    background: $beige;
   }
+
   &:focus {
-    outline:none;
+    outline: none;
   }
   @include bp(m) {
-    display:none;
+    display: none;
   }
+
   .icon-bar {
     display: block;
     width: 22px;
     height: 2px;
     border-radius: 1px;
-    background:#888;
+    background: #888;
+
     &+.icon-bar {
-      margin-top:4px;
+      margin-top: 4px;
     }
   }
 }
+
 .navbar-container {
   @media only screen and (max-width: 1024px) {
-    overflow:hidden;
-    max-height:0;
-    transition:all .5s ease-in;
-    display:block;
-    position:absolute;
-    left:0;
-    top:60px;
-    width:100%;
-    background:$white;
+    overflow: hidden;
+    max-height: 0;
+    transition: all 0.5s ease-in;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 60px;
+    width: 100%;
+    background: $white;
+
     ul.nav-items {
-      margin:0;
-      padding:$gutter-width 0;
-      width:100%;
+      margin: 0;
+      padding: $gutter-width 0;
+      width: 100%;
+
       li {
-        text-align:left;
-        display:block;
+        text-align: left;
+        display: block;
+        width: 50%;
+        @include bp(s) {
+          width: 25%;
+        }
+
         a {
-          padding:0 0 $gutter-width 30px;
+          padding: 0 0 $gutter-width 30px;
+
           &.button-teal.button-demo {
-            padding:0 0 $gutter-width 30px;
-            margin:0;
-            border:none;
-            font-size:12px;
-            font-weight:700;
+            padding: 0 0 $gutter-width 30px;
+            margin: 0;
+            border: none;
+            font-size: 12px;
+            font-weight: 700;
           }
         }
       }
     }
+
     &.expanded {
-      max-height:1000px;
-      height:auto;
+      max-height: 1000px;
+      height: auto;
     }
   }
   @include bp(m) {
-    display:block;
+    display: block;
   }
 }
+
 ul.nav-items {
   margin: 0;
   padding: 0;
@@ -107,55 +124,203 @@ ul.nav-items {
         position: relative;
 
         &:after {
-          position: absolute;
-          right: 0;
           content: '';
+          display: inline-block;
+          margin-left: $gutter-width/2;
           width: 0;
           height: 0;
-          top: 24px;
-          border-left: $gutter-width/6 solid transparent;
-          border-right: $gutter-width/6 solid transparent;
-          border-top: $gutter-width/6 solid $grey;
+          border-right: $gutter-width/4 solid transparent;
+          border-left: $gutter-width/4 solid $light-grey;
+          border-top: $gutter-width/4 solid transparent;
+          border-bottom: $gutter-width/4 solid transparent;
         }
 
         &:hover {
           border-bottom-color: transparent;
         }
+        @include bp(m) {
+          &:after {
+            position: absolute;
+            left: 50%;
+            margin-left: -3px;
+            bottom: 6px;
+            border-right: $gutter-width/6 solid transparent;
+            border-top: $gutter-width/6 solid $light-grey;
+            border-bottom: $gutter-width/6 solid transparent;
+            border-left: $gutter-width/6 solid transparent;
+          }
+        }
       }
 
       &.button-demo.button-teal {
         margin-left: 15px;
-        font-size:10px;
-        font-weight:600;
-      }
-
-      &:hover {
-        color: $teal;
-        border-bottom-color: $teal;
-      }
-    }
-
-    &.dropdown {
-      position: relative;
-
-      ul.dropdown-menu {
-        display: none;
-        position: absolute;
-        left: 0;
-        list-style: none;
-        background: $white;
-        box-shadow: 0 5px 5px rgba(0,0,0,.3);
-        margin: 0 -1em;
-        padding: 0 1em 1em;
-        width:200px;
-        li {
-          display: block;
+        font-size: 10px;
+        font-weight: 600;
+        color:$black;
+        &:hover {
+          color:$teal;
+          background-color:transparent;
+        }
+        @include bp(m) {
+          color:$teal;
+          &:hover {
+            background-color:$teal;
+            color:$white;
+          }
         }
       }
 
       &:hover {
-        ul.dropdown-menu {
+        text-decoration: none;
+        color:$teal;
+      }
+      @include bp(m) {
+        &:hover {
+          color: $teal;
+          border-bottom-color: $teal;
+        }
+      }
+    }
+
+    &.dropdown {
+      .dropdown-menu {
+        display: none;
+        overflow: hidden;
+        background: $white;
+        border-top: 1px solid lighten($teal,50%);
+        border-left: 1px solid lighten($teal,50%);
+        width: 50%;
+        position: absolute;
+        left: 45%;
+        top: 0;
+      }
+
+      ul {
+        list-style: none;
+        float: left;
+        vertical-align: top;
+        width: 100%;
+
+        li {
+          width: 100%;
+
+          &.nav-header {
+            display: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0 10px 5px 0;
+            border-bottom: 1px solid $middle-grey;
+            margin-right: 10%;
+            color: $light-grey;
+            font-size: 12px;
+            width:90%;
+          }
+
+          a {
+            padding: 20px 10px 5px 0;
+
+            &:hover {
+              color: $teal;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        & > a {
+          color: $teal;
+
+          &:after {
+            border-left-color: $teal;
+          }
+        }
+
+        .dropdown-menu {
           display: block;
+        }
+      }
+      @include bp(s) {
+        .dropdown-menu {
+          left: 20%;
+        }
+      }
+      @include bp(m) {
+        .dropdown-menu {
+          display: block;
+          max-height: 0;
+          border:none;
+          box-shadow: 0 3px 10px rgba(0,0,0,.1);
+          transition: max-height 0.5s ease-in;
+          left:0;
+          top:auto;
+          width:100%;
+          .inner {
+            border: 1px solid $middle-grey;
+            padding: 0 $gutter-width $gutter-width;
+            display: block;
+          }
+
+          .toplink {
+            width: 33%;
+            margin: 0 0 0 67%;
+            font-weight: 700;
+            display: block;
+            text-align: left;
+            clear: both;
+          }
+
+          a {
+            border-bottom: none;
+
+            &:hover {
+              border-bottom: none;
+            }
+          }
+
+          ul {
+            padding: $gutter-width 0;
+            float: left;
+
+            &.half {
+              width: 50%;
+            }
+
+            &.third {
+              width: 33%;
+            }
+
+            li {
+              &.nav-header {
+                display: block;
+              }
+              text-align: left;
+              display: block;
+            }
+          }
+        }
+
+        &:hover {
+          & > a {
+            color: $teal;
+
+            &:after {
+              position: absolute;
+              content: '';
+              left: 50%;
+              width: 0;
+              height: 0;
+              bottom: -3px;
+              border-top: $gutter-width/6 solid transparent;
+              border-left: $gutter-width/6 solid transparent;
+              border-right: $gutter-width/6 solid transparent;
+              border-bottom: $gutter-width/6 solid $light-grey;
+            }
+          }
+
+          .dropdown-menu {
+            border:none;
+            max-height: 1000px;
+          }
         }
       }
     }
@@ -167,15 +332,21 @@ ul.nav-items {
   @include bp(m) {
     display: inline-block;
   }
+
   .collapsed {
     display: none;
   }
 
   .logo-header {
-    padding:10px 15px;
-    display:inline-block;
+    float: right;
+    padding: 10px $gutter-width 10px 15px;
+    display: inline-block;
+
     img {
       width: 160px;
+    }
+    @include bp(m) {
+      float: none;
     }
   }
 }

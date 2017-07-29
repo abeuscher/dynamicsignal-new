@@ -1,17 +1,20 @@
 .blog-header {
   display:block;
-  @include aspect-ratio(15,4);
-  @include bp(l) {
-    @include aspect-ratio(4,1);
-  }
   overflow:hidden;
   position:relative;
+  @include aspect-ratio (4,3);
   .blog-thumb {
     width:100%;
     bottom:0;
     img {
-      width:100%;
-      height:auto;
+      height:100%;
+      width:auto;
+      max-width:none;
+      @include bp(s) {
+        height:auto;
+        width:100%;
+        max-width:100%;
+      }
     }
     &:after {
       content:'';
@@ -29,6 +32,7 @@
   }
   .blog-date {
     top:auto;
+    width:auto;
     bottom:$gutter-width;
     left:$gutter-width;
     color:$white;
@@ -38,6 +42,13 @@
     letter-spacing:3px;
     font-size:12px;
   }
+  @include bp(s) {
+    @include aspect-ratio(15,4);
+  }
+  @include bp(l) {
+    @include aspect-ratio(4,1);
+  }
+
 }
 .blog-excerpt-row {
   margin-top:$gutter-width;
@@ -45,7 +56,10 @@
 }
 .blog-excerpt {
   line-height:1.8;
-  font-size:1.2em;
+  font-size:1em;
+  @include bp(m) {
+    font-size:1.2em;
+  }
 }
 .blog-tags {
   a {
@@ -65,10 +79,25 @@
 h1.blog-title {
   margin:$gutter-width 0;
   top:auto;
+  width:auto;
   bottom:$gutter-width;
   color:$white;
   left:$gutter-width;
+  right:$gutter-width/2;
   text-shadow:1px 1px 3px rgba(0,0,0,.3);
+  font-size:20px;
+  line-height:24px;
+  height:auto;
+  @include bp(s) {
+    font-size:24px;
+    line-height:30px;
+  }
+  @include bp(m) {
+    top:auto;
+    bottom:$gutter-width;
+    font-size:36px;
+    line-height:44px;
+  }
 }
 .pagination {
   padding:$gutter-width*2 0 $gutter-width*4;

@@ -29,6 +29,7 @@ var uglify = require('gulp-uglify');
 var stringify = require('stringify');
 var filter = require('gulp-filter');
 var fs = require('fs');
+var sassLint = require("sass-lint");
 
 require('factor-bundle');
 
@@ -39,23 +40,10 @@ var opts = assign({}, watchify.args, {
     debug: true,
     paths: ['./bower_components', './node_modules']
 });
-var copts = assign({}, watchify.args, {
-    entries: [embedSrcDir+'app.js'],
-    debug: true,
-    paths: ['./bower_components', './node_modules']
-});
-
 var b = watchify(browserify(opts));
-var c = watchify(browserify(copts));
-
-
 b.on('update', bundle);
-c.on('update', bundle);
 b.on('log', gutil.log);
-
 b.transform(require("pugify"));
-c.transform(require("pugify"));
-
 b.transform(stringify({
     extensions: ['.html'],
     minify: true,
@@ -77,7 +65,7 @@ b.transform(stringify({
             removeOptionalTags: false,
             removeIgnored: false,
             removeEmptyElements: false,
-            lint: false,
+            lint: true,
             keepClosingSlash: false,
             caseSensitive: false,
             minifyJS: true,
@@ -92,6 +80,15 @@ function bundle() {
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(fs.createWriteStream(jsBuildDir + 'bundle.js'));
 }
+
+var copts = assign({}, watchify.args, {
+    entries: [embedSrcDir+'app.js'],
+    debug: true,
+    paths: ['./bower_components', './node_modules']
+});
+var c = watchify(browserify(copts));
+c.on('update', bundle);
+c.transform(require("pugify"));
 function cbundle() {
     return c.bundle()
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))

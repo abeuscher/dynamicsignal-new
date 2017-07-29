@@ -17,6 +17,7 @@ section#main-content-signup {
 }
 
 #mktoForm_1163,
+#mktoForm_1064,
 #mktoForm_1753 {
   width: auto !important;
   border: 1px solid #ccc;
@@ -36,15 +37,81 @@ section#main-content-signup {
   }
 
   input {
-    text-indent: 0.25em;
-    padding: 0.5em;
+    box-shadow: none !important;
+    width: 100% !important;
+    line-height: 2;
+    font-size: 1.4em;
+    border:1px solid #ccc;
+    border-radius:3px;
+    text-indent:.5em;
+    height:2em;
+    margin-bottom:.25em;
+    position:relative;
+    &:placeholder {
+      color:$grey;
+    }
+    &:active {
+      border:1px solid #ccc;
+    }
   }
-
+  .mktoError .mktoErrorMsg {
+      padding: .5em;
+  }
   select {
     height: 2.5em;
+    padding:0 .5em;
+  }
+  .mktoFormCol,.mktoFieldWrap {
+  	float:none;
+  }
+  .mktoButtonWrap.mktoNative {
+    margin:0 !important;
+  }
+  .mktoButtonRow {
+    display:block !important;
+  }
+  .mktoButtonWrap.mktoRound .mktoButton {
+      font-size: 1.2em !important;
+      margin-top: 1em !important;
+      padding:1em 2em !important;
+      color:#fff !important;
+      text-shadow:none !important;
+      display: block !important;
+      background:#d3484d !important;
+      border-radius:3px !important;
+      border:none !important;
+      font:bold 1.4em/1 "proxima-nova",sans-serif !important;
+  }
+  .mktoError {
+      right:auto !important;
+  }
+  .mktoInvalid {
+      border-bottom: 3px solid red;
+  }
+  .mktoError .mktoErrorMsg {
+    font-size:1.4em;
+    font-weight:bold;
+    letter-spacing:1px;
+  }
+  .mktoFormRow .mktoRequiredField .mktoAsterix {
+    display:none;
+  }
+  * {
+    padding:0;
+  }
+
+
+}
+@media only screen and (max-width: 640px) {
+#mktoForm_1163, #mktoForm_1753,#mktoForm_1064 {
+padding:.5em !important;
+}
+}
+#mktoForm_1064 {
+  label {
+    display:block;
   }
 }
-
 .customers-hero {
   height: auto !important;
 }

@@ -38,9 +38,9 @@ block content
 			.container.blog-excerpt-row
 				.row
 					.col-md-12
-						p By 
+						p By
 							:php
-								echo get_author_name();
+								echo " ".get_author_name();
 						.blog-info
 							.blog-excerpt
 								:php
@@ -54,8 +54,9 @@ block content
 									}
 		:php
 			}};
+	section.container.pagination
 		.row
-			.col-md-12.pagination
+			.col-md-12
 				:php
 					$big = 999999999;
 						echo paginate_links( array(
