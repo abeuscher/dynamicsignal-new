@@ -1,4 +1,5 @@
 require("dom4");
+require("./utils/remove-class.js");
 
 var Flickity = require("flickity");
 var uniqBy = require("lodash/uniqBy");
@@ -17,6 +18,7 @@ var siteSettings = {
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
     "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
+    "customerTile": require("./inc/customer-tile.pug"),
     "partnersTestimonial": require("./inc/partner-testimonial.pug"),
     "testimonialSlide": require("./inc/testimonial-slide.pug"),
     "productDisplay": require("./inc/product-display.pug"),
@@ -111,14 +113,25 @@ var siteActions = [{
       for (i in useCaseQuotes) {
         quoteGall.append(parseHTML(siteSettings.templates.useCaseQuote(useCaseQuotes[i])));
       }
-
+      quoteGall.resize();
     }
   },
   {
     "element": "customers-grid",
     "action": function() {
       console.log(customerData);
-
+      var customerGrid = document.getElementById("customers-grid");
+      for(i in customerData) {
+        customerGrid.append(parseHTML(siteSettings.templates.customerTile(customerData[i])));
+      }
+      var sectionActivators = customerGrid.querySelectorAll("[data-activate-customer-section]");
+      for(i=0;i<sectionActivators.length;i++) {
+        var thisAnchor = sectionActivators[i];
+        thisAnchor.addEventListener("click", function(e) {
+          e.preventDefault();
+          document.getElementById(this.getAttribute("data-activate-customer-section")).classList.toggle("expanded");
+        });
+      }
     }
   },
   {

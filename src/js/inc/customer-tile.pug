@@ -1,0 +1,19 @@
+.customer-block(id="block-"+locals.ID)
+  .customer-thumb(data-bg=locals.logo.sizes["medium"])
+  ul.customer-utils
+    if locals.quote!=""
+      li
+        a.has-tooltip(href="#",data-activate-customer-section="block-"+locals.ID)
+          span.fa-1x.fa-stack
+            i.fa.fa-circle.fa-stack-2x
+            i.fa.fa-stack-1x.fa-inverse.fa-quote-left
+          span.tooltip.tooltip-with-border(role="tooltip") Read testimonial
+  .customer-info
+    a.button-close(href="#",data-activate-customer-section="block-"+locals.ID)!="&times;"
+    if locals.quote!=""
+      .customer-feature.row.customer-citation
+        .col-md-12
+          p!=locals.quote
+          cite
+            span.name!=citation_name
+            span.title!=locals.citation_title

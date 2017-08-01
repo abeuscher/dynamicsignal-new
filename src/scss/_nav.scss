@@ -1,3 +1,8 @@
+$dropdown-border:$middle-grey;
+$carat-size-mobile:$gutter-width/4;
+$carat-size:$gutter-width/4;
+$carat-size-expanded:$gutter-width/2;
+
 nav.header-nav {
   position: fixed;
   height: 60px;
@@ -11,6 +16,9 @@ nav.header-nav {
   display: inline-block;
   float: right;
   position: relative;
+  &.expanded {
+    overflow:scroll;
+  }
 }
 
 .navbar-toggle {
@@ -129,10 +137,10 @@ ul.nav-items {
           margin-left: $gutter-width/2;
           width: 0;
           height: 0;
-          border-right: $gutter-width/4 solid transparent;
-          border-left: $gutter-width/4 solid $light-grey;
-          border-top: $gutter-width/4 solid transparent;
-          border-bottom: $gutter-width/4 solid transparent;
+          border-right: $carat-size-mobile solid transparent;
+          border-left: $carat-size-mobile solid $dropdown-border;
+          border-top: $carat-size-mobile solid transparent;
+          border-bottom: $carat-size-mobile solid transparent;
         }
 
         &:hover {
@@ -142,12 +150,12 @@ ul.nav-items {
           &:after {
             position: absolute;
             left: 50%;
-            margin-left: -3px;
-            bottom: 6px;
-            border-right: $gutter-width/6 solid transparent;
-            border-top: $gutter-width/6 solid $light-grey;
-            border-bottom: $gutter-width/6 solid transparent;
-            border-left: $gutter-width/6 solid transparent;
+            margin-left: -1*$carat-size;
+            bottom: 0;
+            border-right: $carat-size solid transparent;
+            border-top: $carat-size solid $dropdown-border;
+            border-bottom: $carat-size solid transparent;
+            border-left: $carat-size solid transparent;
           }
         }
       }
@@ -183,12 +191,32 @@ ul.nav-items {
     }
 
     &.dropdown {
+      .nav-all-link {
+        width:100%;
+        padding-left:40px;
+        padding-bottom:0;
+        margin-top: $gutter-width/2;
+        color:$red;
+        @include bp(m) {
+          background:$white;
+          color:$teal;
+          padding:0;
+          display:block;
+          width:auto;
+          padding:.5em 2em;
+          border:1px solid $teal !important;
+          &:hover {
+            background:$teal;
+            color:$white;
+          }
+        }
+      }
       .dropdown-menu {
         display: none;
         overflow: hidden;
         background: $white;
-        border-top: 1px solid lighten($teal,50%);
-        border-left: 1px solid lighten($teal,50%);
+        border-top: 1px solid $dropdown-border;
+        border-left: 1px solid $dropdown-border;
         width: 50%;
         position: absolute;
         left: 45%;
@@ -252,10 +280,10 @@ ul.nav-items {
           box-shadow: 0 3px 10px rgba(0,0,0,.1);
           transition: max-height 0.5s ease-in;
           left:0;
-          top:auto;
+          top:60px;
           width:100%;
           .inner {
-            border: 1px solid $middle-grey;
+            border: 1px solid $dropdown-border;
             padding: 0 $gutter-width $gutter-width;
             display: block;
           }
@@ -278,9 +306,11 @@ ul.nav-items {
           }
 
           ul {
-            padding: $gutter-width 0;
+            padding: 0;
             float: left;
-
+            &.pad-top {
+              padding-top:$gutter-width/2;
+            }
             &.half {
               width: 50%;
             }
@@ -309,11 +339,12 @@ ul.nav-items {
               left: 50%;
               width: 0;
               height: 0;
-              bottom: -3px;
-              border-top: $gutter-width/6 solid transparent;
-              border-left: $gutter-width/6 solid transparent;
-              border-right: $gutter-width/6 solid transparent;
-              border-bottom: $gutter-width/6 solid $light-grey;
+              bottom: -10px;
+              margin-left:-1*$carat-size-expanded;
+              border-top: $carat-size-expanded solid transparent;
+              border-left: $carat-size-expanded solid transparent;
+              border-right: $carat-size-expanded solid transparent;
+              border-bottom: $carat-size-expanded solid $dropdown-border;
             }
           }
 

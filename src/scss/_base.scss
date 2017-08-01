@@ -399,3 +399,34 @@ section.logo-strip-bucket {
 .text-left {
   text-align: left;
 }
+.has-tooltip {
+    @include has-tooltip($tooltip-transition-in-duration: .3s);
+}
+
+.tooltip {
+    min-width: 10em;
+    padding: .5em .75em;
+    box-shadow: 0 .05em .15em rgba(black, .1);
+}
+
+.tooltip-with-border {
+    @include tooltip(
+        $tooltip-background-color: white,
+        $tooltip-arrow-base: 1.5em,
+        $tooltip-arrow-length: .75em,
+        $tooltip-border-width: .05em,
+        $tooltip-border-color: #999,
+        $tooltip-transition-out-duration: .2s
+    );
+    color: #333;
+}
+
+.tooltip-without-border {
+    @include tooltip(
+        $tooltip-background-color: black,
+        $tooltip-arrow-base: 1em,
+        $tooltip-arrow-length: .5em,
+        $tooltip-transition-out-duration: .2s
+    );
+    color: #fff;
+}

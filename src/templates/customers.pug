@@ -9,7 +9,7 @@ block content
     global $wp_query;
      query_posts(array(
          'post_type' => 'customer',
-         'numberposts' => 100
+         'nopaging' => true
      ));
      $customers = [];
      while(have_posts()) : the_post();

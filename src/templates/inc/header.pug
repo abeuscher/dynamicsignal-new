@@ -1,3 +1,38 @@
+-
+  var useCases = {
+  "left": [{
+    "title":"Internal Comunications",
+    "url":"/mobile-employee-communications/"
+  },{
+    "title":"Mobile Intranet",
+    "url":"/mobile-intranet/"
+  },{
+    "title":"Deskless Workers",
+    "url":"/deskless-workers/"
+  },{
+    "title":"Employee Advocacy",
+    "url":"/employee-advocacy/"
+  },{
+    "title":"Company News",
+    "url":"/company-news/"
+  }],
+  "right": [{
+    "title":"Social Selling",
+    "url":"/social-selling-use-case/"
+  },{
+    "title":"Recruiting &amp; Talent",
+    "url":"/recruiting-communications/"
+  },{
+    "title":"Executive Communications",
+    "url":"/executive-communications/"
+  },{
+    "title":"Crisis Communications",
+    "url":"/crisis-communications"
+  },{
+    "title":"Change Management / M &amp; A",
+    "url":"/change-management/"
+  }]
+  };
 nav.header-nav
   .navbar-header
     button.navbar-toggle#toggle-main-drop(type='button')
@@ -11,56 +46,68 @@ nav.header-nav
     ul.nav-items
       li
         a(href='/product/') Product
+      li.dropdown
+        a.dropdown-toggle(href='/use-cases/') Use Cases
+        div.dropdown-menu
+          .inner
+            ul.half
+              for usecase in useCases.left
+                li
+                  a(href=usecase.url)!=usecase.title
+            ul.half
+              for usecase in useCases.right
+                li
+                  a(href=usecase.url)!=usecase.title
+            .toplink
+            a.nav-all-link(href="/use-cases/") View All
       li
-        a(href='/use-cases/') Use Cases
+        a(href='/customers/') Customers
       li
-        a(href='/blog/') Blog
-      li
-        a(href='/events/') Events
+        a(href='/careers/') Careers
       li.dropdown
         a.dropdown-toggle(href='#') Company
         div.dropdown-menu
           .inner
-            ul.half
+            ul.half.pad-top
               li.nav-header Connect
               li
-                a(href='/careers/') Careers
+                a(href='/events/') Events
               li
                 a(href='/contact-us/') Contact Us
               li
                 a(href='/support/') Support
-
-            ul.half
+            ul.half.pad-top
               li.nav-header Who We Are
-              li
-                a(href='/customers/') Customers
               li
                 a(href='/team/') Team
               li
                 a(href='/agency/') Partners
             .toplink
       li.dropdown
-        a.dropdown-toggle(href='#') Resources
+        a.dropdown-toggle(href='https://dynamicsignal.uberflip.com/') Resources
         div.dropdown-menu
           .inner
-            ul.third
+            ul.third.pad-top
               li.nav-header News
               li
-                a(href='https://dynamicsignal.uberflip.com/news') News
+                a(href='https://dynamicsignal.uberflip.com/news') Mentions
               li
                 a(href='https://dynamicsignal.uberflip.com/press-releases') Press Releases
-            ul.third
+            ul.third.pad-top
               li.nav-header Educational
+              li
+                a(href='/blog/') Blog
               li
                 a(href='https://dynamicsignal.uberflip.com/case-studies') Case Studies
               li
                 a(href='https://dynamicsignal.uberflip.com/ebooks') eBooks & Guides
-            ul.third
+            ul.third.pad-top
               li.nav-header Multimedia
               li
                 a(href='https://dynamicsignal.uberflip.com/webinars') Webinars
               li
                 a(href='https://dynamicsignal.uberflip.com/videos') Videos
             .toplink
+            a.nav-all-link(href="https://dynamicsignal.uberflip.com/") Featured Items
       li
         a.button-teal.button-demo(href='/requestdemo/') Request Demo
