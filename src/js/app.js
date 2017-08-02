@@ -119,17 +119,30 @@ var siteActions = [{
   {
     "element": "customers-grid",
     "action": function() {
-      console.log(customerData);
       var customerGrid = document.getElementById("customers-grid");
+      customersWithAssets = [];
       for(i in customerData) {
         customerGrid.append(parseHTML(siteSettings.templates.customerTile(customerData[i])));
+        if (customerData[i].vimeo_id!="" || customerData[i].quote!="") {
+          customersWithAssets.push(customerData[i]);
+        }
       }
+      console.log(customersWithAssets);
       var sectionActivators = customerGrid.querySelectorAll("[data-activate-customer-section]");
       for(i=0;i<sectionActivators.length;i++) {
         var thisAnchor = sectionActivators[i];
         thisAnchor.addEventListener("click", function(e) {
           e.preventDefault();
-          document.getElementById(this.getAttribute("data-activate-customer-section")).classList.toggle("expanded");
+          var thisTarget = document.getElementById(this.getAttribute("data-activate-customer-section"))
+          var buckets = document.querySelectorAll(".customer-feature");
+          for (i=0;i<buckets.length;i++) {
+            var thisBucket = buckets[i];
+
+            if (thisBucket!=thisTarget && thisBucket.classList.item("expanded")) {
+              thisBucket.classList.remove("expanded");
+            }
+          }
+          thisTarget.classList.toggle("expanded");
         });
       }
     }

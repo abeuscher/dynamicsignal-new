@@ -18,17 +18,29 @@
       position:absolute;
       left:0;
       width:100%;
-      max-height:0;
+
       overflow: hidden;
       background:$middle-grey;
       text-align: left;
       z-index:999;
       .customer-feature {
-        padding:$gutter-width*2 $gutter-width;
+        max-height:0;
+        overflow:hidden;
+        &.expanded {
+          padding:$gutter-width*2 $gutter-width;
+          min-height:300px;
+          max-height:1000px;
+          .tooltip {
+            display:none !important;
+          }
+        }
+        .video-thumb {
+          margin-top:$gutter-width;
+        }
       }
       .button-close {
         float:right;
-        margin:$gutter-width/2 $gutter-width 0 0;
+        margin:0 $gutter-width/2 0 0;
         font-size:36px;
       }
       .customer-citation {
@@ -74,24 +86,14 @@
       width:13%;
       margin:3.5%;
     }
-    &.expanded {
-      background:$middle-grey;
-      border-top-right-radius: 25px;
-      border-top-left-radius: 25px;
-      .customer-info {
-        min-height:300px;
-        max-height:1000px;
-      }
-      .tooltip {
-        display:none !important;
-      }
-    }
+
   }
   ul.customer-utils {
     list-style: none;
     margin:0;
     padding:0 0 $gutter-width/4;;
     li {
+      display:inline-block;
       a {
         span.fa-stack {
           color:$grey;
