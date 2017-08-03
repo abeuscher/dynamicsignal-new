@@ -45,25 +45,25 @@ nav.header-nav
   .navbar-container#mobile-drop
     ul.nav-items
       li
-        a(href='/product/') Product
+        a(href=locals.siteurl+'/product/') Product
       li.dropdown
-        a.dropdown-toggle(href='/use-cases/') Use Cases
+        a.dropdown-toggle(href=locals.siteurl+'/use-cases/') Use Cases
         div.dropdown-menu
           .inner
             ul.half
               for usecase in useCases.left
                 li
-                  a(href=usecase.url)!=usecase.title
+                  a(href=locals.siteurl+usecase.url)!=usecase.title
             ul.half
               for usecase in useCases.right
                 li
-                  a(href=usecase.url)!=usecase.title
+                  a(href=locals.siteurl+usecase.url)!=usecase.title
             .toplink
-            a.nav-all-link(href="/use-cases/") View All
+            a.nav-all-link(href=locals.siteurl+"/use-cases/") View All
       li
-        a(href='/customers/') Customers
+        a(href=locals.siteurl+'/customers/') Customers
       li
-        a(href='/careers/') Careers
+        a(href=locals.siteurl+'/careers/') Careers
       li.dropdown
         a.dropdown-toggle(href='#') Company
         div.dropdown-menu
@@ -71,17 +71,17 @@ nav.header-nav
             ul.half.pad-top
               li.nav-header Connect
               li
-                a(href='/events/') Events
+                a(href=locals.siteurl+'/events/') Events
               li
-                a(href='/contact-us/') Contact Us
+                a(href=locals.siteurl+'/contact-us/') Contact Us
               li
-                a(href='/support/') Support
+                a(href=locals.siteurl+'/support/') Support
             ul.half.pad-top
               li.nav-header Who We Are
               li
-                a(href='/team/') Team
+                a(href=locals.siteurl+'/team/') Team
               li
-                a(href='/agency/') Partners
+                a(href=locals.siteurl+'/agency/') Partners
             .toplink
       li.dropdown
         a.dropdown-toggle(href='https://dynamicsignal.uberflip.com/') Resources
@@ -96,7 +96,7 @@ nav.header-nav
             ul.third.pad-top
               li.nav-header Educational
               li
-                a(href='/blog/') Blog
+                a(href=locals.siteurl+'/blog/') Blog
               li
                 a(href='https://dynamicsignal.uberflip.com/case-studies') Case Studies
               li
@@ -110,4 +110,4 @@ nav.header-nav
             .toplink
             a.nav-all-link(href="https://dynamicsignal.uberflip.com/") Featured Items
       li
-        a.button-teal.button-demo(href='/requestdemo/') Request Demo
+        a.button-teal.button-demo(href=locals.siteurl+'/requestdemo/') Request Demo

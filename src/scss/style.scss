@@ -12,7 +12,7 @@ Text Domain: dynamicsignal
 @import "./_normalize.scss";
 @import "./_variables.scss";
 @import "./_sass-mixins.scss";
-$fa-font-path: "/wp-content/themes/ds-new/fonts/";
+$fa-font-path: $font-path;
 @import "../../node_modules/font-awesome/scss/font-awesome.scss";
 @import "./_flickity.scss";
 @import "./_parallax.scss";
