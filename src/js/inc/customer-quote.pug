@@ -1,0 +1,20 @@
+.customer-carousel-slide
+  .container
+    .customer-slide-content
+      .row
+        .col-md-12
+          .customer-thumb(data-bg=locals.logo.sizes["medium"])
+      .row
+        if locals.quote!="" && locals.vimeo_id==""
+          .col-sm-12.customer-quote
+            p!=locals.quote
+            cite
+              span.name!=citation_name
+              span.title!=locals.citation_title
+        else
+          .col-sm-12.customer-quote
+            p!=locals.quote
+            cite
+              span.name!=citation_name
+              span.title!=locals.citation_title
+            a.button-red(href="https://vimeo.com/"+locals.vimeo_id) Watch Video

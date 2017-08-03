@@ -19,6 +19,7 @@ var siteSettings = {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
     "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
     "customerTile": require("./inc/customer-tile.pug"),
+    "customerQuote": require("./inc/customer-quote.pug"),
     "partnersTestimonial": require("./inc/partner-testimonial.pug"),
     "testimonialSlide": require("./inc/testimonial-slide.pug"),
     "productDisplay": require("./inc/product-display.pug"),
@@ -104,6 +105,15 @@ var siteActions = [{
         drop.classList.toggle("expanded");
         menuToggle.classList.toggle("active");
       });
+      var toggles = document.querySelectorAll(".dropdown-toggle");
+      for(i=0;i<toggles.length;i++) {
+        toggles[i].addEventListener("click",mobileCollapse);
+      }
+      function mobileCollapse(e) {
+        if (window.innerWidth<siteSettings.breakpoints.m) {
+          e.preventDefault();
+        }
+      }
     }
   },
   {
@@ -120,14 +130,19 @@ var siteActions = [{
     "element": "customers-grid",
     "action": function() {
       var customerGrid = document.getElementById("customers-grid");
-      customersWithAssets = [];
+      var videoGall = new Flickity(document.getElementById("customer-video-carousel"),{
+              "wrapAround":true,
+              "pageDots": false,
+              "lazyLoad": 6,
+              "autoPlay":5000,
+            "adaptiveHeight":false});
       for(i in customerData) {
         customerGrid.append(parseHTML(siteSettings.templates.customerTile(customerData[i])));
         if (customerData[i].vimeo_id!="" || customerData[i].quote!="") {
-          customersWithAssets.push(customerData[i]);
+          videoGall.append(parseHTML(siteSettings.templates.customerQuote(customerData[i])));
         }
       }
-      console.log(customersWithAssets);
+      videoGall.resize();
       var sectionActivators = customerGrid.querySelectorAll("[data-activate-customer-section]");
       for(i=0;i<sectionActivators.length;i++) {
         var thisAnchor = sectionActivators[i];

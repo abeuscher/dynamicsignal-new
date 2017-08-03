@@ -9,12 +9,16 @@
     padding:$gutter-width*2 0 $gutter-width;
    width:100%;
    h3 {
-     font-size:44px;
-     line-height:52px;
+     font-size:24px;
+     line-height:36px;
      font-weight:300;
-     width:80%;
-     margin:0 10%;
-     text-align: center;
+     @include bp(m) {
+       text-align: center;
+       font-size:44px;
+       line-height:52px;
+       width:80%;
+       margin:0 10%;
+     }
    }
   }
 }
@@ -130,7 +134,7 @@ section#parallax.use-cases-parallax {
       margin:0;
     }
     @media only screen and (max-width: 1024px) {
-      @include aspect-ratio(16,9);
+      @include aspect-ratio(1,1);
       background-repeat:no-repeat;
       background-size:cover;
       background-position: center;
