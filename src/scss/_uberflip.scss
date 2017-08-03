@@ -52,12 +52,8 @@
     border-radius:0 !important;
   }
 }
-.share-hub, .share-item {
-  position:absolute;
-  top:284px;
-  @include bp(m) {
-    top:364px;
-  }
+.share-toggle {
+  display:none !important;
 }
 .listing-page {
   .main {
@@ -83,6 +79,9 @@
 @media only screen and (max-width: 1024px) {
   .search-results-overlay {
     margin-top:60px;
+  }
+  .search-drop-down {
+    top:100px;
   }
   .top-nav {
       .left-nav.desktop {
@@ -123,6 +122,9 @@
 }
 .top-nav .secondary-logo {
     display:none;
+}
+.search-drop-down {
+    top:370px
 }
 footer {
   padding:0 !important;

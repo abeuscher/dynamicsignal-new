@@ -83,3 +83,49 @@ $logo-height: 80px;
     margin-left: -2130px;
   }
 }
+.agency-ebook {
+  overflow: hidden;
+  margin: 100px 0;
+  .one-fifth, .four-fifths {
+    text-align: center;
+  }
+
+  .four-fifths {
+    p {
+      background: #DFE0E1;
+      text-align: center;
+      margin-top: 60px;
+      padding: 25px;
+      font-size: 26px;
+      font-weight: 100;
+    }
+
+    .btn-blue {
+      display: block;
+      max-width: 350px;
+      margin: 20px auto 0;
+      padding: 15px;
+      font-size: 25px;
+      font-weight: 100;
+      background:$teal;
+      color:$white;
+      transition:all .25s ease-in;
+      &:hover {
+        background:darken($teal,20%);
+      }
+    }
+  }
+  @include bp(m) {
+    .one-fifth, .four-fifths {
+      display:inline-block;
+      vertical-align: middle;
+    }
+    .one-fifth {
+      width: 23%;
+    }
+
+    .four-fifths {
+      width: 73%;
+    }
+  }
+}

@@ -7,9 +7,12 @@ var templates = {
 
 window.addEventListener("load", function() {
   var theTop = document.getElementById("top");
-  theTop.parentNode.insertBefore(parseHTML(templates.header()),theTop);
+  var siteopts = {
+    "siteurl":"http://staging.dynamicsignal.flywheelsites.com"
+  }
+  theTop.parentNode.insertBefore(parseHTML(templates.header(siteopts)),theTop);
   var theFooter = document.getElementsByTagName("footer")[0];
-  document.body.replaceChild(parseHTML(templates.footer()),theFooter);
+  document.body.replaceChild(parseHTML(templates.footer(siteopts)),theFooter);
   var menuToggle = document.getElementById("toggle-main-drop");
   var drop = document.getElementById("mobile-drop");
   menuToggle.addEventListener("click", function() {

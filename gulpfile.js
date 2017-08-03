@@ -152,7 +152,8 @@ gulp.task('build-views', function() {
             "filters": {
               "php":pugPhpFilter
             },
-            "extension":"php"
+            "extension":"php",
+            "locals":{siteurl:""}
         }))
         .pipe(extReplace(".php"))
         .pipe(gulp.dest(viewsBuildDir));

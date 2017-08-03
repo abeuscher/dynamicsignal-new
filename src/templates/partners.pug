@@ -27,7 +27,7 @@ block content
 	section.partners-testimonials.container
 		#partners-testimonials
 	section.uber-embed.container
-		.row
+		.row.col-center
 			:php
 				if ( have_rows( 'uber_embed' ) ) :
 					$count = 0;
@@ -40,7 +40,7 @@ block content
 				endif;
 	section.partners-ebook.container
 		.row
-			.col-md-12
+			.col-md-12.agency-ebook
 				:php
 					the_field( 'ebook' );
 	:php

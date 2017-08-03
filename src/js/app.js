@@ -70,8 +70,14 @@ var siteActions = [{
     "action": function() {
       var Gallery = false;
       function activateScroll() {
+
         if (window.innerWidth>siteSettings.breakpoints.m) {
-          Gallery = new ScrollSite(siteSettings);
+          if (!Gallery) {
+            Gallery = new ScrollSite(siteSettings);
+          }
+          else {
+            Gallery.resize();
+          }
         }
         else {
           if (Gallery) {
