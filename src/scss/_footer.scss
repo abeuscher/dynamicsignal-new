@@ -9,15 +9,50 @@ footer .container {
 
   ul {
     margin:0;
-    padding:0;
+    padding:0 0 $gutter-width;
     list-style:none;
+    &.social-links {
+      text-align:center;
+      li {
+        display:inline-block;
+      }
+      p {
+        display:none
+      }
+      @include bp(m) {
+        li {
+          display:block;
+        }
+        p {
+          display:inline-block;
+        }
+      }
+    }
     li, a {
       color:$white;
       line-height:24px;
+      text-align:center;
+      @include bp(m) {
+        text-align:left;
+      }
     }
     li {
       &.footer-address {
+        .fa-stack {
+          display:none;
+          @include bp(m) {
+            display:inline-block;
+          }
+        }
         margin-bottom:$gutter-width*2;
+      }
+      &.footer-phone {
+        .fa-stack {
+          display:none;
+          @include bp(m) {
+            display:inline-block;
+          }
+        }
       }
       p {
         margin:0;
@@ -54,14 +89,22 @@ footer .container {
     font-weight:600;
     font-size:16px;
     letter-spacing: 1px;
+    text-align: center;
+    margin:$gutter-width 0 $gutter-width/2;
+    @include bp(m) {
+      text-align: left;
+    }
   }
 }
 
 
 .logo-footer {
-  opacity: 0.5;
   width: 200px;
+  margin:0 auto;
   margin-bottom: 1.5em;
+  @include bp(m) {
+    opacity:0.5;
+  }
 }
 
 .footer-bottom {

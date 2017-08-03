@@ -1,0 +1,31 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Blog Entry Page
+    */
+block content
+  :php
+    if( have_posts() ){
+     while( have_posts() ) {
+      the_post();
+  section.blog-hero
+    :php
+      echo "<div class='blog-header'><div class='blog-thumb'>";
+      the_post_thumbnail( 'full', array('class' => 'img-responsive') );
+      echo "</div>";
+    h1.blog-title
+      :php
+        the_title();
+    :php
+      echo "<span class='blog-date'>".get_the_date()."</span>";
+      echo "</div>";
+  include ./inc/social-menu.pug
+  section.container.blog-content
+    .row
+      .col-md-12
+        article.blog-content
+          :php
+            the_content();
+        :php
+          }}

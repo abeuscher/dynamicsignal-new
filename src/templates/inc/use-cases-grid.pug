@@ -43,7 +43,7 @@ include ./hero.pug
 section.use-cases-grid
   .container-fluid
     .container.grid-container
-      .row.hidden-xs
+      .row
         for useCase,key in pageData.useCases
           a(href=useCase.url)
             div(id="grid-use-cases-redesign-"+key,class=getClass(key))

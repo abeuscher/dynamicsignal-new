@@ -2,10 +2,34 @@
   text-align: center;
   .careers-panes {
     text-align: left;
+    color:$classic-grey;
+    line-height:1.5;
+    h3 {
+      font-size:18px;
+      font-weight:400;
+      letter-spacing:1px;
+    }
+    @include bp(m) {
+      .col-md-3 {
+        border-right:1px solid lighten($classic-grey,50%);
+        &:last-child {
+          border-right:none;
+        }
+      }
+    }
   }
 }
 #job-list {
   article {
+    animation: fader .5s 1;
+    @keyframes fader {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
     .button-red {
       margin-top:$gutter-width*2;;
     }

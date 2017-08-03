@@ -15,38 +15,10 @@ $off-black:#4a4a4a;
 $grey: #4E4B4E;
 $light-grey:#9b9b9b;
 $middle-grey:#d7d7d7;
+$classic-grey:#666666;
 $red: #D3484D;
 $teal: #1A9697;
 $beige: #F2EEE7;
-
-
-//font-values
-/*
-@font-face {
-  font-family: 'proximanova';
-  src: url('#{$font-path}proximanova-regular-webfont.ttf')  format('truetype');
-}
-@font-face {
-  font-family: 'proximanova-bold';
-  src: url('#{$font-path}proximanova-bold-webfont.ttf')  format('truetype');
-}
-@font-face {
-  font-family: 'proximanova-light';
-  src: url('#{$font-path}proximanova-light-webfont.ttf')  format('truetype');
-}
-@font-face {
-  font-family: 'proximanova-regitalic';
-  src: url('#{$font-path}proximanova-regularitalic-webfont.ttf')  format('truetype');
-}
-@font-face {
-  font-family: 'proximanova-semibold';
-  src: url('#{$font-path}proximanova-semibold-webfont.ttf')  format('truetype');
-}
-@font-face {
-  font-family: 'proximanova-thing';
-  src: url('#{$font-path}proximanova-thing-webfont.ttf') format('truetype');
-}
-*/
 
 //colors
 $body-bg-color:linear-gradient(90deg, rgb(41, 44, 99) 0%, rgb(54, 64, 125) 100%);
@@ -55,5 +27,5 @@ $body-link-color:$white;
 $header-color:$white;
 
 //fonts
-$body-font:'proximanova',sans-serif;
-$header-font:'proximanova-bold', sans-serif;
+$body-font:'proxima-nova', sans-serif;
+$header-font:'proxima-nova', sans-serif;

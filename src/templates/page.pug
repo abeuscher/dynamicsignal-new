@@ -5,11 +5,15 @@ block template
     Template Name: Blank Page
     */
 block content
+  section.hero
+    h1
+      :php
+        the_title();
   section.container.content
     :php
       if( have_posts() ): while( have_posts() ): the_post();
     article.row
-      .blog-post-body.col-md-12
+      .col-md-12.blog-content
         :php
           the_content();
     :php

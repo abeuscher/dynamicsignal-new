@@ -9,18 +9,19 @@ function JobList(opts) {
 JobList.prototype.writeList = function() {
   this.opts.container.innerHTML = "";
   for (i in this.currentJobs) {
-    var thisJob = this.currentJobs[i];
-    this.opts.container.appendChild(parseHTML(this.opts.template(thisJob)));
+    var thisJob = parseHTML(this.opts.template(this.currentJobs[i]));
+    this.opts.container.appendChild(thisJob);
+    thisJob.classList.add("fade-in");
   }
 };
 JobList.prototype.sortList = function(startIndex, limit, category) {
-  this.currentJobs = [];
-  var currentJobs = [];
+  this.currentJobs = new Array();
+  var currentJobs = new Array();
 
   if (category) {
     for (i = 0; i < this.opts.jobs.length; i++) {
-      for (c in this.opts.jobs[i].categories) {
-        if (this.opts.jobs[i].categories[c].cat_ID == category.cat_ID) {
+      for (c=0;c<this.opts.jobs[i].categories.length;c++) {
+        if (this.opts.jobs[i].categories[c].cat_ID==category.cat_ID) {
           currentJobs.push(this.opts.jobs[i]);
         }
       }

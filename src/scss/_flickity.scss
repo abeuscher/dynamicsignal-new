@@ -2,6 +2,25 @@
 http://flickity.metafizzy.co
 ---------------------------------------------- */
 
+/* Fade CSS */
+
+.flickity-fader .flickity-slider {
+  transform: none !important;
+  .row {
+    left: 0 !important;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: -1;
+  }
+
+  .row.is-selected {
+    opacity: 1;
+    z-index: 0
+  }
+}
+
+
+
 .flickity-enabled {
   position: relative;
 }

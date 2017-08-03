@@ -1,11 +1,13 @@
 require("dom4");
+require("./utils/remove-class.js");
 
 var Flickity = require("flickity");
-var Vimeo = require('@vimeo/player');
+var uniqBy = require("lodash/uniqBy");
 
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
+var ActivateVideos = require("./video-handler/index.js");
 
 var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
@@ -16,16 +18,42 @@ var siteSettings = {
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
     "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
+    "customerTile": require("./inc/customer-tile.pug"),
+    "customerQuote": require("./inc/customer-quote.pug"),
+    "partnersTestimonial": require("./inc/partner-testimonial.pug"),
     "testimonialSlide": require("./inc/testimonial-slide.pug"),
     "productDisplay": require("./inc/product-display.pug"),
     "useCaseQuote": require("./inc/use-case-quote.pug"),
     "jobListing": require("./inc/job-listing.pug"),
+    "eventListing": require("./inc/event-listing.pug"),
     "jobFilter": require("./inc/job-filter.pug")
-  }
+  },
+  "breakpoints":{
+    "xs": 0,
+    "s":641,
+    "m":1025,
+    "l":1321,
+    "xl":1921
+  },
+  "validDomains":["dynamicsignal.com","staging.dynamicsignal.flywheelsites.com"]
 }
 
 
 window.addEventListener("load", function() {
+  if (siteSettings.validDomains.indexOf(window.location.hostname)>-1) {
+    (function(d) {
+        var config = {
+          kitId: 'hao2kje',
+          scriptTimeout: 0,
+          async: false
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=false;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+  }
+  else {
+    console.log("Font not supported in this domain");
+  }
+  document.body.classList.remove("loading");
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
@@ -33,14 +61,26 @@ window.addEventListener("load", function() {
     }
   }
   activateImages();
-  activateVideos();
+  new ActivateVideos();
 });
 
 
 var siteActions = [{
     "element": "parallax",
     "action": function() {
-      return new ScrollSite(siteSettings);
+      var Gallery = false;
+      function activateScroll() {
+        if (window.innerWidth>siteSettings.breakpoints.m) {
+          Gallery = new ScrollSite(siteSettings);
+        }
+        else {
+          if (Gallery) {
+            Gallery.destroy();
+          }
+        }
+      }
+      window.addEventListener("resize", activateScroll)
+      activateScroll();
     }
   },
   {
@@ -49,7 +89,6 @@ var siteActions = [{
       var box = document.getElementById("map-container");
       var map = document.getElementById("the-contact-map");
       box.addEventListener("click", function(e) {
-        console.log("click");
         map.classList.add("clicked");
         this.addEventListener("mouseleave", function() {
           map.classList.remove("clicked");
@@ -58,20 +97,79 @@ var siteActions = [{
     }
   },
   {
+    "element": "toggle-main-drop",
+    "action": function() {
+      var menuToggle = document.getElementById("toggle-main-drop");
+      var drop = document.getElementById("mobile-drop");
+      menuToggle.addEventListener("click", function() {
+        drop.classList.toggle("expanded");
+        menuToggle.classList.toggle("active");
+      });
+      var toggles = document.querySelectorAll(".dropdown-toggle");
+      for(i=0;i<toggles.length;i++) {
+        toggles[i].addEventListener("click",mobileCollapse);
+      }
+      function mobileCollapse(e) {
+        if (window.innerWidth<siteSettings.breakpoints.m) {
+          e.preventDefault();
+        }
+      }
+    }
+  },
+  {
     "element": "use-case-quotes",
     "action": function() {
       var quoteGall = new Flickity("#use-case-quotes", {"prevNextButtons": false});
       for (i in useCaseQuotes) {
         quoteGall.append(parseHTML(siteSettings.templates.useCaseQuote(useCaseQuotes[i])));
-        console.log(useCaseQuotes[i]);
       }
-
+      quoteGall.resize();
     }
   },
   {
     "element": "customers-grid",
     "action": function() {
-      console.log(customerData);
+      var customerGrid = document.getElementById("customers-grid");
+      var videoGall = new Flickity(document.getElementById("customer-video-carousel"),{
+              "wrapAround":true,
+              "pageDots": false,
+              "lazyLoad": 6,
+              "autoPlay":5000,
+            "adaptiveHeight":false});
+      for(i in customerData) {
+        customerGrid.append(parseHTML(siteSettings.templates.customerTile(customerData[i])));
+        if (customerData[i].vimeo_id!="" || customerData[i].quote!="") {
+          videoGall.append(parseHTML(siteSettings.templates.customerQuote(customerData[i])));
+        }
+      }
+      videoGall.resize();
+      var sectionActivators = customerGrid.querySelectorAll("[data-activate-customer-section]");
+      for(i=0;i<sectionActivators.length;i++) {
+        var thisAnchor = sectionActivators[i];
+        thisAnchor.addEventListener("click", function(e) {
+          e.preventDefault();
+          var thisTarget = document.getElementById(this.getAttribute("data-activate-customer-section"))
+          var buckets = document.querySelectorAll(".customer-feature");
+          for (i=0;i<buckets.length;i++) {
+            var thisBucket = buckets[i];
+
+            if (thisBucket!=thisTarget && thisBucket.classList.item("expanded")) {
+              thisBucket.classList.remove("expanded");
+            }
+          }
+          thisTarget.classList.toggle("expanded");
+        });
+      }
+    }
+  },
+  {
+    "element": "events-list",
+    "action": function() {
+      console.log(pageData.events);
+      var bucket = document.getElementById("events-list");
+      for(i=0;i<pageData.events.length;i++) {
+        bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
+      }
 
     }
   },
@@ -93,6 +191,7 @@ var siteActions = [{
         }
         thisRow.appendChild(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
       }
+      logoGall.resize();
     }
   },
   {
@@ -102,7 +201,6 @@ var siteActions = [{
       for (i in pageData.logos) {
         fetch(pageData.logos[i].logo.url)
           .then(function(data) {
-            console.log(data);
             var img = document.createElement("img");
             img.src = data.url;
             img.alt = "";
@@ -112,14 +210,36 @@ var siteActions = [{
     }
   },
   {
+    "element": "partners-testimonials",
+    "action": function() {
+      var bucket = document.getElementById("partners-testimonials");
+      for (i in pageData.testimonials) {
+        bucket.appendChild(parseHTML(siteSettings.templates.partnersTestimonial(pageData.testimonials[i])));
+      }
+    }
+  },
+  {
     "element": "home-hero-video",
     "action": function() {
-      var videoBucket = document.getElementById("home-hero-video");
-      var video = document.createElement("video");
-      video.src = siteSettings.videoPath + videoBucket.getAttribute("data-video");
-      video.setAttribute("autoplay", true);
-      video.setAttribute("loop", true);
-      videoBucket.appendChild(video);
+      function resizeBanner() {
+        var videoBucket = document.getElementById("home-hero-video");
+        if (window.innerWidth<siteSettings.breakpoints.m) {
+          videoBucket.innerHTML = "";
+          videoBucket.style.background = "url('"+siteSettings.imagePath + videoBucket.getAttribute("data-mobile-bg")+"') no-repeat center top";
+          videoBucket.style.backgroundSize = "cover";
+        }
+        else {
+          if (videoBucket.querySelectorAll("video").length<1) {
+            var video = document.createElement("video");
+            video.src = siteSettings.videoPath + videoBucket.getAttribute("data-video");
+            video.setAttribute("autoplay", true);
+            video.setAttribute("loop", true);
+            videoBucket.appendChild(video);
+          }
+        }
+      }
+      window.addEventListener("resize", resizeBanner);
+      resizeBanner();
     }
   },
   {
@@ -164,6 +284,7 @@ var siteActions = [{
       for (i in pageData.testimonials) {
         testimonialGall.append(parseHTML(siteSettings.templates.testimonialSlide(pageData.testimonials[i])));
       }
+      testimonialGall.resize();
     }
   },
   {
@@ -262,38 +383,4 @@ function activateImages() {
       thisElement.appendChild(img);
     }
   }
-}
-
-function activateVideos() {
-  var videos = document.querySelectorAll(".video-thumb");
-  for (i=0;i<videos.length;i++) {
-    var thisBucket = videos[i];
-    var thisContent = thisBucket.querySelectorAll(".content")[0];
-    var thisPlayer = makeVideo(thisBucket.getAttribute("data-video-id"));
-    var vimeoPlayer = new Vimeo(thisPlayer);
-    thisBucket.appendChild(thisPlayer);
-    thisBucket.addEventListener("click", onStart);
-    vimeoPlayer.on('pause', onFinish);
-  }
-  function onStart(e) {
-      e.preventDefault();
-      thisContent.classList.toggle("hide");
-      thisPlayer.classList.toggle("hide");
-      vimeoPlayer.play();
-  }
-  function onFinish(e) {
-      vimeoPlayer.unload();
-      thisContent.classList.toggle("hide");
-      thisPlayer.classList.toggle("hide");
-  }
-}
-function makeVideo(id) {
-  var video = document.createElement("iframe");
-  video.src = "https://player.vimeo.com/video/"+id+"?title=0&byline=0&portrait=0";
-  video.setAttribute("webkitallowfullscreen","true");
-  video.setAttribute("mozallowfullscreen","true");
-  video.setAttribute("allowfullscreen","true");
-  video.classList.add("vimeo-video");
-  video.classList.add("hide");
-  return video;
 }

@@ -56,19 +56,21 @@ block content
 			"cite":"Kristian Lorenzon - <span class='position'>Head of Social Media</span>, <span class='company'>O2</span>",
 			"cta":"Play Video",
 			"image":"product_video.png"
-		}
+		},
+		"ctaHeader":"Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders.",
+		"ctaLabel":"Request Demo"
 		};
 		var backgrounds = [];
 		for (i in pageData.slides) {
 			backgrounds.push(pageData.slides[i].image);
 		}
 	include ./inc/hero.pug
-	section#parallax
+	section#parallax.container
 		.inner
 			#bg-slides(data-backgrounds=JSON.stringify(backgrounds))
 			for slide,key in pageData.slides
 				.content-slide.row(id="slide-"+key)
-					.col-md-5.thumb(data-src=slide.mobileImage)
+					.col-md-5.thumb.col-center(data-src=slide.mobileImage)
 					.col-md-7.content
 						h2!=slide.header
 						h3!=slide.subheader
@@ -76,9 +78,10 @@ block content
 	section.products-coverflow
 		.container-fluid
 			.row
-				h1!=pageData.coverflow.header
-				p!=pageData.coverflow.text
-				a(href='/connectors/',data-src=pageData.coverflow.image)
+				h1.col-m-center!=pageData.coverflow.header
+				p.col-m-center!=pageData.coverflow.text
+				p.col-m-center
+					a(href='/connectors/',data-src=pageData.coverflow.image)
 	section.product-video
 		.container-fluid
 			.row
@@ -89,3 +92,9 @@ block content
 						a.video-play(href="#")
 							span.cta!=pageData.videoInfo.cta
 							i.fa.fa-play
+	section.cta-bottom.col-center
+		.container
+			.row
+				.col-md-12
+					h2!=pageData.ctaHeader
+					a.button-red.cta(href="/requestdemo/")!=pageData.ctaLabel

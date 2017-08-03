@@ -1,0 +1,103 @@
+.customers-grid {
+  text-align: center;
+  .customer-block {
+    width:50%;
+    display: inline-block;
+    img {
+      width:90%;
+    }
+    @include bp(m) {
+      width:13%;
+      margin:3.5%;
+    }
+    .customer-thumb {
+      width:90%;
+    }
+  }
+  ul.customer-utils {
+    list-style: none;
+    margin:0;
+    padding:0 0 $gutter-width/4;;
+    li {
+      display:inline-block;
+      a {
+        span.fa-stack {
+          color:$grey;
+        }
+        &:hover {
+          span.fa-stack {
+            color:$teal;
+            cursor: pointer;
+          }
+        }
+      }
+
+    }
+  }
+}
+.customer-thumb {
+  @include aspect-ratio(3,2);
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  width:20%;
+  margin:$gutter-width/2 auto;
+}
+.customer-carousel-slide {
+  width:100%;
+  .customer-slide-content {
+    padding:0 $gutter-width*3 0 $gutter-width;
+  }
+  .customer-quote {
+    text-align: center;
+    h1 {
+      flex-grow:0;
+      background:$grey;
+      color:$white;
+      width:100%;
+      font-size:20px;
+      font-wieght:400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align:center;
+    }
+    p {
+      font-size:24px;
+      line-height: 36px;
+      letter-spacing: .5px;
+      font-weight:500;
+      font-style: italic;
+      position: relative;
+      padding-left:$gutter-width*2.5;
+      text-align: left;
+      &::before {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        content:"\201C";
+        font-size: 90px;
+        color: $classic-grey;
+        font-family: "Times",serif;
+      }
+    }
+    cite {
+      text-align: right;
+      font-size:12px;
+      font-weight:300;
+      font-style:normal;
+      margin-right:$gutter-width;
+      display:block;
+      line-height:1.75;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      .name {
+        display:block;
+      }
+      .title {
+        display:block;
+      }
+    }
+  }
+
+}

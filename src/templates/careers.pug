@@ -45,7 +45,9 @@ block content
 				"image":"about-video-thumb.jpg"
 			},
 			"cultureHeader":"All Work, With Plenty Of Play",
-			"cultureCopy":"Our team loves to have a good time, express their personality, and show it off to the world. Whether we're celebrating a birthday, gathering for a team event, or hosting a customer dinner we take pride in doing it with a smile. Life is too short not to have fun while you work."
+			"cultureCopy":"Our team loves to have a good time, express their personality, and show it off to the world. Whether we're celebrating a birthday, gathering for a team event, or hosting a customer dinner we take pride in doing it with a smile. Life is too short not to have fun while you work.",
+			"listingsHeader":"Current Open Positions",
+			"listingsCopy":"Think Dynamic Signal is the place for you? Browse our open positions below and feel free to contact us with any questions about the company, a specific department, or job. We'd be happy to hear from you!"
 
 			};
 	:php
@@ -55,7 +57,7 @@ block content
 		$category_count=[];
 		foreach($jobs as $key => $job) {
 			$cat = get_the_category($job->ID);
-			foreach($cat as $key=>$category) {
+			foreach($cat as $category) {
 				$category_count[$category->cat_ID] = $category_count[$category->cat_ID] ? $category_count[$category->cat_ID]+1 : 1;
 				if (!in_array($category,$categories)) {
 					array_push($categories,$category);
@@ -105,6 +107,15 @@ block content
 			.col-md-12
 				h2!=pageData.cultureHeader
 				p!=pageData.cultureCopy
+		.row
+			.col-md-12.instagram-bucket
+				script(src='//lightwidget.com/widgets/lightwidget.js')
+				//iframe.lightwidget-widget(src='//lightwidget.com/widgets/6201cb655e565b53b883ae24489844c2.html', scrolling='no', allowtransparency='true', style='width: 100%; border: 0; overflow: hidden;')
+	section.job-listing-header.container
+		.row
+			.col-md-12.col-center
+				h1!=pageData.listingsHeader
+				h2!=pageData.listingsCopy
 	section#jobs.container
 		.row
 			.col-md-3.hidden-s
