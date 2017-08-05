@@ -14,16 +14,30 @@ block content
 	-
 		var pageData = {
 		"header":"Grow Your Agency",
-		"subheader":"Employee Advocacy Increases Client Value and Drives Revenue"
+		"subheader":"Employee Advocacy Increases Client Value and Drives Revenue",
+		"copyTop":"Today’s agencies are challenged with helping clients adapt to the convergence of paid, owned and earned media. That’s especially true within the digital and social media landscape. Many are adapting to this new environment, with progressive firms doing so by building Employee Advocacy programs for their clients.",
+		"videoInfo": {
+			"id":"175159409",
+			"type":"vimeo",
+			"quote":"The main reason why I chose Dynamic Signal to be a strategic partner for us is the people. The experience has been phenomenal. They’re an extension of my team. They get to know and understand the company, the product, the culture just as much as we do. Also, it’s the most robust and scalable product in the market today.",
+			"cta":"Play Video",
+			"image":"partners-testimonial-thumb.png",
+			"cite":"Michael Brito - SVP/GM @ Lewis Global Communications"
+		}
 		};
 	include ./inc/hero.pug
 	section.marquee-bucket
 		#partners-logo-marquee.marquee
-
 	section.partners-top.container
-		p.subheader
-			:php
-				the_field('content_top');
+		p.partners-header!=pageData.copyTop
+		.video-thumb(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
+			.left-gradient
+			.content.left.shrunk
+				p!=pageData.videoInfo.quote
+				cite!=pageData.videoInfo.cite
+				a.video-play(href="#")
+					span.cta!=pageData.videoInfo.cta
+					i.fa.fa-play
 	section.partners-testimonials.container
 		#partners-testimonials
 	section.uber-embed.container

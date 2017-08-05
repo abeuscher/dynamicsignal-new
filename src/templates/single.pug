@@ -14,18 +14,44 @@ block content
       echo "<div class='blog-header'><div class='blog-thumb'>";
       the_post_thumbnail( 'full', array('class' => 'img-responsive') );
       echo "</div>";
-    h1.blog-title
-      :php
-        the_title();
+    .inner
+      .container
+        .row
+          .col-md-12
+            h1.blog-title
+              :php
+                the_title();
+            p.author By
+              :php
+                echo " ".get_author_name();
+            ul.social-share
+              li
+                :php
+                  echo "<a href='https://www.facebook.com/sharer/sharer.php?u=".urlencode(get_permalink())."'>";
+                span.fa-1x.fa-stack
+                  i.fa.fa-circle.fa-stack-2x
+                  i.fa.fa-stack-1x.fa-facebook
+                :php
+                  echo "</a>";
+              li
+                :php
+                  echo "<a href='https://twitter.com/home?status=".urlencode(get_permalink())."'>";
+                span.fa-1x.fa-stack
+                  i.fa.fa-circle.fa-stack-2x
+                  i.fa.fa-stack-1x.fa-twitter
+                  :php
+                    echo "</a>";
+            :php
+              echo "<span class='blog-date'>".get_the_date()."</span>";
     :php
-      echo "<span class='blog-date'>".get_the_date()."</span>";
       echo "</div>";
-  include ./inc/social-menu.pug
   section.container.blog-content
     .row
-      .col-md-12
+      .col-md-9
         article.blog-content
           :php
             the_content();
+      .col-md-3.related-posts
+        include ./inc/related-posts.pug
         :php
-          }}
+            }}

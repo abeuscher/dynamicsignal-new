@@ -144,7 +144,7 @@ var siteActions = [{
             "adaptiveHeight":false});
       for(i in customerData) {
         customerGrid.append(parseHTML(siteSettings.templates.customerTile(customerData[i])));
-        if (customerData[i].vimeo_id!="" || customerData[i].quote!="") {
+        if (customerData[i].vimeo_id!="") {
           videoGall.append(parseHTML(siteSettings.templates.customerQuote(customerData[i])));
         }
       }

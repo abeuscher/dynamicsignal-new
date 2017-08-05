@@ -1,0 +1,25 @@
+:php
+  $tags = wp_get_post_tags(get_the_ID());
+  echo '<h2>Recommended Blogs</h2>';
+  if ($tags) {
+
+  $first_tag = $tags[0]->term_id;
+  $args=array(
+  'tag__in' => array($first_tag),
+  'post__not_in' => array(get_the_ID()),
+  'posts_per_page'=>5,
+  'caller_get_posts'=>1
+  );
+  $my_query = new WP_Query($args);
+  if( $my_query->have_posts() ) {
+  while ($my_query->have_posts()) : $my_query->the_post();
+  echo '<h3><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
+  //echo '<p>' . get_the_excerpt() . '</p>';
+
+  endwhile;
+  }
+  wp_reset_query();
+  }
+  else {
+    echo "<p><i>no related posts were found.</p>";
+  }

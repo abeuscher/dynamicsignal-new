@@ -94,14 +94,17 @@ block content
 				.col-md-3
 					h3!=pane.title
 					p!=pane.copy
-	section#video
-		.video-thumb(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
-			.content.left
-				h2!=pageData.videoInfo.header
-				p.no-quote!=pageData.videoInfo.quote
-				a.video-play(href="#")
-					span.cta!=pageData.videoInfo.cta
-					i.fa.fa-play
+	section.container
+		.row
+			.col-md-12
+				.video-thumb(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
+					.left-gradient
+					.content.left
+						h2!=pageData.videoInfo.header
+						p.no-quote!=pageData.videoInfo.quote
+						a.video-play(href="#")
+							span.cta!=pageData.videoInfo.cta
+							i.fa.fa-play
 	section#culture.container
 		.row
 			.col-md-12

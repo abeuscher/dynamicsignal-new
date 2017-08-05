@@ -72,6 +72,17 @@ $logo-height: 80px;
     }
   }
 }
+.partners-top {
+  .one-half {
+    width:50%;
+    float:left;
+  }
+}
+.partners-header {
+  margin:0 0 $gutter-width*2;
+  font-size:24px;
+  line-height:1.5;
+}
 
 /* Keyframe animations*/
 

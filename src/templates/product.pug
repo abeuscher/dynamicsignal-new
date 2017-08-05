@@ -83,15 +83,17 @@ block content
 				p.col-m-center
 					a(href='/connectors/',data-src=pageData.coverflow.image)
 	section.product-video
-		.container-fluid
+		.container
 			.row
-				.video-thumb(data-video-id=pageData.videoInfo.id,data-video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
-					.content
-						p!="\"" + pageData.videoInfo.quote + "\""
-						cite!=pageData.videoInfo.cite
-						a.video-play(href="#")
-							span.cta!=pageData.videoInfo.cta
-							i.fa.fa-play
+				.col-md-12
+					.video-thumb(data-video-id=pageData.videoInfo.id,data-video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
+						.right-gradient
+						.content
+							p!="\"" + pageData.videoInfo.quote + "\""
+							cite!=pageData.videoInfo.cite
+							a.video-play(href="#")
+								span.cta!=pageData.videoInfo.cta
+								i.fa.fa-play
 	section.cta-bottom.col-center
 		.container
 			.row
