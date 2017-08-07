@@ -1,6 +1,6 @@
 :php
   $tags = wp_get_post_tags(get_the_ID());
-  echo '<h2>Recommended Blogs</h2>';
+  echo '<h2 class="header-right">Recommended Blogs</h2>';
   if ($tags) {
 
   $first_tag = $tags[0]->term_id;

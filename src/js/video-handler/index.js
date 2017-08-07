@@ -12,7 +12,6 @@ ActivateVideos.prototype.init = function() {
     var thisContent = thisBucket.querySelectorAll(".content")[0];
     var thisPlayer = this.makeVideo(thisBucket.getAttribute("data-video-id"));
     thisBucket.appendChild(thisPlayer);
-    console.log(thisBucket.getAttribute("data-video-only"));
     if (window.innerWidth<1025 || !thisContent) {
       if (thisContent) {
         thisContent.classList.toggle("hide");
@@ -31,24 +30,26 @@ ActivateVideos.prototype.onStart = function(e) {
   var thisContent = this.querySelectorAll(".content")[0];
   var thisPlayer = this.querySelectorAll("iframe")[0];
   var vimeoPlayer = new Vimeo(thisPlayer);
-    thisContent.classList.toggle("hide");
-    thisPlayer.classList.toggle("hide");
-    var isPlaying = vimeoPlayer.currentTime > 0 && !vimeoPlayer.paused && !vimeoPlayer.ended && vimeoPlayer.readyState > 2;
-    if (!isPlaying) {
-      vimeoPlayer.play();
-      vimeoPlayer.on('pause', function() {
-        vimeoPlayer.unload();
-        thisContent.classList.toggle("hide");
-        thisPlayer.classList.toggle("hide");
-      });
+  thisContent.classList.toggle("hide");
+  thisPlayer.classList.toggle("hide");
+  var isPlaying = vimeoPlayer.currentTime > 0 && !vimeoPlayer.paused && !vimeoPlayer.ended && vimeoPlayer.readyState > 2;
+  if (!isPlaying) {
+    vimeoPlayer.off('pause');
+    vimeoPlayer.on('pause', vimeoListener);
+    vimeoPlayer.play();
+    function vimeoListener(e) {
+      vimeoPlayer.unload();
+      thisContent.classList.toggle("hide");
+      thisPlayer.classList.toggle("hide");
     }
+  }
 }
 ActivateVideos.prototype.makeVideo = function(id) {
   var video = document.createElement("iframe");
   video.src = "https://player.vimeo.com/video/"+id+"?title=0&byline=0&portrait=0";
   video.setAttribute("webkitallowfullscreen","true");
   video.setAttribute("mozallowfullscreen","true");
-  video.setAttribute("allowfullscreen","true");
+  video.setAttribute("allowfullscreen","");
   video.classList.add("vimeo-video");
   video.classList.add("hide");
   return video;

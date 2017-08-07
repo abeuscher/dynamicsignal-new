@@ -1,12 +1,11 @@
-.container.event-listing
-  .row
-    .col-md-12
-      a.event-thumb(data-bg=locals.thumb.sizes.large,href=locals.url)
-        span.month!=locals.start_month
-        span.date!=locals.start_date
-        span.time!=locals.start_time
-      .event-info
-        h2!=locals.title
-        p!=locals.excerpt
-          a(href=locals.url)  read more
-        a.button-red.knockout(href=locals.btn_url)!=btn_text
+.row.event-listing
+  .col-md-12
+    a.event-thumb(data-bg=locals.thumb.sizes.large,href=locals.url)
+      span.month!=locals.start_month
+      span.date!=locals.start_day
+      span.time!=locals.start_time
+    .event-info
+      h2!=locals.title
+      p!=locals.excerpt
+        a(href=locals.url)  read more
+      a.button-red.knockout(href=locals.btn_url)!=btn_text

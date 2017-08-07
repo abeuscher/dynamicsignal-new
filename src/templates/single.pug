@@ -27,7 +27,7 @@ block content
             ul.social-share
               li
                 :php
-                  echo "<a href='https://www.facebook.com/sharer/sharer.php?u=".urlencode(get_permalink())."'>";
+                  echo "<a href='https://www.facebook.com/sharer/sharer.php?u=".urlencode(get_permalink())."' target='_blank'>";
                 span.fa-1x.fa-stack
                   i.fa.fa-circle.fa-stack-2x
                   i.fa.fa-stack-1x.fa-facebook
@@ -35,7 +35,7 @@ block content
                   echo "</a>";
               li
                 :php
-                  echo "<a href='https://twitter.com/home?status=".urlencode(get_permalink())."'>";
+                  echo "<a href='https://twitter.com/home?status=".urlencode(get_permalink())."' target='_blank'>";
                 span.fa-1x.fa-stack
                   i.fa.fa-circle.fa-stack-2x
                   i.fa.fa-stack-1x.fa-twitter

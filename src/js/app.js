@@ -3,6 +3,7 @@ require("./utils/remove-class.js");
 
 var Flickity = require("flickity");
 var uniqBy = require("lodash/uniqBy");
+var sortBy = require("lodash/sortBy");
 
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
@@ -26,6 +27,8 @@ var siteSettings = {
     "useCaseQuote": require("./inc/use-case-quote.pug"),
     "jobListing": require("./inc/job-listing.pug"),
     "eventListing": require("./inc/event-listing.pug"),
+    "pastEventListing": require("./inc/past-event-listing.pug"),
+    "buttonPastEvents": require("./inc/button-past-events.pug"),
     "jobFilter": require("./inc/job-filter.pug")
   },
   "breakpoints":{
@@ -118,6 +121,8 @@ var siteActions = [{
       function mobileCollapse(e) {
         if (window.innerWidth<siteSettings.breakpoints.m) {
           e.preventDefault();
+          var drop = this.parentNode.querySelectorAll(".dropdown-menu")[0];
+          drop.classList.toggle("expanded");
         }
       }
     }
@@ -171,12 +176,44 @@ var siteActions = [{
   {
     "element": "events-list",
     "action": function() {
-      console.log(pageData.events);
+      //console.log(pageData.events);
+      var pastCount = 0;
       var bucket = document.getElementById("events-list");
+      var pastBucket = document.getElementById("past-events");
       for(i=0;i<pageData.events.length;i++) {
-        bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
+        var thisEvent = pageData.events[i];
+        var rightNow = new Date();
+        var startDate = new Date(thisEvent.start_date+" PST");
+        if (startDate>=rightNow) {
+          bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
+        }
+        else {
+          if (thisEvent.start_date && pastCount<5) {
+            pastBucket.append(parseHTML(siteSettings.templates.pastEventListing(pageData.events[i])));
+            pastCount++;
+          }
+          else if (pastCount==5) {
+            pastBucket.append(parseHTML(siteSettings.templates.buttonPastEvents()));
+            pastCount++;
+          }
+        }
       }
-
+    }
+  },
+  {
+    "element": "past-events-full",
+    "action": function() {
+      //console.log(pageData.events);
+      var pastCount = 0;
+      var bucket = document.getElementById("past-events-full");
+      for(i=0;i<pageData.events.length;i++) {
+        var thisEvent = pageData.events[i];
+        var rightNow = new Date();
+        var startDate = new Date(thisEvent.start_date+" PST");
+        if (startDate<=rightNow) {
+          bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
+        }
+      }
     }
   },
   {
@@ -271,6 +308,7 @@ var siteActions = [{
           }
           var thisRow = document.createElement("div");
           thisRow.classList.add("row");
+          thisRow.classList.add("logo-grid-row");
         }
         thisRow.appendChild(parseHTML(siteSettings.templates.homePageLogo(pageData.gridLogos[i])));
       }
@@ -296,14 +334,17 @@ var siteActions = [{
   {
     "element": "job-list",
     "action": function() {
+      var jobs = sortBy(pageData.jobs, function(i) { return i.post_date });
+      var categories = sortBy(pageData.categories, function(i) { return i.cat_name });
+      console.log(pageData.categories);
       var opts = {
-        "jobs": pageData.jobs,
+        "jobs": jobs,
         "template": siteSettings.templates.jobListing,
         "container": document.getElementById("job-list")
       }
       var theJobs = new JobList(opts);
       var opts = {
-        "categories":pageData.categories,
+        "categories":categories,
         "template":siteSettings.templates.jobFilter,
         "container":document.getElementById("job-filter"),
         "jobList":theJobs

@@ -193,8 +193,8 @@ ul.nav-items {
       .nav-all-link {
         width:100%;
         padding-left:40px;
-        padding-bottom:0;
-        margin-top: $gutter-width/2;
+        padding-bottom:$gutter-width;
+        display:inline-block;
         color:$red;
         @include bp(m) {
           background:$white;
@@ -215,6 +215,14 @@ ul.nav-items {
         max-height:0;
         overflow: hidden;
         transition:all .2s ease-in;
+        &.expanded {
+          display:block;
+          max-height:1000px;
+          @include bp(m) {
+            display:inherit;
+            max-height:inherit;
+          }
+        }
       }
 
       ul {
@@ -222,7 +230,9 @@ ul.nav-items {
         float: left;
         vertical-align: top;
         width: 100%;
-
+        &.half {
+          padding-bottom:$gutter-width/2;
+        }
         li {
           width: 100%;
           &:first-child > a {

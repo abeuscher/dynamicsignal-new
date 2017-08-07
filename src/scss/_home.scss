@@ -54,12 +54,16 @@ section.testimonials.container {
     .text--teal {
       color:$teal;
     }
+    @include bp(m) {
+      width:50%;
+      margin-left:25%;
+    }
   }
   cite {
     display:block;
     text-align:center;
-    font-size:24px;
-    margin-top:30px;
+    font-size:18px;
+    margin-top:24px;
     font-weight:300;
     font-style:normal;
   }
@@ -76,12 +80,16 @@ section.testimonials.container {
   position:relative;
 }
 .mobile-products {
+  .product-images {
+    margin-top:80px;
+  }
   .product-image {
     width:40%;
     margin-left:30%;
     @include bp(m) {
       width:50%;
       margin-left:50%;
+      max-width:300px;
     }
     background:url($img-path+'product-mobile.svg') no-repeat center top;
     background-repeat: no-repeat;
@@ -101,13 +109,16 @@ section.testimonials.container {
   .product-image {
     background:url($img-path+'product-desktop.svg') no-repeat left top;
     background-repeat: no-repeat;
-    background-size: 200%;
     overflow:hidden;
-    @include aspect-ratio(3,4);
+    @include aspect-ratio(4,5);
+    @include bp(l) {
+      @include aspect-ratio(1,1);
+    }
     img {
-      width: 144%;
+      width: 844px;
       height: auto;
-      margin: 11.4% 0 0 27.7%;
+      margin: 68px 0 0 163px;
+      max-width: none;
     }
   }
 }
@@ -138,6 +149,10 @@ section.testimonials.container {
     @include bp(m) {
       width:70%;
       margin-left:30%;
+      &.product-header {
+        width:auto;
+        margin-left:auto;
+      }
     }
   }
   p {
@@ -160,6 +175,7 @@ section.testimonials.container {
   }
 }
 #logo-grid {
+  margin-top:$gutter-width;
   .row,.container {
     width:100%;
   }
@@ -167,5 +183,14 @@ section.testimonials.container {
     max-height:50px;
     width:auto;
     max-width:100%;
+  }
+  .logo-grid-row {
+    margin-bottom:$gutter-width;
+  }
+}
+.logo-grid, .cta-bottom {
+  h2 {
+    font-size:24px;
+    font-weight:300;
   }
 }
