@@ -23,6 +23,12 @@
   display:none;
   background:$light-grey;
   color:$white;
+  .connector-logo {
+    max-width:200px;
+    width:auto;
+    height:auto;
+    padding-left:$gutter-width;
+  }
   p {
     font-size:24px;
     line-height:1.5;

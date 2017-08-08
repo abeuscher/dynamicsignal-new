@@ -33,6 +33,11 @@ section.hero.home-hero {
 .bg-video video {
   width:100%;
 }
+section.product-cta {
+  @include bp(l) {
+    margin-top:-80px;
+  }
+}
 section.testimonials.container {
   margin:0;
   padding:50px 0 640px;
