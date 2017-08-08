@@ -1,0 +1,20 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Team Single Entry Page
+    */
+block content
+  :php
+    if( have_posts() ){
+     while( have_posts() ) {
+      the_post();
+  section.container.blog-content
+    .row
+      .col-md-12
+        article.blog-post
+          .blog-post-body
+            :php
+              the_content();
+        :php
+          }}

@@ -199,10 +199,10 @@ ul.nav-items {
         @include bp(m) {
           background:$white;
           color:$teal;
-          padding:0;
           display:block;
           width:auto;
           padding:.5em 2em;
+          margin-top:$gutter-width/2;
           border:1px solid $teal !important;
           &:hover {
             background:$teal;

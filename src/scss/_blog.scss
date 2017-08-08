@@ -162,6 +162,7 @@ h1.blog-title {
 }
 .blog-content {
   margin-top:0;
+  overflow-wrap: break-word;
   p,li {
     line-height: 1.5;
   }

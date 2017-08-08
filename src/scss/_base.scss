@@ -32,7 +32,9 @@ body {
   }
 }
 
-
+#kwcWidgetFrame {
+  display:none;
+}
 @each $bp-name, $bp-value in $bps {
   .col-#{$bp-name}-center {
     text-align:inherit;

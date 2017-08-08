@@ -1,0 +1,64 @@
+.connector-slide {
+  min-height:200px;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  text-align:right;
+  background-color:$beige;
+  margin-bottom:$gutter-width;
+  @include bp(m) {
+    height:200px;
+    background-size:80%;
+  }
+  .fa-stack {
+    display:none;
+    margin-top:160px;
+    margin-right:$gutter-width/2;
+    @include bp(m) {
+      display:inline-block;
+    }
+  }
+}
+.info-block {
+  display:none;
+  background:$light-grey;
+  color:$white;
+  p {
+    font-size:24px;
+    line-height:1.5;
+    padding:$gutter-width;
+  }
+  .button-close-connector {
+    font-size:3em;
+    float:right;
+    color:$white;
+    transition:transform .2s ease-in;
+    line-height:0;
+    margin-top:-12px;
+    &:hover {
+      transform:scale(1.25);
+    }
+  }
+  &.expanded {
+    display:block;
+    padding:$gutter-width*2 $gutter-width/2;
+  }
+  &.mobile {
+    display:block;
+    @include bp(m) {
+      display:none;
+    }
+  }
+}
+#connectors {
+  .info-row {
+    display:block;
+    max-height:0;
+    overflow:hidden;
+    transition:all .25s ease-in;
+    &.expanded {
+      max-height:1000px;
+    }
+
+  }
+}

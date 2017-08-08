@@ -1,0 +1,17 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Connectors Page
+    */
+block content
+  :php
+    echo '<script>var connectorData = '. json_encode(get_field("connectors")).';</script>';
+  -
+    var pageData = {
+    "header":"Connectors",
+    "subheader":"Dynamic Signal integrates with your current enterprise and social platforms, for ease of use and global scale"
+    };
+  include ./inc/hero.pug
+  section.container
+    #connectors
