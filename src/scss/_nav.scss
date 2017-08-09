@@ -18,6 +18,14 @@ nav.header-nav {
   position: relative;
   &.expanded {
     overflow:scroll;
+    position:fixed;
+    top:60px;
+    bottom:0;
+    @include bp(m) {
+      position:relative;
+      overflow:hidden;
+      top:auto;
+    }
   }
 }
 
@@ -26,7 +34,7 @@ nav.header-nav {
   float: left;
   padding: 9px 10px;
   margin-top: 10px;
-  margin-left: $gutter-width;
+  margin-left: $gutter-width/2;
   margin-bottom: 8px;
   background-color: transparent;
   background-image: none;
@@ -193,16 +201,16 @@ ul.nav-items {
       .nav-all-link {
         width:100%;
         padding-left:40px;
-        padding-bottom:0;
-        margin-top: $gutter-width/2;
+        padding-bottom:$gutter-width;
+        display:inline-block;
         color:$red;
         @include bp(m) {
           background:$white;
           color:$teal;
-          padding:0;
           display:block;
           width:auto;
           padding:.5em 2em;
+          margin-top:$gutter-width/2;
           border:1px solid $teal !important;
           &:hover {
             background:$teal;
@@ -215,6 +223,14 @@ ul.nav-items {
         max-height:0;
         overflow: hidden;
         transition:all .2s ease-in;
+        &.expanded {
+          display:block;
+          max-height:1000px;
+          @include bp(m) {
+            display:inherit;
+            max-height:inherit;
+          }
+        }
       }
 
       ul {
@@ -222,26 +238,22 @@ ul.nav-items {
         float: left;
         vertical-align: top;
         width: 100%;
-
         li {
           width: 100%;
-          &:first-child > a {
-            padding-top:0;
-          }
           &.nav-header {
             display: none;
             font-weight: 700;
             text-transform: uppercase;
             padding: 0 10px 5px 0;
+            margin-bottom:$gutter-width/2;
             border-bottom: 1px solid $middle-grey;
             margin-right: 10%;
             color: $light-grey;
             font-size: 12px;
             width:90%;
           }
-
           a {
-            padding: 20px 10px 5px 0;
+            padding: 0 10px 25px 0;
 
             &:hover {
               color: $teal;
@@ -311,6 +323,7 @@ ul.nav-items {
             }
             &.half {
               width: 50%;
+              padding-bottom:$gutter-width/2;
             }
 
             &.third {

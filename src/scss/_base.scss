@@ -32,7 +32,9 @@ body {
   }
 }
 
-
+#kwcWidgetFrame {
+  display:none;
+}
 @each $bp-name, $bp-value in $bps {
   .col-#{$bp-name}-center {
     text-align:inherit;
@@ -81,6 +83,15 @@ h2 {
   letter-spacing: normal;
   @include bp(m) {
     font-size: 30px;
+  }
+  &.header-right {
+    margin:$gutter-width/2 0;
+    font-size:18px;
+    line-height:24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color:$classic-grey;
+    border-bottom:1px solid $middle-grey;
   }
 }
 
@@ -156,19 +167,23 @@ section {
     }
   }
 }
-
-.social-share-menu {
-  text-align: right;
-  ul {
+.padding-bottom {
+  margin-bottom:$gutter-width*2;
+}
+p.large-text {
+  font-size:24px;
+  line-height:1.5;
+}
+  ul.social-share {
     list-style:none;
     margin:0;
     padding:0;
+    float:right;
     li {
       display:inline-block;
       margin-right:$gutter-width/2;
     }
   }
-}
 a.button-teal,
 ul.nav-items li a.button-teal {
   background-color: white;
@@ -267,6 +282,21 @@ section.logo-strip-bucket {
   color: $white;
   background-size: contain;
   cursor: pointer;
+  .left-gradient, .right-gradient, .full-gradient {
+    position: absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+  }
+  .left-gradient {
+    background:linear-gradient(to right, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+  }
+  .right-gradient {
+    background:linear-gradient(to left, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+  }
+  .full-gradient {
+    background:rgba(0,0,0,.45);
+  }
   a.video-play {
     margin:25% auto 0;
     padding:.5em 1em;
@@ -291,16 +321,13 @@ section.logo-strip-bucket {
     }
 
     p {
-      font-size: 30px;
+      font-size: 18px;
       line-height: 1.5;
-      font-weight: 500;
+      font-weight: 300;
       font-style: italic;
       margin: 0 0 $gutter-width;
 
       &.no-quote {
-        font-size: 24px;
-        line-height: 30px;
-        font-weight: 300;
         font-style: normal;
       }
     }
@@ -308,7 +335,7 @@ section.logo-strip-bucket {
     cite {
       margin-top: $gutter-width;
       font-style: normal;
-      font-size: 30px;
+      font-size: 14px;
       line-height: 30px;
       font-weight: 300;
     }
@@ -317,7 +344,6 @@ section.logo-strip-bucket {
       background: $white;
       display: inline-block;
     }
-
 
   }
   @include bp(m) {
@@ -337,10 +363,13 @@ section.logo-strip-bucket {
         margin-top: $gutter-width;
         border-radius: 50px;
         padding: 8px 12px;
-        font-size: 1.4em;
 
         .cta {
           margin-top: -1.5em;
+          font-size:20px;
+          text-transform: uppercase;
+          font-weight:700;
+          padding-left:10px;
         }
 
         .fa {

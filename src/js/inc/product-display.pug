@@ -11,6 +11,7 @@
             .product-image.mobile-image(id="mobile-product-"+key)
               img(src=product.image)
       .product-tiles.col-md-6
+        h2.product-header Mobile-First
         for product,key in locals.mobileProducts
           if key==0
             a.mobile-product-tile.active(href="#",data-target="mobile-product-"+key)

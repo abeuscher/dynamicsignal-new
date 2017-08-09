@@ -8,7 +8,7 @@ block content
 	-
 		var pageData = {
 		"header":"Blog",
-		"ctaLink":"/blog/",
+		"ctaLink":"http://feeds.feedblitz.com/dynamicsignal",
 		"ctaLabel":"Subscribe via RSS"
 		 };
 	section.hero#page-top
@@ -29,11 +29,16 @@ block content
 				echo "<a class='blog-header' href='".get_the_permalink()."'><div class='blog-thumb'>";
 				the_post_thumbnail( 'full', array('class' => 'img-responsive') );
 				echo "</div>";
-			h1.blog-title
-				:php
-					the_title();
+			.inner
+				.container
+					.row
+						.col-md-12
+							h1.blog-title
+								:php
+									the_title();
+							:php
+								echo "<span class='blog-date'>".get_the_date()."</span>";
 			:php
-				echo "<span class='blog-date'>".get_the_date()."</span>";
 				echo "</a>";
 			.container.blog-excerpt-row
 				.row

@@ -1,8 +1,10 @@
 require("dom4");
+require("fetch-ie8");
 require("./utils/remove-class.js");
 
 var Flickity = require("flickity");
 var uniqBy = require("lodash/uniqBy");
+var sortBy = require("lodash/sortBy");
 
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
@@ -23,9 +25,13 @@ var siteSettings = {
     "partnersTestimonial": require("./inc/partner-testimonial.pug"),
     "testimonialSlide": require("./inc/testimonial-slide.pug"),
     "productDisplay": require("./inc/product-display.pug"),
+    "connectorPanel": require("./inc/connector-panel.pug"),
+    "connectorInfo": require("./inc/connector-info.pug"),
     "useCaseQuote": require("./inc/use-case-quote.pug"),
     "jobListing": require("./inc/job-listing.pug"),
     "eventListing": require("./inc/event-listing.pug"),
+    "pastEventListing": require("./inc/past-event-listing.pug"),
+    "buttonPastEvents": require("./inc/button-past-events.pug"),
     "jobFilter": require("./inc/job-filter.pug")
   },
   "breakpoints":{
@@ -49,6 +55,17 @@ window.addEventListener("load", function() {
         },
         h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=false;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
       })(document);
+/*
+      (function(d) {
+        var config = {
+          kitId: 'rqa1vic',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+
+      */
   }
   else {
     console.log("Font not supported in this domain");
@@ -103,6 +120,64 @@ var siteActions = [{
     }
   },
   {
+    "element": "connectors",
+    "action": function() {
+      var bucket = document.getElementById("connectors");
+      var thisRow = document.createElement("div");
+      var thisHiddenRow = document.createElement("div");
+      thisRow.classList.add("row");
+      thisHiddenRow.classList.add("row");
+      thisHiddenRow.classList.add("info-row");
+      for (i=0;i<connectorData.length;i++) {
+        var thisConnector = connectorData[i];
+        thisConnector.id = i;
+        thisRow.append(parseHTML(siteSettings.templates.connectorPanel(thisConnector)));
+        thisHiddenRow.append(parseHTML(siteSettings.templates.connectorInfo(thisConnector)));
+        if ((i+1)%4==0 && i!=0) {
+          bucket.append(thisRow);
+          bucket.append(thisHiddenRow);
+          var thisRow = document.createElement("div");
+          var thisHiddenRow = document.createElement("div");
+          thisRow.classList.add("row");
+          thisHiddenRow.classList.add("row");
+          thisHiddenRow.classList.add("info-row");
+        }
+      }
+      bucket.append(thisRow);
+      bucket.append(thisHiddenRow);
+      var buttons = document.querySelectorAll(".btn-connector");
+      for (i=0;i<buttons.length;i++) {
+        var thisButton = buttons[i];
+        thisButton.addEventListener("click", function(e) {
+          e.preventDefault();
+          collapseAll();
+          theTarget = document.getElementById("conn-block-"+this.getAttribute("data-target"));
+          theTarget.classList.add("expanded");
+          theTarget.parentNode.classList.add("expanded");
+        });
+      }
+      var buttons = document.querySelectorAll(".button-close-connector");
+      for (i=0;i<buttons.length;i++) {
+        var thisButton = buttons[i];
+        thisButton.addEventListener("click", function(e) {
+          e.preventDefault();
+          collapseAll();
+        });
+      }
+
+      function collapseAll() {
+        var infoRows = document.querySelectorAll(".info-row");
+        for (c=0;c<infoRows.length;c++) {
+          infoRows[c].removeClass("expanded");
+        }
+        var infoBlocks = document.querySelectorAll(".info-block");
+        for (c=0;c<infoBlocks.length;c++) {
+          infoBlocks[c].removeClass("expanded");
+        }
+      }
+    }
+  },
+  {
     "element": "toggle-main-drop",
     "action": function() {
       var menuToggle = document.getElementById("toggle-main-drop");
@@ -118,6 +193,8 @@ var siteActions = [{
       function mobileCollapse(e) {
         if (window.innerWidth<siteSettings.breakpoints.m) {
           e.preventDefault();
+          var drop = this.parentNode.querySelectorAll(".dropdown-menu")[0];
+          drop.classList.toggle("expanded");
         }
       }
     }
@@ -135,16 +212,17 @@ var siteActions = [{
   {
     "element": "customers-grid",
     "action": function() {
+      console.log(customerData);
       var customerGrid = document.getElementById("customers-grid");
       var videoGall = new Flickity(document.getElementById("customer-video-carousel"),{
               "wrapAround":true,
               "pageDots": false,
               "lazyLoad": 6,
-              "autoPlay":5000,
+              "autoPlay":8000,
             "adaptiveHeight":false});
       for(i in customerData) {
         customerGrid.append(parseHTML(siteSettings.templates.customerTile(customerData[i])));
-        if (customerData[i].vimeo_id!="" || customerData[i].quote!="") {
+        if (customerData[i].vimeo_id!="") {
           videoGall.append(parseHTML(siteSettings.templates.customerQuote(customerData[i])));
         }
       }
@@ -171,12 +249,43 @@ var siteActions = [{
   {
     "element": "events-list",
     "action": function() {
-      console.log(pageData.events);
+      var pastCount = 0;
       var bucket = document.getElementById("events-list");
+      var pastBucket = document.getElementById("past-events");
       for(i=0;i<pageData.events.length;i++) {
-        bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
+        var thisEvent = pageData.events[i];
+        var rightNow = new Date();
+        var startDate = new Date(thisEvent.start_date + " PST");
+        if (startDate>=rightNow) {
+          bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
+        }
+        else {
+          if (thisEvent.start_date && pastCount<5) {
+            pastBucket.append(parseHTML(siteSettings.templates.pastEventListing(pageData.events[i])));
+            pastCount++;
+          }
+          else if (pastCount==5) {
+            pastBucket.append(parseHTML(siteSettings.templates.buttonPastEvents()));
+            pastCount++;
+          }
+        }
       }
-
+    }
+  },
+  {
+    "element": "past-events-full",
+    "action": function() {
+      //console.log(pageData.events);
+      var pastCount = 0;
+      var bucket = document.getElementById("past-events-full");
+      for(i=0;i<pageData.events.length;i++) {
+        var thisEvent = pageData.events[i];
+        var rightNow = new Date();
+        var startDate = new Date(thisEvent.start_date+" PST");
+        if (startDate<=rightNow) {
+          bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
+        }
+      }
     }
   },
   {
@@ -271,6 +380,7 @@ var siteActions = [{
           }
           var thisRow = document.createElement("div");
           thisRow.classList.add("row");
+          thisRow.classList.add("logo-grid-row");
         }
         thisRow.appendChild(parseHTML(siteSettings.templates.homePageLogo(pageData.gridLogos[i])));
       }
@@ -296,14 +406,17 @@ var siteActions = [{
   {
     "element": "job-list",
     "action": function() {
+      var jobs = sortBy(pageData.jobs, function(i) { return i.post_date });
+      var categories = sortBy(pageData.categories, function(i) { return i.cat_name });
+      console.log(pageData.categories);
       var opts = {
-        "jobs": pageData.jobs,
+        "jobs": jobs,
         "template": siteSettings.templates.jobListing,
         "container": document.getElementById("job-list")
       }
       var theJobs = new JobList(opts);
       var opts = {
-        "categories":pageData.categories,
+        "categories":categories,
         "template":siteSettings.templates.jobFilter,
         "container":document.getElementById("job-filter"),
         "jobList":theJobs

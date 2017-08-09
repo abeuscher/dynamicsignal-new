@@ -100,8 +100,7 @@ footer .container {
 
 .logo-footer {
   width: 200px;
-  margin:0 auto;
-  margin-bottom: 1.5em;
+  margin:0 auto 1.5em;
   @include bp(m) {
     opacity:0.5;
   }

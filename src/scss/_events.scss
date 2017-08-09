@@ -109,6 +109,12 @@
     border-bottom:1px solid $middle-grey;
     font-size:24px;
     font-weight:700;
+    a {
+      color:$grey;
+      &:hover {
+        color:$teal;
+      }
+    }
   }
   .button-red {
     margin-right:$gutter-width/2;
@@ -122,4 +128,35 @@
   @include bp(m) {
     margin-left:300px;
   }
+}
+.past-events {
+  border-left:1px solid $middle-grey;
+  h2 {
+    margin:0;
+    padding-bottom:$gutter-width/2;
+    border-bottom:1px solid $middle-grey;
+    font-size:24px;
+    font-weight:700;
+  }
+  h3 {
+    font-size:18px;
+    font-weight:700;
+    a {
+      color:$grey;
+      &:hover {
+        color:$teal;
+      }
+    }
+  }
+  .past-event-listing {
+    margin-bottom:$gutter-width;
+    color:$classic-grey;
+    .inner {
+      border-left:2px solid $red;
+      padding-left:$gutter-width/2;
+    }
+  }
+}
+section.event-hero {
+  margin-top:60px;
 }

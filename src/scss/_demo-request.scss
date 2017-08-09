@@ -34,8 +34,12 @@ section#main-content-signup {
     font-size: 18px;
     line-height: 1.5;
     border: 1px solid $middle-grey;
+    //-webkit-appearance:none;
   }
-
+  select {
+    height: 2.5em;
+    padding:0 .5em;
+  }
   input {
     box-shadow: none !important;
     width: 100% !important;
@@ -56,10 +60,6 @@ section#main-content-signup {
   }
   .mktoError .mktoErrorMsg {
       padding: .5em;
-  }
-  select {
-    height: 2.5em;
-    padding:0 .5em;
   }
   .mktoFormCol,.mktoFieldWrap {
   	float:none;
@@ -127,11 +127,14 @@ padding:.5em !important;
 }
 
 section.signup-form-bucket {
-  padding: 2em 0;
+  padding: 2em $gutter-width;
   font-size: 1.4em;
-
+  @include bp(m) {
+    padding:2em 0;
+  }
   p {
     font-size: 1em;
+    line-height:1.5;
   }
 
   img {

@@ -2,13 +2,13 @@ extends inc/page.pug
 block template
   :php
     /*
-    Template Name: Events Page
+    Template Name: Past Events Page
     */
 block content
   -
     var pageData = {
-    "header":"Events",
-    "subheader":"Explore our events schedule below, connect with us online or in person"
+    "header":"Past Events",
+    "subheader":"Find resources and information about Dynamic Signal's Past Events."
     };
   include ./inc/hero.pug
   :php
@@ -19,11 +19,10 @@ block content
         return '';
     }
     add_filter('excerpt_more', 'new_excerpt_more');
-    rewind_posts();
     if( $events->have_posts() ):
         while( $events->have_posts() ):
-          $events->the_post();
           $start_date = get_field( 'event_start_date' );
+          $events->the_post();
           array_push($all_events, array(
           "title"=>get_the_title(),
           "start_month"=>date("F", strtotime($start_date)),
@@ -47,8 +46,5 @@ block content
     ."};</script>";
   section.events-list.container
     .row
-      .col-md-9.events
-        #events-list
-      .col-md-3.past-events
-        h2 Past Events
-        #past-events
+      .col-md-12.events
+        #past-events-full

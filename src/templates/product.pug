@@ -33,7 +33,7 @@ block content
 		{
 		"header":"Analytics",
 		"subheader":"Control the Message and Track it All",
-		"text":"Dynamic Signal allows administrators to easily measure the effectiveness and impact of their company communications. With robust reporting and analytics companies gain insight into employee adoption, viewer-ship, and engagement.",
+		"text":"Dynamic Signal allows administrators to easily measure the effectiveness and impact of their company communications. With robust reporting and analytics, companies gain insight into employee adoption, viewer-ship, and engagement.",
 		"image":"activities.jpg",
 		"mobileImage":"laptop.png"
 		},
@@ -50,7 +50,7 @@ block content
 		"image":"Dynamic-Signal-Integrations.png"
 		},
 		"videoInfo": {
-			"id":"208713647",
+			"id":"124627340",
 			"type":"vimeo",
 			"quote":"Mobile was particularly important for our in-store staff. It gives them the ability to access the program while in the store, and share information to their networks.",
 			"cite":"Kristian Lorenzon - <span class='position'>Head of Social Media</span>, <span class='company'>O2</span>",
@@ -83,15 +83,17 @@ block content
 				p.col-m-center
 					a(href='/connectors/',data-src=pageData.coverflow.image)
 	section.product-video
-		.container-fluid
+		.container
 			.row
-				.video-thumb(data-video-id=pageData.videoInfo.id,data-video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
-					.content
-						p!="\"" + pageData.videoInfo.quote + "\""
-						cite!=pageData.videoInfo.cite
-						a.video-play(href="#")
-							span.cta!=pageData.videoInfo.cta
-							i.fa.fa-play
+				.col-md-12
+					.video-thumb(data-video-id=pageData.videoInfo.id,data-video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
+						.right-gradient
+						.content
+							p!="\"" + pageData.videoInfo.quote + "\""
+							cite!=pageData.videoInfo.cite
+							a.video-play(href="#")
+								span.cta!=pageData.videoInfo.cta
+								i.fa.fa-play
 	section.cta-bottom.col-center
 		.container
 			.row

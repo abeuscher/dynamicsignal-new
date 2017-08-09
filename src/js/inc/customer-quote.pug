@@ -1,20 +1,14 @@
 .customer-carousel-slide
-  .container
-    .customer-slide-content
-      .row
-        .col-md-12
-          .customer-thumb(data-bg=locals.logo.sizes["medium"])
-      .row
-        if locals.quote!="" && locals.vimeo_id==""
-          .col-sm-12.customer-quote
-            p!=locals.quote
-            cite
-              span.name!=citation_name
-              span.title!=locals.citation_title
-        else
-          .col-sm-12.customer-quote
-            p!=locals.quote
-            cite
-              span.name!=citation_name
-              span.title!=locals.citation_title
-            a.button-red(href="https://vimeo.com/"+locals.vimeo_id) Watch Video
+	.container
+		.row
+			.col-md-12
+				.video-thumb(data-video-id=locals.vimeo_id,video-type="vimeo",data-bg=locals.video_thumbnail.sizes["medium_large"])
+					.full-gradient
+					.content.left.shrunk
+						p!=locals.quote
+						cite
+							span.name!=citation_name
+							span.title!=locals.citation_title
+						a.video-play(href="#")
+							span.cta Play Video
+							i.fa.fa-play
