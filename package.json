@@ -21,6 +21,7 @@
     "dom4": "1.8.3",
     "es6-promise": "^3.0.2",
     "factor-bundle": "^2.5.0",
+    "fetch-ie8": "^1.5.0",
     "flickity": "2.0.9",
     "font-awesome": "^4.7.0",
     "fs": "0.0.2",

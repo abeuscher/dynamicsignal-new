@@ -10,9 +10,11 @@ block content
      while( have_posts() ) {
       the_post();
       $start_date = get_field( 'event_start_date' );
+      if (get_field("ds_event_type")!="") {
   section.event-type-banner.col-center
     :php
       echo get_field("ds_event_type");
+      }
   section.event-hero.container
     .row
       .col-md-12
@@ -30,13 +32,29 @@ block content
         :php
           echo "</div>";
         a.button-teal.button-events-back(href="/events/") View All Events
-        .event-info.col-center
+        .event-info
           h1
             :php
               the_title();
           :php
             echo "<a class='button-red cta' href='".get_field( 'ds_button_url' )."'>".get_field('ds_button_text')."</a>";
-  include ./inc/social-menu.pug
+          ul.social-share
+            li
+              :php
+                echo "<a href='https://www.facebook.com/sharer/sharer.php?u=".urlencode(get_permalink())."' target='_blank'>";
+              span.fa-1x.fa-stack
+                i.fa.fa-circle.fa-stack-2x
+                i.fa.fa-stack-1x.fa-inverse.fa-facebook
+              :php
+                echo "</a>";
+            li
+              :php
+                echo "<a href='https://twitter.com/home?status=".urlencode(get_permalink())."' target='_blank'>";
+              span.fa-1x.fa-stack
+                i.fa.fa-circle.fa-stack-2x
+                i.fa.fa-stack-1x.fa-inverse.fa-twitter
+              :php
+                echo "</a>";
   section.container.blog-content
     .row
       .col-md-12

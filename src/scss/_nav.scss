@@ -18,6 +18,14 @@ nav.header-nav {
   position: relative;
   &.expanded {
     overflow:scroll;
+    position:fixed;
+    top:60px;
+    bottom:0;
+    @include bp(m) {
+      position:relative;
+      overflow:hidden;
+      top:auto;
+    }
   }
 }
 
@@ -26,7 +34,7 @@ nav.header-nav {
   float: left;
   padding: 9px 10px;
   margin-top: 10px;
-  margin-left: $gutter-width;
+  margin-left: $gutter-width/2;
   margin-bottom: 8px;
   background-color: transparent;
   background-image: none;
@@ -230,28 +238,22 @@ ul.nav-items {
         float: left;
         vertical-align: top;
         width: 100%;
-        &.half {
-          padding-bottom:$gutter-width/2;
-        }
         li {
           width: 100%;
-          &:first-child > a {
-            padding-top:0;
-          }
           &.nav-header {
             display: none;
             font-weight: 700;
             text-transform: uppercase;
             padding: 0 10px 5px 0;
+            margin-bottom:$gutter-width/2;
             border-bottom: 1px solid $middle-grey;
             margin-right: 10%;
             color: $light-grey;
             font-size: 12px;
             width:90%;
           }
-
           a {
-            padding: 20px 10px 5px 0;
+            padding: 0 10px 25px 0;
 
             &:hover {
               color: $teal;
@@ -321,6 +323,7 @@ ul.nav-items {
             }
             &.half {
               width: 50%;
+              padding-bottom:$gutter-width/2;
             }
 
             &.third {

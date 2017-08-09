@@ -41,73 +41,74 @@ nav.header-nav
       span.icon-bar
       span.icon-bar
     a.logo-header(href='/')
-      img(src=themeDir+'images/dynamicsignal-logo.svg')
+      img(src=themeDir+'images/dynamicsignal-logo.svg',alt='Dynamic Signal')
   .navbar-container#mobile-drop
-    ul.nav-items
-      li
-        a(href=locals.siteurl+'/product/') Product
-      li.dropdown
-        a.dropdown-toggle(href=locals.siteurl+'/use-cases/') Use Cases
-        div.dropdown-menu
-          .inner
-            ul.half
-              for usecase in useCases.left
+    .inner
+      ul.nav-items
+        li
+          a(href=locals.siteurl+'/product/') Product
+        li.dropdown
+          a.dropdown-toggle(href=locals.siteurl+'/use-cases/') Use Cases
+          div.dropdown-menu
+            .inner
+              ul.half
+                for usecase in useCases.left
+                  li
+                    a(href=locals.siteurl+usecase.url)!=usecase.title
+              ul.half
+                for usecase in useCases.right
+                  li
+                    a(href=locals.siteurl+usecase.url)!=usecase.title
+              .toplink
+              a.nav-all-link(href=locals.siteurl+"/use-cases/") View All
+        li
+          a(href=locals.siteurl+'/customers/') Customers
+        li
+          a(href=locals.siteurl+'/careers/') Careers
+        li.dropdown
+          a.dropdown-toggle(href='#') Company
+          div.dropdown-menu
+            .inner
+              ul.half.pad-top
+                li.nav-header Connect
                 li
-                  a(href=locals.siteurl+usecase.url)!=usecase.title
-            ul.half
-              for usecase in useCases.right
+                  a(href=locals.siteurl+'/events/') Events
                 li
-                  a(href=locals.siteurl+usecase.url)!=usecase.title
-            .toplink
-            a.nav-all-link(href=locals.siteurl+"/use-cases/") View All
-      li
-        a(href=locals.siteurl+'/customers/') Customers
-      li
-        a(href=locals.siteurl+'/careers/') Careers
-      li.dropdown
-        a.dropdown-toggle(href='#') Company
-        div.dropdown-menu
-          .inner
-            ul.half.pad-top
-              li.nav-header Connect
-              li
-                a(href=locals.siteurl+'/events/') Events
-              li
-                a(href=locals.siteurl+'/contact-us/') Contact Us
-              li
-                a(href=locals.siteurl+'/support/') Support
-            ul.half.pad-top
-              li.nav-header Who We Are
-              li
-                a(href=locals.siteurl+'/team/') Team
-              li
-                a(href=locals.siteurl+'/agency/') Partners
-            .toplink
-      li.dropdown
-        a.dropdown-toggle(href='https://dynamicsignal.uberflip.com/') Resources
-        div.dropdown-menu
-          .inner
-            ul.third.pad-top
-              li.nav-header News
-              li
-                a(href='https://dynamicsignal.uberflip.com/news') Mentions
-              li
-                a(href='https://dynamicsignal.uberflip.com/press-releases') Press Releases
-            ul.third.pad-top
-              li.nav-header Educational
-              li
-                a(href=locals.siteurl+'/blog/') Blog
-              li
-                a(href='https://dynamicsignal.uberflip.com/case-studies') Case Studies
-              li
-                a(href='https://dynamicsignal.uberflip.com/ebooks') eBooks & Guides
-            ul.third.pad-top
-              li.nav-header Multimedia
-              li
-                a(href='https://dynamicsignal.uberflip.com/webinars') Webinars
-              li
-                a(href='https://dynamicsignal.uberflip.com/videos') Videos
-            .toplink
-            a.nav-all-link(href="https://dynamicsignal.uberflip.com/") Featured Items
-      li
-        a.button-teal.button-demo(href=locals.siteurl+'/requestdemo/') Request Demo
+                  a(href=locals.siteurl+'/contact-us/') Contact Us
+                li
+                  a(href=locals.siteurl+'/support/') Support
+              ul.half.pad-top
+                li.nav-header Who We Are
+                li
+                  a(href=locals.siteurl+'/team/') Team
+                li
+                  a(href=locals.siteurl+'/agency/') Partners
+              .toplink
+        li.dropdown
+          a.dropdown-toggle(href='https://dynamicsignal.uberflip.com/') Resources
+          div.dropdown-menu
+            .inner
+              ul.third.pad-top
+                li.nav-header News
+                li
+                  a(href='https://dynamicsignal.uberflip.com/news') Mentions
+                li
+                  a(href='https://dynamicsignal.uberflip.com/press-releases') Press Releases
+              ul.third.pad-top
+                li.nav-header Educational
+                li
+                  a(href=locals.siteurl+'/blog/') Blog
+                li
+                  a(href='https://dynamicsignal.uberflip.com/case-studies') Case Studies
+                li
+                  a(href='https://dynamicsignal.uberflip.com/ebooks') eBooks & Guides
+              ul.third.pad-top
+                li.nav-header Multimedia
+                li
+                  a(href='https://dynamicsignal.uberflip.com/webinars') Webinars
+                li
+                  a(href='https://dynamicsignal.uberflip.com/videos') Videos
+              .toplink
+              a.nav-all-link(href="https://dynamicsignal.uberflip.com/") Featured Items
+        li
+          a.button-teal.button-demo(href=locals.siteurl+'/requestdemo/') Request Demo

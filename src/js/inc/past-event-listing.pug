@@ -2,5 +2,6 @@
   .col-md-12
     .inner
       p!=locals.start_month + " " + locals.start_day
-      h3!=locals.title
-      a(href=locals.btn_url) View Event Recap
+      h3
+        a(href=locals.url)!=locals.title
+      a(href=locals.url) View Event Recap

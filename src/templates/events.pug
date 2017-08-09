@@ -19,10 +19,11 @@ block content
         return '';
     }
     add_filter('excerpt_more', 'new_excerpt_more');
+    rewind_posts();
     if( $events->have_posts() ):
         while( $events->have_posts() ):
-          $start_date = get_field( 'event_start_date' );
           $events->the_post();
+          $start_date = get_field( 'event_start_date' );
           array_push($all_events, array(
           "title"=>get_the_title(),
           "start_month"=>date("F", strtotime($start_date)),
