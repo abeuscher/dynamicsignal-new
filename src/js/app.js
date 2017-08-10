@@ -44,9 +44,9 @@ var siteSettings = {
   "validDomains":["dynamicsignal.com","staging.dynamicsignal.flywheelsites.com"]
 }
 
-
 window.addEventListener("load", function() {
   if (siteSettings.validDomains.indexOf(window.location.hostname)>-1) {
+    /*
     (function(d) {
         var config = {
           kitId: 'hao2kje',
@@ -55,7 +55,7 @@ window.addEventListener("load", function() {
         },
         h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=false;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
       })(document);
-/*
+*/
       (function(d) {
         var config = {
           kitId: 'rqa1vic',
@@ -64,8 +64,6 @@ window.addEventListener("load", function() {
         },
         h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
       })(document);
-
-      */
   }
   else {
     console.log("Font not supported in this domain");
@@ -252,12 +250,14 @@ var siteActions = [{
       var pastCount = 0;
       var bucket = document.getElementById("events-list");
       var pastBucket = document.getElementById("past-events");
+      var currentEvents = [];
       for(i=0;i<pageData.events.length;i++) {
         var thisEvent = pageData.events[i];
         var rightNow = new Date();
         var startDate = new Date(thisEvent.start_date + " PST");
         if (startDate>=rightNow) {
-          bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
+          currentEvents.push(pageData.events[i])
+          //bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
         }
         else {
           if (thisEvent.start_date && pastCount<5) {
@@ -269,6 +269,10 @@ var siteActions = [{
             pastCount++;
           }
         }
+      }
+      currentEvents.reverse();
+      for (i=0;i<currentEvents.length;i++) {
+        bucket.append(parseHTML(siteSettings.templates.eventListing(currentEvents[i])));
       }
     }
   },
