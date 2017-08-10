@@ -16,7 +16,7 @@ window.addEventListener("load", function() {
   })(document);
   var theTop = document.getElementById("top");
   var siteopts = {
-    "siteurl":"http://staging.dynamicsignal.flywheelsites.com"
+    "siteurl":"http://www.dynamicsignal.com"
   }
   theTop.parentNode.insertBefore(parseHTML(templates.header(siteopts)),theTop);
   var theFooter = document.getElementsByTagName("footer")[0];
