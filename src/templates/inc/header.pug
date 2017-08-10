@@ -1,4 +1,5 @@
 -
+  var themeDir = "/wp-content/themes/ds-new/"
   var useCases = {
   "left": [{
     "title":"Internal Comunications",
@@ -40,8 +41,8 @@ nav.header-nav
       span.icon-bar
       span.icon-bar
       span.icon-bar
-    a.logo-header(href='/')
-      img(src=themeDir+'images/dynamicsignal-logo.svg',alt='Dynamic Signal')
+    a.logo-header(href=locals.siteurl+'/')
+      img(src=locals.siteurl+themeDir+'images/dynamicsignal-logo.svg',alt='Dynamic Signal')
   .navbar-container#mobile-drop
     .inner
       ul.nav-items
