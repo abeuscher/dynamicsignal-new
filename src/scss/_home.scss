@@ -110,6 +110,12 @@ section.testimonials.container {
 .container.product-display {
   width:100%;
 }
+.product-image {
+  display:none;
+  &.active {
+    display:block;
+  }
+}
 .desktop-products {
   .product-image {
     background:url($img-path+'product-desktop.svg') no-repeat left top;
@@ -125,14 +131,15 @@ section.testimonials.container {
       margin: 68px 0 0 163px;
       max-width: none;
     }
+    &.active {
+      display:none;
+      @include bp(m) {
+        display:block;
+      }
+    }
   }
 }
-.product-image {
-  display:none;
-  &.active {
-    display:block;
-  }
-}
+
 .mobile-product-tile {
   @include bp(m) {
     width:70%;

@@ -53,5 +53,10 @@ block content
             the_content();
       .col-md-3.related-posts
         include ./inc/related-posts.pug
+    .row
+      .col-md-9.col-center
         :php
-            }}
+          echo get_the_author_link();
+          echo "<br><br>";
+          echo the_author_description();
+          }}

@@ -1,12 +1,13 @@
 article
   .row
-    .col-md-6
+    .col-xs-12
       h3
         for category,key in locals.categories
           if category.cat_name!="Careers"
             span=category.cat_name
+    .col-xs-6
       h2=locals.post_title
-    .col-md-6.text-right
+    .col-xs-6.apply-button
       a.button-red(href="/career/"+locals.post_name) Apply
   .row
     .col-md-12.job-listing-bottom
