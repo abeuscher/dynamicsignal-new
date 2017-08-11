@@ -35,4 +35,11 @@ window.addEventListener("load", function() {
     var path = window.location.pathname;
     location.href = "https://resources.dynamicsignal.com/h/"+path.substr(7,1)+"/" + path.substr(9,path.length-1);
   }
+  var links = document.querySelectorAll("a.item-link");
+  for (i=0;i<links.length;i++) {
+    var thisLink = links[i];
+    if (thisLink.href.indexOf("amp.dynamicsignal.com")!=-1) {
+      thisLink.target="_blank";
+    }
+  }
 });

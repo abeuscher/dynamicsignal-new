@@ -23,7 +23,8 @@ block content
                 the_title();
             p.author By
               :php
-                echo " ".get_author_name();
+                $authorslug = get_userdata(get_the_author_id())->user_nicename;
+                echo " <a class='author-link' href=\"/author/$authorslug\">".get_author_name() . "</a>" ;
             ul.social-share
               li
                 :php
@@ -53,10 +54,49 @@ block content
             the_content();
       .col-md-3.related-posts
         include ./inc/related-posts.pug
+        h2.header-right Tags
+        .blog-tags
+          :php
+            if( has_tag() ) {
+              echo "<p class='blog-tags'>";
+              the_tags( false );
+              echo "</p>";
+            }
     .row
-      .col-md-9.col-center
+      .col-md-9.author-bio
+        h2.header-right Post Author
         :php
-          echo get_the_author_link();
-          echo "<br><br>";
-          echo the_author_description();
-          }}
+          global $authordata;
+          //echo json_encode($authordata);
+          $meta = get_user_meta($authordata->data->ID);
+          echo "<script>var userData = ".json_encode($meta).";console.log(userData);</script>";
+        .author-thumb
+          :php
+            $authorname = $meta["first_name"][0]." ".$meta["last_name"][0];
+            echo "<img src='".$meta["image"][0]."' alt='$authorname' />";
+          .author-name
+            :php
+              echo $authorname;
+        .author-description
+          :php
+            echo $meta["description"][0];
+          ul.author-social
+            :php
+              if($meta["ts_fab_twitter"][0]!="") {
+                echo "<li><a href='https://twitter.com/".$meta["ts_fab_twitter"][0]."' target='_blank'>";
+            span.fa-1x.fa-stack
+              i.fa.fa-circle.fa-stack-2x
+              i.fa.fa-stack-1x.fa-twitter
+              :php
+                echo "</a></li>";
+                }
+                if($meta["ts_fab_linkedin"][0]!="") {
+                  echo "<li><a href='".$meta["ts_fab_linkedin"][0]."' target='_blank'>";
+            span.fa-1x.fa-stack
+              i.fa.fa-circle.fa-stack-2x
+              i.fa.fa-stack-1x.fa-linkedin
+              :php
+                echo "</a></li>";
+                }
+
+                }}

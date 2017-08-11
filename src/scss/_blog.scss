@@ -1,3 +1,9 @@
+a.author-link {
+  color:$grey;
+  &:hover {
+    color:$teal;
+  }
+}
 .blog-header {
   display:block;
   overflow:hidden;
@@ -26,6 +32,12 @@
     text-transform:uppercase;
     letter-spacing:3px;
     font-size:12px;
+  }
+  a.author-link {
+    color:$white;
+    &:hover {
+      color:$red;
+    }
   }
   .inner {
     position:absolute;
@@ -109,7 +121,7 @@
     line-height:1.2;
     font-size:12px;
     letter-spacing:1px;
-    padding:1px $gutter-width/4;
+    padding:1px $gutter-width/4 1px 0;
     &:hover {
       color:$off-black;
       text-decoration: underline;
@@ -185,5 +197,46 @@ h1.blog-title {
     font-size:16px;
     font-weight:300;
     line-height:1.25;
+  }
+}
+.author-bio {
+  margin-top:$gutter-width*2;
+  .author-thumb {
+    width:20%;
+    display:inline-block;
+    img {
+      border:1px solid $middle-grey;
+    }
+    .author-name {
+      font-size:16px;
+      text-transform: uppercase;
+      letter-spacing:1px;
+      text-align: center;
+    }
+  }
+  .author-description {
+    width:75%;
+    display:inline-block;
+    vertical-align: top;
+    margin-top:1em;
+    padding:0 $gutter-width;
+  }
+  ul.author-social {
+    list-style:none;
+    margin:$gutter-width 0 0;
+    padding:0;
+    li {
+      display:inline-block;
+      a {
+        color:$middle-grey;
+        font-size:1.4em;
+        .fa-stack-1x {
+          color:$white;
+        }
+        &:hover {
+          color:$grey;
+        }
+      }
+    }
   }
 }

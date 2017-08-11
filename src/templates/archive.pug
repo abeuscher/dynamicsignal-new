@@ -2,28 +2,31 @@ extends inc/page.pug
 block template
 	:php
 		/*
-		Template Name: Blog Roll
+		Template Name: Blog Archive
 		*/
+		$override_title = "Tag : " . ucwords(single_tag_title( '', false ));
 block content
-	-
-		var pageData = {
-		"header":"Blog",
-		"ctaLink":"http://feeds.feedblitz.com/dynamicsignal",
-		"ctaLabel":"Subscribe via RSS"
-		 };
+	:php
+		$header = array(
+			"title"=>single_tag_title( '', false ),
+			"subtitle"=>"Blog entries containing the tag '".ucwords(single_tag_title( '', false ))."'"
+		);
 	section.hero#page-top
 		.container
 			.row
-				h1!=pageData.header
+				h1
+					:php
+						echo $header["title"];
 				h2
-					a(href=pageData.ctaLink)!=pageData.ctaLabel
+					:php
+						echo $header["subtitle"];
 	section.blog-entries
 		:php
 			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-			$query = new WP_Query( array('post_type' => 'post','paged' => $paged) );
-			if( $query->have_posts() ) {
-					while( $query->have_posts() ) {
-							$query->the_post();
+			//$query = new WP_Query( array('post_type' => 'post','paged' => $paged) );
+			if( have_posts() ) {
+					while( have_posts() ) {
+							the_post();
 		article
 			:php
 				echo "<a class='blog-header' href='".get_the_permalink()."'><div class='blog-thumb'>";
@@ -45,8 +48,7 @@ block content
 					.col-md-12
 						p By
 							:php
-								$authorslug = get_userdata(get_the_author_id())->user_nicename;
-								echo " <a class='author-link' href=\"/author/$authorslug\">".get_author_name() . "</a>" ;
+								echo " ".get_author_name();
 						.blog-info
 							.blog-excerpt
 								:php
