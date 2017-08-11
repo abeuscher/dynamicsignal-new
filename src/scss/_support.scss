@@ -1,6 +1,10 @@
 .support-body .col-md-3 {
   padding-bottom:30px;
   border-bottom:1px solid #979797;
+  p {
+    line-height:1.5;
+    font-size:14px;
+  }
 }
 @media (min-width: 992px) {
   .container.bottom {
@@ -15,24 +19,13 @@
     height:100%;
     padding:0 20px 20px;
   }
-  .support-body .col-md-3.no-left{
-    border-left:none;
-  }
-  .support-body .col-md-3.no-top{
-    border-top:none;
-  }
-  .support-body .col-md-3.no-right{
-    border-right:none;
-  }
-  .support-body .col-md-3.no-bottom{
-    border-bottom:none;
-  }
   .support-body .row {
     height:100%;
-    display:table-cell;
+    display:table;
+    width:100%;
+    margin:0;
   }
   .support-body .container {
-      display:table;
       box-sizing: border-box;
   }
   .support-body .row .no-float {

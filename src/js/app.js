@@ -29,6 +29,7 @@ var siteSettings = {
     "connectorInfo": require("./inc/connector-info.pug"),
     "useCaseQuote": require("./inc/use-case-quote.pug"),
     "jobListing": require("./inc/job-listing.pug"),
+    "noEvents": require("./inc/no-events.pug"),
     "eventListing": require("./inc/event-listing.pug"),
     "pastEventListing": require("./inc/past-event-listing.pug"),
     "buttonPastEvents": require("./inc/button-past-events.pug"),
@@ -249,30 +250,36 @@ var siteActions = [{
     "action": function() {
       var pastCount = 0;
       var bucket = document.getElementById("events-list");
-      var pastBucket = document.getElementById("past-events");
-      var currentEvents = [];
-      for(i=0;i<pageData.events.length;i++) {
-        var thisEvent = pageData.events[i];
+      var pastBucket = document.getElementById("past-events") ? document.getElementById("past-events") : false;
+      var currentEvents = new Array();
+      var allEvents = sortBy(pageData.events, function(i) { return i.start_date });
+      allEvents.reverse();
+      for(i=0;i<allEvents.length;i++) {
+        var thisEvent = allEvents[i];
         var rightNow = new Date();
-        var startDate = new Date(thisEvent.start_date + " PST");
-        if (startDate>=rightNow) {
-          currentEvents.push(pageData.events[i])
-          //bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
+        var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
+        if (startDate>rightNow) {
+          currentEvents.push(thisEvent);
         }
         else {
-          if (thisEvent.start_date && pastCount<5) {
-            pastBucket.append(parseHTML(siteSettings.templates.pastEventListing(pageData.events[i])));
+          if (thisEvent.start_date && pastCount<5 && pastBucket) {
+            pastBucket.append(parseHTML(siteSettings.templates.pastEventListing(thisEvent)));
             pastCount++;
           }
-          else if (pastCount==5) {
+          else if (pastCount==5 && pastBucket) {
             pastBucket.append(parseHTML(siteSettings.templates.buttonPastEvents()));
             pastCount++;
           }
         }
       }
-      currentEvents.reverse();
-      for (i=0;i<currentEvents.length;i++) {
-        bucket.append(parseHTML(siteSettings.templates.eventListing(currentEvents[i])));
+      if (currentEvents.length>0) {
+        currentEvents.reverse();
+        for (i=0;i<currentEvents.length;i++) {
+          bucket.append(parseHTML(siteSettings.templates.eventListing(currentEvents[i])));
+        }
+      }
+      else {
+        bucket.append(parseHTML(siteSettings.templates.noEvents()))
       }
     }
   },
@@ -285,8 +292,8 @@ var siteActions = [{
       for(i=0;i<pageData.events.length;i++) {
         var thisEvent = pageData.events[i];
         var rightNow = new Date();
-        var startDate = new Date(thisEvent.start_date+" PST");
-        if (startDate<=rightNow) {
+        var startDate = new Date(thisEvent.start_date+"T00:00:00.000-08:00");
+        if (startDate<rightNow) {
           bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
         }
       }

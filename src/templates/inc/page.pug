@@ -13,7 +13,12 @@ html
     :php
       global $wp_query;
       $postid = $wp_query->post->ID;
-      $title =  trim(wpseo_get_value('title'))=="" ? get_the_title() :  wpseo_get_value('title');
+      if ($override_title!="") {
+        $title = $override_title;
+      }
+      else {
+        $title = trim(wpseo_get_value('title'))=="" ? get_the_title() :  wpseo_get_value('title');
+      }
       if (!strpos($title,"Dynamic Signal")) {
       $title .= " | Dynamic Signal";
       }

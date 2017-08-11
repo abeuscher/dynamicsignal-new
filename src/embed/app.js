@@ -27,4 +27,19 @@ window.addEventListener("load", function() {
     drop.classList.toggle("expanded");
     menuToggle.classList.toggle("active");
   });
+  console.log(window.location.pathname);
+  if (location.hash.indexOf("ufh")!=-1) {
+    location.href = "https://resources.dynamicsignal.com/h/"+location.hash.substr(5,1)+"/" + location.hash.substr(7,location.hash.length-1);
+  }
+  else if (window.location.pathname.indexOf("ufh")!=-1) {
+    var path = window.location.pathname;
+    location.href = "https://resources.dynamicsignal.com/h/"+path.substr(7,1)+"/" + path.substr(9,path.length-1);
+  }
+  var links = document.querySelectorAll("a.item-link");
+  for (i=0;i<links.length;i++) {
+    var thisLink = links[i];
+    if (thisLink.href.indexOf("amp.dynamicsignal.com")!=-1) {
+      thisLink.target="_blank";
+    }
+  }
 });

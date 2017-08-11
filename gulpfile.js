@@ -119,6 +119,7 @@ gulp.task('watch-files', function() {
     gulp.watch(sassDir + '**/*.scss', ['compile-sass-autoprefixed-minified'])
     gulp.watch([jsSrcDir + '**/*.js',jsSrcDir + '*.js'], ['build-js'])
     gulp.watch([viewsSrcDir+ '*.pug',viewsSrcDir+ '/*/*.pug'], ['build-views']);
+    gulp.watch([embedSrcDir+ '*.js',embedSrcDir+ '/*/*.js'], ['build-js']);
 });
 
 gulp.task('bundle-js', bundle);

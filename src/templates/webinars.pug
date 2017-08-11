@@ -2,13 +2,13 @@ extends inc/page.pug
 block template
   :php
     /*
-    Template Name: Events Page
+    Template Name: Webinars Page
     */
 block content
   -
     var pageData = {
-    "header":"Events",
-    "subheader":"Explore our events schedule below, connect with us online or in person"
+    "header":"Webinars",
+    "subheader":"Upcoming webinars from our Customer Success Team."
     };
   include ./inc/hero.pug
   :php
@@ -22,11 +22,10 @@ block content
           'meta_query' => array(
         		array(
         			'key' => 'ds_event_type',
-              'value' => 'cswebinar',
-              'compare' => '!='
+              'value' => 'cswebinar'
         		)
-        	)
-        );
+    	)
+    );
     $events = new WP_Query( $args );
     function new_excerpt_more( $more ) {
         return '';
