@@ -211,7 +211,7 @@ var siteActions = [{
   {
     "element": "customers-grid",
     "action": function() {
-      console.log(customerData);
+      //console.log(customerData);
       var customerGrid = document.getElementById("customers-grid");
       var videoGall = new Flickity(document.getElementById("customer-video-carousel"),{
               "wrapAround":true,
@@ -419,7 +419,7 @@ var siteActions = [{
     "action": function() {
       var jobs = sortBy(pageData.jobs, function(i) { return i.post_date });
       var categories = sortBy(pageData.categories, function(i) { return i.cat_name });
-      console.log(pageData.categories);
+      //console.log(pageData.categories);
       var opts = {
         "jobs": jobs,
         "template": siteSettings.templates.jobListing,
