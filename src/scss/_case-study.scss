@@ -1,0 +1,103 @@
+section.case-study {
+  p,li {
+    line-height:1.5;
+  }
+}
+.case-study-thumb, .case-study-quote {
+  margin:$gutter-width*2 0;
+  .inner {
+
+    .top-gradient {
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0) 50%);
+      z-index:99;
+    }
+    img {
+      top:0;
+      height:auto;
+    }
+  }
+  p {
+    position: absolute;
+    top:0;
+    z-index:99;
+    color:$white;
+    font-size:1.6em;
+    padding:$gutter-width $gutter-width*2 0;
+    text-shadow:1px 1px 2px rgba(0,0,0,.6);
+
+  }
+}
+.case-study-thumb {
+  .inner {
+    @include aspect-ratio(7,3);
+    -webkit-clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0% 75%, 0 0);
+    clip-path: polygon(100% 0, 100% 75%, 50% 100%, 0% 75%, 0 0);
+    position: relative;
+  }
+}
+.case-study-quote {
+  .inner {
+    @include aspect-ratio(4,1);
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 0 100%, 0% 25%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 0 100%, 0% 25%);
+    position: relative;
+    img {
+      filter: blur(50px);
+      -webkit-filter: blur(50px);
+      -moz-filter: blur(50px);
+      -o-filter: blur(50px);
+      -ms-filter: blur(50px);
+    }
+    blockquote {
+      font-size:24px;
+      line-height: 36px;
+      letter-spacing: .5px;
+      font-weight:500;
+      font-style: italic;
+      position: absolute;
+      padding-left:$gutter-width*2.5;
+      text-align: left;
+      width:auto;
+      height:auto;
+      margin-top:10%;
+      color:$white;
+      text-shadow:1px 1px 2px rgba(0,0,0,.6);
+      &::before {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        content:"\201C";
+        font-size: 90px;
+        color: $white;
+        font-family: "Times",serif;
+      }
+    }
+  }
+}
+ul.case-study-list {
+  list-style:none;
+  display:inline-block;
+  margin:0;
+  padding:0;
+  li {
+    text-align: left;
+  }
+  .fa {
+    margin-right:$gutter-width/2;
+  }
+  &.problem {
+    .fa {
+      color:$red;
+    }
+  }
+  &.solution {
+    .fa {
+      color:$teal;
+    }
+  }
+}

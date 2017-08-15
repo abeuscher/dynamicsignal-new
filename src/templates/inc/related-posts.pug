@@ -2,10 +2,16 @@
   $tags = wp_get_post_tags(get_the_ID());
   echo '<h2 class="header-right">Recommended Blogs</h2>';
   if ($tags) {
+    $search_terms = [];
+    foreach($tags as $key=>$tag) {
+      array_push($search_terms,$tag->term_id);
+    }
+    if (count($search_terms)>2) {
+    $search_terms = array_chunk($search_terms,2)[0];
 
-  $first_tag = $tags[0]->term_id;
+    }
   $args=array(
-  'tag__in' => array($first_tag),
+  'tag__in' => $search_terms,
   'post__not_in' => array(get_the_ID()),
   'posts_per_page'=>5,
   'caller_get_posts'=>1

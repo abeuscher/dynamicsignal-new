@@ -1,0 +1,122 @@
+extends inc/page.pug
+block template
+	:php
+		/*
+		Template Name: Case Study Page
+		*/
+block content
+	-
+		var pageData = {
+		"header":"Health Insurance Company Drives Brand Story Through Employees",
+		"subheader":"American company activates employees through mobile-first technology",
+		"headerImage":"pic-case-study-example.jpg",
+		"intro":"An american health insurance company based in the US, with over 52,000 employees and 13 million customers, serves everyone from families to seniors to military members and self-employed individuals. Their team uses innovation to deliver results to their consumers, which also required innovation to serve their employees.",
+		"problemHeader":"Clunky Communication System = Inactive Employees",
+		"problemStatement":"The company wanted to get the attention of their consumers and promote their brand goal as a story in a more effective way. They strive for people to be healthier and to live a lifestyle focused on well being. They needed to build trust with consumers and create conversations with them, while working within FTC regulations to ensure compliance. The company also had to mitigate any risks employees may encounter while using social media.",
+		"problemListHeader":"Problems Humana Needed To Solve",
+		"problemItems":[
+		"Lacked digital technology to connect with consumers",
+		"Little control over how employees shared content",
+		"Difficulty with FTC regulations to ensure compliance"
+		],
+		"quote":"When we were looking to build an Employee Advocacy program we needed technology that was going to be able to meet all of our expectations and achieve all of our objectives. Dynamic Signal met all of our requirements and even exceeded our expectations.",
+		"solutionHeader":"Building Credibility Through Employees",
+		"solutionStatement":"With Dynamic Signal, the company was able to share industry and branded content to employees on health and wellness. It leveraged employee advocacy to educate the public and increase awareness of its brand values and wellbeing goals. All of their content is shared through employees, creating a larger, more well-rounded voice for the brand. More than 500 employees were chosen based on how active they were on external and internal social media, and their desire to be advocates on behalf of the organization. This selected group was responsible for more than 32,000 shares and 15M impressions within just six months of launching the program. Because of their innovative solution alongside Dynamic Signal, the company’s program was a finalist for the PR Daily 2016 \"Best Use of Social Media – Healthcare\" Award",
+		"solutionItemsHeader":"How Dynamic Signal Helped",
+		"solutionItems":["Employees can now share branded content easily",
+		"Ability to educate the public on Humana’s offerings",
+		"Increased awareness of company’s brand values and goals",
+		"Humana Advocates was a finalist for the PR Daily 2016",
+		"\"Best Use of Social Media – Healthcare\" Award"],
+		"proofHeader":"By the Numbers",
+		"proof":{
+		"type":"stats",
+		"items":[
+		{
+		"icon":"",
+		"number":"2,500+",
+		"description":"employee advocates"
+		},
+		{
+		"icon":"",
+		"number":"320K+",
+		"description":"shares"
+		},
+		{
+		"icon":"",
+		"number":"560K+",
+		"description":"clicks"
+		},
+		{
+		"icon":"",
+		"number":"165K+",
+		"description":"reactions"
+		},
+		{
+		"icon":"",
+		"number":"125M+",
+		"description":"impressions / potential reach"
+		},
+		{
+		"icon":"",
+		"number":"6%",
+		"description":"of brand mentions on social from just 500 employees"
+		}
+		]
+		},
+		"conclusionHeader":"Empower Your Workforce With Dynamic Signal",
+		"conclusion":"Feeling stuck in your ability to communicate with and empower your global employees? Learn more about how Dynamic Signal can help and request a demo with our team. We want to make sure you have all the tools you need to support a strong internal and external communications strategy, so let’s get started today."
+		};
+	include ./inc/hero.pug
+	section.case-study.container
+		.row
+			.col-md-12
+				.case-study-thumb
+					.inner
+						.top-gradient
+						img(src=themeDir+"images/"+pageData.headerImage,alt="")
+					p!=pageData.intro
+		.row
+			.col-md-12
+				h2.col-center!=pageData.problemHeader
+				p!=pageData.problemStatement
+		.row
+			.col-md-12
+				h2.col-center!=pageData.problemListHeader
+		.row
+			.col-md-12.col-center
+				ul.case-study-list.problem
+					for item in pageData.problemItems
+						li
+							i.fa.fa-chevron-circle-right
+							span!=item
+		.row
+			.col-md-12
+				.case-study-quote
+					.inner
+						img(src=themeDir+"images/"+pageData.headerImage,alt="")
+						blockquote!=pageData.quote
+		.row
+			.col-md-12.col-center
+				h2!=pageData.solutionItemsHeader
+				ul.case-study-list.solution
+					for item in pageData.solutionItems
+						li
+							i.fa.fa-chevron-circle-right
+							span!=item
+		.row
+			.col-md-12
+				h2!=pageData.solutionHeader
+				p!=pageData.solutionStatement
+		.row
+			.col-md-12
+				h2!=pageData.proofHeader
+				ul.proof-points
+					for item in pageData.proof.items
+						li
+							span.number!=item.number
+							span.desc!=item.description
+		.row
+			.col-md-12
+				h2!=pageData.conclusionHeader
+				p!=pageData.conclusion
