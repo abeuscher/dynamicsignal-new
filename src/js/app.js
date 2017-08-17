@@ -11,6 +11,9 @@ var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
 var ActivateVideos = require("./video-handler/index.js");
 
+var ScrollMagic = require("scrollmagic");
+require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
+
 var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
 
@@ -206,6 +209,26 @@ var siteActions = [{
         quoteGall.append(parseHTML(siteSettings.templates.useCaseQuote(useCaseQuotes[i])));
       }
       quoteGall.resize();
+    }
+  },
+  {
+    "element": "case-study-page",
+    "action": function() {
+      var bullets = document.querySelectorAll(".case-study-list svg");
+      var midPoint = window.innerHeight/4 * -1;
+      var controller = new ScrollMagic.Controller({"loglevel":0});
+      for (i=0;i<bullets.length;i++) {
+        var thisBullet = bullets[i];
+        thisBullet.id = "bullet-"+i;
+        new ScrollMagic.Scene({
+          offset:midPoint,
+          triggerElement:thisBullet,
+          duration:0
+        })
+        .on("enter leave", function(e) { console.log(this.id); document.getElementById("bullet-"+this.id).classList.add("active"); })
+        .addTo(controller)
+        .id = i;
+      }
     }
   },
   {
