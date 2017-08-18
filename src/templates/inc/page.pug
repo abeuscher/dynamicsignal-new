@@ -36,11 +36,11 @@ html
       $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
       echo "<link href='$slink' rel='stylesheet' />";
   body.loading
-    //include ./gtm.pug
+    include ./gtm.pug
     include ./header.pug
     block content
     include ./new-footer.pug
     :php
       $slink = get_template_directory_uri() . "/js/bundle.js?v=" . filemtime( get_stylesheet_directory() . '/js/bundle.js');
       echo "<script src='$slink'></script>";
-    //include ./footer-trackers.pug
+    include ./footer-trackers.pug

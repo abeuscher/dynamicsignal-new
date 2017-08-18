@@ -46,41 +46,38 @@ block content
 		"proofHeader":"By the Numbers",
 		"proof":{
 		"type":"stats",
+		"footer":"<span class=\"emphasis\">6%</span>&nbsp;of brand mentions on social from just 500 employees",
 		"items":[
 		{
-		"icon":"",
+		"icon":"user",
 		"number":"2,500+",
 		"description":"employee advocates"
 		},
 		{
-		"icon":"",
+		"icon":"share-alt",
 		"number":"320K+",
 		"description":"shares"
 		},
 		{
-		"icon":"",
+		"icon":"mouse-pointer",
 		"number":"560K+",
 		"description":"clicks"
 		},
 		{
-		"icon":"",
+		"icon":"comment-o",
 		"number":"165K+",
 		"description":"reactions"
 		},
 		{
-		"icon":"",
+		"icon":"eye",
 		"number":"125M+",
 		"description":"impressions / potential reach"
-		},
-		{
-		"icon":"",
-		"number":"6%",
-		"description":"of brand mentions on social from just 500 employees"
 		}
 		]
 		},
 		"conclusionHeader":"Empower Your Workforce With Dynamic Signal",
-		"conclusion":"Feeling stuck in your ability to communicate with and empower your global employees? Learn more about how Dynamic Signal can help and request a demo with our team. We want to make sure you have all the tools you need to support a strong internal and external communications strategy, so let’s get started today."
+		"conclusion":"Feeling stuck in your ability to communicate with and empower your global employees? Learn more about how Dynamic Signal can help and request a demo with our team. We want to make sure you have all the tools you need to support a strong internal and external communications strategy, so let’s get started today.",
+		"ctaLabel":"Request a Demo"
 		};
 	include ./inc/hero.pug
 	section#case-study-page.case-study-image
@@ -88,8 +85,8 @@ block content
 	section.case-study-stats
 		.container
 			.row.case-study-stats
-				for stat in pageData.stats
-					.col-md-3.col-xs-6
+				for stat,key in pageData.stats
+					.col-md-3.col-s-12
 						h3!=stat.label
 						h4!=stat.value
 	section.container.case-study
@@ -133,13 +130,19 @@ block content
 	section.container.case-study
 		.row
 			.col-md-12
-				h2!=pageData.proofHeader
 				ul.proof-points
 					for item in pageData.proof.items
 						li
-							span.number!=item.number
-							span.desc!=item.description
-		.row
-			.col-md-12
-				h2!=pageData.conclusionHeader
-				p!=pageData.conclusion
+							i.fa(class="fa-"+item.icon)
+							h3!=item.number
+							h4!=item.description
+				p.proof-footer.col-center!=pageData.proof.footer
+	section.case-study.case-study-cta
+		.container
+			.row
+				.col-md-12
+					h2.col-center!=pageData.conclusionHeader
+					p!=pageData.conclusion
+			.row
+				.col-md-12.col-center
+					a.button-red.cta(href="/requestdemo/")!=pageData.ctaLabel

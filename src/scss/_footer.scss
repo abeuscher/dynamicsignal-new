@@ -4,7 +4,7 @@ footer .container {
 }
 
 .footer-top {
-  padding: $gutter-width*4 0;
+  padding: $gutter-width*2 0 $gutter-width*1.5;
   background-color: darken($grey, 5%);
   ul {
     margin:0;
@@ -51,7 +51,7 @@ footer .container {
             display:inline-block;
           }
         }
-        margin-bottom:$gutter-width*2;
+        margin-bottom:$gutter-width;
       }
       &.footer-phone {
         .fa-stack {

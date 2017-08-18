@@ -9,7 +9,7 @@ section.case-study {
   h2 {
     margin-bottom:$gutter-width*1.5;
     font-size:28px;
-    font-weight:600;
+    font-weight:400;
     @include bp(m) {
       font-size:36px;
     }
@@ -22,12 +22,15 @@ section.case-study-image {
     vertical-align: middle;
   }
 }
+.case-study-cta {
+  background:$lighter-grey;
+}
 .case-study-stats {
   background:$lighter-grey;
   h3, h4 {
     text-transform:uppercase;
     font-weight:300;
-    font-size:24px;
+    font-size:20px;
     line-height:1.5;
     margin:0;
     padding:0;
@@ -36,7 +39,7 @@ section.case-study-image {
     color:$middle-grey;
   }
   h4 {
-    color:$grey;
+    color:$red;
   }
 }
 .case-study-intro {
@@ -82,8 +85,18 @@ ul.case-study-list {
     margin-bottom:$gutter-width;
     span {
       vertical-align: middle;
-      margin-left:18px;
       font-size:24px;
+      @include bp(m) {
+        margin-left:18px;
+      }
+    }
+    svg {
+      display:none;
+    }
+    @include bp(m) {
+      svg {
+        display:inline-block;
+      }
     }
   }
   .fa {
@@ -100,8 +113,45 @@ ul.case-study-list {
     }
   }
 }
-$curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+ul.proof-points {
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:block;
+  width:100%;
+  li {
+    float:left;
+    width:100%;
+    padding-bottom:$gutter-width;
+    @include bp(m) {
+      width:20%;
+    }
+    i {
+      text-align: center;
+      display:block;
+      font-size:2em;
+    }
+    h3,h4 {
+      text-align:center;
+      font-weight:300;
+    }
+    h3 {
+      color:$red;
+      margin:$gutter-width/2 0;
+    }
+    h4 {
+      color:$light-grey;
+      text-transform: capitalize;
+      margin:0;
 
+    }
+  }
+}
+$curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+.emphasis {
+  color:$teal;
+  font-weight:600;
+}
 
 
 .exclamation-point {
@@ -113,7 +163,7 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   stroke: #fff;
   stroke-miterlimit: 10;
   margin: 0 auto;
-  box-shadow: inset 0px 0px 0px transparent;
+  //box-shadow: inset 0px 0px 0px $red;
   //animation: scale .3s ease-in-out .9s both;
   .exclamation-circle {
     stroke-dasharray: 166;
@@ -125,7 +175,6 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
     //animation: stroke .6s $curve forwards;
   }
   .exclamation-mark {
-    stroke-dashoffset:166;
     fill:transparent;
     stroke:transparent;
     //animation:pop .3s ease-in-out .9s both;
@@ -133,7 +182,7 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   &.active {
     animation: scale .3s ease-in-out .9s both;
     .exclamation-circle {
-      animation: stroke .6s $curve forwards;
+      animation: stroke .6s $curve forwards, fillred .3s ease-in-out .9s both;
     }
     .exclamation-mark {
       animation:pop .3s ease-in-out .9s both;
@@ -188,7 +237,7 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 @keyframes pop {
   100% {
     stroke-dashoffset:0;
-    fill:$red;
+    fill:$white;
   }
 }
 
@@ -208,6 +257,6 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 }
 @keyframes fillred {
   100% {
-    box-shadow: inset 0px 0px 0px 30px $red;
+    fill:$red;
   }
 }

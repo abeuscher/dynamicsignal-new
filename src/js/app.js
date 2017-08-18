@@ -225,9 +225,9 @@ var siteActions = [{
           triggerElement:thisBullet,
           duration:0
         })
-        .on("enter leave", function(e) { console.log(this.id); document.getElementById("bullet-"+this.id).classList.add("active"); })
+        .on("enter leave", function(e) { document.getElementById("bullet-"+this.id).classList.add("active"); })
         .addTo(controller)
-        .id = i;
+        .id = i; 
       }
     }
   },
