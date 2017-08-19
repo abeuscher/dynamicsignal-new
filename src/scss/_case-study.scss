@@ -16,9 +16,17 @@ section.case-study {
   }
 }
 section.case-study-image {
-  padding-bottom:0;
+  padding:0;
+  margin-top:$gutter-width*2;
+  background:$beige;
+  text-align: center;
+  &.black {
+    background:$black;
+  }
   img {
-    max-width:100%;
+    width:100%;
+    max-width:1600px;
+    margin:0 auto;
     vertical-align: middle;
   }
 }
@@ -42,12 +50,17 @@ section.case-study-image {
     color:$red;
   }
 }
+.case-study-intro-block {
+  //background:$beige;
+}
 .case-study-intro {
-  color:$teal;
-  font-size:24px;
+  color:$classic-grey;
+  font-style:italic;
+  font-size:20px;
+  line-height:1.7;
   margin-bottom:$gutter-width*2;
   @include bp(m) {
-    font-size:32px;
+    font-size:24px;
   }
 }
 .case-study-quote {
@@ -75,6 +88,28 @@ section.case-study-image {
       }
     }
   }
+.case-study-proof-quote {
+  color:$red;
+  font-size:36px;
+  display:block;
+  cite {
+    margin-top:$gutter-width;
+    font-size:24px;
+    display:block;
+    color:$middle-grey;
+  }
+  &.hasquote {
+    &::before {
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      content:"\201C";
+      font-size: 60px;
+      font-family: "Times",serif;
+    }
+  }
+}
 ul.case-study-list {
   list-style:none;
   display:inline-block;

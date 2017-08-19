@@ -5,144 +5,152 @@ block template
 		Template Name: Case Study Page
 		*/
 block content
-	-
-		var pageData = {
-		"header":"Health Insurance Company Drives Brand Story Through Employees",
-		"subheader":"American company activates employees through mobile-first technology",
-		"headerImage":"pic-case-study-header.jpg",
-		"bottomImage":"pic-case-study-example.jpg",
-		"stats":[{
-		"label":"Case Study",
-		"value":"Employee Advocacy"
-		},{
-		"label":"Industry",
-		"value":"Healthcare"
-		},{
-		"label":"Company Size",
-		"value":"50,000+"
-		},{
-		"label":"Active Members",
-		"value":"21,000+"
-		}
-		],
-		"intro":"An american health insurance company based in the US, with over 52,000 employees and 13 million customers, serves everyone from families to seniors to military members and self-employed individuals. Their team uses innovation to deliver results to their consumers, which also required innovation to serve their employees.",
-		"problemHeader":"Clunky Communication System = Inactive Employees",
-		"problemStatement":"The company wanted to get the attention of their consumers and promote their brand goal as a story in a more effective way. They strive for people to be healthier and to live a lifestyle focused on well being. They needed to build trust with consumers and create conversations with them, while working within FTC regulations to ensure compliance. The company also had to mitigate any risks employees may encounter while using social media.",
-		"problemListHeader":"Problems Humana Needed To Solve",
-		"problemItems":[
-		"Lacked digital technology to connect with consumers",
-		"Little control over how employees shared content",
-		"Difficulty with FTC regulations to ensure compliance"
-		],
-		"quote":"When we were looking to build an Employee Advocacy program we needed technology that was going to be able to meet all of our expectations and achieve all of our objectives. Dynamic Signal met all of our requirements and exceeded our expectations.",
-		"solutionHeader":"Building Credibility Through Employees",
-		"solutionStatement":"With Dynamic Signal, the company was able to share industry and branded content to employees on health and wellness. It leveraged employee advocacy to educate the public and increase awareness of its brand values and wellbeing goals. All of their content is shared through employees, creating a larger, more well-rounded voice for the brand. More than 500 employees were chosen based on how active they were on external and internal social media, and their desire to be advocates on behalf of the organization. This selected group was responsible for more than 32,000 shares and 15M impressions within just six months of launching the program. Because of their innovative solution alongside Dynamic Signal, the company’s program was a finalist for the PR Daily 2016 \"Best Use of Social Media – Healthcare\" Award",
-		"solutionItemsHeader":"How Dynamic Signal Helped",
-		"solutionItems":["Employees can now share branded content easily",
-		"Ability to educate the public on Humana’s offerings",
-		"Increased awareness of company’s brand values and goals",
-		"Humana Advocates was a finalist for the PR Daily 2016",
-		"\"Best Use of Social Media – Healthcare\" Award"],
-		"proofHeader":"By the Numbers",
-		"proof":{
-		"type":"stats",
-		"footer":"<span class=\"emphasis\">6%</span>&nbsp;of brand mentions on social from just 500 employees",
-		"items":[
-		{
-		"icon":"user",
-		"number":"2,500+",
-		"description":"employee advocates"
-		},
-		{
-		"icon":"share-alt",
-		"number":"320K+",
-		"description":"shares"
-		},
-		{
-		"icon":"mouse-pointer",
-		"number":"560K+",
-		"description":"clicks"
-		},
-		{
-		"icon":"comment-o",
-		"number":"165K+",
-		"description":"reactions"
-		},
-		{
-		"icon":"eye",
-		"number":"125M+",
-		"description":"impressions / potential reach"
-		}
-		]
-		},
-		"conclusionHeader":"Empower Your Workforce With Dynamic Signal",
-		"conclusion":"Feeling stuck in your ability to communicate with and empower your global employees? Learn more about how Dynamic Signal can help and request a demo with our team. We want to make sure you have all the tools you need to support a strong internal and external communications strategy, so let’s get started today.",
-		"ctaLabel":"Request a Demo"
-		};
-	include ./inc/hero.pug
+	section.hero#page-top
+		.container
+			.row
+				h1
+					:php
+						the_title();
+				h2
+					:php
+						echo get_field("subheader");
 	section#case-study-page.case-study-image
-		img(src=themeDir+"images/"+pageData.headerImage,alt="")
+		:php
+			echo "<img src='".get_field("header_image")["url"]."' alt='' />";
 	section.case-study-stats
 		.container
 			.row.case-study-stats
-				for stat,key in pageData.stats
-					.col-md-3.col-s-12
-						h3!=stat.label
-						h4!=stat.value
+				.col-md-4.col-s-12
+					h3 Industry
+					h4
+						:php
+							echo get_field("industry_type");
+				.col-md-4.col-s-12
+					h3 Company Size
+					h4
+						:php
+							echo get_field("company_size");
+				.col-md-4.col-s-12
+					h3 Use Case
+					h4
+						:php
+							echo get_field("use_case");
+	section.case-study-intro-block
+		.container.case-study
+			.row
+				.col-md-12
+					p.case-study-intro
+						:php
+							echo get_field("intro_paragraph");
 	section.container.case-study
 		.row
 			.col-md-12
-				p.case-study-intro!=pageData.intro
+				h2.col-center
+					:php
+						echo get_field("problem_statement_header");
+				p
+					:php
+						echo get_field("problem_statement");
 		.row
 			.col-md-12
-				h2.col-center!=pageData.problemHeader
-				p!=pageData.problemStatement
-		.row
-			.col-md-12
-				h2.col-center!=pageData.problemListHeader
+				h2.col-center
+					:php
+						echo get_field("problem_list_header");
 		.row
 			.col-md-12.col-center
 				ul.case-study-list.problem
-					for item in pageData.problemItems
-						li
-							include ./inc/exclamation-point.pug
-							span!=item
+					:php
+						foreach(get_field("problem_points") as $key=>$value) {
+
+					li
+						include ./inc/exclamation-point.pug
+						span
+							:php
+								echo $value["problem_point"];
+					:php
+						}
 	section.case-study-quote
 		.container
 			.row
 				.col-md-12
-					blockquote!=pageData.quote
+					blockquote
+						:php
+							echo get_field("quotation");
 	section.container.case-study
 		.row
 			.col-md-12
-				h2.col-center!=pageData.solutionHeader
-				p!=pageData.solutionStatement
+				h2.col-center
+					:php
+						echo get_field("solution_header");
+				p
+					:php
+						echo get_field("solution_statement")
 		.row
 			.col-md-12.col-center
-				h2!=pageData.solutionItemsHeader
+				h2
+					:php
+						echo get_field("solution_items_header");
 				ul.case-study-list.solution
-					for item in pageData.solutionItems
-						li
-							include ./inc/checkmark.pug
-							span!=item
-	section.case-study-image
-		img(src=themeDir+"images/"+pageData.bottomImage,alt="")
+					:php
+						foreach(get_field("solution_items") as $key=>$value) {
+
+					li
+						include ./inc/checkmark.pug
+						span
+							:php
+								echo $value["solution_item"];
+					:php
+						}
+	section.case-study-image.black
+		:php
+			echo "<img src='".get_field("bottom_image")["url"]."' alt='' />";
+	:php
+		if (get_field("proof_type")!="noproof") {
 	section.container.case-study
 		.row
 			.col-md-12
+				:php
+					if (get_field("proof_type")=="stats") {
 				ul.proof-points
-					for item in pageData.proof.items
-						li
-							i.fa(class="fa-"+item.icon)
-							h3!=item.number
-							h4!=item.description
-				p.proof-footer.col-center!=pageData.proof.footer
+					:php
+						foreach(get_field("proof_stats") as $key=>$stat) {
+					li
+						:php
+							echo "<i class='fa fa-".$stat["icon_name"]."'></i>";
+						h3
+							:php
+								echo $stat["stat_value"];
+						h4
+							:php
+								echo $stat["stat_description"];
+					:php
+						}
+				:php
+					}
+					else {
+				.case-study-proof-quote.col-center
+					:php
+						echo get_field("proof_quote");
+						if (get_field("proof_quote_citation")!="") {
+					cite
+						:php
+							echo get_field("proof_quote_citation");
+					:php
+						}
+				:php
+					}
+	:php
+		}
 	section.case-study.case-study-cta
 		.container
 			.row
 				.col-md-12
-					h2.col-center!=pageData.conclusionHeader
-					p!=pageData.conclusion
+					h2.col-center
+						:php
+							echo get_field("conclusion_header");
+					p
+						:php
+							echo get_field("conclusion_paragraph");
 			.row
 				.col-md-12.col-center
-					a.button-red.cta(href="/requestdemo/")!=pageData.ctaLabel
+					a.button-red.cta(href="/requestdemo/") Request a Demo

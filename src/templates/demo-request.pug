@@ -5,22 +5,6 @@ block template
     Template Name: Demo Request Form
     */
 block content
-  :php
-    global $wp_query;
-     query_posts(array(
-         'post_type' => 'customer',
-         'numberposts' => 100
-     ));
-     $customers = [];
-     while(have_posts()) : the_post();
-        $post->logo = get_field("logo");
-        $post->citation_name = get_field("citation_name");
-        $post->citation_title = get_field("citation_title");
-        $post->quote = get_field("quote");
-         array_push($customers,$post);
-     endwhile;
-     wp_reset_query();
-    echo '<script>var customerData = '. json_encode($customers).';</script>';
   -
     var pageData = {
     "header":"Request A Demo",
@@ -29,7 +13,7 @@ block content
   include ./inc/hero.pug
   section.signup-form-bucket.container
     .row
-      .col-md-9
+      .col-md-6
         div(style='text-align: center;')
           img(src=themeDir+'images/pic-req-demo.png', alt='')
         p Request a demo now and a member of our team will be in touch shortly to schedule a personalized look behind the scenes of the Dynamic Signal platform.
@@ -49,11 +33,11 @@ block content
           li
             i.fa-li.fa.fa-check
             | Boost productivity
-      .col-md-3
+      .col-md-6
         script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
-        form#mktoForm_1753
+        form#mktoForm_1163
         script.
-          MktoForms2.loadForm("//app-ab04.marketo.com", "362-RJN-040", 1753);
+          MktoForms2.loadForm("//app-ab04.marketo.com", "362-RJN-040", 1163);
         p#required-warning
           span.asterisk *
           |  all fields are required.
