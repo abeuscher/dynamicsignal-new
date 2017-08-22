@@ -50,16 +50,6 @@ var siteSettings = {
 
 window.addEventListener("load", function() {
   if (siteSettings.validDomains.indexOf(window.location.hostname)>-1) {
-    /*
-    (function(d) {
-        var config = {
-          kitId: 'hao2kje',
-          scriptTimeout: 0,
-          async: false
-        },
-        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=false;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-      })(document);
-*/
       (function(d) {
         var config = {
           kitId: 'rqa1vic',
@@ -227,7 +217,7 @@ var siteActions = [{
         })
         .on("enter leave", function(e) { document.getElementById("bullet-"+this.id).classList.add("active"); })
         .addTo(controller)
-        .id = i; 
+        .id = i;
       }
     }
   },

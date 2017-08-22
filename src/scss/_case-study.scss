@@ -21,7 +21,7 @@ section.case-study-image {
   background:$beige;
   text-align: center;
   &.black {
-    background:$black;
+    background:$another-grey;
   }
   img {
     width:100%;
@@ -72,20 +72,27 @@ section.case-study-image {
       letter-spacing: .5px;
       font-weight:500;
       font-style: italic;
-      padding-left:$gutter-width*2.5;
-      text-align: left;
+      text-align: center;
       width:auto;
       height:auto;
       padding:0;
-      &::before {
-        display: block;
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        content:"\201C";
-        font-size: 90px;
-        font-family: "Times",serif;
+      &.has-quote {
+        padding-left:$gutter-width*2.5;
+        &::before {
+          display: block;
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          content:"\201C";
+          font-size: 90px;
+          font-family: "Times",serif;
+        }
       }
+
+    }
+    cite {
+      display:block;
+      text-align: center;
     }
   }
 .case-study-proof-quote {
@@ -152,13 +159,14 @@ ul.proof-points {
   list-style:none;
   margin:0;
   padding:0;
-  display:block;
+  display:inline-block;
   width:100%;
   li {
-    float:left;
+    display:inline-block;
     width:100%;
     padding-bottom:$gutter-width;
     @include bp(m) {
+      margin:0 -3px;
       width:20%;
     }
     i {
