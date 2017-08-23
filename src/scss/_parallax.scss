@@ -44,6 +44,12 @@
         max-width:50%;
         margin:0 auto;
       }
+      &.big {
+        img {
+          max-width:100%;
+          margin:$gutter-width/2 0;
+        }
+      }
     }
   }
   @include bp(m) {

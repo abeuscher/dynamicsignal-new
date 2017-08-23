@@ -96,14 +96,20 @@ section.case-study-image {
     }
   }
 .case-study-proof-quote {
-  color:$red;
-  font-size:36px;
+  font-size:24px;
+  line-height: 36px;
+  letter-spacing: .5px;
+  font-weight:500;
+  font-style: italic;
+  text-align: center;
+  width:auto;
+  height:auto;
+  padding:0;
   display:block;
   cite {
     margin-top:$gutter-width;
-    font-size:24px;
     display:block;
-    color:$middle-grey;
+    font-size:16px;
   }
   &.hasquote {
     &::before {
@@ -165,6 +171,7 @@ ul.proof-points {
     display:inline-block;
     width:100%;
     padding-bottom:$gutter-width;
+    vertical-align: top;
     @include bp(m) {
       margin:0 -3px;
       width:20%;

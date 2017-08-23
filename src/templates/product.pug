@@ -14,35 +14,41 @@ block content
 		"subheader":"Keep Employees Connected and Aligned",
 		"text":"Dynamic Signal provides companies with a way to keep their employees more informed with relevant company and industry news, on the channels and devices they prefer. Ensure your workforce is engaged and aligned with the company, by delivering them targeted content anytime, anywhere, within an easy to use mobile app.",
 		"image":"news.jpg",
-		"mobileImage":"news-mobile.png"
+		"mobileImage":"news-mobile.png",
+		"className":"reg"
 		},
 		{
 		"header":"Communications",
 		"subheader":"Engage Employees with Real-Time Notifications",
 		"text":"Deliver the right message to the right employees at exactly the right time, all while tracking delivery and readership. Our advanced broadcast functionality enables a company to stay in touch with hard to reach employees whether they are behind a desk, in a store, or on a factory floor. Keeps all of your employees engaged, even those without a company email address.",
 		"image":"sharing-screen.jpg",
-		"mobileImage":"communications-mobile.png"
+		"mobileImage":"communications-mobile.png",
+		"className":"reg"
 		},
 		{
 		"header":"Advocacy",
 		"subheader":"Empower Advocacy & Drive Organic Reach",
 		"text":"Give employees a safe and easy way to share approved company communications on social media. Perfect for both beginners and pros, Dynamic Signal is built to simplify the user experience, with features like suggested messaging, scheduling, and support for international social networks.",
 		"image":"analytics.jpg",
-		"mobileImage":"advocacy-mobile.png"
+		"mobileImage":"advocacy-mobile.png",
+		"className":"reg"
 		},
 		{
 		"header":"Analytics",
 		"subheader":"Control the Message and Track it All",
 		"text":"Dynamic Signal allows administrators to easily measure the effectiveness and impact of their company communications. With robust reporting and analytics, companies gain insight into employee adoption, viewer-ship, and engagement.",
 		"image":"activities.jpg",
-		"mobileImage":"laptop.png"
+		"mobileImage":"laptop-mobile-size.jpg",
+		"imageForMobile":"laptop.png",
+		"className":"big"
 		},
 		{
 		"header":"Engagement",
 		"subheader":"Activate and Encourage Employees",
 		"text":"With a direct, real-time connection, companies create more alignment with their employees, fostering a culture that inspires advocacy. Surveys, quizzes, and custom activities give companies the ability to elicit feedback and encourage ongoing engagement from their employees.",
 		"image":"messaging.jpg",
-		"mobileImage":"engagement-mobile.png"
+		"mobileImage":"engagement-mobile.png",
+		"className":"reg"
 		}],
 		"coverflow": {
 		"header":"Connected with Your Current Stack",
@@ -70,11 +76,19 @@ block content
 			#bg-slides(data-backgrounds=JSON.stringify(backgrounds))
 			for slide,key in pageData.slides
 				.content-slide.row(id="slide-"+key)
-					.col-md-5.thumb.col-center(data-src=slide.mobileImage)
-					.col-md-7.content
-						h2!=slide.header
-						h3!=slide.subheader
-						.text-content!=slide.text
+					if slide.imageForMobile
+						.col-md-5.thumb.col-center.hidden-md.hidden-lg(data-src=slide.mobileImage,class=slide.className)
+						.col-md-5.thumb.col-center.visible-md.visible-lg(data-src=slide.imageForMobile,class=slide.className)
+						.col-md-7.content
+							h2!=slide.header
+							h3!=slide.subheader
+							.text-content!=slide.text
+					else
+						.col-md-5.thumb.col-center(data-src=slide.mobileImage,class=slide.className)
+						.col-md-7.content
+							h2!=slide.header
+							h3!=slide.subheader
+							.text-content!=slide.text
 	section.products-coverflow
 		.container-fluid
 			.row

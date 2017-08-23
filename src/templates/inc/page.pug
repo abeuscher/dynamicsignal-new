@@ -39,7 +39,7 @@ html
     include ./gtm.pug
     include ./header.pug
     block content
-    include ./new-footer.pug
+    include ./footer.pug
     :php
       $slink = get_template_directory_uri() . "/js/bundle.js?v=" . filemtime( get_stylesheet_directory() . '/js/bundle.js');
       echo "<script src='$slink'></script>";
