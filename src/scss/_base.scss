@@ -212,6 +212,25 @@ ul.nav-items li a.button-teal {
     font-weight: 700;
     line-height: 3;
   }
+  &.apply-button {
+    font-size: 18px;
+    line-height: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 24px;
+    margin: 12px 0;
+    display: inline-block;
+    color:$white;
+    background:$teal;
+    box-shadow:1px 1px 10px rgba(0,0,0,.3);
+    border:none;
+    &:hover {
+      text-shadow:1px 1px 5px rgba(0,0,0,.6);
+      background-color: lighten($teal,40%);
+      box-shadow:0 0 5px rgba(0,0,0,.3);
+      text-decoration: none;
+    }
+  }
 }
 
 .button-red {

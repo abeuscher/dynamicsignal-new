@@ -27,6 +27,11 @@ footer .container {
         }
         p {
           display:inline-block;
+          margin-left:-3px;
+          &:hover {
+            text-decoration: underline;
+            color:$white;
+          }
         }
       }
     }
@@ -94,9 +99,9 @@ footer .container {
   h5 {
     color: rgba(255, 255, 255, 0.25);
     text-transform:uppercase;
-    font-weight:600;
+    font-weight:300;
     font-size:16px;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     text-align: center;
     margin:$gutter-width 0 $gutter-width/2;
     @include bp(m) {
@@ -111,6 +116,10 @@ ul.site-links {
       letter-spacing:1px;
       font-size:12px;
       color:$beige;
+      &:hover {
+        text-decoration: underline;
+        color:$white;
+      }
     }
   }
 }
@@ -132,7 +141,6 @@ ul.site-links {
     font-size: 12px;
   }
 }
-
 .footer-bottom ul {
   text-align: right;
 
