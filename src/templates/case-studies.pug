@@ -1,0 +1,18 @@
+extends inc/page.pug
+block template
+	:php
+		/*
+		Template Name: Case Studies
+		*/
+block content
+	-
+		var pageData = {
+		"header":"Case Studies",
+		"subheader":"How Our Customers Get The Best From Our Product"
+		}
+	include ./inc/hero.pug
+	section.container
+		.row
+			.col-md-12
+				:php
+					echo get_the_content();

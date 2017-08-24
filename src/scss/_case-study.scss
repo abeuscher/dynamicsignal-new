@@ -1,0 +1,312 @@
+section.case-study {
+  p,li {
+    line-height:1.5;
+    font-size:20px;
+    @include bp(m) {
+      font-size:24px;
+    }
+  }
+  h2 {
+    margin-bottom:$gutter-width*1.5;
+    font-size:28px;
+    font-weight:400;
+    @include bp(m) {
+      font-size:36px;
+    }
+  }
+}
+section.case-study-image {
+  padding:0;
+  margin-top:$gutter-width*2;
+  background:$beige;
+  text-align: center;
+  &.black {
+    background:$another-grey;
+  }
+  img {
+    width:100%;
+    max-width:1600px;
+    margin:0 auto;
+    vertical-align: middle;
+  }
+}
+.case-study-cta {
+  background:$lighter-grey;
+}
+.case-study-stats {
+  background:$lighter-grey;
+  h3, h4 {
+    text-transform:uppercase;
+    font-weight:300;
+    font-size:20px;
+    line-height:1.5;
+    margin:0;
+    padding:0;
+  }
+  h3 {
+    color:$middle-grey;
+  }
+  h4 {
+    color:$red;
+  }
+}
+.case-study-intro-block {
+  //background:$beige;
+}
+.case-study-intro {
+  color:$classic-grey;
+  font-style:italic;
+  font-size:20px;
+  line-height:1.7;
+  margin-bottom:$gutter-width*2;
+  @include bp(m) {
+    font-size:24px;
+  }
+}
+.case-study-quote {
+  background:url($img-path+"bg-case-study-quote.jpg") no-repeat center top;
+  background-size:cover;
+    blockquote {
+      font-size:24px;
+      line-height: 36px;
+      letter-spacing: .5px;
+      font-weight:500;
+      font-style: italic;
+      text-align: center;
+      width:auto;
+      height:auto;
+      padding:0;
+      &.has-quote {
+        padding-left:$gutter-width*2.5;
+        &::before {
+          display: block;
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          content:"\201C";
+          font-size: 90px;
+          font-family: "Times",serif;
+        }
+      }
+
+    }
+    cite {
+      display:block;
+      text-align: center;
+    }
+  }
+.case-study-proof-quote {
+  font-size:24px;
+  line-height: 36px;
+  letter-spacing: .5px;
+  font-weight:500;
+  font-style: italic;
+  text-align: center;
+  width:auto;
+  height:auto;
+  padding:0;
+  display:block;
+  cite {
+    margin-top:$gutter-width;
+    display:block;
+    font-size:16px;
+  }
+  &.hasquote {
+    &::before {
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      content:"\201C";
+      font-size: 60px;
+      font-family: "Times",serif;
+    }
+  }
+}
+ul.case-study-list {
+  list-style:none;
+  display:inline-block;
+  margin:$gutter-width 0;
+  padding:0;
+  li {
+    text-align: left;
+    margin-bottom:$gutter-width;
+    span {
+      vertical-align: middle;
+      font-size:24px;
+      @include bp(m) {
+        margin-left:18px;
+      }
+    }
+    svg {
+      display:none;
+    }
+    @include bp(m) {
+      svg {
+        display:inline-block;
+      }
+    }
+  }
+  .fa {
+    margin-right:$gutter-width/2;
+  }
+  &.problem {
+    .fa {
+      color:$red;
+    }
+  }
+  &.solution {
+    .fa {
+      color:$teal;
+    }
+  }
+}
+ul.proof-points {
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:inline-block;
+  width:100%;
+  li {
+    display:inline-block;
+    width:100%;
+    padding-bottom:$gutter-width;
+    vertical-align: top;
+    @include bp(m) {
+      margin:0 -3px;
+      width:20%;
+    }
+    i {
+      text-align: center;
+      display:block;
+      font-size:2em;
+    }
+    h3,h4 {
+      text-align:center;
+      font-weight:300;
+    }
+    h3 {
+      color:$red;
+      margin:$gutter-width/2 0;
+    }
+    h4 {
+      color:$light-grey;
+      text-transform: capitalize;
+      margin:0;
+
+    }
+  }
+}
+$curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+.emphasis {
+  color:$teal;
+  font-weight:600;
+}
+
+
+.exclamation-point {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  stroke:$red;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 0 auto;
+  //box-shadow: inset 0px 0px 0px $red;
+  //animation: scale .3s ease-in-out .9s both;
+  .exclamation-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: $red;
+    fill: none;
+    //animation: stroke .6s $curve forwards;
+  }
+  .exclamation-mark {
+    fill:transparent;
+    stroke:transparent;
+    //animation:pop .3s ease-in-out .9s both;
+  }
+  &.active {
+    animation: scale .3s ease-in-out .9s both;
+    .exclamation-circle {
+      animation: stroke .6s $curve forwards, fillred .3s ease-in-out .9s both;
+    }
+    .exclamation-mark {
+      animation:pop .3s ease-in-out .9s both;
+    }
+  }
+}
+
+.checkmark {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 0 auto;
+  box-shadow: inset 0px 0px 0px $teal;
+  //animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+  .checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    //animation: stroke .3s $curve .8s forwards;
+  }
+  .checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: $teal;
+    fill: none;
+    //animation: stroke .6s $curve forwards;
+  }
+  &.active {
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+    .checkmark-check {
+      animation: stroke .3s $curve .8s forwards;
+    }
+    .checkmark-circle {
+      animation: stroke .6s $curve forwards;
+    }
+  }
+}
+
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes pop {
+  100% {
+    stroke-dashoffset:0;
+    fill:$white;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px $teal;
+  }
+}
+@keyframes fillred {
+  100% {
+    fill:$red;
+  }
+}

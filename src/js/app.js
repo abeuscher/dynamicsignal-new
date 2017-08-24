@@ -11,6 +11,9 @@ var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
 var ActivateVideos = require("./video-handler/index.js");
 
+var ScrollMagic = require("scrollmagic");
+require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
+
 var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
 
@@ -47,16 +50,6 @@ var siteSettings = {
 
 window.addEventListener("load", function() {
   if (siteSettings.validDomains.indexOf(window.location.hostname)>-1) {
-    /*
-    (function(d) {
-        var config = {
-          kitId: 'hao2kje',
-          scriptTimeout: 0,
-          async: false
-        },
-        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=false;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-      })(document);
-*/
       (function(d) {
         var config = {
           kitId: 'rqa1vic',
@@ -209,9 +202,29 @@ var siteActions = [{
     }
   },
   {
+    "element": "case-study-page",
+    "action": function() {
+      var bullets = document.querySelectorAll(".case-study-list svg");
+      var midPoint = window.innerHeight/4 * -1;
+      var controller = new ScrollMagic.Controller({"loglevel":0});
+      for (i=0;i<bullets.length;i++) {
+        var thisBullet = bullets[i];
+        thisBullet.id = "bullet-"+i;
+        new ScrollMagic.Scene({
+          offset:midPoint,
+          triggerElement:thisBullet,
+          duration:0
+        })
+        .on("enter leave", function(e) { document.getElementById("bullet-"+this.id).classList.add("active"); })
+        .addTo(controller)
+        .id = i;
+      }
+    }
+  },
+  {
     "element": "customers-grid",
     "action": function() {
-      console.log(customerData);
+      //console.log(customerData);
       var customerGrid = document.getElementById("customers-grid");
       var videoGall = new Flickity(document.getElementById("customer-video-carousel"),{
               "wrapAround":true,
@@ -419,7 +432,7 @@ var siteActions = [{
     "action": function() {
       var jobs = sortBy(pageData.jobs, function(i) { return i.post_date });
       var categories = sortBy(pageData.categories, function(i) { return i.cat_name });
-      console.log(pageData.categories);
+      //console.log(pageData.categories);
       var opts = {
         "jobs": jobs,
         "template": siteSettings.templates.jobListing,

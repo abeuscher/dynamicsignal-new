@@ -69,7 +69,6 @@ block content
           global $authordata;
           //echo json_encode($authordata);
           $meta = get_user_meta($authordata->data->ID);
-          echo "<script>var userData = ".json_encode($meta).";console.log(userData);</script>";
         .author-thumb
           :php
             $authorname = $meta["first_name"][0]." ".$meta["last_name"][0];

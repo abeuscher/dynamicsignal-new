@@ -5,22 +5,6 @@ block template
     Template Name: Demo Request Form
     */
 block content
-  :php
-    global $wp_query;
-     query_posts(array(
-         'post_type' => 'customer',
-         'numberposts' => 100
-     ));
-     $customers = [];
-     while(have_posts()) : the_post();
-        $post->logo = get_field("logo");
-        $post->citation_name = get_field("citation_name");
-        $post->citation_title = get_field("citation_title");
-        $post->quote = get_field("quote");
-         array_push($customers,$post);
-     endwhile;
-     wp_reset_query();
-    echo '<script>var customerData = '. json_encode($customers).';</script>';
   -
     var pageData = {
     "header":"Request A Demo",
@@ -57,3 +41,5 @@ block content
         p#required-warning
           span.asterisk *
           |  all fields are required.
+  //script(src='https://www.linkedin.com/autofill/js/autofill.js', type='text/javascript', async='')
+  //script(type='IN/Form2', data-form='mktoForm_1163', data-field-firstname='FirstName', data-field-lastname='LastName', data-field-phone='Phone', data-field-company='Company', data-field-title='Title', data-field-state='State', data-field-country='Country').

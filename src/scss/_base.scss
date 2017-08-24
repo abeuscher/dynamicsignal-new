@@ -232,7 +232,9 @@ ul.nav-items li a.button-teal {
     color: $white;
     text-decoration: none;
   }
-
+  &.cta {
+    margin:$gutter-width 0 $gutter-width*2;
+  }
   &.knockout {
     background: $white;
     color: $red;
