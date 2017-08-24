@@ -68,14 +68,6 @@
     margin:80px auto 0;
   }
 }
-.top-nav {
-    position:absolute;
-    top:300px;
-    .left-nav.desktop {
-      left:0;
-      display:block !important;
-    }
-}
 @media only screen and (max-width: 1024px) {
   .search-results-overlay {
     margin-top:60px;
@@ -84,12 +76,15 @@
     top:100px;
   }
   .top-nav {
+      border:none;
+      box-shadow:none;
       .left-nav.desktop {
         position:absolute;
         left:0;
         top:7px;
         width:50%;
         margin:0;
+        display:none !important;
         li {
           display:block;
           max-height:0;
@@ -117,6 +112,14 @@
       }
   }
 }
+.top-nav .search-container {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    .search-toggle {
+      border-radius:5px 0 0 5px;
+    }
+  }
 .nav-toggle {
   display:none !important;
 }
