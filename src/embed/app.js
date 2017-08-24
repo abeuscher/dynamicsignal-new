@@ -27,7 +27,6 @@ window.addEventListener("load", function() {
     drop.classList.toggle("expanded");
     menuToggle.classList.toggle("active");
   });
-  console.log(window.location.pathname);
   if (location.hash.indexOf("ufh")!=-1) {
     location.href = "https://resources.dynamicsignal.com/h/"+location.hash.substr(5,1)+"/" + location.hash.substr(7,location.hash.length-1);
   }
