@@ -5,7 +5,13 @@ block template
 		Template Name: Case Study Page
 		*/
 block content
-	section.hero#page-top
+	-
+		var pageData = {
+			"parentTitle" : "Case Studies",
+			"parentUrl":"https://resources.dynamicsignal.com/h/c/837672-case-studies"
+		};
+	include ./inc/breadcrumbs.pug
+	section.hero.has-breadcrumbs#page-top
 		.container
 			.row
 				h1

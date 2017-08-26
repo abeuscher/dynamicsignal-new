@@ -1,25 +1,31 @@
 extends inc/page.pug
 block template
-  :php
-    /*
-    Template Name: Career Single Entry Page
-    */
+	:php
+		/*
+		Template Name: Career Single Entry Page
+		*/
 block content
-  :php
-    if( have_posts() ){
-     while( have_posts() ) {
-      the_post();
-  section.hero
-    h1
-      :php
-        the_title();
-  include ./inc/social-menu.pug
-  section.container.blog-content
-    .row
-      .col-md-12
-        article.blog-post
-          .blog-post-body
-            :php
-              the_content();
-        :php
-          }}
+	:php
+		if( have_posts() ){
+		 while( have_posts() ) {
+			the_post();
+	-
+		var pageData = {
+			"parentTitle" : "Careers",
+			"parentUrl":"/careers/"
+		};
+	include ./inc/breadcrumbs.pug
+	section.hero
+		h1
+			:php
+				the_title();
+	include ./inc/social-menu.pug
+	section.container.blog-content
+		.row
+			.col-md-12
+				article.blog-post
+					.blog-post-body
+						:php
+							the_content();
+				:php
+					}}

@@ -1,66 +1,67 @@
 extends inc/page.pug
 block template
-  :php
-    /*
-    Template Name: Event Single Entry Page
-    */
+	:php
+		/*
+		Template Name: Event Single Entry Page
+		*/
 block content
-  :php
-    if( have_posts() ){
-     while( have_posts() ) {
-      the_post();
-      $start_date = get_field( 'event_start_date' );
-      if (get_field("ds_event_type")!="") {
-  section.event-type-banner.col-center
-    :php
-      echo get_field("ds_event_type");
-      }
-  section.event-hero.container
-    .row
-      .col-md-12
-        :php
-          echo "<div class='event-thumb' data-bg='".get_field('ds_event_thumbnail')["sizes"]["large"]."'>";
-        span.month
-          :php
-            echo date("F", strtotime($start_date));
-        span.date
-          :php
-            echo date("j", strtotime($start_date));
-        span.time
-          :php
-            echo get_field( 'event_start_time' );
-        :php
-          echo "</div>";
-        a.button-teal.button-events-back(href="/events/") View All Events
-        .event-info
-          h1
-            :php
-              the_title();
-          :php
-            echo "<a class='button-red cta' href='".get_field( 'ds_button_url' )."'>".get_field('ds_button_text')."</a>";
-          ul.social-share
-            li
-              :php
-                echo "<a href='https://www.facebook.com/sharer/sharer.php?u=".urlencode(get_permalink())."' target='_blank'>";
-              span.fa-1x.fa-stack
-                i.fa.fa-circle.fa-stack-2x
-                i.fa.fa-stack-1x.fa-inverse.fa-facebook
-              :php
-                echo "</a>";
-            li
-              :php
-                echo "<a href='https://twitter.com/home?status=".urlencode(get_permalink())."' target='_blank'>";
-              span.fa-1x.fa-stack
-                i.fa.fa-circle.fa-stack-2x
-                i.fa.fa-stack-1x.fa-inverse.fa-twitter
-              :php
-                echo "</a>";
-  section.container.blog-content
-    .row
-      .col-md-12
-        article.blog-post
-          .blog-post-body
-            :php
-              the_content();
-        :php
-          }}
+	:php
+		if( have_posts() ){
+		 while( have_posts() ) {
+			the_post();
+			$start_date = get_field( 'event_start_date' );
+	-
+		var pageData = {
+			"parentTitle" : "Events",
+			"parentUrl":"/events/"
+		};
+	include ./inc/breadcrumbs.pug
+	section.event-hero.container
+		.row
+			.col-md-12
+				:php
+					echo "<div class='event-thumb' data-bg='".get_field('ds_event_thumbnail')["sizes"]["large"]."'>";
+				span.month
+					:php
+						echo date("F", strtotime($start_date));
+				span.date
+					:php
+						echo date("j", strtotime($start_date));
+				span.time
+					:php
+						echo get_field( 'event_start_time' );
+				:php
+					echo "</div>";
+				a.button-teal.button-events-back(href="/events/") View All Events
+				.event-info
+					h1
+						:php
+							the_title();
+					:php
+						echo "<a class='button-red cta' href='".get_field( 'ds_button_url' )."'>".get_field('ds_button_text')."</a>";
+					ul.social-share
+						li
+							:php
+								echo "<a href='https://www.facebook.com/sharer/sharer.php?u=".urlencode(get_permalink())."' target='_blank'>";
+							span.fa-1x.fa-stack
+								i.fa.fa-circle.fa-stack-2x
+								i.fa.fa-stack-1x.fa-inverse.fa-facebook
+							:php
+								echo "</a>";
+						li
+							:php
+								echo "<a href='https://twitter.com/home?status=".urlencode(get_permalink())."' target='_blank'>";
+							span.fa-1x.fa-stack
+								i.fa.fa-circle.fa-stack-2x
+								i.fa.fa-stack-1x.fa-inverse.fa-twitter
+							:php
+								echo "</a>";
+	section.container.blog-content
+		.row
+			.col-md-12
+				article.blog-post
+					.blog-post-body
+						:php
+							the_content();
+				:php
+					}}

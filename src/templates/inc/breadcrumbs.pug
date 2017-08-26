@@ -1,0 +1,14 @@
+section.container.breadcrumbs-bucket
+  .row
+    .col-md-12
+      .breadcrumbs
+        span
+          a(href="/") Home
+        .separator »
+        span
+          a(href=pageData.parentUrl)!=pageData.parentTitle
+        .separator »
+        span
+          p
+            :php
+              the_title();

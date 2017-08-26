@@ -1,0 +1,21 @@
+.breadcrumbs-bucket {
+  padding-top:70px;
+  padding-bottom:0;
+}
+.breadcrumbs {
+  font-size:14px;
+  color:$classic-dark-grey;
+  span, .separator {
+    display:inline-block;
+  }
+  .separator {
+    margin:0 5px 0 2px;
+  }
+  a {
+    color:$turquoise;
+    &:hover {
+      color:$black;
+      text-decoration: underline;
+    }
+  }
+}

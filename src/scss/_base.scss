@@ -135,6 +135,12 @@ section {
       padding: 70px 0 0;
       min-height: 300px;
     }
+    &.has-breadcrumbs {
+      @include bp(m) {
+        padding: 0px 0 $gutter-width;
+        min-height: 300px;
+      }
+    }
     .cta,
     h1,
     h2 {
