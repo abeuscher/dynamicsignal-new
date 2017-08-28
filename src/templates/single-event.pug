@@ -10,11 +10,8 @@ block content
 		 while( have_posts() ) {
 			the_post();
 			$start_date = get_field( 'event_start_date' );
-	-
-		var pageData = {
-			"parentTitle" : "Events",
-			"parentUrl":"/events/"
-		};
+			$parent_title = get_field('ds_event_type') == "cswebinar" ? "Webinars" : "Events";
+			$parent_url = get_field('ds_event_type') == "cswebinar" ? "/webinars/" : "/events/";
 	include ./inc/breadcrumbs.pug
 	section.event-hero.container
 		.row
@@ -29,7 +26,7 @@ block content
 						echo date("j", strtotime($start_date));
 				span.time
 					:php
-						echo get_field( 'event_start_time' );
+						echo get_field( 'event_start_time' ) . " (". get_field("event_time_zone").")";
 				:php
 					echo "</div>";
 				a.button-teal.button-events-back(href="/events/") View All Events

@@ -6,7 +6,8 @@ section.container.breadcrumbs-bucket
           a(href="/") Home
         .separator »
         span
-          a(href=pageData.parentUrl)!=pageData.parentTitle
+          :php
+            echo "<a href='$parent_url'>$parent_title</a>";
         .separator »
         span
           p

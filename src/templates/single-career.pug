@@ -9,11 +9,9 @@ block content
 		if( have_posts() ){
 		 while( have_posts() ) {
 			the_post();
-	-
-		var pageData = {
-			"parentTitle" : "Careers",
-			"parentUrl":"/careers/"
-		};
+	:php
+		$parent_title = "Careers";
+		$parent_url = "/careers/";
 	include ./inc/breadcrumbs.pug
 	section.hero
 		h1

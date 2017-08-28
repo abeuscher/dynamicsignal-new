@@ -5,11 +5,9 @@ block template
 		Template Name: Case Study Page
 		*/
 block content
-	-
-		var pageData = {
-			"parentTitle" : "Case Studies",
-			"parentUrl":"https://resources.dynamicsignal.com/h/c/837672-case-studies"
-		};
+	:php
+		$parent_title = "Case Studies";
+		$parent_url = "https://resources.dynamicsignal.com/h/c/837672-case-studies";
 	include ./inc/breadcrumbs.pug
 	section.hero.has-breadcrumbs#page-top
 		.container

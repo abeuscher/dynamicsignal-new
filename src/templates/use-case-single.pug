@@ -5,11 +5,9 @@ block template
     Template Name: Use Case Single Entry Page
     */
 block content
-  -
-    var pageData = {
-      "parentTitle" : "Use Cases",
-      "parentUrl":"/use-cases/"
-    };
+  :php
+    $parent_title = "Use Cases";
+    $parent_url = "/use-cases/";
   include ./inc/breadcrumbs.pug
   :php
     echo '<script>var useCaseBackgrounds = '. json_encode(array(get_field("solution_1_image"),get_field("solution_2_image"),get_field("solution_3_image")),JSON_UNESCAPED_SLASHES).'; var useCaseQuotes = '. json_encode(get_field("proof_points")).';</script>';

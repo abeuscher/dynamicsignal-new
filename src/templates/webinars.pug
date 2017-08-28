@@ -43,6 +43,7 @@ block content
           "start_day"=>date("j", strtotime($start_date)),
           "start_year"=>date("Y", strtotime($start_date)),
           "start_time"=>get_field( 'event_start_time' ),
+          "event_time_zone"=>get_field( 'event_time_zone' ),
           "finish_date"=>get_field( 'event_end_date' ) ,
           "thumb"=>get_field('ds_event_thumbnail'),
           "btn_text"=>get_field('ds_button_text'),
