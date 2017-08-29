@@ -1,2 +1,40 @@
 :php
   add_theme_support( 'post-thumbnails' );
+  function writeSeries() {
+    $series = getSeries("page","_wp_page_template","use-case-single.php");
+    echo json_encode($series);
+  }
+
+  function getSeries($type,$query_key,$query_value) {
+    if ($type=="blog") {
+      $args = array();
+    }
+    else if (type=="use_case" || $type) {
+      $args = array(
+          'post_type'  => $type,  /* overrides default 'post' */
+          'meta_key'   => $query_key,
+          'meta_value' => $query_value
+      );
+    }
+    $the_query = new WP_Query($args);
+
+  }
+    $pagelist = get_pages('sort_column=menu_order&sort_order=asc');
+
+
+  function normalize_series($series,$compare,$dir) {
+    function cmp($a, $b)
+    {
+      return $a[$compare], $b[$compare]);
+    }
+    return $dir ? array_reverse(usort($series, "cmp")) : usort($series, "cmp");
+  }
+
+  function getNextPrev($index,$series) {
+    return array_search($index,$series);
+    $entries = array(
+      "current"=>$current,
+      "next"=>$series[$current+1] ? $series[$current+1] : $series[0],
+      "previous"=>$series[$current-1] ? $series[$current-1] : $series[count($series)-1]
+    );
+  }
