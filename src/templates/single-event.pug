@@ -59,6 +59,59 @@ block content
 				article.blog-post
 					.blog-post-body
 						:php
+
 							the_content();
 				:php
 					}}
+					$args = array(
+						"post_type"=>"event",
+						"posts_per_page"=>1,
+						"meta_key"=>"event_start_date",
+						"orderby"=>"meta_value_date",
+						"order"=>"DESC",
+						"meta_query"=>array(
+							"relation"=>"AND",
+							"date_clause" => array(
+																"key"=>"event_start_date",
+																"value"=>date("Y-m-d", strtotime($start_date)),
+																"compare"=>"<",
+																"type"=>"DATE"
+																),
+							"type_clause" => array(
+																"key"=>"ds_event_type",
+																"value"=>"cswebinar",
+																"compare"=>"!="
+																)
+						)
+					);
+					$previous_post = get_posts($args)[0];
+
+					$args = array(
+						"post_type"=>"event",
+						"posts_per_page"=>1,
+						"meta_key"=>"event_start_date",
+						"orderby"=>"meta_value_date",
+						"order"=>"DESC",
+						"meta_query"=>array(
+							"relation"=>"AND",
+							"date_clause" => array(
+																"key"=>"event_start_date",
+																"value"=>date("Y-m-d", strtotime($start_date)),
+																"compare"=>">",
+																"type"=>"DATE"
+																),
+							"type_clause" => array(
+																"key"=>"ds_event_type",
+																"value"=>"cswebinar",
+																"compare"=>"!="
+																)
+						)
+					);
+					$next_post = get_posts($args)[0];
+
+					$previous_post->thumb = wp_get_attachment_image_src(get_post_meta($previous_post->ID,'ds_event_thumbnail',true),'thumbnail')[0];
+					$next_post->thumb = wp_get_attachment_image_src(get_post_meta($next_post->ID,'ds_event_thumbnail',true),'thumbnail')[0];
+
+					$previous_post->url = "/events/".$previous_post->post_name;
+					$next_post->url = "/events/".$next_post->post_name;
+					echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";

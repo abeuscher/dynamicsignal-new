@@ -112,6 +112,14 @@ var siteActions = [{
     }
   },
   {
+    "element": "paging-thumbs",
+    "action": function() {
+      if (typeof seriesNav != "undefined") {
+        console.log(seriesNav);
+      }
+    }
+  },
+  {
     "element": "connectors",
     "action": function() {
       var bucket = document.getElementById("connectors");
