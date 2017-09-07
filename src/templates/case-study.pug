@@ -8,6 +8,7 @@ block content
 	:php
 		$parent_title = "Case Studies";
 		$parent_url = "https://resources.dynamicsignal.com/h/c/837672-case-studies";
+		$page_index = get_field("sort_order");
 	include ./inc/breadcrumbs.pug
 	section.hero.has-breadcrumbs#page-top
 		.container
@@ -146,6 +147,61 @@ block content
 					}
 	:php
 		}
+			$args = array(
+				"post_type"=>"page",
+				"posts_per_page"=>1,
+				"meta_key"=>"sort_order",
+				"orderby"=>"meta_value_num",
+				"order"=>"DESC",
+				"meta_query"=>array(
+					"relation"=>"AND",
+					"order_clause" => array(
+														"key"=>"sort_order",
+														"value"=>$page_index,
+														"compare"=>"<",
+														"type"=>"numeric"
+														),
+					"template_clause" => array(
+														"key" => "_wp_page_template",
+														"value" => "case-study.php"
+														)
+					)
+			);
+			$previous_post = get_posts($args)[0];
+
+			$args = array(
+				"post_type"=>"page",
+				"posts_per_page"=>1,
+				"meta_key"=>"sort_order",
+				"orderby"=>"meta_value_num",
+				"order"=>"ASC",
+				"meta_query"=>array(
+					"relation"=>"AND",
+					"order_clause" => array(
+														"key"=>"sort_order",
+														"value"=>$page_index,
+														"compare"=>">",
+														"type"=>"numeric"
+														),
+					"template_clause" => array(
+														"key" => "_wp_page_template",
+														"value" => "case-study.php"
+														)
+					)
+			);
+			$next_post = get_posts($args)[0];
+
+			$previous_post->thumb = get_the_post_thumbnail($previous_post->ID);
+			$next_post->thumb =  get_the_post_thumbnail($next_post->ID);
+
+			$previous_post->url = "/".$previous_post->post_name;
+			$next_post->url = "/".$next_post->post_name;
+
+			$previous_post->classname="prev";
+			$next_post->classname="next";
+			$previous_post->label = "Previous Use Case";
+			$next_post->label = "Next Use Case";
+			echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";
 	section.case-study.case-study-cta
 		.container
 			.row

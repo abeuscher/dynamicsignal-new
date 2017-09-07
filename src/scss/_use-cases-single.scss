@@ -149,15 +149,6 @@ section#parallax.use-cases-parallax {
         }
       }
     }
-    @include bp(m) {
-      background-image: none !important;
-      padding-top:20%;
-      .content {
-        width:50%;
-        margin-left:50% !important;
-      }
-
-    }
     .content {
       h1, h2, .text-content {
         position:relative;
@@ -174,5 +165,18 @@ section#parallax.use-cases-parallax {
         font-weight:300;
       }
     }
+    @include bp(m) {
+      background-image: none !important;
+      padding-top:20%;
+      .content {
+        width:50%;
+        margin-left:50% !important;
+        h1, h2, .text-content {
+          padding-right:160px;
+        }
+      }
+
+    }
+
   }
 }

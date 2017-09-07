@@ -5,6 +5,11 @@ block template
 		Template Name: Careers Page
 		*/
 block content
+	:php
+		if( have_posts() ): while( have_posts() ): the_post();
+			$videos = get_field("career_videos");
+		endwhile;
+		endif;
 	-
 		var pageData = {
 		"header":"Join Our Team",
@@ -71,6 +76,7 @@ block content
 		}
 		echo "<script>var pageData = {'jobs':".json_encode($jobs,JSON_UNESCAPED_SLASHES)
 		.",'categories':".json_encode($categories,JSON_UNESCAPED_SLASHES)
+		.",'videos':".json_encode($videos,JSON_UNESCAPED_SLASHES)
 		."};</script>";
 	include ./inc/hero.pug
 	section.careers-links
@@ -95,16 +101,7 @@ block content
 					h3!=pane.title
 					p!=pane.copy
 	section.container#video
-		.row
-			.col-md-12
-				.video-thumb(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
-					.left-gradient
-					.content.left
-						h2!=pageData.videoInfo.header
-						p.no-quote!=pageData.videoInfo.quote
-						a.video-play(href="#")
-							span.cta!=pageData.videoInfo.cta
-							i.fa.fa-play
+		#careers-video-carousel
 	section#culture.container
 		.row.padding-bottom
 			.col-md-12.col-center

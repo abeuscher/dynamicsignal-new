@@ -86,102 +86,102 @@ section.use-cases-grid {
               }
               @include bp(m) {
                 &#grid-use-cases-redesign-0 {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/EmployeeEngagement.png");
+                  background-image: url($img-path+"use-cases-logos-grey/employeeengagement.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
                   &:hover {
-                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/EmployeeEngagement.png");
+                    background-image: url($img-path+"use-cases-logos-green/employeeengagement.png");
                   }
                 }
 
                 &#grid-use-cases-redesign-1 {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/MobileIntranet.png");
+                  background-image: url($img-path+"use-cases-logos-grey/mobileintranet.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
                   &:hover {
-                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/MobileIntranet.png");
+                    background-image: url($img-path+"use-cases-logos-green/mobileintranet.png");
                   }
                 }
 
                 &#grid-use-cases-redesign-2 {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/OutdatedIntranet.png");
+                  background-image: url($img-path+"use-cases-logos-grey/outdatedintranet.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
                   &:hover {
-                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/OutdatedIntranet.png");
+                    background-image: url($img-path+"use-cases-logos-green/outdatedintranet.png");
                   }
                 }
 
                 &#grid-use-cases-redesign-3 {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/EmployeeAdvocacy.png");
+                  background-image: url($img-path+"use-cases-logos-grey/employeeadvocacy.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
                   &:hover {
-                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/EmployeeAdvocacy.png");
+                    background-image: url($img-path+"use-cases-logos-green/employeeadvocacy.png");
                   }
                 }
 
                 &#grid-use-cases-redesign-4 {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/CompanyNews.png");
+                  background-image: url($img-path+"use-cases-logos-grey/companynews.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
                   &:hover {
-                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/CompanyNews.png");
+                    background-image: url($img-path+"use-cases-logos-green/companynews.png");
                   }
                 }
 
                 &#grid-use-cases-redesign-5 {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/SocialSelling.png");
+                  background-image: url($img-path+"use-cases-logos-grey/socialselling.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
                   &:hover {
-                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/SocialSelling.png");
+                    background-image: url($img-path+"use-cases-logos-green/socialselling.png");
                   }
                 }
 
                 &#grid-use-cases-redesign-6 {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/SocialRecruiting.png");
+                  background-image: url($img-path+"use-cases-logos-grey/socialrecruiting.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
                   &:hover {
-                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/SocialRecruiting.png");
+                    background-image: url($img-path+"use-cases-logos-green/socialrecruiting.png");
                   }
                 }
 
                 &#grid-use-cases-redesign-7 {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/LeadGeneration.png");
+                  background-image: url($img-path+"use-cases-logos-grey/leadgeneration.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
                   &:hover {
-                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/LeadGeneration.png");
+                    background-image: url($img-path+"use-cases-logos-green/leadgeneration.png");
                   }
                 }
 
                 &#grid-use-cases-redesign-8 {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/BrandAwareness.png");
+                  background-image: url($img-path+"use-cases-logos-grey/brandawareness.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
                   &:hover {
-                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/BrandAwareness.png");
+                    background-image: url($img-path+"use-cases-logos-green/brandawareness.png");
                   }
                 }
 
                 &#grid-use-cases-redesign-9 {
-                  background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-grey/InternalComms.png");
+                  background-image: url($img-path+"use-cases-logos-grey/internalcomms.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
                   &:hover {
-                    background-image: url("/wp-content/themes/dynamicsignal/assets/custom-redesign/images/use-cases-logos-green/InternalComms.png");
+                    background-image: url($img-path+"use-cases-logos-green/internalcomms.png");
                   }
                 }
               }

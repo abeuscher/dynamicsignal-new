@@ -111,7 +111,10 @@ block content
 
 					$previous_post->thumb = wp_get_attachment_image_src(get_post_meta($previous_post->ID,'ds_event_thumbnail',true),'thumbnail')[0];
 					$next_post->thumb = wp_get_attachment_image_src(get_post_meta($next_post->ID,'ds_event_thumbnail',true),'thumbnail')[0];
-
+					$previous_post->classname="prev";
+					$next_post->classname="next";
+					$previous_post->label = "Previous Event";
+					$next_post->label = "Next Event";
 					$previous_post->url = "/events/".$previous_post->post_name;
 					$next_post->url = "/events/".$next_post->post_name;
 					echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";

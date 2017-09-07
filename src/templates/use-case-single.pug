@@ -8,7 +8,7 @@ block content
 	:php
 		$parent_title = "Use Cases";
 		$parent_url = "/use-cases/";
-		$page_index = get_post_field( 'menu_order');
+		$page_index = intval(get_post_field('sort_order'));
 	include ./inc/breadcrumbs.pug
 	:php
 		echo '<script>var useCaseBackgrounds = '. json_encode(array(get_field("solution_1_image"),get_field("solution_2_image"),get_field("solution_3_image")),JSON_UNESCAPED_SLASHES).'; var useCaseQuotes = '. json_encode(get_field("proof_points")).';</script>';
@@ -18,7 +18,6 @@ block content
 				h1
 					:php
 						the_title();
-						echo get_field("_wp_page_template");
 				h2
 					:php
 						the_field("subheader");
@@ -96,14 +95,16 @@ block content
 		$args = array(
 			"post_type"=>"page",
 			"posts_per_page"=>1,
-			"orderby"=>"menu_order",
-			"order"=>"ASC",
+			"meta_key"=>"sort_order",
+			"orderby"=>"meta_value_num",
+			"order"=>"DESC",
 			"meta_query"=>array(
 				"relation"=>"AND",
 				"order_clause" => array(
-													"key"=>"menu_order",
+													"key"=>"sort_order",
 													"value"=>$page_index,
-													"compare"=>"<"
+													"compare"=>"<",
+													"type"=>"numeric"
 													),
 				"template_clause" => array(
 													"key" => "_wp_page_template",
@@ -116,14 +117,16 @@ block content
 		$args = array(
 			"post_type"=>"page",
 			"posts_per_page"=>1,
-			"orderby"=>"menu_order",
+			"meta_key"=>"sort_order",
+			"orderby"=>"meta_value_num",
 			"order"=>"ASC",
 			"meta_query"=>array(
 				"relation"=>"AND",
 				"order_clause" => array(
-													"key"=>"menu_order",
+													"key"=>"sort_order",
 													"value"=>$page_index,
-													"compare"=>">"
+													"compare"=>">",
+													"type"=>"numeric"
 													),
 				"template_clause" => array(
 													"key" => "_wp_page_template",
@@ -133,9 +136,14 @@ block content
 		);
 		$next_post = get_posts($args)[0];
 
-		$previous_post->thumb = get_the_post_thumbnail($previous_post->ID);
-		$next_post->thumb =  get_the_post_thumbnail($next_post->ID);
+		$previous_post->thumb = get_the_post_thumbnail_url($previous_post->ID);
+		$next_post->thumb =  get_the_post_thumbnail_url($next_post->ID);
 
 		$previous_post->url = "/".$previous_post->post_name;
 		$next_post->url = "/".$next_post->post_name;
+
+		$previous_post->classname="prev";
+		$next_post->classname="next";
+		$previous_post->label = "Previous Use Case";
+		$next_post->label = "Next Use Case";
 		echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";

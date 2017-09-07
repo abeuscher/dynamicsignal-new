@@ -19,6 +19,30 @@
     }
   }
 }
+.career-carousel-slide {
+  .video-thumb {
+    .content {
+      h3, p {
+        text-shadow:1px 1px 3px rgba(0,0,0,.8);
+      }
+      h3 {
+        font-weight:500;
+        font-size:24px;
+      }
+      p {
+        font-style:normal;
+        font-size:20px;
+      }
+      a.video-play {
+        float:right;
+      }
+      &.left {
+        padding-left:5%;
+      }
+    }
+  }
+
+}
 #job-list {
   article {
     animation: fader .5s 1;
