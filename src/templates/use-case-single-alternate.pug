@@ -4,6 +4,7 @@ block template
 		/*
 		Template Name: Use Case Alternate Single Entry Page
 		*/
+		$override_title = get_field("page_title");
 block content
 	:php
 		echo '<script>var useCaseBackgrounds = '. json_encode(array(get_field("solution_1_image"),get_field("solution_2_image"),get_field("solution_3_image")),JSON_UNESCAPED_SLASHES).'; var useCaseQuotes = '. json_encode(get_field("proof_points")).';</script>';
@@ -12,7 +13,7 @@ block content
 			.row
 				h1
 					:php
-						the_title();
+						the_field("page_title");
 				h2
 					:php
 						the_field("subheader");

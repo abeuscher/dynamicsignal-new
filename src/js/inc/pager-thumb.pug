@@ -3,6 +3,6 @@ a.pager-thumb(class=locals.classname,href=locals.url)
     h4.thumb-label=locals.label
     .thumb(data-bg=locals.thumb)
   .title-wrapper
-    h4.thumb-headline!=locals.post_title
+    h4.thumb-headline!=locals.post_title.replace("Use Case : ","")
   .arrow-wrapper
     div(class=locals.classname+"-arrow")

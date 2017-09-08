@@ -57,14 +57,6 @@ block content
 						the_content();
 			.col-md-3.related-posts
 				include ./inc/related-posts.pug
-				h2.header-right Tags
-				.blog-tags
-					:php
-						if( has_tag() ) {
-							echo "<p class='blog-tags'>";
-							the_tags( false );
-							echo "</p>";
-						}
 		.row
 			.col-md-9.author-bio
 				h2.header-right Post Author

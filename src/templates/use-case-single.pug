@@ -4,6 +4,7 @@ block template
 		/*
 		Template Name: Use Case Single Entry Page
 		*/
+		$override_title = get_field("page_title");
 block content
 	:php
 		$parent_title = "Use Cases";
@@ -17,7 +18,7 @@ block content
 			.row
 				h1
 					:php
-						the_title();
+						the_field("page_title");
 				h2
 					:php
 						the_field("subheader");
@@ -123,15 +124,15 @@ block content
 			"meta_query"=>array(
 				"relation"=>"AND",
 				"order_clause" => array(
-													"key"=>"sort_order",
-													"value"=>$page_index,
-													"compare"=>">",
-													"type"=>"numeric"
-													),
+						"key"=>"sort_order",
+						"value"=>$page_index,
+						"compare"=>">",
+						"type"=>"numeric"
+						),
 				"template_clause" => array(
-													"key" => "_wp_page_template",
-													"value" => "use-case-single.php"
-													)
+						"key" => "_wp_page_template",
+						"value" => "use-case-single.php"
+						)
 				)
 		);
 		$next_post = get_posts($args)[0];

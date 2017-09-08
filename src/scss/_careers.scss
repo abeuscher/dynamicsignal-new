@@ -19,7 +19,11 @@
     }
   }
 }
+
 .career-carousel-slide {
+  &:not(.is-selected) {
+    opacity:0;
+  }
   .video-thumb {
     .content {
       h3, p {

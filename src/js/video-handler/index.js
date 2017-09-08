@@ -33,15 +33,24 @@ ActivateVideos.prototype.onStart = function(e) {
   thisContent.classList.toggle("hide");
   thisPlayer.classList.toggle("hide");
 
-  var carouselButtons = document.getElementsByClassName("flickity-prev-next-button");
-  if (carouselButtons.length) {
-    for (i=0;i<carouselButtons.length;i++) {
-      carouselButtons[i].removeEventListener("click", carouselListener);
-      carouselButtons[i].addEventListener("click", carouselListener);
+
+  function changeCarouselListeners(toggle) {
+    var carouselButtons = document.getElementsByClassName("flickity-prev-next-button");
+    if (carouselButtons.length) {
+      for (i=0;i<carouselButtons.length;i++) {
+        carouselButtons[i].removeEventListener("click", carouselListener);
+        if (toggle) {
+          carouselButtons[i].addEventListener("click", carouselListener);
+        }
+      }
     }
   }
+  changeCarouselListeners(true);
   function carouselListener(e) {
-    console.log(document.querySelectorAll("iframe.vimeo-video:not('hide')"));
+    var thisPlayer = document.querySelectorAll("iframe.vimeo-video:not(.hide)")[0];
+    var vimeoPlayer = new Vimeo(thisPlayer);
+    vimeoPlayer.unload();
+    changeCarouselListeners();
   }
 
 
