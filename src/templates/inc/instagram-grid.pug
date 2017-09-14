@@ -1,0 +1,24 @@
+:php
+  $params = array(
+    "client_id"=>"",
+    "client_secret"=>"",
+    "grant_type"=>"authorization_code",
+    "code"=>"b54457d0e6c14faf8a0b3cdff0d8c0e5",
+    "redurect_uri"=>"http://dynamicsignal.com/instagram_callback"
+  );
+  $url = "http://api.instagram.com/oauth/access_token";
+  echo var_dump(callURL($url,$params));
+  function callURL($url,$data) {
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data)
+        )
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    if ($result === FALSE) { echo "fail"; }
+
+    return $result;
+  }
