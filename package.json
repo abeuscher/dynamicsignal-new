@@ -1,6 +1,6 @@
 {
   "name": "dynamic-signal",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "DS New Site Theme",
   "main": "gulpfile.js",
   "scripts": {
