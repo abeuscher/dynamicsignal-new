@@ -100,6 +100,34 @@
   }
 
 }
+.blog-content .speaker {
+  margin-bottom:$gutter-width;
+
+  .thumb {
+    width:100%;
+    background-size:cover;
+    background-position: center;
+    @include aspect-ratio(1,1);
+    @include bp(m) {
+      max-width:150px;
+      float:left;
+    }
+  }
+  .content {
+    padding-left:174px;
+    min-height:174px;
+  }
+  h3 {
+    font-size:20px;
+    margin:0 0 $gutter-width/2;
+  }
+  h4, h5 {
+    font-size:16px;
+    line-height:1.2;
+    margin:0 0 $gutter-width/4;
+    padding:0;
+  }
+}
 .event-info {
   display: block;
   margin-left:0;
