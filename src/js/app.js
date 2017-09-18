@@ -133,57 +133,18 @@ var siteActions = [{
     "action": function() {
       var bucket = document.getElementById("connectors");
       var thisRow = document.createElement("div");
-      var thisHiddenRow = document.createElement("div");
       thisRow.classList.add("row");
-      thisHiddenRow.classList.add("row");
-      thisHiddenRow.classList.add("info-row");
       for (i=0;i<connectorData.length;i++) {
         var thisConnector = connectorData[i];
         thisConnector.id = i;
         thisRow.append(parseHTML(siteSettings.templates.connectorPanel(thisConnector)));
-        thisHiddenRow.append(parseHTML(siteSettings.templates.connectorInfo(thisConnector)));
         if ((i+1)%4==0 && i!=0) {
           bucket.append(thisRow);
-          bucket.append(thisHiddenRow);
           var thisRow = document.createElement("div");
-          var thisHiddenRow = document.createElement("div");
           thisRow.classList.add("row");
-          thisHiddenRow.classList.add("row");
-          thisHiddenRow.classList.add("info-row");
         }
       }
       bucket.append(thisRow);
-      bucket.append(thisHiddenRow);
-      var buttons = document.querySelectorAll(".btn-connector");
-      for (i=0;i<buttons.length;i++) {
-        var thisButton = buttons[i];
-        thisButton.addEventListener("click", function(e) {
-          e.preventDefault();
-          collapseAll();
-          theTarget = document.getElementById("conn-block-"+this.getAttribute("data-target"));
-          theTarget.classList.add("expanded");
-          theTarget.parentNode.classList.add("expanded");
-        });
-      }
-      var buttons = document.querySelectorAll(".button-close-connector");
-      for (i=0;i<buttons.length;i++) {
-        var thisButton = buttons[i];
-        thisButton.addEventListener("click", function(e) {
-          e.preventDefault();
-          collapseAll();
-        });
-      }
-
-      function collapseAll() {
-        var infoRows = document.querySelectorAll(".info-row");
-        for (c=0;c<infoRows.length;c++) {
-          infoRows[c].removeClass("expanded");
-        }
-        var infoBlocks = document.querySelectorAll(".info-block");
-        for (c=0;c<infoBlocks.length;c++) {
-          infoBlocks[c].removeClass("expanded");
-        }
-      }
     }
   },
   {
