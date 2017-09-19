@@ -180,6 +180,7 @@ h1.blog-title {
   overflow-wrap: break-word;
   p,li {
     line-height: 1.5;
+    font-size:20px;
   }
   li {
     margin-bottom:$gutter-width;
@@ -200,6 +201,12 @@ h1.blog-title {
     font-size:16px;
     font-weight:300;
     line-height:1.25;
+    a {
+      color:$light-grey;
+      &:hover {
+        color:$teal;
+      }
+    }
   }
 }
 .author-bio {
