@@ -85,13 +85,16 @@ h2 {
     font-size: 30px;
   }
   &.header-right {
-    margin:$gutter-width/2 0;
+    margin:$gutter-width*2 0 $gutter-width/2;
     font-size:18px;
     line-height:24px;
     text-transform: uppercase;
     letter-spacing: 1px;
     color:$classic-grey;
     border-bottom:1px solid $middle-grey;
+    &:first-child {
+      margin-top:$gutter-width/2;
+    }
   }
 }
 
