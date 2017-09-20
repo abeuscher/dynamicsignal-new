@@ -20,6 +20,11 @@ var isElement = require("./utils/is-element.js");
 var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
   "videoPath": "/wp-content/themes/ds-new/video/",
+  "ctaBar" : {
+    "cta":"Webinar : The Future of Workforce Communications",
+    "url":"http://amp.dynamicsignal.com/The-Future-of-Workforce-Communications.html",
+    "buttonText":"Register Now"
+  },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
     "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
@@ -34,6 +39,7 @@ var siteSettings = {
     "connectorInfo": require("./inc/connector-info.pug"),
     "useCaseQuote": require("./inc/use-case-quote.pug"),
     "jobListing": require("./inc/job-listing.pug"),
+    "ctaBar": require("./inc/cta-bar.pug"),
     "noEvents": require("./inc/no-events.pug"),
     "eventListing": require("./inc/event-listing.pug"),
     "pastEventListing": require("./inc/past-event-listing.pug"),
@@ -111,6 +117,13 @@ var siteActions = [{
           map.classList.remove("clicked");
         });
       });
+    }
+  },
+  {
+    "element": "cta-bar",
+    "action": function() {
+      var bar = document.getElementById("cta-bar");
+      bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
     }
   },
   {
