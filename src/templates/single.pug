@@ -9,6 +9,7 @@ block content
 		if( have_posts() ){
 		 while( have_posts() ) {
 			the_post();
+			$start_date = get_the_date();
 		$parent_title = "Blog";
 		$parent_url = "/blog/";
 	include ./inc/breadcrumbs.pug
@@ -94,3 +95,18 @@ block content
 								}
 
 								}}
+	section.pager-thumbs.container
+		.row
+			.col-md-12
+				#paging-thumbs
+	:php
+		$next_post = get_next_post();
+		$previous_post = get_previous_post();
+
+		$previous_post->classname="prev";
+		$next_post->classname="next";
+		$previous_post->label = "Previous Post";
+		$next_post->label = "Next Post";
+		$previous_post->url = "/blog/".$previous_post->post_name;
+		$next_post->url = "/blog/".$next_post->post_name;
+		echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";

@@ -3,8 +3,9 @@
   background:$grey;
   width:100%;
   margin:0;
-  height:50px;
+  min-height:50px;
   vertical-align: middle;
+  padding-bottom:$gutter-width/4;
   color:$white;
   bottom:0;
   left:0;
@@ -25,8 +26,11 @@
   h2 {
     display:inline-block;
     color:$white;
-    font-size:20px;
+    font-size:14px;
     margin:0;
     line-height: 50px;
+  }
+  @include bp(m) {
+    height:50px;
   }
 }

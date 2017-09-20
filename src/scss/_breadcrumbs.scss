@@ -25,55 +25,33 @@ a.pager-thumb {
   display:inline-block;
   margin:0 -.5px;
   width:50%;
-  height:152px;
+  height:100px;
   overflow:hidden;
-  padding:50px $gutter-width;
-  border:1px solid $classic-light-grey;
-  background:$white;
-  z-index:9999;
-  color:$black;
+  padding:0 $gutter-width;
+  background:$grey;
+
+  color:$white;
   h4 {
     font-size:10px;
     text-transform: uppercase;
-    margin:0; padding:0;
-    &.thumb-label {
-      text-align: center;
-    }
-    &.thumb-headline {
-      font-size:14px;
-      margin-top:12px;
-      text-transform: none;
-    }
+    margin:$gutter-width/4 0 0; padding:0;
+    color:$white;
   }
-  .thumb-wrapper, .title-wrapper, .arrow-wrapper {
+  .title-wrapper, .arrow-wrapper {
     position:absolute;
     top:0;
-    margin:$gutter-width 0;
-    height:150px;
-  }
-  .thumb-wrapper {
-
-    width:100px;
-    .thumb {
-      width:100px;
-      height:100px;
-      background-size:contain;
-      background-repeat:none;
-      background-position:center;
-    }
-  }
-  .title-wrapper {
-
+    height:50px;
   }
   .arrow-wrapper {
+    margin:50px 0 0;
     .next-arrow, .prev-arrow {
       position: absolute;
-      top: 35%;
-      width: 2rem;
-      height: 2rem;
+      top: 0;
+      width: 1.5rem;
+      height: 1.5rem;
       background: transparent;
-      border-top: .4rem solid $classic-light-grey;
-      border-right: .4rem solid $classic-light-grey;
+      border-top: .4rem solid $white;
+      border-right: .4rem solid $white;
       box-shadow: 0 0 0 transparent;
       transition: all 200ms ease;
     }
@@ -87,26 +65,20 @@ a.pager-thumb {
     }
   }
   &.prev {
-    .thumb-wrapper {
-      left:35px;
-    }
     .arrow-wrapper {
       left:10px;
     }
     .title-wrapper {
-      left:145px;
+      left:40px;
       right:10px;
     }
   }
   &.next {
-    .thumb-wrapper {
-      right:35px;
-    }
     .arrow-wrapper {
       right:10px;
     }
     .title-wrapper {
-      right:145px;
+      right:40px;
       left:10px;
     }
   }
@@ -118,20 +90,25 @@ a.pager-thumb {
     h4 {
       color:$teal;
       &.thumb-headline {
-        color:$black;
+        color:$white;
       }
     }
   }
   @include bp(m) {
     position:fixed;
-    bottom:50px;
-    width:150px;
+    z-index:9999;
+    bottom:0;
+    width:30px;
+    height:50px;
     transition:all .25s ease-in-out;
     &.prev {
       left:0;
     }
     &.next {
       right:0;
+    }
+    .arrow-wrapper {
+      margin:$gutter-width 0 0;
     }
     .title-wrapper {
       max-width:0;
@@ -140,7 +117,7 @@ a.pager-thumb {
     &:hover {
       width:285px;
       .title-wrapper {
-        max-width:135px;
+        max-width:100%;
       }
     }
   }
