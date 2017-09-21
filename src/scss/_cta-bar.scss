@@ -16,8 +16,9 @@
     color:$white;
     display:inline-block;
     text-transform:uppercase;
-    padding:.5em 1.5em;
+    padding:.5em 1.25em;
     margin-left:1em;
+    font-size:12px;
     &:hover {
       background:darken($red,20%);
       color:$white;
