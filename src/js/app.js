@@ -21,9 +21,10 @@ var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
   "videoPath": "/wp-content/themes/ds-new/video/",
   "ctaBar" : {
-    "cta":"Webinar : The Future of Workforce Communications",
-    "url":"http://amp.dynamicsignal.com/The-Future-of-Workforce-Communications.html",
-    "buttonText":"Register Now"
+    "toggle":true,
+    "cta":"Recent Webinar : The Future of Workforce Communications",
+    "url":"https://resources.dynamicsignal.com/h/i/368729411-the-future-of-workforce-communications/185166",
+    "buttonText":"View Now"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
@@ -122,8 +123,10 @@ var siteActions = [{
   {
     "element": "cta-bar",
     "action": function() {
-      var bar = document.getElementById("cta-bar");
-      bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
+      if (siteSettings.ctaBar.toggle) {
+        var bar = document.getElementById("cta-bar");
+        bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
+      }
     }
   },
   {

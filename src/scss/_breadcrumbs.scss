@@ -1,148 +1,164 @@
 .breadcrumbs-bucket {
-  padding-top:70px;
-  padding-bottom:0;
+  padding-top: 70px;
+  padding-bottom: 0;
 }
+
 .breadcrumbs {
-  font-size:14px;
-  color:$classic-dark-grey;
-  span, .separator {
-    display:inline-block;
+  font-size: 14px;
+  color: $classic-dark-grey;
+
+  .separator,
+  span {
+    display: inline-block;
   }
+
   .separator {
-    margin:0 5px 0 2px;
+    margin: 0 5px 0 2px;
   }
+
   a {
-    color:$turquoise;
+    color: $turquoise;
+
     &:hover {
-      color:$black;
+      color: $black;
       text-decoration: underline;
     }
   }
 }
 
 a.pager-thumb {
-  position:relative;
-  display:inline-block;
-  margin:0 -.5px;
-  width:50%;
-  height:152px;
-  overflow:hidden;
-  padding:50px $gutter-width;
-  border:1px solid $classic-light-grey;
-  background:$white;
-  z-index:9999;
-  color:$black;
+  position: relative;
+  display: inline-block;
+  margin: 0 -.5px;
+  width: 50%;
+  height: 100px;
+  overflow: hidden;
+  padding: 0 $gutter-width;
+  background: $grey;
+  color: $white;
+
   h4 {
-    font-size:10px;
+    font-size: 10px;
     text-transform: uppercase;
-    margin:0; padding:0;
-    &.thumb-label {
-      text-align: center;
-    }
-    &.thumb-headline {
-      font-size:14px;
-      margin-top:12px;
-      text-transform: none;
-    }
+    margin: $gutter-width/2 0 0;
+    padding: 0;
+    color: $light-grey;
   }
-  .thumb-wrapper, .title-wrapper, .arrow-wrapper {
-    position:absolute;
-    top:0;
-    margin:$gutter-width 0;
-    height:150px;
-  }
-  .thumb-wrapper {
 
-    width:100px;
-    .thumb {
-      width:100px;
-      height:100px;
-      background-size:contain;
-      background-repeat:none;
-      background-position:center;
-    }
-  }
+  .arrow-wrapper,
   .title-wrapper {
-
+    position: absolute;
+    top: 0;
+    height: 50px;
   }
+
   .arrow-wrapper {
-    .next-arrow, .prev-arrow {
-      position: absolute;
-      top: 35%;
-      width: 2rem;
-      height: 2rem;
-      background: transparent;
-      border-top: .4rem solid $classic-light-grey;
-      border-right: .4rem solid $classic-light-grey;
-      box-shadow: 0 0 0 transparent;
-      transition: all 200ms ease;
+    margin: 0 0 0;
+
+    .next-arrow,
+    .prev-arrow {
+      width:20px;
+      height:50px;
+      background:url($img-path+"chevrons.png") no-repeat;
     }
     .next-arrow {
-      right: 0;
-  		transform: translate3d(0,-50%,0) rotate(45deg);
+      background-position:-90px 10px;
     }
     .prev-arrow {
-      left: 0;
-  		transform: translate3d(0,-50%,0) rotate(-135deg);
+      background-position:0 10px;
     }
+
   }
-  &.prev {
-    .thumb-wrapper {
-      left:35px;
-    }
-    .arrow-wrapper {
-      left:10px;
-    }
-    .title-wrapper {
-      left:145px;
-      right:10px;
-    }
-  }
-  &.next {
-    .thumb-wrapper {
-      right:35px;
-    }
-    .arrow-wrapper {
-      right:10px;
-    }
-    .title-wrapper {
-      right:145px;
-      left:10px;
-    }
-  }
-  &:hover {
-    .next-arrow, .prev-arrow {
-      border-top: .4rem solid $teal;
-      border-right: .4rem solid $teal;
-    }
+
+  .label-wrapper {
+    display: none;
+    position: absolute;
+    left: 40px;
+    width: 50%;
+
     h4 {
-      color:$teal;
+      margin-top: 18px;
+    }
+  }
+
+  &.prev {
+    .arrow-wrapper {
+      left: 10px;
+    }
+
+    .title-wrapper {
+      left: 40px;
+      right: 10px;
+    }
+  }
+
+  &.next {
+    .arrow-wrapper {
+      right: 10px;
+    }
+
+    .title-wrapper {
+      right: 40px;
+      left: 10px;
+    }
+
+    .label-wrapper {
+      left: auto;
+      right: 40px;
+    }
+
+    h4 {
+      text-align: right;
+    }
+  }
+
+  &:hover {
+
+    h4 {
+      color: $white;
+
       &.thumb-headline {
-        color:$black;
+        color: $white;
       }
     }
   }
   @include bp(m) {
-    position:fixed;
-    bottom:50px;
-    width:150px;
-    transition:all .25s ease-in-out;
+    position: fixed;
+    z-index: 9999;
+    bottom: 0;
+    width: 285px;
+    height: 50px;
+    transition: all 0.25s ease-in-out;
+
+    .label-wrapper {
+      display: block;
+    }
+
     &.prev {
-      left:0;
+      left: 0;
     }
+
     &.next {
-      right:0;
+      right: 0;
     }
+
     .title-wrapper {
-      max-width:0;
-      overflow:hidden;
+      opacity: 0;
     }
+
     &:hover {
-      width:285px;
+      .label-wrapper {
+        display: none;
+      }
+      .next-arrow {
+        background-position:-60px 10px;
+      }
+      .prev-arrow {
+        background-position:-30px 10px;
+      }
       .title-wrapper {
-        max-width:135px;
+        opacity: 1;
       }
     }
   }
-
 }

@@ -61,7 +61,7 @@ block content
 						:php
 							the_content();
 							$speakers = get_field("speakers");
-							if (count($speakers)>0) {
+							if ($speakers) {
 								echo "<h2>Speakers</h2>";
 								foreach($speakers as $key=>$speaker) {
 									echo "<div class='speaker'>";
@@ -126,6 +126,10 @@ block content
 					$next_post->classname="next";
 					$previous_post->label = "Previous Event";
 					$next_post->label = "Next Event";
-					$previous_post->url = "/events/".$previous_post->post_name;
-					$next_post->url = "/events/".$next_post->post_name;
+					$previous_post->url = "/event/".$previous_post->post_name;
+					$next_post->url = "/event/".$next_post->post_name;
 					echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";
+	section.pager-thumbs.container
+		.row
+			.col-md-12
+				#paging-thumbs
