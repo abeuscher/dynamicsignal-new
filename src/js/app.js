@@ -53,25 +53,11 @@ var siteSettings = {
     "m":1025,
     "l":1321,
     "xl":1921
-  },
-  "validDomains":["dynamicsignal.com","staging.dynamicsignal.flywheelsites.com"]
+  }
 }
 
 window.addEventListener("load", function() {
-  if (siteSettings.validDomains.indexOf(window.location.hostname)>-1) {
-      (function(d) {
-        var config = {
-          kitId: 'rqa1vic',
-          scriptTimeout: 3000,
-          async: true
-        },
-        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-      })(document);
-  }
-  else {
-    console.log("Font not supported in this domain");
-  }
-  document.body.classList.remove("loading");
+
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
