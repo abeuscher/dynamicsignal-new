@@ -28,7 +28,9 @@ body {
   opacity: 1;
   transition: opacity .4s ease-in-out;
   &.loading {
-    opacity: 0;
+    @include bp(m) {
+      //opacity:0;
+    }
   }
 }
 
