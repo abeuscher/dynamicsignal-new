@@ -20,11 +20,11 @@ var isElement = require("./utils/is-element.js");
 var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
   "videoPath": "/wp-content/themes/ds-new/video/",
-  "ctaBar" : {
-    "toggle":true,
-    "cta":"Recent Webinar : The Future of Workforce Communications",
-    "url":"https://resources.dynamicsignal.com/h/i/368729411-the-future-of-workforce-communications/185166",
-    "buttonText":"View Now"
+  "ctaBar": {
+    "toggle": true,
+    "cta": "Recent Webinar : The Future of Workforce Communications",
+    "url": "https://resources.dynamicsignal.com/h/i/368729411-the-future-of-workforce-communications/185166",
+    "buttonText": "View Now"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
@@ -47,12 +47,12 @@ var siteSettings = {
     "buttonPastEvents": require("./inc/button-past-events.pug"),
     "jobFilter": require("./inc/job-filter.pug")
   },
-  "breakpoints":{
+  "breakpoints": {
     "xs": 0,
-    "s":641,
-    "m":1025,
-    "l":1321,
-    "xl":1921
+    "s": 641,
+    "m": 1025,
+    "l": 1321,
+    "xl": 1921
   }
 }
 
@@ -73,17 +73,16 @@ var siteActions = [{
     "element": "parallax",
     "action": function() {
       var Gallery = false;
+
       function activateScroll() {
 
-        if (window.innerWidth>siteSettings.breakpoints.m) {
+        if (window.innerWidth > siteSettings.breakpoints.m) {
           if (!Gallery) {
             Gallery = new ScrollSite(siteSettings);
-          }
-          else {
+          } else {
             Gallery.resize();
           }
-        }
-        else {
+        } else {
           if (Gallery) {
             Gallery.destroy();
           }
@@ -136,11 +135,11 @@ var siteActions = [{
       var bucket = document.getElementById("connectors");
       var thisRow = document.createElement("div");
       thisRow.classList.add("row");
-      for (i=0;i<connectorData.length;i++) {
+      for (i = 0; i < connectorData.length; i++) {
         var thisConnector = connectorData[i];
         thisConnector.id = i;
         thisRow.append(parseHTML(siteSettings.templates.connectorPanel(thisConnector)));
-        if ((i+1)%4==0 && i!=0) {
+        if ((i + 1) % 4 == 0 && i != 0) {
           bucket.append(thisRow);
           var thisRow = document.createElement("div");
           thisRow.classList.add("row");
@@ -159,11 +158,12 @@ var siteActions = [{
         menuToggle.classList.toggle("active");
       });
       var toggles = document.querySelectorAll(".dropdown-toggle");
-      for(i=0;i<toggles.length;i++) {
-        toggles[i].addEventListener("click",mobileCollapse);
+      for (i = 0; i < toggles.length; i++) {
+        toggles[i].addEventListener("click", mobileCollapse);
       }
+
       function mobileCollapse(e) {
-        if (window.innerWidth<siteSettings.breakpoints.m) {
+        if (window.innerWidth < siteSettings.breakpoints.m) {
           e.preventDefault();
           var drop = this.parentNode.querySelectorAll(".dropdown-menu")[0];
           drop.classList.toggle("expanded");
@@ -174,7 +174,9 @@ var siteActions = [{
   {
     "element": "use-case-quotes",
     "action": function() {
-      var quoteGall = new Flickity("#use-case-quotes", {"prevNextButtons": false});
+      var quoteGall = new Flickity("#use-case-quotes", {
+        "prevNextButtons": false
+      });
       for (i in useCaseQuotes) {
         quoteGall.append(parseHTML(siteSettings.templates.useCaseQuote(useCaseQuotes[i])));
       }
@@ -185,19 +187,23 @@ var siteActions = [{
     "element": "case-study-page",
     "action": function() {
       var bullets = document.querySelectorAll(".case-study-list svg");
-      var midPoint = window.innerHeight/4 * -1;
-      var controller = new ScrollMagic.Controller({"loglevel":0});
-      for (i=0;i<bullets.length;i++) {
+      var midPoint = window.innerHeight / 4 * -1;
+      var controller = new ScrollMagic.Controller({
+        "loglevel": 0
+      });
+      for (i = 0; i < bullets.length; i++) {
         var thisBullet = bullets[i];
-        thisBullet.id = "bullet-"+i;
+        thisBullet.id = "bullet-" + i;
         new ScrollMagic.Scene({
-          offset:midPoint,
-          triggerElement:thisBullet,
-          duration:0
-        })
-        .on("enter leave", function(e) { document.getElementById("bullet-"+this.id).classList.add("active"); })
-        .addTo(controller)
-        .id = i;
+            offset: midPoint,
+            triggerElement: thisBullet,
+            duration: 0
+          })
+          .on("enter leave", function(e) {
+            document.getElementById("bullet-" + this.id).classList.add("active");
+          })
+          .addTo(controller)
+          .id = i;
       }
     }
   },
@@ -206,30 +212,31 @@ var siteActions = [{
     "action": function() {
       //console.log(customerData);
       var customerGrid = document.getElementById("customers-grid");
-      var videoGall = new Flickity(document.getElementById("customer-video-carousel"),{
-              "wrapAround":true,
-              "pageDots": false,
-              "lazyLoad": 6,
-              "autoPlay":8000,
-            "adaptiveHeight":false});
-      for(i in customerData) {
+      var videoGall = new Flickity(document.getElementById("customer-video-carousel"), {
+        "wrapAround": true,
+        "pageDots": false,
+        "lazyLoad": 6,
+        "autoPlay": 8000,
+        "adaptiveHeight": false
+      });
+      for (i in customerData) {
         customerGrid.append(parseHTML(siteSettings.templates.customerTile(customerData[i])));
-        if (customerData[i].vimeo_id!="") {
+        if (customerData[i].vimeo_id != "") {
           videoGall.append(parseHTML(siteSettings.templates.customerQuote(customerData[i])));
         }
       }
       videoGall.resize();
       var sectionActivators = customerGrid.querySelectorAll("[data-activate-customer-section]");
-      for(i=0;i<sectionActivators.length;i++) {
+      for (i = 0; i < sectionActivators.length; i++) {
         var thisAnchor = sectionActivators[i];
         thisAnchor.addEventListener("click", function(e) {
           e.preventDefault();
           var thisTarget = document.getElementById(this.getAttribute("data-activate-customer-section"))
           var buckets = document.querySelectorAll(".customer-feature");
-          for (i=0;i<buckets.length;i++) {
+          for (i = 0; i < buckets.length; i++) {
             var thisBucket = buckets[i];
 
-            if (thisBucket!=thisTarget && thisBucket.classList.item("expanded")) {
+            if (thisBucket != thisTarget && thisBucket.classList.item("expanded")) {
               thisBucket.classList.remove("expanded");
             }
           }
@@ -239,15 +246,48 @@ var siteActions = [{
     }
   },
   {
+    "element": "mktoForm_1163",
+    "action": function() {
+      var theForm = document.getElementById("mktoForm_1163");
+      var textFields = theForm.querySelectorAll(".mktoTextField,.mktoEmailField,.mktoTelField");
+      for (i = 0; i < textFields.length; i++) {
+        textFields[i].addEventListener("blur", updateClasses);
+      }
+      var theButton = theForm.querySelectorAll("iframe")[0];
+      theButton.addEventListener("click", function() {
+        console.log("checking");
+        for (i = 0; i < textFields.length; i++) {
+          var el = textFields[i];
+          if (el.value != "") {
+            el.classList.add("filled-out");
+          } else {
+            if (el.classList.item("filled-out")) {
+              el.classList.remove("filled-out");
+            }
+          }
+        }
+      });
+      function updateClasses() {
+        if (this.value != "") {
+          this.classList.add("filled-out");
+        } else {
+          if (this.classList.item("filled-out")) {
+            this.classList.remove("filled-out");
+          }
+        }
+      }
+    }
+  }, {
     "element": "careers-video-carousel",
     "action": function() {
       if (typeof pageData.videos != "undefined") {
-        var videoGall = new Flickity(document.getElementById("careers-video-carousel"),{
-                "wrapAround":true,
-                "pageDots": false,
-                "lazyLoad": 6,
-                "autoPlay":8000,
-              "adaptiveHeight":false});
+        var videoGall = new Flickity(document.getElementById("careers-video-carousel"), {
+          "wrapAround": true,
+          "pageDots": false,
+          "lazyLoad": 6,
+          "autoPlay": 8000,
+          "adaptiveHeight": false
+        });
         for (i in pageData.videos) {
           videoGall.append(parseHTML(siteSettings.templates.careerVideoSlide(pageData.videos[i])));
         }
@@ -262,33 +302,32 @@ var siteActions = [{
       var bucket = document.getElementById("events-list");
       var pastBucket = document.getElementById("past-events") ? document.getElementById("past-events") : false;
       var currentEvents = new Array();
-      var allEvents = sortBy(pageData.events, function(i) { return i.start_date });
+      var allEvents = sortBy(pageData.events, function(i) {
+        return i.start_date
+      });
       allEvents.reverse();
-      for(i=0;i<allEvents.length;i++) {
+      for (i = 0; i < allEvents.length; i++) {
         var thisEvent = allEvents[i];
         var rightNow = new Date();
         var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
-        if (startDate>rightNow) {
+        if (startDate > rightNow) {
           currentEvents.push(thisEvent);
-        }
-        else {
-          if (thisEvent.start_date && pastCount<5 && pastBucket) {
+        } else {
+          if (thisEvent.start_date && pastCount < 5 && pastBucket) {
             pastBucket.append(parseHTML(siteSettings.templates.pastEventListing(thisEvent)));
             pastCount++;
-          }
-          else if (pastCount==5 && pastBucket) {
+          } else if (pastCount == 5 && pastBucket) {
             pastBucket.append(parseHTML(siteSettings.templates.buttonPastEvents()));
             pastCount++;
           }
         }
       }
-      if (currentEvents.length>0) {
+      if (currentEvents.length > 0) {
         currentEvents.reverse();
-        for (i=0;i<currentEvents.length;i++) {
+        for (i = 0; i < currentEvents.length; i++) {
           bucket.append(parseHTML(siteSettings.templates.eventListing(currentEvents[i])));
         }
-      }
-      else {
+      } else {
         bucket.append(parseHTML(siteSettings.templates.noEvents()))
       }
     }
@@ -299,11 +338,11 @@ var siteActions = [{
       //console.log(pageData.events);
       var pastCount = 0;
       var bucket = document.getElementById("past-events-full");
-      for(i=0;i<pageData.events.length;i++) {
+      for (i = 0; i < pageData.events.length; i++) {
         var thisEvent = pageData.events[i];
         var rightNow = new Date();
-        var startDate = new Date(thisEvent.start_date+"T00:00:00.000-08:00");
-        if (startDate<rightNow) {
+        var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
+        if (startDate < rightNow) {
           bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
         }
       }
@@ -315,7 +354,7 @@ var siteActions = [{
       var logoGall = new Flickity("#logo-strip", {
         "prevNextButtons": false,
         "lazyLoad": 6,
-        "autoPlay":5000
+        "autoPlay": 5000
       });
       for (i in pageData.logos) {
         if (i == 0 || (parseInt(i)) % 6 == 0) {
@@ -359,13 +398,12 @@ var siteActions = [{
     "action": function() {
       function resizeBanner() {
         var videoBucket = document.getElementById("home-hero-video");
-        if (window.innerWidth<siteSettings.breakpoints.m) {
+        if (window.innerWidth < siteSettings.breakpoints.m) {
           videoBucket.innerHTML = "";
-          videoBucket.style.background = "url('"+siteSettings.imagePath + videoBucket.getAttribute("data-mobile-bg")+"') no-repeat center top";
+          videoBucket.style.background = "url('" + siteSettings.imagePath + videoBucket.getAttribute("data-mobile-bg") + "') no-repeat center top";
           videoBucket.style.backgroundSize = "cover";
-        }
-        else {
-          if (videoBucket.querySelectorAll("video").length<1) {
+        } else {
+          if (videoBucket.querySelectorAll("video").length < 1) {
             var video = document.createElement("video");
             video.src = siteSettings.videoPath + videoBucket.getAttribute("data-video");
             video.setAttribute("autoplay", true);
@@ -384,7 +422,7 @@ var siteActions = [{
       var gridGall = new Flickity("#logo-grid", {
         "prevNextButtons": false,
         lazyLoad: 24,
-        "autoPlay":10000
+        "autoPlay": 10000
       });
       for (i in pageData.gridLogos) {
         if (i == 0 || (parseInt(i)) % 24 == 0) {
@@ -427,8 +465,12 @@ var siteActions = [{
   {
     "element": "job-list",
     "action": function() {
-      var jobs = sortBy(pageData.jobs, function(i) { return i.post_date });
-      var categories = sortBy(pageData.categories, function(i) { return i.cat_name });
+      var jobs = sortBy(pageData.jobs, function(i) {
+        return i.post_date
+      });
+      var categories = sortBy(pageData.categories, function(i) {
+        return i.cat_name
+      });
       //console.log(pageData.categories);
       var opts = {
         "jobs": jobs,
@@ -437,10 +479,10 @@ var siteActions = [{
       }
       var theJobs = new JobList(opts);
       var opts = {
-        "categories":categories,
-        "template":siteSettings.templates.jobFilter,
-        "container":document.getElementById("job-filter"),
-        "jobList":theJobs
+        "categories": categories,
+        "template": siteSettings.templates.jobFilter,
+        "container": document.getElementById("job-filter"),
+        "jobList": theJobs
       }
       var theFilter = new JobFilter(opts);
     }
@@ -456,7 +498,7 @@ var siteActions = [{
           var thisButton = buttons[i];
           thisButton.addEventListener("click", function(e) {
             e.preventDefault();
-            addClass(this,"active","mobile-product-tile");
+            addClass(this, "active", "mobile-product-tile");
             displayTile(this.getAttribute("data-target"), "mobile-image");
             return false;
           });
@@ -486,9 +528,10 @@ var siteActions = [{
     }
   }
 ];
-function addClass(el,classname,groupclass) {
+
+function addClass(el, classname, groupclass) {
   var els = document.getElementsByClassName(groupclass);
-  for (i=0;i<els.length;i++) {
+  for (i = 0; i < els.length; i++) {
     var thisEl = els[i];
     if (thisEl.classList.item(classname)) {
       thisEl.classList.remove(classname);
@@ -496,6 +539,7 @@ function addClass(el,classname,groupclass) {
   }
   el.classList.add(classname);
 }
+
 function activateImages() {
   var backgroundImages = document.querySelectorAll("[data-bg]");
   for (i in backgroundImages) {
