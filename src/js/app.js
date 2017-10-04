@@ -22,9 +22,9 @@ var siteSettings = {
   "videoPath": "/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "Recent Webinar : The Future of Workforce Communications",
-    "url": "https://resources.dynamicsignal.com/h/i/368729411-the-future-of-workforce-communications/185166",
-    "buttonText": "View Now"
+    "cta": "Event : Company Communication in a Mobile-First Reality",
+    "url": "http://amp.dynamicsignal.com/ThinkTank-Roadshow-NYC-2017.html",
+    "buttonText": "Register Now"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),

@@ -12,4 +12,9 @@ section.container.breadcrumbs-bucket
 				span
 					p
 						:php
-							the_title();
+							if (isset($override_title)) {
+								echo $override_title;
+							}
+							else {
+								the_title();
+							}
