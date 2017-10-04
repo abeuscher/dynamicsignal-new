@@ -57,6 +57,9 @@ section#main-content-signup {
     &:active {
       border:1px solid #ccc;
     }
+    &.filled-out {
+      border:1px solid #1a9697;
+    }
   }
   .mktoError .mktoErrorMsg {
       padding: .5em;

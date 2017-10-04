@@ -53,6 +53,14 @@ block content
 								i.fa.fa-stack-1x.fa-inverse.fa-twitter
 							:php
 								echo "</a>";
+						li
+							:php
+								echo "<a href='https://www.linkedin.com/shareArticle?mini=true&url=".get_permalink()."&title=".get_the_title()."&summary=".urlencode(get_the_excerpt())."' target='_blank'>";
+							span.fa-1x.fa-stack
+								i.fa.fa-circle.fa-stack-2x
+								i.fa.fa-stack-1x.fa-inverse.fa-linkedin
+							:php
+								echo "</a>";
 	section.container.blog-content
 		.row
 			.col-md-12
