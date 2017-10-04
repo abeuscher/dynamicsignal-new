@@ -11,6 +11,10 @@ block content
 			"title"=>single_tag_title( '', false ),
 			"subtitle"=>"Blog entries containing the tag '".ucwords(single_tag_title( '', false ))."'"
 		);
+		$parent_title = "Blog";
+		$parent_url = "/blog/";
+		$override_title = "Category : ".ucwords(single_tag_title( '', false ));
+	include ./inc/breadcrumbs.pug
 	section.hero#page-top
 		.container
 			.row
