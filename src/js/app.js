@@ -18,8 +18,8 @@ var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
 
 var siteSettings = {
-  "imagePath": "/wp-content/themes/ds-new/images/",
-  "videoPath": "/wp-content/themes/ds-new/video/",
+  "imagePath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/images/",
+  "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
     "cta": "Event : Company Communication in a Mobile-First Reality",
