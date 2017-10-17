@@ -22,8 +22,8 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "Event : Company Communication in a Mobile-First Reality",
-    "url": "http://amp.dynamicsignal.com/ThinkTank-Roadshow-NYC-2017.html",
+    "cta": "Event : Social Media #Mashup at Disneyland",
+    "url": "http://conferences.ragan.com/disneyland/register/?promo=Y17CF0CA-DYNSIG",
     "buttonText": "Register Now"
   },
   "templates": {
@@ -309,6 +309,7 @@ var siteActions = [{
       for (i = 0; i < allEvents.length; i++) {
         var thisEvent = allEvents[i];
         var rightNow = new Date();
+        rightNow.setDate(rightNow.getDate() - 1 /*days*/);  
         var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
         if (startDate > rightNow) {
           currentEvents.push(thisEvent);
@@ -317,7 +318,7 @@ var siteActions = [{
             pastBucket.append(parseHTML(siteSettings.templates.pastEventListing(thisEvent)));
             pastCount++;
           } else if (pastCount == 5 && pastBucket) {
-            pastBucket.append(parseHTML(siteSettings.templates.buttonPastEvents()));
+            //pastBucket.append(parseHTML(siteSettings.templates.buttonPastEvents()));
             pastCount++;
           }
         }
