@@ -57,6 +57,14 @@ var siteSettings = {
 }
 
 window.addEventListener("load", function() {
+console.log(inIframe);
+function inIframe () {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
+}
 
   for (i in siteActions) {
     var thisAction = siteActions[i];
@@ -309,7 +317,7 @@ var siteActions = [{
       for (i = 0; i < allEvents.length; i++) {
         var thisEvent = allEvents[i];
         var rightNow = new Date();
-        rightNow.setDate(rightNow.getDate() - 1 /*days*/);  
+        rightNow.setDate(rightNow.getDate() - 1 /*days*/);
         var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
         if (startDate > rightNow) {
           currentEvents.push(thisEvent);
