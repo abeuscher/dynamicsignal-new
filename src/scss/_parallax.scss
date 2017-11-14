@@ -50,6 +50,10 @@
           margin:$gutter-width/2 0;
         }
       }
+      &.left {
+        text-align:left;
+      }
+
     }
   }
   @include bp(m) {
