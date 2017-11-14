@@ -199,6 +199,7 @@ ul.nav-items {
     }
 
     &.dropdown {
+      position:static;
       .nav-all-link {
         width:100%;
         padding-left:40px;
@@ -224,6 +225,7 @@ ul.nav-items {
         max-height:0;
         overflow: hidden;
         transition:all .2s ease-in;
+        margin:0; padding:0;
         &.expanded {
           display:block;
           max-height:1000px;

@@ -6,7 +6,6 @@ var templates = {
 }
 
 window.addEventListener("load", function() {
-  console.log("vidyard test");
   function inIframe () {
       try {
           return window.self !== window.top;
@@ -23,13 +22,13 @@ window.addEventListener("load", function() {
       },
       h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
     })(document);
-    var theTop = document.getElementById("hub-layout-container");
+    var theTop = document.getElementById("top");
     var siteopts = {
-      "siteurl":"https://www.dynamicsignal.com"
+      "siteurl":"http://www.dynamicsignal.com"
     }
     theTop.parentNode.insertBefore(parseHTML(templates.header(siteopts)),theTop);
-
-    theTop.parentNode.appendChild(parseHTML(templates.footer(siteopts)),theTop);
+    var theFooter = document.getElementsByTagName("footer")[0];
+    document.body.replaceChild(parseHTML(templates.footer(siteopts)),theFooter);
     var menuToggle = document.getElementById("toggle-main-drop");
     var drop = document.getElementById("mobile-drop");
     menuToggle.addEventListener("click", function() {
