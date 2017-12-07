@@ -18,12 +18,12 @@ var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
 
 var siteSettings = {
-  "imagePath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/images/",
+  "imagePath": "/wp-content/themes/ds-new/images/",
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "Event : Social Media #Mashup at Disneyland",
-    "url": "http://conferences.ragan.com/disneyland/register/?promo=Y17CF0CA-DYNSIG",
+    "cta": "Event : How O2 Engages Their Deskless Workforce at Global Scale",
+    "url": "http://amp.dynamicsignal.com/How-O2-Engages-Their-Deskless-Workforce-Global-Scale.html",
     "buttonText": "Register Now"
   },
   "templates": {
