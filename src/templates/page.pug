@@ -1,0 +1,21 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Blank Page
+    */
+block content
+  section.hero
+    h1
+      :php
+        the_title();
+  section.container.content
+    :php
+      if( have_posts() ): while( have_posts() ): the_post();
+    article.row
+      .col-md-12.blog-content
+        :php
+          the_content();
+    :php
+      endwhile;
+      endif;

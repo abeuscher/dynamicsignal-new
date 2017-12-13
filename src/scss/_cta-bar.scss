@@ -1,0 +1,42 @@
+#cta-bar {
+  display:none;
+  @include bp(s) {
+    display:block;
+    position:fixed;
+    background:$grey;
+    width:100%;
+    margin:0;
+    min-height:50px;
+    vertical-align: middle;
+    padding-bottom:$gutter-width/4;
+    color:$white;
+    bottom:0;
+    left:0;
+    text-align:center;
+    a.button-cta-bottom {
+      border-radius:5px;
+      background:$red;
+      color:$white;
+      display:inline-block;
+      text-transform:uppercase;
+      padding:.5em 1.25em;
+      margin-left:1em;
+      font-size:12px;
+      &:hover {
+        background:darken($red,20%);
+        color:$white;
+      }
+    }
+    h2 {
+      display:inline-block;
+      color:$white;
+      font-size:14px;
+      margin:0;
+      line-height: 50px;
+    }
+  }
+
+  @include bp(m) {
+    height:50px;
+  }
+}

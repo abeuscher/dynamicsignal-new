@@ -1,0 +1,80 @@
+.exec-thumb {
+  @include aspect-ratio(1,1);
+  display:inline-block;
+  width:48%;
+  margin:1%;
+  color:$white;
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-position: center center;
+  text-align:center;
+  transition:all .2s ease-in;
+  &:after {
+    transition:all .2s ease-in;
+    content:'';
+    top:0;
+    bottom:0;
+    width:100%;
+    background:transparent;
+  }
+  h3, h4 {
+    transition:all .2s ease-in;
+    opacity:0;
+    margin:0;
+  }
+  h3 {
+      top:$gutter-width;
+      font-size:36px;
+      width:100%;
+      left:0%;
+  }
+  h4 {
+    top:$gutter-width*4;
+    font-size:18px;
+    font-weight:500;
+    line-height:1.5;
+    width:100%;
+    left:0%;
+  }
+  .fa {
+    font-size:2em;
+  }
+  &:hover {
+    color:$white;
+    h3, h4 {
+      opacity:1;
+    }
+    &:after {
+      background:rgba(0, 198, 215, 0.5);
+    }
+  }
+  @include bp(s) {
+    width:18%;
+    margin:1%;
+    background-size:100% 100%;
+    h3 {
+      top:$gutter-width*2;
+    }
+    h4 {
+      top:$gutter-width*4;
+    }
+  }
+
+}
+.team-header {
+  h2 {
+    padding: 23px;
+    margin: 16px;
+    font: 700 28px/1.1 'Open Sans', "Montserrat",sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-align: center;
+    @include bp(m) {
+      font: 700 40px/1.1 'Open Sans', "Montserrat",sans-serif;
+    }
+  }
+}
+.team-list {
+    margin-bottom:$gutter-width*2;
+    text-align: center;
+}

@@ -1,0 +1,12 @@
+.career-carousel-slide
+	.container
+		.row
+			.col-md-12
+				.video-thumb(data-video-id=locals.vimeo_id,video-type="vimeo",data-bg=locals.image.sizes["medium_large"])
+					.left-gradient
+					.content.left.shrunk
+						h3!=locals.video_title
+						p!=locals.blurb
+						a.video-play(href="#")
+							span.cta!=locals.button_text
+							i.fa.fa-play

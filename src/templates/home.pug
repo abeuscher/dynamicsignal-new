@@ -1,0 +1,56 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Home Page
+    */
+block content
+  -
+    var pageData = {
+    "header":"Your Mobile-First Company<br>Communications Platform",
+    "subheader":"Keep employees informed and engaged.<br>Increase productivity and empower advocacy.",
+    "logoCopy":"Dynamic Signal is trusted by hundreds of the world's largest enterprises, more than any other provider.",
+    "testimonialBg":"problem-bg.jpg",
+    "logoGridHeader":"Trusted Industry Leader",
+    "logoGridSubheader":"Hundreds of the world’s largest enterprises, including customers in 21 countries around the globe, trust the Dynamic Signal platform to deliver company and industry news, and content to the right employee, at the right time.",
+    "ctaHeader":"Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders",
+    "ctaLabel":"Request a Demo"
+    };
+  :php
+    echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos_strip_gray_icons' ),JSON_UNESCAPED_SLASHES)
+    .",'testimonials':".json_encode(get_field('testimonial_quotes'),JSON_UNESCAPED_SLASHES)
+    .",'mobileProducts':".json_encode(get_field('products_carousel_mobile'),JSON_UNESCAPED_SLASHES)
+    .",'desktopProducts':".json_encode(get_field('products_carousel_desktop'),JSON_UNESCAPED_SLASHES)
+    .",'gridLogos':".json_encode(get_field('logos_grid'),JSON_UNESCAPED_SLASHES)
+    ."};</script>";
+  section.hero.home-hero
+    #home-hero-video.bg-video(data-video="hero-background-new.mp4",data-mobile-bg="Hero7.png")
+    h1!=pageData.header
+    h2!=pageData.subheader
+    a.button-red.cta(href="/requestdemo/") Request a Demo
+  section.logo-strip-bucket
+    .container
+      .row
+        .col-md-12
+          p=pageData.logoCopy
+          #logo-strip.logo-strip
+  include ./inc/use-cases-grid.pug
+  section.testimonials.container.col-m-center(data-bg=pageData.testimonialBg)
+    #testimonial-strip.home-gallery.flickity-fader
+  section
+    #product-display
+  section.product-cta
+    .container
+      .row
+        .col-md-12.col-center
+          a.button-red.knockout.cta(href="/product/") Learn More About Our Product
+  section.logo-grid
+    .container
+      .row
+        .col-md-12
+          h1.col-m-center!=pageData.logoGridHeader
+          h2.col-m-center!=pageData.logoGridSubheader
+      #logo-grid
+  section.cta-bottom.col-center
+    h2!=pageData.ctaHeader
+    a.button-red.cta(href="/requestdemo/")!=pageData.ctaLabel

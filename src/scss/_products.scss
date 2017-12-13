@@ -1,0 +1,14 @@
+.products-coverflow {
+  h1, p {
+    padding:0 $gutter-width;
+  }
+  p {
+    color:$light-grey;
+    line-height: 37px;
+    font-size: 21px;
+    font-weight: 400;
+  }
+  img {
+    max-width:100%;
+  }
+}

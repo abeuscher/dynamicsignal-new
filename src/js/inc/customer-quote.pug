@@ -1,0 +1,14 @@
+.customer-carousel-slide
+	.container
+		.row
+			.col-md-12
+				.video-thumb(data-video-id=locals.vimeo_id,video-type="vimeo",data-bg=locals.video_thumbnail.sizes["medium_large"])
+					.full-gradient
+					.content.left.shrunk
+						p!=locals.quote
+						cite
+							span.name!=citation_name
+							span.title!=locals.citation_title
+						a.video-play(href="#")
+							span.cta Play Video
+							i.fa.fa-play

@@ -1,0 +1,69 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Events Page
+    */
+block content
+  -
+    var pageData = {
+    "header":"Events",
+    "subheader":"Explore our events schedule below, connect with us online or in person"
+    };
+  include ./inc/hero.pug
+  :php
+    $all_events = [];
+    $args = array(
+          'post_type' => 'event',
+          'posts_per_page' => 100,
+          'meta_key'   => 'event_start_date',
+          'orderby'    => 'meta_value_num',
+          'order'      => 'DESC',
+          'meta_query' => array(
+        		array(
+        			'key' => 'ds_event_type',
+              'value' => 'cswebinar',
+              'compare' => '!='
+        		)
+        	)
+        );
+    $events = new WP_Query( $args );
+    function new_excerpt_more( $more ) {
+        return '';
+    }
+    add_filter('excerpt_more', 'new_excerpt_more');
+    rewind_posts();
+    if( $events->have_posts() ):
+        while( $events->have_posts() ):
+          $events->the_post();
+          $start_date = get_field( 'event_start_date' );
+          array_push($all_events, array(
+          "title"=>get_the_title(),
+          "start_month"=>date("F", strtotime($start_date)),
+          "start_date"=>$start_date,
+          "start_day"=>date("j", strtotime($start_date)),
+          "start_year"=>date("Y", strtotime($start_date)),
+          "start_time"=>get_field( 'event_start_time' ),
+          "event_time_zone"=>get_field( 'event_time_zone' ),
+          "finish_date"=>get_field( 'event_end_date' ) ,
+          "thumb"=>get_field('ds_event_thumbnail'),
+          "btn_text"=>get_field('ds_button_text'),
+          "btn_url"=>get_field( 'ds_button_url' ),
+          "description"=>get_the_content(),
+          "excerpt"=>get_the_excerpt(),
+          "type"=>get_field( 'ds_event_type' ),
+          "url"=>get_permalink(),
+          "location"=>get_field( 'ds_event_location' )
+          ));
+        endwhile;
+    endif;
+
+    echo "<script>var pageData = {'events':".json_encode($all_events,JSON_UNESCAPED_SLASHES)
+    ."};</script>";
+  section.events-list.container
+    .row
+      .col-md-9.events
+        #events-list
+      .col-md-3.past-events
+        h2 Past Events
+        #past-events

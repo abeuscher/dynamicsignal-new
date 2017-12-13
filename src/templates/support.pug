@@ -1,0 +1,68 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Support Page
+    */
+block content
+  -
+    var pageData = {
+    "header":"Support Center",
+    "subheader":"We have a variety of support resources available for our customers. If you can’t find what you’re looking for, <a href='https://dynamicsignal.desk.com/customer/portal/emails/new'>please contact our Customer Success Team directly</a>."
+    };
+  include ./inc/hero.pug
+  section.support-body
+    .container
+      .row
+        .col-md-3.col-xs-12.no-float.no-left.no-top
+          .inner
+            h3
+              span.fa.fa-question(aria-hidden='true')
+              | Help Desk
+            p Our general knowledge base. Find common solutions for our products and services.
+            a.button(href='https://dynamicsignal.desk.com/') Visit Help Desk
+        .col-md-3.col-xs-12.no-float.no-top.no-left
+          .inner
+            h3
+              span.fa.fa-video-camera(aria-hidden='true')
+              | Webinars
+            p View presentations on best practices, specific use cases, and more.
+            a.button(href='/webinars') Visit Webinars
+        .col-md-3.col-xs-12.no-float.no-top.no-left
+          .inner
+            h3
+              span.fa.fa-graduation-cap(aria-hidden='true')
+              | Academy*
+            p
+              | The Academy features resources to grow your program and expand your knowledge of the Dynamic Signal platform.
+            a.button(href='/academy') Visit Academy
+        .col-md-3.col-xs-12.no-float
+          .inner
+            h3
+              span.fa.fa-wrench(aria-hidden='true')
+              | Toolkit*
+            p
+              | The Toolkit features resources needed to plan and launch your Dynamic Signal platform.
+            a.button(href='/toolkit') Visit Toolkit
+    .container.bottom
+      .row
+        .col-md-3.col-xs-12.col-md-offset-3.no-float
+          .inner
+            h3
+              span.fa.fa-file-code-o(aria-hidden='true')
+              | API Docs
+            p A developer oriented resource for using the Dynamic Signal Product API.
+            a.button(href='https://dev.voicestorm.com/') Visit API Docs
+        .col-md-3.col-xs-12.no-float
+          .inner
+            h3
+              span.fa.fa-file-archive-o(aria-hidden='true')
+              | Release Notes*
+            p Keep track of new features and bug fixes.
+            a.button(href='https://academy.dynamicsignal.com/h/c/276132-release-notes') Visit Release Notes
+    .container
+      .row
+        .col-md-12
+          p
+            span.asterisk *
+            | These resources are password protected

@@ -1,0 +1,80 @@
+extends inc/page.pug
+block template
+	:php
+		/*
+		Template Name: Blog Archive
+		*/
+		$override_title = "Tag : " . ucwords(single_tag_title( '', false ));
+block content
+	:php
+		$header = array(
+			"title"=>single_tag_title( '', false ),
+			"subtitle"=>"Blog entries containing the tag '".ucwords(single_tag_title( '', false ))."'"
+		);
+		$parent_title = "Blog";
+		$parent_url = "/blog/";
+		$override_title = "Category : ".ucwords(single_tag_title( '', false ));
+	include ./inc/breadcrumbs.pug
+	section.hero#page-top
+		.container
+			.row
+				h1
+					:php
+						echo $header["title"];
+				h2
+					:php
+						echo $header["subtitle"];
+	section.blog-entries
+		:php
+			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+			//$query = new WP_Query( array('post_type' => 'post','paged' => $paged) );
+			if( have_posts() ) {
+					while( have_posts() ) {
+							the_post();
+		article
+			:php
+				echo "<a class='blog-header' href='".get_the_permalink()."'><div class='blog-thumb'>";
+				the_post_thumbnail( 'full', array('class' => 'img-responsive') );
+				echo "</div>";
+			.inner
+				.container
+					.row
+						.col-md-12
+							h1.blog-title
+								:php
+									the_title();
+							:php
+								echo "<span class='blog-date'>".get_the_date()."</span>";
+			:php
+				echo "</a>";
+			.container.blog-excerpt-row
+				.row
+					.col-md-12
+						p By
+							:php
+								echo " ".get_author_name();
+						.blog-info
+							.blog-excerpt
+								:php
+									the_excerpt();
+							.blog-tags
+								:php
+									if( has_tag() ) {
+										echo "<p class='blog-tags'>";
+										the_tags( false );
+										echo "</p>";
+									}
+		:php
+			}};
+	section.container.pagination
+		.row
+			.col-md-12
+				:php
+					$big = 999999999;
+						echo paginate_links( array(
+								'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+								'format' => '?paged=%#%',
+								'current' => max( 1, get_query_var('paged') ),
+								'total' => $query->max_num_pages
+							)
+						);

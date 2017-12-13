@@ -1,0 +1,120 @@
+extends inc/page.pug
+block template
+	:php
+		/*
+		Template Name: Blog Entry Page
+		*/
+block content
+	:php
+		if( have_posts() ){
+		 while( have_posts() ) {
+			the_post();
+			$start_date = get_the_date();
+		$parent_title = "Blog";
+		$parent_url = "/blog/";
+	include ./inc/breadcrumbs.pug
+	section.blog-hero
+		:php
+			echo "<div class='blog-header'><div class='blog-thumb'>";
+			the_post_thumbnail( 'full', array('class' => 'img-responsive') );
+			echo "</div>";
+		.inner
+			.container
+				.row
+					.col-md-12
+						h1.blog-title
+							:php
+								the_title();
+						p.author By
+							:php
+								$authorslug = get_userdata(get_the_author_id())->user_nicename;
+								echo " <a class='author-link' href=\"/author/$authorslug\">".get_author_name() . "</a>" ;
+						ul.social-share
+							li
+								:php
+									echo "<a href='https://www.facebook.com/sharer/sharer.php?u=".urlencode(get_permalink())."' target='_blank'>";
+								span.fa-1x.fa-stack
+									i.fa.fa-circle.fa-stack-2x
+									i.fa.fa-stack-1x.fa-facebook
+								:php
+									echo "</a>";
+							li
+								:php
+									echo "<a href='https://twitter.com/home?status=".urlencode(get_permalink())."' target='_blank'>";
+								span.fa-1x.fa-stack
+									i.fa.fa-circle.fa-stack-2x
+									i.fa.fa-stack-1x.fa-twitter
+									:php
+										echo "</a>";
+							li
+								:php
+									echo "<a href='https://www.linkedin.com/shareArticle?mini=true&url=".get_permalink()."&title=".get_the_title()."&summary=".urlencode(get_the_excerpt())."' target='_blank'>";
+								span.fa-1x.fa-stack
+									i.fa.fa-circle.fa-stack-2x
+									i.fa.fa-stack-1x.fa-inverse.fa-linkedin
+								:php
+									echo "</a>";
+						:php
+							echo "<span class='blog-date'>".get_the_date()."</span>";
+		:php
+			echo "</div>";
+	section.container.blog-content
+		.row
+			.col-md-9
+				article.blog-content
+					:php
+						the_content();
+			.col-md-3.related-posts
+				include ./inc/related-posts.pug
+		.row
+			.col-md-9.author-bio
+				h2.header-right Post Author
+				:php
+					global $authordata;
+					//echo json_encode($authordata);
+					$meta = get_user_meta($authordata->data->ID);
+				.author-thumb
+					:php
+						$authorname = $meta["first_name"][0]." ".$meta["last_name"][0];
+						echo "<img src='".$meta["image"][0]."' alt='$authorname' />";
+					.author-name
+						:php
+							echo $authorname;
+				.author-description
+					:php
+						echo $meta["description"][0];
+					ul.author-social
+						:php
+							if($meta["ts_fab_twitter"][0]!="") {
+								echo "<li><a href='https://twitter.com/".$meta["ts_fab_twitter"][0]."' target='_blank'>";
+						span.fa-1x.fa-stack
+							i.fa.fa-circle.fa-stack-2x
+							i.fa.fa-stack-1x.fa-twitter
+							:php
+								echo "</a></li>";
+								}
+								if($meta["ts_fab_linkedin"][0]!="") {
+									echo "<li><a href='".$meta["ts_fab_linkedin"][0]."' target='_blank'>";
+						span.fa-1x.fa-stack
+							i.fa.fa-circle.fa-stack-2x
+							i.fa.fa-stack-1x.fa-linkedin
+							:php
+								echo "</a></li>";
+								}
+
+								}}
+	section.pager-thumbs.container
+		.row
+			.col-md-12
+				#paging-thumbs
+	:php
+		$next_post = get_next_post();
+		$previous_post = get_previous_post();
+
+		$previous_post->classname="prev";
+		$next_post->classname="next";
+		$previous_post->label = "Previous Post";
+		$next_post->label = "Next Post";
+		$previous_post->url = "/blog/".$previous_post->post_name;
+		$next_post->url = "/blog/".$next_post->post_name;
+		echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";

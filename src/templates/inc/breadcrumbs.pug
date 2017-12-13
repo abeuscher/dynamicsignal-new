@@ -1,0 +1,20 @@
+section.container.breadcrumbs-bucket
+	.row
+		.col-md-12
+			.breadcrumbs
+				span
+					a(href="/") Home
+				.separator »
+				span
+					:php
+						echo "<a href='$parent_url'>$parent_title</a>";
+				.separator »
+				span
+					p
+						:php
+							if (isset($override_title)) {
+								echo $override_title;
+							}
+							else {
+								the_title();
+							}

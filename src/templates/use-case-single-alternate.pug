@@ -1,0 +1,88 @@
+extends inc/page.pug
+block template
+	:php
+		/*
+		Template Name: Use Case Alternate Single Entry Page
+		*/
+		$override_title = get_field("page_title");
+block content
+	:php
+		echo '<script>var useCaseBackgrounds = '. json_encode(array(get_field("solution_1_image"),get_field("solution_2_image"),get_field("solution_3_image")),JSON_UNESCAPED_SLASHES).'; var useCaseQuotes = '. json_encode(get_field("proof_points")).';</script>';
+	section.hero#page-top
+		.container
+			.row
+				h1
+					:php
+						the_field("page_title");
+				h2
+					:php
+						the_field("subheader");
+	:php
+		if( have_rows('logos') ) {
+	section.use-cases-logo-strip
+		ul.gray-logos
+			:php
+				$logos = array();
+				$count = 0;
+				while( have_rows('logos') ): the_row();
+					$logos[$count] = array("name"=>get_sub_field('company_name'),"image"=>get_sub_field('company_logo'));
+					$count++;
+				endwhile;
+				foreach($logos as $idx=>$logo) {
+						echo "<li><img class='use-case-statement-logo' src='".$logo["image"]["url"]."' alt='".$logo["name"]."' /></li>";
+				}
+	:php
+		}
+	section.container.use-case-quotes
+		#use-case-quotes
+	section.container.use-case-cta
+		.row
+			.col-md-12
+				h2
+					:php
+						the_field("cta_header");
+				a.cta.button-red(href="/requestdemo/") Request a Demo
+	section.three-pane.container
+		.row
+			.col-md-12
+				:php
+					if (get_field("problem_statement_header")!="") {
+						echo "<h2>".get_field("problem_statement_header")."</h2>";
+					}
+					else {
+						echo "<h2>The Problems We Solve</h2>";
+					}
+				h3
+					:php
+						the_field("problem_statement");
+		.row
+			.col-md-4
+				.problem-arrow
+				.problem-statement
+					:php
+						the_field("pain_point_1");
+			.col-md-4
+				.problem-arrow
+				.problem-statement
+					:php
+						the_field("pain_point_2");
+			.col-md-4
+				.problem-arrow
+				.problem-statement
+					:php
+						the_field("pain_point_3");
+	section#parallax.use-cases-parallax
+		.inner
+			#bg-slides(data-backgrounds)
+			:php
+				for ($i=0;$i<3;$i++) {
+					echo "<div class='content-slide row' id='slide-$i' data-bg='".get_field("solution_".($i+1)."_image")["sizes"]["medium_large"]."'>";
+					echo "<div class='col-md-12 content no-padding'>";
+					echo "<h2>".get_field("solution_".($i+1)."_header")."</h2>";
+					echo "<div class='text-content'>".get_field("solution_".($i+1)."_content")."</div></div></div>";
+				}
+	section.container.use-case-bottom
+		.row
+			.col-md-12
+				h2 Benefits for Every Department of the Enterprise
+				a.button-teal.big.cta(href="/use-cases/") See All Use Cases

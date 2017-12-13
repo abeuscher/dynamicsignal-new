@@ -1,0 +1,43 @@
+extends inc/page.pug
+block template
+	:php
+		/*
+		Template Name: Customers Page
+		*/
+block content
+	:php
+		global $wp_query;
+		 query_posts(array(
+				 'post_type' => 'customer',
+				 'nopaging' => true
+		 ));
+		 $customers = [];
+		 while(have_posts()) : the_post();
+				$post->logo = get_field("logo");
+				$post->citation_name = get_field("citation_name");
+				$post->citation_title = get_field("citation_title");
+				$post->vimeo_id = get_field("vimeo_id");
+				$post->video_thumbnail = get_field("video_thumbnail");
+				$post->quote = get_field("quote");
+				 array_push($customers,$post);
+		 endwhile;
+		 wp_reset_query();
+		echo '<script>var customerData = '. json_encode($customers).';</script>';
+	-
+		var pageData = {
+		"header":"The Trusted Industry Leader",
+		"subheader":"Hundreds of the world’s largest organizations, in countries around the globe, trust Dynamic Signal.",
+		"ctaHeader":"Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders.",
+		"ctaLabel":"Request Demo"
+		};
+	include ./inc/hero.pug
+	section
+		#customer-video-carousel
+	section.customers-grid.container
+		#customers-grid
+	section.cta-bottom.col-center
+		.container
+			.row
+				.col-md-12
+					h2!=pageData.ctaHeader
+					a.button-red.cta(href="/requestdemo/")!=pageData.ctaLabel

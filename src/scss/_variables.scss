@@ -1,0 +1,36 @@
+//config
+$cdn-path:"https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/";
+$img-path:$cdn-path+"images/";
+$font-path:$cdn-path+"/fonts/";
+
+//Breakpoints
+$bps: (xs: 0, s:641px, m:1025px, l:1321px,xl:1921px);
+
+$gutter-width:24px;
+
+//color-values
+$white:#ffffff;
+$black:#000000;
+$off-black:#4a4a4a;
+$grey: #4E4B4E;
+$light-grey:#9b9b9b;
+$lighter-grey:#f5f5f5;
+$middle-grey:#d7d7d7;
+$classic-grey:#666666;
+$classic-dark-grey:#999999;
+$classic-light-grey:#cccccc;
+$red: #D3484D;
+$teal: #1A9697;
+$beige: #F2EEE7;
+$another-grey:#4a4a4a;
+$turquoise:#00c6d7;
+
+//colors
+$body-bg-color:linear-gradient(90deg, rgb(41, 44, 99) 0%, rgb(54, 64, 125) 100%);
+$body-text-color:$white;
+$body-link-color:$white;
+$header-color:$white;
+
+//fonts
+$body-font:'proxima-nova', sans-serif;
+$header-font:'proxima-nova', sans-serif;
