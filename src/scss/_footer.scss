@@ -1,50 +1,27 @@
 footer .container {
   width: 100%;
   padding: 0 $gutter-width*2;
+  background: $light-grey;
+  color:$classic-grey;
 }
 
 .footer-top {
-  padding: $gutter-width*2 0 $gutter-width*1.5;
-  background-color: darken($grey, 5%);
-
   ul {
     margin: 0;
     padding: 0 0 $gutter-width;
     list-style: none;
 
     &.social-links {
-      text-align: center;
-
+      margin-left:0em;
       li {
-        display: inline-block;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 12px;
-      }
-
-      p {
-        display: none;
-      }
-      @include bp(m) {
-        li {
-          display: block;
-        }
-
-        p {
-          display: inline-block;
-          margin-left: -3px;
-
-          &:hover {
-            text-decoration: underline;
-            color: $white;
-          }
+        .fa-stack {
+          font-size:1.5em;
         }
       }
     }
 
     a,
     li {
-      color: $white;
       line-height: 24px;
       text-align: center;
       @include bp(m) {
@@ -53,12 +30,7 @@ footer .container {
     }
 
     li {
-      &.footer-address,
-      &.footer-phone {
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 12px;
-      }
+      text-transform: uppercase;
 
       &.footer-address {
         .fa-stack {
@@ -101,24 +73,27 @@ footer .container {
     p {
       display: inline-block;
     }
+    .fa-stack {
+      font-size:1em;
+      .fa-circle {
+        color: $white;
+        &:before {
+          color:$middle-grey;
+        }
+      }
 
-    .fa-circle {
-      color: darken($grey, 10%);
+      .fa-inverse {
+        color:$white;
+
+      }
     }
 
-    .fa-inverse {
-      opacity: 0.3;
-    }
   }
 
   h5 {
-    color: rgba(255, 255, 255, 0.25);
-    text-transform: uppercase;
-    font-weight: 300;
-    font-size: 16px;
-    letter-spacing: 1.5px;
     text-align: center;
     margin: $gutter-width 0 $gutter-width/2;
+    font-size:1.4em;
     @include bp(m) {
       text-align: left;
     }
@@ -130,13 +105,7 @@ ul.site-links {
     a {
       text-transform: uppercase;
       letter-spacing: 1px;
-      font-size: 12px;
-      color: $beige;
-
-      &:hover {
-        text-decoration: underline;
-        color: $white;
-      }
+      color:$classic-grey;
     }
   }
 }
@@ -144,39 +113,25 @@ ul.site-links {
 .logo-footer {
   width: 200px;
   margin: 0 auto 1.5em;
-  @include bp(m) {
-    opacity: 0.5;
-  }
 }
 
 .footer-bottom {
-  background-color: darken($grey, 12%);
-  color: rgba(white, 0.3);
-  padding: 2em 0 1em;
-  @include bp(s) {
-    margin-bottom: 50px;
-  }
 
   a,
   p {
     font-size: 12px;
   }
-}
 
-.footer-bottom ul {
-  text-align: right;
+  ul {
+    text-align: right;
 
-  li {
-    display: inline-block;
-    list-style-type: none;
-    margin-left: 2em;
+    li {
+      display: inline-block;
+      list-style-type: none;
+      margin-left: 2em;
 
-    a {
-      color: rgba(white, 0.2);
-      text-decoration: underline;
-
-      &:hover {
-        color: $white;
+      a {
+        text-decoration: underline;
       }
     }
   }

@@ -1,0 +1,59 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Company Page
+    */
+block nav
+  include ./inc/header.pug
+block content
+  script.
+    var pageData = {'logos':[{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-ibm.png","alt_text":"IBM logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-co.png","alt_text":"Capital One logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-cisco.png","alt_text":"Cisco logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-hpe.png","alt_text":"Hewlett Packard Enterprise logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-humana.png","alt_text":"Humana logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-lenovo.png","alt_text":"Lenovo logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-voda.png","alt_text":"Vodafone logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-telstra.png","alt_text":"Telstra logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-mars.png","alt_text":"MARS logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-ae.png","alt_text":"American Express logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-monsanto.png","alt_text":"Monsanto logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2017/06/deloitte.png","alt_text":"Deloitte logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-aircanada.png","alt_text":"Air Canada logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-adp.png","alt_text":"ADP logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-oracle.png","alt_text":"Oracle logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-o2.png","alt_text":"O2 logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-kpmg.png","alt_text":"KPMG logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-edelman.png","alt_text":"Edelman logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-sap.png","alt_text":"SAP logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-vmware.png","alt_text":"VMware logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-darden.png","alt_text":"Darden logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-unicredit.png","alt_text":"UniCredit logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/top-logo-roberthalf.png","alt_text":"Robert Half logo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2017/06/bmwgroup.png","alt_text":"BMW Group"}],'testimonials':[{"quote":"Productivity improves by <span class=\"text--bold text--teal\">20-25%</span> in organizations with connected employees","source":"Source: McKinsey"},{"quote":"<span class=\"text--bold text--teal\">74%</span> of employees feel that they're missing out on company information and news","source":"Source: Gallup"},{"quote":"<span class=\"text--bold text--teal\">86%</span> of corporate executives cite ineffective communications as a leading cause of workplace failures","source":"Source: Salesforce"}],'mobileProducts':[{"image":"https://dynamicsignal.com/wp-content/uploads/2012/07/product-mobile-inform.png","header":"Inform","copy":"Ensure employees stay informed with an app they will love to use. Alert them of news and content via SMS, Facebook Messenger, and Slack."},{"image":"https://dynamicsignal.com/wp-content/uploads/2012/07/product-mobile-empower.png","header":"Engage","copy":"Keep employees engaged with company news and announcements, relevant industry articles, and the content they need to be more productive at work."},{"image":"https://dynamicsignal.com/wp-content/uploads/2012/07/product-mobile-engage.png","header":"Empower","copy":"Allow employees to easily and safely share approved company content on social media."},{"image":"https://dynamicsignal.com/wp-content/uploads/2012/07/product-mobile-motivate.png","header":"Motivate","copy":"Inspire employees to get involved and stay connected with your company and their co-workers."}],'desktopProducts':[{"image":"https://dynamicsignal.com/wp-content/uploads/2012/07/product-desktop-manage.png","header":"Measure","copy":"Gauge effectiveness of your program by measuring and tracking the data that matters most to your company."},{"image":"https://dynamicsignal.com/wp-content/uploads/2012/07/product-desktop-measure.png","header":"Manage","copy":"Maintain control and compliance with an easy to use dashboard. Oversee all of your content and employees"}],'gridLogos':[{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-ibm.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-hpe.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-capitalone.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-humana.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-cisco.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-lenovo.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-voda.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-telstra.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-mars.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-ae.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-monsanto.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2017/08/autodesk-adsk-logo.jpg","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-aircanada.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-adp.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-oracle.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-o2.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-kpmg.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-getty.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-sap.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-bmwgroup.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-vmware.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-darden.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-unicredit.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-roberthalf.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-edelman.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-deloitte.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-paychex.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-pitneybowes.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-bmwgroup.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-hitachi.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-fleishmanhillard.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-qlogic.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-dowjones.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-sas.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-yr.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-intercall.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-sdlo.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-lewis-pulse.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-domo.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-slalom.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-mizuno.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-tubemogul.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-recall.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-rubios.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-surveymonkey.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-accuweather.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-uc-berkeley.png","alt_text":""},{"logo":"https://dynamicsignal.com/wp-content/uploads/2012/07/logo-capitalone.png","alt_text":""}]};
+  section.container
+    .row
+      .col-md-12
+        h1.header-top 
+          span Our Company
+      .col-md-9
+        .row 
+          .col-md-6
+            .featured-thumb(data-bg="http://via.placeholder.com/1600x900")
+          .col-md-6
+            p We are a privately held company, founded in 200? By CEO and Board Member Russ Fradin. Over N years, we have become a must have in enabling effective company communications. We are poised to become an even more important voice in this emerging field in the years to come.
+        h2 More:
+        .row
+          .col-md-3.col-xs-6
+            a.company-tile(href="customers.html")
+              .company-thumb(data-bg="http://via.placeholder.com/300x200")
+              h2 Customers
+          .col-md-3.col-xs-6
+            a.company-tile(href="team.html")
+              .company-thumb(data-bg="http://via.placeholder.com/300x200")
+              h2 Team
+          .col-md-3.col-xs-6
+            a.company-tile(href="partners.html")
+              .company-thumb(data-bg="http://via.placeholder.com/300x200")
+              h2 Partners
+          .col-md-3.col-xs-6
+            a.company-tile(href="careers.html")
+              .company-thumb(data-bg="http://via.placeholder.com/300x200")
+              h2 Careers
+      .col-md-3.col-right
+        h2.category-heading Events
+        a.blog-item(href="#")
+          h2 Synergize Your Backward Overflow
+          cite Webinar on 11/30/17 @ 8:30a
+        a.mock-button(href="events.html") All Events >
+        h2.category-heading Blog
+        a.blog-item(href="#")
+          h2 Rapid Fire Friday with Evan Hasareallylonglastname
+          cite By Robyn Hannah
+        a.mock-button(href="blog.html") All Entries >
+        h2.category-heading Press
+        p (Should appear conditional to the last item being within thirty days of now)
+  section.logo-strip-bucket
+    .container
+      .row
+        .col-md-12
+          p Dynamic Signal is trusted by hundreds of the world's largest enterprises, more than any other provider.
+          #logo-strip.logo-strip

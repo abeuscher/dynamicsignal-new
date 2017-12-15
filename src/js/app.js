@@ -10,6 +10,7 @@ var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
 var ActivateVideos = require("./video-handler/index.js");
+var Pies = require("./pie-chart/index.js");
 
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
@@ -74,6 +75,13 @@ function inIframe () {
   }
   activateImages();
   new ActivateVideos();
+
+  var pies = new Pies({
+  "className":"pie-wrapper",
+  "mask": true,
+  "color": "yellow",
+  "backgroundColor": "white"
+});
 });
 
 
@@ -100,6 +108,20 @@ var siteActions = [{
       activateScroll();
     }
   },
+  {
+  "element": "side-nav",
+  "action": function() {
+    var theToggle = document.getElementById("toggle-side-nav");
+    theToggle.addEventListener("click", function(e) {
+      e.preventDefault();
+      document.getElementById("side-nav").classList.toggle("closed");
+      document.body.classList.toggle("nav-open");
+      this.classList.toggle("active");
+      return false;
+    });
+
+  }
+},
   {
     "element": "map-container",
     "action": function() {

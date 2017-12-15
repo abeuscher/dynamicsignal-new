@@ -1,37 +1,42 @@
-section.hero.home-hero {
-  color:$white;
-  padding-bottom:100px;
-  h1,h2,.cta {
-    position:relative;
-    color:$white;
-  }
-  h1 {
-    font-size:30px;
-    line-height:44px;
-    font-weight: 700;
-    margin-top:$gutter-width;
-    @include bp(s) {
-      font-size:36px;
+.home-content {
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position: top center;
+    padding-bottom:50px;
+    margin-top:80px;
+    h1 {
+      padding-top:50px;
+      text-transform: none;
     }
-    @include bp(m) {
-      font-size: 60px;
-      line-height: 72px;
+    p {
+      font-size:1.2em;
     }
-  }
-  h2 {
-    font-size:18px;
-    margin-bottom:$gutter-width;
-    @include bp(m) {
-      font-size:30px;
-    }
-  }
-  .cta {
-    display:inline-block;
-    width:auto;
+}
+.home-page-widget {
+  display:block;
+  position:absolute;
+  width:100%;
+  height:50%;
+  right:0;
+  margin-top:-30px;
+  background-repeat:no-repeat;
+  background-position:top right;
+}
+.top-marquee {
+  padding-top:100px;
+  background-position:right 80px;
+  background-repeat: no-repeat;
+  background-size:contain;
+  @include bp(m) {
+    background-position:top right;
+    background-size:cover;
   }
 }
-.bg-video video {
-  width:100%;
+.home-image-spacer {
+  @include aspect-ratio(2,1);
+  @include bp(m) {
+    padding-bottom:0;
+  }
 }
 section.product-cta {
   @include bp(l) {

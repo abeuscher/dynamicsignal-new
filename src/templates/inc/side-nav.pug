@@ -1,0 +1,112 @@
+-
+  var navItems = [{
+      "title": "Request a Demo",
+      "url": "requestdemo",
+      "class":"red"
+    },
+    {
+      "title": "What is Dynamic Signal?",
+      "url": "product",
+      "children": [
+        {
+          "title": "Use Cases",
+          "url": "use-cases.html"
+        },
+        {
+          "title": "Case Studies",
+          "url": "case-studies.html"
+        },
+        {
+          "title": "Integrations",
+          "url": "case-studies.html"
+        },
+        {
+          "title": "Testimonials",
+          "url": "testimonials.html"
+        }
+      ]
+    },
+    {
+      "title": "Our Company",
+      "url": "company.html",
+      "children": [{
+          "title": "Customers",
+          "url": "customers.html"
+        },
+        {
+          "title": "Team",
+          "url": "team.html"
+        },
+        {
+          "title": "Partners",
+          "url": "partners.html"
+        },
+        {
+          "title": "Careers",
+          "url": "careers.html"
+        },
+        {
+          "title": "Events",
+          "url": "events.html"
+        },
+        {
+          "title": "Blog",
+          "url": "blog.html"
+        },
+        {
+          "title": "Press",
+          "url": "news.html"
+        }
+      ]
+    },
+    {
+      "title": "Resources",
+      "url": "resources.html",
+      "children": [{
+          "title": "Getting Started",
+          "url": "resources-category.html"
+        },{
+            "title": "Driving Adoption",
+            "url": "resources-category.html"
+          },{
+              "title": "Expanding Reach",
+              "url": "resources-category.html"
+            },{
+                "title": "Analytics",
+                "url": "resources-category.html"
+              },
+        {
+          "title": "Videos",
+          "url": "resources-type.html"
+        },
+        {
+          "title": "eBooks and Presentations",
+          "url": "resources-type.html"
+        },
+        {
+          "title": "Webinars",
+          "url": "resources-type.html"
+        }
+      ]
+    },
+    {
+      "title": "Contact",
+      "url": "contact.html"
+    },
+    {
+      "title": "Support",
+      "url": "support.html"
+    }
+  ];
+nav#side-nav.closed
+  .inner
+    ul
+      for item in navItems
+        - var classname = item.class ? item.class : "";
+        li
+          a(href=item.url,class=classname)!=item.title
+          if item.children
+            ul
+              for child in item.children
+                li
+                  a(href=child.url)!=child.title

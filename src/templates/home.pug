@@ -4,6 +4,23 @@ block template
     /*
     Template Name: Home Page
     */
+block nav
+  include ./inc/header.pug
+  .top-marquee.slant-right(data-bg="bg-bw.jpg")
+    section.home-content.container
+      .row
+        .col-md-7
+          h1 
+            span.blue Connect
+            span!=" with your most valuable asset - your people."
+          p Modernize, measure and streamline all your employee communications and content with one platform
+          a.button.cta(href="product.html") Request Demo  
+      span.home-page-widget.visible-md.visible-lg(data-bg="widget-blue-circuit.png")
+    section.logo-strip-bucket
+      .container
+        .row
+          .col-md-12
+            #logo-strip.logo-strip
 block content
   -
     var pageData = {
@@ -23,34 +40,43 @@ block content
     .",'desktopProducts':".json_encode(get_field('products_carousel_desktop'),JSON_UNESCAPED_SLASHES)
     .",'gridLogos':".json_encode(get_field('logos_grid'),JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  section.hero.home-hero
-    #home-hero-video.bg-video(data-video="hero-background-new.mp4",data-mobile-bg="Hero7.png")
-    h1!=pageData.header
-    h2!=pageData.subheader
-    a.button-red.cta(href="/requestdemo/") Request a Demo
-  section.logo-strip-bucket
-    .container
-      .row
-        .col-md-12
-          p=pageData.logoCopy
-          #logo-strip.logo-strip
-  include ./inc/use-cases-grid.pug
-  section.testimonials.container.col-m-center(data-bg=pageData.testimonialBg)
-    #testimonial-strip.home-gallery.flickity-fader
-  section
-    #product-display
-  section.product-cta
-    .container
-      .row
-        .col-md-12.col-center
-          a.button-red.knockout.cta(href="/product/") Learn More About Our Product
-  section.logo-grid
-    .container
-      .row
-        .col-md-12
-          h1.col-m-center!=pageData.logoGridHeader
-          h2.col-m-center!=pageData.logoGridSubheader
-      #logo-grid
-  section.cta-bottom.col-center
-    h2!=pageData.ctaHeader
-    a.button-red.cta(href="/requestdemo/")!=pageData.ctaLabel
+  section.container.after-marquee
+    .row.padding-bottom
+      .col-md-6
+        h2 Keep Employees connected and aligned
+        p All flight trooper, man your stations. All flight troops, man your stations. So...you got your reward and you're just leaving then? That's right, yeah! I got some old debts I've got to pay off with this stuff. Even if I didn't, you don't think I'd be fool enough to stick around here, do you? Why don't you come with us? You're pretty good in a fight. I could use you. Come on! Why don't you take a look around? You know what's about to happen, what they're up against. They could use a good pilot like you. You're turning your back on them.
+        .row.pie-row
+          .col-md-4
+            .pie-wrapper#chart-1(data-percent="92",data-size="200px")
+          .col-md-8
+            p.pie-label of employees feel that they are missing out on company information and news.
+              cite (Gallup)
+      .col-md-6
+        img.homepic.right(src=themeDir+"images/newhome-phone-1.png")
+    .row.padding-bottom
+      .col-md-6
+        img.homepic.left(src=themeDir+"images/newhome-phone-2.png")
+      .col-md-6
+        h2 Empower Advocacy and Drive Organic Reach
+        p All flight trooper, man your stations. All flight troops, man your stations. So...you got your reward and you're just leaving then? That's right, yeah! I got some old debts I've got to pay off with this stuff. Even if I didn't, you don't think I'd be fool enough to stick around here, do you? Why don't you come with us? You're pretty good in a fight. I could use you. Come on! Why don't you take a look around? You know what's about to happen, what they're up against. They could use a good pilot like you. You're turning your back on them.
+        .row.pie-row
+          .col-md-4
+            .pie-wrapper#chart-2(data-percent="147",data-size="200px")
+          .col-md-8
+            p.pie-label Companies that have more engaged employees outperform peers by 147% more earnings  per share. 
+              cite (Gallup)
+    .row.padding-bottom
+      .col-md-6
+        h2 Measure the Outcome
+        p All flight trooper, man your stations. All flight troops, man your stations. So...you got your reward and you're just leaving then? That's right, yeah! I got some old debts I've got to pay off with this stuff. Even if I didn't, you don't think I'd be fool enough to stick around here, do you? Why don't you come with us? You're pretty good in a fight. I could use you. Come on! Why don't you take a look around? You know what's about to happen, what they're up against. They could use a good pilot like you. You're turning your back on them.
+        .row.pie-row
+          .col-md-4
+            .pie-wrapper#chart-3(data-percent="14",data-size="200px")
+          .col-md-8
+            p.pie-label of communicators are confident in their ability  to measure their efforts.
+              cite (Gallup)
+      .col-md-6
+        img.homepic.right(src=themeDir+"images/newhome-phone-3.png")
+  section.bottom-cta
+    p Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders.
+    a.button.cta Request Demo

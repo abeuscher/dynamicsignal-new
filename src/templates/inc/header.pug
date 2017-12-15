@@ -1,119 +1,19 @@
--
-  var themeDir = "/wp-content/themes/ds-new/"
-  var useCases = {
-  "left": [{
-    "title":"Internal Communications",
-    "url":"/internal-communications/"
-    },{
-    "title":"Mobile Intranet",
-    "url":"/mobile-intranet/"
-  },{
-    "title":"Deskless Workers",
-    "url":"/deskless-workers/"
-  },{
-    "title":"Employee Advocacy",
-    "url":"/employee-advocacy/"
-  },{
-    "title":"Company News",
-    "url":"/company-news/"
-  }],
-  "right": [{
-    "title":"Social Selling",
-    "url":"/social-selling/"
-  },{
-    "title":"Recruiting &amp; Talent",
-    "url":"/recruiting-communications/"
-  },{
-    "title":"Executive Communications",
-    "url":"/executive-communications/"
-  },{
-    "title":"Crisis Communications",
-    "url":"/crisis-communications"
-  },{
-    "title":"Change Management / M &amp; A",
-    "url":"/change-management/"
-  }]
-  };
-nav.header-nav
-  .navbar-header
-    button.navbar-toggle#toggle-main-drop(type='button')
-      span.sr-only Toggle navigation
-      span.icon-bar
-      span.icon-bar
-      span.icon-bar
-    a.logo-header(href=locals.siteurl+'/')
-      img(src='https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/images/dynamicsignal-logo.svg',alt='Dynamic Signal')
-  .navbar-container#mobile-drop
-    .inner
-      ul.nav-items
-        li
-          a(href=locals.siteurl+'/product/') Product
-        li.dropdown
-          a.dropdown-toggle(href=locals.siteurl+'/use-cases/') Use Cases
-          div.dropdown-menu
-            .inner
-              ul.half
-                for usecase in useCases.left
-                  li
-                    a(href=locals.siteurl+usecase.url)!=usecase.title
-              ul.half
-                for usecase in useCases.right
-                  li
-                    a(href=locals.siteurl+usecase.url)!=usecase.title
-              .toplink
-              a.nav-all-link(href=locals.siteurl+"/use-cases/") View All
-        li
-          a(href=locals.siteurl+'/customers/') Customers
-        li
-          a(href=locals.siteurl+'/careers/') Careers
-        li.dropdown
-          a.dropdown-toggle(href='#') Company
-          div.dropdown-menu
-            .inner
-              ul.half.pad-top
-                li.nav-header Connect
-                li
-                  a(href=locals.siteurl+'/events/') Events
-                li
-                  a(href=locals.siteurl+'/contact-us/') Contact Us
-                li
-                  a(href=locals.siteurl+'/support/') Support
-              ul.half.pad-top
-                li.nav-header Who We Are
-                li
-                  a(href=locals.siteurl+'/team/') Team
-                li
-                  a(href=locals.siteurl+'/agency/') Partners
-              .toplink
-        li.dropdown
-          a.dropdown-toggle(href='https://resources.dynamicsignal.com/') Resources
-          div.dropdown-menu
-            .inner
-              ul.third.pad-top
-                li.nav-header News
-                li
-                  a(href='https://resources.dynamicsignal.com/h/c/206867-news') Mentions
-                li
-                  a(href='https://resources.dynamicsignal.com/h/c/208133-press') Press Releases
-              ul.third.pad-top
-                li.nav-header Educational
-                li
-                  a(href=locals.siteurl+'/blog/') Blog
-                li
-                  a(href='https://resources.dynamicsignal.com/h/c/837672-case-studies') Case Studies
-                li
-                  a(href='https://resources.dynamicsignal.com/h/c/185169-customer-testimonials') Testimonials
-                li
-                  a(href='https://resources.dynamicsignal.com/h/c/307374-ebooks-guides') eBooks & Guides
-              ul.third.pad-top
-                li.nav-header Multimedia
-                li
-                  a(href='https://resources.dynamicsignal.com/h/c/185166-webinars') Webinars
-                li
-                  a(href='https://resources.dynamicsignal.com/h/c/185145-presentations') Presentations
-                li
-                  a(href='https://resources.dynamicsignal.com/h/c/185178-videos') Videos
-              .toplink
-              a.nav-all-link(href="https://resources.dynamicsignal.com/") Featured Items
-        li
-          a.button-teal.button-demo(href=locals.siteurl+'/requestdemo/') Request Demo
+header.page-header
+  .row.inner
+    .col-md-4.col-xs-9.logo-bucket
+      a.logo(href=locals.siteurl+'/')
+        img(src=themeDir+'/images/logo-header.png',alt='Dynamic Signal')
+    .col-md-8.col-xs-3.right
+      nav.small-nav.interior
+        ul.hmenu
+          li
+            a(href="product") What is Dynamic Signal?
+          li
+            a(href="company") Our Company
+          li
+            a(href="resources") Resources
+      button.navbar-toggle#toggle-side-nav(type='button')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar

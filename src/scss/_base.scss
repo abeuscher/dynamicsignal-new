@@ -20,22 +20,56 @@
     max-width:100%;
   }
 }
-
+.right {
+    text-align:right;
+  }
+.blue {
+  color:$bright-blue;
+}
+.bottom-cta {
+  background:$blue-gradient;
+  color:$white;
+  text-align:center;
+}
+ul.hmenu {
+  margin:0;
+  padding:0;
+  list-style:none;
+  li {
+    display:inline-block;
+  }
+}
 body {
   font-family: $body-font;
-  color: $grey;
+  color: $body-text-color;
   font-weight: 300;
   opacity: 1;
   transition: opacity .4s ease-in-out;
+  overflow-x: hidden;
   &.loading {
     @include bp(m) {
       //opacity:0;
     }
   }
 }
-
-#kwcWidgetFrame {
-  display:none;
+body.nav-open {
+  //overflow:hidden;
+  .small-nav ul li a {
+    opacity:0;
+  }
+  &:before {
+    content:'';
+    position:fixed;
+    background:rgba(0,0,0,.5);
+    top:0;
+    left:0;
+    bottom:0;
+    width:100%;
+    z-index:1;
+  }
+}
+.navbar-toggle {
+  z-index:10;
 }
 @each $bp-name, $bp-value in $bps {
   .col-#{$bp-name}-center {
@@ -103,10 +137,10 @@ h2 {
 a {
   text-decoration: none;
   cursor: pointer;
-  color:$teal;
+  color:$body-link-color;
   &:hover {
     text-decoration: none;
-    color: $grey;
+    color: $bright-blue;
   }
 }
 
@@ -195,6 +229,21 @@ p.large-text {
       margin-right:$gutter-width/2;
     }
   }
+.button {
+  text-align:center;
+  display:inline-block;
+  padding:.5em 1em;
+  transition:all .25s ease-in;
+  &.cta {
+    background:$blue;
+    color:$white;
+
+    &:hover {
+      background:lighten($blue,50%);
+      color:$blue;
+    }
+  }
+}
 a.button-teal,
 ul.nav-items li a.button-teal {
   background-color: white;
@@ -283,11 +332,30 @@ ul.nav-items li a.button-teal {
     margin:0 auto $gutter-width;
   }
 }
-section.logo-strip-bucket {
+.category-heading {
+  background:$blue-gradient;
+  text-transform:uppercase;
+  letter-spacing: 2px;
+  font-weight: 300;
+  margin:$gutter-width 0 $gutter-width/2 -1em;
+  line-height: 1.8;
+  color:$white;
+  text-align:left;
+  text-indent:1em;
+  font-size:14px;
+  &:first-child {
+    margin-top:0;
+  }
+}
 
-    display: block;
+section.logo-strip-bucket {
+  background:none;
+  margin-top:$gutter-width*2;
+  padding-bottom:$gutter-width;
+  p {
+    padding:$gutter-width 0 $gutter-width*2;
+  }
     text-align: center;
-    background: $beige;
 
 
   .logo-strip {
