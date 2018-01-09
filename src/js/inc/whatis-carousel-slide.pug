@@ -1,0 +1,7 @@
+.row
+  .col-md-6#picture-box
+  .col-md-6
+    for slide,key in locals.slides
+      a.whatis-carousel-section(href="#",id="section"+key,data-image=slide.getAttribute("data-image"))
+        span!=slide.innerHTML
+        

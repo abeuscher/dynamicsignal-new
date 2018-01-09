@@ -1,14 +1,104 @@
-.products-coverflow {
-  h1, p {
-    padding:0 $gutter-width;
+
+#whatis-header {
+  padding-top:90px;
+  background-repeat:no-repeat;
+  background-size:cover;
+  h1 {
+    padding:1em 0 0;
+    margin:0;
+    line-height:1.5;
+    margin-top:-2em;
+    text-align: center;
+    font-family:$body-font;
+    font-size:1.8em;
+  }
+}
+#whatis-carousel-image {
+  &:after {
+    content:'';
+    display:block;
+    padding-bottom:100%;
+  }
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:right;
+}
+section.whatis-carousel-bucket {
+  padding-bottom:0;
+  background:$off-white;
+}
+.whatis-testimonial-bucket {
+  background:url($img-path+"whatis-bg-testimonials.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  color:$white;
+  text-align:center;
+  blockquote {
+    margin:0 5%; padding:0;
+    font-size:1.6em;
+    line-height:1.8;
+    font-weight:600;
+  }
+  cite {
+    display:block;
+    color:$knockout-blue;
+    font-style:normal;
+    font-size:1.2em;
+    margin-top:1em;
+  }
+}
+.carousel-button {
+  &:hover {
+    color:$off-black;
+    h2 {
+      color:$off-black;
+    }
+  }
+  padding:1em 1em 1em 3.5em;
+  display:block;
+  &.active {
+    background:url($img-path+"whatis-widget-active.png");
+    background-repeat:no-repeat;
+    background-position:left;
+  }
+  h2 {
+      margin:0 0 .25em;
+  }
+}
+.whatis-bottom {
+.whatis-bottom-pic {
+  background-repeat:no-repeat;
+  background-size:contain;
+  &:after {
+    content:'';
+    display:block;
+    padding-bottom:70%;
+  }
+}
+}
+.big-list {
+  list-style:none;
+  color:$header-blue;
+  li {
+    &:before {
+      content:'';
+      position:absolute;
+      margin-right:1em;
+      width:11px;
+      height:11px;
+      border:3px solid $header-blue;
+      border-radius:50%;
+      left:1.5em;
+      margin-top:.5em;
+    }
+  }
+
+  font-size:1.5em;
+  h3 {
+    margin:.5em 0 .15em;
   }
   p {
-    color:$light-grey;
-    line-height: 37px;
-    font-size: 21px;
-    font-weight: 400;
-  }
-  img {
-    max-width:100%;
+    margin:0 0 1em;
+    color:$black;
   }
 }

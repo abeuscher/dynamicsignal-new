@@ -17,15 +17,16 @@ require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animati
 
 var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
+var removeClassFromClass = require("./utils/remove-class-from-class.js");
 
 var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "Whatever that button says, don't click it!",
+    "cta": "Webinar: How O2 Engages Their Workforce at a Global Scale",
     "url": "http://amp.dynamicsignal.com/How-O2-Engages-Their-Deskless-Workforce-Global-Scale.html",
-    "buttonText": "Click Here"
+    "buttonText": "Watch Now"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
@@ -46,7 +47,8 @@ var siteSettings = {
     "eventListing": require("./inc/event-listing.pug"),
     "pastEventListing": require("./inc/past-event-listing.pug"),
     "buttonPastEvents": require("./inc/button-past-events.pug"),
-    "jobFilter": require("./inc/job-filter.pug")
+    "jobFilter": require("./inc/job-filter.pug"),
+    "whatisSlide": require("./inc/whatis-carousel-slide.pug")
   },
   "breakpoints": {
     "xs": 0,
@@ -58,7 +60,7 @@ var siteSettings = {
 }
 
 window.addEventListener("load", function() {
-console.log(inIframe);
+
 function inIframe () {
     try {
         return window.self !== window.top;
@@ -278,24 +280,63 @@ var siteActions = [{
   {
     "element": "mktoForm_1163",
     "action": function() {
+
+      MktoForms2.whenReady(function(form) {
+
+      				var formEl = form.getFormElem()[0],
+      						emailEl = formEl.querySelector('#Email'),
+      						submitEl = formEl.querySelector('BUTTON[type="submit"]'),
+      						recaptchaEl = document.querySelector('.g-recaptcha');
+
+      				form.submittable(false);
+      				emailEl.readOnly = true;
+
+
+      			  // force resize reCAPTCHA frame
+      			  recaptchaEl.querySelector('IFRAME').setAttribute('height','140');
+
+      				// move reCAPTCHA inside form container
+      				formEl.appendChild(recaptchaEl);
+
+      				form.onValidate(function(builtInValidation) {
+      						if (!builtInValidation) return;
+
+      						var recaptchaResponse = grecaptcha.getResponse();
+      						if (!recaptchaResponse) {
+      								recaptchaEl.classList.add('mktoInvalid');
+      						} else {
+      								recaptchaEl.classList.remove('mktoInvalid');
+      								form.addHiddenFields({
+      										lastRecaptchaUserInput: recaptchaResponse
+      								});
+      								form.submittable(true);
+      						}
+      				});
+
+      		});
+
+
+
+
       var theForm = document.getElementById("mktoForm_1163");
       var textFields = theForm.querySelectorAll(".mktoTextField,.mktoEmailField,.mktoTelField");
       for (i = 0; i < textFields.length; i++) {
         textFields[i].addEventListener("blur", updateClasses);
       }
-      var theButton = theForm.querySelectorAll("iframe")[0];
-      theButton.addEventListener("click", function() {
-        console.log("checking");
-        for (i = 0; i < textFields.length; i++) {
-          var el = textFields[i];
-          if (el.value != "") {
-            el.classList.add("filled-out");
-          } else {
-            if (el.classList.item("filled-out")) {
-              el.classList.remove("filled-out");
+      MktoForms2.whenReady(function(form) {
+        var theButton = theForm.querySelectorAll("iframe")[0];
+        theButton.addEventListener("click", function() {
+          for (i = 0; i < textFields.length; i++) {
+            var el = textFields[i];
+            if (el.value != "") {
+              el.classList.add("filled-out");
+            } else {
+              if (el.classList.item("filled-out")) {
+                el.classList.remove("filled-out");
+              }
             }
           }
-        }
+        });
       });
       function updateClasses() {
         if (this.value != "") {
@@ -323,6 +364,24 @@ var siteActions = [{
         }
         videoGall.resize();
       }
+    }
+  }, {
+    "element": "page-header",
+    "action": function() {
+      var headController = new ScrollMagic.Controller({
+              "loglevel": 0
+            });
+      new ScrollMagic.Scene({
+          offset: 10,
+          duration: 0
+        })
+        .on("enter", function(e) {
+          document.getElementById("page-header").classList.add("active");
+        })
+        .on("leave", function(e) {
+          document.getElementById("page-header").classList.remove("active");
+        })
+        .addTo(headController);
     }
   },
   {
@@ -494,6 +553,24 @@ var siteActions = [{
     }
   },
   {
+    "element": "whatis-carousel",
+    "action": function() {
+      theCarousel = document.getElementById("whatis-carousel");
+      thePicture = document.getElementById("whatis-carousel-image");
+      var buttons = theCarousel.querySelectorAll(".carousel-button");
+      for(i=0;i<buttons.length;i++) {
+        var theButton = buttons[i];
+        theButton.addEventListener("click", function(e) {
+          e.preventDefault();
+          thePicture.style.backgroundImage = "url('" + siteSettings.imagePath + this.getAttribute("data-image") + "')";
+          removeClassFromClass("carousel-button","active");
+          this.classList.add("active");
+          return false;
+        });
+      }
+    }
+  },
+  {
     "element": "job-list",
     "action": function() {
       var jobs = sortBy(pageData.jobs, function(i) {
@@ -573,6 +650,7 @@ function addClass(el, classname, groupclass) {
 
 function activateImages() {
   var backgroundImages = document.querySelectorAll("[data-bg]");
+  console.log(backgroundImages);
   for (i in backgroundImages) {
     if (isElement(backgroundImages[i])) {
       thisElement = backgroundImages[i];

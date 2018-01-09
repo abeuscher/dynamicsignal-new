@@ -136,6 +136,7 @@ gulp.task('watch-files', function() {
     gulp.watch([jsSrcDir + '**/*.js',jsSrcDir + '*.js'], ['build-js'])
     gulp.watch([viewsSrcDir+ '*.pug',viewsSrcDir+ '/*/*.pug'], ['build-views']);
     gulp.watch([embedSrcDir+ '*.js',embedSrcDir+ '/*/*.js'], ['build-js']);
+    gulp.watch([miscSrcDir + "*/**",miscSrcDir + ".*"], ['move-files']);
 });
 
 gulp.task('bundle-js', bundle);

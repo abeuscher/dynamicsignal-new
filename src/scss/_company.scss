@@ -102,30 +102,6 @@
 .centered {
   text-align: center;
 }
-.company-tile {
-  display:block;
-  padding:$gutter-width/2;
-  background:$blue;
-  transition:all .25s ease-in;
-  h2 {
-    transition:all .25s ease-in;
-    text-align:center;
-    text-transform:uppercase;
-    color:$white;
-    font-size:18px;
-  }
-  &:hover {
-    background:$grey;
-    h2 {
-      color:$white;
-    }
-  }
-}
-.company-thumb {
-  @include aspect-ratio(3,2);
-  background-size:cover;
-  background-position: center;
-}
 .button-resources {
   display:inline-block;
   margin:0 1em 1em 0;

@@ -4,6 +4,8 @@ block template
     /*
     Template Name: Connectors Page
     */
+block nav
+  include ./inc/header.pug
 block content
   :php
     echo '<script>var connectorData = '. json_encode(get_field("connectors")).';</script>';

@@ -27,7 +27,9 @@
   color:$bright-blue;
 }
 .bottom-cta {
-  background:$blue-gradient;
+  background:url($img-path+"bg-bluewidgets.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   color:$white;
   text-align:center;
 }
@@ -53,7 +55,9 @@ body {
   }
 }
 body.nav-open {
-  //overflow:hidden;
+  @include bp(m) {
+    overflow:hidden;
+  }
   .small-nav ul li a {
     opacity:0;
   }
@@ -506,7 +510,15 @@ section.logo-strip-bucket {
   width: 100%;
   z-index: 0;
 }
-
+.icon-tile {
+  text-align:center;
+}
+.icon-thumb {
+  @include aspect-ratio(1,1);
+  width:50%;
+  margin:0 25%;
+  background-size:contain;
+}
 .contact-map iframe {
   pointer-events: none;
   width: 100%;

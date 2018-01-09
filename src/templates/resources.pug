@@ -1,0 +1,131 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Resources Page
+    */
+block nav
+  include ./inc/header.pug
+block content
+  -
+    var pageData = {
+      "categories":[{
+        "title":"Getting Started",
+        "url":"resources-category.html",
+        "description":"Lorem Ipsum Dolor Amet Etc.",
+        "type":"",
+        "meta":"",
+        "subcategories":[{
+          "title":"First Steps",
+          "url":"",
+          "total":"7"
+        },{
+          "title":"Sending Messages",
+          "url":"",
+          "total":"4"
+        }
+        ]
+        },{
+          "title":"Driving Adoption",
+          "url":"resources-category.html",
+          "description":"Lorem Ipsum Dolor Amet Etc.",
+          "type":"",
+          "meta":"",
+          "subcategories":[{
+            "title":"Signup",
+            "url":"",
+            "total":"8"
+          },{
+            "title":"Rewards",
+            "url":"",
+            "total":"3"
+          },{
+            "title":"Tips and Tricks",
+            "url":"",
+            "total":"2"
+          }
+          ]
+          },{
+            "title":"Expanding Reach",
+            "url":"resources-category.html",
+            "description":"Lorem Ipsum Dolor Amet Etc.",
+            "type":"",
+            "meta":"",
+            "subcategories":[{
+              "title":"Cross Departmental Adoption",
+              "url":"",
+              "total":"6"
+            },{
+              "title":"Next Steps",
+              "url":"",
+              "total":"5"
+            },{
+              "title":"Success Stories",
+              "url":"",
+              "total":"5"
+            }
+            ]
+            },{
+              "title":"Analytics",
+              "url":"resources-category.html",
+              "description":"Lorem Ipsum Dolor Amet Etc.",
+              "type":"",
+              "meta":"",
+              "subcategories":[{
+                "title":"Introduction",
+                "url":"",
+                "total":"2"
+              },{
+                "title":"Best Practices",
+                "url":"",
+                "total":"2"
+              }
+              ]
+              },
+        ]
+    }
+  section.featured-item.container
+    .row
+      .col-md-12
+        h1.header-top 
+          span Resources
+    a.featured-item(href="#")
+      .row
+        .col-md-6
+          .featured-thumb(data-bg="http://via.placeholder.com/1600x900")
+        .col-md-6
+          h1 Featured Item Title
+          p Featured Item description
+  section.page-content.container
+    .row
+      .col-md-12
+        h2 Categories
+    .row
+      for category in pageData.categories
+        .col-md-3.col-xs-6
+          a.company-tile(href=category.url + "#" + category.title.replace(" ","-"))
+            .company-thumb(data-bg="http://via.placeholder.com/300x200")
+            h2!=category.title
+          ul.sub-categories    
+            for subcategory in category.subcategories    
+              li
+                a(href=category.url + "#" + category.title.replace(" ","-"))!=subcategory.title + " (" + subcategory.total + ")"
+    .row
+      .col-md-12
+        h2 Browse By Type
+      .col-md-3.col-xs-6
+        a.company-tile(href="#")
+          .company-thumb(data-bg="http://via.placeholder.com/300x200")
+          h2 Video
+      .col-md-3.col-xs-6
+        a.company-tile(href="#")
+          .company-thumb(data-bg="http://via.placeholder.com/300x200")
+          h2 eBooks & Presentations
+      .col-md-3.col-xs-6
+        a.company-tile(href="#")
+          .company-thumb(data-bg="http://via.placeholder.com/300x200")
+          h2 Webinars
+      .col-md-3.col-xs-6
+        a.company-tile(href="#")
+          .company-thumb(data-bg="http://via.placeholder.com/300x200")
+          h2 View All

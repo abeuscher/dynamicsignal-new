@@ -6,16 +6,18 @@ block template
     */
 block nav
   include ./inc/header.pug
-  .top-marquee.slant-right(data-bg="bg-bw.jpg")
+  .top-marquee#home-marquee
     section.home-content.container
       .row
-        .col-md-7
+        .col-md-6.col-xs-8
           h1 
             span.blue Connect
-            span!=" with your most valuable asset - your people."
-          p Modernize, measure and streamline all your employee communications and content with one platform
-          a.button.cta(href="product.html") Request Demo  
-      span.home-page-widget.visible-md.visible-lg(data-bg="widget-blue-circuit.png")
+            span!=" with your most valuable asset - your employees."
+          p Modernize, streamline, and measure your employee communication and content with one platform.
+          a.button.cta(href="product.html") Learn More 
+      span.home-page-widget
+        .widget-spacer(data-bg="widget-blue-circuit-bg.png")
+        img(src=themeDir + "images/widget-blue-circuit.png")
     section.logo-strip-bucket
       .container
         .row
@@ -43,22 +45,24 @@ block content
   section.container.after-marquee
     .row.padding-bottom
       .col-md-6
-        h2 Keep Employees connected and aligned
-        p All flight trooper, man your stations. All flight troops, man your stations. So...you got your reward and you're just leaving then? That's right, yeah! I got some old debts I've got to pay off with this stuff. Even if I didn't, you don't think I'd be fool enough to stick around here, do you? Why don't you come with us? You're pretty good in a fight. I could use you. Come on! Why don't you take a look around? You know what's about to happen, what they're up against. They could use a good pilot like you. You're turning your back on them.
+        h2 Modernize
+          span.home-icon.modernize
+        p Outdated business channels do not meet the challenge of connecting with every employee in today’s rapidly changing workplace. A mobile-optimized Employee Communication and Engagement Platform enables organizations to reach all workers in real time with personalized, relevant content in the way they want and expect.
         .row.pie-row
           .col-md-4
-            .pie-wrapper#chart-1(data-percent="92",data-size="200px")
+            .pie-wrapper#chart-1(data-percent="13",data-size="200px")
           .col-md-8
-            p.pie-label of employees feel that they are missing out on company information and news.
-              cite (Gallup)
+            p.pie-label Only 13% of employees visit their intranet daily 
+              cite (Prescient Digital Media)
       .col-md-6
-        img.homepic.right(src=themeDir+"images/newhome-phone-1.png")
+        img.homepic.right(src=themeDir+"images/newhome-phone-1.jpg")
     .row.padding-bottom
+      .col-md-6.right
+        img.homepic.left(src=themeDir+"images/newhome-phone-2.jpg")
       .col-md-6
-        img.homepic.left(src=themeDir+"images/newhome-phone-2.png")
-      .col-md-6
-        h2 Empower Advocacy and Drive Organic Reach
-        p All flight trooper, man your stations. All flight troops, man your stations. So...you got your reward and you're just leaving then? That's right, yeah! I got some old debts I've got to pay off with this stuff. Even if I didn't, you don't think I'd be fool enough to stick around here, do you? Why don't you come with us? You're pretty good in a fight. I could use you. Come on! Why don't you take a look around? You know what's about to happen, what they're up against. They could use a good pilot like you. You're turning your back on them.
+        h2 Streamline
+          span.home-icon.streamline
+        p Organizations and employees are frustrated by fragmented systems that inconsistently deliver important content and reduce engagement. Consolidating communication with a single, easily accessible platform ensures workers always get the crucial information they need to do their jobs better and more efficiently.
         .row.pie-row
           .col-md-4
             .pie-wrapper#chart-2(data-percent="147",data-size="200px")
@@ -67,8 +71,9 @@ block content
               cite (Gallup)
     .row.padding-bottom
       .col-md-6
-        h2 Measure the Outcome
-        p All flight trooper, man your stations. All flight troops, man your stations. So...you got your reward and you're just leaving then? That's right, yeah! I got some old debts I've got to pay off with this stuff. Even if I didn't, you don't think I'd be fool enough to stick around here, do you? Why don't you come with us? You're pretty good in a fight. I could use you. Come on! Why don't you take a look around? You know what's about to happen, what they're up against. They could use a good pilot like you. You're turning your back on them.
+        h2 Measure
+          span.home-icon.measure
+        p Organizations have no accurate method of measuring the reach, impact or effectiveness of their communication efforts. But when all channels are integrated into one platform, communicators can confidently track engagement, measure results, then use those metrics to improve communication strategies.
         .row.pie-row
           .col-md-4
             .pie-wrapper#chart-3(data-percent="14",data-size="200px")
@@ -76,7 +81,7 @@ block content
             p.pie-label of communicators are confident in their ability  to measure their efforts.
               cite (Gallup)
       .col-md-6
-        img.homepic.right(src=themeDir+"images/newhome-phone-3.png")
+        img.homepic.right(src=themeDir+"images/newhome-phone-3.jpg")
   section.bottom-cta
     p Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders.
     a.button.cta Request Demo
