@@ -22,9 +22,9 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "Event : Social Media #Mashup at Disneyland",
-    "url": "http://conferences.ragan.com/disneyland/register/?promo=Y17CF0CA-DYNSIG",
-    "buttonText": "Register Now"
+    "cta": "We're hiring! Check out our latest job openings.",
+    "url": "/careers/",
+    "buttonText": "View Jobs"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
@@ -256,24 +256,62 @@ var siteActions = [{
   {
     "element": "mktoForm_1163",
     "action": function() {
+
+      MktoForms2.whenReady(function(form) {
+
+      				var formEl = form.getFormElem()[0],
+      						emailEl = formEl.querySelector('#Email'),
+      						submitEl = formEl.querySelector('BUTTON[type="submit"]'),
+      						recaptchaEl = document.querySelector('.g-recaptcha');
+
+      				form.submittable(false);
+
+      			  // force resize reCAPTCHA frame
+      			  recaptchaEl.querySelector('IFRAME').setAttribute('height','140');
+
+      				// move reCAPTCHA inside form container
+      				formEl.appendChild(recaptchaEl);
+
+      				form.onValidate(function(builtInValidation) {
+      						if (!builtInValidation) return;
+
+      						var recaptchaResponse = grecaptcha.getResponse();
+      						if (!recaptchaResponse) {
+      								recaptchaEl.classList.add('mktoInvalid');
+      						} else {
+      								recaptchaEl.classList.remove('mktoInvalid');
+                      console.log(recaptchaResponse);
+      								form.addHiddenFields({
+      										captchaStatus: "true"
+      								});
+      								form.submittable(true);
+      						}
+      				});
+
+      		});
+
+
+
+
       var theForm = document.getElementById("mktoForm_1163");
       var textFields = theForm.querySelectorAll(".mktoTextField,.mktoEmailField,.mktoTelField");
       for (i = 0; i < textFields.length; i++) {
         textFields[i].addEventListener("blur", updateClasses);
       }
-      var theButton = theForm.querySelectorAll("iframe")[0];
-      theButton.addEventListener("click", function() {
-        console.log("checking");
-        for (i = 0; i < textFields.length; i++) {
-          var el = textFields[i];
-          if (el.value != "") {
-            el.classList.add("filled-out");
-          } else {
-            if (el.classList.item("filled-out")) {
-              el.classList.remove("filled-out");
+      MktoForms2.whenReady(function(form) {
+        var theButton = theForm.querySelectorAll("iframe")[0];
+        theButton.addEventListener("click", function() {
+          for (i = 0; i < textFields.length; i++) {
+            var el = textFields[i];
+            if (el.value != "") {
+              el.classList.add("filled-out");
+            } else {
+              if (el.classList.item("filled-out")) {
+                el.classList.remove("filled-out");
+              }
             }
           }
-        }
+        });
       });
       function updateClasses() {
         if (this.value != "") {
