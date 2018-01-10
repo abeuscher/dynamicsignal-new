@@ -1,17 +1,9 @@
 
-#whatis-header {
-  padding-top:90px;
-  background-repeat:no-repeat;
-  background-size:cover;
-  h1 {
-    padding:1em 0 0;
-    margin:0;
-    line-height:1.5;
-    margin-top:-2em;
-    text-align: center;
-    font-family:$body-font;
-    font-size:1.8em;
-  }
+.top-section .whatis-marquee {
+  bottom:50px;
+  top:auto;
+  height:auto;
+  text-align:center;
 }
 #whatis-carousel-image {
   &:after {

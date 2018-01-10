@@ -240,10 +240,8 @@ var siteActions = [{
     }
   },
   {
-    "element": "customers-grid",
+    "element": "customer-video-carousel",
     "action": function() {
-      //console.log(customerData);
-      var customerGrid = document.getElementById("customers-grid");
       var videoGall = new Flickity(document.getElementById("customer-video-carousel"), {
         "wrapAround": true,
         "pageDots": false,
@@ -252,12 +250,21 @@ var siteActions = [{
         "adaptiveHeight": false
       });
       for (i in customerData) {
-        customerGrid.append(parseHTML(siteSettings.templates.customerTile(customerData[i])));
         if (customerData[i].vimeo_id != "") {
           videoGall.append(parseHTML(siteSettings.templates.customerQuote(customerData[i])));
         }
       }
       videoGall.resize();
+    }
+  },
+  {
+    "element": "customers-grid",
+    "action": function() {
+      //console.log(customerData);
+      var customerGrid = document.getElementById("customers-grid");
+      for (i in customerData) {
+        customerGrid.append(parseHTML(siteSettings.templates.customerTile(customerData[i])));
+      }
       var sectionActivators = customerGrid.querySelectorAll("[data-activate-customer-section]");
       for (i = 0; i < sectionActivators.length; i++) {
         var thisAnchor = sectionActivators[i];

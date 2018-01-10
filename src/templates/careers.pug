@@ -1,124 +1,126 @@
 extends inc/page.pug
 block template
-	:php
-		/*
-		Template Name: Careers Page
-		*/
+  :php
+    /*
+    Template Name: Careers Page
+    */
+block nav
+  include ./inc/header.pug
 block content
-	:php
-		if( have_posts() ): while( have_posts() ): the_post();
-			$videos = get_field("career_videos");
-		endwhile;
-		endif;
-	-
-		var pageData = {
-		"header":"Join Our Team",
-		"subheader":"We build communications technology for the world's largest enterprises.",
-		"menuLinks":[{
-					"class":"about",
-					"label":"About Us"
-				},
-				{
-					"class":"video",
-					"label":"Video"
-				},
-				{
-					"class":"culture",
-					"label":"Culture"
-				},
-				{
-					"class":"jobs",
-					"label":"Open Positions"
-				}],
-			"aboutHeader":"Working at Dynamic Signal",
-			"aboutSubheader":"Learn more about the people, perks, and culture that make Dynamic Signal a great place to work.",
-			"aboutPanes":[{
-			"title":"Competitive Equity & Salary",
-			"copy":"We provide every employee with the ability to make a difference and be compensated and rewarded for their efforts."},{
-			"title":"Full Benefits & Lots Of Perks",
-			"copy":"Health, vision & dental. Plus catered meals, on-site gym, and all the tech, gear, and swag you need to be successful in your role."},{
-			"title":"Work-Life-Play Balance",
-			"copy":"Flexible work hours, paid vacations, and respect for you, your family, and your personal time are important to us."},{
-			"title":"Empowered Work Environment",
-			"copy":"Our employees are surrounded by a culture that inspires them to learn, grow, and lead by example."}],
-			"videoInfo": {
-				"id":"211114192",
-				"type":"vimeo",
-				"header":"It’s Who You Do It With That Matters",
-				"quote":"Our team is as talented, diverse, and innovative as they come. In this candid video you get a first hand look at the people behind the Dynamic Signal technology, what they are passionate about, and why they love their work.",
-				"cta":"Play Video",
-				"image":"about-video-thumb.jpg"
-			},
-			"cultureHeader":"All Work, With Plenty Of Play",
-			"cultureCopy":"Our team loves to have a good time, express their personality, and show it off to the world. Whether we're celebrating a birthday, gathering for a team event, or hosting a customer dinner, we take pride in doing it with a smile. Life is too short not to have fun while you work.",
-			"listingsHeader":"Current Open Positions",
-			"listingsCopy":"Think Dynamic Signal is the place for you? Browse our open positions below and feel free to contact us with any questions about the company, a specific department, or job. We'd be happy to hear from you!"
+  :php
+    if( have_posts() ): while( have_posts() ): the_post();
+      $videos = get_field("career_videos");
+    endwhile;
+    endif;
+  -
+    var pageData = {
+    "header":"Join Our Team",
+    "subheader":"We build communications technology for the world's largest enterprises.",
+    "menuLinks":[{
+          "class":"about",
+          "label":"About Us"
+        },
+        {
+          "class":"video",
+          "label":"Video"
+        },
+        {
+          "class":"culture",
+          "label":"Culture"
+        },
+        {
+          "class":"jobs",
+          "label":"Open Positions"
+        }],
+      "aboutHeader":"Working at Dynamic Signal",
+      "aboutSubheader":"Learn more about the people, perks, and culture that make Dynamic Signal a great place to work.",
+      "aboutPanes":[{
+      "title":"Competitive Equity & Salary",
+      "copy":"We provide every employee with the ability to make a difference and be compensated and rewarded for their efforts."},{
+      "title":"Full Benefits & Lots Of Perks",
+      "copy":"Health, vision & dental. Plus catered meals, on-site gym, and all the tech, gear, and swag you need to be successful in your role."},{
+      "title":"Work-Life-Play Balance",
+      "copy":"Flexible work hours, paid vacations, and respect for you, your family, and your personal time are important to us."},{
+      "title":"Empowered Work Environment",
+      "copy":"Our employees are surrounded by a culture that inspires them to learn, grow, and lead by example."}],
+      "videoInfo": {
+        "id":"211114192",
+        "type":"vimeo",
+        "header":"It’s Who You Do It With That Matters",
+        "quote":"Our team is as talented, diverse, and innovative as they come. In this candid video you get a first hand look at the people behind the Dynamic Signal technology, what they are passionate about, and why they love their work.",
+        "cta":"Play Video",
+        "image":"about-video-thumb.jpg"
+      },
+      "cultureHeader":"All Work, With Plenty Of Play",
+      "cultureCopy":"Our team loves to have a good time, express their personality, and show it off to the world. Whether we're celebrating a birthday, gathering for a team event, or hosting a customer dinner, we take pride in doing it with a smile. Life is too short not to have fun while you work.",
+      "listingsHeader":"Current Open Positions",
+      "listingsCopy":"Think Dynamic Signal is the place for you? Browse our open positions below and feel free to contact us with any questions about the company, a specific department, or job. We'd be happy to hear from you!"
 
-			};
-	:php
-		$args = array( 'post_type' => 'career', 'posts_per_page' => 100 );
-		$jobs = get_posts( $args );
-		$categories = [];
-		$category_count=[];
-		foreach($jobs as $key => $job) {
-			$cat = get_the_category($job->ID);
-			foreach($cat as $category) {
-				$category_count[$category->cat_ID] = $category_count[$category->cat_ID] ? $category_count[$category->cat_ID]+1 : 1;
-				if (!in_array($category,$categories)) {
-					array_push($categories,$category);
-				}
-			}
-			$job->categories = $cat;
-			$jobs[$key] = $job;
-		}
-		foreach($categories as $key=>$category) {
-			$categories[$key]->total_entries = $category_count[$category->cat_ID];
-		}
-		echo "<script>var pageData = {'jobs':".json_encode($jobs,JSON_UNESCAPED_SLASHES)
-		.",'categories':".json_encode($categories,JSON_UNESCAPED_SLASHES)
-		.",'videos':".json_encode($videos,JSON_UNESCAPED_SLASHES)
-		."};</script>";
-	include ./inc/hero.pug
-	section.careers-links
-		.container.hidden-sm
-			.row
-				ul.nav.careers-tabs
-					for link,key in pageData.menuLinks
-						if key == 0
-							li.active
-								a(href="#"+link.class,id="icon-"+link.class)=link.label
-						else
-							li
-								a(href="#"+link.class,id="icon-"+link.class)=link.label
-	section#about.container.careers-about
-		.row
-			.col-md-12
-				h2!=pageData.aboutHeader
-				p!=pageData.aboutSubheader
-		.row.careers-panes
-			for pane in pageData.aboutPanes
-				.col-md-3
-					h3!=pane.title
-					p!=pane.copy
-	section#video
-		#careers-video-carousel
-	section#culture.container
-		.row.padding-bottom
-			.col-md-12.col-center
-				h1!=pageData.cultureHeader
-				p.large-text!=pageData.cultureCopy
-		.row
-			.col-md-12.instagram-bucket
-				script(src='//lightwidget.com/widgets/lightwidget.js')
-				iframe.lightwidget-widget(src='//lightwidget.com/widgets/6201cb655e565b53b883ae24489844c2.html', scrolling='no', allowtransparency='true', style='width: 100%; border: 0; overflow: hidden;')
-	section.job-listing-header.container#jobs
-		.row
-			.col-md-12.col-center
-				h1!=pageData.listingsHeader
-				h2!=pageData.listingsCopy
-	section.container
-		.row
-			.col-md-3.hidden-s
-				#job-filter
-			.col-md-9
-				#job-list
+      };
+  :php
+    $args = array( 'post_type' => 'career', 'posts_per_page' => 100 );
+    $jobs = get_posts( $args );
+    $categories = [];
+    $category_count=[];
+    foreach($jobs as $key => $job) {
+      $cat = get_the_category($job->ID);
+      foreach($cat as $category) {
+        $category_count[$category->cat_ID] = $category_count[$category->cat_ID] ? $category_count[$category->cat_ID]+1 : 1;
+        if (!in_array($category,$categories)) {
+          array_push($categories,$category);
+        }
+      }
+      $job->categories = $cat;
+      $jobs[$key] = $job;
+    }
+    foreach($categories as $key=>$category) {
+      $categories[$key]->total_entries = $category_count[$category->cat_ID];
+    }
+    echo "<script>var pageData = {'jobs':".json_encode($jobs,JSON_UNESCAPED_SLASHES)
+    .",'categories':".json_encode($categories,JSON_UNESCAPED_SLASHES)
+    .",'videos':".json_encode($videos,JSON_UNESCAPED_SLASHES)
+    ."};</script>";
+  include ./inc/hero.pug
+  section.careers-links
+    .container.hidden-sm
+      .row
+        ul.nav.careers-tabs
+          for link,key in pageData.menuLinks
+            if key == 0
+              li.active
+                a(href="#"+link.class,id="icon-"+link.class)=link.label
+            else
+              li
+                a(href="#"+link.class,id="icon-"+link.class)=link.label
+  section#about.container.careers-about
+    .row
+      .col-md-12
+        h2!=pageData.aboutHeader
+        p!=pageData.aboutSubheader
+    .row.careers-panes
+      for pane in pageData.aboutPanes
+        .col-md-3
+          h3!=pane.title
+          p!=pane.copy
+  section#video
+    #careers-video-carousel
+  section#culture.container
+    .row.padding-bottom
+      .col-md-12.col-center
+        h1!=pageData.cultureHeader
+        p.large-text!=pageData.cultureCopy
+    .row
+      .col-md-12.instagram-bucket
+        script(src='//lightwidget.com/widgets/lightwidget.js')
+        iframe.lightwidget-widget(src='//lightwidget.com/widgets/6201cb655e565b53b883ae24489844c2.html', scrolling='no', allowtransparency='true', style='width: 100%; border: 0; overflow: hidden;')
+  section.job-listing-header.container#jobs
+    .row
+      .col-md-12.col-center
+        h1!=pageData.listingsHeader
+        h2!=pageData.listingsCopy
+  section.container
+    .row
+      .col-md-3.hidden-s
+        #job-filter
+      .col-md-9
+        #job-list

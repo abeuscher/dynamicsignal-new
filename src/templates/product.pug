@@ -8,6 +8,23 @@ block nav
   include ./inc/header.pug
 block content
   :php
+    global $wp_query;
+     query_posts(array(
+         'post_type' => 'customer',
+         'nopaging' => true
+     ));
+     $customers = [];
+     while(have_posts()) : the_post();
+        $post->logo = get_field("logo");
+        $post->citation_name = get_field("citation_name");
+        $post->citation_title = get_field("citation_title");
+        $post->vimeo_id = get_field("vimeo_id");
+        $post->video_thumbnail = get_field("video_thumbnail");
+        $post->quote = get_field("quote");
+         array_push($customers,$post);
+     endwhile;
+     wp_reset_query();
+    echo '<script>var customerData = '. json_encode($customers).';</script>';
     $header = array(
       "title"=>single_tag_title( '', false ),
       "subtitle"=>"Blog entries containing the tag '".ucwords(single_tag_title( '', false ))."'"
@@ -15,99 +32,22 @@ block content
     $parent_title = "";
     $parent_url = "";
     $override_title = "What is Dynamic Signal?";
-  -
-    var pageData = {
-    "header":"What is Dynamic Signal?",
-    "subheader":"A Mobile-First Company Communications Platform",
-    "slides" : [{
-    "header":"News",
-    "subheader":"Keep Employees Connected and Aligned",
-    "text":"Dynamic Signal provides companies with a way to keep their employees more informed with relevant company and industry news, on the channels and devices they prefer. Ensure your workforce is engaged and aligned with the company, by delivering them targeted content anytime, anywhere, within an easy to use mobile app.",
-    "image":"news.jpg",
-    "mobileImage":"news-mobile.png",
-    "className":"reg"
-    },
-    {
-    "header":"Communications",
-    "subheader":"Engage Employees with Real-Time Notifications",
-    "text":"Deliver the right message to the right employees at exactly the right time, all while tracking delivery and readership. Our advanced broadcast functionality enables a company to stay in touch with hard to reach employees whether they are behind a desk, in a store, or on a factory floor. Keeps all of your employees engaged, even those without a company email address.",
-    "image":"sharing-screen.jpg",
-    "mobileImage":"communications-mobile.png",
-    "className":"reg"
-    },
-    {
-    "header":"Advocacy",
-    "subheader":"Empower Advocacy & Drive Organic Reach",
-    "text":"Give employees a safe and easy way to share approved company communications on social media. Perfect for both beginners and pros, Dynamic Signal is built to simplify the user experience, with features like suggested messaging, scheduling, and support for international social networks.",
-    "image":"analytics.jpg",
-    "mobileImage":"advocacy-mobile.png",
-    "className":"reg"
-    },
-    {
-    "header":"Analytics",
-    "subheader":"Control the Message and Track it All",
-    "text":"Dynamic Signal allows administrators to easily measure the effectiveness and impact of their company communications. With robust reporting and analytics, companies gain insight into employee adoption, viewer-ship, and engagement.",
-    "image":"activities.jpg",
-    "mobileImage":"laptop-mobile-size.jpg",
-    "imageForMobile":"laptop.png",
-    "className":"big"
-    },
-    {
-    "header":"Engagement",
-    "subheader":"Activate and Encourage Employees",
-    "text":"With a direct, real-time connection, companies create more alignment with their employees, fostering a culture that inspires advocacy. Surveys, quizzes, and custom activities give companies the ability to elicit feedback and encourage ongoing engagement from their employees.",
-    "image":"messaging.jpg",
-    "mobileImage":"engagement-mobile.png",
-    "className":"reg"
-    }],
-    "coverflow": {
-    "header":"Connected with Your Current Stack",
-    "text":"Dynamic Signal seamlessly integrates with your current enterprise, messaging, and social platforms. With support for Single-Sign-On, availability in more than 15 languages, and robust APIs you can ensure your employees will have a seamless user experience.",
-    "image":"Dynamic-Signal-Integrations.png"
-    },
-    "videoInfo": {
-      "id":"124627340",
-      "type":"vimeo",
-      "quote":"Mobile was particularly important for our in-store staff. It gives them the ability to access the program while in the store, and share information to their networks.",
-      "cite":"Kristian Lorenzon - <span class='position'>Head of Social Media</span>, <span class='company'>O2</span>",
-      "cta":"Play Video",
-      "image":"product_video.png"
-    },
-    "ctaHeader":"Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders.",
-    "ctaLabel":"Request Demo"
-    };
-    var backgrounds = [];
-    for (i in pageData.slides) {
-      backgrounds.push(pageData.slides[i].image);
-    }
-  section#whatis-header(data-bg="whatis-bg-header.jpg")
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          .whatis-marquee
-            img(src=themeDir+"images/whatis-marquee-center.png")
-            h1 The Employee Communication and Engagement Platform
+  section.top-section#whatis-header(data-bg="whatis-bg-header.jpg")
+    .whatis-marquee
+      img(src=themeDir+"images/whatis-marquee-center.png")
+      h1 The Employee Communication and Engagement Platform
   section.container
     .row
-      .col-md-12
-        .row
-          .col-md-3.col-xs-6
-            a.icon-tile(href="use-cases")
-              .icon-thumb(data-bg="icon-usecases.png")
-              h2 Use Cases
-          .col-md-3.col-xs-6
-            a.icon-tile(href="case-studies")
-              .icon-thumb(data-bg="icon-casestudies.png")
-              h2 Case Studies
-          .col-md-3.col-xs-6
-            a.icon-tile(href="connectors")
-              .icon-thumb(data-bg="icon-integrations.png")
-              h2 Integrations
-          .col-md-3.col-xs-6
-            a.icon-tile(href="customers")
-              .icon-thumb(data-bg="icon-testimonials.png")
-              h2 Testimonials
+      .col-md-12.icon-bar
+        a.icon-tile(href="/use-cases")
+          .icon-thumb(data-bg="icon-usecases.png")
+          h2 Use Cases
+        a.icon-tile(href="/case-studies")
+          .icon-thumb(data-bg="icon-casestudies.png")
+          h2 Case Studies
+        a.icon-tile(href="/connectors")
+          .icon-thumb(data-bg="icon-integrations.png")
+          h2 Integrations
   section.whatis-carousel-bucket
     .container#whatis-carousel
       .col-md-6
@@ -127,8 +67,7 @@ block content
       #whatis-testimonials
         .row
           .col-md-12
-            blockquote “Communications is always a challenge, because the tools available to us don’t give us a lot of insight. They’re difficult to measure. You can use email, but you can’t track the results. There are only a few tools where we can track success, and one of them for us is the Dynamic Signal platform.”
-            cite Michelle Grant, Program Manager @ Sutter Health
+            #customer-video-carousel
   section.whatis-bottom
     .row
       .col-md-6.whatis-bottom-pic(data-bg="whatis-bg-bottom.jpg")
