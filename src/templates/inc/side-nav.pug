@@ -1,67 +1,63 @@
 -
   var navItems = [{
       "title": "Request a Demo",
-      "url": "requestdemo",
-      "class":"red"
+      "url": "/requestdemo",
+      "class":"demo"
     },
     {
       "title": "What is Dynamic Signal?",
       "url": "product",
       "children": [
         {
-          "title": "Use Cases",
-          "url": "use-cases"
+          "title": "Benefits",
+          "url": "/use-cases"
         },
         {
           "title": "Case Studies",
-          "url": "case-studies"
+          "url": "/case-studies"
         },
         {
           "title": "Integrations",
-          "url": "connectors"
-        },
-        {
-          "title": "Testimonials",
-          "url": "testimonials"
+          "url": "/connectors"
         }
       ]
     },
     {
       "title": "Our Company",
-      "url": "company.html",
+      "url": "/company",
       "children": [{
           "title": "Customers",
-          "url": "customers.html"
+          "url": "/customers"
         },
         {
           "title": "Team",
-          "url": "team.html"
+          "url": "/team"
         },
         {
           "title": "Partners",
-          "url": "partners.html"
+          "url": "/agency"
         },
         {
           "title": "Careers",
-          "url": "careers.html"
+          "url": "/careers"
         },
         {
           "title": "Events",
-          "url": "events.html"
+          "url": "/events"
         },
         {
           "title": "Blog",
-          "url": "blog.html"
+          "url": "/blog"
         },
         {
           "title": "Press",
-          "url": "news.html"
+          "url": "/news"
         }
       ]
     },
     {
       "title": "Resources",
-      "url": "resources.html",
+      "url": "/resources",
       "children": [{
           "title": "Getting Started",
           "url": "resources-category.html"
@@ -72,7 +68,7 @@
               "title": "Expanding Reach",
               "url": "resources-category.html"
             },{
-                "title": "Analytics",
+                "title": "Metrics",
                 "url": "resources-category.html"
               },
         {
@@ -80,25 +76,22 @@
           "url": "resources-type.html"
         },
         {
-          "title": "eBooks and Presentations",
-          "url": "resources-type.html"
-        },
-        {
-          "title": "Webinars",
+          "title": "eBooks & Guides",
           "url": "resources-type.html"
         }
       ]
     },
     {
       "title": "Contact",
-      "url": "contact.html"
+      "url": "/contact/"
     },
     {
       "title": "Support",
-      "url": "support.html"
+      "url": "/support/"
     }
   ];
-nav#side-nav.closed
+  
+aside.sideMenu.right#side-nav
   .inner
     ul
       for item in navItems

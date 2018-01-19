@@ -134,12 +134,12 @@ footer {
   margin-bottom:0 !important;
 }
 .top-nav .left-nav.desktop>li.selected.hover, .top-nav .left-nav.desktop>li.selected:hover {
-  background-color:$middle-grey !important;
+  background-color:$middle-gray !important;
 }
 .top-nav .left-nav.desktop>li.selected {
-    background-color:$middle-grey !important;
+    background-color:$middle-gray !important;
     &:hover, &.hover {
-      background-color:$middle-grey !important;
+      background-color:$middle-gray !important;
       text-decoration: none;
     }
     &>a {

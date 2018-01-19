@@ -4,16 +4,21 @@ block template
     /*
     Template Name: Blank Page
     */
+block nav
+  include ./inc/header.pug
 block content
-  section.hero
-    h1
-      :php
-        the_title();
-  section.container.content
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          h1
+            :php
+              the_title();
+  section.container#main-content
     :php
       if( have_posts() ): while( have_posts() ): the_post();
-    article.row
-      .col-md-12.blog-content
+    article.blog-post
+      .blog-post-body
         :php
           the_content();
     :php

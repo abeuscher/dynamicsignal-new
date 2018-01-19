@@ -7,12 +7,24 @@ block template
 block nav
   include ./inc/header.pug
 block content
+  :php
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Our Company",
+      "link"=>"/company/"
+    ));
   -
     var pageData = {
     "header":"Meet Our Team",
     "subheader":"From our founders to our board of directors... across our entire staff - We believe Communications Technology is a critical component for the success of world-class organizations."
     };
-  include ./inc/hero.pug
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1!=pageData.header
+          h2!=pageData.subheader
   section.team-members.container
     :php
       if( have_rows('ds_team_section') ) {

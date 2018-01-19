@@ -5,12 +5,20 @@ block template
     Template Name: Past Events Page
     */
 block content
-  -
-    var pageData = {
-    "header":"Past Events",
-    "subheader":"Find resources and information about Dynamic Signal's Past Events."
-    };
-  include ./inc/hero.pug
+  :php
+    $override_title = "Past Events";
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Our Company",
+      "link"=>"/company/"
+    ));
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1 Past Events
+          h2 Find resources and information about Dynamic Signal's Past Events.
   :php
     $all_events = [];
     $args = array( 'post_type' => 'event', 'posts_per_page' => 100 );

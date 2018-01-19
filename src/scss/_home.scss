@@ -1,21 +1,9 @@
 #home-marquee {
   background-image:url($img-path + "bg-mobile.jpg");
+  background-position:bottom center;
   @include bp(m) {
     background-image:url($img-path + "header-hardhats.jpg");
   }
-}
-.home-content {
-    .row {
-      z-index:1;
-      position:relative;
-    }
-    h1 {
-      padding-top:50px;
-      text-transform: none;
-    }
-    p {
-      font-size:1.2em;
-    }
 }
 .home-page-widget {
   position:absolute;
@@ -40,15 +28,8 @@
     height:150px;
   }
 }
-.top-marquee {
-  padding-top:100px;
-  background-repeat: no-repeat;
-  background-size:cover;
-  background-position:50% 50%;
-  @include bp(m) {
-    background-position:0 -150px;
-    background-size:cover;
-  }
+.homepic {
+  text-align: center;
 }
 .home-icon {
   display:inline-block;
@@ -58,192 +39,15 @@
   vertical-align: middle;
   background-repeat:no-repeat;
   background-size:cover;
-  &.modernize {
-    background-image:url($img-path + "icon-modernize.png");
-  }
-  &.streamline {
-    background-image:url($img-path + "icon-streamline.png");
-  }
-  &.measure {
-    background-image:url($img-path + "icon-measure.png");
-  }
 }
-.home-image-spacer {
-  @include aspect-ratio(2,1);
-  @include bp(m) {
-    padding-bottom:0;
-  }
+.home-content {
+  padding-top:$gutter-width*3;
 }
-section.product-cta {
-  @include bp(l) {
-    margin-top:-80px;
-  }
-}
-section.testimonials.container {
-  margin:0;
-  padding:50px 0 640px;
-  background-position:center bottom;
-  width:100%;
-  .row {
-    width:100%;
-  }
-  .quote, cite {
-      padding-left:$gutter-width;
-  }
-  .quote {
-    font-size:30px;
-    line-height:36px;
-    font-weight:300;
-    .text--bold {
-      font-weight:600;
-    }
-    .text--teal {
-      color:$teal;
-    }
-    @include bp(m) {
-      width:50%;
-      margin-left:25%;
-    }
-  }
-  cite {
-    display:block;
-    text-align:center;
-    font-size:18px;
-    margin-top:24px;
-    font-weight:300;
-    font-style:normal;
-  }
-}
-
-.logo-grid {
-  padding:$gutter-width*2 0;
-}
-
-#product-display {
-  padding-top:$gutter-width*2;
-}
-.product-images {
-  position:relative;
-}
-.mobile-products {
-  .product-images {
-    margin-top:80px;
-  }
-  .product-image {
-    width:40%;
-    margin-left:30%;
-    @include bp(m) {
-      width:50%;
-      margin-left:50%;
-      max-width:300px;
-    }
-    background:url($img-path+'product-mobile.svg') no-repeat center top;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    @include aspect-ratio(1,2.5);
-    img {
-      width: 86%;
-      height: auto;
-      margin: 27% 0 0 7.3%;
-    }
-  }
-}
-.container.product-display {
-  width:100%;
-}
-.product-image {
-  display:none;
-  &.active {
-    display:block;
-  }
-}
-.desktop-products {
-  .product-image {
-    background:url($img-path+'product-desktop.svg') no-repeat left top;
-    background-repeat: no-repeat;
-    overflow:hidden;
-    @include aspect-ratio(4,5);
-    @include bp(l) {
-      @include aspect-ratio(1,1);
-    }
-    img {
-      width: 844px;
-      height: auto;
-      margin: 68px 0 0 163px;
-      max-width: none;
-    }
-    &.active {
-      display:none;
-      @include bp(m) {
-        display:block;
-      }
-    }
-  }
-}
-
-.mobile-product-tile {
-  @include bp(m) {
-    width:70%;
-    margin-right:30%;
-  }
-
-}
-.desktop-product-tile {
-  @include bp(m) {
-    width:70%;
-    margin-left:30%;
-  }
-}
-.product-tiles {
-  h3 {
-    text-transform: uppercase;
-  }
-  h2 {
-    @include bp(m) {
-      width:70%;
-      margin-left:30%;
-      &.product-header {
-        width:auto;
-        margin-left:auto;
-      }
-    }
-  }
-  p {
-    font-weight:300;
-    font-size:16px;
-    line-height:24px;
-    letter-spacing:1px;
-  }
-  a {
-    display: block;
-    padding:0 $gutter-width/2;
-    margin-bottom:$gutter-width;
-    color:$grey;
-    border:2px solid transparent;
-    transition:all .25s ease-in;
-    border-radius:5px;
-    &:hover, &.active {
-      border-color:$teal;
-    }
-  }
-}
-#logo-grid {
-  margin-top:$gutter-width;
-  .row,.container {
-    width:100%;
-  }
+.logo-slide {
+  width:20%;
+  text-align: center;
   img {
-    max-height:50px;
+    max-height:70px;
     width:auto;
-    max-width:100%;
-  }
-  .logo-grid-row {
-    margin-bottom:$gutter-width;
-  }
-}
-.logo-grid, .cta-bottom {
-  h2 {
-    font-size:24px;
-    font-weight:300;
   }
 }

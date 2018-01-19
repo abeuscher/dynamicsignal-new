@@ -17,7 +17,7 @@
   .content-slide {
     display:flex;
     flex-direction: column;
-    background:$grey;
+    background:$gray;
     color:$beige;
     border-bottom:1px solid $white;
     h2 {
@@ -107,7 +107,7 @@
             text-transform:uppercase;
             font-size:30px;
             opacity:.6;
-            color:$grey;
+            color:$gray;
           }
           h3 {
             font-size:34px;
@@ -119,7 +119,7 @@
           }
           .text-content {
             display:block;
-            color:$light-grey;
+            color:$light-gray;
             padding: 60px 115px 0 0;
             line-height: 37px;
             font-size: 21px;

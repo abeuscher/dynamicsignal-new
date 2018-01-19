@@ -138,13 +138,13 @@ http://flickity.metafizzy.co
   width: 10px;
   height: 10px;
   margin: 0 8px;
-  background: $white;
-  border:1px solid $teal;
+  background: $bullet-gray;
+  border:none;
   border-radius: 50%;
 
   cursor: pointer;
 }
 
 .flickity-page-dots .dot.is-selected {
-  background:$teal;
+  background:$header-blue;
 }

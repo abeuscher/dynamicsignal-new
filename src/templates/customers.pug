@@ -8,6 +8,20 @@ block nav
   include ./inc/header.pug
 block content
   :php
+    $override_title = "Customers";
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Our Company",
+      "link"=>"/company/"
+    ));
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1 The Trusted Industry Leader
+          h2 Hundreds of the world’s largest organizations, in countries around the globe, trust Dynamic Signal.
+  :php
     global $wp_query;
      query_posts(array(
          'post_type' => 'customer',
@@ -32,7 +46,6 @@ block content
     "ctaHeader":"Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders.",
     "ctaLabel":"Request Demo"
     };
-  include ./inc/hero.pug
   section
     #customer-video-carousel
   section.customers-grid.container
@@ -42,4 +55,4 @@ block content
       .row
         .col-md-12
           h2!=pageData.ctaHeader
-          a.button-red.cta(href="/requestdemo/")!=pageData.ctaLabel
+          a.button.cta(href="/requestdemo/")!=pageData.ctaLabel

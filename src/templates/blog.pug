@@ -7,70 +7,46 @@ block template
 block nav
   include ./inc/header.pug
 block content
-  -
-    var pageData = {
-    "header":"Blog",
-    "ctaLink":"http://feeds.feedblitz.com/dynamicsignal",
-    "ctaLabel":"Subscribe via RSS"
-     };
-  section.hero#page-top
+  :php
+    $parent_category = "blog-categories";
+    $categories = ["communications","marketing","human-resources", "customer-stories","culture","events"];
+    $filtered_posts = [];
+    $sticky = get_option( 'sticky_posts' );
+    foreach ($categories as $key=>$category) {
+      $query = new WP_Query( array( 'category_name' => $parent_category.'+'.$category ) );
+      array_push($filtered_posts,array("category"=>$category,"post"=>$query->posts[0]));  
+    }
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Our Company",
+      "link"=>"/company/"
+    ));
+  section.top-section-interior
     .container
       .row
-        h1!=pageData.header
-        h2
-          a(href=pageData.ctaLink)!=pageData.ctaLabel
-  section.blog-entries
-    :php
-      $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-      $query = new WP_Query( array('post_type' => 'post','paged' => $paged) );
-      if( $query->have_posts() ) {
-          while( $query->have_posts() ) {
-              $query->the_post();
-    article
-      :php
-        echo "<a class='blog-header' href='".get_the_permalink()."'><div class='blog-thumb'>";
-        the_post_thumbnail( 'full', array('class' => 'img-responsive') );
-        echo "</div>";
-      .inner
-        .container
-          .row
-            .col-md-12
-              h1.blog-title
-                :php
-                  the_title();
-              :php
-                echo "<span class='blog-date'>".get_the_date()."</span>";
-      :php
-        echo "</a>";
-      .container.blog-excerpt-row
-        .row
-          .col-md-12
-            p By
-              :php
-                $authorslug = get_userdata(get_the_author_id())->user_nicename;
-                echo " <a class='author-link' href=\"/author/$authorslug\">".get_author_name() . "</a>" ;
-            .blog-info
-              .blog-excerpt
-                :php
-                  the_excerpt();
-              .blog-tags
-                :php
-                  if( has_tag() ) {
-                    echo "<p class='blog-tags'>";
-                    the_tags( false );
-                    echo "</p>";
-                  }
-    :php
-      }};
-  section.container.pagination
-    .row
-      .col-md-12
-        :php
-          $big = 999999999;
-            echo paginate_links( array(
-                'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-                'format' => '?paged=%#%',
-                'current' => max( 1, get_query_var('paged') ),
-                'total' => $query->max_num_pages
-              )
-            );
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1 Blog
+  section
+    .container
+      .row
+        .col-md-8
+            :php
+              foreach($filtered_posts as $key=>$post) {
+              $p = $post["post"];
+              $c = $post["category"];
+              $c_title = ucwords(str_replace("-"," ",$post["category"]));
+              if ($key==0 || $key%2==0) { echo "<div class='row'>"; }
+              printf("<div class='col-md-6'><a class='category-link-title' href='%s'><h2>%s<span class='view-button'>View All<span class='divot'>»</span></span></h2><a class='story-tile-link' href='%s'><div class='featured-thumb' data-bg='%s'></div><h3>%s</h3></a></div>","/category/".$c,$c_title, $p->post_name, get_the_post_thumbnail_url($p), $p->post_title);  
+              if ($key%2==1) { echo "</div>"; }
+              }
+        .col-md-4
+          ul.side-list
+            include ./inc/blog-roll.pug
+            :php
+              foreach($posts as $key=>$post) {
+                $header = $key==0 ? "<h2>What's New?</h2>" : "";
+                $classname = $key==0 ? "dot" : "";
+                  printf("<li class='%s'>%s%s</li>",$classname,$header,$post);
+                }
+              

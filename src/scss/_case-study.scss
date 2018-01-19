@@ -21,7 +21,7 @@ section.case-study-image {
   background:$beige;
   text-align: center;
   &.black {
-    background:$another-grey;
+    background:$another-gray;
   }
   img {
     width:100%;
@@ -31,10 +31,10 @@ section.case-study-image {
   }
 }
 .case-study-cta {
-  background:$lighter-grey;
+  background:$lighter-gray;
 }
 .case-study-stats {
-  background:$lighter-grey;
+  background:$lighter-gray;
   h3, h4 {
     text-transform:uppercase;
     font-weight:300;
@@ -44,7 +44,7 @@ section.case-study-image {
     padding:0;
   }
   h3 {
-    color:$middle-grey;
+    color:$middle-gray;
   }
   h4 {
     color:$red;
@@ -54,7 +54,7 @@ section.case-study-image {
   //background:$beige;
 }
 .case-study-intro {
-  color:$classic-grey;
+  color:$classic-gray;
   font-style:italic;
   font-size:20px;
   line-height:1.7;
@@ -190,7 +190,7 @@ ul.proof-points {
       margin:$gutter-width/2 0;
     }
     h4 {
-      color:$light-grey;
+      color:$light-gray;
       text-transform: capitalize;
       margin:0;
 

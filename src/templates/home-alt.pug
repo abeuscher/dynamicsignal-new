@@ -1,0 +1,68 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Home Page Alternate
+    */
+block nav
+  include ./inc/header.pug
+block content
+  :php
+    echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos_strip_gray_icons' ),JSON_UNESCAPED_SLASHES)
+    ."};</script>";
+  section.top-section#home-marquee
+    .inner.home
+      .container
+        .row
+          .col-md-6.col-xs-10
+            h1 Connect with Your Most Valued Asset, 
+              span.blue Your Employees
+            p
+              :php
+                the_field("hero_subheader");
+            :php
+              echo "<a class='button cta' href='".get_field('home_page_top_cta_target')."'>".get_field('home_page_top_cta_label')."</a>";
+        span.home-page-widget
+          .widget-spacer(data-bg="widget-blue-circuit-bg.png")
+          img(src=themeDir + "images/widget-blue-circuit.png")
+  section.logo-strip-bucket
+    .container
+      .row
+        .col-md-12
+          #logo-strip.logo-strip
+  section.container
+    :php
+      if( have_rows('home_page_sections') ) {
+        $count=1;
+        while( have_rows('home_page_sections') ): the_row();
+        if (get_sub_field("section_graph_type")=="bar") {
+          $graph = sprintf("<div class='row bar-row'><div class='col-md-12'><p class='bar-label'>%s</p></div><div class='col-md-12'><div class='bar-wrapper' id='barchart-%s' data-value='%s' data-size='200px' data-range='%s'></div></div></div>",get_sub_field("section_graph_content"),$count,get_sub_field("section_graph_numeric_value"),get_sub_field("section_graph_range"));        
+          }
+        else {
+          $graph = sprintf("<div class='row pie-row'><div class='col-md-4'><div class='pie-wrapper' id='chart-%s' data-percent='%s' data-size='200px'></div></div><div class='col-md-8'><p class='pie-label'>%s</p></div></div>",$count,get_sub_field("section_graph_numeric_value"),get_sub_field("section_graph_content"));  
+          }
+        if (get_sub_field('section_orientation')=="left") {
+          printf("<div class='row home-content'><div class='col-md-6 homepic'><img src='%s' alt='' /></div>", get_sub_field("section_image")["url"]);
+          printf("<div class='col-md-6 content'><h2>%s<span class='home-icon' data-bg='%s'></span></h2><p>%s</p>%s</div></div>", get_sub_field("section_title"),get_sub_field("section_icon")["url"],get_sub_field("section_content"),$graph);
+        }
+        else {
+          printf("<div class='row home-content'><div class='col-md-6 content'><h2>%s<span class='home-icon' data-bg='%s'></span></h2><p>%s</p>%s</div>", get_sub_field("section_title"),get_sub_field("section_icon")["url"],get_sub_field("section_content"),$graph);
+          printf("<div class='col-md-6 homepic'><img src='%s' alt='' /></div></div>", get_sub_field("section_image")["url"]);
+          }
+        $count++;
+        endwhile;
+      }
+  section.bottom-cta
+    .mobile-cta
+      h2 Try our app now for Android or iPhone:
+      p
+        a(href="#")
+          img(src=themeDir+"images/btn-itunes.png")
+      p
+        a(href="#")
+          img(src=themeDir+"images/btn-android.png")
+    p
+      :php
+        the_field("home_page_bottom_cta_intro_text");
+    :php
+      printf("<a class='button cta' href='%s'>%s</a>", get_field("home_page_bottom_cta_target"), get_field("home_page_bottom_cta_label"));

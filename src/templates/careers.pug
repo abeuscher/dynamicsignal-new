@@ -8,6 +8,19 @@ block nav
   include ./inc/header.pug
 block content
   :php
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Our Company",
+      "link"=>"/company/"
+    ));
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1 Join Our Team
+          h2 We build communications technology for the world's largest enterprises.
+  :php
     if( have_posts() ): while( have_posts() ): the_post();
       $videos = get_field("career_videos");
     endwhile;
@@ -80,7 +93,6 @@ block content
     .",'categories':".json_encode($categories,JSON_UNESCAPED_SLASHES)
     .",'videos':".json_encode($videos,JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  include ./inc/hero.pug
   section.careers-links
     .container.hidden-sm
       .row

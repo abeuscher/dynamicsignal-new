@@ -1,0 +1,49 @@
+.bar-wrapper {
+  position:relative;
+  width:100%;
+  &:after {
+    content:'';
+    border:15px solid transparent;
+    position: absolute;
+    top:-15px;
+    left:50%;
+    transform: translateY(-50%);
+  }
+  &.blue-myself {
+    &:after {
+      border-bottom-color:$header-blue;
+    }
+  }
+  .inner {
+    display:flex;
+    width:100%;
+    height:20px;
+    .bar-graph {
+      width:0;
+      flex-grow:0;
+      background:$header-blue;
+      height:20px;
+      transition:width .5s ease-in;
+    }
+    .remainder {
+      flex-grow:1;
+      flex-shrink:1;
+      background:$light-gray;
+      color:$white;
+      margin-left:10px;
+      position:relative;
+      .label {
+        position:absolute;
+        bottom:3px;
+        right:3px;
+        color:$off-white;
+        text-shadow:1px 1px 2px rgba(0,0,0,.1);
+        font-size:.75em;
+      }
+    }
+  }
+
+}
+.bar-label {
+  color:$header-blue;
+}

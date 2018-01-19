@@ -2,15 +2,18 @@ extends inc/page.pug
 block template
   :php
     /*
-    Template Name: Page
+    Template Name: Basic Index Template
     */
+block nav
+  include ./inc/header.pug
 block content
-  section.hero
-    .row
-      .col-md-12
-        h1
-          :php
-            the_title();
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          h1
+            :php
+              the_title();
   section.container#main-content
     :php
       if( have_posts() ): while( have_posts() ): the_post();

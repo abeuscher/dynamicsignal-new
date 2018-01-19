@@ -1,84 +1,65 @@
-footer .container {
-  width: 100%;
-  padding: 0 $gutter-width*2;
-  background: $light-grey;
-  color:$classic-grey;
-}
+footer {
 
+  background: $light-gray;
+  color:$classic-gray;
+  .container {
+    padding-top:$gutter-width/2;
+  }
+}
 .footer-top {
+  .address-block {
+    margin-bottom:3em;
+    @include bp(m) {
+      margin-bottom:inherit;
+    }
+  }
+  a {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color:$classic-gray;
+    &:hover {
+      color:$header-blue;
+      text-decoration: underline;
+    }
+    &.demo-link {
+      font-weight:600;
+      color:$header-blue;
+    }
+  }
+  h5 {
+    margin: $gutter-width*1.5 0 $gutter-width/2;
+    font-size:1.2em;
+    font-family:$body-font;
+    font-weight:300;
+    letter-spacing:1px;
+  }
   ul {
     margin: 0;
-    padding: 0 0 $gutter-width;
+    padding: 0;
     list-style: none;
-
-    &.social-links {
-      margin-left:0em;
-      li {
-        .fa-stack {
-          font-size:1.5em;
-        }
-      }
+    &.no-header {
+      margin-top:$gutter-width*1.5;
     }
-
-    a,
     li {
-      line-height: 24px;
-      text-align: center;
-      @include bp(m) {
-        text-align: left;
-      }
-    }
-
-    li {
-      text-transform: uppercase;
-
-      &.footer-address {
-        .fa-stack {
-          display: none;
-          @include bp(m) {
-            display: inline-block;
-          }
-        }
-        margin-bottom: $gutter-width;
-      }
-
-      &.footer-phone {
-        .fa-stack {
-          display: none;
-          @include bp(m) {
-            display: inline-block;
-          }
-        }
-      }
-
-      p {
-        margin: 0;
-        padding: 0;
-      }
-
+      text-align: left;
       a {
-        line-height: 1.8;
-
-        &:hover {
-          text-decoration: underline;
-        }
+        line-height:1.8;
       }
-    }
-
-    span {
-      margin-right: 0.5em;
-      vertical-align: top;
     }
 
     p {
       display: inline-block;
     }
     .fa-stack {
-      font-size:1em;
+      font-size:1.5em;
+      @include bp(m) {
+        font-size:1em;
+      }
       .fa-circle {
         color: $white;
         &:before {
-          color:$middle-grey;
+          transition:.15s color ease-in;
+          color:$menu-blue;
         }
       }
 
@@ -87,50 +68,30 @@ footer .container {
 
       }
     }
-
-  }
-
-  h5 {
-    text-align: center;
-    margin: $gutter-width 0 $gutter-width/2;
-    font-size:1.4em;
-    @include bp(m) {
-      text-align: left;
-    }
-  }
-}
-
-ul.site-links {
-  li {
     a {
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color:$classic-grey;
+      &:hover {
+        .fa-stack .fa-circle {
+          &:before {
+            color:$header-blue;
+          }
+        }
+      }
     }
   }
 }
 
 .logo-footer {
   width: 200px;
-  margin: 0 auto 1.5em;
+  margin: $gutter-width/2 auto 1.5em;
 }
 
 .footer-bottom {
-
-  a,
+  padding:$gutter-width*2 0 $gutter-width;
   p {
     font-size: 12px;
-  }
-
-  ul {
-    text-align: right;
-
-    li {
-      display: inline-block;
-      list-style-type: none;
-      margin-left: 2em;
-
-      a {
+    a {
+      padding:0 .5em;
+      &:hover {
         text-decoration: underline;
       }
     }

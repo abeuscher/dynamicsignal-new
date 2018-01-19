@@ -25,23 +25,21 @@ block content
      endwhile;
      wp_reset_query();
     echo '<script>var customerData = '. json_encode($customers).';</script>';
-    $header = array(
-      "title"=>single_tag_title( '', false ),
-      "subtitle"=>"Blog entries containing the tag '".ucwords(single_tag_title( '', false ))."'"
-    );
-    $parent_title = "";
+    $parent_title = ""; 
     $parent_url = "";
     $override_title = "What is Dynamic Signal?";
   section.top-section#whatis-header(data-bg="whatis-bg-header.jpg")
-    .whatis-marquee
-      img(src=themeDir+"images/whatis-marquee-center.png")
-      h1 The Employee Communication and Engagement Platform
+    .inner
+      img.center-image(src=themeDir+"images/whatis-marquee-center.png")
+      h1
+        :php
+          the_field("header_text");
   section.container
     .row
       .col-md-12.icon-bar
-        a.icon-tile(href="/use-cases")
+        a.icon-tile(href="/benefits/")
           .icon-thumb(data-bg="icon-usecases.png")
-          h2 Use Cases
+          h2 Benefits
         a.icon-tile(href="/case-studies")
           .icon-thumb(data-bg="icon-casestudies.png")
           h2 Case Studies
@@ -56,10 +54,10 @@ block content
         a.active.carousel-button(href="#",data-image="whatis-phone-1.png")
           h2 Connect
           p Reach employees immediately through mobile push notifications, alerts and video to get high-priority content directly in front of them
-        a.carousel-button(href="#",data-image="whatis-phone-1.png")
+        a.carousel-button(href="#",data-image="whatis-phone-2.png")
           h2 Align
           p Unite a dispersed workforce with a shared mission and vision by ensuring strong, measurable communication with every employee
-        a.carousel-button(href="#",data-image="whatis-phone-1.png")
+        a.carousel-button(href="#",data-image="whatis-phone-3.png")
           h2 Engage
           p Give employees a voice with the ability to take action, such as sharing approved content with their own social networks
   section.whatis-testimonial-bucket
@@ -69,19 +67,20 @@ block content
           .col-md-12
             #customer-video-carousel
   section.whatis-bottom
-    .row
-      .col-md-6.whatis-bottom-pic(data-bg="whatis-bg-bottom.jpg")
-      .col-md-6
-        h2 Enabling Communicators to Reach Today’s Modern Workforce
-        ul.big-list
-          li
-            h3 Platform Breadth
-            p More personalized ways to connect with employees on their terms through broadcasts, posts, native video, document collaboration, sharing, alerts and push notifications, newsletters, and surveys
-          li
-            h3 Scalability
-            p Most enterprise deployments with expertise in engagement programs, robust authentication, security, delegated administration, post approvals, customized branding, connectors, and API integrations with existing systems
-          li
-            h3 Unlimited Segmentation
-            p Synchronization with organizational System of Record with the ability to add segmentation for topics and work groups, enabling targeted content and measuring impact.
-  
+    .container
+      .row
+        .col-md-6.whatis-bottom-pic(data-bg="whatis-bg-bottom.jpg")
+        .col-md-5
+          h2 Enabling Communicators to Reach Today’s Modern Workforce
+          ul.big-list
+            li
+              h3 Platform Versatility
+              p More personalized ways to connect with employees on their terms through broadcasts, posts, native video, document collaboration, sharing, alerts and push notifications, newsletters, and surveys
+            li
+              h3 Designed to Scale
+              p Most enterprise deployments with expertise in engagement programs, robust authentication, security, delegated administration, post approvals, customized branding, connectors, and API integrations with existing systems
+            li
+              h3 Personalized Targeting
+              p Synchronization with organizational System of Record with the ability to add segmentation for topics and work groups, enabling targeted content and measuring impact.
+    
       

@@ -1,174 +1,215 @@
-#page-header {
-  .navbar-toggle {
-    transition:all 0s ease-in;
-    position: relative;
-    width:36px;
-    height:30px;
-    margin-top: 20px;
-    margin-left: $gutter-width/2;
-    margin-bottom: 8px;
-    background-color: transparent;
-    background-image: none;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.navbar-toggle {
+  cursor: pointer;
+  transition: all 0s ease-in;
+  position: fixed;
+  top:22px;
+  right:20px;
+  z-index:99;
+  width: 36px;
+  height: 30px;
+  padding:6px;
+  border-radius: 4px;
+  outline: none;
+  background:transparent;
+  &:focus {
     outline: none;
+  }
+  .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background: $menu-blue;
+    transition: all 0.25s ease-in;
 
-    &:focus {
-      outline: none;
+    &+.icon-bar {
+      margin-top: 4px;
+    }
+  }
+  &.short {
+    top:12px;
+  }
+}
+#page-header {
+  .small-nav {
+    text-align: right;
+    display: none;
+    font-family: $nav-font;
+    padding-right:2em;
+    @include bp(s) {
+      display: inline-block;
+      vertical-align: middle;
     }
 
-    .icon-bar {
-      display: block;
-      width: 22px;
-      height: 2px;
-      border-radius: 1px;
-      background: $black;
-      transition:all .25s ease-in;
-      &+.icon-bar {
-        margin-top: 4px;
+    ul {
+      transition: all 0s ease-in;
+      display: inline-block;
+      margin: 0 $gutter-width 0 0;
+      padding: $gutter-width 0 0;
+
+      li {
+        margin-left: $gutter-width/2;
+
+        a {
+          display:inline-block;
+          font-weight: 400;
+          font-size: 14px;
+          color: $menu-blue;
+          transition: all 0.1s ease-in;
+          padding:$gutter-width/4;
+          &:hover {
+            color: $medium-blue;
+          }
+          @include bp(m) {
+            font-size: 18px;
+          }
+          @include bp(l) {
+            font-size: 22px;
+          }
+        }
       }
     }
-    &.active {
-      background:$black;
-      .icon-bar {
-        background:$white;
-        transform:rotate(45deg);
 
-        &+.icon-bar {
-          margin-top: -2px;
-          transform:rotate(-45deg);
-        }
-        &:last-child {
-          width:0;
+    &.interior {
+      display: none;
+      @include bp(m) {
+        display: inline-block;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0 $gutter-width 0 0;
+
+        li {
+          a {
+            font-size: 18px;
+          }
         }
       }
     }
   }
-
-  .small-nav {
-    text-align:right;
-    display:none;
-    font-family:$nav-font;
-    @include bp(s) {
-      display:inline-block;
-    }
-    ul {
-      transition:all 0s ease-in;
-      display:inline-block;
-      margin:0 $gutter-width 0 0;
-      padding:$gutter-width 0 0;
-      li {
-        margin-left:$gutter-width;
-        a {
-          font-weight:400;
-          font-size:14px;
-          color:$black;
-          transition:all .1s ease-in;
-          &:hover {
-            color:$medium-blue;
-          }
-          @include bp(m) {
-            font-size:18px;
-          }
-          @include bp(l) {
-            font-size:22px;
-          }
-        }
-      }
-    }
-    &.interior {
-      display:none;
-      @include bp(m) {
-        display:inline-block;
-      }
-      ul {
-        margin:0;
-        padding:0 $gutter-width 0 0;
-        li {
-          a {
-            font-size:18px;
-          }
-        }
-      }
-    }
+  .nav-bucket {
+    padding-top:22px;
   }
   &.active {
     .navbar-toggle {
-      transition:all .25s ease-in;
-      margin-top:10px;
+      transition: all 0.25s ease-in;
     }
-    .small-nav ul  {
-        transition:all .25s ease-in;
-        vertical-align: super;
-        li a {
+    .nav-bucket {
+      padding-top:8px;
+    }
+    .small-nav ul {
+      transition: all 0.25s ease-in;
+      vertical-align: super;
+
+      li a {
         @include bp(m) {
-          font-size:16px;
+          font-size: 16px;
         }
         @include bp(l) {
-          font-size:18px;
+          font-size: 18px;
         }
       }
     }
   }
 }
 
+$sideNavWidth: 300px;
 
-#side-nav {
-  position:fixed;
-  top:0;
-  right:0;
-  width:100%;
-  max-height:1500px;
-  overflow: hidden;
-  background:#fff;
-  z-index:9;
-  transition: all .25s ease-in;
-  font-family:$nav-font;
-  @include bp(m) {
-    width:auto;
-    max-height: 1500px;
-    transform: translate(0,0);
-  }
+.sideMenu {
+  overflow-y: none;
+  background:$white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: auto;
+  right: 0;
+  z-index: 0;
+  width:$sideNavWidth;
   .inner {
-    padding:100px $gutter-width 100px;
-    overflow: scroll;
+    padding: 100px $gutter-width;
+    text-align:left;
     @include bp(m) {
-      padding:100px $gutter-width*2 100px;
-    }
-  }
-  &.closed {
-    max-height:0;
-    @include bp(m) {
-      max-height: 1500px;
-      transform: translate(102%,0);
+      padding: 100px $gutter-width*2;
     }
   }
 
   ul {
-    list-style:none;
-    margin:0;
-    padding:0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
     li {
+      padding:0;
       a {
-        font-weight:600;
-        line-height:2;
-        color:$black;
-        transition: color .25s ease-in;
-        &.red {
-          color:$bright-blue;
-        }
-        &:hover {
-          color:$blue;
+        font-weight: 600;
+        line-height: 2;
+        color: $classic-gray;
+        transition: color 0.25s ease-in;
+        padding:.5em 0;
+        &.demo {
+          color:$header-blue;
         }
       }
+
       ul {
-        margin:0 0 0 $gutter-width;
-        padding:0;
+        margin: 0 0 0 $gutter-width;
+        padding: 0;
+
         li {
           a {
-            font-weight:300;
+            font-weight: 300;
           }
         }
+      }
+    }
+  }
+}
+
+#wrapper {
+  min-height: 100%;
+  position: relative;
+  z-index: 1;
+  background: #FFF;
+  transition: 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
+  &:before {
+    content:'';
+    transition: opacity .15s ease-out;
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+    left:0;
+    background:rgba(0,0,0,.75);
+    z-index:2;
+    display:none;
+  }
+}
+
+body.nav-open {
+  #wrapper {
+    transform: translatex(-$sideNavWidth);
+    &:before {
+      display:block;
+    }
+  }
+  .sideMenu {
+    overflow-y: scroll;
+  }
+  .navbar-toggle {
+    right:40px;
+    padding:12px 6px 0;
+    .icon-bar {
+      background: $header-blue;
+      transform: rotate(45deg);
+
+      &+.icon-bar {
+        margin-top: -2px;
+        transform: rotate(-45deg);
+      }
+
+      &:last-child {
+        width: 0;
       }
     }
   }

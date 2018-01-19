@@ -32,7 +32,7 @@ section.use-cases-grid {
                 border: 1px solid #979797;
               }
               h2.use-cases-text {
-                color: $grey;
+                color: $gray;
                 font-family: "proxima-nova", sans-serif;
                 font-size: 12px;
                 font-weight: 600;
@@ -62,7 +62,7 @@ section.use-cases-grid {
                   line-height:26px;
                   padding: 120px 0 $gutter-width;
                   border:none;
-                  color:$grey;
+                  color:$gray;
                 }
               }
 
@@ -86,7 +86,7 @@ section.use-cases-grid {
               }
               @include bp(m) {
                 &#grid-use-cases-redesign-0 {
-                  background-image: url($img-path+"use-cases-logos-grey/employeeengagement.png");
+                  background-image: url($img-path+"use-cases-logos-gray/employeeengagement.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
@@ -96,7 +96,7 @@ section.use-cases-grid {
                 }
 
                 &#grid-use-cases-redesign-1 {
-                  background-image: url($img-path+"use-cases-logos-grey/mobileintranet.png");
+                  background-image: url($img-path+"use-cases-logos-gray/mobileintranet.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
@@ -106,7 +106,7 @@ section.use-cases-grid {
                 }
 
                 &#grid-use-cases-redesign-2 {
-                  background-image: url($img-path+"use-cases-logos-grey/outdatedintranet.png");
+                  background-image: url($img-path+"use-cases-logos-gray/outdatedintranet.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
@@ -116,7 +116,7 @@ section.use-cases-grid {
                 }
 
                 &#grid-use-cases-redesign-3 {
-                  background-image: url($img-path+"use-cases-logos-grey/employeeadvocacy.png");
+                  background-image: url($img-path+"use-cases-logos-gray/employeeadvocacy.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
@@ -126,7 +126,7 @@ section.use-cases-grid {
                 }
 
                 &#grid-use-cases-redesign-4 {
-                  background-image: url($img-path+"use-cases-logos-grey/companynews.png");
+                  background-image: url($img-path+"use-cases-logos-gray/companynews.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
@@ -136,7 +136,7 @@ section.use-cases-grid {
                 }
 
                 &#grid-use-cases-redesign-5 {
-                  background-image: url($img-path+"use-cases-logos-grey/socialselling.png");
+                  background-image: url($img-path+"use-cases-logos-gray/socialselling.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
@@ -146,7 +146,7 @@ section.use-cases-grid {
                 }
 
                 &#grid-use-cases-redesign-6 {
-                  background-image: url($img-path+"use-cases-logos-grey/socialrecruiting.png");
+                  background-image: url($img-path+"use-cases-logos-gray/socialrecruiting.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
@@ -156,7 +156,7 @@ section.use-cases-grid {
                 }
 
                 &#grid-use-cases-redesign-7 {
-                  background-image: url($img-path+"use-cases-logos-grey/leadgeneration.png");
+                  background-image: url($img-path+"use-cases-logos-gray/leadgeneration.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
@@ -166,7 +166,7 @@ section.use-cases-grid {
                 }
 
                 &#grid-use-cases-redesign-8 {
-                  background-image: url($img-path+"use-cases-logos-grey/brandawareness.png");
+                  background-image: url($img-path+"use-cases-logos-gray/brandawareness.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
@@ -176,7 +176,7 @@ section.use-cases-grid {
                 }
 
                 &#grid-use-cases-redesign-9 {
-                  background-image: url($img-path+"use-cases-logos-grey/internalcomms.png");
+                  background-image: url($img-path+"use-cases-logos-gray/internalcomms.png");
                   background-position: 50% 25%;
                   background-repeat: no-repeat;
 
@@ -239,7 +239,7 @@ section.use-cases-grid {
 
         &.link {
           font-size: 16px;
-          color: $grey;
+          color: $gray;
           text-decoration: underline;
           padding-bottom: 50px;
         }

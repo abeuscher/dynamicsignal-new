@@ -4,13 +4,16 @@ block template
     /*
     Template Name: Demo Request Form
     */
+block nav
+  include ./inc/header.pug
 block content
-  -
-    var pageData = {
-    "header":"Request A Demo",
-    "subheader":"Your Mobile-First Company Communications Platform"
-    };
-  include ./inc/hero.pug
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1 Request A Demo
+          h2 The Employee Communication And Engagement Platform
   section.signup-form-bucket.container
     .row
       .col-md-6

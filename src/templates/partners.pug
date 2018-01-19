@@ -8,6 +8,20 @@ block nav
   include ./inc/header.pug
 block content
   :php
+    $override_title = "Partners";
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Our Company",
+      "link"=>"/company/"
+    ));
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1 Grow Your agency
+          h2 Improving Employee Communications Increases Client Value and Drives Revenue
+  :php
     if( have_posts() ) {
     while( have_posts() ) {
       the_post();
@@ -27,7 +41,6 @@ block content
       "cite":"David Armano - Global Strategy Director @ Edelman"
     }
     };
-  include ./inc/hero.pug
   section.marquee-bucket
     #partners-logo-marquee.marquee
   section.partners-top.container

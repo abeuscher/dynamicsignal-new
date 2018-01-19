@@ -39,7 +39,7 @@ var runSequence = require('run-sequence');
 
 var opts = assign({}, watchify.args, {
     entries: [jsSrcDir + 'app.js'],
-    debug: true,
+    debug: false,
     paths: ['./bower_components', './node_modules']
 });
 var b = watchify(browserify(opts));

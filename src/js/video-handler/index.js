@@ -9,13 +9,9 @@ ActivateVideos.prototype.init = function() {
   this.players = [];
   for (i=0;i<this.videos.length;i++) {
     var thisBucket = this.videos[i];
-    var thisContent = thisBucket.querySelectorAll(".content")[0];
     var thisPlayer = this.makeVideo(thisBucket.getAttribute("data-video-id"));
     thisBucket.appendChild(thisPlayer);
-    if (window.innerWidth<1025 || !thisContent) {
-      if (thisContent) {
-        thisContent.classList.toggle("hide");
-      }
+    if (window.innerWidth<1024) {
       thisPlayer.classList.toggle("hide");
     }
     else {
@@ -27,10 +23,8 @@ ActivateVideos.prototype.init = function() {
 ActivateVideos.prototype.onStart = function(e) {
   e.preventDefault();
   var self = this;
-  var thisContent = this.querySelectorAll(".content")[0];
   var thisPlayer = this.querySelectorAll("iframe.vimeo-video")[0];
   var vimeoPlayer = new Vimeo(thisPlayer);
-  thisContent.classList.toggle("hide");
   thisPlayer.classList.toggle("hide");
 
 
@@ -64,7 +58,6 @@ ActivateVideos.prototype.onStart = function(e) {
 
     function vimeoListener(e) {
       vimeoPlayer.unload();
-      thisContent.classList.toggle("hide");
       thisPlayer.classList.toggle("hide");
     }
   }

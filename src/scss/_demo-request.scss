@@ -33,7 +33,7 @@ section#main-content-signup {
     width: 100% !important;
     font-size: 18px;
     line-height: 1.5;
-    border: 1px solid $middle-grey;
+    border: 1px solid $middle-gray;
     //-webkit-appearance:none;
   }
   select {
@@ -52,7 +52,7 @@ section#main-content-signup {
     margin-bottom:.25em;
     position:relative;
     &:placeholder {
-      color:$grey;
+      color:$gray;
     }
     &:active {
       border:1px solid #ccc;

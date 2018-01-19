@@ -2,7 +2,7 @@
   margin-bottom:$gutter-width*4;
 }
 .event-type-banner {
-  background:$middle-grey;
+  background:$classic-gray;
   color:$white;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -13,6 +13,9 @@
 }
 .button-events-back {
   float:right;
+}
+.event-header .event-thumb {
+  margin-top:$gutter-width;
 }
 .event-thumb {
   width:100%;
@@ -134,11 +137,11 @@
   h2 {
     margin:0;
     padding-bottom:$gutter-width/2;
-    border-bottom:1px solid $middle-grey;
+    border-bottom:1px solid $middle-gray;
     font-size:24px;
     font-weight:700;
     a {
-      color:$grey;
+      color:$gray;
       &:hover {
         color:$teal;
       }
@@ -158,11 +161,11 @@
   }
 }
 .past-events {
-  border-left:1px solid $middle-grey;
+  border-left:1px solid $middle-gray;
   h2 {
     margin:0;
     padding-bottom:$gutter-width/2;
-    border-bottom:1px solid $middle-grey;
+    border-bottom:1px solid $middle-gray;
     font-size:24px;
     font-weight:700;
   }
@@ -170,7 +173,7 @@
     font-size:18px;
     font-weight:700;
     a {
-      color:$grey;
+      color:$gray;
       &:hover {
         color:$teal;
       }
@@ -178,7 +181,7 @@
   }
   .past-event-listing {
     margin-bottom:$gutter-width;
-    color:$classic-grey;
+    color:$classic-gray;
     .inner {
       border-left:2px solid $red;
       padding-left:$gutter-width/2;

@@ -5,7 +5,7 @@
 
 .breadcrumbs {
   font-size: 14px;
-  color: $classic-dark-grey;
+  color: $black;
 
   .separator,
   span {
@@ -17,10 +17,10 @@
   }
 
   a {
-    color: $turquoise;
+    color: $header-blue;
 
     &:hover {
-      color: $black;
+      color: $menu-blue;
       text-decoration: underline;
     }
   }
@@ -34,7 +34,7 @@ a.pager-thumb {
   height: 100px;
   overflow: hidden;
   padding: 0 $gutter-width;
-  background: $grey;
+  background: $gray;
   color: $white;
 
   h4 {
@@ -42,7 +42,7 @@ a.pager-thumb {
     text-transform: uppercase;
     margin: $gutter-width/2 0 0;
     padding: 0;
-    color: $light-grey;
+    color: $light-gray;
   }
 
   .arrow-wrapper,

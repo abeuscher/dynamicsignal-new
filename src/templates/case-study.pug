@@ -1,218 +1,227 @@
 extends inc/page.pug
 block template
-	:php
-		/*
-		Template Name: Case Study Page
-		*/
+  :php
+    /*
+    Template Name: Case Study Page
+    */
+block nav
+  include ./inc/header.pug
 block content
-	:php
-		$parent_title = "Case Studies";
-		$parent_url = "https://resources.dynamicsignal.com/h/c/837672-case-studies";
-		$page_index = get_field("sort_order");
-	include ./inc/breadcrumbs.pug
-	section.hero.has-breadcrumbs#page-top
-		.container
-			.row
-				h1
-					:php
-						the_title();
-				h2
-					:php
-						echo get_field("subheader");
-	section#case-study-page.case-study-image
-		:php
-			echo "<img src='".get_field("header_image")["url"]."' alt='' />";
-	section.case-study-stats
-		.container
-			.row.case-study-stats
-				.col-md-4.col-s-12
-					h3 Industry
-					h4
-						:php
-							echo get_field("industry_type");
-				.col-md-4.col-s-12
-					h3 Company Size
-					h4
-						:php
-							echo get_field("company_size");
-				.col-md-4.col-s-12
-					h3 Use Case
-					h4
-						:php
-							echo "<a href='".get_field("use_case_url")."'>";
-							echo get_field("use_case")."</a>";
-	section.case-study-intro-block
-		.container.case-study
-			.row
-				.col-md-12
-					p.case-study-intro
-						:php
-							echo get_field("intro_paragraph");
-	section.container.case-study
-		.row
-			.col-md-12
-				h2.col-center
-					:php
-						echo get_field("problem_statement_header");
-				p
-					:php
-						echo get_field("problem_statement");
-		.row
-			.col-md-12
-				h2.col-center
-					:php
-						echo get_field("problem_list_header");
-		.row
-			.col-md-12.col-center
-				ul.case-study-list.problem
-					:php
-						foreach(get_field("problem_points") as $key=>$value) {
+  :php
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"What Is Dynamic Signal?",
+      "link"=>"/product/"
+    ));
+    array_push($breadcrumbs,array(
+      "title"=>"Case Studies",
+      "link"=>"/case-studies/"
+    ));
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1
+            :php
+              the_title();
+          h2
+            :php
+              the_field("subheader");
+  section#case-study-page.case-study-image
+    :php
+      echo "<img src='".get_field("header_image")["url"]."' alt='' />";
+  section.case-study-stats
+    .container
+      .row.case-study-stats
+        .col-md-4.col-s-12
+          h3 Industry
+          h4
+            :php
+              echo get_field("industry_type");
+        .col-md-4.col-s-12
+          h3 Company Size
+          h4
+            :php
+              echo get_field("company_size");
+        .col-md-4.col-s-12
+          h3 Use Case
+          h4
+            :php
+              echo "<a href='".get_field("use_case_url")."'>";
+              echo get_field("use_case")."</a>";
+  section.case-study-intro-block
+    .container.case-study
+      .row
+        .col-md-12
+          p.case-study-intro
+            :php
+              echo get_field("intro_paragraph");
+  section.container.case-study
+    .row
+      .col-md-12
+        h2.col-center
+          :php
+            echo get_field("problem_statement_header");
+        p
+          :php
+            echo get_field("problem_statement");
+    .row
+      .col-md-12
+        h2.col-center
+          :php
+            echo get_field("problem_list_header");
+    .row
+      .col-md-12.col-center
+        ul.case-study-list.problem
+          :php
+            foreach(get_field("problem_points") as $key=>$value) {
 
-					li
-						include ./inc/exclamation-point.pug
-						span
-							:php
-								echo $value["problem_point"];
-					:php
-						}
-	section.case-study-quote
-		.container
-			.row
-				.col-md-12
-					:php
-						$classname = get_field("quotation_type") == "quote" ? "has-quote" : "";
-						echo "<blockquote class='$classname'>".get_field("quotation")."</blockquote>";
-						echo "<cite>".get_field("quotation_source")."</cite>";
-	section.container.case-study
-		.row
-			.col-md-12
-				h2.col-center
-					:php
-						echo get_field("solution_header");
-				p
-					:php
-						echo get_field("solution_statement")
-		.row
-			.col-md-12.col-center
-				h2
-					:php
-						echo get_field("solution_items_header");
-				ul.case-study-list.solution
-					:php
-						foreach(get_field("solution_items") as $key=>$value) {
+          li
+            include ./inc/exclamation-point.pug
+            span
+              :php
+                echo $value["problem_point"];
+          :php
+            }
+  section.case-study-quote
+    .container
+      .row
+        .col-md-12
+          :php
+            $classname = get_field("quotation_type") == "quote" ? "has-quote" : "";
+            echo "<blockquote class='$classname'>".get_field("quotation")."</blockquote>";
+            echo "<cite>".get_field("quotation_source")."</cite>";
+  section.container.case-study
+    .row
+      .col-md-12
+        h2.col-center
+          :php
+            echo get_field("solution_header");
+        p
+          :php
+            echo get_field("solution_statement")
+    .row
+      .col-md-12.col-center
+        h2
+          :php
+            echo get_field("solution_items_header");
+        ul.case-study-list.solution
+          :php
+            foreach(get_field("solution_items") as $key=>$value) {
 
-					li
-						include ./inc/checkmark.pug
-						span
-							:php
-								echo $value["solution_item"];
-					:php
-						}
-	section.case-study-image.black
-		:php
-			echo "<img src='".get_field("bottom_image")["url"]."' alt='' />";
-	:php
-		if (get_field("proof_type")!="noproof") {
-	section.container.case-study
-		.row
-			.col-md-12.col-center
-				:php
-					if (get_field("proof_type")=="stats") {
-				ul.proof-points
-					:php
-						foreach(get_field("proof_stats") as $key=>$stat) {
-					li
-						:php
-							echo "<i class='fa fa-".$stat["icon_name"]."'></i>";
-						h3
-							:php
-								echo $stat["stat_value"];
-						h4
-							:php
-								echo $stat["stat_description"];
-					:php
-						}
-				:php
-					}
-					else {
-				.case-study-proof-quote.col-center
-					:php
-						echo get_field("proof_quote");
-						if (get_field("proof_quote_citation")!="") {
-					cite
-						:php
-							echo get_field("proof_quote_citation");
-					:php
-						}
-				:php
-					}
-	:php
-		}
-			$args = array(
-				"post_type"=>"page",
-				"posts_per_page"=>1,
-				"meta_key"=>"sort_order",
-				"orderby"=>"meta_value_num",
-				"order"=>"DESC",
-				"meta_query"=>array(
-					"relation"=>"AND",
-					"order_clause" => array(
-														"key"=>"sort_order",
-														"value"=>$page_index,
-														"compare"=>"<",
-														"type"=>"numeric"
-														),
-					"template_clause" => array(
-														"key" => "_wp_page_template",
-														"value" => "case-study.php"
-														)
-					)
-			);
-			$previous_post = get_posts($args)[0];
+          li
+            include ./inc/checkmark.pug
+            span
+              :php
+                echo $value["solution_item"];
+          :php
+            }
+  section.case-study-image.black
+    :php
+      echo "<img src='".get_field("bottom_image")["url"]."' alt='' />";
+  :php
+    if (get_field("proof_type")!="noproof") {
+  section.container.case-study
+    .row
+      .col-md-12.col-center
+        :php
+          if (get_field("proof_type")=="stats") {
+        ul.proof-points
+          :php
+            foreach(get_field("proof_stats") as $key=>$stat) {
+          li
+            :php
+              echo "<i class='fa fa-".$stat["icon_name"]."'></i>";
+            h3
+              :php
+                echo $stat["stat_value"];
+            h4
+              :php
+                echo $stat["stat_description"];
+          :php
+            }
+        :php
+          }
+          else {
+        .case-study-proof-quote.col-center
+          :php
+            echo get_field("proof_quote");
+            if (get_field("proof_quote_citation")!="") {
+          cite
+            :php
+              echo get_field("proof_quote_citation");
+          :php
+            }
+        :php
+          }
+  :php
+    }
+      $args = array(
+        "post_type"=>"page",
+        "posts_per_page"=>1,
+        "meta_key"=>"sort_order",
+        "orderby"=>"meta_value_num",
+        "order"=>"DESC",
+        "meta_query"=>array(
+          "relation"=>"AND",
+          "order_clause" => array(
+                            "key"=>"sort_order",
+                            "value"=>$page_index,
+                            "compare"=>"<",
+                            "type"=>"numeric"
+                            ),
+          "template_clause" => array(
+                            "key" => "_wp_page_template",
+                            "value" => "case-study.php"
+                            )
+          )
+      );
+      $previous_post = get_posts($args)[0];
 
-			$args = array(
-				"post_type"=>"page",
-				"posts_per_page"=>1,
-				"meta_key"=>"sort_order",
-				"orderby"=>"meta_value_num",
-				"order"=>"ASC",
-				"meta_query"=>array(
-					"relation"=>"AND",
-					"order_clause" => array(
-														"key"=>"sort_order",
-														"value"=>$page_index,
-														"compare"=>">",
-														"type"=>"numeric"
-														),
-					"template_clause" => array(
-														"key" => "_wp_page_template",
-														"value" => "case-study.php"
-														)
-					)
-			);
-			$next_post = get_posts($args)[0];
+      $args = array(
+        "post_type"=>"page",
+        "posts_per_page"=>1,
+        "meta_key"=>"sort_order",
+        "orderby"=>"meta_value_num",
+        "order"=>"ASC",
+        "meta_query"=>array(
+          "relation"=>"AND",
+          "order_clause" => array(
+                            "key"=>"sort_order",
+                            "value"=>$page_index,
+                            "compare"=>">",
+                            "type"=>"numeric"
+                            ),
+          "template_clause" => array(
+                            "key" => "_wp_page_template",
+                            "value" => "case-study.php"
+                            )
+          )
+      );
+      $next_post = get_posts($args)[0];
 
-			$previous_post->thumb = get_the_post_thumbnail($previous_post->ID);
-			$next_post->thumb =  get_the_post_thumbnail($next_post->ID);
+      $previous_post->thumb = get_the_post_thumbnail($previous_post->ID);
+      $next_post->thumb =  get_the_post_thumbnail($next_post->ID);
 
-			$previous_post->url = "/".$previous_post->post_name;
-			$next_post->url = "/".$next_post->post_name;
+      $previous_post->url = "/".$previous_post->post_name;
+      $next_post->url = "/".$next_post->post_name;
 
-			$previous_post->classname="prev";
-			$next_post->classname="next";
-			$previous_post->label = "Previous Case Study";
-			$next_post->label = "Next Case Study";
-			echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";
-	section.case-study.case-study-cta
-		.container
-			.row
-				.col-md-12
-					h2.col-center
-						:php
-							echo get_field("conclusion_header");
-					p
-						:php
-							echo get_field("conclusion_paragraph");
-			.row
-				.col-md-12.col-center
-					a.button-red.cta(href="/requestdemo/") Request a Demo
+      $previous_post->classname="prev";
+      $next_post->classname="next";
+      $previous_post->label = "Previous Case Study";
+      $next_post->label = "Next Case Study";
+      echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";
+  section.case-study.case-study-cta
+    .container
+      .row
+        .col-md-12
+          h2.col-center
+            :php
+              echo get_field("conclusion_header");
+          p
+            :php
+              echo get_field("conclusion_paragraph");
+      .row
+        .col-md-12.col-center
+          a.button-red.cta(href="/requestdemo/") Request a Demo

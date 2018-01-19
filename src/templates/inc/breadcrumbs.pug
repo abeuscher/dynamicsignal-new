@@ -1,21 +1,8 @@
 .breadcrumbs
-	span
-		a(href="/") Home
 	:php
-		if ($parent_url!="") {
-	.separator »
-	span
-		:php
-			echo "<a href='$parent_url'>$parent_title</a>";
-	:php
+		$string = "";
+		array_push($breadcrumbs, isset($override_title) ? array("title"=>$override_title,"link"=>"") : array("title"=>get_the_title(),"link"=>""));
+		foreach ($breadcrumbs as $key=> $breadcrumb) {
+			$string .= $key == count($breadcrumbs)-1 ? sprintf("<span>%s</span>",$breadcrumb["title"]) : sprintf("<span><a href='%s'>%s</a></span><div class='separator'>»</div>",$breadcrumb["link"],$breadcrumb["title"]);
 		}
-	.separator »
-	span
-		p
-			:php
-				if (isset($override_title)) {
-					echo $override_title;
-				}
-				else {
-					the_title();
-				}
+		echo $string;

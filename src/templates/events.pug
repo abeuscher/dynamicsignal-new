@@ -7,12 +7,20 @@ block template
 block nav
   include ./inc/header.pug
 block content
-  -
-    var pageData = {
-    "header":"Events",
-    "subheader":"Explore our events schedule below, connect with us online or in person"
-    };
-  include ./inc/hero.pug
+  :php
+    $override_title = "Events";
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Our Company",
+      "link"=>"/company/"
+    ));
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1 Events
+          h2 Explore our events schedule below, connect with us online or in persons
   :php
     $all_events = [];
     $args = array(
@@ -22,12 +30,12 @@ block content
           'orderby'    => 'meta_value_num',
           'order'      => 'DESC',
           'meta_query' => array(
-        		array(
-        			'key' => 'ds_event_type',
+            array(
+              'key' => 'ds_event_type',
               'value' => 'cswebinar',
               'compare' => '!='
-        		)
-        	)
+            )
+          )
         );
     $events = new WP_Query( $args );
     function new_excerpt_more( $more ) {

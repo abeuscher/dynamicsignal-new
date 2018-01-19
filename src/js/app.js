@@ -11,6 +11,7 @@ var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
 var ActivateVideos = require("./video-handler/index.js");
 var Pies = require("./pie-chart/index.js");
+var Bars = require("./bar-chart/index.js");
 
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
@@ -84,7 +85,30 @@ function inIframe () {
   "color": "yellow",
   "backgroundColor": "white"
 });
+  var bars = new Bars({
+  "className":"bar-wrapper"
 });
+var s = getMobileOperatingSystem();
+  if (s) {
+    console.log(getMobileOperatingSystem);
+    var mobilePanels = document.querySelectorAll(".mobile-cta");
+    for (i=0;i<mobilePanels.length;i++) {
+      mobilePanels[i].style.display="block";
+    }
+  }
+
+});
+
+function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  if (/android/i.test(userAgent)) {
+      return "Android";
+  }
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return "iOS";
+  }
+  return false;
+}
 
 
 var siteActions = [{
@@ -113,15 +137,25 @@ var siteActions = [{
   {
   "element": "side-nav",
   "action": function() {
+    var theWrapper = document.getElementById("wrapper");
     var theToggle = document.getElementById("toggle-side-nav");
     theToggle.addEventListener("click", function(e) {
       e.preventDefault();
-      document.getElementById("side-nav").classList.toggle("closed");
-      document.body.classList.toggle("nav-open");
-      this.classList.toggle("active");
-      return false;
+      console.log(document.body.classList.contains("nav-open"));
+      if (document.body.classList.contains("nav-open")) {
+        document.body.classList.remove("nav-open");
+        theWrapper.removeEventListener("click", closeBody);
+      }
+      else {
+        document.body.classList.add("nav-open");
+        theWrapper.addEventListener("click", closeBody);
+      }
     });
-
+    function closeBody(e) {
+      e.preventDefault();
+      document.body.classList.remove("nav-open");
+      theWrapper.removeEventListener("click", closeBody);
+    }
   }
 },
   {
@@ -296,8 +330,6 @@ var siteActions = [{
       						recaptchaEl = document.querySelector('.g-recaptcha');
 
       				form.submittable(false);
-      				emailEl.readOnly = true;
-
 
       			  // force resize reCAPTCHA frame
       			  recaptchaEl.querySelector('IFRAME').setAttribute('height','140');
@@ -314,7 +346,8 @@ var siteActions = [{
       						} else {
       								recaptchaEl.classList.remove('mktoInvalid');
       								form.addHiddenFields({
-      										lastRecaptchaUserInput: recaptchaResponse
+      										lastRecaptchaUserInput: recaptchaResponse,
+                          captchaStatus:true
       								});
       								form.submittable(true);
       						}
@@ -384,9 +417,11 @@ var siteActions = [{
         })
         .on("enter", function(e) {
           document.getElementById("page-header").classList.add("active");
+          document.getElementById("toggle-side-nav").classList.add("short");
         })
         .on("leave", function(e) {
           document.getElementById("page-header").classList.remove("active");
+          document.getElementById("toggle-side-nav").classList.remove("short");
         })
         .addTo(headController);
     }
@@ -451,17 +486,11 @@ var siteActions = [{
       var logoGall = new Flickity("#logo-strip", {
         "prevNextButtons": false,
         "lazyLoad": 6,
-        "autoPlay": 5000
+        "autoPlay": 5000,
+        "groupCells":5
       });
       for (i in pageData.logos) {
-        if (i == 0 || (parseInt(i)) % 6 == 0) {
-          if (i != 0) {
-            logoGall.append(thisRow);
-          }
-          var thisRow = document.createElement("div");
-          thisRow.classList.add("row");
-        }
-        thisRow.appendChild(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
+        logoGall.append(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
       }
       logoGall.resize();
     }
@@ -682,5 +711,11 @@ function activateImages() {
       img.alt = "";
       thisElement.appendChild(img);
     }
+  }
+  var bgArrays = document.querySelectorAll("[data-bg-array]");
+  for (i=0;i<bgArrays.length;i++) {
+    var el = bgArrays[i];
+    var imageArray = JSON.parse(el.getAttribute("data-bg-array"));
+    el.style.backgroundImage = "url('"+imageArray.url+"')";
   }
 }

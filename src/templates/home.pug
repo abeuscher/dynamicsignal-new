@@ -6,82 +6,55 @@ block template
     */
 block nav
   include ./inc/header.pug
-  .top-marquee#home-marquee
-    section.home-content.container
-      .row
-        .col-md-6.col-xs-8
-          h1 
-            span.blue Connect
-            span!=" with your most valuable asset - your employees."
-          p Modernize, streamline, and measure your employee communication and content with one platform.
-          a.button.cta(href="product.html") Learn More 
-      span.home-page-widget
-        .widget-spacer(data-bg="widget-blue-circuit-bg.png")
-        img(src=themeDir + "images/widget-blue-circuit.png")
-    section.logo-strip-bucket
-      .container
-        .row
-          .col-md-12
-            #logo-strip.logo-strip
 block content
-  -
-    var pageData = {
-    "header":"Your Mobile-First Company<br>Communications Platform",
-    "subheader":"Keep employees informed and engaged.<br>Increase productivity and empower advocacy.",
-    "logoCopy":"Dynamic Signal is trusted by hundreds of the world's largest enterprises, more than any other provider.",
-    "testimonialBg":"problem-bg.jpg",
-    "logoGridHeader":"Trusted Industry Leader",
-    "logoGridSubheader":"Hundreds of the world’s largest enterprises, including customers in 21 countries around the globe, trust the Dynamic Signal platform to deliver company and industry news, and content to the right employee, at the right time.",
-    "ctaHeader":"Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders",
-    "ctaLabel":"Request a Demo"
-    };
   :php
     echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos_strip_gray_icons' ),JSON_UNESCAPED_SLASHES)
-    .",'testimonials':".json_encode(get_field('testimonial_quotes'),JSON_UNESCAPED_SLASHES)
-    .",'mobileProducts':".json_encode(get_field('products_carousel_mobile'),JSON_UNESCAPED_SLASHES)
-    .",'desktopProducts':".json_encode(get_field('products_carousel_desktop'),JSON_UNESCAPED_SLASHES)
-    .",'gridLogos':".json_encode(get_field('logos_grid'),JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  section.container.after-marquee
-    .row.padding-bottom
-      .col-md-6
-        h2 Modernize
-          span.home-icon.modernize
-        p Outdated business channels do not meet the challenge of connecting with every employee in today’s rapidly changing workplace. A mobile-optimized Employee Communication and Engagement Platform enables organizations to reach all workers in real time with personalized, relevant content in the way they want and expect.
-        .row.pie-row
-          .col-md-4
-            .pie-wrapper#chart-1(data-percent="13",data-size="200px")
-          .col-md-8
-            p.pie-label Only 13% of employees visit their intranet daily 
-              cite (Prescient Digital Media)
-      .col-md-6
-        img.homepic.right(src=themeDir+"images/newhome-phone-1.jpg")
-    .row.padding-bottom
-      .col-md-6.right
-        img.homepic.left(src=themeDir+"images/newhome-phone-2.jpg")
-      .col-md-6
-        h2 Streamline
-          span.home-icon.streamline
-        p Organizations and employees are frustrated by fragmented systems that inconsistently deliver important content and reduce engagement. Consolidating communication with a single, easily accessible platform ensures workers always get the crucial information they need to do their jobs better and more efficiently.
-        .row.pie-row
-          .col-md-4
-            .pie-wrapper#chart-2(data-percent="147",data-size="200px")
-          .col-md-8
-            p.pie-label Companies that have more engaged employees outperform peers by 147% more earnings  per share. 
-              cite (Gallup)
-    .row.padding-bottom
-      .col-md-6
-        h2 Measure
-          span.home-icon.measure
-        p Organizations have no accurate method of measuring the reach, impact or effectiveness of their communication efforts. But when all channels are integrated into one platform, communicators can confidently track engagement, measure results, then use those metrics to improve communication strategies.
-        .row.pie-row
-          .col-md-4
-            .pie-wrapper#chart-3(data-percent="14",data-size="200px")
-          .col-md-8
-            p.pie-label of communicators are confident in their ability  to measure their efforts.
-              cite (Gallup)
-      .col-md-6
-        img.homepic.right(src=themeDir+"images/newhome-phone-3.jpg")
+  section.top-section#home-marquee
+    .inner.home
+      .container
+        .row
+          .col-md-6.col-xs-10
+            h1 Connect with Your Most Valued Asset, 
+              span.blue Your Employees
+            p
+              :php
+                the_field("hero_subheader");
+            :php
+              echo "<a class='button cta' href='".get_field('home_page_top_cta_target')."'>".get_field('home_page_top_cta_label')."</a>";
+        span.home-page-widget
+          .widget-spacer(data-bg="widget-blue-circuit-bg.png")
+          img(src=themeDir + "images/widget-blue-circuit.png")
+  section.logo-strip-bucket
+    .container
+      .row
+        .col-md-12
+          #logo-strip.logo-strip
+  section.container
+    :php
+      if( have_rows('home_page_sections') ) {
+        $count=1;
+        while( have_rows('home_page_sections') ): the_row();
+        if (get_sub_field("section_graph_type")=="bar") {
+          $graph = sprintf("<div class='row bar-row'><div class='col-md-12'><p class='bar-label'>%s</p></div><div class='col-md-12'><div class='bar-wrapper' id='barchart-%s' data-value='%s' data-size='200px' data-range='%s'></div></div></div>",get_sub_field("section_graph_content"),$count,get_sub_field("section_graph_numeric_value"),get_sub_field("section_graph_range"));        
+          }
+        else {
+          $graph = sprintf("<div class='row pie-row'><div class='col-md-4'><div class='pie-wrapper' id='chart-%s' data-percent='%s' data-size='200px'></div></div><div class='col-md-8'><p class='pie-label'>%s</p></div></div>",$count,get_sub_field("section_graph_numeric_value"),get_sub_field("section_graph_content"));  
+          }
+        if (get_sub_field('section_orientation')=="left") {
+          printf("<div class='row home-content'><div class='col-md-6 homepic'><img src='%s' alt='' /></div>", get_sub_field("section_image")["url"]);
+          printf("<div class='col-md-6 content'><h2>%s<span class='home-icon' data-bg='%s'></span></h2><p>%s</p>%s</div></div>", get_sub_field("section_title"),get_sub_field("section_icon")["url"],get_sub_field("section_content"),$graph);
+        }
+        else {
+          printf("<div class='row home-content'><div class='col-md-6 content'><h2>%s<span class='home-icon' data-bg='%s'></span></h2><p>%s</p>%s</div>", get_sub_field("section_title"),get_sub_field("section_icon")["url"],get_sub_field("section_content"),$graph);
+          printf("<div class='col-md-6 homepic'><img src='%s' alt='' /></div></div>", get_sub_field("section_image")["url"]);
+          }
+        $count++;
+        endwhile;
+      }
   section.bottom-cta
-    p Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders.
-    a.button.cta Request Demo
+    p
+      :php
+        the_field("home_page_bottom_cta_intro_text");
+    :php
+      printf("<a class='button cta' href='%s'>%s</a>", get_field("home_page_bottom_cta_target"), get_field("home_page_bottom_cta_label"));

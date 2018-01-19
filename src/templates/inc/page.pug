@@ -3,22 +3,6 @@ block template
 doctype html
 html
   head
-    script.
-      var validDomains = ["dynamicsignal.com","staging.dynamicsignal.flywheelsites.com"];
-      if (validDomains.indexOf(window.location.hostname)>-1) {
-          (function(d) {
-            var config = {
-              kitId: 'rqa1vic',
-              scriptTimeout: 3000,
-              async: true
-            },
-            h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config);}catch(e){}};s.parentNode.insertBefore(tk,s);
-
-          })(document);
-      }
-      else {
-        console.log("Font not supported in this domain");
-      }
     meta(charset="UTF-8")
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -52,10 +36,15 @@ html
       echo "<meta property='twitter:description' content='$description' />";
       $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
       echo "<link href='$slink' rel='stylesheet' />";
-    body.loading
-      block nav
+    body.loading  
+      .navbar-toggle#toggle-side-nav
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
       include side-nav.pug
-      #wrapper  
+      block nav
+      #wrapper
         block content
         include ./footer.pug
       script(src=themeDir+"js/bundle.js")

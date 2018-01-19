@@ -16,7 +16,7 @@
     margin-right:$gutter-width/2;
     color:$red;
     &:hover {
-      color:$grey;
+      color:$gray;
     }
     @include bp(m) {
       display:inline-block;
@@ -25,7 +25,7 @@
 }
 .info-block {
   display:none;
-  background:$light-grey;
+  background:$light-gray;
   color:$white;
   .connector-logo {
     max-width:200px;

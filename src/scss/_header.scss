@@ -10,7 +10,7 @@ $nav-bg-short:rgba(255,255,255,1);
   position: fixed;
   top:0;
   width:100%;
-  z-index:99;
+  z-index:98;
   .inner {
     padding:0 $gutter-width;
   }
@@ -37,5 +37,10 @@ $nav-bg-short:rgba(255,255,255,1);
         height:$nav-height-short;
       }
     }
+  }
+}
+body.nav-open {
+  #page-header {
+    display:none;
   }
 }

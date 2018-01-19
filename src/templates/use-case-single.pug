@@ -9,22 +9,33 @@ block nav
   include ./inc/header.pug
 block content
   :php
-    $parent_title = "Use Cases";
-    $parent_url = "/use-cases/";
-    $page_index = intval(get_post_field('sort_order'));
-  include ./inc/breadcrumbs.pug
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"What is Dynamic Signal?",
+      "link"=>"/product/"
+    ));
+    array_push($breadcrumbs,array(
+      "title"=>"Benefits",
+      "link"=>"/benefits/"
+    ));
+  -
+    var pageData = {
+    "header":"Benefits",
+    "subheader":"For Every Department in the Enterprise"
+    };
+  section.top-section-interior
+    .container 
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug  
+          h1
+            :php
+              the_field("page_title");
+          h2
+            :php
+              the_field("subheader");
   :php
     echo '<script>var useCaseBackgrounds = '. json_encode(array(get_field("solution_1_image"),get_field("solution_2_image"),get_field("solution_3_image")),JSON_UNESCAPED_SLASHES).'; var useCaseQuotes = '. json_encode(get_field("proof_points")).';</script>';
-  section.hero.has-breadcrumbs#page-top
-    .container
-      .row
-        h1
-          :php
-            the_field("page_title");
-        h2
-          :php
-            the_field("subheader");
-  :php
     if( have_rows('logos') ) {
   section.use-cases-logo-strip
     ul.gray-logos

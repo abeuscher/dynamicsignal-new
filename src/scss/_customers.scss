@@ -22,7 +22,7 @@
       display:inline-block;
       a {
         span.fa-stack {
-          color:$grey;
+          color:$gray;
         }
         &:hover {
           span.fa-stack {
@@ -87,6 +87,8 @@
           line-height:1.75;
           letter-spacing: 1px;
           text-transform: uppercase;
+          text-align:left;
+          color:$white;
           .name {
             display:block;
           }

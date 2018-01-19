@@ -2,7 +2,7 @@
   text-align: center;
   .careers-panes {
     text-align: left;
-    color:$classic-grey;
+    color:$classic-gray;
     line-height:1.5;
     h3 {
       font-size:18px;
@@ -11,7 +11,7 @@
     }
     @include bp(m) {
       .col-md-3 {
-        border-right:1px solid lighten($classic-grey,50%);
+        border-right:1px solid lighten($classic-gray,50%);
         &:last-child {
           border-right:none;
         }
@@ -64,7 +64,7 @@
     h3 {
       margin:0;
       span {
-        color:$light-grey;
+        color:$light-gray;
         font-weight:300;
         text-transform: uppercase;
         font-size:14px;
@@ -82,7 +82,7 @@
     }
     .job-listing-bottom {
       padding-bottom:$gutter-width;
-      border-bottom:1px solid $middle-grey;
+      border-bottom:1px solid $middle-gray;
     }
   }
   .job-description {
@@ -103,7 +103,7 @@
 }
 .job-filter {
   background:$beige;
-  border:1px solid $middle-grey;
+  border:1px solid $middle-gray;
   border-radius:3px;
   padding:1em;
 }
@@ -112,7 +112,7 @@
 }
 a.filter-button {
   position:relative;
-  color:$grey;
+  color:$gray;
   font-weight:300;
   display:block;
   padding:$gutter-width/2 0;
@@ -127,7 +127,7 @@ a.filter-button {
     content:'';
     position:absolute;
     left:0;
-    background:$middle-grey;
+    background:$middle-gray;
     width:1em;
     height:1em;
     border-radius:.5em;
@@ -141,7 +141,7 @@ a.filter-button {
   .job-total {
     float:right;
     display:block;
-    background:$middle-grey;
+    background:$middle-gray;
     border-radius:50%;
     padding:.2em .5em;
   }
@@ -156,7 +156,7 @@ ul.careers-tabs {
       display:block;
       background-repeat:no-repeat;
       background-position:center top;
-      color:$light-grey;
+      color:$light-gray;
       width:180px;
       height:50px;
       padding:$gutter-width*2 $gutter-width $gutter-width;

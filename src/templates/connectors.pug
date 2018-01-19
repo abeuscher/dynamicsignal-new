@@ -8,12 +8,25 @@ block nav
   include ./inc/header.pug
 block content
   :php
+    $override_title = "Integrations";
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"What Is Dynamic Signal?",
+      "link"=>"/product/"
+    ));
+    
     echo '<script>var connectorData = '. json_encode(get_field("connectors")).';</script>';
   -
     var pageData = {
     "header":"Connectors",
-    "subheader":"Dynamic Signal integrates with your current enterprise and social platforms, for ease of use and global scale"
+    "subheader":""
     };
-  include ./inc/hero.pug
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1 Integrations
+          h2 Dynamic Signal integrates with your current enterprise and social platforms, for ease of use and global scale
   section.container
     #connectors
