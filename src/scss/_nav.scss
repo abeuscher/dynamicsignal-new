@@ -66,6 +66,9 @@
           @include bp(l) {
             font-size: 22px;
           }
+          &.active {
+            text-decoration: underline;
+          }
         }
       }
     }
@@ -191,6 +194,9 @@ body.nav-open {
     transform: translatex(-$sideNavWidth);
     &:before {
       display:block;
+    }
+    * {
+      z-index:0;
     }
   }
   .sideMenu {

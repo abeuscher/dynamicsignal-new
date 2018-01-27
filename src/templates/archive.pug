@@ -26,48 +26,20 @@ block content
           h1
             :php
               echo $override_title;
-  section.blog-entries
-    :php
-      $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-      //$query = new WP_Query( array('post_type' => 'post','paged' => $paged) );
-      if( have_posts() ) {
-          while( have_posts() ) {
-              the_post();
-    article
+  section
+    .container
       :php
-        echo "<a class='blog-header' href='".get_the_permalink()."'><div class='blog-thumb'>";
-        the_post_thumbnail( 'full', array('class' => 'img-responsive') );
-        echo "</div>";
-      .inner
-        .container
-          .row
-            .col-md-12
-              h1.blog-title
-                :php
-                  the_title();
-              :php
-                echo "<span class='blog-date'>".get_the_date()."</span>";
-      :php
-        echo "</a>";
-      .container.blog-excerpt-row
-        .row
-          .col-md-12
-            p By
-              :php
-                echo " ".get_author_name();
-            .blog-info
-              .blog-excerpt
-                :php
-                  the_excerpt();
-              .blog-tags
-                :php
-                  if( has_tag() ) {
-                    echo "<p class='blog-tags'>";
-                    the_tags( false );
-                    echo "</p>";
+        $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+        $count = 0;
+        $query = new WP_Query( array('post_type' => 'post','paged' => $paged,'posts_per_page' => 9) );
+        if( have_posts($query) ) {
+            while( have_posts($query) ) {
+                the_post();
+                if ($count==0 || $count%3==0) { echo "<div class='even-height-wrapper'>"; }
+                printf("<div class='col-3'><a class='story-tile-link no-header' href='%s'><div class='featured-thumb' data-bg='%s'></div><h3>%s</h3></a></div>",get_permalink(),get_the_post_thumbnail_url(),get_the_title());
+                if ($count%3==2) { echo "</div>"; }
+                  $count++;
                   }
-    :php
-      }};
   section.container.pagination
     .row
       .col-md-12
@@ -79,4 +51,4 @@ block content
                 'current' => max( 1, get_query_var('paged') ),
                 'total' => $query->max_num_pages
               )
-            );
+            );}

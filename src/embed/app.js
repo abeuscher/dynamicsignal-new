@@ -1,7 +1,7 @@
 var parseHTML = require("../js/utils/parse-html.js");
 
 var templates = {
-  "header":require("../templates/inc/header.pug"),
+  "header":require("../templates/inc/header-embed.pug"),
   "footer":require("../templates/inc/footer.pug")
 }
 

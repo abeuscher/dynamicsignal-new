@@ -1,5 +1,6 @@
-.use-case-bottom, .use-case-cta {
+.use-case-bottom {
   text-align: center;
+  padding-bottom:$gutter-width*2;
 }
 .use-case-quotes {
   display:block;
@@ -23,7 +24,7 @@
 }
 .use-cases-logo-strip {
   text-align:center;
-  background:$beige;
+  background:linear-gradient(to bottom, rgba(237,237,237,0.65) 0%,rgba(237,237,237,0.65) 1%,rgba(237,237,237,0) 10%,rgba(237,237,237,0) 84%,rgba(237,237,237,0.65) 100%);
   padding:$gutter-width*2 0;
 }
 ul.gray-logos {
@@ -67,7 +68,7 @@ ul.gray-logos {
     content:'';
     left:-8px;
     position:absolute;
-    background:$red;
+    background:$header-blue;
     border:3px solid $white;
     box-shadow:  0px 0px 0px 2px $gray;
     width:17px;
@@ -160,6 +161,11 @@ section#parallax.use-cases-parallax {
         padding-top:$gutter-width*2;
         text-transform: none;
         text-align:left;
+        font-size:2.4em;
+        color:$white;
+        font-weight: 600;
+        opacity:1;
+        text-shadow:1px 1px 5px rgba(255,255,255,.1);
       }
       .text-content {
         font-weight:300;

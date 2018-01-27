@@ -1,0 +1,14 @@
+.customer-carousel-slide
+  .container
+    .row
+      .col-md-6.no-padding
+        .video-thumb.video-activator(data-video-id=locals.vimeo_id,video-type="vimeo",data-bg=locals.video_thumbnail.sizes["medium_large"])
+          a.video-play-button(href="#")
+            i.fa.fa-play
+      .col-md-6.no-padding  
+        .video-slide-content
+          p!="\"" + locals.quote + "\""
+          cite
+            span.name!=citation_name
+            span.title!=locals.citation_title
+ 

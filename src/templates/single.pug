@@ -22,7 +22,7 @@ block content
         "title"=>"Blog",
         "link"=>"/blog/"
       ));
-  section.top-section-interior
+  section.top-section-blog
     .container
       .row
         .col-md-12
@@ -73,13 +73,13 @@ block content
     :php
       echo "</div>";
   section.container.blog-content
-    .row
-      .col-md-9
-        article.blog-content
+    .container
+      .row
+        .col-md-9.blog-content
           :php
             the_content();
-      .col-md-3.related-posts
-        include ./inc/related-posts.pug
+        .col-md-3.related-posts
+          include ./inc/related-posts.pug
     .row
       .col-md-9.author-bio
         h2.header-right Post Author
@@ -87,17 +87,9 @@ block content
           global $authordata;
           //echo json_encode($authordata);
           $meta = get_user_meta($authordata->data->ID);
-        .author-thumb
-          :php
-            $authorname = $meta["first_name"][0]." ".$meta["last_name"][0];
-            echo "<img src='".$meta["image"][0]."' alt='$authorname' />";
-          .author-name
-            :php
-              echo $authorname;
+          printf("<div class='author-thumb' data-bg='%s'></div>",$meta["image"][0]);
         .author-description
-          :php
-            echo $meta["description"][0];
-          ul.author-social
+          ul.social-share
             :php
               if($meta["ts_fab_twitter"][0]!="") {
                 echo "<li><a href='https://twitter.com/".$meta["ts_fab_twitter"][0]."' target='_blank'>";
@@ -114,9 +106,14 @@ block content
               i.fa.fa-stack-1x.fa-linkedin
               :php
                 echo "</a></li>";
-                }
+          h3
+            :php
+              echo $meta["first_name"][0]." ".$meta["last_name"][0];
+          :php
+            echo $meta["description"][0];
+              }
 
-                }}
+              }}
   section.pager-thumbs.container
     .row
       .col-md-12

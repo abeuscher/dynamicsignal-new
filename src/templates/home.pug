@@ -30,28 +30,29 @@ block content
       .row
         .col-md-12
           #logo-strip.logo-strip
-  section.container
-    :php
-      if( have_rows('home_page_sections') ) {
-        $count=1;
-        while( have_rows('home_page_sections') ): the_row();
-        if (get_sub_field("section_graph_type")=="bar") {
-          $graph = sprintf("<div class='row bar-row'><div class='col-md-12'><p class='bar-label'>%s</p></div><div class='col-md-12'><div class='bar-wrapper' id='barchart-%s' data-value='%s' data-size='200px' data-range='%s'></div></div></div>",get_sub_field("section_graph_content"),$count,get_sub_field("section_graph_numeric_value"),get_sub_field("section_graph_range"));        
+  section.home-flippety-floppity
+    .container
+      :php
+        if( have_rows('home_page_sections') ) {
+          $count=1;
+          while( have_rows('home_page_sections') ): the_row();
+          if (get_sub_field("section_graph_type")=="bar") {
+            $graph = sprintf("<div class='row bar-row'><div class='col-md-12'><p class='bar-label'>%s<cite>%s</cite></p></div><div class='col-md-12'><div class='bar-wrapper' id='barchart-%s' data-value='%s' data-size='200px' data-range='%s'></div></div></div>",get_sub_field("section_graph_content"),get_sub_field("section_graph_citation"),$count,get_sub_field("section_graph_numeric_value"),get_sub_field("section_graph_range"));        
+            }
+          else {
+            $graph = sprintf("<div class='row pie-row'><div class='col-md-4 no-padding pie-bucket'><canvas class='pie-wrapper' id='chart-%s' data-percent='%s' width='300px' height='300px'></canvas></div><div class='col-md-8 no-padding'><p class='pie-label'>%s<cite>%s</cite></p></div></div>",$count,get_sub_field("section_graph_numeric_value"),get_sub_field("section_graph_content"),get_sub_field("section_graph_citation"));  
+            }
+          if (get_sub_field('section_orientation')=="left") {
+            printf("<div class='row home-content'><div class='col-md-6 homepic hidden-sm hidden-xs'><img src='%s' alt='' /></div>", get_sub_field("section_image")["url"]);
+            printf("<div class='col-md-6 content'><h2>%s<span class='home-icon' data-bg='%s'></span></h2><p>%s</p>%s</div></div>", get_sub_field("section_title"),get_sub_field("section_icon")["url"],get_sub_field("section_content"),$graph);
           }
-        else {
-          $graph = sprintf("<div class='row pie-row'><div class='col-md-4'><div class='pie-wrapper' id='chart-%s' data-percent='%s' data-size='200px'></div></div><div class='col-md-8'><p class='pie-label'>%s</p></div></div>",$count,get_sub_field("section_graph_numeric_value"),get_sub_field("section_graph_content"));  
-          }
-        if (get_sub_field('section_orientation')=="left") {
-          printf("<div class='row home-content'><div class='col-md-6 homepic'><img src='%s' alt='' /></div>", get_sub_field("section_image")["url"]);
-          printf("<div class='col-md-6 content'><h2>%s<span class='home-icon' data-bg='%s'></span></h2><p>%s</p>%s</div></div>", get_sub_field("section_title"),get_sub_field("section_icon")["url"],get_sub_field("section_content"),$graph);
+          else {
+            printf("<div class='row home-content'><div class='col-md-6 content'><h2>%s<span class='home-icon' data-bg='%s'></span></h2><p>%s</p>%s</div>", get_sub_field("section_title"),get_sub_field("section_icon")["url"],get_sub_field("section_content"),$graph);
+            printf("<div class='col-md-6 homepic hidden-sm hidden-xs'><img src='%s' alt='' /></div></div>", get_sub_field("section_image")["url"]);
+            }
+          $count++;
+          endwhile;
         }
-        else {
-          printf("<div class='row home-content'><div class='col-md-6 content'><h2>%s<span class='home-icon' data-bg='%s'></span></h2><p>%s</p>%s</div>", get_sub_field("section_title"),get_sub_field("section_icon")["url"],get_sub_field("section_content"),$graph);
-          printf("<div class='col-md-6 homepic'><img src='%s' alt='' /></div></div>", get_sub_field("section_image")["url"]);
-          }
-        $count++;
-        endwhile;
-      }
   section.bottom-cta
     p
       :php

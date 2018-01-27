@@ -5,7 +5,7 @@ function ActivateVideos() {
 }
 ActivateVideos.prototype.init = function() {
   var self = this;
-  this.videos = document.querySelectorAll(".video-thumb");
+  this.videos = document.querySelectorAll(".video-activator");
   this.players = [];
   for (i=0;i<this.videos.length;i++) {
     var thisBucket = this.videos[i];

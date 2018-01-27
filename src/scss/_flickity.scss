@@ -89,8 +89,15 @@ http://flickity.metafizzy.co
   opacity: 0.6;
 }
 
-.flickity-prev-next-button.previous { left: 10px; }
-.flickity-prev-next-button.next { right: 10px; }
+.flickity-prev-next-button.previous { left: 10px;
+@include bp(m) {
+  left: -50px;
+} }
+.flickity-prev-next-button.next { right: 10px;
+@include bp(m) {
+  right: -50px;
+}
+}
 /* right to left */
 .flickity-rtl .flickity-prev-next-button.previous {
   left: auto;

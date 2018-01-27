@@ -96,14 +96,15 @@ block content
     .row
       .col-md-12
         h2 Benefits for Every Department of the Enterprise
-        a.button-teal.big.cta(href="/use-cases/") See All Use Cases
-  section.container.use-case-cta
-    .row
-      .col-md-12
-        h2
-          :php
-            the_field("cta_header");
-        a.cta.button-red(href="/requestdemo/") Request a Demo
+        a.button.cta(href="/use-cases/") See All Use Cases
+  section.bottom-cta
+    .container
+      .row
+        .col-md-12
+          h2
+            :php
+              the_field("cta_header");
+          a.cta.button(href="/requestdemo/") Request a Demo
   :php
 
     $args = array(
@@ -161,7 +162,4 @@ block content
     $previous_post->label = "Previous Use Case";
     $next_post->label = "Next Use Case";
     echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";
-  section.pager-thumbs.container
-    .row
-      .col-md-12
-        #paging-thumbs
+  #paging-thumbs

@@ -1,9 +1,13 @@
-.breadcrumbs-bucket {
+.bread-crumbs-bucket {
   padding-top: 70px;
   padding-bottom: 0;
 }
 
-.breadcrumbs {
+.bread-crumbs {
+  display:none;
+  @include bp(s) {
+    display:block;
+  }
   font-size: 14px;
   color: $black;
 
@@ -13,7 +17,9 @@
   }
 
   .separator {
-    margin: 0 5px 0 2px;
+    margin: 0 .75em;
+    font-size:1.3em;
+    line-height:1;
   }
 
   a {

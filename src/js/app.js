@@ -33,6 +33,7 @@ var siteSettings = {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
     "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
     "customerTile": require("./inc/customer-tile.pug"),
+    "productQuote": require("./inc/product-quote.pug"),
     "customerQuote": require("./inc/customer-quote.pug"),
     "partnersTestimonial": require("./inc/partner-testimonial.pug"),
     "careerVideoSlide": require("./inc/career-video-slide.pug"),
@@ -141,7 +142,6 @@ var siteActions = [{
     var theToggle = document.getElementById("toggle-side-nav");
     theToggle.addEventListener("click", function(e) {
       e.preventDefault();
-      console.log(document.body.classList.contains("nav-open"));
       if (document.body.classList.contains("nav-open")) {
         document.body.classList.remove("nav-open");
         theWrapper.removeEventListener("click", closeBody);
@@ -271,6 +271,24 @@ var siteActions = [{
           .addTo(controller)
           .id = i;
       }
+    }
+  },
+  {
+    "element": "product-video-carousel",
+    "action": function() {
+      var videoGall = new Flickity(document.getElementById("product-video-carousel"), {
+        "wrapAround": true,
+        "pageDots": false,
+        "lazyLoad": 6,
+        "autoPlay": 8000,
+        "adaptiveHeight": false
+      });
+      for (i in customerData) {
+        if (customerData[i].vimeo_id != "") {
+          videoGall.append(parseHTML(siteSettings.templates.productQuote(customerData[i])));
+        }
+      }
+      videoGall.resize();
     }
   },
   {
@@ -686,7 +704,6 @@ function addClass(el, classname, groupclass) {
 
 function activateImages() {
   var backgroundImages = document.querySelectorAll("[data-bg]");
-  console.log(backgroundImages);
   for (i in backgroundImages) {
     if (isElement(backgroundImages[i])) {
       thisElement = backgroundImages[i];

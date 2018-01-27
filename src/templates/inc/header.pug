@@ -6,9 +6,15 @@ header.page-header#page-header
     .col-md-8.col-xs-3.right.nav-bucket
       nav.small-nav.interior
         ul.hmenu
-          li
-            a(href="/product/") What is Dynamic Signal?
-          li
-            a(href="/company/") Our Company
-          li
-            a(href="/resources/") Resources
+          :php
+            global $post;
+            $post_slug=$post->post_name;
+            $pages = array(
+              "product"=>"What is Dynamic Signal?",
+              "company"=>"Our Company",
+              "resources"=>"Resources"
+            );
+            foreach($pages as $key=>$page) {
+              $thisclass = ($key == $post_slug) ? "active" : "";
+              printf("<li><a href='/%s/' class='%s'>%s</a></li>",$key,$thisclass,$page);
+            }

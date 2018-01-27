@@ -38,22 +38,27 @@ section.whatis-carousel-bucket {
 }
 .whatis-bottom {
   .container {
-    width:100%;
+    padding-top:$gutter-width*2;
   }
-.whatis-bottom-pic {
-  background-repeat:no-repeat;
-  background-size:contain;
-  &:after {
-    content:'';
-    display:block;
-    padding-bottom:70%;
+  .whatis-bottom-pic {
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center center;
+    @include aspect-ratio(1200,752)
   }
-}
+  h2 {
+    text-align:center;
+  }
+  h3 {
+    color:$header-blue;
+  }
 }
 .big-list {
   list-style:none;
   color:$header-blue;
+
   li {
+    position:relative;
     &:before {
       content:'';
       position:absolute;
@@ -62,12 +67,10 @@ section.whatis-carousel-bucket {
       height:11px;
       border:3px solid $header-blue;
       border-radius:50%;
-      left:1.5em;
+      left:-1.5em;
       margin-top:.5em;
     }
   }
-
-  font-size:1.5em;
   h3 {
     margin:.5em 0 .15em;
   }

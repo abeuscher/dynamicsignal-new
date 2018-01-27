@@ -9,6 +9,7 @@
   margin-top: -0.5em;
   border-radius: 50%;
   transform:translate3d(0,0,0);
+    background:-webkit-radial-gradient(center, transparent 0%, transparent 20%, black 21%, black 70%,transparent 71%, transparent 100% ) no-repeat no-repeat 50% 50%;
   .blocker {
     background:$white;
 
@@ -23,10 +24,18 @@
       transition:all .25s .5s ease-in;
   }
 }
+.pie-bucket.no-padding {
+  width:60%;
+  margin:0 auto;
+  @include bp(m) {
+    width:33%;
+  }
+}
 .pie-wrapper {
   width:120px; /* App will adjust */
   display:inline-block;
   position: relative;
+
   h2 {
     position: absolute;
     top: 48%;
@@ -45,6 +54,7 @@
 }
 .pie_inner {
   height: 100%;
+
 }
 $distance : 0.5em;
 .pie_inner-circle {
@@ -118,4 +128,9 @@ $distance : 0.5em;
   font-size:1.2em;
   margin:0;
   padding:5% 0 0 30px;
+  cite {
+    display:block;
+    font-size:.75em;
+    margin-top:.5em;
+  }
 }

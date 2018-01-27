@@ -85,7 +85,7 @@ function bundle() {
 
 var copts = assign({}, watchify.args, {
     entries: [embedSrcDir+'app.js'],
-    debug: true,
+    debug: false,
     paths: ['./bower_components', './node_modules']
 });
 var c = watchify(browserify(copts));
@@ -99,7 +99,7 @@ function cbundle() {
 
 var dopts = assign({}, watchify.args, {
     entries: [uberembedSrcDir+'app.js'],
-    debug: true,
+    debug: false,
     paths: ['./bower_components', './node_modules']
 });
 var d = watchify(browserify(dopts));
@@ -133,7 +133,7 @@ gulp.task('compile-sass-autoprefixed-minified', function() {
 
 gulp.task('watch-files', function() {
     gulp.watch(sassDir + '**/*.scss', ['compile-sass-autoprefixed-minified'])
-    gulp.watch([jsSrcDir + '**/*.js',jsSrcDir + '*.js'], ['build-js'])
+    gulp.watch([jsSrcDir + '**/*.js',jsSrcDir + '*.js',uberembedSrcDir + '**/*.js',uberembedSrcDir + '*.js'], ['build-js'])
     gulp.watch([viewsSrcDir+ '*.pug',viewsSrcDir+ '/*/*.pug'], ['build-views']);
     gulp.watch([embedSrcDir+ '*.js',embedSrcDir+ '/*/*.js'], ['build-js']);
     gulp.watch([miscSrcDir + "*/**",miscSrcDir + ".*"], ['move-files']);
@@ -144,7 +144,7 @@ gulp.task('bundle-embed', cbundle);
 gulp.task('bundle-uber', dbundle);
 
 gulp.task('uglify-js', function() {
-    return gulp.src(jsBuildDir + '*.js')
+    return gulp.src([jsBuildDir + '*.js')
         .pipe(uglify({"compress":true}).on("error", function(e) {
             console.log(e, "uglify fail");
         }))
@@ -170,7 +170,7 @@ gulp.task('build-js', function() {
 gulp.task('build-views', function() {
     gulp.src(viewsSrcDir + '*.pug')
         .pipe(pug({
-            "pretty": true,
+            "pretty": false,
             "filters": {
               "php":pugPhpFilter
             },

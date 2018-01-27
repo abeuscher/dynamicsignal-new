@@ -44,7 +44,7 @@ Bars.prototype.set = function(theBar) {
   var range = parseInt(theBar.el.getAttribute("data-range"));
   res = function() {
     theBar.bar.style.width = parseInt(value/range * 100)+"%";
-    theBar.label.innerHTML = range + "%";
+    //theBar.label.innerHTML = range + "%";
     setTimeout(function() { theBar.el.classList.add("blue-myself"); },450);
   }
   return res;

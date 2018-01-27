@@ -1,28 +1,15 @@
 .bar-wrapper {
   position:relative;
   width:100%;
-  &:after {
-    content:'';
-    border:15px solid transparent;
-    position: absolute;
-    top:-15px;
-    left:50%;
-    transform: translateY(-50%);
-  }
-  &.blue-myself {
-    &:after {
-      border-bottom-color:$header-blue;
-    }
-  }
   .inner {
     display:flex;
     width:100%;
-    height:20px;
+    height:35px;
     .bar-graph {
       width:0;
       flex-grow:0;
       background:$header-blue;
-      height:20px;
+      height:35px;
       transition:width .5s ease-in;
     }
     .remainder {
@@ -30,7 +17,7 @@
       flex-shrink:1;
       background:$light-gray;
       color:$white;
-      margin-left:10px;
+      margin-left:2px;
       position:relative;
       .label {
         position:absolute;
@@ -46,4 +33,8 @@
 }
 .bar-label {
   color:$header-blue;
+  cite {
+    display:block;
+    font-size:.8em;
+  }
 }

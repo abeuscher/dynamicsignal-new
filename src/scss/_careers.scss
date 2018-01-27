@@ -64,7 +64,7 @@
     h3 {
       margin:0;
       span {
-        color:$light-gray;
+        color:$gray;
         font-weight:300;
         text-transform: uppercase;
         font-size:14px;
@@ -72,10 +72,10 @@
       }
     }
     .job-link {
-      color:$teal;
       transition:all .2s ease-in;
       font-weight:700;
-      font-size:18px;
+      font-size:.9em;
+      text-transform: capitalize;
       &:hover {
         text-decoration: underline;
       }

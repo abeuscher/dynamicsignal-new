@@ -48,7 +48,7 @@
   .customer-slide-content {
     padding:0 $gutter-width*3 0 $gutter-width;
   }
-    .video-thumb {
+    .customer-video-thumb {
       background-size:cover;
       background-repeat:no-repeat;
       background-position:center;
@@ -97,12 +97,119 @@
             font-style: italic;
           }
         }
-        .video-play {
-          margin-left:$gutter-width*2.5;
+        .button {
+          margin:$gutter-width 0 0 $gutter-width*2.5;
+          z-index:0;
         }
+
 
     }
 
   }
 
+}
+.customer-video-thumb {
+  color: $white;
+  background-size: contain;
+  cursor: pointer;
+  @include aspect-ratio(16,9);
+  .left-gradient, .right-gradient, .full-gradient {
+    position: absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+  }
+  .left-gradient {
+    background:linear-gradient(to right, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+  }
+  .right-gradient {
+    background:linear-gradient(to left, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+  }
+  .full-gradient {
+    background:rgba(0,0,0,.45);
+  }
+  a.video-play {
+    margin:25% auto 0;
+    padding:.5em 1em;
+    .fa {
+      margin-left:.5em;
+    }
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+    border:none;
+  }
+
+  .content {
+    &>* {
+      display:none;
+    }
+
+
+    h2 {
+      color: $white;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+      font-weight: 300;
+      font-style: italic;
+      margin: 0 0 $gutter-width;
+
+      &.no-quote {
+        font-style: normal;
+      }
+    }
+
+    cite {
+      margin-top: $gutter-width;
+      font-style: normal;
+      font-size: 14px;
+      line-height: 30px;
+      font-weight: 300;
+    }
+    a.video-play {
+      color: $gray;
+      background: $white;
+      display: inline-block;
+    }
+
+  }
+  @include bp(m) {
+    .content {
+      &>* {
+        display:block;
+      }
+      width: auto;
+      height: auto;
+      padding: $gutter-width;
+      margin: 80px 50px 30px 50%;
+
+      &.left {
+        margin: 80px 50% 30px 50px;
+      }
+      a.video-play {
+        margin-top: $gutter-width;
+        border-radius: 50px;
+        padding: 8px 12px;
+
+        .cta {
+          margin-top: -1.5em;
+          font-size:20px;
+          text-transform: uppercase;
+          font-weight:700;
+          padding-left:10px;
+        }
+
+        .fa {
+          margin-left: 1em;
+        }
+      }
+      cite {
+        display:block;
+      }
+    }
+  }
 }

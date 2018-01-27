@@ -1,9 +1,9 @@
 #home-marquee {
-  background-image:url($img-path + "bg-mobile.jpg");
-  background-position:bottom center;
-  @include bp(m) {
+  //background-image:url($img-path + "bg-mobile.jpg");
+  //background-position:bottom center;
+  //@include bp(m) {
     background-image:url($img-path + "header-hardhats.jpg");
-  }
+  //}
 }
 .home-page-widget {
   position:absolute;
@@ -49,5 +49,16 @@
   img {
     max-height:70px;
     width:auto;
+  }
+}
+.front-page-stat {
+  transition:all .25s ease-in;
+  color:$header-blue;
+  font-weight:600;
+  font-size:2em;
+}
+.home-flippety-floppity {
+  .container {
+    padding-bottom:$gutter-width*2;
   }
 }

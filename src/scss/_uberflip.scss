@@ -1,3 +1,96 @@
+.uber-header {
+  .top-nav {
+    position:absolute;
+    top:250px;
+    z-index:0;
+  }
+  .secondary-logo {
+    display:none;
+  }
+}
+.single-page {
+  .uber-header {
+    .top-nav {
+      top:170px;
+    }
+  }
+}
+.page-width.item-level {
+  max-width:100%!important;
+}
+.share-hub, .share-item {
+    top: 315px;
+  }
+#hubs-container {
+  width:100%;
+  position: relative;
+  display: block;
+  section[class*='level-'] {
+    margin:114px auto $gutter-width*2;
+    padding: 0 $gutter-width;
+    @include bp(s) {
+      width: 750px;
+    }
+    @include bp(m) {
+      width: 970px;
+    }
+    @include bp(l) {
+      width: 1170px;
+    }
+  }
+  .bread-crumbs {
+    margin:114px auto $gutter-width*2;
+    padding: 0 $gutter-width;
+    @include bp(s) {
+      width: 750px;
+    }
+    @include bp(m) {
+      width: 970px;
+    }
+    @include bp(l) {
+      width: 1170px;
+    }
+  }
+  .description-block {
+    padding-top:100px;
+    background: url($img-path + "bg-header-interior.png") $light-gray no-repeat bottom right;
+    background-size: 100%;
+    min-height: 250px;
+    margin:0;
+    h1, p {
+      margin-right: auto;
+      margin-left: auto;
+      padding-left: $gutter-width;
+      padding-right: $gutter-width;
+      @include bp(s) {
+        width: 750px;
+      }
+      @include bp(m) {
+        width: 970px;
+      }
+      @include bp(l) {
+        width: 1170px;
+      }
+    }
+  }
+  .page-width {
+    margin:0;
+  }
+  .page-aligner {
+    width:auto!important;
+  }
+}
+.main,body.lab_no_header.hub-page .main, body.lab_no_header.hub-page.hubs-embedded-iframe .main,.main.clearfix {
+  display:block;
+  margin-top:0;
+}
+body.lab_no_header.hub-page header#page-header, body.lab_no_header.hub-page.hubs-embedded-iframe header#page-header {
+  height:80px!important;
+  &.active {
+    height:50px!important;
+  }
+}
+/*
 #hubs-container {
   section.level-two {
     padding:138px 0 $gutter-width;
@@ -151,3 +244,4 @@ footer {
 .tile.cta-form.hide {
   display:block !important;
 }
+*/
