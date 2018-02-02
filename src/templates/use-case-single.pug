@@ -23,7 +23,7 @@ block content
     "header":"Benefits",
     "subheader":"For Every Department in the Enterprise"
     };
-  section.top-section-interior
+  section.top-section-interior.use-case
     .container 
       .row
         .col-md-12
@@ -31,26 +31,9 @@ block content
           h1
             :php
               the_field("page_title");
-          h2
-            :php
-              the_field("subheader");
   :php
     echo '<script>var useCaseBackgrounds = '. json_encode(array(get_field("solution_1_image"),get_field("solution_2_image"),get_field("solution_3_image")),JSON_UNESCAPED_SLASHES).'; var useCaseQuotes = '. json_encode(get_field("proof_points")).';</script>';
     if( have_rows('logos') ) {
-  section.use-cases-logo-strip
-    ul.gray-logos
-      :php
-        $logos = array();
-        $count = 0;
-        while( have_rows('logos') ): the_row();
-          $logos[$count] = array("name"=>get_sub_field('company_name'),"image"=>get_sub_field('company_logo'));
-          $count++;
-        endwhile;
-        foreach($logos as $idx=>$logo) {
-            echo "<li><img class='use-case-statement-logo' src='".$logo["image"]["url"]."' alt='".$logo["name"]."' /></li>";
-        }
-  :php
-    }
   section.three-pane.container
     .row
       .col-md-12
@@ -61,7 +44,7 @@ block content
           else {
             echo "<h2>The Problems We Solve</h2>";
           }
-        h3
+        p.use-case-problem
           :php
             the_field("problem_statement");
     .row
@@ -92,16 +75,25 @@ block content
         }
   section.container.use-case-quotes
     #use-case-quotes
-  section.container.use-case-bottom
-    .row
-      .col-md-12
-        h2 Benefits for Every Department of the Enterprise
-        a.button.cta(href="/use-cases/") See All Use Cases
+  section.use-cases-logo-strip
+    ul.gray-logos
+      :php
+        $logos = array();
+        $count = 0;
+        while( have_rows('logos') ): the_row();
+          $logos[$count] = array("name"=>get_sub_field('company_name'),"image"=>get_sub_field('company_logo'));
+          $count++;
+        endwhile;
+        foreach($logos as $idx=>$logo) {
+            echo "<li><img class='use-case-statement-logo' src='".$logo["image"]["url"]."' alt='".$logo["name"]."' /></li>";
+        }
+  :php
+    }
   section.bottom-cta
     .container
       .row
         .col-md-12
-          h2
+          p
             :php
               the_field("cta_header");
           a.cta.button(href="/requestdemo/") Request a Demo

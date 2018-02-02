@@ -13,36 +13,37 @@ block content
         .col-md-12
           include ./inc/breadcrumbs.pug
           h1 Request A Demo
-          h2 Employee Communication And Engagement Platform
+          h2 Your Employee Communication and Engagement Platform
   section.signup-form-bucket.container
     .row
       .col-md-6
         div(style='text-align: center;')
           img(src=themeDir+'images/pic-req-demo.png', alt='')
-        p Request a demo now and a member of our team will be in touch shortly to schedule a personalized look behind the scenes of the Dynamic Signal platform.
+        p A member of our team will be in touch to schedule a personalized look at the Dynamic Signal platform.
         ul.demo-list.fa-ul
           li
             i.fa-li.fa.fa-check
-            | Increase engagement with your employees
+            | Keep employees informed
           li
             i.fa-li.fa.fa-check
-            | Keep them more informed
+            | Increase engagement
           li
             i.fa-li.fa.fa-check
             | Retain your top talent
           li
             i.fa-li.fa.fa-check
-            | Empower advocacy
+            | Boost productivity
           li
             i.fa-li.fa.fa-check
-            | Boost productivity
+            | Empower advocacy
       .col-md-6
         script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
         script(src='//www.google.com/recaptcha/api.js')
-        form#mktoForm_1163
-          script(src='https://www.linkedin.com/autofill/js/autofill.js', type='text/javascript', async='')
-          script(type='IN/Form2', data-form='mktoForm_1163', data-field-firstname='FirstName', data-field-lastname='LastName', data-field-phone='Phone', data-field-company='Company', data-field-title='Title', data-field-state='State', data-field-country='Country', data-field-email='LinkedIn Is Lazy').
-          .g-recaptcha(data-sitekey="6LcIMj8UAAAAAKLVThL8d92zO943EwUf6UNd8E5J")
+        #marketo-form-wrapper
+          form.marketo-form#mktoForm_1163
+            script(src='https://www.linkedin.com/autofill/js/autofill.js', type='text/javascript', async='')
+            script(type='IN/Form2', data-form='mktoForm_1163', data-field-firstname='FirstName', data-field-lastname='LastName', data-field-phone='Phone', data-field-company='Company', data-field-title='Title', data-field-state='State', data-field-country='Country', data-field-email='LinkedIn Is Lazy').
+            .g-recaptcha(data-sitekey="6LcIMj8UAAAAAKLVThL8d92zO943EwUf6UNd8E5J")
         script.
           MktoForms2.loadForm("//app-ab04.marketo.com", "362-RJN-040", 1163);
         p#required-warning

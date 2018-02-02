@@ -1,14 +1,16 @@
+- 
+  var siteroot = "http://staging.dynamicsignal.flywheelsites.com"
 header.page-header#page-header
   .row.inner
     .col-md-4.col-xs-9.logo-bucket
-      a.logo(href=locals.siteurl+'/')
-        img(src=themeDir+'/images/logo-header.png',alt='Dynamic Signal')
+      a.logo(href=siteroot)
+        img(src='https://dynamicsignal.com/wp-content/themes/ds-new/new-uber-embed/logo-header.png',alt='Dynamic Signal')
     .col-md-8.col-xs-3.right.nav-bucket
       nav.small-nav.interior
         ul.hmenu
           li
-            a(href="/product/") What Is Dynamic Signal?
+            a(href=siteroot+"/product/") What Is Dynamic Signal
           li
-            a(href="/company/") Our Company
+            a(href=siteroot+"/company/") Our Company
           li
-            a(href="/resources/") Resources
+            a(href=siteroot+"/resources/") Resources

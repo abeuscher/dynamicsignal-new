@@ -3,7 +3,7 @@
 
 This is a Wordpress theme developed for dynamicsignal.com. It does not leverage any interior features of Wordpress, and as such does not instantiate wp_head or wp_footer.
 
-This theme was reworked in the Winter of 2017/2018 top reflect new corporate branding and a new site layout.
+This theme was reworked in the Winter of 2017/2018 to reflect new corporate branding and a new site layout.
 
 To install, this folder should be set in the root of the backup folder from flywheel (http://getflywheel.com).
 
@@ -21,6 +21,6 @@ Then run
 
 This should build the theme folder (labelled "ds-new") into the wordpress theme folder.
 
-This app uses PUG (https://pugjs.org/) as its templating language, and scrollmagic (http://scrollmagic.io/) for parallax effects.
+This app uses PUG (https://pugjs.org/) as its templating language.
 
 Questions? You can find me at alexbeuscher@gmail.com

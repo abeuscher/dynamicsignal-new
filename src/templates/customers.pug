@@ -34,6 +34,8 @@ block content
         $post->vimeo_id = get_field("vimeo_id");
         $post->video_thumbnail = get_field("video_thumbnail");
         $post->quote = get_field("quote");
+        $post->customer_page = get_field("customer_page");
+        $post->logo_sort_order = get_field("logo_sort_order");
          array_push($customers,$post);
      endwhile;
      wp_reset_query();

@@ -7,6 +7,53 @@ block template
 block nav
   include ./inc/header.pug
 block content
+  :php
+    $query = new WP_Query( array('post_type' => 'post','posts_per_page'   => '1') );
+    $blog_post = $query->get_posts()[0];
+    
+    $args = array(
+          'post_type' => 'event',
+          'posts_per_page' => 1,
+          'meta_key'   => 'event_start_date',
+          'orderby'    => 'meta_value_num',
+          'order'      => 'DESC',
+          'meta_query' => array(
+            array(
+              'key' => 'ds_event_type',
+              'value' => 'cswebinar',
+              'compare' => '!='
+            )
+          )
+        );
+    $query = new WP_Query( $args );
+    if($query->have_posts()) {
+      while($query->have_posts()) {
+      $query->the_post();
+      $start_date = get_field( 'event_start_date' );
+      $event_post = array(
+      "title"=>get_the_title(),
+      "start_month"=>date("F", strtotime($start_date)),
+      "start_date"=>$start_date,
+      "start_day"=>date("j", strtotime($start_date)),
+      "start_year"=>date("Y", strtotime($start_date)),
+      "start_time"=>get_field( 'event_start_time' ),
+      "event_time_zone"=>get_field( 'event_time_zone' ),
+      "finish_date"=>get_field( 'event_end_date' ) ,
+      "thumb"=>get_field('ds_event_thumbnail'),
+      "btn_text"=>get_field('ds_button_text'),
+      "btn_url"=>get_field( 'ds_button_url' ),
+      "description"=>get_the_content(),
+      "excerpt"=>get_the_excerpt(),
+      "type"=>get_field( 'ds_event_type' ),
+      "url"=>get_permalink(),
+      "location"=>get_field( 'ds_event_location' )
+      );
+      }
+    }
+    
+    $query = new WP_Query( array('post_type' => 'career','posts_per_page'   => '1') );
+    $career_post = $query->get_posts()[0];
+    
   section.top-section#company-header(data-bg="company-bg-header.jpg")
     .inner
       h1 Committed to Helping Organizations Succeed Through Better Communication
@@ -35,15 +82,20 @@ block content
         ul.side-list
           li.dot
             h2 Events
-            h3 How O2 Engages Their Deskless Workforce at Global Scale
-            p Webinar on 1/15/18
+            h3
+              :php
+                echo $event_post["title"];
+            p 
+              :php
+                printf("%s on %s/%s/%s/<br> at %s (%s)<a class='small-link' href='%s'>%s</a>",$event_post["type"],$event_post["start_month"],$event_post["start_day"],$event_post["start_year"],$event_post["start_time"],$event_post["event_time_zone"],$event_post["btn_url"],$event_post["btn_text"]) ;
               a.small-link(href="#") details
             a.button(href="/events") All Events  
           li.dot
             h2 Blog
-            h3 Rapid Fire Friday With Nelson Page
-            p Webinar on 1/15/18
-              a.small-link(href="#") read
+            h3
+              :php
+                //echo json_encode($blog_post);
+                printf("<a href='%s'><h3>%s</h3><p>By %s</p></a>","/blog/".$blog_post->post_name,$blog_post->post_title,get_author_name($blog_post->author));
             a.button(href="/blog") All Entries  
           li.dot
             h2 Press

@@ -15,8 +15,7 @@ block content
     ));
   -
     var pageData = {
-    "header":"Meet Our Team",
-    "subheader":"From our founders to our board of directors... across our entire staff - We believe Communications Technology is a critical component for the success of world-class organizations."
+    "header":"Meet Our Team"
     };
   section.top-section-interior
     .container
@@ -24,7 +23,6 @@ block content
         .col-md-12
           include ./inc/breadcrumbs.pug
           h1!=pageData.header
-          h2!=pageData.subheader
   section.team-members.container
     :php
       if( have_rows('ds_team_section') ) {

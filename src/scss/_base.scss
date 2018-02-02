@@ -325,6 +325,20 @@ section {
     font-size: 1.4em;
     margin: 0;
   }
+  &.use-case {
+    h1 {
+      margin-top:$gutter-width*2;
+    }
+  }
+  &.single-line {
+    //background-color:$menu-blue;
+
+    h1 {
+      font-size:3.2em;
+      margin-top:1em;
+      color:$off-black;
+    }
+  }
 }
 
 .padding-bottom {
@@ -367,7 +381,11 @@ ul.social-share {
   .fa {
     padding-left: 0.5em;
   }
-
+  &.lock-bottom {
+    position:absolute;
+    bottom:$gutter-width/2;
+    margin-top:$gutter-width/2;
+  }
   &:hover {
     background: $menu-blue;
     color: $white;
@@ -525,7 +543,8 @@ section.logo-strip-bucket {
 
 .video-thumb {
   color: $white;
-  background-size: contain;
+  background-size: 102% 102%;
+  background-position: center center;
   cursor: pointer;
   @include aspect-ratio(16,9);
   .button {
@@ -575,6 +594,7 @@ section.logo-strip-bucket {
 
 .video-slide-content {
   padding-left: 50px;
+  padding-right: 50px;
   color: $white;
 
   cite {
@@ -663,6 +683,9 @@ ul.side-list {
     font-size: 0.75em;
     margin: 0 0.5em;
     text-transform: lowercase;
+  }
+  &.apply {
+    margin-bottom:$gutter-width*2;
   }
 }
 

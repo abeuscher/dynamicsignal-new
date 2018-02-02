@@ -3,6 +3,9 @@
     position:absolute;
     top:250px;
     z-index:0;
+    .left-nav.desktop {
+      margin:0;
+    }
   }
   .secondary-logo {
     display:none;
@@ -11,27 +14,49 @@
 .single-page {
   .uber-header {
     .top-nav {
-      top:170px;
+      top:80px;
+      @include bp(m) {
+        top:170px;
+      }
     }
   }
 }
-.page-width.item-level {
-  max-width:100%!important;
+.page-aligner {
+  width:100%;
+}
+.page-width {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  @include bp(s) {
+    width: 750px!important;
+  }
+  @include bp(m) {
+    width: 970px!important;
+  }
+  @include bp(l) {
+    width: 1170px!important;
+  }
 }
 .share-hub, .share-item {
     top: 315px;
+  }
+  .page-width.item-level .page-aligner {
+    max-width:100%!important;
   }
 #hubs-container {
   width:100%;
   position: relative;
   display: block;
   section[class*='level-'] {
-    margin:114px auto $gutter-width*2;
+    margin:170px auto $gutter-width*2;
     padding: 0 $gutter-width;
     @include bp(s) {
       width: 750px;
     }
     @include bp(m) {
+      margin-top:114px;
       width: 970px;
     }
     @include bp(l) {
@@ -42,6 +67,7 @@
     margin:114px auto $gutter-width*2;
     padding: 0 $gutter-width;
     @include bp(s) {
+      margin:114px 0 $gutter-width*2;
       width: 750px;
     }
     @include bp(m) {
@@ -53,7 +79,6 @@
   }
   .description-block {
     padding-top:100px;
-    background: url($img-path + "bg-header-interior.png") $light-gray no-repeat bottom right;
     background-size: 100%;
     min-height: 250px;
     margin:0;
@@ -73,12 +98,42 @@
       }
     }
   }
-  .page-width {
-    margin:0;
-  }
   .page-aligner {
     width:auto!important;
   }
+}
+.mobile-nav,.search-results-overlay {
+  top: 80px!important;
+
+}
+.top-nav .nav-toggle, html.touch .top-nav .nav-toggle {
+  background-image:none;
+  text-indent:0!important;
+  border:none!important;
+  &:after {
+    content:'categories';
+    position: absolute;
+    top:0;
+    text-align: center;
+    display: inline-block !important;
+    padding: 0 1em;
+    font-size: 0.75em;
+    transition: all 0.25s ease-in;
+    background: $blue;
+    color: $white;
+    line-height:2.4;
+  }
+}
+html.touch .single-page .top-nav .nav-back, .single-page .top-nav .nav-back {
+  text-align: center;
+  display: inline-block;
+  padding: 0 1em;
+  font-size: 0.75em;
+  transition: all 0.25s ease-in;
+  background: $blue;
+  color: $white;
+  line-height:2.4;
+  width:20%!important;
 }
 .main,body.lab_no_header.hub-page .main, body.lab_no_header.hub-page.hubs-embedded-iframe .main,.main.clearfix {
   display:block;

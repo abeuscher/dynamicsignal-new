@@ -1,0 +1,506 @@
+// Shadows
+$shadow-inset: inset 0 2px 2px 0 rgba(0,0,0,.14);
+$shadow-0: 0 0 1px rgba(0, 0, 0, 0);
+$shadow-2: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+$shadow-3: 0 3px 4px 0 rgba(0,0,0,.14),0 3px 3px -2px rgba(0,0,0,.2),0 1px 8px 0 rgba(0,0,0,.12);
+$shadow-4: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+$shadow-6: 0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.2);
+$shadow-8: 0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12),0 5px 5px -3px rgba(0,0,0,.2); // Font Sizes
+$mf-font-size: 0.8rem !default;
+$mf-active-font-size: $mf-font-size * 0.8 !default;
+$mf-active-top: -$mf-font-size !default; // Margin & Paddings
+$mf-gap: $mf-font-size * 1.5 !default;
+$mf-spacer: $mf-font-size / 8 !default;
+$mf-fieldset-margin: 0 0 $mf-gap * 2 !default;
+$mf-checkbox-gap: $mf-font-size * 2 !default;
+$mf-checkbox-top: 0 !default;
+$mf-radio-margin: $mf-font-size / -4 !default; // Colors
+$mf-input-color: #333 !default;
+$mf-border-color: #999 !default;
+$mf-label-color: lighten($mf-border-color, 10%) !default;
+$mf-active-color: $blue !default;
+$mf-focus-color: #337ab7 !default;
+$mf-error-color: #d9534f !default; // Animation
+$mf-transition-speed: 0.28s !default;
+
+#marketo-form-wrapper {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  padding: $gutter-width/2 $gutter-width;
+  border-radius: 1px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: $shadow-8;
+    transform: scale(0.98);
+    transition: transform $mf-transition-speed ease-in-out;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    transform: scale(1);
+  }
+}
+
+.marketo-form {
+  &.mktoForm {
+    .mktoButtonWrap {
+        margin:0!important;
+    }
+    width: auto!important;
+
+    .mktoClear {
+      clear: none;
+    }
+
+    .mktoOffset {
+      clear: none;
+      height: auto;
+      width: 0!important;
+    }
+
+    .mktoFormCol {
+      float: none;
+      min-height: 0;
+    }
+
+    .mktoFieldWrap {
+      float: none;
+    }
+
+    .mktoGutter {
+      float: none;
+      height: auto;
+    }
+
+    .mktoField {
+      float: none;
+    }
+
+    .mktoLabel {
+      float: none;
+      height: auto;
+      padding-top: 0;
+    }
+
+    .mktoRequiredField .mktoAsterix {
+      display: none;
+    }
+
+    .mktoError {
+      right: auto!important;
+      left: auto!important;
+      bottom: auto!important;
+    }
+    .button-container {
+      text-align: center;
+    }
+    // The Styles for the form
+    fieldset {
+      margin: $mf-fieldset-margin;
+      padding: 0;
+      border: none;
+    }
+
+    .mktoButtonRow,
+    .mktoFormRow {
+      position: relative;
+      margin-top: ($mf-gap * 1.5);
+      margin-bottom: ($mf-gap * 1.5);
+    }
+
+    .form-inline {
+       > .mktoFormRow,
+      > .btn {
+        display: inline-block;
+        margin-bottom: 0;
+      }
+    }
+
+    .form-help {
+      margin-top: $mf-spacer;
+      margin-left: $mf-spacer;
+      color: $mf-label-color;
+      font-size: $mf-active-font-size;
+
+      .checkbox &,
+      .form-radio &,
+      .mktoFormRow & {
+        position: absolute;
+        width: 100%;
+      }
+
+      .checkbox & {
+        position: relative;
+        margin-bottom: $mf-font-size;
+      }
+
+      .form-radio & {
+        padding-top: ($mf-spacer * 2);
+        margin-top: -$mf-font-size;
+      }
+    }
+
+    .mktoFormRow {
+      // scss-lint:disable QualifyingElement, NestingDepth
+      input[type=date],
+      input[type=email],
+      input[type=number],
+      input[type=tel],
+      input[type=text],
+      input[type=url] {
+        height: ($mf-font-size * 1.9);
+        width: auto!important;
+      }
+
+      textarea {
+        resize: none;
+        border:none!important;
+        &:focus {
+          border:none!important;
+        }
+      }
+
+      select {
+        width: 100%!important;
+        font-size: $mf-font-size;
+        height: ($mf-font-size * 1.6);
+        padding: $mf-spacer $mf-spacer ($mf-spacer / 2);
+        background: none;
+        border: none;
+        line-height: 1.6;
+        box-shadow: none;
+        border:none!important;
+        &:focus {
+          border:none!important;
+        }
+      }
+
+      label.mktoLabel {
+        position: absolute;
+        top: ($mf-font-size / 4);
+        pointer-events: none;
+        padding-left: $mf-spacer;
+        z-index: 1;
+        color: $mf-label-color;
+        font-size: $mf-font-size;
+        font-weight: normal;
+        transition: all $mf-transition-speed ease;
+
+        &[for='State'] {
+          display: none;
+        }
+
+        &.focus {
+          font-size: $mf-active-font-size;
+          color: $mf-active-color;
+          top: $mf-active-top;
+        }
+      }
+
+      .mktoFieldWrap > .mktoClear {
+        position: relative;
+        border-bottom: ($mf-font-size / 16) solid $mf-border-color;
+        display: block;
+        height: 1px;
+
+        &::before {
+          content: '';
+          height: 1px;
+          width: 0;
+          left: 50%;
+          bottom: ($mf-font-size / -16);
+          position: absolute;
+          background: $mf-focus-color;
+          transition: left $mf-transition-speed ease, width $mf-transition-speed ease;
+          z-index: 2;
+        }
+      }
+
+      input[type=date],
+      input[type=email],
+      input[type=number],
+      input[type=tel],
+      input[type=text],
+      input[type=url],
+      textarea {
+        display: block;
+        background: none;
+        padding: $mf-spacer $mf-spacer ($mf-spacer / 2);
+        font-size: $mf-font-size;
+        border-width: 0;
+        border-color: transparent;
+        line-height: 1.9;
+        width: 100%;
+        color: transparent;
+        transition: all $mf-transition-speed ease;
+        box-shadow: none;
+
+        &::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          color: transparent;
+        }
+
+        &::-moz-placeholder {
+          /* Firefox 19+ */
+          color: transparent;
+        }
+
+        &:-ms-input-placeholder {
+          /* IE 10+ */
+          color: transparent;
+        }
+
+        &:-moz-placeholder {
+          /* Firefox 18- */
+          color: transparent;
+        }
+
+        &:placeholder {
+          color: transparent;
+        }
+      }
+
+      input[type="file"] {
+        line-height: 1;
+
+        ~ .mktoFormRow > .mktoClear {
+          display: none;
+        }
+      }
+
+      input.form-file,
+      input.has-value,
+      input:valid,
+      input[type=date]:focus,
+      input[type=email]:focus,
+      input[type=number]:focus,
+      input[type=tel]:focus,
+      input[type=text]:focus,
+      input[type=url]:focus,
+      select,
+      textarea.form-file,
+      textarea.has-value,
+      textarea:focus,
+      textarea:valid {
+        color: $mf-input-color;
+
+        ~ label.mktoLabel {
+          font-size: $mf-active-font-size;
+          color: $mf-active-color;
+          top: $mf-active-top;
+          left: 0;
+        }
+      }
+
+      input[type=date],
+      input[type=email],
+      input[type=number],
+      input[type=tel],
+      input[type=text],
+      input[type=url],
+      select,
+      textarea {
+        &:focus {
+          outline: none;
+
+          ~ .mktoLabel {
+            font-size: $mf-active-font-size;
+            color: $mf-active-color;
+            top: $mf-active-top;
+            left: 0;
+          }
+
+          ~ .mktoClear {
+            &::before {
+              width: 100%;
+              left: 0;
+            }
+          }
+        }
+      }
+    }
+    // Radio & Checkbox
+    .checkbox,
+    .form-radio {
+      label {
+        position: relative;
+        cursor: pointer;
+        padding-left: $mf-checkbox-gap;
+        text-align: left;
+        color: $mf-input-color;
+        display: block;
+      }
+
+      input {
+        width: auto;
+        opacity: 0.00000001;
+        position: absolute;
+        left: 0;
+      }
+    }
+
+    .radio {
+      margin-bottom: $mf-font-size;
+
+      .helper {
+        position: absolute;
+        top: $mf-radio-margin;
+        left: $mf-radio-margin;
+        cursor: pointer;
+        display: block;
+        font-size: $mf-font-size;
+        user-select: none;
+        color: $mf-border-color;
+
+        &::after,
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          margin: ($mf-spacer * 2);
+          width: $mf-font-size;
+          height: $mf-font-size;
+          transition: transform $mf-transition-speed ease;
+          border-radius: 50%;
+          border: ($mf-font-size / 8) solid currentColor;
+        }
+
+        &::after {
+          transform: scale(0);
+          background-color: $mf-focus-color;
+          border-color: $mf-focus-color;
+        }
+      }
+
+      label:hover .helper {
+        color: $mf-focus-color;
+      }
+      // scss-lint:disable QualifyingElement, NestingDepth
+      input:checked {
+        ~ .helper {
+          &::after {
+            transform: scale(0.5);
+          }
+
+          &::before {
+            color: $mf-focus-color;
+          }
+        }
+      }
+    }
+
+    .checkbox {
+      // scss-lint:disable QualifyingElement
+      margin-top: ($mf-gap * 2);
+      margin-bottom: $mf-font-size;
+
+      .helper {
+        color: $mf-border-color;
+        position: absolute;
+        top: $mf-checkbox-top;
+        left: 0;
+        width: $mf-font-size;
+        height: $mf-font-size;
+        z-index: 0;
+        border: ($mf-font-size / 8) solid currentColor;
+        border-radius: ($mf-font-size / 16);
+        transition: border-color $mf-transition-speed ease;
+
+        &::after,
+        &::before {
+          position: absolute;
+          height: 0;
+          width: ($mf-font-size * 0.2);
+          background-color: $mf-focus-color;
+          display: block;
+          transform-origin: left top;
+          border-radius: ($mf-font-size / 4);
+          content: '';
+          transition: opacity $mf-transition-speed ease, height 0s linear $mf-transition-speed;
+          opacity: 0;
+        }
+
+        &::before {
+          top: ($mf-font-size * 0.65);
+          left: ($mf-font-size * 0.38);
+          transform: rotate(-135deg);
+          box-shadow: 0 0 0 ($mf-font-size / 16) $white;
+        }
+
+        &::after {
+          top: ($mf-font-size * 0.3);
+          left: 0;
+          transform: rotate(-45deg);
+        }
+      }
+
+      label:hover .helper {
+        color: $mf-focus-color;
+      }
+
+      input:checked {
+        ~ .helper {
+          color: $mf-focus-color;
+
+          &::after,
+          &::before {
+            opacity: 1;
+            transition: height $mf-transition-speed ease;
+          }
+
+          &::after {
+            height: ($mf-font-size / 2);
+          }
+
+          &::before {
+            height: ($mf-font-size * 1.2);
+            transition-delay: $mf-transition-speed;
+          }
+        }
+      }
+    }
+
+    .checkbox + .checkbox,
+    .radio + .radio {
+      margin-top: $mf-font-size;
+    }
+
+    .has-error {
+      &.mktoFormRow .mktoLabel.mktoLabel,
+      .legend.legend {
+        // Prevent !importantRule
+        color: $mf-error-color;
+      }
+
+      &.checkbox,
+      &.form-radio,
+      &.mktoFormRow,
+      &.radio {
+        .form-help,
+        .helper {
+          color: $mf-error-color;
+        }
+      }
+
+      .mktoFormRow ~ .mktoClear {
+        &::before {
+          background: $mf-error-color;
+          left: 0;
+          width: 100%;
+        }
+      }
+    }
+    .button, button[type=submit],button {
+      padding: 0.5em 1.5em;
+      border:none;
+    }
+  }
+}

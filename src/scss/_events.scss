@@ -141,9 +141,9 @@
     font-size:24px;
     font-weight:700;
     a {
-      color:$gray;
+      color:$menu-blue;
       &:hover {
-        color:$teal;
+        color:$header-blue;
       }
     }
   }
@@ -183,7 +183,7 @@
     margin-bottom:$gutter-width;
     color:$classic-gray;
     .inner {
-      border-left:2px solid $red;
+      border-left:3px solid $header-blue;
       padding-left:$gutter-width/2;
     }
   }

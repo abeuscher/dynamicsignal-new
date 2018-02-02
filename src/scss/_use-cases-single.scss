@@ -2,6 +2,11 @@
   text-align: center;
   padding-bottom:$gutter-width*2;
 }
+.use-case-problem {
+  line-height:2;
+  font-size:1.2em;
+  text-align: justify;
+}
 .use-case-quotes {
   display:block;
   min-height:300px;
@@ -10,21 +15,20 @@
     padding:$gutter-width*2 0 $gutter-width;
    width:100%;
    h3 {
-     font-size:24px;
      line-height:1.5;
      font-weight:300;
      @include bp(m) {
        text-align: center;
-       font-size:36px;
        width:80%;
        margin:0 10%;
+       font-size:1.4em;
      }
    }
   }
 }
 .use-cases-logo-strip {
   text-align:center;
-  background:linear-gradient(to bottom, rgba(237,237,237,0.65) 0%,rgba(237,237,237,0.65) 1%,rgba(237,237,237,0) 10%,rgba(237,237,237,0) 84%,rgba(237,237,237,0.65) 100%);
+  background:$light-gray;
   padding:$gutter-width*2 0;
 }
 ul.gray-logos {
@@ -46,10 +50,12 @@ ul.gray-logos {
   }
 }
 .problem-statement {
-  font-size: 36px;
-  line-height: 44px;
+  font-size: 1.4em;
+  line-height: 1.5;
   text-align: center;
   font-weight:300;
+  font-family:$header-font;
+  color:$blue;
   min-height:150px;
   padding:$gutter-width $gutter-width*3;
   margin-top:$gutter-width/2;
@@ -106,9 +112,7 @@ ul.gray-logos {
 .three-pane {
     text-align:center;
     h2 {
-      font-size:36px;
-      line-height:44px;
-      font-weight:300;
+      text-align:left;
     }
     h3 {
       font-size:24px;

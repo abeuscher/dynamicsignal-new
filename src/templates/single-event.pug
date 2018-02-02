@@ -30,6 +30,10 @@ block content
       .row
         .col-md-12
           include ./inc/breadcrumbs.pug
+  section
+    .container
+      .row
+        .col-md-12
           :php
             echo "<div class='event-thumb' data-bg='".get_field('ds_event_thumbnail')["sizes"]["large"]."'>";
           span.month
@@ -43,13 +47,12 @@ block content
               echo get_field( 'event_start_time' ) . " (". get_field("event_time_zone").")";
           :php
             echo "</div>";
-          a.button-teal.button-events-back(href="/events/") View All Events
           .event-info
             h1
               :php
                 the_title();
             :php
-              echo "<a class='button-red cta' href='".get_field( 'ds_button_url' )."'>".get_field('ds_button_text')."</a>";
+              echo "<a class='button cta' href='".get_field( 'ds_button_url' )."'>".get_field('ds_button_text')."</a>";
             ul.social-share
               li
                 :php

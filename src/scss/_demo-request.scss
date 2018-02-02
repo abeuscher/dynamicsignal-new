@@ -6,16 +6,16 @@
   }
 
   .fa {
-    color: white;
+    color: $white;
     padding: 0 10px;
-    text-shadow: -1px -1px 0 #1a9697, 1px -1px 0 #1a9697, -1px 1px 0 #1a9697, 1px 1px 0 #1a9697;
+    text-shadow: -1px -1px 0 $header-blue, 1px -1px 0 $header-blue, -1px 1px 0 $header-blue, 1px 1px 0 $header-blue;
   }
 }
 
 section#main-content-signup {
   padding: 0 0 4em;
 }
-
+/*
 #mktoForm_1163,
 #mktoForm_1064,
 #mktoForm_1753 {
@@ -115,6 +115,7 @@ padding:.5em !important;
     display:block;
   }
 }
+*/
 .customers-hero {
   height: auto !important;
 }

@@ -1,7 +1,7 @@
 {
   "name": "dynamic-signal",
   "version": "2.0.0",
-  "description": "DS New Site Mockup",
+  "description": "DS Rebrand",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

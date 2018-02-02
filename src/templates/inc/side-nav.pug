@@ -51,7 +51,7 @@
         },
         {
           "title": "Press",
-          "url": "/news/"
+          "url": "https://resources.dynamicsignal.com/h/c/208133-press"
         }
       ]
     },
@@ -60,24 +60,24 @@
       "url": "/resources/",
       "children": [{
           "title": "Getting Started",
-          "url": "https://dynamicsignal.uberflip.com/"
+          "url": "https://resources.dynamicsignal.com/h/c/1455606-getting-started"
         },{
             "title": "Driving Adoption",
-            "url": "https://dynamicsignal.uberflip.com/"
+            "url": "https://resources.dynamicsignal.com/h/c/1458510-driving-adoption"
           },{
               "title": "Expanding Reach",
-              "url": "https://dynamicsignal.uberflip.com/"
+              "url": "https://resources.dynamicsignal.com/h/c/1458552-expanding-reach"
             },{
                 "title": "Metrics",
-                "url": "https://dynamicsignal.uberflip.com/"
+                "url": "https://resources.dynamicsignal.com/h/c/1458579-metrics"
               },
         {
           "title": "Videos",
-          "url": "https://dynamicsignal.uberflip.com/videos"
+          "url": "https://resources.dynamicsignal.com/h/c/1458561-videos"
         },
         {
           "title": "eBooks & Guides",
-          "url": "https://dynamicsignal.uberflip.com/webinars"
+          "url": "https://resources.dynamicsignal.com/h/c/1456755-ebooks-guides"
         }
       ]
     },
@@ -95,9 +95,14 @@ aside.sideMenu.right#side-nav
   .inner
     ul
       for item in navItems
-        - var classname = item.class ? item.class : "";
+        - 
+          var classname = item.class ? item.class : "";
+          if (!locals) {
+            var locals = {};
+            locals.siteurl = "";
+            }
         li
-          a(href=item.url,class=classname)!=item.title
+          a(href=locals.siteurl + item.url,class=classname)!=item.title
           if item.children
             ul
               for child in item.children

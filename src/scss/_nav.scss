@@ -58,7 +58,7 @@
           transition: all 0.1s ease-in;
           padding:$gutter-width/4;
           &:hover {
-            color: $medium-blue;
+            color: $header-blue;
           }
           @include bp(m) {
             font-size: 18px;

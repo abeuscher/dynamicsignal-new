@@ -63,13 +63,13 @@ var siteSettings = {
 
 window.addEventListener("load", function() {
 
-function inIframe () {
+  function inIframe() {
     try {
-        return window.self !== window.top;
+      return window.self !== window.top;
     } catch (e) {
-        return true;
+      return true;
     }
-}
+  }
 
   for (i in siteActions) {
     var thisAction = siteActions[i];
@@ -81,20 +81,20 @@ function inIframe () {
   new ActivateVideos();
 
   var pies = new Pies({
-  "className":"pie-wrapper",
-  "mask": true,
-  "color": "yellow",
-  "backgroundColor": "white"
-});
+    "className": "pie-wrapper",
+    "mask": true,
+    "color": "yellow",
+    "backgroundColor": "white"
+  });
   var bars = new Bars({
-  "className":"bar-wrapper"
-});
-var s = getMobileOperatingSystem();
+    "className": "bar-wrapper"
+  });
+  var s = getMobileOperatingSystem();
   if (s) {
     console.log(getMobileOperatingSystem);
     var mobilePanels = document.querySelectorAll(".mobile-cta");
-    for (i=0;i<mobilePanels.length;i++) {
-      mobilePanels[i].style.display="block";
+    for (i = 0; i < mobilePanels.length; i++) {
+      mobilePanels[i].style.display = "block";
     }
   }
 
@@ -103,10 +103,10 @@ var s = getMobileOperatingSystem();
 function getMobileOperatingSystem() {
   var userAgent = navigator.userAgent || navigator.vendor || window.opera;
   if (/android/i.test(userAgent)) {
-      return "Android";
+    return "Android";
   }
   if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      return "iOS";
+    return "iOS";
   }
   return false;
 }
@@ -136,28 +136,28 @@ var siteActions = [{
     }
   },
   {
-  "element": "side-nav",
-  "action": function() {
-    var theWrapper = document.getElementById("wrapper");
-    var theToggle = document.getElementById("toggle-side-nav");
-    theToggle.addEventListener("click", function(e) {
-      e.preventDefault();
-      if (document.body.classList.contains("nav-open")) {
+    "element": "side-nav",
+    "action": function() {
+      var theWrapper = document.getElementById("wrapper");
+      var theToggle = document.getElementById("toggle-side-nav");
+      theToggle.addEventListener("click", function(e) {
+        e.preventDefault();
+        if (document.body.classList.contains("nav-open")) {
+          document.body.classList.remove("nav-open");
+          theWrapper.removeEventListener("click", closeBody);
+        } else {
+          document.body.classList.add("nav-open");
+          theWrapper.addEventListener("click", closeBody);
+        }
+      });
+
+      function closeBody(e) {
+        e.preventDefault();
         document.body.classList.remove("nav-open");
         theWrapper.removeEventListener("click", closeBody);
       }
-      else {
-        document.body.classList.add("nav-open");
-        theWrapper.addEventListener("click", closeBody);
-      }
-    });
-    function closeBody(e) {
-      e.preventDefault();
-      document.body.classList.remove("nav-open");
-      theWrapper.removeEventListener("click", closeBody);
     }
-  }
-},
+  },
   {
     "element": "map-container",
     "action": function() {
@@ -283,11 +283,13 @@ var siteActions = [{
         "autoPlay": 8000,
         "adaptiveHeight": false
       });
+      var c = [];
       for (i in customerData) {
         if (customerData[i].vimeo_id != "") {
           videoGall.append(parseHTML(siteSettings.templates.productQuote(customerData[i])));
         }
       }
+      console.log(c);
       videoGall.resize();
     }
   },
@@ -314,26 +316,23 @@ var siteActions = [{
     "action": function() {
       //console.log(customerData);
       var customerGrid = document.getElementById("customers-grid");
-      for (i in customerData) {
-        customerGrid.append(parseHTML(siteSettings.templates.customerTile(customerData[i])));
+      var sortedData = sortBy(customerData, function(i) {
+        return parseInt(i.logo_sort_order);
+      });
+      console.log(customerData,sortedData);
+      for (i in sortedData) {
+        if (sortedData[i].customer_page) {
+          customerGrid.append(parseHTML(siteSettings.templates.customerTile(sortedData[i])));
+        }
       }
-      var sectionActivators = customerGrid.querySelectorAll("[data-activate-customer-section]");
-      for (i = 0; i < sectionActivators.length; i++) {
-        var thisAnchor = sectionActivators[i];
-        thisAnchor.addEventListener("click", function(e) {
-          e.preventDefault();
-          var thisTarget = document.getElementById(this.getAttribute("data-activate-customer-section"))
-          var buckets = document.querySelectorAll(".customer-feature");
-          for (i = 0; i < buckets.length; i++) {
-            var thisBucket = buckets[i];
-
-            if (thisBucket != thisTarget && thisBucket.classList.item("expanded")) {
-              thisBucket.classList.remove("expanded");
-            }
-          }
-          thisTarget.classList.toggle("expanded");
-        });
-      }
+    }
+  },
+  {
+    "element": "mktoForm_1064",
+    "action": function() {
+      MktoForms2.whenReady(function(form) {
+        fixMarketoForm();
+      });
     }
   },
   {
@@ -341,47 +340,35 @@ var siteActions = [{
     "action": function() {
 
       MktoForms2.whenReady(function(form) {
+        fixMarketoForm();
+        var formEl = form.getFormElem()[0],
+          emailEl = formEl.querySelector('#Email'),
+          submitEl = formEl.querySelector('BUTTON[type="submit"]'),
+          recaptchaEl = document.querySelector('.g-recaptcha');
 
-      				var formEl = form.getFormElem()[0],
-      						emailEl = formEl.querySelector('#Email'),
-      						submitEl = formEl.querySelector('BUTTON[type="submit"]'),
-      						recaptchaEl = document.querySelector('.g-recaptcha');
+        form.submittable(false);
 
-      				form.submittable(false);
+        // force resize reCAPTCHA frame
+        recaptchaEl.querySelector('IFRAME').setAttribute('height', '140');
 
-      			  // force resize reCAPTCHA frame
-      			  recaptchaEl.querySelector('IFRAME').setAttribute('height','140');
+        // move reCAPTCHA inside form container
+        formEl.appendChild(recaptchaEl);
 
-      				// move reCAPTCHA inside form container
-      				formEl.appendChild(recaptchaEl);
+        form.onValidate(function(builtInValidation) {
+          if (!builtInValidation) return;
 
-      				form.onValidate(function(builtInValidation) {
-      						if (!builtInValidation) return;
-
-      						var recaptchaResponse = grecaptcha.getResponse();
-      						if (!recaptchaResponse) {
-      								recaptchaEl.classList.add('mktoInvalid');
-      						} else {
-      								recaptchaEl.classList.remove('mktoInvalid');
-      								form.addHiddenFields({
-      										lastRecaptchaUserInput: recaptchaResponse,
-                          captchaStatus:true
-      								});
-      								form.submittable(true);
-      						}
-      				});
-
-      		});
-
-
-
-
-      var theForm = document.getElementById("mktoForm_1163");
-      var textFields = theForm.querySelectorAll(".mktoTextField,.mktoEmailField,.mktoTelField");
-      for (i = 0; i < textFields.length; i++) {
-        textFields[i].addEventListener("blur", updateClasses);
-      }
-      MktoForms2.whenReady(function(form) {
+          var recaptchaResponse = grecaptcha.getResponse();
+          if (!recaptchaResponse) {
+            recaptchaEl.classList.add('mktoInvalid');
+          } else {
+            recaptchaEl.classList.remove('mktoInvalid');
+            form.addHiddenFields({
+              lastRecaptchaUserInput: recaptchaResponse,
+              captchaStatus: true
+            });
+            form.submittable(true);
+          }
+        });
         var theButton = theForm.querySelectorAll("iframe")[0];
         theButton.addEventListener("click", function() {
           for (i = 0; i < textFields.length; i++) {
@@ -395,18 +382,25 @@ var siteActions = [{
             }
           }
         });
-      });
-      function updateClasses() {
-        if (this.value != "") {
-          this.classList.add("filled-out");
-        } else {
-          if (this.classList.item("filled-out")) {
-            this.classList.remove("filled-out");
+        var theForm = document.getElementById("mktoForm_1163");
+        var textFields = theForm.querySelectorAll(".mktoTextField,.mktoEmailField,.mktoTelField");
+        for (i = 0; i < textFields.length; i++) {
+          //textFields[i].addEventListener("blur", updateClasses);
+        }
+
+        function updateClasses() {
+          if (this.value != "") {
+            this.classList.add("filled-out");
+          } else {
+            if (this.classList.item("filled-out")) {
+              this.classList.remove("filled-out");
+            }
           }
         }
-      }
+      });
     }
-  }, {
+  },
+  {
     "element": "careers-video-carousel",
     "action": function() {
       if (typeof pageData.videos != "undefined") {
@@ -423,12 +417,13 @@ var siteActions = [{
         videoGall.resize();
       }
     }
-  }, {
+  },
+  {
     "element": "page-header",
     "action": function() {
       var headController = new ScrollMagic.Controller({
-              "loglevel": 0
-            });
+        "loglevel": 0
+      });
       new ScrollMagic.Scene({
           offset: 10,
           duration: 0
@@ -458,7 +453,7 @@ var siteActions = [{
       for (i = 0; i < allEvents.length; i++) {
         var thisEvent = allEvents[i];
         var rightNow = new Date();
-        rightNow.setDate(rightNow.getDate() - 1 /*days*/);
+        rightNow.setDate(rightNow.getDate() - 1 /*days*/ );
         var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
         if (startDate > rightNow) {
           currentEvents.push(thisEvent);
@@ -505,7 +500,7 @@ var siteActions = [{
         "prevNextButtons": false,
         "lazyLoad": 6,
         "autoPlay": 5000,
-        "groupCells":5
+        "groupCells": 5
       });
       for (i in pageData.logos) {
         logoGall.append(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
@@ -612,12 +607,12 @@ var siteActions = [{
       theCarousel = document.getElementById("whatis-carousel");
       thePicture = document.getElementById("whatis-carousel-image");
       var buttons = theCarousel.querySelectorAll(".carousel-button");
-      for(i=0;i<buttons.length;i++) {
+      for (i = 0; i < buttons.length; i++) {
         var theButton = buttons[i];
         theButton.addEventListener("click", function(e) {
           e.preventDefault();
           thePicture.style.backgroundImage = "url('" + siteSettings.imagePath + this.getAttribute("data-image") + "')";
-          removeClassFromClass("carousel-button","active");
+          removeClassFromClass("carousel-button", "active");
           this.classList.add("active");
           return false;
         });
@@ -730,9 +725,50 @@ function activateImages() {
     }
   }
   var bgArrays = document.querySelectorAll("[data-bg-array]");
-  for (i=0;i<bgArrays.length;i++) {
+  for (i = 0; i < bgArrays.length; i++) {
     var el = bgArrays[i];
     var imageArray = JSON.parse(el.getAttribute("data-bg-array"));
-    el.style.backgroundImage = "url('"+imageArray.url+"')";
+    el.style.backgroundImage = "url('" + imageArray.url + "')";
+  }
+}
+
+function fixMarketoForm() {
+  var submitButton = document.querySelectorAll("button[type=submit]")[0];
+  submitButton.classList.remove("mktoButton");
+  submitButton.classList.add("button");
+  var els = document.querySelectorAll(".mktoField");
+  console.log(els);
+  for (i = 0; i < els.length; i++) {
+    var thisEl = els[i];
+    thisEl.removeAttribute("placeholder");
+    if (thisEl.type == "select-one") {
+      var label = document.querySelectorAll("label[for=" + thisEl.name + "]")[0];
+      label.style.display = "none";
+    }
+    thisEl.addEventListener("focus", setLabel);
+    thisEl.addEventListener("blur", unsetLabel);
+
+    function setLabel(e) {
+      var label = document.querySelectorAll("label[for=" + this.name + "]")[0];
+      label.classList.add("focus");
+      removeErrors();
+    }
+
+    function unsetLabel(e) {
+      var label = document.querySelectorAll("label[for=" + this.name + "]")[0];
+      if (this.value == "") {
+        label.classList.remove("focus");
+      }
+      removeErrors();
+    }
+
+    function removeErrors() {
+      var error = document.querySelectorAll(".mktoError");
+      if (error.length > 0) {
+        for (i = 0; i < error.length; i++) {
+          error[i].parentNode.removeChild(error[i]);
+        }
+      }
+    }
   }
 }

@@ -19,7 +19,7 @@ block content
         $post->citation_name = get_field("citation_name");
         $post->citation_title = get_field("citation_title");
         $post->vimeo_id = get_field("vimeo_id");
-        $post->video_thumbnail = get_field("video_thumbnail");
+        $post->video_thumbnail = get_field("product_page_video_thumb");
         $post->quote = get_field("quote");
          array_push($customers,$post);
      endwhile;
@@ -40,7 +40,7 @@ block content
         a.icon-tile(href="/benefits/")
           .icon-thumb(data-bg="icon-usecases.png")
           h2 Benefits
-        a.icon-tile(href="/case-studies/")
+        a.icon-tile(href="https://resources.dynamicsignal.com/h/c/837672-case-studies")
           .icon-thumb(data-bg="icon-casestudies.png")
           h2 Case Studies
         a.icon-tile(href="/integrations/")
@@ -59,7 +59,7 @@ block content
           p Unite a dispersed workforce with a shared mission and vision by ensuring strong, measurable communication with every employee
         a.carousel-button(href="#",data-image="whatis-phone-3.png")
           h2 Engage
-          p Give employees a voice with the ability to take action, such as sharing approved content with their own social networks
+          p Give employees a voice with the ability to take action, by liking, commenting on, and sharing approved content with their own social networks
   section.whatis-testimonial-bucket
     .container
       #whatis-testimonials
@@ -82,6 +82,6 @@ block content
           h3 Personalized Targeting
           p Synchronization with organizational System of Record with the ability to add segmentation for topics and work groups, enabling targeted content and measuring impact.
   section.bottom-cta
-    p Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders.
-    a.button.cta(href="https://dynamic-signal.local/requestdemo") Request Demo
+    p Learn why more than 20 percent of the Fortune 100 communicates with Dynamic Signal
+    a.button.cta(href="/requestdemo/") Request Demo
       

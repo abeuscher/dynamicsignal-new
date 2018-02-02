@@ -11,7 +11,7 @@ block content
     if( have_posts() ){
      while( have_posts() ) {
       the_post();
-  section.top-section-interior.resources
+  section.top-section-interior.resources.single-line
     .container
       .row
         .col-md-12
@@ -34,7 +34,7 @@ block content
       if ( have_rows( 'resource_tiles' ) ) :
           while ( have_rows( 'resource_tiles' ) ) : the_row();
             if ($count==0 || $count%3==0) { echo "<div class='even-height-wrapper'>"; }
-            printf("<div class='col-3'><a class='category-link-title' href='%s'><h2>%s<span class='view-button'>View All<span class='divot'>»</span></span></h2><a class='story-tile-link' href='%s'><div class='featured-thumb' data-bg-array='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-%s'></span>%s</li></ul><h3>%s</h3></a></div>",get_field("resource_link"),get_sub_field("resource_category"), get_sub_field("story_link"), json_encode(get_sub_field("story_image"), JSON_UNESCAPED_SLASHES),$types[get_sub_field("story_type")],get_sub_field("story_type"),get_sub_field("story_title"));
+            printf("<div class='col-3'><a class='category-link-title' href='%s'><h2>%s<span class='view-button'>View All<span class='divot'>»</span></span></h2><a class='story-tile-link' href='%s'><div class='featured-thumb' data-bg-array='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-%s'></span>%s</li></ul><h3>%s</h3></a></div>",get_sub_field("resource_link"),get_sub_field("resource_category"), get_sub_field("story_link"), json_encode(get_sub_field("story_image"), JSON_UNESCAPED_SLASHES),$types[get_sub_field("story_type")],get_sub_field("story_type"),get_sub_field("story_title"));
             if ($count%3==2) { echo "</div>"; }
             $count++;
           endwhile;

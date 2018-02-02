@@ -19,7 +19,7 @@ block content
         .col-md-12
           include ./inc/breadcrumbs.pug
           h1 Join Our Team
-          h2 We build communications technology for the world's largest enterprises.
+          h2 We build communication technology for the world's largest organizations.
   :php
     if( have_posts() ): while( have_posts() ): the_post();
       $videos = get_field("career_videos");
@@ -72,6 +72,7 @@ block content
       };
   :php
     $args = array( 'post_type' => 'career', 'posts_per_page' => 100 );
+      
     $jobs = get_posts( $args );
     $categories = [];
     $category_count=[];
@@ -83,6 +84,7 @@ block content
           array_push($categories,$category);
         }
       }
+      $job->jobvite_url = get_field("jobvite_url",$job);
       $job->categories = $cat;
       $jobs[$key] = $job;
     }

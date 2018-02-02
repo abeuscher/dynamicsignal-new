@@ -11,7 +11,7 @@ var templates = {
 window.addEventListener("load", function() {
     // Name root site var to feed to nav so it doesn't try to relative link to UF pages.
     var siteopts = {
-      "siteurl": "https://www.dynamicsignal.com"
+      "siteurl": "http://staging.dynamicsignal.flywheelsites.com/"
     }
 
     // Find the UF header
@@ -36,7 +36,7 @@ window.addEventListener("load", function() {
     // Drop the header, menu, and nav toggle above the wrapper
     theWrapper.parentNode.insertBefore(parseHTML(templates.header(siteopts)), theWrapper);
     theWrapper.parentNode.insertBefore(parseHTML(templates.toggle()), theWrapper);
-    theWrapper.parentNode.insertBefore(parseHTML(templates.sideNav()), theWrapper);
+    theWrapper.parentNode.insertBefore(parseHTML(templates.sideNav(siteopts)), theWrapper);
     var theFooter = document.getElementsByTagName("footer")[0];
     theWrapper.replaceChild(parseHTML(templates.footer(siteopts)), theFooter);
 

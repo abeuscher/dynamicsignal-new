@@ -19,13 +19,33 @@
     }
   }
 }
-
+#careers-video-carousel {
+  .flickity-prev-next-button.previous { left: 10px;
+  @include bp(m) {
+    left: 10%;
+  } }
+  .flickity-prev-next-button.next { right: 10px;
+  @include bp(m) {
+    right: 10%;
+  }
+  }
+}
 .career-carousel-slide {
   &:not(.is-selected) {
     opacity:0;
   }
   .video-thumb {
+    .left-gradient {
+      background:linear-gradient(to right, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 60%);
+    }
     .content {
+      bottom:auto;
+      top:$gutter-width;
+      width:50%;
+      &> * {
+        position:static;
+        display:block;
+      }
       h3, p {
         text-shadow:1px 1px 3px rgba(0,0,0,.8);
       }
@@ -102,8 +122,8 @@
   }
 }
 .job-filter {
-  background:$beige;
-  border:1px solid $middle-gray;
+  background:$light-gray;
+  border:1px solid $classic-gray;
   border-radius:3px;
   padding:1em;
 }
@@ -118,9 +138,9 @@ a.filter-button {
   padding:$gutter-width/2 0;
   padding-left:1.5em;
   &.active {
-    color:$teal;
+    color:$menu-blue;
     &:before {
-      background-color:$teal;
+      background-color:$menu-blue;
     }
   }
   &:before {
@@ -133,9 +153,9 @@ a.filter-button {
     border-radius:.5em;
   }
   &:hover {
-    color:$teal;
+    color:$header-blue;
     &:before {
-      background-color:$teal;
+      background-color:$header-blue;
     }
   }
   .job-total {
@@ -156,15 +176,15 @@ ul.careers-tabs {
       display:block;
       background-repeat:no-repeat;
       background-position:center top;
-      color:$light-gray;
+      color:$classic-gray;
       width:180px;
       height:50px;
-      padding:$gutter-width*2 $gutter-width $gutter-width;
+      padding:$gutter-width*2.5 $gutter-width $gutter-width;
       border-bottom: 2px solid transparent;
       transition:all .2s ease-in;
       &:hover {
-        color:$teal;
-        border-color:$teal;
+        color:$header-blue;
+        border-color:$header-blue;
       }
       &#icon-about {
           background-image:url($img-path + "icon-aboutus-gray.png");

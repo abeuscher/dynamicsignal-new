@@ -36,5 +36,6 @@ block content
           .blog-post-body
             :php
               the_content();
+              printf("<a class='button apply' target='_blank' href='%s'>Apply Now</a>", get_field("jobvite_url"));
         :php
           }}

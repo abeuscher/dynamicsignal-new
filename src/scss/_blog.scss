@@ -105,13 +105,18 @@
 .author-thumb {
   @include aspect-ratio(4,5);
   background-size:cover;
-  display:inline-block;
-  width:15%;
-  padding-right:3%;
+  float:left;
+  width:20%;
+
+  background-position: center center;
 }
 .author-description {
-  display:inline-block;
-  width:80%;
+  float:left;
+  width:75%;
+  margin:$gutter-width/2 0 0 $gutter-width/2;
+  h3 {
+    margin-top:0;
+  }
 }
 ul.social-share li i.fa-circle {
   color:$header-blue;
@@ -147,7 +152,7 @@ ul.social-share li i.fa-circle {
   a.author-link {
     color:$white;
     &:hover {
-      color:$red;
+      color:$header-blue;
     }
   }
   .inner {

@@ -6,7 +6,7 @@ var templates = {
 }
 
 window.addEventListener("load", function() {
-  console.log("vidyard test");
+  console.log("vidyard testicles");
   function inIframe () {
       try {
           return window.self !== window.top;
