@@ -93,6 +93,16 @@ footer {
       &:hover {
         text-decoration: underline;
       }
+      &:first-child {
+        padding-left:0;
+      }
     }
+    &.right {
+      text-align:left;
+      @include bp(m) {
+        text-align:right;
+      }
+    }
+
   }
 }

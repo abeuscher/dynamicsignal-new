@@ -1,3 +1,12 @@
+.blog-content {
+  padding-bottom:$gutter-width*2;
+  line-height:1.8;
+  p, li {
+    line-height:1.8;
+    margin-bottom:.5em;
+  }
+}
+
 .blog-tile {
   margin-bottom:$gutter-width*2;
   display:block;
@@ -117,6 +126,7 @@
   h3 {
     margin-top:0;
   }
+    line-height:1.6;
 }
 ul.social-share li i.fa-circle {
   color:$header-blue;
@@ -184,10 +194,12 @@ ul.social-share li i.fa-circle {
       height:100%;
       width:auto;
       max-width:none;
+      margin-left:-50%;
       @include bp(s) {
         height:auto;
         width:100%;
         max-width:100%;
+        margin-left:0;
       }
     }
     &:after {
@@ -265,5 +277,11 @@ ul.social-share li i.fa-circle {
         }
       }
     }
+  }
+}
+.blog-post-body {
+  p {
+    word-wrap: break-word;
+    line-height:1.8;
   }
 }

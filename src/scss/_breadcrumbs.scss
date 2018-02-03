@@ -31,7 +31,12 @@
     }
   }
 }
-
+#paging-thumbs {
+  min-height:100px;
+  @include bp(m) {
+    min-height:0;
+  }
+}
 a.pager-thumb {
   position: relative;
   display: inline-block;
@@ -40,15 +45,14 @@ a.pager-thumb {
   height: 100px;
   overflow: hidden;
   padding: 0 $gutter-width;
-  background: $gray;
-  color: $white;
-
+  background: $white;
+  color: $off-black;
   h4 {
     font-size: 10px;
     text-transform: uppercase;
     margin: $gutter-width/2 0 0;
     padding: 0;
-    color: $light-gray;
+    color: $classic-gray;
   }
 
   .arrow-wrapper,
@@ -96,6 +100,7 @@ a.pager-thumb {
       left: 40px;
       right: 10px;
     }
+    float:left;
   }
 
   &.next {
@@ -116,10 +121,11 @@ a.pager-thumb {
     h4 {
       text-align: right;
     }
+    float:right;
   }
 
   &:hover {
-
+    background:$header-blue;
     h4 {
       color: $white;
 
@@ -135,7 +141,7 @@ a.pager-thumb {
     width: 285px;
     height: 50px;
     transition: all 0.25s ease-in-out;
-
+    z-index:4;
     .label-wrapper {
       display: block;
     }

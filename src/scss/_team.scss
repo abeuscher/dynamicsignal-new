@@ -20,21 +20,22 @@
   h3, h4 {
     transition:all .2s ease-in;
     opacity:0;
-    margin:0;
+    margin:0 auto;
+    height:auto;
+    width:auto;
+    left:$gutter-width/4;
+    right:$gutter-width/4;
   }
   h3 {
       top:$gutter-width;
       font-size:36px;
-      width:100%;
-      left:0%;
+
   }
   h4 {
     top:$gutter-width*4;
     font-size:18px;
     font-weight:500;
     line-height:1.5;
-    width:100%;
-    left:0%;
   }
   .fa {
     font-size:2em;

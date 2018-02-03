@@ -87,8 +87,7 @@ block content
                 echo $event_post["title"];
             p 
               :php
-                printf("%s on %s/%s/%s/<br> at %s (%s)<a class='small-link' href='%s'>%s</a>",$event_post["type"],$event_post["start_month"],$event_post["start_day"],$event_post["start_year"],$event_post["start_time"],$event_post["event_time_zone"],$event_post["btn_url"],$event_post["btn_text"]) ;
-              a.small-link(href="#") details
+                printf("%s on %s/%s/%s<br> at %s (%s)<a class='small-link' href='%s'>%s</a><a class='small-link' href='%s'>details</a>",$event_post["type"],$event_post["start_month"],$event_post["start_day"],$event_post["start_year"],$event_post["start_time"],$event_post["event_time_zone"],$event_post["btn_url"],$event_post["btn_text"],$event_post["url"]) ;
             a.button(href="/events") All Events  
           li.dot
             h2 Blog
@@ -104,5 +103,8 @@ block content
               a.small-link(href="#") read
             a.button(href="/press") News and Press 
   section.bottom-cta
-    p Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders.
-    a.button.cta(href="https://dynamic-signal.local/requestdemo") Request Demo
+    .container
+      .row
+        .col-md-12
+          p Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders.
+          a.button.cta(href="https://dynamic-signal.local/requestdemo") Request Demo

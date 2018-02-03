@@ -29,10 +29,41 @@
     right: 10%;
   }
   }
+  .content  {
+    top:30%;
+    bottom:$gutter-width;
+    left:$gutter-width;
+    right:50%;
+    height:auto;
+    width:auto;
+    &> * {
+      position: static;
+      display:block;
+    }
+    p {
+      font-style:normal;
+    }
+  }
+  .left-gradient {
+    background:linear-gradient(to right, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 60%);
+  }
+  display:none;
+  @include bp(m) {
+    display:block;
+  }
 }
+
 .career-carousel-slide {
   &:not(.is-selected) {
     opacity:0;
+  }
+
+}
+  /*
+  &:after {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
   }
   .video-thumb {
     .left-gradient {
@@ -67,6 +98,7 @@
   }
 
 }
+*/
 #job-list {
   article {
     animation: fader .5s 1;
@@ -167,21 +199,25 @@ a.filter-button {
   }
 }
 ul.careers-tabs {
-  margin:0;
+  margin:0 auto;
   padding:0;
   list-style:none;
+  max-width:800px;
   li {
-    display:inline-block;
+    float:left;
+    width:25%;
     a {
       display:block;
       background-repeat:no-repeat;
       background-position:center top;
       color:$classic-gray;
-      width:180px;
-      height:50px;
-      padding:$gutter-width*2.5 $gutter-width $gutter-width;
+      padding:50px $gutter-width 0;
       border-bottom: 2px solid transparent;
       transition:all .2s ease-in;
+      font-size:.8em;
+      @include bp(m) {
+        font-size:1em;
+      }
       &:hover {
         color:$header-blue;
         border-color:$header-blue;

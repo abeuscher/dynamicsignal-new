@@ -23,21 +23,24 @@
 }
 
 .even-height-wrapper {
-  display: flex;
-  width: 100%;
-  margin-bottom:$gutter-width;
-  .col-2,
-  .col-3 {
-    padding: 0 10px;
+  @include bp(m) {
+    display: flex;
+    width: 100%;
+    margin-bottom:$gutter-width;
+    .col-2,
+    .col-3 {
+      padding: 0 10px;
+    }
+
+    .col-2 {
+      flex-basis: 50%;
+    }
+
+    .col-3 {
+      flex-basis: 33%;
+    }
   }
 
-  .col-2 {
-    flex-basis: 50%;
-  }
-
-  .col-3 {
-    flex-basis: 33%;
-  }
 }
 
 .right {
@@ -246,16 +249,19 @@ section {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center bottom;
-
+  min-height:40vh;
   h1 {
     line-height: 1.5;
     text-align: center;
-    font-size: 1.8em;
     bottom: 50px;
     height: auto;
     top: auto;
     text-align: center;
     margin: 0;
+    font-size: 1.4em;
+    @include bp(m) {
+      font-size: 2em;
+    }
   }
 
   .inner {
@@ -294,6 +300,7 @@ section {
     }
   }
   @include bp(m) {
+    min-height:0;
      @include aspect-ratio (3,1.75);
   }
   @include bp(l) {
@@ -302,41 +309,27 @@ section {
 }
 
 .top-section-interior {
-  background: url($img-path + "bg-header-interior.png") $light-gray no-repeat bottom right;
-  background-size: 100%;
+  background:$light-gray;
   min-height: 250px;
-  /*
-  &.resources {
-    background-color:$blue;
-    h1 {
-      color:$white;
-    }
-  }
-  */
   .row {
     padding-top: 70px;
   }
 
   h1 {
     margin-bottom: 0;
+    font-size:2.2em;
+    margin-top:.25em;
+    color:$off-black;
   }
 
   h2 {
     font-size: 1.4em;
-    margin: 0;
+    margin: .25em 0 0;
   }
-  &.use-case {
-    h1 {
-      margin-top:$gutter-width*2;
-    }
-  }
-  &.single-line {
-    //background-color:$menu-blue;
-
+  @include bp(m) {
+    background: url($img-path + "bg-header-interior.png") $light-gray no-repeat bottom right;
     h1 {
       font-size:3.2em;
-      margin-top:1em;
-      color:$off-black;
     }
   }
 }
@@ -731,7 +724,7 @@ ul.side-list {
 
   h2 {
     color: $header-blue;
-    font-size: 1.2em;
+    font-size: 4vw;
     margin: 0.25em 0;
   }
   @include bp(m) {
@@ -743,9 +736,13 @@ ul.side-list {
 
 .icon-thumb {
   @include aspect-ratio(1,1);
-  width: 30%;
-  margin: 0 35%;
+  width: 50%;
+  margin: 0 25%;
   background-size: contain;
+  @include bp(m) {
+    width: 30%;
+    margin: 0 35%;
+  }
 }
 
 section.contact-map {
@@ -954,5 +951,9 @@ section.contact-map {
 
   .button {
     margin-top: $gutter-width;
+    box-shadow:1px 2px 10px rgba(0,0,0,.5);
+    @include bp(m) {
+      box-shadow: none;
+    }
   }
 }

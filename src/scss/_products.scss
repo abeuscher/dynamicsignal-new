@@ -9,7 +9,6 @@
   background-position:right;
 }
 section.whatis-carousel-bucket {
-  padding-bottom:0;
   background:$off-white;
 }
 .whatis-testimonial-bucket {
@@ -77,5 +76,24 @@ section.whatis-carousel-bucket {
   p {
     margin:0 0 1em;
     color:$black;
+  }
+}
+#whatis-carousel {
+  display:none;
+  @include bp(m) {
+    display:block;
+  }
+}
+#whatis-carousel-mobile {
+  display:block;
+  @include bp(m) {
+    display:none;
+  }
+  .what-is-thumb-mobile {
+    @include aspect-ratio(400,815);
+    width:50%;
+    margin:$gutter-width/2 auto;
+    background-size:cover;
+    background-position:center center;
   }
 }

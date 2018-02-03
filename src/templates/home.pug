@@ -54,8 +54,11 @@ block content
           endwhile;
         }
   section.bottom-cta
-    p
-      :php
-        the_field("home_page_bottom_cta_intro_text");
-    :php
-      printf("<a class='button cta' href='%s'>%s</a>", get_field("home_page_bottom_cta_target"), get_field("home_page_bottom_cta_label"));
+    .container
+      .row
+        .col-md-12
+          p
+            :php
+              the_field("home_page_bottom_cta_intro_text");
+          :php
+            printf("<a class='button cta' href='%s'>%s</a>", get_field("home_page_bottom_cta_target"), get_field("home_page_bottom_cta_label"));

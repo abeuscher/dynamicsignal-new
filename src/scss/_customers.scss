@@ -1,7 +1,7 @@
 .customers-grid {
   text-align: center;
   .customer-block {
-    width:50%;
+    width:25%;
     display: inline-block;
     img {
       width:90%;
@@ -42,6 +42,7 @@
   background-position:center;
   width:20%;
   margin:$gutter-width/2 auto;
+  padding:0 $gutter-width/4;
 }
 .customer-carousel-slide {
   width:100%;

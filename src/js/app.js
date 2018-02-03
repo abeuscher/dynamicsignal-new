@@ -25,9 +25,9 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "Webinar: How O2 Engages Their Workforce at a Global Scale",
-    "url": "http://amp.dynamicsignal.com/How-O2-Engages-Their-Deskless-Workforce-Global-Scale.html",
-    "buttonText": "Watch Now"
+    "cta": "We're Hiring!",
+    "url": "/careers/",
+    "buttonText": "View Jobs"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
@@ -91,7 +91,6 @@ window.addEventListener("load", function() {
   });
   var s = getMobileOperatingSystem();
   if (s) {
-    console.log(getMobileOperatingSystem);
     var mobilePanels = document.querySelectorAll(".mobile-cta");
     for (i = 0; i < mobilePanels.length; i++) {
       mobilePanels[i].style.display = "block";
@@ -174,6 +173,7 @@ var siteActions = [{
   {
     "element": "cta-bar",
     "action": function() {
+      console.log("cta");
       if (siteSettings.ctaBar.toggle) {
         var bar = document.getElementById("cta-bar");
         bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
@@ -496,16 +496,21 @@ var siteActions = [{
   {
     "element": "logo-strip",
     "action": function() {
-      var logoGall = new Flickity("#logo-strip", {
-        "prevNextButtons": false,
-        "lazyLoad": 6,
-        "autoPlay": 5000,
-        "groupCells": 5
-      });
-      for (i in pageData.logos) {
-        logoGall.append(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
+      function setHomeGall() {
+        cellsperSlide = window.innerWidth < siteSettings.breakpoints.m ? 3 : 5;
+        var logoGall = new Flickity("#logo-strip", {
+          "prevNextButtons": false,
+          "lazyLoad": 6,
+          "autoPlay": 5000,
+          "groupCells": cellsperSlide
+        });
+        for (i in pageData.logos) {
+          logoGall.append(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
+        }
+        logoGall.resize();
       }
-      logoGall.resize();
+      window.addEventListener("resize", setHomeGall);
+      setHomeGall();
     }
   },
   {

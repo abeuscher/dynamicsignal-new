@@ -2,20 +2,22 @@
   display:none;
   @include bp(s) {
     display:block;
+    z-index:1;
     position:fixed;
-    background:$gray;
+    background:$white;
+    box-shadow:0 0 20px rgba(0,0,0,.1);
     width:100%;
     margin:0;
     min-height:50px;
     vertical-align: middle;
     padding-bottom:$gutter-width/4;
-    color:$white;
+    color:$black;
     bottom:0;
     left:0;
     text-align:center;
     a.button-cta-bottom {
       border-radius:5px;
-      background:$red;
+      background:$menu-blue;
       color:$white;
       display:inline-block;
       text-transform:uppercase;
@@ -23,13 +25,11 @@
       margin-left:1em;
       font-size:12px;
       &:hover {
-        background:darken($red,20%);
-        color:$white;
+        background:$header-blue;
       }
     }
     h2 {
       display:inline-block;
-      color:$white;
       font-size:14px;
       margin:0;
       line-height: 50px;

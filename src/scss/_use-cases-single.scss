@@ -5,7 +5,10 @@
 .use-case-problem {
   line-height:2;
   font-size:1.2em;
-  text-align: justify;
+  text-align: left;
+  @include bp(m) {
+    text-align: justify;
+  }
 }
 .use-case-quotes {
   display:block;
@@ -189,4 +192,7 @@ section#parallax.use-cases-parallax {
     }
 
   }
+}
+section.use-case-quotes {
+  padding-bottom:$gutter-width*2;
 }

@@ -44,11 +44,18 @@
   padding-top:$gutter-width*3;
 }
 .logo-slide {
-  width:20%;
+  width:33%;
   text-align: center;
   img {
-    max-height:70px;
-    width:auto;
+    height:auto;
+    width:80%;
+    @include bp(m) {
+      max-height:70px;
+      width:auto;
+    }
+  }
+  @include bp(m) {
+    width:20%;
   }
 }
 .front-page-stat {
