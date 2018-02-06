@@ -11,7 +11,7 @@ var templates = {
 window.addEventListener("load", function() {
     // Name root site var to feed to nav so it doesn't try to relative link to UF pages.
     var siteopts = {
-      "siteurl": "http://staging.dynamicsignal.flywheelsites.com/"
+      "siteurl": "https://www.dynamicsignal.com"
     }
 
     // Find the UF header
@@ -26,6 +26,7 @@ window.addEventListener("load", function() {
     // Make a wrapper to put everything in so the side nav can work properly.
     var theWrapper = document.createElement("div");
     theWrapper.id = "wrapper";
+    theWrapper.classList.add("uber-wrapper");
 
     // Empty the body into the wrapper
     while (document.body.firstChild) {

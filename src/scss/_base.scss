@@ -272,6 +272,7 @@ section {
 
     .center-image {
       width: 50%;
+      max-width:1200px;
     }
 
     &.home {
@@ -301,7 +302,7 @@ section {
   }
   @include bp(m) {
     min-height:0;
-     @include aspect-ratio (3,1.75);
+    // @include aspect-ratio (3,1);
   }
   @include bp(l) {
      @include aspect-ratio (3,1);

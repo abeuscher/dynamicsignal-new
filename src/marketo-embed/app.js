@@ -8,7 +8,7 @@ var templates = {
   "sideNav": require("../templates/inc/side-nav.pug")
 };
 var siteopts = {
-  "siteroot" : "https://www.dynamicsignal.com"
+  "siteurl": "https://www.dynamicsignal.com"
 };
 window.addEventListener("load", function() {
   setNav();
@@ -50,65 +50,71 @@ window.addEventListener("load", function() {
     theWrapper.removeEventListener("click", closeBody);
   }
 
-  MktoForms2.loadForm("//app-ab04.marketo.com", "362-RJN-040", 1588);
-  MktoForms2.whenReady(function(form) {
-    var els = document.querySelectorAll(".mktoRequired ");
+  var theForm = document.querySelectorAll(".marketo-form")[0];
+  var theID = theForm.id.split("_")[1];
+  if (!theID) {
+    document.getElementById("marketo-form-wrapper").style.display = "none";
+  } else {
+    MktoForms2.loadForm("//app-ab04.marketo.com", "362-RJN-040", theID);
+    MktoForms2.whenReady(function(form) {
+      var els = document.querySelectorAll(".mktoRequired ");
 
-    for (i = 0; i < els.length; i++) {
-      var thisEl = els[i];
-      if (thisEl.type == "select-one") {
-        var label = document.querySelectorAll("label[for=" + thisEl.name + "]")[0];
-        label.style.display = "none";
-      }
-      thisEl.addEventListener("focus", setLabel);
-      thisEl.addEventListener("blur", unsetLabel);
-
-      function setLabel(e) {
-        var label = document.querySelectorAll("label[for=" + this.name + "]")[0];
-        label.classList.add("focus");
-        removeErrors();
-      }
-
-      function unsetLabel(e) {
-        var label = document.querySelectorAll("label[for=" + this.name + "]")[0];
-        if (this.value == "") {
-          label.classList.remove("focus");
+      for (i = 0; i < els.length; i++) {
+        var thisEl = els[i];
+        if (thisEl.type == "select-one") {
+          var label = document.querySelectorAll("label[for=" + thisEl.name + "]")[0];
+          label.style.display = "none";
         }
-        removeErrors();
-      }
+        thisEl.addEventListener("focus", setLabel);
+        thisEl.addEventListener("blur", unsetLabel);
 
-      function removeErrors() {
-        var error = document.querySelectorAll(".mktoError");
-        if (error.length > 0) {
-          for (i = 0; i < error.length; i++) {
-            error[i].parentNode.removeChild(error[i]);
+        function setLabel(e) {
+          var label = document.querySelectorAll("label[for=" + this.name + "]")[0];
+          label.classList.add("focus");
+          removeErrors();
+        }
+
+        function unsetLabel(e) {
+          var label = document.querySelectorAll("label[for=" + this.name + "]")[0];
+          if (this.value == "") {
+            label.classList.remove("focus");
+          }
+          removeErrors();
+        }
+
+        function removeErrors() {
+          var error = document.querySelectorAll(".mktoError");
+          if (error.length > 0) {
+            for (i = 0; i < error.length; i++) {
+              error[i].parentNode.removeChild(error[i]);
+            }
           }
         }
       }
-    }
-    // Validation
-    form.onValidate(function() {
-      var email = form.vals().Email;
-      if (email) {
-        if (!isEmailGood(email)) {
-          form.submittable(false);
-          var emailElem = form.getFormElem().find("#Email");
-          form.showErrorMessage("A valid business email address is required.", emailElem);
-        } else {
-          form.submittable(true);
+      // Validation
+      form.onValidate(function() {
+        var email = form.vals().Email;
+        if (email) {
+          if (!isEmailGood(email) && theID != 1) {
+            form.submittable(false);
+            var emailElem = form.getFormElem().find("#Email");
+            form.showErrorMessage("A valid business email address is required.", emailElem);
+          } else {
+            form.submittable(true);
+          }
         }
-      }
-    });
+      });
 
-    // Override redirect URL set in Marketo
-    form.onSuccess(function(values, followUpUrl) {
-      // Build success page redirect
-      var redirectURL = "${confirmationURL}";
-      location.href = redirectURL;
-      // Return false to prevent the submission handler continuing with its own processing
-      return false;
+      // Override redirect URL set in Marketo
+      form.onSuccess(function(values, followUpUrl) {
+        // Build success page redirect
+        var redirectURL = "${confirmationURL}";
+        location.href = redirectURL;
+        // Return false to prevent the submission handler continuing with its own processing
+        return false;
+      });
     });
-  });
+  }
 });
 var invalidDomains = [
 
@@ -165,6 +171,7 @@ function isEmailGood(email) {
   }
   return true;
 }
+
 function setNav() {
   document.body.appendChild(parseHTML(templates.header(siteopts)));
   document.body.appendChild(parseHTML(templates.toggle()));

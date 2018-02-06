@@ -18,6 +18,7 @@ block content
       "title"=>"Benefits",
       "link"=>"/benefits/"
     ));
+    $page_index = intval(get_post_field('sort_order'));
   -
     var pageData = {
     "header":"Benefits",
@@ -151,7 +152,7 @@ block content
 
     $previous_post->classname="prev";
     $next_post->classname="next";
-    $previous_post->label = "Previous Use Case";
-    $next_post->label = "Next Use Case";
+    $previous_post->label = "Previous Benefit";
+    $next_post->label = "Next Benefit";
     echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";
   #paging-thumbs

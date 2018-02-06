@@ -43,3 +43,15 @@
   min-height:60%;
   min-height:60vh;
 }
+.mktoForm .mktoButtonWrap.mktoSimple .mktoButton {
+  text-align: center;
+  display: inline-block !important;
+  padding: 0.5em 1.5em;
+  transition: all 0.25s ease-in;
+  background: $blue;
+  color: $white;
+  z-index: 1;
+  position: relative;
+  border:none;
+  outline:none;
+}

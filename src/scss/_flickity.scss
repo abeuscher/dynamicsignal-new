@@ -128,6 +128,7 @@ http://flickity.metafizzy.co
 /* ---- page dots ---- */
 
 .flickity-page-dots {
+  display:none;
   position: absolute;
   width: 100%;
   bottom: -25px;
@@ -136,6 +137,9 @@ http://flickity.metafizzy.co
   list-style: none;
   text-align: center;
   line-height: 1;
+  @include bp(m) {
+    display:block;
+  }
 }
 
 .flickity-rtl .flickity-page-dots { direction: rtl; }

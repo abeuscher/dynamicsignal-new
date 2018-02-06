@@ -173,7 +173,6 @@ var siteActions = [{
   {
     "element": "cta-bar",
     "action": function() {
-      console.log("cta");
       if (siteSettings.ctaBar.toggle) {
         var bar = document.getElementById("cta-bar");
         bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
@@ -184,6 +183,7 @@ var siteActions = [{
     "element": "paging-thumbs",
     "action": function() {
       if (typeof seriesNav != "undefined") {
+        console.log(seriesNav);
         var bucket = document.getElementById("paging-thumbs");
         if (typeof seriesNav.prevPost.post_name != "undefined") {
           bucket.append(parseHTML(siteSettings.templates.pagerThumb(seriesNav.prevPost)));
@@ -496,11 +496,13 @@ var siteActions = [{
   {
     "element": "logo-strip",
     "action": function() {
-      function setHomeGall() {
+      //function setHomeGall() {
+      console.log("fire home gall");
+        //document.getElementById("logo-strip").innerHTML = "";
         cellsperSlide = window.innerWidth < siteSettings.breakpoints.m ? 3 : 5;
         var logoGall = new Flickity("#logo-strip", {
           "prevNextButtons": false,
-          "lazyLoad": 6,
+          "lazyLoad": cellsperSlide*2,
           "autoPlay": 5000,
           "groupCells": cellsperSlide
         });
@@ -508,9 +510,9 @@ var siteActions = [{
           logoGall.append(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
         }
         logoGall.resize();
-      }
-      window.addEventListener("resize", setHomeGall);
-      setHomeGall();
+      //}
+      //window.addEventListener("resize", setHomeGall);
+      //setHomeGall();
     }
   },
   {

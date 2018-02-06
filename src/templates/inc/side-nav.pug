@@ -5,7 +5,7 @@
       "class":"demo"
     },
     {
-      "title": "What is Dynamic Signal?",
+      "title": "What is Dynamic Signal",
       "url": "/product/",
       "children": [
         {
@@ -14,7 +14,7 @@
         },
         {
           "title": "Case Studies",
-          "url": "/case-studies/"
+          "url": "https://resources.dynamicsignal.com/case-studies"
         },
         {
           "title": "Integrations",
@@ -60,24 +60,24 @@
       "url": "/resources/",
       "children": [{
           "title": "Getting Started",
-          "url": "https://resources.dynamicsignal.com/h/c/1455606-getting-started"
+          "url": "https://resources.dynamicsignal.com/getting-started"
         },{
             "title": "Driving Adoption",
-            "url": "https://resources.dynamicsignal.com/h/c/1458510-driving-adoption"
+            "url": "https://resources.dynamicsignal.com/driving-adoption"
           },{
               "title": "Expanding Reach",
-              "url": "https://resources.dynamicsignal.com/h/c/1458552-expanding-reach"
+              "url": "https://resources.dynamicsignal.com/expanding-reach"
             },{
                 "title": "Metrics",
-                "url": "https://resources.dynamicsignal.com/h/c/1458579-metrics"
+                "url": "https://resources.dynamicsignal.com/metrics"
               },
         {
           "title": "Videos",
-          "url": "https://resources.dynamicsignal.com/h/c/1458561-videos"
+          "url": "https://resources.dynamicsignal.com/videos"
         },
         {
           "title": "eBooks & Guides",
-          "url": "https://resources.dynamicsignal.com/h/c/1456755-ebooks-guides"
+          "url": "https://resources.dynamicsignal.com/ebooks-guides"
         }
       ]
     },
@@ -97,9 +97,11 @@ aside.sideMenu.right#side-nav
       for item in navItems
         - 
           var classname = item.class ? item.class : "";
-          if (!locals) {
-            var locals = {};
-            locals.siteurl = "";
+          if (locals.siteurl && item.url.indexOf("http")<0) {
+            url = locals.siteurl + item.url;
+            }
+          else {
+            url = item.url;
             }
         li
           a(href=locals.siteurl + item.url,class=classname)!=item.title
@@ -107,4 +109,11 @@ aside.sideMenu.right#side-nav
             ul
               for child in item.children
                 li
-                  a(href=child.url)!=child.title
+                  - 
+                    if (locals.siteurl && child.url.indexOf("http")<0) {
+                      childurl = locals.siteurl + child.url;
+                      }
+                    else {
+                      childurl = child.url;
+                      }
+                  a(href=childurl)!=child.title

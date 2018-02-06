@@ -82,12 +82,8 @@ block content
         ul.side-list
           li.dot
             h2 Events
-            h3
-              :php
-                echo $event_post["title"];
-            p 
-              :php
-                printf("%s on %s/%s/%s<br> at %s (%s)<a class='small-link' href='%s'>%s</a><a class='small-link' href='%s'>details</a>",$event_post["type"],$event_post["start_month"],$event_post["start_day"],$event_post["start_year"],$event_post["start_time"],$event_post["event_time_zone"],$event_post["btn_url"],$event_post["btn_text"],$event_post["url"]) ;
+            :php
+              printf("<h3><a href='%s'>%s</a></h3><p>%s on %s/%s/%s<br> at %s (%s)<a class='small-link' href='%s'>%s</a><a class='small-link' href='%s'>details</a></p>",$event_post["url"],$event_post["title"],$event_post["type"],$event_post["start_month"],$event_post["start_day"],$event_post["start_year"],$event_post["start_time"],$event_post["event_time_zone"],$event_post["btn_url"],$event_post["btn_text"],$event_post["url"]) ;
             a.button(href="/events") All Events  
           li.dot
             h2 Blog
@@ -98,13 +94,14 @@ block content
             a.button(href="/blog") All Entries  
           li.dot
             h2 Press
-            h3 Mark Ragan Joins Dynamic Signal As An Advisor To Transform Enterprise Communication
+            h3 
+              a(href="https://resources.dynamicsignal.com/press/mark-ragan-joins-dynamic-signal-as-an-advisor-to-transform-enterprise-communication") Mark Ragan Joins Dynamic Signal As An Advisor To Transform Enterprise Communication
             p Webinar on 1/15/18
-              a.small-link(href="#") read
+              a.small-link(href="https://resources.dynamicsignal.com/press/mark-ragan-joins-dynamic-signal-as-an-advisor-to-transform-enterprise-communication") read
             a.button(href="/press") News and Press 
   section.bottom-cta
     .container
       .row
         .col-md-12
-          p Learn how world-class companies increase productivity and engagement with the only platform trusted by global leaders.
+          p Learn why more than 20 percent of the Fortune 100 communicates with Dynamic Signal
           a.button.cta(href="https://dynamic-signal.local/requestdemo") Request Demo

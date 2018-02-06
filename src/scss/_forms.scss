@@ -51,7 +51,21 @@ $mf-transition-speed: 0.28s !default;
 .marketo-form {
   &.mktoForm {
     .mktoButtonWrap {
-        margin:0!important;
+      margin:0!important;
+      &.mktoSimple .mktoButton {
+        padding: 0.5em 1.5em;
+        border:none;
+        text-align: center;
+        display: inline-block !important;
+        padding: 0.5em 1.5em;
+        transition: all 0.25s ease-in;
+        background: $blue;
+        color: $white;
+        z-index: 1;
+        position: relative;
+        border:none;
+        outline:none;
+      }
     }
     width: auto!important;
 
@@ -498,9 +512,33 @@ $mf-transition-speed: 0.28s !default;
         }
       }
     }
-    .button, button[type=submit],button {
+    .button, button[type=submit],button, .mktoButton {
       padding: 0.5em 1.5em;
       border:none;
+      text-align: center;
+      display: inline-block !important;
+      padding: 0.5em 1.5em;
+      transition: all 0.25s ease-in;
+      background: $blue;
+      color: $white;
+      z-index: 1;
+      position: relative;
+      border:none;
+      outline:none;
     }
+  }
+  .mktoForm .mktoButtonWrap.mktoSimple .mktoButton {
+    padding: 0.5em 1.5em!important;
+    border:none!important;
+    text-align: center!important;
+    display: inline-block !important;
+    padding: 0.5em 1.5em!important;
+    transition: all 0.25s ease-in!important;
+    background: $blue!important;
+    color: $white!important;
+    z-index: 1!important;
+    position: relative!important;
+    border:none!important;
+    outline:none!important;
   }
 }

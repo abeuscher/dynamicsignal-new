@@ -1,5 +1,6 @@
 .uber-header {
   .top-nav {
+    display:none;
     position:absolute;
     top:250px;
     z-index:0;
@@ -20,6 +21,9 @@
       }
     }
   }
+}
+#wrapper.uber-wrapper {
+  background:url("https://www.dynamicsignal.com/wp-content/themes/ds-new/images/bg-widget-graybg.jpg") $white no-repeat top right;
 }
 .page-aligner {
   width:100%;
@@ -64,6 +68,7 @@
     }
   }
   .bread-crumbs {
+    display:none;
     margin:114px auto $gutter-width*2;
     padding: 0 $gutter-width;
     @include bp(s) {

@@ -4,13 +4,28 @@ block template
     /*
     Template Name: Webinars Page
     */
+block nav
+  include ./inc/header.pug
 block content
   -
     var pageData = {
     "header":"Webinars",
     "subheader":"Upcoming webinars from our Customer Success Team."
     };
-  include ./inc/hero.pug
+  :php
+    $override_title = "Events";
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Support",
+      "link"=>"/support/"
+    ));
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1!=pageData.header
+          h2!=pageData.subheader
   :php
     $all_events = [];
     $args = array(
