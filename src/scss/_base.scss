@@ -21,7 +21,15 @@
     max-width: 100%;
   }
 }
-
+.link-table {
+  img {
+    max-width:200px;
+    height:auto;
+  }
+  legend,td,th {
+    padding:1em;
+  }
+}
 .even-height-wrapper {
   @include bp(m) {
     display: flex;
