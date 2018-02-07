@@ -36,12 +36,13 @@ html
       echo "<meta property='twitter:description' content='$description' />";
       $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
       echo "<link href='$slink' rel='stylesheet' />";
-    body.loading  
-      include navbar-toggle.pug
-      include side-nav.pug
-      block nav
-      #wrapper
-        block content
-        include ./footer.pug
-        #cta-bar
-      script(src=themeDir+"js/bundle.js")
+    include ./gtm.pug
+  body.loading  
+    include navbar-toggle.pug
+    include side-nav.pug
+    block nav
+    #wrapper
+      block content
+      include ./footer.pug
+      #cta-bar
+    script(src=themeDir+"js/bundle.js")

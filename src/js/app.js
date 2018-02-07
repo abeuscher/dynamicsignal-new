@@ -496,23 +496,17 @@ var siteActions = [{
   {
     "element": "logo-strip",
     "action": function() {
-      //function setHomeGall() {
-      console.log("fire home gall");
-        //document.getElementById("logo-strip").innerHTML = "";
-        cellsperSlide = window.innerWidth < siteSettings.breakpoints.m ? 3 : 5;
-        var logoGall = new Flickity("#logo-strip", {
-          "prevNextButtons": false,
-          "lazyLoad": cellsperSlide*2,
-          "autoPlay": 5000,
-          "groupCells": cellsperSlide
-        });
-        for (i in pageData.logos) {
-          logoGall.append(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
-        }
-        logoGall.resize();
-      //}
-      //window.addEventListener("resize", setHomeGall);
-      //setHomeGall();
+      cellsperSlide = window.innerWidth < siteSettings.breakpoints.m ? 3 : 5;
+      var logoGall = new Flickity("#logo-strip", {
+        "prevNextButtons": false,
+        "lazyLoad": cellsperSlide*2,
+        "autoPlay": 5000,
+        "groupCells": cellsperSlide
+      });
+      for (i in pageData.logos) {
+        logoGall.append(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
+      }
+      logoGall.resize();
     }
   },
   {
