@@ -7,6 +7,7 @@ footer {
   }
 }
 .footer-top {
+  padding-bottom:$gutter-width*2;
   .address-block {
     margin-bottom:3em;
     @include bp(m) {
@@ -85,7 +86,7 @@ footer {
 }
 
 .footer-bottom {
-  padding:$gutter-width*2 0 $gutter-width;
+  padding:$gutter-width/2 0 $gutter-width*3;
   p {
     font-size: 12px;
     a {
