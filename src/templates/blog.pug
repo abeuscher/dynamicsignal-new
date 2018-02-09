@@ -11,10 +11,18 @@ block content
     $parent_category = "blog-categories";
     $categories = ["communications","marketing","human-resources", "customer-stories","culture","events"];
     $filtered_posts = [];
-    $sticky = get_option( 'sticky_posts' );
+    //$sticky = get_option( 'sticky_posts' );
     foreach ($categories as $key=>$category) {
-      $query = new WP_Query( array( 'category_name' => $parent_category.'+'.$category ) );
-      array_push($filtered_posts,array("category"=>$category,"post"=>$query->posts[0]));  
+      $query = new WP_Query( array( 'category_name' => $parent_category.'+'.$category,'post__in'  => get_option( 'sticky_posts' ),'ignore_sticky_posts' => 0,'posts_per_page' => 1) );
+      if ($query->have_posts()) {
+        array_push($filtered_posts,array("category"=>$category,"post"=>$query->posts[0]));  
+        }
+      else {
+        $query = new WP_Query( array( 'category_name' => $parent_category.'+'.$category,'posts_per_page' => 1) );
+        array_push($filtered_posts,array("category"=>$category,"post"=>$query->posts[0])); 
+        }  
+        
+      
     }
     $breadcrumbs = [];
     array_push($breadcrumbs,array(

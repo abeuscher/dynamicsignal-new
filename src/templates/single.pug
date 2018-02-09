@@ -38,7 +38,7 @@ block content
           .col-md-12
             h1.blog-title
               :php
-                the_title();
+                echo get_the_title();
             p.author By
               :php
                 $authorslug = get_userdata(get_the_author_id())->user_nicename;
