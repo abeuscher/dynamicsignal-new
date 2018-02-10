@@ -24,6 +24,8 @@ block content
             "Video" => "camera",
             "eBook" => "book",
             "Presentation" => "slideshare",
+            "Webinar" => "desktop",
+            "Report" => "bar-chart-o",
             "Blog Post" => "camera"
           );
           printf("<a class='story-tile-link' href='%s'><div class='row'><div class='col-md-12'><div class='featured-thumb' data-bg-array='%s'><h1>%s</h1></div></div></div>", get_field("featured_resource_link"), json_encode(get_field("featured_resource_image"), JSON_UNESCAPED_SLASHES), get_field("featured_resource_title"));

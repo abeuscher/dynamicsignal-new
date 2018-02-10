@@ -9,7 +9,16 @@
     text-decoration:underline;
   }
 }
-
+.alignright {
+  float:right;
+  padding-left:$gutter-width;
+  padding-bottom:$gutter-width;
+}
+.alignleft {
+  float:left;
+  padding-right:$gutter-width;
+  padding-bottom:$gutter-width;
+}
 .blog-tile {
   margin-bottom:$gutter-width*2;
   display:block;
