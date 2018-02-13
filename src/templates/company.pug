@@ -90,7 +90,7 @@ block content
             h3
               :php
                 //echo json_encode($blog_post);
-                printf("<a href='%s'><h3>%s</h3><p>By %s</p></a>","/blog/".$blog_post->post_name,$blog_post->post_title,get_author_name($blog_post->author));
+                printf("<a href='%s'><h3>%s</h3><p>By %s</p></a>","/blog/".$blog_post->post_name,$blog_post->post_title,get_author_name($blog_post->post_author));
             a.button(href="/blog") All Entries  
           li.dot
             h2 Press
