@@ -11,7 +11,6 @@ block content
     $parent_category = "blog-categories";
     $categories = ["communications","marketing","human-resources", "customer-stories","culture","events"];
     $filtered_posts = [];
-    //$sticky = get_option( 'sticky_posts' );
     foreach ($categories as $key=>$category) {
       $query = new WP_Query( array( 'category_name' => $parent_category.'+'.$category,'post__in'  => get_option( 'sticky_posts' ),'ignore_sticky_posts' => 0,'posts_per_page' => 1) );
       if ($query->have_posts()) {
@@ -45,7 +44,7 @@ block content
               $c = $post["category"];
               $c_title = ucwords(str_replace("-"," ",$post["category"]));
               if ($key==0 || $key%2==0) { echo "<div class='even-height-wrapper'>"; }
-              printf("<div class='col-2'><a class='category-link-title' href='%s'><h2>%s<span class='view-button'>View All<span class='divot'>»</span></span></h2><a class='story-tile-link' href='%s'><div class='featured-thumb' data-bg='%s'></div><h3>%s</h3></a></div>","/category/".$c,$c_title, $p->post_name, get_the_post_thumbnail_url($p), $p->post_title);  
+              printf("<div class='col-2'><a class='category-link-title' href='%s'><h2>%s<span class='view-button'>View All<span class='divot'>»</span></span></h2></a><a class='story-tile-link' href='%s'><div class='featured-thumb' data-bg='%s'></div><h3>%s</h3></a></div>","/category/".$c,$c_title, $p->post_name, get_the_post_thumbnail_url($p), $p->post_title);  
               if ($key%2==1) { echo "</div>"; }
               }
         .col-md-4
@@ -53,7 +52,7 @@ block content
             include ./inc/blog-roll.pug
             :php
               foreach($posts as $key=>$post) {
-                $header = $key==0 ? "<h2>What's New?</h2>" : "";
+                $header = $key==0 ? "<a class='category-link-title' href='/blog-roll'><h2>What's New?<span class='view-button'>View All<span class='divot'>»</span></span></h2></a>" : "";
                 $classname = $key==0 ? "dot" : "";
                   printf("<li class='%s'>%s%s</li>",$classname,$header,$post);
                 }
