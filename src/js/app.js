@@ -95,6 +95,10 @@ window.addEventListener("load", function() {
     for (i = 0; i < mobilePanels.length; i++) {
       mobilePanels[i].style.display = "block";
     }
+    var mobilePanels = document.querySelectorAll(".desktop-cta");
+    for (i = 0; i < mobilePanels.length; i++) {
+      mobilePanels[i].style.display = "none";
+    }
   }
   var getForm = new FormHandler();
   getForm.catchUTM();

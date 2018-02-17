@@ -170,7 +170,7 @@ $mf-transition-speed: 0.28s !default;
       input[type=text],
       input[type=url] {
         height: ($mf-font-size * 1.9);
-        width: auto!important;
+        width: 100%!important;
       }
 
       textarea {

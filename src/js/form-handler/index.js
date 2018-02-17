@@ -26,21 +26,20 @@ function FormHandler() {
   };
   if (Cookies.get(this.settings.cookieName)) {
     this.settings.cookieData = JSON.parse(Cookies.get(this.settings.cookieName))
-  }
-  else {
+  } else {
     this.settings.cookieData = [{
-     "key": "utmcampaign",
-     "value": ""
-   }, {
-     "key": "utmsource",
-     "value": ""
-   }, {
-     "key": "utmmedium",
-     "value": ""
-   }, {
-     "key": "utmcontent",
-     "value": ""
-   }];
+      "key": "utmcampaign",
+      "value": ""
+    }, {
+      "key": "utmsource",
+      "value": ""
+    }, {
+      "key": "utmmedium",
+      "value": ""
+    }, {
+      "key": "utmcontent",
+      "value": ""
+    }];
   }
 }
 FormHandler.prototype.catchUTM = function() {
@@ -54,7 +53,7 @@ FormHandler.prototype.catchUTM = function() {
       });
     }
   }
-  if (cookieData.length>0) {
+  if (cookieData.length > 0) {
     var writeData = Values(defaults(this.settings.CookieData, cookieData));
     Cookies.set(this.settings.cookieName, JSON.stringify(writeData), {
       expires: 365
@@ -64,9 +63,9 @@ FormHandler.prototype.catchUTM = function() {
 FormHandler.prototype.writeUTM = function() {
   if (Cookies.get(this.settings.cookieName)) {
     var writeData = JSON.parse(Cookies.get(this.settings.cookieName));
-    for(i=0;i<writeData.length;i++) {
+    for (i = 0; i < writeData.length; i++) {
       var data = writeData[i];
-      if (document.querySelectorAll("[name=" + data.key + "]").length>0) {
+      if (document.querySelectorAll("[name=" + data.key + "]").length > 0) {
         document.querySelectorAll("[name=" + data.key + "]")[0].value = data.value;
       }
     }
@@ -118,11 +117,52 @@ FormHandler.prototype.fixForm = function() {
             }
           }
         }
+
+      }
+      var linkedInButton = document.querySelectorAll(".IN-widget");
+
+      if (linkedInButton.length>0) {
+        setTimeout(checkFields,50);
+        function checkFields() {
+          var fieldNames = ["Title","FirstName","LastName","Company"];
+          for (i=0;i<fieldNames.length;i++) {
+            var theField = fieldNames[i];
+            if (document.getElementById(theField) && document.getElementById(theField).value!="" && !document.getElementById(theField).classList.contains("focus")) {
+              document.querySelectorAll("label[for='"+theField+"']")[0].classList.add("focus");
+              document.getElementById(theField).classList.add("focus");
+            }
+          }
+          setTimeout(checkFields,500);
+        }
+
       }
       if (theID == "1163") {
         self.recaptcha(form, theForm);
       }
       self.writeUTM();
+      if (typeof validateCorporateEmail !== 'undefined') {
+        form.onValidate(function() {
+          var email = form.vals().Email;
+          if (email) {
+            if (!self.isEmailGood(email) && theID != 1) {
+              form.submittable(false);
+              var emailElem = form.getFormElem().find("#Email");
+              form.showErrorMessage("A valid business email address is required.", emailElem);
+            } else {
+              form.submittable(true);
+            }
+          }
+        });
+      }
+
+      if (typeof confirmationUrl !== 'undefined') {
+        form.onSuccess(function(values, followUpUrl) {
+          location.href = confirmationUrl;
+          return false;
+        });
+      }
+
+
     });
 
   }
@@ -170,20 +210,63 @@ FormHandler.prototype.recaptcha = function(form, theForm) {
     }
   });
   var theForm = document.getElementById("mktoForm_1163");
-  var textFields = theForm.querySelectorAll(".mktoTextField,.mktoEmailField,.mktoTelField");
-  for (i = 0; i < textFields.length; i++) {
-    //textFields[i].addEventListener("blur", updateClasses);
-  }
+}
+FormHandler.prototype.isEmailGood = function(email) {
+  var invalidDomains = [
 
-  function updateClasses() {
-    if (this.value != "") {
-      this.classList.add("filled-out");
-    } else {
-      if (this.classList.item("filled-out")) {
-        this.classList.remove("filled-out");
-      }
+    /* Default domains included */
+    "aol.com", "att.net", "comcast.net", "facebook.com", "gmail.com", "gmx.com", "googlemail.com",
+    "google.com", "hotmail.com", "hotmail.co.uk", "mac.com", "me.com", "mail.com", "msn.com",
+    "live.com", "sbcglobal.net", "verizon.net", "yahoo.com", "yahoo.co.uk",
+
+    /* Other global domains */
+    "email.com", "games.com" /* AOL */ , "gmx.net", "hush.com", "hushmail.com", "icloud.com", "inbox.com",
+    "lavabit.com", "love.com" /* AOL */ , "outlook.com", "pobox.com", "rocketmail.com" /* Yahoo */ ,
+    "safe-mail.net", "wow.com" /* AOL */ , "ygm.com" /* AOL */ , "ymail.com" /* Yahoo */ , "zoho.com", "fastmail.fm",
+    "yandex.com",
+
+    /* United States ISP domains */
+    "bellsouth.net", "charter.net", "comcast.net", "cox.net", "earthlink.net", "juno.com",
+
+    /* British ISP domains */
+    "btinternet.com", "virginmedia.com", "blueyonder.co.uk", "freeserve.co.uk", "live.co.uk",
+    "ntlworld.com", "o2.co.uk", "orange.net", "sky.com", "talktalk.co.uk", "tiscali.co.uk",
+    "virgin.net", "wanadoo.co.uk", "bt.com",
+
+    /* Domains used in Asia */
+    "sina.com", "qq.com", "naver.com", "hanmail.net", "daum.net", "nate.com", "yahoo.co.jp", "yahoo.co.kr", "yahoo.co.id", "yahoo.co.in", "yahoo.com.sg", "yahoo.com.ph",
+
+    /* French ISP domains */
+    "hotmail.fr", "live.fr", "laposte.net", "yahoo.fr", "wanadoo.fr", "orange.fr", "gmx.fr", "sfr.fr", "neuf.fr", "free.fr",
+
+    /* German ISP domains */
+    "gmx.de", "hotmail.de", "live.de", "online.de", "t-online.de" /* T-Mobile */ , "web.de", "yahoo.de",
+
+    /* Russian ISP domains */
+    "mail.ru", "rambler.ru", "yandex.ru", "ya.ru", "list.ru",
+
+    /* Belgian ISP domains */
+    "hotmail.be", "live.be", "skynet.be", "voo.be", "tvcablenet.be", "telenet.be",
+
+    /* Argentinian ISP domains */
+    "hotmail.com.ar", "live.com.ar", "yahoo.com.ar", "fibertel.com.ar", "speedy.com.ar", "arnet.com.ar",
+
+    /* Domains used in Mexico */
+    "hotmail.com", "gmail.com", "yahoo.com.mx", "live.com.mx", "yahoo.com", "hotmail.es", "live.com", "hotmail.com.mx", "prodigy.net.mx", "msn.com",
+
+    /* Domains used in Brazil */
+    "yahoo.com.br", "hotmail.com.br", "outlook.com.br", "uol.com.br", "bol.com.br", "terra.com.br", "ig.com.br", "itelefonica.com.br", "r7.com", "zipmail.com.br", "globo.com", "globomail.com", "oi.com.br"
+  ];
+
+
+  for (var i = 0; i < invalidDomains.length; i++) {
+    var domain = invalidDomains[i];
+    if (email.indexOf(domain) != -1) {
+      return false;
     }
   }
+  return true;
 }
+
 
 module.exports = FormHandler;

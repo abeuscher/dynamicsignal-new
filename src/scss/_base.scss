@@ -19,6 +19,7 @@
 .row {
   img {
     max-width: 100%;
+    height:auto;
   }
 }
 .link-table {
@@ -58,9 +59,17 @@
 .blue {
   color: $bright-blue;
 }
-
+.mobile-cta-home {
+  display:none;
+}
 .mobile-cta {
-  display: none;
+  display:none;
+  &.home {
+    display: block;
+    h2 {
+      padding-top:$gutter-width*1.5;
+    }
+  }
 }
 
 
