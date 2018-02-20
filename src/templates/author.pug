@@ -4,8 +4,7 @@ block template
     /*
     Template Name: Author Article Listing
     */
-    global $wp_query;
-    $wp_query->set( 'posts_per_pag', 9 );
+    $override_title = "Author : " . get_author_name();
 block nav
   include ./inc/header.pug
 block content

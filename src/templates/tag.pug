@@ -4,6 +4,7 @@ block template
     /*
     Template Name: Tag Archive
     */
+    $override_title = "Tag : " . ucwords(single_tag_title( '', false ));
 block nav
   include ./inc/header.pug
 block content
