@@ -26,9 +26,9 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "We're Hiring!",
-    "url": "/careers/",
-    "buttonText": "View Jobs"
+    "cta": "Dynamic Signal Raises $36.5 Million",
+    "url": "https://resources.dynamicsignal.com/press/dynamic-signal-raises-36-5-million-to-transform-employee-communication-and-engagement-in-the-enterprise",
+    "buttonText": "Read More"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
