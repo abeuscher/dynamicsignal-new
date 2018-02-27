@@ -36,6 +36,13 @@ html
       echo "<meta property='twitter:description' content='$description' />";
       $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
       echo "<link href='$slink' rel='stylesheet' />";
+      $schema = get_post_meta(get_the_ID(), 'schema', true);
+      if(!empty($schema)) {
+        echo $schema;
+      }
+      else {
+        echo "fail";
+      }
     include ./gtm.pug
   body.loading  
     include navbar-toggle.pug

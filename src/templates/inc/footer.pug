@@ -2,15 +2,17 @@ footer
 	.container
 		.row.footer-top
 			.col-md-3.address-block
-				ul
+				ul(itemscope itemtype="http://schema.org/LocalBusiness")
 					li.logo-footer-bucket
-						img.logo-footer(src='https://dynamicsignal.com/wp-content/themes/ds-new/images/logo-header.png',alt='Dynamic Signal')
+						img.logo-footer(src='https://dynamicsignal.com/wp-content/themes/ds-new/images/logo-header.png',alt='Dynamic Signal',itemprop="logo")
 					li.footer-address
-						p 1111 Bayhill Drive, Suite 125
+						p(itemprop="address" itemscope itemtype="http://schema.org/PostalAddress") 1111 Bayhill Drive, Suite 125
 							br
-							| San Bruno, California 94066
+							span(itemprop="addressLocality") San Bruno, 
+							span(itemprop="addressRegion") California 
+							span(itempropr="postalCode") 94066
 					li.footer-phone
-						p 650-231-2550
+						p(itemprop="telephone") 650-231-2550
 				ul.hmenu
 					li
 						a(href='https://www.facebook.com/DynamicSignal/')
