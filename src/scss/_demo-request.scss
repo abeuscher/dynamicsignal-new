@@ -38,6 +38,9 @@ section.signup-form-bucket {
   p {
     font-size: 1em;
     line-height:1.5;
+    &.small {
+      font-size:.7em;
+    }
   }
 
   img {
