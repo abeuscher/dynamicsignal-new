@@ -12,9 +12,10 @@ header.page-header#page-header
             $pages = array(
               "product"=>"What is Dynamic Signal",
               "company"=>"Our Company",
-              "resources"=>"Resources"
+              "resources"=>"Resources",
+              "dysi-open"=>"Try Now"
             );
             foreach($pages as $key=>$page) {
-              $thisclass = ($key == $post_slug) ? "active" : "";
+              $thisclass = ($key == $post_slug) ? $key." active" : $key;
               printf("<li><a href='/%s/' class='%s'>%s</a></li>",$key,$thisclass,$page);
             }
