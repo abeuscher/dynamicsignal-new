@@ -39,7 +39,8 @@ section.signup-form-bucket {
     font-size: 1em;
     line-height:1.5;
     &.small {
-      font-size:.7em;
+      margin-top:$gutter-width*6;
+      font-size:.6em;
     }
   }
 
