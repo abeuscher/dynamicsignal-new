@@ -106,12 +106,14 @@ block content
               i.fa.fa-stack-1x.fa-linkedin
               :php
                 echo "</a></li>";
+                }
           h3
             :php
               echo $meta["first_name"][0]." ".$meta["last_name"][0];
           :php
+            if($meta["description"][0]!="") {
             echo $meta["description"][0];
-              }
+            }
 
               }}
   section.pager-thumbs.container
