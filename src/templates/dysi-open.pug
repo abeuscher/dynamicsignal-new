@@ -1,0 +1,34 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: DySi Open Landing Page
+    */
+block nav
+  include ./inc/header.pug
+block content
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          h1 Experience DySi Open
+  section.signup-form-bucket.container
+    .row
+      .col-md-8.blog-content
+        p Dynamic Signal has created DySi Open as an interactive community for communicators, marketers and human resource professionals to access and share great information that will help you do your job better and advance your career. The content you want gets delivered directly to you, where and when you want it.
+        p The DySi Open app is available at 
+          a(href="itms://itunes.apple.com/us/app/dysi-open/id1339399649?mt=8",target="_blank") Apple’s App Store 
+          |  and the 
+          a(href="https://play.google.com/store/apps/details?id=com.dynamicsignal.appstore.dysi&hl=en",target="_blank") Google Play Store
+          | . If you register (it’s free), you’ll be automatically subscribed to relevant information tailored to your role, industry, and location.
+        ul.app-buttons.hmenu
+          li
+            a(href="itms://itunes.apple.com/us/app/dysi-open/id1339399649?mt=8",target="_blank")
+              img(src=themeDir + "/images/btn-itunes.png")
+          li
+            a(href="https://play.google.com/store/apps/details?id=com.dynamicsignal.appstore.dysi&hl=en",target="_blank")
+              img(src=themeDir + "/images/btn-android.png")
+        p.small *Coming Soon to Europe
+      .col-md-4
+        div(style='text-align: center;')
+          img(src=themeDir+'images/dsopen-productpic.jpg', alt='')
