@@ -669,8 +669,8 @@ ul.side-list {
 
     p, cite {
       display:block;
-      line-height:1;
-      margin:0 0 .25em;
+      line-height:1.4;
+      padding:0 0 .5em;
       font-size:.8em;
     }
 
@@ -697,11 +697,17 @@ ul.side-list {
   }
 }
 
-.small-link {
-  font-size: 0.75em;
+a.small-link {
+  font-size: 0.9em;
   display: inline-block;
   margin-left: 1em;
-  font-weight: 600;
+  background:$header-blue;
+  color:$white;
+  padding:2px 6px;
+  &:hover {
+      background:$menu-blue;
+      color:$white;
+  }
 }
 
 .bg-video {

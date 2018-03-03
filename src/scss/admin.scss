@@ -15,3 +15,12 @@ body {
   background-color:lighten($header-blue,10%);
   color:$white;
 }
+#login {
+  h1 {
+    a {
+      width:auto;
+      background-image:url("https://dynamicsignal.com/wp-content/themes/ds-new/images/logo-header.png");
+      background-size:contain;
+    }
+  }
+}
