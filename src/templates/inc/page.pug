@@ -28,12 +28,12 @@ html
       wp_reset_query();
       $link = get_the_permalink();
       echo "<title>$title</title>";
-      echo "<meta property='description' content='".$description."' />";
-      echo "<meta property='og:title' content='$title' />";
-      echo "<meta property='og:url' content='$link' />";
-      echo "<meta property='og:description' content='$description' />";
-      echo "<meta property='twitter:title' content='$title' />";
-      echo "<meta property='twitter:description' content='$description' />";
+      echo "<meta name='description' content='".$description."' />";
+      echo "<meta name='og:title' content='$title' />";
+      echo "<meta name='og:url' content='$link' />";
+      echo "<meta name='og:description' content='$description' />";
+      echo "<meta name='twitter:title' content='$title' />";
+      echo "<meta name='twitter:description' content='$description' />";
       $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
       echo "<link href='$slink' rel='stylesheet' />";
     include ./gtm.pug

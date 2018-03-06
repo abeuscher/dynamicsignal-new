@@ -143,7 +143,15 @@
     }
     margin-bottom: $gutter-width/2;
   }
-
+  p.blog-date {
+    margin:0;
+    font-size:.8em;
+    font-style:italic;
+    color:$classic-gray;
+  }
+  h3 {
+    margin:0 0 $gutter-width/4;
+  }
   &:hover {
     background: $light-gray;
 
