@@ -20,6 +20,7 @@ var isElement = require("./utils/is-element.js");
 var removeClassFromClass = require("./utils/remove-class-from-class.js");
 
 var FormHandler = require("./form-handler/index.js");
+var PDFHandler = require("./pdf-handler/index.js");
 
 var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
@@ -79,7 +80,7 @@ window.addEventListener("load", function() {
   }
   activateImages();
   new ActivateVideos();
-
+  PDFHandler(".pdf-wrapper");
   var pies = new Pies({
     "className": "pie-wrapper",
     "mask": true,
