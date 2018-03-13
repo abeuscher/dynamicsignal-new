@@ -1,0 +1,18 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: DS Summit LP
+    */
+block nav
+  include ./inc/header.pug
+block content
+  section.top-section#whatis-header(data-bg="whatis-bg-header.jpg")
+    .inner
+      img.center-image(src=themeDir+"images/whatis-marquee-center.png")
+      h1 DySi Summit 2018
+  section.signup-form-bucket.container
+    .row
+      .col-md-12
+        #marketo-form-wrapper
+          form.marketo-form#mktoForm_1163

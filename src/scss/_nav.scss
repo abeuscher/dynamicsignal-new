@@ -60,6 +60,16 @@
           &:hover {
             color: $header-blue;
           }
+          &.dysi-open {
+            color:$header-blue;
+            border:1px solid $header-blue;
+            border-radius:3px;
+            padding:$gutter-width/4 $gutter-width/2;
+            &:hover {
+              color:lighten($header-blue,10%);
+            }
+
+          }
           @include bp(m) {
             font-size: 18px;
           }
@@ -68,6 +78,11 @@
           }
           &.active {
             text-decoration: underline;
+            &.dysi-open {
+              text-decoration:none;
+              color:$menu-blue;
+              border:1px solid $menu-blue;
+            }
           }
         }
       }

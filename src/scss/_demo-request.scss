@@ -33,11 +33,15 @@ section.signup-form-bucket {
   padding: 2em $gutter-width;
   font-size: 1.4em;
   @include bp(m) {
-    padding:2em 0;
+    padding:2em $gutter-width;
   }
   p {
     font-size: 1em;
     line-height:1.5;
+    &.small {
+      margin-top:$gutter-width*6;
+      font-size:.6em;
+    }
   }
 
   img {

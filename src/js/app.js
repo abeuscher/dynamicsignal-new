@@ -19,16 +19,17 @@ var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
 var removeClassFromClass = require("./utils/remove-class-from-class.js");
 
-var FormHandler = require("./form-handler/index.js")
+var FormHandler = require("./form-handler/index.js");
+var PDFHandler = require("./pdf-handler/index.js");
 
 var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "Dynamic Signal Raises $36.5 Million",
-    "url": "https://resources.dynamicsignal.com/press/dynamic-signal-raises-36-5-million-to-transform-employee-communication-and-engagement-in-the-enterprise",
-    "buttonText": "Read More"
+    "cta": "Experience DySi Open - Our Free Mobile App",
+    "url": "/dysi-open/",
+    "buttonText": "Learn More"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
@@ -79,7 +80,7 @@ window.addEventListener("load", function() {
   }
   activateImages();
   new ActivateVideos();
-
+  PDFHandler(".pdf-wrapper");
   var pies = new Pies({
     "className": "pie-wrapper",
     "mask": true,

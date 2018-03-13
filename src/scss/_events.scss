@@ -117,8 +117,10 @@
     }
   }
   .content {
-    padding-left:174px;
-    min-height:174px;
+    @include bp(m) {
+      padding-left:174px;
+      min-height:174px;
+    }
   }
   h3 {
     font-size:20px;

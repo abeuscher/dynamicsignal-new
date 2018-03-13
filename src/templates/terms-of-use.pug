@@ -1,0 +1,22 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Terms and Conditions
+    */
+block nav
+  include ./inc/header.pug
+block content
+  -
+    var pageData = {
+    "header":"Saas Terms and Conditions"
+    };
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          h1!=pageData.header
+  section.container
+    .row
+      .col-md-12
+        .pdf-wrapper(data-pdf=themeDir+"images/dynamic-signal-terms-of-use.pdf")
