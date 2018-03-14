@@ -101,6 +101,7 @@ $mf-transition-speed: 0.28s !default;
       float: none;
       height: auto;
       padding-top: 0;
+      width:auto!important;
     }
 
     .mktoRequiredField .mktoAsterix {
@@ -206,7 +207,7 @@ $mf-transition-speed: 0.28s !default;
         font-size: $mf-font-size;
         font-weight: normal;
         transition: all $mf-transition-speed ease;
-
+        width:auto!important;
         &[for='State'] {
           display: none;
         }
