@@ -27,22 +27,24 @@ block content
       .row
         .col-md-12
           include ./inc/breadcrumbs.pug
+  :php
+    printf("<article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>",get_the_ID());
   section.blog-hero
     :php
-      echo "<div class='blog-header'><div class='blog-thumb'>";
+      echo "<div class='blog-header'><div class='blog-thumb' itemprop='image' itemscope itemtype='https://schema.org/ImageObject'>";
       the_post_thumbnail( 'full', array('class' => 'img-responsive') );
       echo "</div>";
     .inner
       .container
         .row
           .col-md-12
-            h1.blog-title
+            h1.blog-title(itemprop="headline")
               :php
                 echo get_the_title();
             p.author By
               :php
                 $authorslug = get_userdata(get_the_author_id())->user_nicename;
-                echo " <a class='author-link' href=\"/author/$authorslug\">".get_author_name() . "</a>" ;
+                echo " <a class='author-link' href=\"/author/$authorslug\" itemprop='author' itemscope itemtype='https://schema.org/Person'><span itemprop='name'>".get_author_name() . "</span></a>" ;
             ul.social-share
               li
                 :php
@@ -69,13 +71,13 @@ block content
                 :php
                   echo "</a>";
             :php
-              echo "<span class='blog-date'>".get_the_date()."</span>";
+              printf("<span class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</span>",get_the_time('c'),get_the_time('c'),get_the_date());
     :php
       echo "</div>";
   section.container.blog-content
     .container
       .row
-        .col-md-9.blog-content
+        .col-md-9.blog-content(itemprop="articleBody")
           :php
             the_content();
         .col-md-3.related-posts
@@ -85,7 +87,6 @@ block content
         h2.header-right Post Author
         :php
           global $authordata;
-          //echo json_encode($authordata);
           $meta = get_user_meta($authordata->data->ID);
           printf("<div class='author-thumb' data-bg='%s'></div>",$meta["image"][0]);
         .author-description
@@ -131,3 +132,4 @@ block content
     $previous_post->url = "/blog/".$previous_post->post_name;
     $next_post->url = "/blog/".$next_post->post_name;
     echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";
+    echo "</article>";

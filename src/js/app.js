@@ -195,7 +195,6 @@ var siteActions = [{
     "element": "paging-thumbs",
     "action": function() {
       if (typeof seriesNav != "undefined") {
-        console.log(seriesNav);
         var bucket = document.getElementById("paging-thumbs");
         if (typeof seriesNav.prevPost.post_name != "undefined") {
           bucket.append(parseHTML(siteSettings.templates.pagerThumb(seriesNav.prevPost)));

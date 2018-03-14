@@ -8,7 +8,7 @@ html
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(property="og:locale",content="en_US")
     meta(property="og:site_name",content="Dynamic Signal")
-    meta(property="twitter:site",content="dynamicsignal.com")
+    meta(name="twitter:site",content="@Dynamic_Signal")
     link(rel="stylesheet",href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto")
     link(rel='shortcut icon', href=themeDir + 'images/favicon.ico?v=2')
     :php
@@ -29,9 +29,9 @@ html
       $link = get_the_permalink();
       echo "<title>$title</title>";
       echo "<meta name='description' content='".$description."' />";
-      echo "<meta name='og:title' content='$title' />";
-      echo "<meta name='og:url' content='$link' />";
-      echo "<meta name='og:description' content='$description' />";
+      echo "<meta property='og:title' content='$title' />";
+      echo "<meta property='og:url' content='$link' />";
+      echo "<meta property='og:description' content='$description' />";
       echo "<meta name='twitter:title' content='$title' />";
       echo "<meta name='twitter:description' content='$description' />";
       $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
@@ -39,9 +39,6 @@ html
       $schema = get_post_meta(get_the_ID(), 'schema', true);
       if(!empty($schema)) {
         echo $schema;
-      }
-      else {
-        echo "fail";
       }
     include ./gtm.pug
   body.loading  
