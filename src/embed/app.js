@@ -1,10 +1,15 @@
 var parseHTML = require("../js/utils/parse-html.js");
+var ScrollMagic = require("scrollmagic");
 
 var templates = {
   "header":require("../templates/inc/header-embed.pug"),
-  "footer":require("../templates/inc/footer.pug")
+  "footer":require("../templates/inc/footer.pug"),
+  "toggle": require("../templates/inc/navbar-toggle.pug"),
+  "sideNav": require("../templates/inc/side-nav.pug")
 }
-
+var siteopts = {
+  "siteurl":"https://www.dynamicsignal.com"
+}
 window.addEventListener("load", function() {
   function inIframe () {
       try {
@@ -14,27 +19,49 @@ window.addEventListener("load", function() {
       }
   }
   if (!inIframe()) {
-    (function(d) {
-      var config = {
-        kitId: 'rqa1vic',
-        scriptTimeout: 3000,
-        async: true
-      },
-      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-    })(document);
-    var theTop = document.getElementById("hub-layout-container");
-    var siteopts = {
-      "siteurl":"https://www.dynamicsignal.com"
-    }
-    theTop.parentNode.insertBefore(parseHTML(templates.header(siteopts)),theTop);
 
-    theTop.parentNode.appendChild(parseHTML(templates.footer(siteopts)),theTop);
-    var menuToggle = document.getElementById("toggle-main-drop");
-    var drop = document.getElementById("mobile-drop");
-    menuToggle.addEventListener("click", function() {
-      drop.classList.toggle("expanded");
-      menuToggle.classList.toggle("active");
+    setNav();
+    // Add the header shrinker
+    var headController = new ScrollMagic.Controller({
+      "loglevel": 0
     });
+    new ScrollMagic.Scene({
+        offset: 10,
+        duration: 0
+      })
+      .on("enter", function(e) {
+        document.getElementById("page-header").classList.add("active");
+        document.getElementById("toggle-side-nav").classList.add("short");
+      })
+      .on("leave", function(e) {
+        document.getElementById("page-header").classList.remove("active");
+        document.getElementById("toggle-side-nav").classList.remove("short");
+      })
+      .addTo(headController);
+
+    // Add menu button listener
+    var theWrapper = document.getElementById("wrapper");
+    var theToggle = document.getElementById("toggle-side-nav");
+    theToggle.style.margin = "0";
+    theToggle.style.display = "block";
+    theToggle.style.float = "none";
+    theToggle.addEventListener("click", function(e) {
+      e.preventDefault();
+      if (document.body.classList.contains("nav-open")) {
+        document.body.classList.remove("nav-open");
+        theWrapper.removeEventListener("click", closeBody);
+      } else {
+        document.body.classList.add("nav-open");
+        theWrapper.addEventListener("click", closeBody);
+      }
+    });
+
+    function closeBody(e) {
+      e.preventDefault();
+      document.body.classList.remove("nav-open");
+      theWrapper.removeEventListener("click", closeBody);
+    }
+
     if (location.hash.indexOf("ufh")!=-1) {
       location.href = "https://resources.dynamicsignal.com/h/"+location.hash.substr(5,1)+"/" + location.hash.substr(7,location.hash.length-1);
     }
@@ -56,3 +83,16 @@ window.addEventListener("load", function() {
   }
 
 });
+function setNav() {
+  document.body.appendChild(parseHTML(templates.toggle()));
+  document.body.appendChild(parseHTML(templates.sideNav(siteopts)));
+  document.body.appendChild(parseHTML(templates.header(siteopts)));
+  var wrapper = document.createElement("div");
+  wrapper.id = "wrapper";
+  document.body.appendChild(wrapper);
+  var notifications = document.getElementById("notifications");
+  var container = document.getElementById("hub-layout-container");
+  wrapper.appendChild(notifications);
+  wrapper.appendChild(container);
+  wrapper.appendChild(parseHTML(templates.footer(siteopts)));
+}

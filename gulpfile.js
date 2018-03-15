@@ -50,7 +50,8 @@ var jsFiles = [{
     "opts": {
       entries: [jsSrcDir + 'app.js'],
       debug: false,
-      paths: ['./bower_components', './node_modules']
+      paths: ['./bower_components', './node_modules'],
+      output: "bundle.js"
     }
   },
   {
@@ -59,7 +60,8 @@ var jsFiles = [{
     "opts": {
       entries: [embedSrcDir + 'app.js'],
       debug: false,
-      paths: ['./bower_components', './node_modules']
+      paths: ['./bower_components', './node_modules'],
+      output: "app.js"
     }
   },
   {
@@ -68,7 +70,8 @@ var jsFiles = [{
     "opts": {
       entries: [uberembedSrcDir + 'app.js'],
       debug: false,
-      paths: ['./bower_components', './node_modules']
+      paths: ['./bower_components', './node_modules'],
+      output: "bundle.js"
     }
   },
   {
@@ -77,7 +80,8 @@ var jsFiles = [{
     "opts": {
       entries: [marketoembedSrcDir + 'app.js'],
       debug: false,
-      paths: ['./bower_components', './node_modules']
+      paths: ['./bower_components', './node_modules'],
+      output: "bundle.js"
     }
   }
 ];
@@ -94,7 +98,7 @@ function bundleJS() {
     theFile.setter = function() {
       return theFile.bundle()
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-        .pipe(fs.createWriteStream(theObj.buildDir + 'bundle.js'));
+        .pipe(fs.createWriteStream(theObj.buildDir + theObj.opts.output));
     }
 
     theFile.on('update', theFile.setter);
