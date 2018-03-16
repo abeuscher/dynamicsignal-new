@@ -18,13 +18,13 @@ html
         $title = $override_title;
       }
       else {
-        $title = trim(wpseo_get_value('title'))=="" ? get_the_title() :  wpseo_get_value('title');
+        $title = trim(WPSEO_Meta::get_value('title'))=="" ? get_the_title() :  WPSEO_Meta::get_value('title');
       }
       if (!strpos($title,"Dynamic Signal")) {
       $title .= " | Dynamic Signal";
       }
-      $description = wpseo_get_value('metadesc');
-      $featured_image = wpseo_get_value('featured_image');
+      $description = WPSEO_Meta::get_value('metadesc');
+      $featured_image = WPSEO_Meta::get_value('featured_image');
       wp_reset_query();
       $link = get_the_permalink();
       echo "<title>$title</title>";
@@ -36,10 +36,6 @@ html
       echo "<meta name='twitter:description' content='$description' />";
       $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
       echo "<link href='$slink' rel='stylesheet' />";
-      $schema = get_post_meta(get_the_ID(), 'schema', true);
-      if(!empty($schema)) {
-        echo $schema;
-      }
     include ./gtm.pug
   body.loading  
     include navbar-toggle.pug

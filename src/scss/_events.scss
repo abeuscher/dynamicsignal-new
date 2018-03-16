@@ -111,6 +111,7 @@
     background-size:cover;
     background-position: center;
     @include aspect-ratio(1,1);
+    border-radius:50%;
     @include bp(m) {
       max-width:150px;
       float:left;
