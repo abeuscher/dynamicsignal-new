@@ -6,6 +6,8 @@ block template
     */
     $override_title = "Author : " . get_author_name();
 block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
   :php

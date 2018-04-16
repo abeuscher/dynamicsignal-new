@@ -51,7 +51,11 @@
         },
         {
           "title": "Press",
-          "url": "https://resources.dynamicsignal.com/h/c/208133-press"
+          "url": "https://resources.dynamicsignal.com/press"
+        },
+        {
+          "title": "News",
+          "url": "https://resources.dynamicsignal.com/news"
         }
       ]
     },
@@ -93,6 +97,14 @@
   
 aside.sideMenu.right#side-nav
   .inner
+    if showSearch!="hide"
+      #search-box-sidenav
+        form.search-form(action='')
+          input.query#oi-query(type='text', placeholder="Enter Search Term")
+          button.submit(type="submit")
+            i.fa.fa-search
+          span#oi-spellcheck
+          span#oi-header
     ul
       for item in navItems
         - 

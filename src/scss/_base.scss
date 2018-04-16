@@ -3,7 +3,66 @@
 @include no-padding("top");
 @include no-padding("bottom");
 @include no-padding("all");
+.short-header {
+  display:block;
+  background-repeat:none;
+  background-size:cover;
+  background-position:center top;
+  .inner {
+    display:block;
+    width:100%;
+    text-align: center;
+    padding-bottom:5vw;
+    img {
+      padding:150px $gutter-width 0;
+      width:90%;
+      max-width:800px;
+    }
+  }
+}
+p.summit-email-header {
+  color:$header-blue;
+  font-size:1.2;
+  font-weight:600;
+  text-align: center;
+}
+section.knockout-blue {
+  background:$header-blue;
+  color:$white;
+  padding-bottom:$gutter-width*2;
+  p {
+    text-align: center;
+    font-size:1.2em;
+    line-height:1.8;
+  }
+  h1, h2, h3 {
+    color:$white;
+    text-align:center;
+  }
+}
+.marketo-form.mktoForm#mktoForm_1948 {
+  .mktoFormRow {
+      display:block;
+      width:60%!important;
+      @include bp(m) {
+        width:80%!important;
+      }
+  }
+  .mktoButtonRow {
+    width: 40%!important;
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    button[type=submit] {
+      width:80%!important;
+      border-radius:3px;
+    }
+    @include bp(m) {
+      width: 20%!important;
+    }
 
+  }
+}
 .hide {
   display: none !important;
 }
@@ -824,8 +883,11 @@ section.contact-map {
   &:after {
     content: "";
     display: block;
-    padding-top: 15.62%;
-    padding-bottom: 15.62%;
+    @include bp(m) {
+      padding-top: 15.62%;
+      padding-bottom: 15.62%;
+    }
+
   }
   background-size: cover;
   background-position: center center;
@@ -836,7 +898,10 @@ section.contact-map {
     text-shadow: 1px 1px 3px rgba(0,0,0,.8);
     padding: $gutter-width;
     margin: 0;
-    position: absolute;
+    @include bp(m) {
+      position: absolute;
+    }
+
   }
 }
 

@@ -1,0 +1,44 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Legal Docs
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  -
+    var pageData = {
+    "header":"Privacy at Dynamic Signal"
+    };
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          h1!=pageData.header
+  section.container#legal-docs
+    .row
+      :php
+        if( have_posts() ){
+         while( have_posts() ) {
+         the_post();
+        $docs = get_field("privacy_document");
+        }}
+        $links = "";
+        $panes = "";
+        $nav = "<li><a id='nav-tab-%s' class='%s'  href='#' data-tab='%s'>%s</a></li>";
+        $content = "<div id='content-pane-%s' class='content-pane %s'><h2>%s</h2>%s<p class='doc-date'>Last revised: %s</p></div>";
+        foreach ($docs as $key=>$document) {
+          $classname = $key == 0 ? "active" : "";
+          $links .= sprintf($nav,$key,$classname,$key,$document["document_title"]);
+          $panes .= sprintf($content,$key,$classname,$document["document_title"],$document["document_content"],$document["document_revised_date"]);
+          } 
+      .col-md-3
+        ul.panel-nav
+          :php
+            echo $links;
+      .col-md-9.legal-box
+        :php
+          echo $panes;

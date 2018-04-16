@@ -5,14 +5,46 @@ block template
     Template Name: DS Summit LP
     */
 block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  section.top-section#whatis-header(data-bg="whatis-bg-header.jpg")
+  script.
+    var pageData = {'logos':[{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/ryder.png","alt_text":"Ryder"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/volvo.png","alt_text":"Volvo"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/samsung.png","alt_text":"Samsung"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/proctor-gamble.png","alt_text":"P & G"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/sherwin-williamns.jpg","alt_text":"Sherwin Williams"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/novartis.png","alt_text":"Novart"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/verizon.png","alt_text":"Verizon"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/nestle.png","alt_text":"Nestle"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/michelin.png","alt_text":"Michelin"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/mastercard.png","alt_text":"Mastercard"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/lloyds.png","alt_text":"Lloyd's Bank"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/ibm.png","alt_text":"IBM"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/humana.png","alt_text":"Humana"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/fedex.png","alt_text":"FedEx"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/edelman.png","alt_text":"Edelman"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/ebay.png","alt_text":"ebay"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/deloitte.png","alt_text":"Deloitte"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/darden.png","alt_text":"Darden"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/citi.png","alt_text":"citibank"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/cisco-gray.png","alt_text":"Cisco"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/cdw.png","alt_text":"CDW"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/capital-one.png","alt_text":"Capital One"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/bnsf.png","alt_text":"BNSF Railway"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/bmw.png","alt_text":"BMW Group"},{"logo":"https://dynamicsignal.com/wp-content/uploads/2018/02/air-canads.png","alt_text":"Air Canada"}]};
+  section.short-header#summit-header(data-bg="summit-header.jpg")
     .inner
-      img.center-image(src=themeDir+"images/whatis-marquee-center.png")
-      h1 DySi Summit 2018
+      img(src=themeDir+"images/summit-center.png")
+      h1 October 9-11, 2018 | San Francisco
+  section.container
+    .row
+      .col-md-12
+        :php
+          if( have_posts() ){
+           while( have_posts() ) {
+            the_post();
+          the_content();
+          }}
+  section.knockout-blue
+    .container
+      .row
+        .col-md-12
+          h1 Who Should Attend
+          p Internal communications • Corporate communications • Global communications
+            br
+            | Customer marketing • Advocacy marketing • Digital marketing • Social media • HR
   section.signup-form-bucket.container
     .row
       .col-md-12
-        #marketo-form-wrapper
-          form.marketo-form#mktoForm_1163
+        p.summit-email-header Enter your email to receive updates about the 2018 Dynamic Signal Summit
+        script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
+        #marketo-form-wrapper.summit
+          form.marketo-form#mktoForm_1948
+          script.
+            var validateCorporateEmail = true;
+            var confirmationUrl = "/dynamic-signal-summit-thank-you/"; 
+  section.logo-strip-bucket.summit
+    .container
+      .row
+        .col-md-12
+          h2 Our Customers Represent 20 percent of the Fortune 100
+          #logo-strip.logo-strip

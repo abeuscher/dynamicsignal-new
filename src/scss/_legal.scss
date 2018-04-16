@@ -1,0 +1,35 @@
+ul.panel-nav {
+  list-style:none;
+  margin:0;
+  padding:0;
+  li {
+    a {
+      line-height:1.8;
+      margin:0 0 $gutter-width;
+      text-transform: uppercase;
+      font-weight:600;
+      color:$header-blue;
+      &.active {
+        color:$black;
+        text-decoration:underline;
+      }
+    }
+  }
+}
+.legal-box {
+  border-left:1px solid $blue;
+}
+.content-pane {
+  display:none;
+  h2 {
+    margin-top:0;
+  }
+  &.active {
+    display:block;
+  }
+}
+.doc-date {
+  font-size:.8em;
+  font-style:italic;
+  text-align: center;
+}

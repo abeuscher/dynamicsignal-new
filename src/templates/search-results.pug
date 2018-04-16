@@ -1,0 +1,51 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Search Results
+    */
+block nav
+  - showSearch = "hide";
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  script(type='application/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+  script(type='application/javascript', src='https://www.openindex.io/js/openindex.a2x8qv1hpm9rtg3i.js')
+  script(type='application/javascript').
+    jQuery(window).ready(function() {
+    openindex.pager.autoStyle = false;
+    openindex.result.autoStyle = false;
+    openindex.result.showAddr = "url";
+    openindex.result.addrLink = true;
+    openindex.result.snippetSource = "hybrid";
+    openindex.result.showImage = false;
+    openindex.result.deduplicate = true;
+    openindex.result.fuzzynessThreshold = 0.7;
+    openindex.result.boostPopularDocuments = true;
+    openindex.date.pref = 21;
+    });
+  -
+    var pageData = {
+    "header":"Search Results",
+    "subheader":""
+    };
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          h1!=pageData.header
+          h2!=pageData.subheader
+  section.contact-details.container
+    .row
+      .col-md-12
+        #search-box-sidenav
+          form.search-form(action='')
+            input.query#oi-query(type='text', placeholder="Enter Search Term")
+            button.submit(type="submit")
+              i.fa.fa-search
+            #oi-spellcheck
+            #oi-header
+        #oi-results
+        #oi-pager
+        #oi-related-queries

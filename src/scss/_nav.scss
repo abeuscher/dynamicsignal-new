@@ -2,7 +2,7 @@
   cursor: pointer;
   transition: all 0s ease-in;
   position: fixed;
-  top:22px;
+  top:25px;
   right:20px;
   z-index:99;
   width: 36px;
@@ -35,7 +35,7 @@
     text-align: right;
     display: none;
     font-family: $nav-font;
-    padding-right:2em;
+    padding-right:2.75em;
     @include bp(s) {
       display: inline-block;
       vertical-align: middle;
@@ -60,13 +60,24 @@
           &:hover {
             color: $header-blue;
           }
+          &#btn-search-header {
+            position:absolute;
+            top:24px;
+            right:65px;
+            span {
+              display:block;
+            }
+
+          }
           &.dysi-open {
             color:$header-blue;
             border:1px solid $header-blue;
             border-radius:3px;
             padding:$gutter-width/4 $gutter-width/2;
+            transition:.25s all ease-in;
             &:hover {
-              color:lighten($header-blue,10%);
+              background:$blue;
+              color:$white;
             }
 
           }
@@ -79,9 +90,7 @@
           &.active {
             text-decoration: underline;
             &.dysi-open {
-              text-decoration:none;
-              color:$menu-blue;
-              border:1px solid $menu-blue;
+              display:none;
             }
           }
         }

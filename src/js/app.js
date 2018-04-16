@@ -27,9 +27,9 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "Experience DySi Open - Our Free Mobile App",
-    "url": "/dysi-open/",
-    "buttonText": "Learn More"
+    "cta": "Now Available: The Definitive Guide to Employee Communication and Engagement",
+    "url": "https://resources.dynamicsignal.com/ebooks-guides/the-definitive-guide-to-employee-communication-and-engagement",
+    "buttonText": "Download"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
@@ -101,14 +101,23 @@ window.addEventListener("load", function() {
       mobilePanels[i].style.display = "none";
     }
   }
+
+  // Activate UTM Catcher for Marketo
   var getForm = new FormHandler();
   getForm.catchUTM();
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
-  _st('install','yaRSUx3bxMp6FRbWYPNP','2.0.0');
+  // Activate search forms
+  var searchForms = document.querySelectorAll(".search-form");
+  for (i=0;i<searchForms.length;i++) {
+    var thisForm = searchForms[i];
+    thisForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      var query = this.querySelectorAll(".query")[0].value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+      location.href="/search/#q=" + encodeURI(query);
+      return false;
+    });
+
+  }
 });
 
 function getMobileOperatingSystem() {
@@ -183,6 +192,21 @@ var siteActions = [{
     }
   },
   {
+    "element": "btn-search-header",
+    "action": function() {
+      var btn = document.getElementById("btn-search-header");
+      var btnClose = document.getElementById("btn-close-search");
+      var searchBox = document.getElementById("search-box-header");
+      btn.addEventListener("click", function() {
+        searchBox.classList.toggle("active");
+      });
+      btnClose.addEventListener("click", function() {
+        searchBox.classList.toggle("active");
+      });
+
+    }
+  },
+  {
     "element": "cta-bar",
     "action": function() {
       if (siteSettings.ctaBar.toggle) {
@@ -223,6 +247,30 @@ var siteActions = [{
         }
       }
       bucket.append(thisRow);
+    }
+  },
+  {
+    "element": "legal-docs",
+    "action": function() {
+      var leftLinks = document.querySelectorAll(".panel-nav a");
+      var viewPanels = document.querySelectorAll(".content-pane");
+      for (i=0;i<leftLinks.length;i++) {
+        var thisLink = leftLinks[i];
+        thisLink.addEventListener("click", function() {
+          if (!this.classList.contains("active")) {
+            clearSet(leftLinks);
+            clearSet(viewPanels);
+            newIndex = this.getAttribute("data-tab");
+            document.getElementById("content-pane-"+newIndex).classList.add("active");
+            document.getElementById("nav-tab-"+newIndex).classList.add("active");
+          }
+        });
+      }
+      function clearSet(items) {
+        for(i=0;i<items.length;i++) {
+          items[i].classList.remove("active");
+        }
+      }
     }
   },
   {

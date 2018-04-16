@@ -5,6 +5,8 @@ block template
     Template Name: Company Page
     */
 block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
   :php
@@ -109,7 +111,14 @@ block content
               a(href="https://resources.dynamicsignal.com/press/dynamic-signal-raises-36-5-million-to-transform-employee-communication-and-engagement-in-the-enterprise") Dynamic Signal Raises $36.5 Million to Transform Employee Communication and Engagement in the Enterprise
             p Released 2/20/18
               a.small-link(href="https://resources.dynamicsignal.com/press/dynamic-signal-raises-36-5-million-to-transform-employee-communication-and-engagement-in-the-enterprise") read
-            a.button(href="/press") News and Press 
+            a.button(href="/press") Press 
+          li.dot
+            h2 News
+            h3 
+              a(href="https://resources.dynamicsignal.com/news/why-intranets-are-still-key-digital-workplace-networks") Why Intranets Are Still Key Digital Workplace Networks
+            p Released 3/5/18
+              a.small-link(href="https://resources.dynamicsignal.com/news/why-intranets-are-still-key-digital-workplace-networks") read
+            a.button(href="/news") News
   section.bottom-cta
     .container
       .row

@@ -105,7 +105,15 @@
 }
 .blog-content .speaker {
   margin-bottom:$gutter-width;
-
+  @include bp(m) {
+    float:left;
+    width:50%;
+    &:after {
+      content:'';
+      display:block;
+      width:100%;
+    }
+  }
   .thumb {
     width:100%;
     background-size:cover;
@@ -125,10 +133,12 @@
   }
   h3 {
     font-size:20px;
-    margin:0 0 $gutter-width/2;
+    font-weight:600;
+    margin:$gutter-width 0 $gutter-width/4;
   }
   h4, h5 {
     font-size:16px;
+    font-weight:400;
     line-height:1.2;
     margin:0 0 $gutter-width/4;
     padding:0;
