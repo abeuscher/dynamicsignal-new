@@ -113,7 +113,7 @@ window.addEventListener("load", function() {
     thisForm.addEventListener("submit", function(e) {
       e.preventDefault();
       var query = this.querySelectorAll(".query")[0].value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-      location.href="/search/#q=" + encodeURI(query);
+      location.href="https://dynamicsignal.com/search/#q=" + encodeURI(query);
       return false;
     });
 

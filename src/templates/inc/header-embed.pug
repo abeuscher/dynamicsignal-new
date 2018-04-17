@@ -16,3 +16,14 @@ header.page-header#page-header
             a(href=siteroot+"/resources/") Resources
           li
             a.dysi-open(href=siteroot+"/dysi-open/") Try Now
+          li
+            a#btn-search-header(href="#")
+              span.fa.fa-search
+            #search-box-header
+              a#btn-close-search(href="#")!="&times;"
+              form.search-form(action='')
+                input.query#oi-query(type='text', placeholder="Enter Search Term")
+                button.submit(type="submit")
+                  i.fa.fa-search
+                span#oi-spellcheck
+                span#oi-header
