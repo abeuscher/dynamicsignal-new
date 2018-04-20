@@ -154,10 +154,10 @@ $sideNavWidth: 300px;
   z-index: 0;
   width:$sideNavWidth;
   .inner {
-    padding: 100px $gutter-width;
+    padding: 70px $gutter-width;
     text-align:left;
     @include bp(m) {
-      padding: 100px $gutter-width*2;
+      padding: 70px $gutter-width*2;
     }
   }
 

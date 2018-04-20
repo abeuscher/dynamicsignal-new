@@ -52,6 +52,7 @@ var siteSettings = {
     "pastEventListing": require("./inc/past-event-listing.pug"),
     "buttonPastEvents": require("./inc/button-past-events.pug"),
     "jobFilter": require("./inc/job-filter.pug"),
+    "backgroundPicker": require("./inc/header-picker.pug"),
     "whatisSlide": require("./inc/whatis-carousel-slide.pug")
   },
   "breakpoints": {
@@ -252,6 +253,7 @@ var siteActions = [{
   {
     "element": "legal-docs",
     "action": function() {
+      console.log("test");
       var leftLinks = document.querySelectorAll(".panel-nav a");
       var viewPanels = document.querySelectorAll(".content-pane");
       for (i=0;i<leftLinks.length;i++) {
@@ -269,6 +271,29 @@ var siteActions = [{
       function clearSet(items) {
         for(i=0;i<items.length;i++) {
           items[i].classList.remove("active");
+        }
+      }
+    }
+  },
+  {
+    "element":"background-picker",
+    "action":function() {
+      console.log("fire");
+      var backgroundPicker = document.getElementById("background-picker");
+      backgroundPicker.appendChild(parseHTML(siteSettings.templates.backgroundPicker()));
+      var bgBtns = document.getElementsByClassName("button-picker");
+      var bgImages = [];
+      for(i=1;i<7;i++) {
+        bgImages.push(siteSettings.imagePath + "header-pattern-0" + i + ".jpg");
+      }
+      for(i=0;i<bgBtns.length;i++) {
+        var thisBtn = bgBtns[i];
+        thisBtn.addEventListener("click", changeBG);
+        function changeBG(e) {
+          e.preventDefault();
+          var idx = event.target.getAttribute("data-index");
+          var header = document.getElementById("this-header");
+          header.style.backgroundImage = "url('"+ bgImages[idx-1] + "')";
         }
       }
     }

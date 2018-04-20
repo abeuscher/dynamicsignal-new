@@ -34,7 +34,7 @@
   padding-left: $gutter-width;
   padding-right: $gutter-width;
   @include bp(s) {
-    width: 750px!important;
+    width: auto;
   }
   @include bp(m) {
     width: 970px!important;
@@ -57,7 +57,7 @@
     margin:170px auto $gutter-width*2;
     padding: 0 $gutter-width;
     @include bp(s) {
-      width: 750px;
+      width: auto;
     }
     @include bp(m) {
       margin-top:114px;

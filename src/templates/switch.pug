@@ -4,6 +4,10 @@ block template
     /*
     Template Name: Switch Page
     */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
 block content
   -
     var pageData = {
@@ -19,13 +23,10 @@ block content
     };
   include ./inc/hero.pug
   section.switch-video.container
-    .row
-      .col-md-12
-        .video-thumb(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
-          .full-gradient
-          .content.left
-            h2!=pageData.videoInfo.header
-            p.no-quote!=pageData.videoInfo.quote
-            a.video-play(href="#")
-              span.cta!=pageData.videoInfo.cta
-              i.fa.fa-play
+    .customer-video-thumb.video-activator(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
+      .left-gradient
+      .content.left.shrunk
+        h2!=pageData.videoInfo.header
+        a.button(href="#")
+          span.cta!=pageData.videoInfo.cta
+          i.fa.fa-play
