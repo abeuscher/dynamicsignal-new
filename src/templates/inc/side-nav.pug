@@ -91,7 +91,7 @@
     },
     {
       "title": "Support",
-      "url": "/support/"
+      "url": "https://support.dynamicsignal.com/"
     }
   ];
   
@@ -115,8 +115,14 @@ aside.sideMenu.right#side-nav
           else {
             url = item.url;
             }
+            if (item.url.indexOf("support.dynamicsignal.com")>0) {
+              targetUrl = "_blank";
+            }
+            else {
+              targetUrl = "_self"
+            }
         li
-          a(href=locals.siteurl + item.url,class=classname)!=item.title
+          a(href=locals.siteurl + item.url,class=classname,target=targetUrl)!=item.title
           if item.children
             ul
               for child in item.children
@@ -128,4 +134,10 @@ aside.sideMenu.right#side-nav
                     else {
                       childurl = child.url;
                       }
-                  a(href=childurl)!=child.title
+                    if (child.url.indexOf("support.dynamicsignal.com")>0) {
+                      targetUrl = "_blank";
+                    }
+                    else {
+                      targetUrl = "_self"
+                    }
+                  a(href=childurl,target=targetUrl)!=child.title

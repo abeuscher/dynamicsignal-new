@@ -67,7 +67,9 @@
             span {
               display:block;
             }
-
+            &.short {
+              top:11px; 
+            }
           }
           &.dysi-open {
             color:$header-blue;

@@ -6,7 +6,6 @@ ul.panel-nav {
     a {
       line-height:1.8;
       margin:0 0 $gutter-width;
-      text-transform: uppercase;
       font-weight:600;
       color:$header-blue;
       &.active {
@@ -27,6 +26,12 @@ ul.panel-nav {
   &.active {
     display:block;
   }
+  ol,ul {
+    li {
+      margin-top:$gutter-width;
+    }
+  }
+  line-height:1.8;
 }
 .doc-date {
   font-size:.8em;

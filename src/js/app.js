@@ -27,9 +27,9 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "Now Available: The Definitive Guide to Employee Communication and Engagement",
-    "url": "https://resources.dynamicsignal.com/ebooks-guides/the-definitive-guide-to-employee-communication-and-engagement",
-    "buttonText": "Download"
+    "cta": "New Report : State of Employee Communication and Engagement",
+    "url": "https://resources.dynamicsignal.com/ebooks-guides/the-state-of-employee-communication-and-engagement-2",
+    "buttonText": "Read Now"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
@@ -283,7 +283,7 @@ var siteActions = [{
       backgroundPicker.appendChild(parseHTML(siteSettings.templates.backgroundPicker()));
       var bgBtns = document.getElementsByClassName("button-picker");
       var bgImages = [];
-      for(i=1;i<7;i++) {
+      for(i=1;i<9;i++) {
         bgImages.push(siteSettings.imagePath + "header-pattern-0" + i + ".jpg");
       }
       for(i=0;i<bgBtns.length;i++) {
@@ -449,10 +449,12 @@ var siteActions = [{
         .on("enter", function(e) {
           document.getElementById("page-header").classList.add("active");
           document.getElementById("toggle-side-nav").classList.add("short");
+          document.getElementById("btn-search-header").classList.add("short");
         })
         .on("leave", function(e) {
           document.getElementById("page-header").classList.remove("active");
           document.getElementById("toggle-side-nav").classList.remove("short");
+          document.getElementById("btn-search-header").classList.remove("short");
         })
         .addTo(headController);
     }

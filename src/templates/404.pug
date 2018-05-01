@@ -5,6 +5,7 @@ block template
     Template Name: 404 Page
     */
 block nav
+  - showSearch = "hide";
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug
   include ./inc/header.pug
@@ -18,5 +19,10 @@ block content
         h2 This is somewhat embarrassing, isn't it?
         p No file was found at this location.
         p Maybe try a search?
-        :php
-          get_search_form();
+        #search-box-sidenav
+          form.search-form(action='')
+            input.query#oi-query(type='text', placeholder="Enter Search Term")
+            button.submit(type="submit")
+              i.fa.fa-search
+            #oi-spellcheck
+            #oi-header
