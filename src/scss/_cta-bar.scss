@@ -1,4 +1,4 @@
-#cta-bar {
+#cta-bar, #gdpr-warning {
   display:none;
   @include bp(s) {
     display:block;

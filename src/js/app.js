@@ -11,6 +11,7 @@ var ScrollSite = require("./parallax-bg/index.js");
 var ActivateVideos = require("./video-handler/index.js");
 var Pies = require("./pie-chart/index.js");
 var Bars = require("./bar-chart/index.js");
+var Cookies = require("js-cookie");
 
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
@@ -25,6 +26,7 @@ var PDFHandler = require("./pdf-handler/index.js");
 var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
+  "gdprCookie":"ds-gdpr",
   "ctaBar": {
     "toggle": true,
     "cta": "New Report : State of Employee Communication and Engagement",
@@ -53,6 +55,7 @@ var siteSettings = {
     "buttonPastEvents": require("./inc/button-past-events.pug"),
     "jobFilter": require("./inc/job-filter.pug"),
     "backgroundPicker": require("./inc/header-picker.pug"),
+    "gdprPopup": require("./inc/gdpr-popup.pug"),
     "whatisSlide": require("./inc/whatis-carousel-slide.pug")
   },
   "breakpoints": {
@@ -72,7 +75,7 @@ window.addEventListener("load", function() {
       return true;
     }
   }
-
+  triggerGDPR();
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
@@ -752,3 +755,44 @@ function activateImages() {
     el.style.backgroundImage = "url('" + imageArray.url + "')";
   }
 }
+
+function triggerGDPR() {
+  
+  if (!Cookies.get(siteSettings.gdprCookie)) {
+    var warning = parseHTML(siteSettings.templates.gdprPopup());
+    document.body.appendChild(warning);
+    //document.body.classList.add("gdpr-open");
+    var theButton = document.getElementById("btn-yes");
+    theButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      Cookies.set(siteSettings.gdprCookie,"true",{
+        expires: 365
+      });
+      //document.body.classList.remove("gdpr-open");
+      warning.remove();
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MQKZ8M');
+      return false;
+    });
+  }
+}
+
+(function (arr) {
+  arr.forEach(function (item) {
+    if (item.hasOwnProperty('remove')) {
+      return;
+    }
+    Object.defineProperty(item, 'remove', {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function remove() {
+        if (this.parentNode !== null)
+          this.parentNode.removeChild(this);
+      }
+    });
+  });
+})([Element.prototype, CharacterData.prototype, DocumentType.prototype]);

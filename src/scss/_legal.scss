@@ -1,3 +1,18 @@
+body.gdpr-open {
+  overflow:hidden;
+  #wrapper {
+    &:before {
+      display:block;
+    }
+  }
+
+
+}
+#gdpr-warning {
+  bottom:50px;
+}
+
+
 ul.panel-nav {
   list-style:none;
   margin:0;
