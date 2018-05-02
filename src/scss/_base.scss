@@ -1100,6 +1100,15 @@ ul.gdpr {
 .gdpr-section {
   padding-bottom:$gutter-width*4;
   padding-top:0;
+  p, li {
+    line-height:1.8;
+  }
+  a {
+    text-decoration:underline;
+  }
+  h4 {
+    color:$header-blue;
+  }
   h3 {
     color:$header-blue;
     font-size:30px;
@@ -1107,7 +1116,6 @@ ul.gdpr {
     padding:0;
     background-size:contain;
     background-position:left top;
-    padding-left:50px;
     background-repeat: no-repeat;
     &.policy {
         margin-top:0;
