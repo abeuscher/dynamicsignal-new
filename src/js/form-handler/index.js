@@ -76,6 +76,7 @@ FormHandler.prototype.fixForm = function() {
   var self = this;
   var theForm = document.querySelectorAll(".marketo-form")[0];
   var theID = theForm.id.split("_")[1];
+  this.id = theID;
   if (!theID) {
     document.getElementById("marketo-form-wrapper").style.display = "none";
   } else {
@@ -139,12 +140,11 @@ FormHandler.prototype.fixForm = function() {
       if (theID == "1163") {
         self.recaptcha(form, theForm);
       }
-      self.writeUTM();
-      if (typeof validateCorporateEmail !== 'undefined') {
+      else if (typeof validateCorporateEmail !== 'undefined') {
         form.onValidate(function() {
           var email = form.vals().Email;
           if (email) {
-            if (!self.isEmailGood(email) && theID != 1) {
+            if (!self.isEmailGood(email) && this.id != 1) {
               form.submittable(false);
               var emailElem = form.getFormElem().find("#Email");
               form.showErrorMessage("A valid business email address is required.", emailElem);
@@ -154,6 +154,8 @@ FormHandler.prototype.fixForm = function() {
           }
         });
       }
+      self.writeUTM();
+      
 
       if (typeof confirmationUrl !== 'undefined') {
         form.onSuccess(function(values, followUpUrl) {
@@ -168,6 +170,7 @@ FormHandler.prototype.fixForm = function() {
   }
 }
 FormHandler.prototype.recaptcha = function(form, theForm) {
+  var self = this;
   var formEl = form.getFormElem()[0],
     emailEl = formEl.querySelector('#Email'),
     submitEl = formEl.querySelector('BUTTON[type="submit"]'),
@@ -182,19 +185,31 @@ FormHandler.prototype.recaptcha = function(form, theForm) {
   formEl.appendChild(recaptchaEl);
 
   form.onValidate(function(builtInValidation) {
+    console.log("here");
     if (!builtInValidation) return;
-
     var recaptchaResponse = grecaptcha.getResponse();
-    if (!recaptchaResponse) {
+    var flag = true;
+    if (!recaptchaResponse || recaptchaResponse=="") {
       recaptchaEl.classList.add('mktoInvalid');
-    } else {
-      recaptchaEl.classList.remove('mktoInvalid');
-      form.addHiddenFields({
-        lastRecaptchaUserInput: recaptchaResponse,
-        captchaStatus: true
-      });
-      form.submittable(true);
-    }
+      flag = false;
+    } else if (typeof validateCorporateEmail !== 'undefined') {
+      var email = form.vals().Email;
+      if (email) {
+        
+        if (!self.isEmailGood(email) && this.id != 1) {
+          flag = false;
+          var emailElem = form.getFormElem().find("#Email");
+          form.showErrorMessage("A valid business email address is required.", emailElem);
+        }else {
+          recaptchaEl.classList.remove('mktoInvalid');
+          form.addHiddenFields({
+            lastRecaptchaUserInput: recaptchaResponse,
+            captchaStatus: true
+          });
+        }
+      }
+    } 
+    form.submittable(flag);
   });
   var theButton = theForm.querySelectorAll("iframe")[0];
   theButton.addEventListener("click", function() {

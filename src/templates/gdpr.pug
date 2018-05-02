@@ -12,142 +12,77 @@ block content
   section.top-section-gdpr(data-bg="gdpr-header.jpg")
     .inner
       h1 GDPR Readiness
-  section.container
+  section.container.gdpr-section
     .row
         .col-md-12
-            h2 Getting Ready for the General Data Protection Regulation
-            p On May 25, 2018, the European Commission’s General Data Protection Regulation (GDPR) will go into effect, representing an extraordinary shift in the way businesses around the world will be expected to operate when they gather, process, maintain, and protect personal data. Unlike past European Union (EU) privacy mandates, GDPR applies to every organization—based anywhere in the world—that handles the personal data of an EU resident.
-            p At Dynamic Signal, we are keenly aware that organizations who process personal data of an EU resident need to be sure their service providers support readiness with the GDPR.  That’s why we are committed to ensuring that the Dynamic Signal SaaS platform is GDPR-readiness by May 25, 2018.
-            h3 How are we getting ready for GDPR?
-  - 
-    var sections = [
-        {
-            "title":"Our Policies",
-            "classname":"policy",
-            "children":[
-            {
-                "header":"Identify Key Data Used",
-                "content":"Names, business emails, social network user name, IP address",
-                "gdpr":"We process data only according to the direction of our clients, the data controllers."
-            },
-            {
-                "header":"Privacy Policy & Terms of Use",
-                "content":"We are updating our Privacy Policies and Terms of Use.",
-                "gdpr":"EU Privacy Shield certification is also in process for our new Privacy Policies."
-            },
-            {
-                "header":"Data Subject Rights",
-                "content":"We have enhanced policies and procedures so Dynamic Signal and our clients can extend rights of access, erasure, portability, right to be forgotten, and similar privacy rights where required for data subjects.",
-                "gdpr":"We’ve developed procedures to handle Article 12 data subject requests and a process for the deletion and anonymization of personal data to legitimate requests for erasure."
-            },
-            {
-                "header":"Data Security",
-                "content":"Dynamic Signal is enhancing policies and procedures to help minimize risks of improper use or protection of personal data, including information security, incident response and disaster recovery plans.",
-                "gdpr":"We encrypt all platform data in transit and all backups. We are also conducting an SSAE 16 SOC2 internal audit in addition to our already SOC2 compliant data centers."
-            },
-            {
-                "header":"Vendor Compliance ",
-                "content":"We enhanced our procedures and supporting documentation to assess vendors and sub-processors, including securing appropriate data protection and similar agreements with our vendors who handle personal data on our behalf.",
-                "gdpr":"Much like you, vendor and sub-processor management is a key element of our go-forward GDPR planning."
-            },
-            {
-                "header":"Privacy Shield",
-                "content":"Our internal policies and practices conform to the Privacy Shield principles (www.privacyshield.gov), and we are self-certifying with the EU-U.S. and Swiss-U.S. Privacy Shield self-certification program operated by the U.S. Department of Commerce.",
-                "gdpr":"As stated in our Data Protection Addendum, if Privacy Shield is not recognized as a legitimate basis for the transfer of Personal Data outside the EU, then we offer toour clients the EU Standard Contractual Clauses for such transfers."
-            }
-        ]
-        } ,
-        {
-            "title":"Our Platform",
-            "classname":"product",
-            "children":[
-            {
-                "header":"Data Inventory",
-                "content":"We’ve developed a registry of personal data holdings, including a record of processing activities.",
-                "gdpr":"Our ability to organize and track processing activities allows for better data management. "
-            },
-            {
-                "header":"Data Privacy Impact Assessments (DPIAs)",
-                "content":"We’ve conducted assessments of our Platform and other processes that could pose risk to data subjects. OurDPIA process and template takes into account guidance form the CNIL (French Data Protection Authority) and guidance from the Article 29 Working Party.",
-                "gdpr":"These DPIAs are conducted based on the requirements in Article 35 of the GDPR.  "
-            },
-            {
-                "header":"Breach Notification",
-                "content":"Our processes include a breach notification procedure to comply with the 72-hour breach notification requirement under the GDPR.",
-                "gdpr":"Our intent is to notify affected controllers prior to notifying the EU supervisory authority, and within 48 hours of a breach when possible."
-            },
-            {
-                "header":"Data Minimization",
-                "content":"We intend to the follow the data minimization and purposes limitation principles set forth in the GDPR.",
-                "gdpr":"Data minimization efforts limit GDPR exposure since we will only process data required for the Platform."
-            },
-            {
-                "header":"Data Deletion",
-                "content":"Our data logs are retained for 90 days and we delete all data at the end of our client contract within 90 days of termination of the contract.",
-                "gdpr":"We do not retain any data after the termination of our services. Data is returned to clients upon their request."
-            },
-            {
-                "header":"Privacy By Design",
-                "content":"For new products and enhancements, we will proactively apply the Data Protection by Design principles.",
-                "gdpr":"GDPR principles are integrated into our go-forward product planning. "
-            }
-        ]
-        } ,
-                {
-            "title":"Our Personnel",
-            "classname":"staff",
-            "children":[
-            {
-                "header":"Data Protection Officer (DPO)",
-                "content":"Dynamic Signal has appointed David Manek, CIPP/E & CIPM from Navigant Consulting, to serve as interim third-party data protection officer under the GDPR, with direct access to our executives. ",
-                "gdpr":"Having a third-party DPO provides an extra layer of governance and oversight for any data privacy concerns."
-            },
-            {
-                "header":"Privacy Office",
-                "content":"We formed a Privacy Office with internal department liaisons who serve as the stewards of privacy going forward for Dynamic Signal,including members of our legal, architecture, security and customer success teams.",
-                "gdpr":"Having well-trained internal department liaisons ensures broader understanding and more consistent application of GDPR data privacy concerns."
-            },
-            {
-                "header":"Data Protection Agreement",
-                "content":"We provide our Data Protection Addendum to any client, available for download via our website - [website link]",
-                "gdpr":"Our DPA accurately reflects GDPR standards and requirements."
-            },
-            {
-                "header":"Employee Training",
-                "content":"We have provided and will continue to provide all our employees with GDPR training to ensure that all employees approach each facet of their work with privacy in mind.",
-                "gdpr":"Specifically, in March 2018, we held privacy training and awareness for all employees, focusing on GDPR. The training was led by Navigant and was provided in multiple sessions to allow all employees to attend.  We require all new employees to review such training.  It is our plan to hold additional training sessions at least annually."
-            }
-        ]
-        }
-        ];
-  section.gdpr-section
-    .container
-        .row
-            .col-md-12
-                for section in sections
-                    h3(class=section.classname)!=section.title
-                    .gdpr-table
-                        .gdpr-table-row
-                            .gdpr-table-cell.header-cell.title
-                                p Activity
-                            .gdpr-table-cell.header-cell.content
-                                p Details
-                            .gdpr-table-cell.header-cell.content
-                                p GDPR Correlation
-                        for item in section.children
-                            .gdpr-table-row
-                                .gdpr-table-cell.title
-                                    p
-                                        span.gdpr-label Activity
-                                        span.gdpr-content!=item.header
-                                .gdpr-table-cell.content
-                                    p
-                                        span.gdpr-label Details
-                                        span.gdpr-content!=item.content
-                                .gdpr-table-cell.content
-                                    p
-                                        span.gdpr-label GDPR Correlation
-                                        span.gdpr-content!=item.gdpr
+            h2 PREPARING FOR THE GENERAL DATA PROTECTION REGULATION
+            p On May 25, 2018, the 
+                a(href='https://gdpr-info.eu/') European Commission’s General Data Protection Regulation
+                |  (GDPR) will go into effect. The regulation is designed to give EU citizens greater control over their personal data and contains significant changes to European data privacy legislation that affects any company offering goods or services to EU citizens, as well as companies who process their personal data.
+            p At Dynamic Signal, our customers can trust that we have and will continue to make GDPR compliance a priority. We are committed to ensuring that the Dynamic Signal platform is GDPR-ready by May 25, 2018, and we have devoted significant effort and resources to maintain this readiness for the future. Below describes what GDPR is, and what Dynamic Signal is doing to be ready.
+            h3 The Road to GDPR Compliance 
+            iframe(width='560', height='315', src='https://www.youtube.com/embed/1xy_afgALSI', frameborder='0', allow='autoplay; encrypted-media', allowfullscreen='')
+            h3 What is GDPR? 
+            p The GDPR is an EU comprehensive data protection law going into effect May 25, 2018 that strengthens personal data protections in a time of continuous and rapid technological developments, increased globalization and cross-border flows of personal data. It replaces the individual national data protection laws in EU member states with a single set of regulations that is enforceable throughout the EU.
+            h3 What does GDPR regulate? 
+            p GDPR regulates the “processing” of data for EU individuals – including collection, tracking, storage, transfer or use. Any organization that processes personal data of EU individuals is responsible to comply with GDPR regardless of whether or not the organization has a physical presence in the EU. GDPR expands the definition of “personal data” broadly and covers any information related to an identified or identifiable individual (a “data subject” in the regulation).
+            h3 How does GDPR change privacy rights? 
+            p GDPR changes privacy rights in the following ways (summary, not exhaustive): 
+            ol
+                li Details expanded privacy rights for EU individuals including data breach notifications and additional security requirements for organizations
+                li New customer profiling and monitoring requirements 
+                li Binding corporate rules to legalize transfers of personal data outside the EU 
+                li Up to a 4% global revenue fine for organizations that fail to adhere to GDPR compliance obligations
+                li Establishes a 
+                    a(href='http://ec.europa.eu/information_society/newsroom/image/document/2016-51/wp244_en_40857.pdf') central point of enforcement through supervisory authorities
+                    |  appointed in each country coordinated by the European Data Protection Board
+            h3 Dynamic Signal’s GDPR Compliance Overview 
+            p Dynamic Signal began our GDPR journey in 2017 by partnering with Navigant, an independent specialty consulting firm whose professional services include dispute, investigative, economic, operational, risk management technology, financial and regulatory advisory solutions. Navigant has a specialty in regulatory compliance and privacy. The Navigant team consists of privacy consultants who formerly worked for the European Data Protection Supervisor’s office and the Federal Bureau of Investigation. The readiness program contains privacy management activities that map directly back to the articles set forth in GDPR and align with guidance provided by EU data protection authorities, as outlined below.
+                a(href='https://www.navigant.com/-/media/www/site/insights/legal-technology/2017/becoming-gdpr-ready.pdf') Download Navigant’s Becoming GDPR Ready guide
+            h4 OUR POLICIES
+            ul
+                li
+                    strong Privacy Policy, Terms of Use, Data Protection Agreement
+                    strong  
+                    | – We are updating our Platform Privacy Policy and Terms of Use, and have a new Data Protection Addendum available for download, all of which reflect GDPR standards.
+                li
+                    strong Privacy Shield 
+                    | – Having ensured that our internal policies and practices conform to the Privacy Shield principles (www.privacyshield.gov), we are self-certifying with the EU-U.S. and Swiss-U.S. Privacy Shield self-certification program operated by the U.S. Department of Commerce. Also, as we provide for in our Data Protection Addendum, if Privacy Shield is no longer recognized as a legitimate basis for the transfer of Personal Data outside the EU, then we offer to our customers the EU Standard Contractual Clauses for such transfers. 
+                    br
+                li
+                    strong Data Privacy Impact Assessments (DPIAs)
+                    |  – We are completing a DPIA for our platform and evaluating other processes for the need to conduct DPIAs where those processes are high-risk to data subjects. Such DPIAs are conducted based on the requirements in Article 35 of the GDPR.  Our DPIA process and template takes into account guidance form the CNIL (French Data Protection Authority) and guidance from the Article 29 Working Party.
+                li
+                    strong Data Security
+                    |  – Dynamic Signal is enhancing policies and procedures to help minimize risks of improper use or protection of personal data, including information security, incident response and disaster recovery plans.
+                li
+                    strong Data Subject Rights
+                    |  – We are enhancing and developing policies and procedures so Dynamic Signal, and our customers, can extend rights of access, erasure, portability, right to be forgotten, and similar privacy rights where required to data subjects. For example, we are developing new procedures to handle Article 12 data subject requests and a process for the deletion and anonymization of personal data to legitimate requests for erasure.
+                li
+                    strong Vendor Compliance Maintenance 
+                    | – We are enhancing procedures and supporting documentation to assess vendors and procurement processes, including securing appropriate data protection and similar agreements with our vendors who handle personal data on our behalf.
+            h4 OUR PLATFORM
+            ul
+                li
+                    strong Privacy By Design
+                    | – For new products and enhancements, we will proactively apply the Data Protection by Design principles. 
+                li
+                    strong Data Inventory
+                    | – We are developing a registry of personal data holdings, including a record of processing activities, and relevant attributes such as the type of personal data, owner of the data, and basis for processing the data.
+                li
+                    strong Data Security
+                    | – In addition to enhancing policies and procedures to help minimize risks of improper use or protection of personal data, we are also enhancing our security practices and protocols.   For instance, we are conducting an SSAE 16 SOC2 internal audit in addition to our already SOC2 compliant data centers. We encrypt all platform data in transit and all backups. Our data logs are retained for 90 days and we delete all data at the end of our customer contract within 90 days from termination of the contract.
+            h4 OUR PERSONNEL
+            ul
+                li
+                    strong Data Protection Officer (DPO)
+                    | – Dynamic Signal has appointed David Manek, CIPP/E, CIPM, from Navigant Consulting, to serve as its interim third-party DPO under the GDPR, with direct access to our executives. This provides an extra layer of governance and oversight for any data privacy concerns.
+                li
+                    strong Privacy Office 
+                    | – We have formed a Privacy Office and internal department liaisons who serve as the stewards of privacy going forward for Dynamic Signal, including members of our legal, architecture, security and customer success teams. 
+                li
+                    strong Employee Training
+                    | – We have provided and will continue to provide all our employees with GDPR training to ensure that all employees approach each facet of their work with privacy in mind.
   section.bottom-cta
     .container
       .row
