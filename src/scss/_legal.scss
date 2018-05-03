@@ -6,10 +6,25 @@ body.gdpr-open {
     }
   }
 
-
 }
 #gdpr-warning {
-  bottom:50px;
+  bottom:0;
+  background:rgba(27,49,82,1);
+  color:$white;
+  h2, a {
+    color:$white;
+  }
+  padding-top:40px;
+  display:block;
+  a.button-cta-bottom {
+    background: $header-blue;
+    &:hover {
+      background:lighten($header-blue,20%);
+    }
+  }
+  @include bp(m) {
+    height:150px;
+  }
 }
 
 

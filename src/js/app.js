@@ -137,28 +137,33 @@ function getMobileOperatingSystem() {
 
 
 var siteActions = [{
-    "element": "parallax",
-    "action": function() {
-      var Gallery = false;
+  "element": "parallax",
+  "action": function() {
+    var Gallery = false;
 
-      function activateScroll() {
+    function activateScroll() {
 
-        if (window.innerWidth > siteSettings.breakpoints.m) {
-          if (!Gallery) {
-            Gallery = new ScrollSite(siteSettings);
-          } else {
-            Gallery.resize();
-          }
+      if (window.innerWidth > siteSettings.breakpoints.m) {
+        if (!Gallery) {
+          Gallery = new ScrollSite(siteSettings);
         } else {
-          if (Gallery) {
-            Gallery.destroy();
-          }
+          Gallery.resize();
+        }
+      } else {
+        if (Gallery) {
+          Gallery.destroy();
         }
       }
-      window.addEventListener("resize", activateScroll)
-      activateScroll();
     }
-  },
+    window.addEventListener("resize", activateScroll)
+    activateScroll();
+  }
+},{
+  "element": "clear-cookies",
+  "action": function() {
+    Cookies.remove(siteSettings.gdprCookie)
+  }
+},
   {
     "element": "side-nav",
     "action": function() {
