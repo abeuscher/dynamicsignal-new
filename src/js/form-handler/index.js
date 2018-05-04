@@ -137,6 +137,12 @@ FormHandler.prototype.fixForm = function() {
         }
 
       }
+      if (typeof confirmationURL !== 'undefined') {
+        form.onSuccess(function(values, followUpUrl) {
+          location.href = confirmationURL;
+          return false;
+        });
+      }
       if (theID == "1163") {
         self.recaptcha(form, theForm);
       }
@@ -157,12 +163,7 @@ FormHandler.prototype.fixForm = function() {
       self.writeUTM();
       
 
-      if (typeof confirmationUrl !== 'undefined') {
-        form.onSuccess(function(values, followUpUrl) {
-          location.href = confirmationUrl;
-          return false;
-        });
-      }
+
 
 
     });

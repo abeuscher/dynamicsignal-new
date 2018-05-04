@@ -1,0 +1,45 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Legal Docs Main Page
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  -
+    var pageData = {
+    "header":"User Privacy at Dynamic Signal"
+    };
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          h1!=pageData.header
+  section#legal-docs.container
+    .row
+      .col-md-12
+        ul.privacy-tiles
+            li
+                a(href='/privacy/website-marketing-privacy-policy/')  
+                    span.fa.fa-lock
+                    | Website / Marketing Privacy Policy
+            li
+                a(href='/privacy/platform-privacy-policy/')
+                    span.fa.fa-lock
+                    | Platform Privacy Policy
+            li
+                a(href='/privacy/platform-terms-of-use/')
+                    span.fa.fa-file
+                    | Platform Terms of Use
+            li
+                a(href='/privacy/dysi-open-privacy-policy/')
+                    span.fa.fa-lock
+                    | DySi Open Privacy Policy
+            li
+                a(href='/privacy/dysi-open-terms-of-use/')
+                    span.fa.fa-file
+                    | DySi Open Terms of Use
+        

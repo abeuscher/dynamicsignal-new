@@ -9,36 +9,51 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  -
-    var pageData = {
-    "header":"Privacy at Dynamic Signal"
-    };
+  :php
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Privacy",
+      "link"=>"/privacy/"
+    ));
   section.top-section-interior
     .container
       .row
         .col-md-12
-          h1!=pageData.header
-  section#legal-docs.container
+          include ./inc/breadcrumbs.pug
+          h1
+            :php
+              the_title();
+  section.container
     .row
       :php
         if( have_posts() ){
          while( have_posts() ) {
          the_post();
-        $docs = get_field("privacy_document");
-        }}
-        $links = "";
-        $panes = "";
-        $nav = "<li><a id='nav-tab-%s' class='%s'  href='#' data-tab='%s'>%s</a></li>";
-        $content = "<div id='content-pane-%s' class='content-pane %s'><h2>%s</h2>%s<p class='doc-date'>Last revised: %s</p></div>";
-        foreach ($docs as $key=>$document) {
-          $classname = $key == 0 ? "active" : "";
-          $links .= sprintf($nav,$key,$classname,$key,$document["document_title"]);
-          $panes .= sprintf($content,$key,$classname,$document["document_title"],$document["document_content"],$document["document_revised_date"]);
-          } 
-      .col-md-3
-        ul.panel-nav
-          :php
-            echo $links;
-      .col-md-9.legal-box
+         $links = get_field("links");
+          $thisdate = get_field("document_revised_date");
+          $year = intval(substr($thisdate,0,4));
+          $month = intval(substr($thisdate,4,2));
+          $day = intval(substr($thisdate,6,2));
+         if ($links!="") {
+      .col-md-3.legal-links
         :php
-          echo $panes;
+          echo get_field("links");
+      .col-md-9.legal-box
+        p.doc-date
+            :php
+              echo "Last revised on $month/$day/$year";
+        :php
+          the_content();
+      :php
+         }
+         else {
+      .col-md-12.legal-box.no-line
+        p.doc-date
+            :php
+              echo "Last revised on $month/$day/$year";
+        :php
+          the_content();
+        
+      :php
+         }
+         }}
