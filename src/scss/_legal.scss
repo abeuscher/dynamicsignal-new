@@ -14,13 +14,30 @@ ul.panel-nav {
 }
 .legal-links {
   a {
-    line-height:1.8;
-    margin:0 0 $gutter-width;
+    line-height:1.2;
+    display:block;
+    margin:0;
     font-weight:600;
     color:$header-blue;
+    font-size:12px;
     &.active {
       color:$black;
       text-decoration:underline;
+    }
+  }
+}
+ul.legal-menu {
+  list-style:none;
+  margin:0;
+  padding:0;
+  li {
+    margin:0 0 $gutter-width/2;
+    a {
+      font-size:14px;
+    }
+    ul {
+      list-style:none;
+      margin:0; padding:0;
     }
   }
 }

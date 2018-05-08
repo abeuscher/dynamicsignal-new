@@ -14,10 +14,16 @@ block content
       .row
         .col-md-12
           h1 Experience DySi Open
-  section.signup-form-bucket.container
+  section.container
     .row
-      .col-md-8.blog-content
-        p Dynamic Signal has created DySi Open as an interactive community for communicators, marketers and human resource professionals to access and share relevant thought leadership content that will help you advance your career. The content you want gets delivered directly to you, where and when you want it.
+      .col-md-9.dysi-open-content
+        .dysi-video-thumb.video-activator(data-video-id="268403867",video-type="vimeo",data-bg="thumb-dysi-open-video.jpg")
+          .content.left
+            p.no-quote Dynamic Signal has created DySi Open as an interactive community for communicators, marketers and human resource professionals to access and share relevant thought leadership content that will help you advance your career. The content you want gets delivered directly to you, where and when you want it.
+            a.button(href="#")
+              span.cta Play Video
+              i.fa.fa-play
+      .col-md-3.dysi-open-right
         p The DySi Open app is available at 
           a(href="itms://itunes.apple.com/us/app/dysi-open/id1339399649?mt=8",target="_blank") Apple’s App Store 
           |  and the 
@@ -33,6 +39,3 @@ block content
             a(href="https://play.google.com/store/apps/details?id=com.dynamicsignal.appstore.dysi&hl=en",target="_blank")
               img(src=themeDir + "/images/btn-android.png")
         p.small *Coming Soon to Europe
-      .col-md-4
-        div(style='text-align: center;')
-          img(src=themeDir+'images/dsopen-productpic.jpg', alt='')

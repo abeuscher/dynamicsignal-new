@@ -27,9 +27,9 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "New Report : State of Employee Communication and Engagement",
-    "url": "https://resources.dynamicsignal.com/ebooks-guides/the-state-of-employee-communication-and-engagement-2",
-    "buttonText": "Read Now"
+    "cta": "DySi is Hiring! Check our careers page for details!",
+    "url": "/careers/",
+    "buttonText": "DySi Careers"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
