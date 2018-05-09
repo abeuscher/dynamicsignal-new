@@ -2,7 +2,7 @@ extends inc/page.pug
 block template
   :php
     /*
-    Template Name: Legal Docs Privacy
+    Template Name: Legal Docs Main Page
     */
 block nav
   include ./inc/navbar-toggle.pug
@@ -15,10 +15,9 @@ block content
       "title"=>"Legal",
       "link"=>"/legal/"
     ));
-    array_push($breadcrumbs,array(
-      "title"=>"Privacy",
-      "link"=>"/privacy/"
-    ));
+    if( have_posts() ){
+    while( have_posts() ) {
+    the_post();
   section.top-section-interior
     .container
       .row
@@ -27,23 +26,13 @@ block content
           h1
             :php
               the_title();
-  section.container
+  section#legal-docs.container
     .row
-      :php
-        if( have_posts() ){
-         while( have_posts() ) {
-         the_post();
-         $links = get_field("links");
-          $thisdate = get_field("document_revised_date");
-          $year = intval(substr($thisdate,0,4));
-          $month = intval(substr($thisdate,4,2));
-          $day = intval(substr($thisdate,6,2));
       .col-md-3.legal-links
         include ./inc/legal-menu.pug
       .col-md-9.legal-box
-        p.doc-date
-            :php
-              echo "Effective $month/$day/$year";
         :php
           the_content();
-         }}
+          }}
+
+        
