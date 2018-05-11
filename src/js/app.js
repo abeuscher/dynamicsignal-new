@@ -27,6 +27,7 @@ var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "gdprCookie":"ds-gdpr",
+  "sessionCookie":"ds-count",
   "ctaBar": {
     "toggle": true,
     "cta": "DySi is Hiring! Check our careers page for details!",
@@ -75,7 +76,13 @@ window.addEventListener("load", function() {
       return true;
     }
   }
-  triggerGDPR();
+  if (checkCookies()) {
+    triggerGDPR();
+  }
+  else {
+    writeCTA();
+  }
+ 
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
@@ -216,15 +223,6 @@ var siteActions = [{
     }
   },
   {
-    "element": "cta-bar",
-    "action": function() {
-      if (siteSettings.ctaBar.toggle) {
-        var bar = document.getElementById("cta-bar");
-        bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
-      }
-    }
-  },
-  {
     "element": "paging-thumbs",
     "action": function() {
       if (typeof seriesNav != "undefined") {
@@ -261,7 +259,6 @@ var siteActions = [{
   {
     "element": "legal-docs",
     "action": function() {
-      console.log("test");
       var leftLinks = document.querySelectorAll(".panel-nav a");
       var viewPanels = document.querySelectorAll(".content-pane");
       for (i=0;i<leftLinks.length;i++) {
@@ -286,7 +283,6 @@ var siteActions = [{
   {
     "element":"background-picker",
     "action":function() {
-      console.log("fire");
       var backgroundPicker = document.getElementById("background-picker");
       backgroundPicker.appendChild(parseHTML(siteSettings.templates.backgroundPicker()));
       var bgBtns = document.getElementsByClassName("button-picker");
@@ -381,7 +377,6 @@ var siteActions = [{
           videoGall.append(parseHTML(siteSettings.templates.productQuote(customerData[i])));
         }
       }
-      console.log(c);
       videoGall.resize();
     }
   },
@@ -406,12 +401,10 @@ var siteActions = [{
   {
     "element": "customers-grid",
     "action": function() {
-      //console.log(customerData);
       var customerGrid = document.getElementById("customers-grid");
       var sortedData = sortBy(customerData, function(i) {
         return parseInt(i.logo_sort_order);
       });
-      console.log(customerData, sortedData);
       for (i in sortedData) {
         if (sortedData[i].customer_page) {
           customerGrid.append(parseHTML(siteSettings.templates.customerTile(sortedData[i])));
@@ -508,7 +501,6 @@ var siteActions = [{
   {
     "element": "past-events-full",
     "action": function() {
-      //console.log(pageData.events);
       var pastCount = 0;
       var bucket = document.getElementById("past-events-full");
       for (i = 0; i < pageData.events.length; i++) {
@@ -657,7 +649,6 @@ var siteActions = [{
       var categories = sortBy(pageData.categories, function(i) {
         return i.cat_name
       });
-      //console.log(pageData.categories);
       var opts = {
         "jobs": jobs,
         "template": siteSettings.templates.jobListing,
@@ -764,27 +755,85 @@ function activateImages() {
 function triggerGDPR() {
   
   if (!Cookies.get(siteSettings.gdprCookie)) {
+    if (localStorage.getItem(siteSettings.sessionCookie) && localStorage.getItem(siteSettings.sessionCookie)!="") {
+      var theCount = parseInt(localStorage.getItem(siteSettings.sessionCookie));
+      localStorage.setItem(siteSettings.sessionCookie,theCount+1);
+    }
+    else {
+      localStorage.setItem(siteSettings.sessionCookie,1);
+    }
     var warning = parseHTML(siteSettings.templates.gdprPopup());
     document.body.appendChild(warning);
-    //document.body.classList.add("gdpr-open");
-    var theButton = document.getElementById("btn-yes");
-    theButton.addEventListener("click", function(e) {
+    var yesButton = document.getElementById("btn-yes");
+    var noButton = document.getElementById("btn-no");
+    yesButton.addEventListener("click", function(e) {
       e.preventDefault();
       Cookies.set(siteSettings.gdprCookie,"true",{
         expires: 365
       });
-      //document.body.classList.remove("gdpr-open");
-      warning.remove();
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-MQKZ8M');
+      warning.remove();
+      writeCTA();
+      console.log("I am tracking you");
       return false;
     });
+    noButton.addEventListener("click", function(e) {
+      console.log("I am not tracking you");
+      e.preventDefault();
+      wipeCookies();
+      Cookies.set(siteSettings.gdprCookie,"false",{
+        expires: 365
+      });
+      warning.remove();
+      writeCTA();
+      return false;
+    });
+    if (theCount>2) {
+      warning.classList.add("modal");
+    }
+  }
+  else if (Cookies.get(siteSettings.gdprCookie)=="true") {
+    console.log("I am tracking you");
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MQKZ8M');
+  }
+  else if (Cookies.get(siteSettings.gdprCookie)=="false") {
+    console.log("I am not tracking you");
+  }
+  if (Cookies.get(siteSettings.gdprCookie)) {
+    writeCTA();
   }
 }
+function checkCookies(){
+  var cookieEnabled = navigator.cookieEnabled;
+  if (!cookieEnabled){ 
+      document.cookie = "testcookie";
+      cookieEnabled = document.cookie.indexOf("testcookie")!=-1;
+  }
+  if (cookieEnabled) {
+    Cookies.remove("testcookie");
+  }
+  return cookieEnabled;
+}
+function wipeCookies() {
 
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+
+}
 (function (arr) {
   arr.forEach(function (item) {
     if (item.hasOwnProperty('remove')) {
@@ -801,3 +850,10 @@ function triggerGDPR() {
     });
   });
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
+function writeCTA() {
+  if (siteSettings.ctaBar.toggle) {
+    var bar = document.getElementById("cta-bar");
+    bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
+    bar.style.display = "block";
+  }
+}

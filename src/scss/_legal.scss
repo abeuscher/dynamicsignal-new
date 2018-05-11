@@ -9,7 +9,7 @@ body.gdpr-open {
 }
 #gdpr-warning {
   bottom:0;
-  background:rgba(27,49,82,1);
+  background:rgba(27,49,82,.9);
   color:$white;
   h2, a {
     color:$white;
@@ -18,12 +18,48 @@ body.gdpr-open {
   display:block;
   a.button-cta-bottom {
     background: $header-blue;
+    color:$white;
+    margin-left:0 0 4px 1em;
     &:hover {
       background:lighten($header-blue,20%);
+    }
+    font-size:14px;
+    &.knockout {
+      font-weight:400;
+      font-size:12px;
+      background:transparent;
+      //border:1px solid $light-gray;
+      color:$light-gray;
+      text-decoration:underline;
+      padding-left:0;
+      padding-right:0;
+      margin-left:1em;
+      &:hover {
+        text-decoration:none;
+      }
     }
   }
   @include bp(m) {
     height:150px;
+    &.modal {
+      position:fixed;
+      top:20%;
+      bottom:20%;
+      height:auto;
+      width:50%;
+      left:25%;
+      .container {
+        width:100%;
+      }
+    }
+  }
+  .gdpr-buttons {
+    text-align:left;
+    p {
+      margin:0 0 3px;
+      padding:0;
+      line-height:1;
+    }
   }
 }
 

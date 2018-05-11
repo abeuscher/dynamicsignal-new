@@ -33,10 +33,6 @@
     margin:0;
     line-height: 50px;
   }
-  @include bp(s) {
-    display:block;
-
-  }
 
   @include bp(m) {
     height:50px;
