@@ -168,7 +168,12 @@ var siteActions = [{
 },{
   "element": "clear-cookies",
   "action": function() {
-    Cookies.remove(siteSettings.gdprCookie)
+    wipeCookies();
+  }
+},{
+  "element": "clear-storage",
+  "action": function() {
+    localStorage.clear();
   }
 },
   {

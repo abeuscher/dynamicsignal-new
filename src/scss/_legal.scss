@@ -43,13 +43,19 @@ body.gdpr-open {
     height:150px;
     &.modal {
       position:fixed;
-      top:20%;
-      bottom:20%;
+      top:0;
+      bottom:0;
       height:auto;
-      width:50%;
-      left:25%;
+      background:rgba(0,0,0,.7);
+      z-index:999;
       .container {
-        width:100%;
+        background:rgba(27,49,82,.9);
+        position:absolute;
+        top:20%;
+        bottom:20%;
+        left:20%;
+        width:60%;
+        padding:$gutter-width;
       }
     }
   }
