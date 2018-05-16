@@ -27,9 +27,9 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "DySi is Hiring! Check our careers page for details!",
-    "url": "/careers/",
-    "buttonText": "DySi Careers"
+    "cta": "Dynamic Signal Recognized as One of the Best Places to Work in the Bay Area 2018!",
+    "url": "https://resources.dynamicsignal.com/press/dynamic-signal-recognized-as-2018-bay-area-best-places-to-work",
+    "buttonText": "Read More"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
