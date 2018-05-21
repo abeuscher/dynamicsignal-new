@@ -27,9 +27,9 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "ctaBar": {
     "toggle": true,
-    "cta": "Dynamic Signal Recognized as One of the Best Places to Work in the Bay Area 2018!",
-    "url": "https://resources.dynamicsignal.com/press/dynamic-signal-recognized-as-2018-bay-area-best-places-to-work",
-    "buttonText": "Read More"
+    "cta": "New Article: How Entrepreneurs Can Navigate the Crisis of Trust",
+    "url": "https://www.entrepreneur.com/article/312954",
+    "buttonText": "Read Here"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
