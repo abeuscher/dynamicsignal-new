@@ -39,9 +39,11 @@ block content
     .row.team-list
       .col-md-12
         :php
+            
               foreach($res["ds_team_member"] as $key=>$player) {
-                echo "<a class='exec-thumb' href='".$player["ds_team_member_linkedin_profile_url"]."'  data-bg='".$player["ds_team_member_image"]."'><h3>".$player["ds_team_member_first_name"]."</h3><h4>".($type?$player["ds_team_member_job_title"]:"<i class='fa fa-linkedin-square'></i>")."</h4></a>";
-              }
+                $target = strpos($player["ds_team_member_linkedin_profile_url"],"http") ? "_blank" : "_self";
+                echo "<a class='exec-thumb' href='".$player["ds_team_member_linkedin_profile_url"]."' target='$target'  data-bg='".$player["ds_team_member_image"]."'><h3>".$player["ds_team_member_first_name"]."</h3><h4>".($type?$player["ds_team_member_job_title"]:"<i class='fa fa-linkedin-square'></i>")."</h4></a>";
+              } 
     :php
             }
           }

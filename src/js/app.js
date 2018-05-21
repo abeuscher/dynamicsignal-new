@@ -760,13 +760,6 @@ function activateImages() {
 function triggerGDPR() {
   
   if (!Cookies.get(siteSettings.gdprCookie)) {
-    if (localStorage.getItem(siteSettings.sessionCookie) && localStorage.getItem(siteSettings.sessionCookie)!="") {
-      var theCount = parseInt(localStorage.getItem(siteSettings.sessionCookie));
-      localStorage.setItem(siteSettings.sessionCookie,theCount+1);
-    }
-    else {
-      localStorage.setItem(siteSettings.sessionCookie,1);
-    }
     var warning = parseHTML(siteSettings.templates.gdprPopup());
     document.body.appendChild(warning);
     var yesButton = document.getElementById("btn-yes");
@@ -776,43 +769,12 @@ function triggerGDPR() {
       Cookies.set(siteSettings.gdprCookie,"true",{
         expires: 365
       });
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-MQKZ8M');
-      warning.remove();
-      writeCTA();
-      console.log("I am tracking you");
-      return false;
-    });
-    noButton.addEventListener("click", function(e) {
-      console.log("I am not tracking you");
-      e.preventDefault();
-      wipeCookies();
-      Cookies.set(siteSettings.gdprCookie,"false",{
-        expires: 365
-      });
       warning.remove();
       writeCTA();
       return false;
     });
-    if (theCount>2) {
-      warning.classList.add("modal");
-    }
   }
-  else if (Cookies.get(siteSettings.gdprCookie)=="true") {
-    console.log("I am tracking you");
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MQKZ8M');
-  }
-  else if (Cookies.get(siteSettings.gdprCookie)=="false") {
-    console.log("I am not tracking you");
-  }
-  if (Cookies.get(siteSettings.gdprCookie)) {
+  else {
     writeCTA();
   }
 }
