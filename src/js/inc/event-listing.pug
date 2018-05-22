@@ -1,6 +1,7 @@
+- var bg = locals.thumb.sizes.large ? locals.thumb.sizes.large : "";
 .row.event-listing
   .col-md-12
-    a.event-thumb(data-bg=locals.thumb.sizes.large,href=locals.url)
+    a.event-thumb(data-bg=bg,href=locals.url)
       span.month!=locals.start_month
       span.date!=locals.start_day
       span.time!=locals.start_time + " ("+locals.event_time_zone+")"

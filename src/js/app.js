@@ -11,6 +11,7 @@ var ScrollSite = require("./parallax-bg/index.js");
 var ActivateVideos = require("./video-handler/index.js");
 var Pies = require("./pie-chart/index.js");
 var Bars = require("./bar-chart/index.js");
+var Cookies = require("js-cookie");
 
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
@@ -25,6 +26,8 @@ var PDFHandler = require("./pdf-handler/index.js");
 var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
+  "gdprCookie":"ds-gdpr",
+  "sessionCookie":"ds-count",
   "ctaBar": {
     "toggle": true,
     "cta": "New Article: How Entrepreneurs Can Navigate the Crisis of Trust",
@@ -53,6 +56,7 @@ var siteSettings = {
     "buttonPastEvents": require("./inc/button-past-events.pug"),
     "jobFilter": require("./inc/job-filter.pug"),
     "backgroundPicker": require("./inc/header-picker.pug"),
+    "gdprPopup": require("./inc/gdpr-popup.pug"),
     "whatisSlide": require("./inc/whatis-carousel-slide.pug")
   },
   "breakpoints": {
@@ -72,7 +76,13 @@ window.addEventListener("load", function() {
       return true;
     }
   }
-
+  if (checkCookies()) {
+    triggerGDPR();
+  }
+  else {
+    writeCTA();
+  }
+ 
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
@@ -134,28 +144,38 @@ function getMobileOperatingSystem() {
 
 
 var siteActions = [{
-    "element": "parallax",
-    "action": function() {
-      var Gallery = false;
+  "element": "parallax",
+  "action": function() {
+    var Gallery = false;
 
-      function activateScroll() {
+    function activateScroll() {
 
-        if (window.innerWidth > siteSettings.breakpoints.m) {
-          if (!Gallery) {
-            Gallery = new ScrollSite(siteSettings);
-          } else {
-            Gallery.resize();
-          }
+      if (window.innerWidth > siteSettings.breakpoints.m) {
+        if (!Gallery) {
+          Gallery = new ScrollSite(siteSettings);
         } else {
-          if (Gallery) {
-            Gallery.destroy();
-          }
+          Gallery.resize();
+        }
+      } else {
+        if (Gallery) {
+          Gallery.destroy();
         }
       }
-      window.addEventListener("resize", activateScroll)
-      activateScroll();
     }
-  },
+    window.addEventListener("resize", activateScroll)
+    activateScroll();
+  }
+},{
+  "element": "clear-cookies",
+  "action": function() {
+    wipeCookies();
+  }
+},{
+  "element": "clear-storage",
+  "action": function() {
+    localStorage.clear();
+  }
+},
   {
     "element": "side-nav",
     "action": function() {
@@ -208,15 +228,6 @@ var siteActions = [{
     }
   },
   {
-    "element": "cta-bar",
-    "action": function() {
-      if (siteSettings.ctaBar.toggle) {
-        var bar = document.getElementById("cta-bar");
-        bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
-      }
-    }
-  },
-  {
     "element": "paging-thumbs",
     "action": function() {
       if (typeof seriesNav != "undefined") {
@@ -253,7 +264,6 @@ var siteActions = [{
   {
     "element": "legal-docs",
     "action": function() {
-      console.log("test");
       var leftLinks = document.querySelectorAll(".panel-nav a");
       var viewPanels = document.querySelectorAll(".content-pane");
       for (i=0;i<leftLinks.length;i++) {
@@ -278,7 +288,6 @@ var siteActions = [{
   {
     "element":"background-picker",
     "action":function() {
-      console.log("fire");
       var backgroundPicker = document.getElementById("background-picker");
       backgroundPicker.appendChild(parseHTML(siteSettings.templates.backgroundPicker()));
       var bgBtns = document.getElementsByClassName("button-picker");
@@ -373,7 +382,6 @@ var siteActions = [{
           videoGall.append(parseHTML(siteSettings.templates.productQuote(customerData[i])));
         }
       }
-      console.log(c);
       videoGall.resize();
     }
   },
@@ -398,12 +406,10 @@ var siteActions = [{
   {
     "element": "customers-grid",
     "action": function() {
-      //console.log(customerData);
       var customerGrid = document.getElementById("customers-grid");
       var sortedData = sortBy(customerData, function(i) {
         return parseInt(i.logo_sort_order);
       });
-      console.log(customerData, sortedData);
       for (i in sortedData) {
         if (sortedData[i].customer_page) {
           customerGrid.append(parseHTML(siteSettings.templates.customerTile(sortedData[i])));
@@ -500,7 +506,6 @@ var siteActions = [{
   {
     "element": "past-events-full",
     "action": function() {
-      //console.log(pageData.events);
       var pastCount = 0;
       var bucket = document.getElementById("past-events-full");
       for (i = 0; i < pageData.events.length; i++) {
@@ -649,7 +654,6 @@ var siteActions = [{
       var categories = sortBy(pageData.categories, function(i) {
         return i.cat_name
       });
-      //console.log(pageData.categories);
       var opts = {
         "jobs": jobs,
         "template": siteSettings.templates.jobListing,
@@ -750,5 +754,73 @@ function activateImages() {
     var el = bgArrays[i];
     var imageArray = JSON.parse(el.getAttribute("data-bg-array"));
     el.style.backgroundImage = "url('" + imageArray.url + "')";
+  }
+}
+
+function triggerGDPR() {
+  
+  if (!Cookies.get(siteSettings.gdprCookie)) {
+    var warning = parseHTML(siteSettings.templates.gdprPopup());
+    document.body.appendChild(warning);
+    var yesButton = document.getElementById("btn-yes");
+    var noButton = document.getElementById("btn-no");
+    yesButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      Cookies.set(siteSettings.gdprCookie,"true",{
+        expires: 365
+      });
+      warning.remove();
+      writeCTA();
+      return false;
+    });
+  }
+  else {
+    writeCTA();
+  }
+}
+function checkCookies(){
+  var cookieEnabled = navigator.cookieEnabled;
+  if (!cookieEnabled){ 
+      document.cookie = "testcookie";
+      cookieEnabled = document.cookie.indexOf("testcookie")!=-1;
+  }
+  if (cookieEnabled) {
+    Cookies.remove("testcookie");
+  }
+  return cookieEnabled;
+}
+function wipeCookies() {
+
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+
+}
+(function (arr) {
+  arr.forEach(function (item) {
+    if (item.hasOwnProperty('remove')) {
+      return;
+    }
+    Object.defineProperty(item, 'remove', {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function remove() {
+        if (this.parentNode !== null)
+          this.parentNode.removeChild(this);
+      }
+    });
+  });
+})([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
+function writeCTA() {
+  if (siteSettings.ctaBar.toggle) {
+    var bar = document.getElementById("cta-bar");
+    bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
+    bar.style.display = "block";
   }
 }

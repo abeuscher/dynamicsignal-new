@@ -383,6 +383,9 @@ section {
      @include aspect-ratio (3,1);
   }
 }
+.float-right {
+  float:right;
+}
 
 .top-section-interior {
   background:$light-gray;
@@ -1209,4 +1212,7 @@ ul.gdpr {
       display:block;
     }
   }
+}
+.awards-line {
+  margin-top:$gutter-width;
 }

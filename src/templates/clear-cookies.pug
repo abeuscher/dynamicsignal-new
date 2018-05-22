@@ -1,0 +1,30 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Clear Cookies
+    */
+block nav
+  - showSearch = "hide";
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  section.header-404.col-center
+    h1 Not Found
+    img(src=themeDir+"/images/404.png" alt="404 File Not Found")
+  section.container
+    .row
+      .col-md-8.col-md-offset-2
+        h2 This is somewhat embarrassing, isn't it?
+        p No file was found at this location.
+        p Maybe try a search?
+        #search-box-sidenav
+          form.search-form(action='')
+            input.query#oi-query(type='text', placeholder="Enter Search Term")
+            button.submit(type="submit")
+              i.fa.fa-search
+            #oi-spellcheck
+            #oi-header
+    #clear-cookies
+    #clear-storage

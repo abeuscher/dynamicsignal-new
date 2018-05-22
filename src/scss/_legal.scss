@@ -1,3 +1,75 @@
+body.gdpr-open {
+  overflow:hidden;
+  #wrapper {
+    &:before {
+      display:block;
+    }
+  }
+
+}
+#gdpr-warning {
+  bottom:0;
+  background:rgba(27,49,82,.9);
+  color:$white;
+  h2, a {
+    color:$white;
+  }
+  padding-top:40px;
+  display:block;
+  a.button-cta-bottom {
+    background: $header-blue;
+    color:$white;
+    margin-left:0 0 4px 1em;
+    &:hover {
+      background:lighten($header-blue,20%);
+    }
+    font-size:14px;
+    &.knockout {
+      font-weight:400;
+      font-size:12px;
+      background:transparent;
+      //border:1px solid $light-gray;
+      color:$light-gray;
+      text-decoration:underline;
+      padding-left:0;
+      padding-right:0;
+      margin-left:1em;
+      &:hover {
+        text-decoration:none;
+      }
+    }
+  }
+  @include bp(m) {
+    height:150px;
+    &.modal {
+      position:fixed;
+      top:0;
+      bottom:0;
+      height:auto;
+      background:rgba(0,0,0,.7);
+      z-index:999;
+      .container {
+        background:rgba(27,49,82,.9);
+        position:absolute;
+        top:20%;
+        bottom:20%;
+        left:20%;
+        width:60%;
+        padding:$gutter-width;
+      }
+    }
+  }
+  .gdpr-buttons {
+    text-align:left;
+    p {
+      margin:0 0 3px;
+      padding:0;
+      line-height:1;
+    }
+  }
+}
+
+
 ul.panel-nav {
   list-style:none;
   margin:0;

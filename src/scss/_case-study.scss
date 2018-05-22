@@ -316,3 +316,55 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
     fill:$red;
   }
 }
+.has-quote {
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center center;
+}
+.pull-quote {
+
+  padding:$gutter-width*2 0;
+  font-size:24px;
+  color:$white;
+  text-shadow:1px 1px 5px rgba(0,0,0,.8);
+  cite {
+    display:block;
+    font-size:16px;
+    padding-top:.5em;
+    padding-left:1em;
+  }
+}
+.partners-testimonial-entry.yt {
+  border-top:none;
+  .testimonial-body {
+    color:$header-blue;
+    cite {
+      display:block;
+      color:$header-blue;
+    }
+  }
+}
+.youtube-case-study-timeline {
+  h2 {
+    color:$header-blue;
+  }
+  ul {
+    color:$header-blue;
+    font-size:20px;
+    li {
+      margin:0 0 $gutter-width/2;
+    }
+  }
+}
+ul.youtube-list {
+  list-style:none;
+  margin:0;
+  padding:0;
+  li {
+    background:url($img-path+"blue-quote.png") no-repeat left top;
+    padding-left:60px;
+    font-size:20px;
+    line-height:1.8;
+    margin-bottom:$gutter-width;
+  }
+}
