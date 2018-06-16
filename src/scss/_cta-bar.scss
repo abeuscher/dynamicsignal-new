@@ -2,18 +2,39 @@
   display:none;
   z-index:1;
   position:fixed;
-  background:$white;
+  background:$menu-blue;
+  color:$white;
   box-shadow:0 0 20px rgba(0,0,0,.1);
-  border-top:1px solid $blue;
+  //border-top:1px solid $blue;
   width:100%;
   margin:0;
   min-height:50px;
   vertical-align: middle;
   padding-bottom:$gutter-width/4;
   color:$black;
-  bottom:0;
+  top:80px;
   left:0;
   text-align:center;
+  .show-mobile {
+    display:block;
+    @include bp(m) {
+      display:none;
+    }
+  }
+  .show-desktop {
+    display:none;
+    @include bp(m) {
+      display:block;
+    }
+  }
+  #summit-cta-closer {
+    display:none;
+    float:right;
+    font-size:4em;
+    padding-right:$gutter-width;
+    line-height:50px;
+    color:$header-blue;
+  }
   a.button-cta-bottom {
     border-radius:5px;
     background:$menu-blue;
@@ -27,14 +48,132 @@
       background:$header-blue;
     }
   }
+  &.active {
+     display:block;
+    @include bp(m) {
+      display:block;
+    }
+  }
   h2 {
     display:inline-block;
     font-size:14px;
     margin:0;
-    line-height: 50px;
+    line-height:1.4;
+    padding-bottom:.5em;
+    @include bp(m) {
+      line-height: 50px;
+      padding-bottom:0;
+    }
+    
   }
 
-  @include bp(m) {
+   @include bp(m) {
     height:50px;
+   }
+    &.open {
+      height:auto;
+      max-height:250px;
+      padding-bottom:0;
+      background:#f2f2f2;
+    }
+}
+#gdpr-warning {
+  top:auto;
+  bottom:0;
+}
+.summit-cta {
+  width:100%;
+  font-size:18px;
+  p {
+    margin:0;
+    line-height:1;
+    padding:6px 5px 0;
+    font-size:12px;
+    @include bp(m) {
+      padding:0;
+      font-size:14px;
+      line-height:50px;
+      font-weight:600;
+    }
+    a.button {
+      margin-left:1em;
+      background:$header-blue;
+      line-height:1;
+      text-transform: uppercase;
+      font-weight:400;
+      font-size:12px;
+      margin-top:5px;
+      @include bp(m) {
+        font-size:14px;
+        margin-top:0;
+      }
+    }
+    
+    color:$white;
+  }
+  #summit-cta-popup {
+    display:none;
+    position:fixed;
+    top:130px;
+    a {
+      position:relative;
+    }
+    img {
+      max-width:100%;
+      border-bottom:5px solid yellow;
+    }
+    .inner {
+      display: inline-block;
+      position: relative;
+      margin: 0 auto;
+    }
+      @media (min-width: 768px) {
+        .inner {
+            width:750px
+        }
+    }
+    
+    @media (min-width: 1025px) {
+        .inner {
+            width:970px
+        }
+    }
+    
+    @media (min-width: 1200px) {
+        .inner {
+            width:1170px
+        }
+    }
+
+    &.active {
+      display:block;
+    }
+    &:after {
+      content: "";
+      display: block;
+      padding-top: 13.02083%;
+    }
+
+    .row {
+      position:relative;
+    }
+    ul.reg-buttons {
+      list-style:none;
+      margin:0;
+      padding:0;
+      text-align: right;
+      position:absolute;
+      right:0;
+      top:4vw;
+      li {
+        padding-bottom:1em;
+      }
+       a.text-link {
+        text-decoration:underline;
+        &:hover {
+          text-decoration: none;
+        }
+       }
+    }
   }
 }

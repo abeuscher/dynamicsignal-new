@@ -11,10 +11,11 @@ body.gdpr-open {
   bottom:0;
   background:rgba(27,49,82,.9);
   color:$white;
+  padding-top:5px;
   h2, a {
     color:$white;
   }
-  padding-top:40px;
+
   display:block;
   a.button-cta-bottom {
     background: $header-blue;
@@ -40,6 +41,7 @@ body.gdpr-open {
     }
   }
   @include bp(m) {
+    padding-top:40px;
     height:150px;
     &.modal {
       position:fixed;

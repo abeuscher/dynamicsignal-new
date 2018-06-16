@@ -1,13 +1,17 @@
 var parseHTML = require("../js/utils/parse-html.js");
 var ScrollMagic = require("scrollmagic");
+var Cookies = require("js-cookie");
 
 var templates = {
   "header": require("../templates/inc/header-embed.pug"),
   "footer": require("../templates/inc/footer.pug"),
   "toggle": require("../templates/inc/navbar-toggle.pug"),
-  "sideNav": require("../templates/inc/side-nav.pug")
+  "sideNav": require("../templates/inc/side-nav.pug"),
+  "gdpr" : require("../js/inc/gdpr-popup.pug")
 }
-
+var siteSettings = {
+  "gdprCookie":"ds-gdpr"
+}
 window.addEventListener("load", function() {
     // Name root site var to feed to nav so it doesn't try to relative link to UF pages.
     var siteopts = {
@@ -115,5 +119,39 @@ window.addEventListener("load", function() {
         thisLink.target = "_blank";
       }
     }
+    triggerGDPR();
 
 });
+
+function triggerGDPR() {
+  
+  if (!Cookies.get(siteSettings.gdprCookie)) {
+    var warning = parseHTML(templates.gdpr());
+    document.body.appendChild(warning);
+    var yesButton = document.getElementById("btn-yes");
+    var noButton = document.getElementById("btn-no");
+    yesButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      Cookies.set(siteSettings.gdprCookie,"true",{
+        expires: 365,
+        domain:"dynamicsignal.com"
+      });
+      warning.remove();
+      return false;
+    });
+  }
+  else {
+    console.log("cookie found");
+  }
+}
+function checkCookies(){
+  var cookieEnabled = navigator.cookieEnabled;
+  if (!cookieEnabled){ 
+      document.cookie = "testcookie";
+      cookieEnabled = document.cookie.indexOf("testcookie")!=-1;
+  }
+  if (cookieEnabled) {
+    Cookies.remove("testcookie");
+  }
+  return cookieEnabled;
+}

@@ -30,9 +30,9 @@ var siteSettings = {
   "sessionCookie":"ds-count",
   "ctaBar": {
     "toggle": true,
-    "cta": "New Article: How Entrepreneurs Can Navigate the Crisis of Trust",
-    "url": "https://www.entrepreneur.com/article/312954",
-    "buttonText": "Read Here"
+    "cta": "New Article : Is Your Internal Communication Tool Broken?",
+    "url": "/2018/06/10/is-your-internal-communication-tool-broken/",
+    "buttonText": "Read Article"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
@@ -50,6 +50,7 @@ var siteSettings = {
     "useCaseQuote": require("./inc/use-case-quote.pug"),
     "jobListing": require("./inc/job-listing.pug"),
     "ctaBar": require("./inc/cta-bar.pug"),
+    "summitCtaBar": require("./inc/summit-cta.pug"),
     "noEvents": require("./inc/no-events.pug"),
     "eventListing": require("./inc/event-listing.pug"),
     "pastEventListing": require("./inc/past-event-listing.pug"),
@@ -79,10 +80,9 @@ window.addEventListener("load", function() {
   if (checkCookies()) {
     triggerGDPR();
   }
-  else {
+
     writeCTA();
-  }
- 
+  
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
@@ -456,11 +456,13 @@ var siteActions = [{
           document.getElementById("page-header").classList.add("active");
           document.getElementById("toggle-side-nav").classList.add("short");
           document.getElementById("btn-search-header").classList.add("short");
+          document.getElementById("cta-bar").style.display = "none";
         })
         .on("leave", function(e) {
           document.getElementById("page-header").classList.remove("active");
           document.getElementById("toggle-side-nav").classList.remove("short");
           document.getElementById("btn-search-header").classList.remove("short");
+          document.getElementById("cta-bar").style.display = "block";
         })
         .addTo(headController);
     }
@@ -758,7 +760,7 @@ function activateImages() {
 }
 
 function triggerGDPR() {
-  
+  var domain = "dynamicsignal.com";
   if (!Cookies.get(siteSettings.gdprCookie)) {
     var warning = parseHTML(siteSettings.templates.gdprPopup());
     document.body.appendChild(warning);
@@ -767,16 +769,33 @@ function triggerGDPR() {
     yesButton.addEventListener("click", function(e) {
       e.preventDefault();
       Cookies.set(siteSettings.gdprCookie,"true",{
-        expires: 365
+        expires: 365,
+        domain:domain
       });
-      warning.remove();
-      writeCTA();
+      warning.remove();   
+     // writeCTA();
       return false;
+    });
+    window.addEventListener("click", function(e) {
+      Cookies.set(siteSettings.gdprCookie,"true",{
+        expires: 365,
+        domain:domain
+      });
+      triggerGA();
+      return true;
     });
   }
   else {
-    writeCTA();
+    triggerGA();
+    //writeCTA();
   }
+}
+function triggerGA() {
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MQKZ8M');
 }
 function checkCookies(){
   var cookieEnabled = navigator.cookieEnabled;
@@ -817,10 +836,38 @@ function wipeCookies() {
     });
   });
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
+/* 
 function writeCTA() {
   if (siteSettings.ctaBar.toggle) {
     var bar = document.getElementById("cta-bar");
     bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
-    bar.style.display = "block";
+    
+    bar.classList.add("active");
+  }
+} */
+function writeCTA() {
+  if (siteSettings.ctaBar.toggle) {
+    var bar = document.getElementById("cta-bar");
+    bar.append(parseHTML(siteSettings.templates.summitCtaBar(siteSettings.ctaBar)));
+    bar.classList.add("active");
+    var opener = document.getElementById("summit-cta-opener");
+    var popup = document.getElementById("summit-cta-popup");
+    var closer = document.getElementById("summit-cta-closer");
+    var summitText = document.getElementById("summit-text");
+    opener.addEventListener("click", function(e) {
+      e.preventDefault();
+      closer.style.display = "block";
+      summitText.style.display = "none";
+      popup.classList.add("active");
+      bar.classList.add("open");
+    });
+    
+    closer.addEventListener("click", function(e) {
+      e.preventDefault();
+      popup.classList.remove("active");
+      closer.style.display = "none";
+      summitText.style.display = "block";
+      bar.classList.remove("open");
+    });
   }
 }

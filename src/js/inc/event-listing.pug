@@ -4,7 +4,8 @@
     a.event-thumb(data-bg=bg,href=locals.url)
       span.month!=locals.start_month
       span.date!=locals.start_day
-      span.time!=locals.start_time + " ("+locals.event_time_zone+")"
+      if locals.start_time
+        span.time!=locals.start_time + " ("+locals.event_time_zone+")"
     .event-info
       h2
         a(href=locals.url)!=locals.title

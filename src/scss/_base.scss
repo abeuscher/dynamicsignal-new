@@ -464,13 +464,22 @@ ul.social-share {
   &:hover {
     background: $menu-blue;
     color: $white;
+    animation: radial-pulse 1s 1;
   }
 
   &.video {
     display: inline-block !important;
   }
 }
+@keyframes radial-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.5);
+  }
 
+  100% {
+    box-shadow: 0 0 0 30px rgba(0, 0, 0, 0);
+  }
+}
 a.button-teal,
 ul.nav-items li a.button-teal {
   background-color: white;
@@ -1055,6 +1064,18 @@ ul.hmenu.app-buttons {
   }
   li {
     display:block;
+    &.show-mobile {
+      display:block;
+      @include bp(m) {
+        display:none;
+      }
+    }
+    &.show-desktop {
+      display:none;
+      @include bp(m) {
+        display:block;
+      }
+    }
   }
   @include bp(m) {
     li {
@@ -1215,4 +1236,24 @@ ul.gdpr {
 }
 .awards-line {
   margin-top:$gutter-width;
+}
+//GDPR TABLE
+.ds-table {
+  display:block;
+  tr td {
+    display:block;
+    width:100%;
+  }
+  @include bp(m) {
+    display:table;
+    tr td {
+      display:table-cell;
+      width:auto;
+    }
+  }
+}
+img.right-padded {
+  float:right;
+  padding:0 0 $gutter-width $gutter-width;
+  max-width:50%;
 }
