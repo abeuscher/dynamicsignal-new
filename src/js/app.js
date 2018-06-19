@@ -58,6 +58,7 @@ var siteSettings = {
     "jobFilter": require("./inc/job-filter.pug"),
     "backgroundPicker": require("./inc/header-picker.pug"),
     "gdprPopup": require("./inc/gdpr-popup.pug"),
+    "sdrQuote": require("./inc/sdr-quote.pug"),
     "whatisSlide": require("./inc/whatis-carousel-slide.pug")
   },
   "breakpoints": {
@@ -381,6 +382,23 @@ var siteActions = [{
         if (customerData[i].vimeo_id != "") {
           videoGall.append(parseHTML(siteSettings.templates.productQuote(customerData[i])));
         }
+      }
+      videoGall.resize();
+    }
+  },
+  {
+    "element": "sdr-quote-carousel",
+    "action": function() {
+      var videoGall = new Flickity(document.getElementById("sdr-quote-carousel"), {
+        "wrapAround": true,
+        "pageDots": true,
+        "lazyLoad": 6,
+        "autoPlay": 8000,
+        "adaptiveHeight": false
+      });
+      var c = [];
+      for (i in pageData.quotes) {
+        videoGall.append(parseHTML(siteSettings.templates.sdrQuote(pageData.quotes[i])));
       }
       videoGall.resize();
     }

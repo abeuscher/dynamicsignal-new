@@ -250,3 +250,38 @@ ul.careers-tabs {
 
   }
 }
+ul.sdr-buttons {
+  list-style:none;
+  margin:0;
+  padding:0;
+  li {
+    margin:0 0 $gutter-width;
+    a.button {
+      display:block!important;
+    }
+  }
+}
+#sdr-quote-carousel {
+  background:$blue;
+  padding:50px 0;
+  color:$white;
+  .flickity-page-dots {
+    bottom:10px;
+    .dot.is-selected { 
+      background:$menu-blue;
+    }
+  }
+  .sdr-quote-thumb {
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    @include aspect-ratio(2,1);
+  }
+  .container {
+    opacity:0;
+    transition:.1s all ease-in;
+    &.is-selected {
+      opacity:1;
+    }
+  }
+}

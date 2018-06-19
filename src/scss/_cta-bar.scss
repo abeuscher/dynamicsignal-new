@@ -127,19 +127,19 @@
       position: relative;
       margin: 0 auto;
     }
-      @media (min-width: 768px) {
+     @include bp(s) {
         .inner {
             width:750px
         }
     }
     
-    @media (min-width: 1025px) {
+    @include bp(m) {
         .inner {
             width:970px
         }
     }
     
-    @media (min-width: 1200px) {
+    @include bp(l) {
         .inner {
             width:1170px
         }
