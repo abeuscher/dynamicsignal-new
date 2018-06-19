@@ -262,9 +262,21 @@ ul.sdr-buttons {
   }
 }
 #sdr-quote-carousel {
-  background:$blue;
   padding:50px 0;
   color:$white;
+  p {
+    text-align: left;
+  }
+  cite {
+    text-align: left;
+    display:block;
+    font-weight:600;
+    font-style: normal;
+    .job-title {
+      display:block;
+      font-weight:400;
+    }
+  }
   .flickity-page-dots {
     bottom:10px;
     .dot.is-selected { 
@@ -275,7 +287,9 @@ ul.sdr-buttons {
     background-size:contain;
     background-repeat:no-repeat;
     background-position:center;
-    @include aspect-ratio(2,1);
+    @include aspect-ratio(1,1);
+    border-radius:50%;
+    border:2px solid $white;
   }
   .container {
     opacity:0;

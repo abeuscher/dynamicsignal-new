@@ -15,29 +15,32 @@ block content
       "title"=>"Careers",
       "link"=>"/careers/"
     ));
-  section.top-section#company-header(data-bg="company-bg-header.jpg")
-    .inner
-      h1 Straight from the Source
-  :php
     if( have_posts() ): while( have_posts() ): the_post();
-      $quotes = json_encode(get_field("quotes"));
+    $quotes = json_encode(get_field("quotes"));
     echo "<script>var pageData = {'quotes':".$quotes
     ."};</script>";
+    printf("<section class='top-section' id='company-header' data-bg-array='%s'>", json_encode(get_field("header_image"),JSON_UNESCAPED_SLASHES));
+  .inner
+    h1 
+      :php
+        echo get_field("header_text");
+  :php
+    echo "</section>";
   section.container
     .row
-      .col-md-8
+      .col-md-8.blog-content
         :php
           the_content();
       .col-md-4
         h2 Apply Now
         ul.sdr-buttons
           li
-            a.button(href="https://dynamicsignal.com/career/sales-development-representative-san-bruno/") San Bruno
+            a.button(href="http://jobs.jobvite.com/dynamicsignal/job/ocF75fwN/apply",target="_blank") San Bruno
           li
-            a.button(href="https://dynamicsignal.com/career/sales-development-representative-uk/") Chicago
+            a.button(href="http://jobs.jobvite.com/dynamicsignal/job/o7XL6fwF/apply",target="_blank") Chicago
           li
-            a.button(href="https://dynamicsignal.com/career/sales-development-representative-chicago/") London
-  section.sdr-quotes
+            a.button(href="http://jobs.jobvite.com/dynamicsignal/job/otG75fw5/apply",target="_blank") London
+  section.sdr-quotes.bottom-cta
       #sdr-quote-carousel
   section.container
     .row
@@ -55,7 +58,7 @@ block content
           if ( have_rows( 'resource_tiles' ) ) :
               while ( have_rows( 'resource_tiles' ) ) : the_row();
                 if ($count==0 || $count%3==0) { echo "<div class='even-height-wrapper'>"; }
-                printf("<div class='col-3'><a class='story-tile-link' href='%s'><div class='featured-thumb' data-bg-array='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-%s'></span>%s</li></ul><h3>%s</h3></a></div>",get_sub_field("resource_link"), json_encode(get_sub_field("resource_image"), JSON_UNESCAPED_SLASHES),$types[get_sub_field("resource_type")],get_sub_field("resource_type"),get_sub_field("resource_title"));
+                printf("<div class='col-3'><a class='story-tile-link sdr-page' href='%s'><div class='featured-thumb' data-bg-array='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-%s'></span>%s</li></ul><h3>%s</h3></a></div>",get_sub_field("resource_link"), json_encode(get_sub_field("resource_image"), JSON_UNESCAPED_SLASHES),$types[get_sub_field("resource_type")],get_sub_field("resource_type"),get_sub_field("resource_title"));
                 if ($count%3==2) { echo "</div>"; }
                 $count++;
               endwhile;

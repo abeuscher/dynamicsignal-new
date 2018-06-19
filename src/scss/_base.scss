@@ -320,7 +320,7 @@ section {
 }
 
 .top-section {
-  padding: 90px 0 0;
+  padding: 140px 0 0;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center bottom;
@@ -391,7 +391,7 @@ section {
   background:$light-gray;
   min-height: 250px;
   .row {
-    padding-top: 70px;
+    padding-top: 120px;
   }
 
   h1 {
@@ -993,6 +993,9 @@ section.contact-map {
   border: 1px solid $light-gray;
   transition: 0.25s all ease-in;
   height:80%;
+  &.sdr-page {
+    height:100%;
+  }
   h3,
   p,
   ul {
