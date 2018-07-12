@@ -917,5 +917,8 @@ function activateModals() {
     }
   }
   var theModals = document.querySelector('.modal');
-  var modal = tinyModal(theModals, opts);
+  if (theModals) {
+    var modal = tinyModal(theModals, opts);
+  }
+  
 }
