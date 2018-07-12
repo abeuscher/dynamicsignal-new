@@ -27,6 +27,7 @@ var pugPhpFilter = require("pug-php-filter");
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
+var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
 var sass = require('gulp-sass');
 var cssmin = require('gulp-cssmin');
@@ -98,6 +99,8 @@ var jsFiles = [{
   }
 ];
 
+
+
 function bundleJS() {
   for (i in jsFiles) {
     var theObj = jsFiles[i];
@@ -109,9 +112,17 @@ function bundleJS() {
 
     theFile.setter = function() {
       return theFile.bundle()
-        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-        .pipe(fs.createWriteStream(theObj.buildDir + theObj.opts.output));
+      .pipe(source(theObj.entries))
+      .pipe(buffer())
+      .pipe(sourcemaps.init({loadMaps: true}))
+          // Add transformation tasks to the pipeline here.
+          .pipe(uglify())
+          .on('error', gutil.log)
+      .pipe(sourcemaps.write(theObj.buildDir))
+      .pipe(gulp.dest(theObj.buildDir  + theObj.opts.output));
+        
     }
+
 
     theFile.on('update', theFile.setter);
     theFile.on('log', gutil.log);
@@ -155,6 +166,22 @@ function bundleJS() {
 
 gulp.task('bundle-js', bundleJS);
 
+gulp.task('uglify-js', function() {
+    return gulp.src(jsBuildDir + '*.js')
+      .pipe(uglify({
+        "compress": true
+      }).on("error", function(e) {
+        console.log(e, "uglify fail");
+      }))
+      .pipe(gulp.dest(jsBuildDir));
+});
+
+gulp.task('build-js', function() {
+  runSequence('bundle-js');
+});
+
+
+
 gulp.task('compile-sass-autoprefixed-minified', function() {
   return gulp.src(sassDir + '*.scss')
     .pipe(sass({
@@ -184,19 +211,7 @@ gulp.task('watch-files', function() {
 
 
 
-gulp.task('uglify-js', function() {
-    return gulp.src(jsBuildDir + '*.js')
-      .pipe(uglify({
-        "compress": true
-      }).on("error", function(e) {
-        console.log(e, "uglify fail");
-      }))
-      .pipe(gulp.dest(jsBuildDir));
-});
 
-gulp.task('build-js', function() {
-  runSequence('bundle-js', 'uglify-js');
-});
 
 gulp.task('build-views', function() {
   gulp.src(viewsSrcDir + '*.pug')
