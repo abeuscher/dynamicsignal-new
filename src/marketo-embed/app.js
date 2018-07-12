@@ -1,6 +1,7 @@
 var ScrollMagic = require("scrollmagic");
 var parseHTML = require("../js/utils/parse-html.js");
 var FormHandler = require("../js/form-handler/index.js");
+var ActivateVideos = require("../js/video-handler/index.js");
 
 var templates = {
   "header": require("../templates/inc/header-embed.pug"),
@@ -13,9 +14,12 @@ var siteopts = {
 };
 window.addEventListener("load", function() {
   setNav();
+  if (document.getElementById("marketo-form-wrapper")) {
   var formHandler = new FormHandler();
   formHandler.catchUTM();
   formHandler.fixForm();
+  }
+
   // Add the header shrinker
   var headController = new ScrollMagic.Controller({
     "loglevel": 0
@@ -61,7 +65,7 @@ window.addEventListener("load", function() {
     document.body.classList.remove("nav-open");
     theWrapper.removeEventListener("click", closeBody);
   }
-
+  new ActivateVideos();
 });
 
 function setNav() {

@@ -32,14 +32,13 @@ block content
         :php
           the_content();
       .col-md-4
+        img.modal-show(src=themeDir+"images/sdr-still-frame.jpg")
         h2 Apply Now
         ul.sdr-buttons
           li
             a.button(href="http://jobs.jobvite.com/dynamicsignal/job/ocF75fwN/apply",target="_blank") San Bruno
           li
             a.button(href="http://jobs.jobvite.com/dynamicsignal/job/o7XL6fwF/apply",target="_blank") Chicago
-          li
-            a.button(href="http://jobs.jobvite.com/dynamicsignal/job/otG75fw5/apply",target="_blank") London
   section.sdr-quotes.bottom-cta
       #sdr-quote-carousel
   section.container
@@ -58,7 +57,7 @@ block content
           if ( have_rows( 'resource_tiles' ) ) :
               while ( have_rows( 'resource_tiles' ) ) : the_row();
                 if ($count==0 || $count%3==0) { echo "<div class='even-height-wrapper'>"; }
-                printf("<div class='col-3'><a class='story-tile-link sdr-page' href='%s'><div class='featured-thumb' data-bg-array='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-%s'></span>%s</li></ul><h3>%s</h3></a></div>",get_sub_field("resource_link"), json_encode(get_sub_field("resource_image"), JSON_UNESCAPED_SLASHES),$types[get_sub_field("resource_type")],get_sub_field("resource_type"),get_sub_field("resource_title"));
+                printf("<div class='col-3'><a class='story-tile-link sdr-page' href='%s' target='_blank'><div class='featured-thumb' data-bg-array='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-%s'></span>%s</li></ul><h3>%s</h3></a></div>",get_sub_field("resource_link"), json_encode(get_sub_field("resource_image"), JSON_UNESCAPED_SLASHES),$types[get_sub_field("resource_type")],get_sub_field("resource_type"),get_sub_field("resource_title"));
                 if ($count%3==2) { echo "</div>"; }
                 $count++;
               endwhile;
@@ -66,4 +65,9 @@ block content
   :php
       endwhile;
     endif;
+  .modal
+    .modal-dialog
+      button.modal-hide!="&times;"
+      div.blog-content
+        .video(data-id="XdxkbON5g9w")
 

@@ -45,7 +45,7 @@ function FormHandler() {
 FormHandler.prototype.catchUTM = function() {
   var assignVals = [];
   var cookieData = new Array();
-  for (i in this.settings.utm_codes) {
+  for (i=0;i<this.settings.utm_codes.length;i++) {
     if (getQV(this.settings.utm_codes[i].ga)) {
       cookieData.push({
         "key": this.settings.utm_codes[i].mkto,
@@ -161,7 +161,7 @@ FormHandler.prototype.fixForm = function() {
         });
       }
       self.writeUTM();
-      
+
 
 
 
@@ -196,7 +196,7 @@ FormHandler.prototype.recaptcha = function(form, theForm) {
     } else if (typeof validateCorporateEmail !== 'undefined') {
       var email = form.vals().Email;
       if (email) {
-        
+
         if (!self.isEmailGood(email) && this.id != 1) {
           flag = false;
           var emailElem = form.getFormElem().find("#Email");
@@ -209,7 +209,7 @@ FormHandler.prototype.recaptcha = function(form, theForm) {
           });
         }
       }
-    } 
+    }
     form.submittable(flag);
   });
   var theButton = theForm.querySelectorAll("iframe")[0];

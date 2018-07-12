@@ -1103,9 +1103,6 @@ ul.gdpr {
       color:$menu-blue;
     }
   } 
-  &.policies, &.product, &.staff {
-
-  }
 }
 .top-section-gdpr {
   min-height:10vw;
@@ -1259,4 +1256,25 @@ img.right-padded {
   float:right;
   padding:0 0 $gutter-width $gutter-width;
   max-width:50%;
+}
+.modal {background: rgba(0,0,0,.5); z-index:999;
+
+}
+.modal-dialog {margin: 120px auto; max-width: 90%; background: $black; 
+position:relative;
+.modal-hide {
+  border:none;
+  color:$white;
+  background:transparent;
+  font-size:3.5em;
+  position:absolute;
+  padding:0;
+  right:0;
+  top:-1.1em;
+}
+}
+.modal-show {
+  &:hover {
+    cursor:pointer;
+  }
 }

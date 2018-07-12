@@ -148,6 +148,7 @@ function bundleJS() {
     }));
     theFile.setter();
   }
+  return true;
 }
 
 
@@ -176,7 +177,7 @@ gulp.task('compile-sass-autoprefixed-minified', function() {
 
 gulp.task('watch-files', function() {
   gulp.watch(sassDir + '**/*.scss', ['compile-sass-autoprefixed-minified'])
-  gulp.watch([jsSrcDir + '**/*.js', jsSrcDir + '*.js',jsSrcDir + '**/*.pug', jsSrcDir + '*.pug', uberembedSrcDir + '**/*.js', uberembedSrcDir + '*.js',embedSrcDir + '*.js', embedSrcDir + '/*/*.js'], ['build-js'])
+  gulp.watch([jsSrcDir + '**/*.js', jsSrcDir + '*.js',jsSrcDir + '**/*.pug', jsSrcDir + '*.pug', uberembedSrcDir + '**/*.js', uberembedSrcDir + '*.js',embedSrcDir + '*.js', embedSrcDir + '/*/*.js'], ['bundle-js'])
   gulp.watch([viewsSrcDir + '*.pug', viewsSrcDir + '/*/*.pug'], ['build-views']);
   gulp.watch([miscSrcDir + "*/**", miscSrcDir + ".*"], ['move-files']);
 });

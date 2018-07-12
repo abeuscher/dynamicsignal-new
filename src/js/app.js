@@ -12,6 +12,7 @@ var ActivateVideos = require("./video-handler/index.js");
 var Pies = require("./pie-chart/index.js");
 var Bars = require("./bar-chart/index.js");
 var Cookies = require("js-cookie");
+var tinyModal = require("tiny-modal");
 
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
@@ -59,6 +60,7 @@ var siteSettings = {
     "backgroundPicker": require("./inc/header-picker.pug"),
     "gdprPopup": require("./inc/gdpr-popup.pug"),
     "sdrQuote": require("./inc/sdr-quote.pug"),
+    "modalVideo": require("./inc/modal-video-slide.pug"),
     "whatisSlide": require("./inc/whatis-carousel-slide.pug")
   },
   "breakpoints": {
@@ -92,6 +94,7 @@ window.addEventListener("load", function() {
   }
   activateImages();
   new ActivateVideos();
+  activateModals();
   PDFHandler(".pdf-wrapper");
   var pies = new Pies({
     "className": "pie-wrapper",
@@ -115,8 +118,11 @@ window.addEventListener("load", function() {
   }
 
   // Activate UTM Catcher for Marketo
-  var getForm = new FormHandler();
-  getForm.catchUTM();
+
+    var getForm = new FormHandler();
+    getForm.catchUTM();
+
+
 
   // Activate search forms
   var searchForms = document.querySelectorAll(".search-form");
@@ -888,4 +894,28 @@ function writeCTA() {
       bar.classList.remove("open");
     });
   }
+}
+function activateModals() {
+  var opts = {
+    showSelector: '.modal-show',
+    hideSelector: '.modal-hide',
+    onShow: showVideo,
+    onHide: hideVideo,
+    scrollTop: true
+  };
+  function showVideo(target,modal) {
+    var theVideo = modal.querySelectorAll(".video");
+    if (theVideo.length>0) {
+      var theID = theVideo[0].getAttribute("data-id");
+      theVideo[0].appendChild(parseHTML(siteSettings.templates.modalVideo({videoid:theID})));
+    }
+  }
+  function hideVideo(target,modal) {
+    var theVideo = modal.querySelectorAll(".video");
+    if (theVideo.length>0) {
+      theVideo[0].innerHTML = "";
+    }
+  }
+  var theModals = document.querySelector('.modal');
+  var modal = tinyModal(theModals, opts);
 }

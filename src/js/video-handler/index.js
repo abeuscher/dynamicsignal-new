@@ -17,7 +17,6 @@ ActivateVideos.prototype.init = function() {
     else {
       thisBucket.addEventListener("click", self.onStart);
     }
-
   }
 }
 ActivateVideos.prototype.onStart = function(e) {
@@ -26,7 +25,6 @@ ActivateVideos.prototype.onStart = function(e) {
   var thisPlayer = this.querySelectorAll("iframe.vimeo-video")[0];
   var vimeoPlayer = new Vimeo(thisPlayer);
   thisPlayer.classList.toggle("hide");
-
 
   function changeCarouselListeners(toggle) {
     var carouselButtons = document.getElementsByClassName("flickity-prev-next-button");
@@ -51,17 +49,19 @@ ActivateVideos.prototype.onStart = function(e) {
 
   var isPlaying = vimeoPlayer.currentTime > 0 && !vimeoPlayer.paused && !vimeoPlayer.ended && vimeoPlayer.readyState > 2;
   if (!isPlaying) {
-    vimeoPlayer.off('pause');
+ 
+    vimeoPlayer.play()
+    .then(function() {
+      vimeoPlayer.on('pause', vimeoListener);
+    });
 
-    vimeoPlayer.on('pause', vimeoListener);
-    vimeoPlayer.play();
+  function vimeoListener(e) {
+    vimeoPlayer.off('pause', vimeoListener);
+    vimeoPlayer.unload();
+    thisPlayer.classList.toggle("hide");
 
-    function vimeoListener(e) {
-      vimeoPlayer.unload();
-      thisPlayer.classList.toggle("hide");
-    }
   }
-
+  }
 }
 ActivateVideos.prototype.makeVideo = function(id) {
   var video = document.createElement("iframe");
