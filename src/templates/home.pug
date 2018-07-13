@@ -16,14 +16,17 @@ block content
     .inner.home
       .container
         .row
-          .col-md-6.col-xs-10
+          .col-md-6.col-xs-12
             h1 Connect with Your Most Valued Asset, 
               span.blue Your Employees
             p
               :php
                 the_field("hero_subheader");
-            :php
-              echo "<a class='button cta' href='".get_field('home_page_top_cta_target')."'>".get_field('home_page_top_cta_label')."</a>";
+            .button-block
+              :php
+                echo "<a class='button cta' href='".get_field('home_page_top_cta_target')."'>".get_field('home_page_top_cta_label')."</a>";
+              a.button.cta.knockout.modal-show(href='#') Learn More
+                span.fa.fa-play-circle-o
         span.home-page-widget
           .widget-spacer(data-bg="widget-blue-circuit-bg.png")
           img(src=themeDir + "images/widget-blue-circuit.png")
@@ -63,16 +66,10 @@ block content
             :php
               the_field("home_page_bottom_cta_intro_text");
           :php
-            printf("<a class='button cta' href='%s'>%s</a>", get_field("home_page_bottom_cta_target"), get_field("home_page_bottom_cta_label"));
-          h2 Download and Try DySi Open
-          p Get a hands on demonstration of our mobile app!
-          ul.app-buttons.hmenu
-            li
-              a(href="itms://itunes.apple.com/us/app/dysi-open/id1339399649?mt=8",target="_blank")
-                img(src=themeDir + "/images/btn-itunes.png")
-            li
-              a(href="https://play.google.com/store/apps/details?id=com.dynamicsignal.appstore.dysi&hl=en",target="_blank")
-                img(src=themeDir + "/images/btn-android.png")
-            li
-              a(href="https://dysiopen.com/",target="_blank")
-                img(src=themeDir + "/images/btn-dysiopen-browser-black.png")
+            printf("<a class='button cta knockout' href='%s'>%s</a>", get_field("home_page_bottom_cta_target"), get_field("home_page_bottom_cta_label"));
+          a.button.cta.outline(href="/dysi-open/") Try DySi Open
+  .modal
+    .modal-dialog
+      button.modal-hide!="&times;"
+      div.blog-content
+        .video(data-id="iYvNKx7mwZ0")

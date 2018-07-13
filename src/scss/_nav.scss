@@ -71,7 +71,7 @@
               top:11px; 
             }
           }
-          &.dysi-open {
+          &.requestdemo {
             color:$header-blue;
             border:1px solid $header-blue;
             border-radius:3px;
@@ -91,7 +91,7 @@
           }
           &.active {
             text-decoration: underline;
-            &.dysi-open {
+            &.requestdemo {
               display:none;
             }
           }

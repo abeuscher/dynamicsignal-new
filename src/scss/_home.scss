@@ -11,7 +11,7 @@
   width:100%;
   height:150px;
   right:0;
-  margin-top:-56px;
+  margin-top:-61px;
   text-align:right;
   z-index:0;
   display:none;
@@ -69,5 +69,19 @@
 .home-flippety-floppity {
   .container {
     padding-bottom:$gutter-width*2;
+  }
+}
+.button-block {
+  text-align:center;
+  margin-bottom:30px;
+  .button {
+    display:block!important;
+  }
+  @include bp(m) {
+    margin-bottom:0;
+    text-align:left;
+    .button {
+      display:inline-block!important;
+    }
   }
 }
