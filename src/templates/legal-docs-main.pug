@@ -18,6 +18,17 @@ block content
     if( have_posts() ){
     while( have_posts() ) {
     the_post();
+
+    if (get_field("document_revised_date") && get_field("document_revised_date")!="") {
+      $thisdate = get_field("document_revised_date");
+      $year = intval(substr($thisdate,0,4));
+      $month = intval(substr($thisdate,4,2));
+      $day = intval(substr($thisdate,6,2));
+      $dateline = "Effective as of $month/$day/$year";
+    }
+    else {
+      $dateline = "";
+    }
   section.top-section-interior
     .container
       .row
@@ -33,6 +44,7 @@ block content
       .col-md-9.legal-box
         :php
           the_content();
+          echo $dateline;
           }}
 
         
