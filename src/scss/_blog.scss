@@ -372,3 +372,30 @@ ul.social-share li i.fa-circle {
     line-height: 1.8;
   }
 }
+.speaker-profile {
+  padding:$gutter-width*2;
+  border:1px solid $blue;
+  border-radius:5px;
+  background:$light-gray;
+  h2 {
+    font-size:36px;
+    color:$blue;
+    margin-top:0;
+    margin-bottom:6px;
+  }
+  h3 {
+    font-size:24px;
+    color:$blue;
+    margin:0;
+  }
+  p {
+
+  }
+  img {
+    float:left;
+    width:200px;
+    max-width:200px;
+    padding-right:1em;
+    padding-bottom:1em;
+  }
+}
