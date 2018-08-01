@@ -1,4 +1,5 @@
 var Vimeo = require('@vimeo/player');
+var YouTubePlayer = require("youtube-player");
 
 function ActivateVideos() {
   this.init();
@@ -9,17 +10,24 @@ ActivateVideos.prototype.init = function() {
   this.players = [];
   for (i=0;i<this.videos.length;i++) {
     var thisBucket = this.videos[i];
-    var thisPlayer = this.makeVideo(thisBucket.getAttribute("data-video-id"));
-    thisBucket.appendChild(thisPlayer);
-    if (window.innerWidth<1024) {
-      thisPlayer.classList.toggle("hide");
+    if (thisBucket.getAttribute("video-type")=="youtube") {
+      
+      console.log("Youtube Video detected");
     }
     else {
-      thisBucket.addEventListener("click", self.onStart);
+      var thisPlayer = this.makeVimeo(thisBucket.getAttribute("data-video-id"));
+      thisBucket.appendChild(thisPlayer);
+      if (window.innerWidth<1024) {
+        thisPlayer.classList.toggle("hide");
+      }
+      else {
+        thisBucket.addEventListener("click", self.onVimeoStart);
+      }
     }
+
   }
 }
-ActivateVideos.prototype.onStart = function(e) {
+ActivateVideos.prototype.onVimeoStart = function(e) {
   e.preventDefault();
   var self = this;
   var thisPlayer = this.querySelectorAll("iframe.vimeo-video")[0];
@@ -45,8 +53,6 @@ ActivateVideos.prototype.onStart = function(e) {
     changeCarouselListeners();
   }
 
-
-
   var isPlaying = vimeoPlayer.currentTime > 0 && !vimeoPlayer.paused && !vimeoPlayer.ended && vimeoPlayer.readyState > 2;
   if (!isPlaying) {
  
@@ -63,7 +69,7 @@ ActivateVideos.prototype.onStart = function(e) {
   }
   }
 }
-ActivateVideos.prototype.makeVideo = function(id) {
+ActivateVideos.prototype.makeVimeo = function(id) {
   var video = document.createElement("iframe");
   video.src = "https://player.vimeo.com/video/"+id+"?title=0&byline=0&portrait=0";
   video.setAttribute("webkitallowfullscreen","true");
@@ -72,5 +78,8 @@ ActivateVideos.prototype.makeVideo = function(id) {
   video.classList.add("vimeo-video");
   video.classList.add("hide");
   return video;
+}
+ActivateVideos.prototype.makeYoutube = function(id) {
+  var video = document.createElement("iframe");
 }
 module.exports = ActivateVideos;
