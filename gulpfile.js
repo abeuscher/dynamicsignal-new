@@ -97,7 +97,6 @@ var jsFiles = [{
     }
   }
 ];
-
 function bundleJS() {
   for (i in jsFiles) {
     var theObj = jsFiles[i];
@@ -106,51 +105,30 @@ function bundleJS() {
     }
     var options = assign({}, watchify.args, theObj.opts);
     theFile = watchify(browserify(options));
-
     theFile.setter = function() {
+      var writeStream = fs.createWriteStream(theObj.buildDir + theObj.opts.output);
       return theFile.bundle()
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-        .pipe(fs.createWriteStream(theObj.buildDir + theObj.opts.output));
+        .pipe(writeStream)
+        .on("finish", ugly); 
     }
-
-    theFile.on('update', theFile.setter);
     theFile.on('log', gutil.log);
     theFile.transform(require("pugify"));
-    theFile.transform(stringify({
-      extensions: ['.html'],
-      minify: true,
-      minifier: {
-        options: {
-          removeComments: true,
-          removeCommentsFromCDATA: true,
-          removeCDATASectionsFromCDATA: true,
-          collapseWhitespace: true,
-          conservativeCollapse: false,
-          preserveLineBreaks: false,
-          collapseBooleanAttributes: false,
-          removeAttributeQuotes: false,
-          removeRedundantAttributes: false,
-          useShortDoctype: false,
-          removeEmptyAttributes: false,
-          removeScriptTypeAttributes: false,
-          removeStyleLinkTypeAttributes: false,
-          removeOptionalTags: false,
-          removeIgnored: false,
-          removeEmptyElements: false,
-          lint: true,
-          keepClosingSlash: false,
-          caseSensitive: false,
-          minifyJS: true,
-          minifyCSS: false,
-          minifyURLs: false
-        }
-      }
-    }));
     theFile.setter();
   }
-  return true;
-}
 
+}
+var ugly = function() {
+  var dir = this.path.substring(0,this.path.lastIndexOf('/') + 1);
+  return gulp.src(dir + '*.js')
+      .pipe(uglify({
+        "compress": true
+      }).on("error", function(e) {
+        console.log(e, "uglify fail");
+      }))
+      .pipe(gulp.dest(dir))
+      .on("finish", function() {console.log("uglify js complete for " + dir);});
+}
 
 
 gulp.task('bundle-js', bundleJS);
@@ -177,25 +155,9 @@ gulp.task('compile-sass-autoprefixed-minified', function() {
 
 gulp.task('watch-files', function() {
   gulp.watch(sassDir + '**/*.scss', ['compile-sass-autoprefixed-minified'])
-  gulp.watch([jsSrcDir + '**/*.js', jsSrcDir + '*.js',jsSrcDir + '**/*.pug', jsSrcDir + '*.pug', uberembedSrcDir + '**/*.js', uberembedSrcDir + '*.js',embedSrcDir + '*.js', embedSrcDir + '/*/*.js'], ['build-js'])
+  gulp.watch([jsSrcDir + '**/*.js', jsSrcDir + '*.js',jsSrcDir + '**/*.pug', jsSrcDir + '*.pug', uberembedSrcDir + '**/*.js', uberembedSrcDir + '*.js',embedSrcDir + '*.js', embedSrcDir + '/*/*.js'], ['bundle-js'])
   gulp.watch([viewsSrcDir + '*.pug', viewsSrcDir + '/*/*.pug'], ['build-views']);
   gulp.watch([miscSrcDir + "*/**", miscSrcDir + ".*"], ['move-files']);
-});
-
-
-
-gulp.task('uglify-js', function() {
-    return gulp.src(jsBuildDir + '*.js')
-      .pipe(uglify({
-        "compress": true
-      }).on("error", function(e) {
-        console.log(e, "uglify fail");
-      }))
-      .pipe(gulp.dest(jsBuildDir));
-});
-
-gulp.task('build-js', function() {
-  runSequence('bundle-js', 'uglify-js');
 });
 
 gulp.task('build-views', function() {
@@ -229,4 +191,4 @@ gulp.task('move-thumb', function() {
 });
 
 // Default Task
-gulp.task('default', ['compile-sass-autoprefixed-minified', 'build-js', 'build-views', 'watch-files', 'move-files', 'move-thumb']);
+gulp.task('default', ['compile-sass-autoprefixed-minified', 'bundle-js', 'build-views', 'watch-files', 'move-files', 'move-thumb']);

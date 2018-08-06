@@ -11,8 +11,12 @@ ActivateVideos.prototype.init = function() {
   for (i=0;i<this.videos.length;i++) {
     var thisBucket = this.videos[i];
     if (thisBucket.getAttribute("video-type")=="youtube") {
-      
-      console.log("Youtube Video detected");
+      if (window.innerWidth<1024) {
+        var yt = makeYoutube(thisBucket.getAttribute("data-video-id"),thisBucket);
+      }
+      else {
+        thisBucket.addEventListener("click", self.onYoutubeStart);
+      }
     }
     else {
       var thisPlayer = this.makeVimeo(thisBucket.getAttribute("data-video-id"));
@@ -26,6 +30,14 @@ ActivateVideos.prototype.init = function() {
     }
 
   }
+} 
+ActivateVideos.prototype.onYoutubeStart = function(e) {
+  e.preventDefault();
+  var self = this;
+  console.log(self);
+  var yt = makeYoutube(self.getAttribute("data-video-id"),self);
+  yt.on("stateChange", function (e) { if (e.data==2) { e.target.destroy();} } );
+
 }
 ActivateVideos.prototype.onVimeoStart = function(e) {
   e.preventDefault();
@@ -79,7 +91,13 @@ ActivateVideos.prototype.makeVimeo = function(id) {
   video.classList.add("hide");
   return video;
 }
-ActivateVideos.prototype.makeYoutube = function(id) {
-  var video = document.createElement("iframe");
+function makeYoutube (id, bucket, events) {
+  var player = document.createElement("div");
+  bucket.appendChild(player);
+  var video = new YouTubePlayer(player);
+  
+  video.loadVideoById(id); 
+  player.classList.add("youtube-video");
+  return video;
 }
 module.exports = ActivateVideos;

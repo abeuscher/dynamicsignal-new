@@ -66,6 +66,9 @@ section.knockout-blue {
 .hide {
   display: none !important;
 }
+.block-cta .hide {
+  display:block !important;
+}
 
 .show {
   display: block;
