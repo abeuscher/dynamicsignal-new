@@ -178,6 +178,31 @@ var siteActions = [{
     wipeCookies();
   }
 },{
+  "element": "feature-menu",
+  "action": function() {
+    var links = document.querySelectorAll("#feature-menu a");
+    var controller = new ScrollMagic.Controller(); 
+    for (i=0;i<links.length;i++) {    
+      var button = links[i];
+      button.addEventListener("click", function(e) {
+        var section = document.getElementById(this.getAttribute("href").substr(1));
+        if (section) {
+          e.preventDefault();
+          section.scrollIntoView({
+            behavior: 'smooth'
+          }); 
+          //controller.scrollTo(section); 
+          if (window.history && window.history.pushState) {
+            history.pushState("", document.title, "#" + section.id);
+          }
+        } 
+        else {
+          console.log("element "+id+" NOT found");
+        }
+      });
+    }
+  }
+},{
   "element": "clear-storage",
   "action": function() {
     localStorage.clear();

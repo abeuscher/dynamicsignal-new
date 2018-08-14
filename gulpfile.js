@@ -119,15 +119,16 @@ function bundleJS() {
 
 }
 var ugly = function() {
+  var self = this;
   var dir = this.path.substring(0,this.path.lastIndexOf('/') + 1);
-  return gulp.src(dir + '*.js')
+  return gulp.src(self.path)
       .pipe(uglify({
         "compress": true
       }).on("error", function(e) {
         console.log(e, "uglify fail");
       }))
       .pipe(gulp.dest(dir))
-      .on("finish", function() {console.log("uglify js complete for " + dir);});
+      .on("finish", function() {console.log(self.path + "uglify js complete for " + dir + '*.js');});
 }
 
 

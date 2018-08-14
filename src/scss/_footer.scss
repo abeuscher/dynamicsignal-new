@@ -116,3 +116,14 @@ footer {
 
   }
 }
+ul.footer-app-buttons.hmenu {
+  padding-top:$gutter-width;
+  li {
+    @include bp(m) {
+      width:45%;
+      img {
+        width:95%;
+      }
+    }
+  }
+}

@@ -1,0 +1,187 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Product Features Page
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  - 
+    var pageData = {
+        "features" : [
+            {
+            "title":"Multi-Language",
+            "icon":"comments-o",
+            "content":"",
+            "image":"",
+            "external_links":[
+                {
+                "title":"",
+                "link":"",
+                "type":"",
+                "icon":""
+                }
+            ]
+            },
+            {
+            "title":"Document Hosting",
+            "icon":"file-text-o",
+            "content":"",
+            "image":"",
+            "external_links":[
+                {
+                "title":"",
+                "link":"",
+                "type":"",
+                "icon":""
+                }
+            ]
+            },
+            {
+            "title":"Newsletters",
+            "icon":"newspaper-o",
+            "content":"",
+            "image":"",
+            "external_links":[
+                {
+                "title":"",
+                "link":"",
+                "type":"",
+                "icon":""
+                }
+            ]
+            },
+            {
+            "title":"Surveys",
+            "icon":"check-circle",
+            "content":"",
+            "image":""
+            },
+            {
+            "title":"Organizational Hierarchy",
+            "icon":"sitemap",
+            "content":"",
+            "image":"",
+            "external_links":[
+                {
+                "title":"",
+                "link":"",
+                "type":"",
+                "icon":""
+                }
+            ]
+            },
+            {
+            "title":"Smart Content",
+            "icon":"superpowers",
+            "content":"",
+            "image":"",
+            "external_links":[
+                {
+                "title":"",
+                "link":"",
+                "type":"",
+                "icon":""
+                }
+            ]
+            },
+            {
+            "title":"Video",
+            "icon":"video-camera",
+            "content":"",
+            "image":"",
+            "external_links":[
+                {
+                "title":"",
+                "link":"",
+                "type":"",
+                "icon":""
+                }
+            ]
+            },
+            {
+            "title":"Broadcasts",
+            "icon":"bullhorn",
+            "content":"",
+            "image":"",
+            "external_links":[
+                {
+                "title":"",
+                "link":"",
+                "type":"",
+                "icon":""
+                }
+            ]
+            },
+            {
+            "title":"Content Personalization",
+            "icon":"user",
+            "content":"",
+            "image":"",
+            "external_links":[
+                {
+                "title":"",
+                "link":"",
+                "type":"",
+                "icon":""
+                }
+            ]
+            },
+            {
+            "title":"Content Sharing",
+            "icon":"share-square-o",
+            "content":"",
+            "image":"",
+            "external_links":[
+                {
+                "title":"",
+                "link":"",
+                "type":"",
+                "icon":""
+                }
+            ]
+            }
+        ]
+        };
+  section.top-section-interior.resources.single-line
+    .container
+      .row
+        .col-md-12
+          h1 Product Features
+  section.container.feature-icon-menu#feature-menu
+    for feature, idx in pageData.features
+        if idx==5
+            </div></div>
+        if idx%5==0
+            <div class="row"><div class="col-md-2 col-md-offset-1">
+        else
+            </div><div class="col-md-2">
+        a(href="#section-"+idx)
+            span.fa-1x.fa-stack
+                i.fa.fa-circle.fa-stack-2x
+                i(class="fa fa-stack-1x fa-inverse fa-"+feature.icon)
+            h2!=feature.title
+  for feature, idx in pageData.features
+    section(id="section-"+idx).container.feature-bucket
+        .row
+            .col-md-6
+                h2
+                    span.fa-1x.fa-stack
+                        i.fa.fa-circle.fa-stack-2x
+                        i(class="fa fa-stack-1x fa-inverse fa-"+feature.icon)
+                    span!=feature.title 
+                p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+                ul.hmenu
+                    li
+                        a.button(href="https://support.dynamicsignal.com") Learn More
+            .col-md-6
+                img(src=themeDir+"images/product-imac.gif")
+  section.bottom-cta
+    .container
+      .row
+        .col-md-12
+          p Learn why more than 20 percent of the Fortune 100 use Dynamic Signal
+          a.button.cta.knockout(href="/requestdemo") Request Demo
