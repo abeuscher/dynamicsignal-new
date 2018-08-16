@@ -10,8 +10,11 @@
         .glossary-section(id=String.fromCharCode(n))
             h2=String.fromCharCode(n) 
             .ds-table
-                .data-row
-                    .data-cell.knockout.width-25
-                        strong Header
-                    .data-cell.width-75 Description
-        - n++
+                - i = 0
+                while i<20
+                    .data-row
+                        .data-cell.knockout.width-25
+                            strong Header
+                        .data-cell.width-75 Description
+                    - i++
+        - n++ 
