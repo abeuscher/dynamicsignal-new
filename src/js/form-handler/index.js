@@ -143,9 +143,11 @@ FormHandler.prototype.fixForm = function() {
           return false;
         });
       }
+      /*
       if (theID == "1163") {
         self.recaptcha(form, theForm);
       }
+      */
       else if (typeof validateCorporateEmail !== 'undefined') {
         form.onValidate(function() {
           var email = form.vals().Email;
