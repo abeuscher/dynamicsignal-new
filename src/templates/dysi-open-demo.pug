@@ -1,0 +1,53 @@
+:php
+    /*
+    Template Name: DySi Open Demo Page
+    */
+doctype html 
+html
+  head
+    meta(charset="UTF-8")
+    link(rel='shortcut icon', href=themeDir + 'images/favicon.ico?v=2')
+    meta(name='robots',content='noindex,nofollow')
+    title DySi Open Demo
+    :php
+        $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
+        echo "<link href='$slink' rel='stylesheet' />";
+  body
+    .dysi-demo
+        img(src="https://dynamicsignal.com/wp-content/uploads/2018/08/dysi-open-dashboard.jpg",style={"width":"100%","max-width":"100%"},usemap="#dmap")
+        map#dmap(name='dmap')
+            area(shape='rect', alt='', title='', coords='33,45,122,86', href='', target='')
+            area(shape='rect', alt='', title='', coords='132,47,222,86', href='', target='')
+            area(shape='rect', alt='', title='', coords='232,48,329,87', href='', target='')
+            area(shape='rect', alt='', title='', coords='338,49,425,86', href='', target='')
+            area(shape='rect', alt='', title='', coords='436,51,512,88', href='', target='')
+    script.
+        window.addEventListener("load",function () {
+            var ImageMap = function (map) {
+                    var n,
+                        areas = map.getElementsByTagName('area'),
+                        len = areas.length,
+                        coords = [],
+                        previousWidth = 1920;
+                    for (n = 0; n < len; n++) {
+                        coords[n] = areas[n].coords.split(',');
+                    }
+                    this.resize = function () {
+                        var n, m, clen,
+                            x = document.body.clientWidth / previousWidth;
+                        for (n = 0; n < len; n++) {
+                            clen = coords[n].length;
+                            for (m = 0; m < clen; m++) {
+                                coords[n][m] *= x;
+                            }
+                            areas[n].coords = coords[n].join(',');
+                        }
+                        previousWidth = document.body.clientWidth;
+                        return true;
+                    };
+                    window.onresize = this.resize;
+                };
+                imageMap = new ImageMap(document.getElementById('dmap'));
+            imageMap.resize();
+            console.log(imageMap);
+        });
