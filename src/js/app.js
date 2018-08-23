@@ -232,6 +232,18 @@ var siteActions = [{
     }
   },
   {
+    "element": "mobile-screenshots",
+    "action": function() {
+      console.log("new honme page detected"); 
+      var logoGall = new Flickity("#mobile-screenshots", {
+        "prevNextButtons": false,
+        "autoPlay": 5000,
+        "wrapAround": true,
+        "pageDots": false
+      });
+    }
+  },
+  {
     "element": "map-container",
     "action": function() {
       var box = document.getElementById("map-container");

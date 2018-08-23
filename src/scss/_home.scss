@@ -1,4 +1,47 @@
+#home-marquee {
+  //background-image:url($img-path + "bg-mobile.jpg");
+  //background-position:bottom center;
+  //@include bp(m) {
+    background-image:url($img-path + "header-hardhats.jpg");
+  //}
+}
 
+.home-page-widget {
+  position:absolute;
+  width:100%;
+  height:150px;
+  right:0;
+  margin-top:-61px;
+  text-align:right;
+  z-index:0;
+  display:none;
+  overflow:hidden;
+  @include bp(m) {
+    display:flex;
+  }
+  img {
+    flex-shrink:0;
+    flex-grow:0;
+  }
+  .widget-spacer {
+    flex-shrink:1;
+    flex-grow:1;
+    background-repeat:repeat-x;
+    height:150px;
+  }
+}
+.homepic {
+  text-align: center;
+}
+.home-icon {
+  display:inline-block;
+  width:1.25em;
+  height:1.25em;
+  margin-left:.5em;
+  vertical-align: middle;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
 .home-content {
   padding-top:$gutter-width*3;
 }
@@ -102,13 +145,21 @@ section.hero-homepage {
     }
   }
   .hero-img {
-    min-height:350px;
-    position:relative;
-    .homepage-screenshot {
-      position:absolute;
-      bottom:-38px;
-      left:0;
+    .flickity-slider {
+      transform: none !important;
     }
+    .slide {
+      left: 0 !important;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      z-index: -1;
+      &.is-selected {
+        opacity: 1;
+        z-index: 0
+      }
+    }
+    
+
   }
 }
 .logo-strip-bucket {
