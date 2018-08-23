@@ -16,11 +16,11 @@ html
     .dysi-demo
         img(src="https://dynamicsignal.com/wp-content/uploads/2018/08/dysi-open-dashboard.jpg",style={"width":"100%","max-width":"100%"},usemap="#dmap")
         map#dmap(name='dmap')
-            area(shape='rect', alt='', title='', coords='33,45,122,86', href='', target='')
-            area(shape='rect', alt='', title='', coords='132,47,222,86', href='', target='')
-            area(shape='rect', alt='', title='', coords='232,48,329,87', href='', target='')
-            area(shape='rect', alt='', title='', coords='338,49,425,86', href='', target='')
-            area(shape='rect', alt='', title='', coords='436,51,512,88', href='', target='')
+            area(alt='Dashboard', title='', href='https://www.dysiopen.com/manage/', shape='rect', coords='30,50,127,85',target="_blank")
+            area(alt='Content', title='', href='https://www.dysiopen.com/manage/post/list', shape='rect', coords='139,51,222,82',target="_blank")
+            area(alt='Members', title='', href='https://www.dysiopen.com/manage/member/list', shape='rect', coords='235,52,326,84',target="_blank")
+            area(alt='Reports', title='', href='https://www.dysiopen.com/manage/report/analytics', shape='rect', coords='342,52,427,87',target="_blank")
+            area(alt='Admin', title='', href='https://www.dysiopen.com/manage/manager/list', shape='rect', coords='439,55,515,86',target="_blank")
     script.
         window.addEventListener("load",function () {
             var ImageMap = function (map) {
@@ -28,7 +28,7 @@ html
                         areas = map.getElementsByTagName('area'),
                         len = areas.length,
                         coords = [],
-                        previousWidth = 1920;
+                        previousWidth = 1469;
                     for (n = 0; n < len; n++) {
                         coords[n] = areas[n].coords.split(',');
                     }
