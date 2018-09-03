@@ -13,136 +13,34 @@ block content
     var pageData = {
         "features" : [
             {
-            "title":"Multi-Language",
-            "icon":"comments-o",
-            "content":"",
-            "image":"",
-            "external_links":[
-                {
-                "title":"",
-                "link":"",
-                "type":"",
-                "icon":""
-                }
-            ]
+            "title":"Content"
             },
             {
-            "title":"Document Hosting",
-            "icon":"file-text-o",
-            "content":"",
-            "image":"",
-            "external_links":[
-                {
-                "title":"",
-                "link":"",
-                "type":"",
-                "icon":""
-                }
-            ]
+            "title":"Newsletters"
             },
             {
-            "title":"Newsletters",
-            "icon":"newspaper-o",
-            "content":"",
-            "image":"",
-            "external_links":[
-                {
-                "title":"",
-                "link":"",
-                "type":"",
-                "icon":""
-                }
-            ]
+            "title":"Surveys"
             },
             {
-            "title":"Surveys",
-            "icon":"check-circle",
-            "content":"",
-            "image":""
+            "title":"Broadcasting"
             },
             {
-            "title":"Organizational Hierarchy",
-            "icon":"sitemap",
-            "content":"",
-            "image":"",
-            "external_links":[
-                {
-                "title":"",
-                "link":"",
-                "type":"",
-                "icon":""
-                }
-            ]
+            "title":"Segmentation"
             },
             {
-            "title":"Smart Content",
-            "icon":"superpowers",
-            "content":"",
-            "image":"",
-            "external_links":[
-                {
-                "title":"",
-                "link":"",
-                "type":"",
-                "icon":""
-                }
-            ]
+            "title":"Gamification"
             },
             {
-            "title":"Video",
-            "icon":"video-camera",
-            "content":"",
-            "image":"",
-            "external_links":[
-                {
-                "title":"",
-                "link":"",
-                "type":"",
-                "icon":""
-                }
-            ]
+            "title":"Integrations"
             },
             {
-            "title":"Broadcasts",
-            "icon":"bullhorn",
-            "content":"",
-            "image":"",
-            "external_links":[
-                {
-                "title":"",
-                "link":"",
-                "type":"",
-                "icon":""
-                }
-            ]
+            "title":"Localization"
             },
             {
-            "title":"Content Personalization",
-            "icon":"user",
-            "content":"",
-            "image":"",
-            "external_links":[
-                {
-                "title":"",
-                "link":"",
-                "type":"",
-                "icon":""
-                }
-            ]
+            "title":"Video"
             },
             {
-            "title":"Content Sharing",
-            "icon":"share-square-o",
-            "content":"",
-            "image":"",
-            "external_links":[
-                {
-                "title":"",
-                "link":"",
-                "type":"",
-                "icon":""
-                }
-            ]
+            "title":"Metrics"
             }
         ]
         };
@@ -158,30 +56,171 @@ block content
         if idx%5==0
             <div class="row"><div class="col-md-2 col-md-offset-1">
         else
-            </div><div class="col-md-2">
-        a(href="#section-"+idx)
-            span.fa-1x.fa-stack
-                i.fa.fa-circle.fa-stack-2x
-                i(class="fa fa-stack-1x fa-inverse fa-"+feature.icon)
+            </div><div class="col-md-2"> 
+        a(href="#section-"+feature.title.toLowerCase())
             h2!=feature.title
-  for feature, idx in pageData.features
-    section(id="section-"+idx).container.feature-bucket
+  #features-sections
+    section#section-content.feature-bucket
+        .container
+            .row.top
+                .col-md-12
+                    h2 Content 
+                    p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+            .row
+                .col-md-6
+                    ul#content-menu
+                        li
+                            a.active(href="#", data-target="features-content-pane-shareable",data-content-image="features-mainpic-shareablecontent.jpg") Shareable Content
+                        li
+                            a(href="#", data-target="features-content-pane-smart",data-content-image="features-mainpic-smartcontent.jpg") Smart Content
+                        li
+                            a(href="#", data-target="features-content-pane-management",data-content-image="features-mainpic-contentmanagement.jpg") Content Management
+                        li
+                            a(href="#", data-target="features-content-pane-non",data-content-image="features-mainpic-nonshareable.jpg") Non-Shareable Content
+                        li
+                            a(href="#", data-target="features-content-pane-employee",data-content-image="features-mainpic-employeegenerated.jpg") Employee Generated Content 
+                .col-md-6
+                    #features-content-panes
+                        .features-content-pane#features-content-pane-shareable.active
+                            h2 Shareable Content
+                            p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+                        .features-content-pane#features-content-pane-smart
+                            h2 Smart Content
+                            p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+                        .features-content-pane#features-content-pane-management
+                            h2 Content Management
+                            p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+                        .features-content-pane#features-content-pane-non
+                            h2 Non Shareable Content
+                            p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+                        .features-content-pane#features-content-pane-employee
+                            h2 Employee Generated Content
+                            p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+            .row
+                .col-md-12.content-image
+                    .bg#content-lower-image(data-bg="features-mainpic-shareablecontent.jpg") 
+    section#section-newsletters.container.feature-bucket
+        .inner
+            h2 Newsletters
+            p
+            | Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+            ul.hmenu
+                li
+                    a.button(href='https://support.dynamicsignal.com') Learn More
+    section#section-surveys.feature-bucket
+        .container
+            .row
+                .col-md-12.top
+                    h2 Surveys
+                    p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+                    ul.hmenu
+                        li
+                            a.button(href='https://support.dynamicsignal.com') Learn More
+                .col-md-12.content-image
+                    .bg(data-bg="features-mainpic-surveys.jpg")
+    section#section-broadcasting.feature-bucket
+        .container
+            .bg(data-bg="features-mainpic-broadcasting.jpg")
+            .inner
+                h2 Broadcasting
+                p Connect with employees, wherever they are, in the manner they prefer with one platform. Distribute information through email, push notifications, SMS, the intranet and collaboration tools like Slack, Yammer and Chatter. Request acknowledgments so you know urgent messages are received.
+                ul.hmenu 
+                    li
+                        a.button(href='https://support.dynamicsignal.com') Learn More
+    section#section-segmentation.container.feature-bucket
         .row
-            .col-md-6
-                h2
-                    span.fa-1x.fa-stack
-                        i.fa.fa-circle.fa-stack-2x
-                        i(class="fa fa-stack-1x fa-inverse fa-"+feature.icon)
-                    span!=feature.title 
-                p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+            .col-md-12
+                h2 Segmentation
+                p
+                | Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
                 ul.hmenu
                     li
-                        a.button(href="https://support.dynamicsignal.com") Learn More
-            .col-md-6
-                img(src=themeDir+"images/product-imac.gif")
+                        a.button(href='https://support.dynamicsignal.com') Learn More
+            .col-md-12.content-image
+                .bg(data-bg="features-mainpic-segmentation.jpg")
+    section#section-gamification.feature-bucket
+        .container
+            .row
+                .col-md-6
+                    h2 Gamification
+                    p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+                    ul.hmenu
+                        li
+                            a.button(href='https://support.dynamicsignal.com') Learn More
+                .col-md-6
+                    .bg(data-bg="features-mainpic-gamification.jpg")
+
+    section#section-integrations.feature-bucket
+        .container
+            .row
+                .col-md-12
+                    h2 Integrations
+                    p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+            .row.flex-row-md
+                .col-md-6.left-image
+                    .bg(data-bg="features-mainpic-integrations.jpg")
+                .col-md-6 
+                    ul
+                        li 
+                            p Intranets Like Sharepoint
+                        li
+                            p Intranets Like Sharepoint
+                        li
+                            p Intranets Like Sharepoint
+                        li
+                            p Intranets Like Sharepoint
+                        li
+                            p Intranets Like Sharepoint 
+                    img.int-image#logo-radial(src=themeDir+"images/features-mainpic-integrations-static.jpg")       
+                    ul.hmenu
+                        li
+                            a.button(href='https://support.dynamicsignal.com') Learn More
+    section#section-localization.feature-bucket
+        .container
+            .row
+                .col-md-6
+                    .bg(data-bg="features-mainpic-localization.jpg")
+                .col-md-6
+                    h2 Localization
+                    p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+                    ul.hmenu
+                        li
+                            a.button(href='https://support.dynamicsignal.com') Learn More
+    section#section-video.feature-bucket
+        .container
+            .row
+                .col-md-6
+                    h2 Video
+                    p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+                    ul.hmenu
+                        li
+                            a.button(href='https://support.dynamicsignal.com') Learn More
+                .col-md-6
+                    .bg(data-bg="features-mainpic-video.jpg")
+    section#section-metrics.container.feature-bucket
+        .row
+            .col-md-12
+                h2 Metrics 
+                p
+                | Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+                ul.hmenu
+                    li
+                        a.button(href='https://support.dynamicsignal.com') Learn More
+            .col-md-12.content-image
+                .bg(data-bg="features-mainpic-metric.jpg")
+        .row
+            .col-md-4
+                h2 Header
+                p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+            .col-md-4
+                h2 Header
+                p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
+            .col-md-4
+                h2 Header
+                p Bacon ipsum dolor amet doner buffalo tri-tip shoulder shankle brisket cupim turkey meatball landjaeger beef ribs sirloin porchetta tail. Drumstick tongue filet mignon short ribs bresaola pork loin, pork turkey. Bresaola meatloaf beef sausage, corned beef t-bone pork loin hamburger short ribs porchetta jerky buffalo chuck pork tail. Picanha pork biltong, turducken beef t-bone prosciutto frankfurter cupim landjaeger tenderloin doner drumstick shoulder bresaola. Salami flank meatball ham kielbasa fatback spare ribs jerky biltong shoulder shank boudin leberkas swine frankfurter. Ham pig porchetta short ribs sausage.
   section.bottom-cta
     .container
-      .row
-        .col-md-12
-          p Learn why more than 20 percent of the Fortune 100 use Dynamic Signal
-          a.button.cta.knockout(href="/requestdemo") Request Demo
+        .row
+            .col-md-12
+                p Learn why more than 20 percent of the Fortune 100 use Dynamic Signal
+                a.button.cta.knockout(href="/requestdemo") Request Demo

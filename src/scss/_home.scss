@@ -167,3 +167,77 @@ section.hero-homepage {
     font-size:1.2em;
   }
 }
+.logo-flipper {
+  display:flex;
+  width:100%;
+  flex-wrap:wrap;
+  .box-1,.box-2 {
+    display:flex;
+    width:100%;
+    flex-wrap:wrap;
+  }
+  .box-2 {
+    display:none;
+  }
+  .logo-thumb {
+    min-height:5vw;
+    flex-basis:20%;
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center; 
+    //animation:flip .5s 1 alternate;
+    backface-visibility:hidden;
+    position:relative;
+    
+    &.flipped {
+      position:absolute;
+      left:0;
+      width:100%;
+      opacity:0;
+      transform:rotateX(180deg);
+      animation:flip 5s 1 alternate-reverse both; 
+      animation-iteration-count:infinite;
+    }
+  }
+  @keyframes flip{
+    0% {
+      transform:rotateX(0deg);
+      opacity:1;
+    }
+    45% {
+      transform:rotateX(0deg);
+      opacity:1;
+    }
+    55% {
+      transform:rotateX(180deg);
+      opacity:0;
+    }
+    100% {
+      transform:rotateX(180deg);
+      opacity:0;
+    }
+  }
+  @keyframes flipback{
+    from{
+      transform:rotateX(180deg);
+      opacity:0;
+    }
+    to{
+      transform:rotateX(0deg);
+      opacity:1;
+    }
+  }
+  @for $i from 0 through (24){
+    @if $i%2!=0 {
+      #logo-#{$i + 1}{
+        animation-delay:1.5s + $i/12;
+      }
+    }
+    @else {
+      #logo-#{$i + 1}{
+        animation-delay:5s + $i/12;
+      }
+    }
+
+  }
+}

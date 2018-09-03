@@ -37,6 +37,7 @@ var siteSettings = {
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
+    "logoTerminalGrid": require("./inc/logo-terminal-grid.pug"),
     "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
     "customerTile": require("./inc/customer-tile.pug"),
     "productQuote": require("./inc/product-quote.pug"),
@@ -234,13 +235,31 @@ var siteActions = [{
   {
     "element": "mobile-screenshots",
     "action": function() {
-      console.log("new honme page detected"); 
       var logoGall = new Flickity("#mobile-screenshots", {
         "prevNextButtons": false,
         "autoPlay": 5000,
         "wrapAround": true,
         "pageDots": false
       });
+    }
+  },
+  {
+    "element": "logo-radial",
+    "action": function() {
+        var theLogos = document.getElementById("logo-radial");
+        var controller = new ScrollMagic.Controller({
+          "loglevel": 0
+        });
+
+        new ScrollMagic.Scene({
+            offset: 0,
+            triggerElement: theLogos,
+            duration: 0
+          })
+          .on("enter leave", function(e) {
+            theLogos.src = siteSettings.imagePath + "features-mainpic-integrations-animated.gif";
+          })
+          .addTo(controller);
     }
   },
   {
@@ -677,6 +696,13 @@ var siteActions = [{
     }
   },
   {
+    "element": "logo-terminal-grid",
+    "action": function() {
+      var gridTerminal = document.getElementById("logo-terminal-grid");
+      gridTerminal.append(parseHTML(siteSettings.templates.logoTerminalGrid(pageData.logos)));
+    }
+  },
+  {
     "element": "testimonial-strip",
     "action": function() {
       var testimonialGall = new Flickity("#testimonial-strip", {
@@ -730,6 +756,42 @@ var siteActions = [{
         "jobList": theJobs
       }
       var theFilter = new JobFilter(opts);
+    }
+  },
+  {
+    "element": "content-menu",
+    "action": function() {
+      var theMenu = document.getElementById("content-menu");
+      var thePane = document.getElementById("features-content-panes"); 
+      var theImage = document.getElementById("content-lower-image");
+      var theLinks = theMenu.querySelectorAll("a");
+      for (i=0;i<theLinks.length;i++) {
+        var thisLink = theLinks[i];
+        thisLink.addEventListener("click", function(e) {
+          e.preventDefault();
+          var target = document.getElementById(this.getAttribute("data-target"));
+          clearPanes();
+          target.classList.add("active");
+          this.classList.add("active"); 
+          if(this.getAttribute("data-content-image")) {
+            console.log("bongo");
+            theImage.style.backgroundImage = "url(" + siteSettings.imagePath + this.getAttribute("data-content-image") + ")";
+          }
+          else {
+            console.log("no image");
+          }
+        })
+      }
+      function clearPanes() {
+        var panes = thePane.querySelectorAll(".features-content-pane");
+        for (i=0;i<panes.length;i++) {
+          panes[i].classList.remove("active");
+        }
+        var links = theMenu.querySelectorAll("a");
+        for (i=0;i<links.length;i++) {
+          links[i].classList.remove("active");
+        }
+      }
     }
   },
   {

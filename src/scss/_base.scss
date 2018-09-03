@@ -1325,3 +1325,8 @@ position:relative;
     cursor:pointer;
   }
 }
+.flex-row-md {
+  @include bp(m) {
+    display:flex;
+  }
+}
