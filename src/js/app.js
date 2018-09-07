@@ -13,6 +13,7 @@ var Pies = require("./pie-chart/index.js");
 var Bars = require("./bar-chart/index.js");
 var Cookies = require("js-cookie");
 var tinyModal = require("tiny-modal");
+var smoothscroll = require("smoothscroll-polyfill");
 
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
@@ -117,6 +118,7 @@ window.addEventListener("load", function() {
       mobilePanels[i].style.display = "none";
     }
   }
+  smoothscroll.polyfill();
 
   // Activate UTM Catcher for Marketo
 
@@ -190,7 +192,8 @@ var siteActions = [{
         if (section) {
           e.preventDefault();
           section.scrollIntoView({
-            behavior: 'smooth'
+            behavior: 'smooth',
+            "block":"start"
           }); 
           //controller.scrollTo(section); 
           if (window.history && window.history.pushState) {
@@ -699,7 +702,20 @@ var siteActions = [{
     "element": "logo-terminal-grid",
     "action": function() {
       var gridTerminal = document.getElementById("logo-terminal-grid");
-      gridTerminal.append(parseHTML(siteSettings.templates.logoTerminalGrid(pageData.logos)));
+      /*
+      var firstPage = pageData.logos.filter(logo => pageData.logos.indexOf(logo)%2 == 0 || pageData.logos.indexOf(logo)==0);
+      var secondPage = pageData.logos.filter(logo => pageData.logos.indexOf(logo)%2 != 0);
+      var logos = secondPage.concat(firstPage);
+      */
+     var logos = [];
+     var slots = parseInt(pageData.logos.length/2);
+     for (let i=0;i<slots;i++) {
+       logos.push(pageData.logos[i]);
+       if (pageData.logos[i+slots]) {
+        logos.push(pageData.logos[i+slots]);
+       }
+     }
+      gridTerminal.append(parseHTML(siteSettings.templates.logoTerminalGrid(logos)));
     }
   },
   {

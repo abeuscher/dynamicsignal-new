@@ -87,14 +87,16 @@
 }
 
 .homepage-solutions .col-md-12 {
-  display:flex;
-  justify-content: space-between;
+  @include bp(s) {
+    display:flex;
+    justify-content: space-between;
+  }
+
   .homepage-solution-bucket {
     flex:1;
     display:block;
     padding:0 $gutter-width $gutter-width/2;
     border:1px solid $gray;
-    margin:0 $gutter-width;
     box-shadow:0 0 0 $gray;
     text-align: center;
     &:first-child {
@@ -122,6 +124,10 @@
         text-align:left;
         display:inline-block;
       }
+    }
+    @include bp(s) {
+      padding:0 $gutter-width $gutter-width/2;
+      margin:0 $gutter-width;
     }
   }
   
@@ -180,8 +186,14 @@ section.hero-homepage {
     display:none;
   }
   .logo-thumb {
-    min-height:5vw;
-    flex-basis:20%;
+   
+    
+    flex-basis:33.33%;
+    min-height:50px;
+    @include bp(s) {
+      flex-basis:16.6%;
+      min-height:5vw;
+    }
     background-repeat:no-repeat;
     background-size:contain;
     background-position:center; 
@@ -217,25 +229,15 @@ section.hero-homepage {
       opacity:0;
     }
   }
-  @keyframes flipback{
-    from{
-      transform:rotateX(180deg);
-      opacity:0;
-    }
-    to{
-      transform:rotateX(0deg);
-      opacity:1;
-    }
-  }
-  @for $i from 0 through (24){
+  @for $i from 0 through (60){
     @if $i%2!=0 {
       #logo-#{$i + 1}{
-        animation-delay:1.5s + $i/12;
+        animation-delay:8s + $i/12;
       }
     }
     @else {
       #logo-#{$i + 1}{
-        animation-delay:5s + $i/12;
+        animation-delay:8s + $i/12;
       }
     }
 

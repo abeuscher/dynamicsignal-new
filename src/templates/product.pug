@@ -36,68 +36,101 @@ block content
       h1
         :php
           the_field("header_text");
+      p
+        a.button.cta.knockout.modal-show(href='#') Play Video
+          span.fa.fa-play-circle-o
   section.container
     .row
       .col-md-12.icon-bar
-        a.icon-tile(href="/benefits/")
-          .icon-thumb(data-bg="icon-usecases.png")
-          h2 Benefits
+        a.icon-tile(href="/solutions/")
+          .icon-thumb(data-bg="icon-solutions.png")
+          h2 Solutions
+        a.icon-tile(href="/features/")
+          .icon-thumb(data-bg="icon-features.png") 
+          h2 Features
         a.icon-tile(href="https://resources.dynamicsignal.com/h/c/837672-case-studies")
           .icon-thumb(data-bg="icon-casestudies.png")
           h2 Case Studies
         a.icon-tile(href="/integrations/")
           .icon-thumb(data-bg="icon-integrations.png")
-          h2 Integrations
-  section.whatis-carousel
-    .container#whatis-carousel-mobile
-      .col-md-12
-        .what-is-thumb-mobile(data-bg="product-phone-connect.gif")
-        h2 Connect
-        p Reach employees immediately through mobile push notifications, alerts and video to get high-priority content directly in front of them
-        .what-is-thumb-mobile(data-bg="product-phone-align.gif")
-        h2 Align
-        p Unite a dispersed workforce with a shared mission and vision by ensuring strong, measurable communication with every employee
-        .what-is-thumb-mobile(href="#",data-bg="product-phone-engage.gif")
-        h2 Engage
-        p Give employees a voice with the ability to take action, by liking, commenting on, and sharing approved content with their own social networks
-    .container#whatis-carousel 
-      .col-md-6
-        #whatis-carousel-image(data-bg="product-phone-connect.gif")
-      .col-md-6
-        a.active.carousel-button(href="#",data-image="product-phone-connect.gif")
-          h2 Connect
-          p Reach employees immediately through mobile push notifications, alerts and video to get high-priority content directly in front of them
-        a.carousel-button(href="#",data-image="product-phone-align.gif")
-          h2 Align
-          p Unite a dispersed workforce with a shared mission and vision by ensuring strong, measurable communication with every employee
-        a.carousel-button(href="#",data-image="product-phone-engage.gif")
-          h2 Engage
-          p Give employees a voice with the ability to take action, by liking, commenting on, and sharing approved content with their own social networks
-  section.whatis-testimonial-bucket
-    .container
-      #whatis-testimonials
-        .row
-          .col-md-12
-            #product-video-carousel
-  section.whatis-bottom
+          h2 Integrations 
+  section.container.product-header
+    .row
+      .col-md-12.centered
+        h3 The way the world communicates has changed. Except at work. That's a problem. 
+          strong Dynamic Signal is the solution 
+        p Communicate with your employees the way they expect. Wherever they are. Information intended just for them. On the device they prefer. One platform ensures that employees are always “in the know” and have everything they need to shine on the job.  
+  section.product-bucket.centered.bg-gray 
     .container
       .row
         .col-md-12
-          .whatis-bottom-pic(data-bg="product-imac.gif")
-          h2 Enabling Communicators to Reach Today’s Modern Workforce
-        .col-md-4
-          h3 Platform Versatility
-          p More personalized ways to connect with employees on their terms through broadcasts, posts, native video, document collaboration, sharing, alerts and push notifications, newsletters, and surveys
-        .col-md-4
-          h3 Designed to Scale
-          p Most enterprise deployments with expertise in engagement programs, robust authentication, security, delegated administration, post approvals, customized branding, connectors, and API integrations with existing systems
-        .col-md-4
-          h3 Personalized Targeting
-          p Synchronization with organizational System of Record with the ability to add segmentation for topics and work groups, enabling targeted content and measuring impact.
+          h2
+            :php
+              echo get_field("section_1_header");
+          .bg(data-bg="product-mainpic-diagram-new.jpg")
+          p 
+            :php
+              echo get_field("section_1_copy");
+  section.product-bucket.centered.bg-blue
+    .container
+      .row
+        .col-md-12
+          h2  
+            :php
+              echo get_field("section_2_header");
+          .bg(data-bg="features-mainpic-video-blank.png")
+          p 
+            :php
+              echo get_field("section_2_copy");
+  section.product-bucket.centered
+    .container
+      .row
+        .col-md-12
+          h2 
+            :php
+              echo get_field("section_3_header");
+          .bg.short(data-bg="features-mainpic-segmentation.jpg") 
+          p  
+            :php
+              echo get_field("section_3_copy");
+  section.product-bucket.centered.bg-gray 
+    .container
+      .row
+        .col-md-12
+          h2  
+            :php
+              echo get_field("section_4_header");
+          .bg(data-bg="features-mainpic-reporting.jpg")
+          p 
+            :php
+              echo get_field("section_4_copy");
+  section.product-bucket.centered
+    .container
+      .row
+        .col-md-12
+          h2 
+            :php
+              echo get_field("section_5_header");
+          ul.product-logos
+            li
+              .bg(data-bg="product-logos-gdpr.jpg")
+            li
+              .bg(data-bg="product-logos-privacy-shield.png") 
+            li
+              .bg(data-bg="product-logos-soc.png")
+            li
+              .bg(data-bg="product-logos-ssl.jpg")
+          p Enterprise-grade security and privacy safeguards employee and company information. Dynamic Signal employs industry-standard Secure Socket Layer (SSL) encryption and uses SOC 2-compliant data centers. Fully GDPR compliant and 
+            a(href="https://dynamicsignal.com/privacy/",target="_blank") EU-U.S. Privacy Shield certified.   
   section.bottom-cta
     .container
       .row
         .col-md-12
           p Learn why more than 20 percent of the Fortune 100 use Dynamic Signal
           a.button.cta(href="/requestdemo/") Request Demo
-      
+block modals
+  .modal
+    .modal-dialog
+      button.modal-hide!="&times;"
+      div.blog-content
+        .video(data-id="iYvNKx7mwZ0")      

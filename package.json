@@ -50,6 +50,7 @@
     "run-sequence": "^1.1.2",
     "sass-lint": "^1.10.2",
     "scrollmagic": "^2.0.5",
+    "smoothscroll-polyfill": "^0.4.3",
     "stringify": "^3.1.0",
     "susy": "^3.0.0",
     "tiny-modal": "^0.0.2",

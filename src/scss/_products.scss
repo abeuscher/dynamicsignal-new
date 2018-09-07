@@ -35,6 +35,10 @@ section.whatis-carousel-bucket {
       margin:0 0 .25em;
   }
 }
+#whatis-header {
+  text-align:center;
+  padding-top:200px;
+}
 .whatis-bottom {
   .container {
     padding-top:$gutter-width*2;
@@ -95,5 +99,64 @@ section.whatis-carousel-bucket {
     margin:$gutter-width/2 auto;
     background-size:cover;
     background-position:center center;
+  }
+}
+.product-header {
+  p {
+    font-size:1.2em;
+    line-height:1.8;
+  } 
+  h3 {
+    font-weight: normal;
+    font-size:1.4em;
+  }
+}
+.product-bucket {
+  min-height:40vw;
+  &.bg-blue {
+    background-color:$header-blue;
+    color:$white;
+    h2 {
+      color:$white;
+    }
+  }
+  &.bg-gray {
+    background-color:$lighter-gray;
+  }
+  h2 {
+    text-transform: uppercase;
+    font-size:1.4em;
+    @include bp(m) {
+        font-size:2.4em;
+    }
+}
+p {
+  font-size:1.2em;
+  line-height:1.8;
+} 
+  .bg {
+    min-height:45vw;
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center;
+    &.short {
+      min-height:35vw;
+    }
+  }
+}
+ul.product-logos {
+  list-style:none; 
+  margin:0;
+  display:flex;
+  li {
+    flex-basis:25%;
+    margin-right:20px;
+    &:last-child {
+      margin-right:0; 
+    }
+    .bg {
+      min-height:12vw;
+
+    }
   }
 }

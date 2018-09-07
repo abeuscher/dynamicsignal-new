@@ -57,7 +57,7 @@
     }
   }
   @include bp(m) {
-    overflow:hidden;
+    //overflow:hidden;
     #bg-slides {
       width:100%;
       position:absolute;
@@ -120,9 +120,9 @@
           .text-content {
             display:block;
             color:$light-gray;
-            padding: 60px 115px 0 0;
-            line-height: 37px;
-            font-size: 21px;
+            padding: 0 115px 0 0;
+            line-height: 32px;
+            font-size: 16px;
             font-weight: 400;
           }
         }

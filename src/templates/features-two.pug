@@ -1,0 +1,275 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Product Features Page V2
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    $override_title = "Features";
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"What Is Dynamic Signal",
+      "link"=>"/product/"
+    ));         
+  - 
+    var pageData = { 
+        "features" : [
+            {
+            "title":"Content Personalization",
+            "icon":"fa-crosshairs"
+            },
+            {
+            "title":"Broadcasting",
+            "icon":"fa-bullhorn"
+            },
+            {
+            "title":"Social Sharing",
+            "icon":"fa-share"
+            },
+            {
+            "title":"Reporting",
+            "icon":"fa-pie-chart"
+            },
+            {
+            "title":"Video",
+            "icon":"fa-play"
+            },
+            {
+            "title":"Newsletters",
+            "icon":"fa-envelope-open-o"
+            },
+            {
+            "title":"Surveys",
+            "icon":"fa-check-square-o"
+            },
+            {
+            "title":"SmartContent",
+            "icon":"fa-sliders"
+            },
+            {
+            "title":"Permissions",
+            "icon":"fa-lock"
+            },
+            {
+            "title":"Integrations",
+            "icon":"fa-puzzle-piece"
+            }
+        ]
+        };
+  section.top-section-interior.resources.single-line
+    .container
+      .row
+        .col-md-12
+            include ./inc/breadcrumbs.pug
+            h1 Features
+  section.container
+    .row
+        .col-md-12.centered
+            p 
+                :php
+                    echo get_field("heading_copy");
+  section.container.feature-icon-menu#feature-menu
+    .row
+        .col-md-10.col-md-offset-1
+            for feature, idx in pageData.features
+                a(href="#section-"+feature.title.toLowerCase().replace(" ","-"))
+                    i(class="fa " + feature.icon)
+                    h2!=feature.title
+  #features-sections 
+    section#section-content-personalization.feature-bucket
+        #section-content-personalization-anchor.anchor-target
+        .container
+            .row.top
+                .col-md-12
+                    h2 
+                        :php
+                            echo get_field ("content_personalization_header");
+                    h3 
+                        :php
+                            echo get_field ("content_personalization_subheader");
+            .row
+                .col-md-12.content-image
+                    .bg#content-lower-image(data-bg="features-mainpic-personalization.png")
+            .row
+                .col-md-12.centered
+                    p  
+                        :php
+                            echo get_field ("content_personalization_copy");
+    section#section-broadcasting.feature-bucket
+        #section-broadcasting-anchor.anchor-target
+        .container
+            .bg(data-bg="features-mainpic-broadcasting.jpg")
+            .inner
+                h2 
+                    :php
+                        echo get_field("broadcasting_header");
+                h3 
+                    :php
+                        echo get_field("broadcasting_subheader");
+                p
+                    :php
+                        echo get_field("broadcasting_copy");
+                ul.hmenu 
+                    li
+                        a.button(href='https://support.dynamicsignal.com') Learn More
+    section#section-social-sharing.container.feature-bucket
+        #section-social-sharing.anchor-target
+        .row
+            .col-md-12.centered
+                h2  
+                    :php
+                        echo get_field("social_sharing_header");
+                h3 
+                    :php
+                        echo get_field("social_sharing_subheader");
+                ul.hmenu
+                    li
+                        a.button(href='https://support.dynamicsignal.com') Learn More
+            .col-md-12.content-image
+                .bg(data-bg="features-mainpic-socialsharing.jpg")
+            .col-md-12.centered
+                p  
+                    :php
+                        echo get_field("social_sharing_copy");
+    section#section-reporting.feature-bucket
+        #section-reporting-anchor.anchor-target
+        .container
+            .row
+                .col-md-12.centered
+                    h2 
+                        :php
+                            echo get_field("reporting_header");
+                    h3 
+                        :php
+                            echo get_field("reporting_subheader");
+                    ul.hmenu
+                        li
+                            a.button(href='https://support.dynamicsignal.com') Learn More
+                .col-md-12.content-image.tall
+                    .bg(data-bg="features-mainpic-reporting.jpg")
+                .col-md-12.centered
+                    p 
+                        :php
+                            echo get_field("reporting_copy");
+    section#section-video.feature-bucket
+        #section-video-anchor.anchor-target
+        .container
+            .row
+                .col-md-6.content-image.tall
+                    .bg(data-bg="features-mainpic-video-blank.png")
+                .col-md-6.text-right
+                    h2 
+                        :php
+                            echo get_field("video_header");
+                    h3 
+                        :php
+                            echo get_field("video_subheader");
+                    p 
+                        :php
+                            echo get_field("video_copy");
+                    ul.hmenu
+                        li
+                            a.button(href='https://support.dynamicsignal.com') Learn More
+    section#section-newsletters.feature-bucket
+        #section-newsletters-anchor.anchor-target
+        .container
+            .bg(data-bg="features-mainpic-newsletters.jpg")
+            .inner
+                h2 
+                    :php
+                        echo get_field("newsletters_header");
+                h3 
+                    :php
+                        echo get_field("newsletters_subheader");
+                p 
+                    :php
+                        echo get_field("newsletters_copy");
+                ul.hmenu
+                    li
+                        a.button(href='https://support.dynamicsignal.com') Learn More        
+    section#section-surveys.feature-bucket
+        #section-surveys-anchor
+        .container
+            .row
+                .col-md-12.top
+                    h2 
+                        :php
+                            echo get_field("surveys_header");
+                    h3 
+                        :php
+                            echo get_field("surveys_subheader");
+                    ul.hmenu
+                        li
+                            a.button(href='https://support.dynamicsignal.com') Learn More
+                .col-md-12.content-image.tall
+                    .bg(data-bg="features-mainpic-surveys.jpg")
+                .col-md-12.centered
+                    p 
+                        :php
+                            echo get_field("surveys_copy");
+    section#section-smartcontent.feature-bucket
+        #section-smartcontent-anchor.anchor-target
+        .container
+            .row
+                .col-md-12.centered 
+                    h2
+                        :php
+                            echo get_field("smartcontent_header");
+                    h3 
+                        :php
+                            echo get_field("smartcontent_subheader");
+                    p 
+                        :php
+                            echo get_field("smartcontent_copy");
+                    ul.hmenu
+                        li
+                            a.button(href='https://support.dynamicsignal.com') Learn More
+                .col-md-12.content-image.tall
+                    .bg(data-bg="features-mainpic-smartcontent.jpg")
+    section#section-permissions.feature-bucket
+        #section-permissions-anchor.anchor-target
+        .container
+            .row
+                .col-md-12
+                    h2
+                        :php
+                            echo get_field("permissions_header");
+                    h3  
+                        :php
+                            echo get_field("permissions_subheader");
+                .col-md-12.content-image.tall
+                    .bg(data-bg="features-mainpic-permission.jpg")
+                .col-md-12
+                    p 
+                        :php
+                            echo get_field("permissions_copy");
+    section#section-integrations.feature-bucket
+        #section-integrations-anchor.anchor-target
+        .container
+            .row
+                .col-md-12.centered
+                    h2 
+                        :php
+                            echo get_field("integrations_header");
+                    h3  
+                        :php
+                            echo get_field("integrations_subheader"); 
+            .flex-row
+                .flex-half
+                    .bg(data-bg="features-mainpic-integrations.jpg")
+                .flex-half
+                    p  
+                        :php
+                            echo get_field("integrations_copy");
+                    img.int-image#logo-radial(src=themeDir+"images/features-mainpic-integrations-static.jpg")       
+  section.bottom-cta
+    .container
+        .row
+            .col-md-12
+                p Learn why more than 20 percent of the Fortune 100 use Dynamic Signal
+                a.button.cta.knockout(href="/requestdemo") Request Demo

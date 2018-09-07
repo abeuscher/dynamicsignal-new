@@ -3,8 +3,18 @@
     .col-md-12
       a#show-all.filter-button.active(href="#",type="checkbox",value="showAll") Filter - All
   .row
+    .col-md-12
+      h4 Location
+    - var locations = ["Chicago","San Bruno","London","Atlanta"];
     for category in locals
-      if category.cat_name!="Careers"
+      if category.cat_name!="Careers" && locations.includes(category.cat_name)
+        .col-md-12
+          a.filter-button(href="#",id=category.slug,type="checkbox",data-value=JSON.stringify(category))=category.cat_name
+            span.job-total=category.total_entries
+    .col-md-12
+      h4 Department
+    for category in locals
+      if category.cat_name!="Careers" && !locations.includes(category.cat_name)
         .col-md-12
           a.filter-button(href="#",id=category.slug,type="checkbox",data-value=JSON.stringify(category))=category.cat_name
             span.job-total=category.total_entries

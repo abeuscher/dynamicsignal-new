@@ -14,6 +14,9 @@
   display:block;
   min-height:300px;
   width:100%;
+  h2 {
+    text-align: center;
+  }
   .use-case-quote {
     padding:$gutter-width*2 0 $gutter-width;
    width:100%;
