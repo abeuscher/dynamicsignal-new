@@ -57,9 +57,12 @@ block content
   section.container.product-header
     .row
       .col-md-12.centered
-        h3 The way the world communicates has changed. Except at work. That's a problem. 
-          strong Dynamic Signal is the solution 
-        p Communicate with your employees the way they expect. Wherever they are. Information intended just for them. On the device they prefer. One platform ensures that employees are always “in the know” and have everything they need to shine on the job.  
+        h3
+          :php
+            echo get_field("header_intro");
+        p
+          :php
+            echo get_Field("header_copy");
   section.product-bucket.centered.bg-gray 
     .container
       .row

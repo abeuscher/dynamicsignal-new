@@ -144,7 +144,7 @@ section#parallax.use-cases-parallax {
       margin:0;
     }
     @media only screen and (max-width: 1024px) {
-      @include aspect-ratio(1,1);
+      //@include aspect-ratio(1,1);
       background-repeat:no-repeat;
       background-size:cover;
       background-position: center;
@@ -161,6 +161,7 @@ section#parallax.use-cases-parallax {
       }
     }
     .content {
+      position:relative;
       h1, h2, .text-content {
         position:relative;
         color:$white;
@@ -198,4 +199,25 @@ section#parallax.use-cases-parallax {
 }
 section.use-case-quotes {
   padding-bottom:$gutter-width*2;
+}
+.features-link {
+  background:$lighter-gray;
+  .col-md-12 {
+    padding-top:.5em;
+    a {
+      font-family:$header-font;
+      font-size:1.4em;
+      line-height:2.3;
+      display: block;
+      text-align: center;
+      .bg {
+        @include aspect-ratio(1,1);
+        width:40px;
+        background-size:contain;
+        display:inline-block;
+        vertical-align:middle;
+        margin-right:.5em;
+      }
+    }
+  }
 }

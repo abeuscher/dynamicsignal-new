@@ -60,6 +60,14 @@ block content
 					echo "<h2>".get_field("solution_".($i+1)."_header")."</h2>";
 					echo "<div class='text-content'>".get_field("solution_".($i+1)."_content")."</div></div></div>";
 				}
+	section.features-link
+		.container
+			.row
+				.col-md-12
+					a(href="/features/")
+						.bg(data-bg="icon-star.png")
+						:php
+							echo get_field("features_link_text");
 	section.container.use-case-quotes
 		:php
 			echo "<h2>".get_field("quote_header")."</h2>";

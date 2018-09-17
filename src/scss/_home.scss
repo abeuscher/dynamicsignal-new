@@ -200,15 +200,19 @@ section.hero-homepage {
     //animation:flip .5s 1 alternate;
     backface-visibility:hidden;
     position:relative;
-    
     &.flipped {
-      position:absolute;
-      left:0;
-      width:100%;
-      opacity:0;
-      transform:rotateX(180deg);
-      animation:flip 5s 1 alternate-reverse both; 
-      animation-iteration-count:infinite;
+      //display:none;
+      @include bp(s) {
+        //display:block;
+        position:absolute;
+        left:0;
+        width:100%;
+        opacity:0;
+        transform:rotateX(180deg);
+        animation:flip 5s 1 alternate-reverse both; 
+        animation-iteration-count:infinite;
+      }
+
     }
   }
   @keyframes flip{
