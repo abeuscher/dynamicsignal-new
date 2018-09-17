@@ -709,7 +709,7 @@ var siteActions = [{
       */
      var logos = [];
      var slots = parseInt(pageData.logos.length/2);
-     for (let i=0;i<slots;i++) {
+     for (i=0;i<slots;i++) {
        logos.push(pageData.logos[i]);
        if (pageData.logos[i+slots]) {
         logos.push(pageData.logos[i+slots]);
