@@ -2,74 +2,68 @@ extends inc/page.pug
 block template
   :php
     /*
-    Template Name: Home Page
+    Template Name: Home Page New Fall 2018 Look
     */
 block nav
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
+  - 
+    var pageData = {
+      "solutions": [
+        {
+        "title":"Workforce<br>Communication",
+        "target":"/workforce-communication/",
+        "icon":"icon-wc.png",
+        "description":"Communicate and engage with your employees wherever they are"
+        },{
+        "title":"Employee<br>Advocacy",
+        "target":"/employee-advocacy/",
+        "icon":"icon-ea.png",
+        "description":"Transform your employees into powerful brand ambassadors"
+        },{
+        "title":"Mobile<br>Intranet",
+        "target":"/mobile-intranet/",
+        "icon":"icon-mi.png",
+        "description":"Make your intranet more accessible and engaging"
+        }
+      ]
+      };
   :php
     echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos_strip_gray_icons' ),JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  section.top-section#home-marquee
-    .inner.home
-      .container
-        .row
-          .col-md-6.col-xs-12
-            h1 Connect with Your Most Valued Asset, 
-              span.blue Your Employees
-            p
-              :php
-                the_field("hero_subheader");
-            .button-block
-              :php
-                echo "<a class='button cta' href='".get_field('home_page_top_cta_target')."'>".get_field('home_page_top_cta_label')."</a>";
-              a.button.cta.knockout.modal-show(href='#') Learn More
-                span.fa.fa-play-circle-o
-        span.home-page-widget
-          .widget-spacer(data-bg="widget-blue-circuit-bg.png")
-          img(src=themeDir + "images/widget-blue-circuit.png")
+  section.hero-homepage
+    .container
+      .row
+        .col-md-6.hero-copy
+          h1 Connect with 
+            br
+            span.blue Your Employees
+          :php
+            echo "<a class='button cta' href='".get_field('home_page_top_cta_target')."'>".get_field('home_page_top_cta_label')."</a>";
+        .col-md-6.hero-img
+          #mobile-screenshots
+            .slide
+              img.homepage-screenshot(src=themeDir+"images/mobile-homepage-1.png")
+            .slide
+              img.homepage-screenshot(src=themeDir+"images/mobile-homepage-2.png")
+            .slide
+              img.homepage-screenshot(src=themeDir+"images/mobile-homepage-3.png")
+  section.homepage-solutions
+    .container
+      .row
+        .col-md-12
+          for solution in pageData.solutions
+            a.homepage-solution-bucket(href!=solution.target)
+              h2
+                span.icon-solutions(data-bg=solution.icon)
+                span.header!=solution.title
+              p!=solution.description
   section.logo-strip-bucket
     .container
       .row
         .col-md-12
-          #logo-strip.logo-strip
-  section.home-flippety-floppity
-    .container
-      :php
-        if( have_rows('home_page_sections') ) {
-          $count=1;
-          while( have_rows('home_page_sections') ): the_row();
-          if (get_sub_field("section_graph_type")=="bar") {
-            $graph = sprintf("<div class='row bar-row'><div class='col-md-12'><p class='bar-label'>%s<cite>%s</cite></p></div><div class='col-md-12'><div class='bar-wrapper' id='barchart-%s' data-value='%s' data-size='200px' data-range='%s'></div></div></div>",get_sub_field("section_graph_content"),get_sub_field("section_graph_citation"),$count,get_sub_field("section_graph_numeric_value"),get_sub_field("section_graph_range"));        
-            }
-          else {
-            $graph = sprintf("<div class='row pie-row'><div class='col-md-4 no-padding pie-bucket'><canvas class='pie-wrapper' id='chart-%s' data-percent='%s' width='300px' height='300px'></canvas></div><div class='col-md-8 no-padding'><p class='pie-label'>%s<cite>%s</cite></p></div></div>",$count,get_sub_field("section_graph_numeric_value"),get_sub_field("section_graph_content"),get_sub_field("section_graph_citation"));  
-            }
-          if (get_sub_field('section_orientation')=="left") {
-            printf("<div class='row home-content'><div class='col-md-6 homepic hidden-sm hidden-xs'><img src='%s' alt='' /></div>", get_sub_field("section_image")["url"]);
-            printf("<div class='col-md-6 content'><h2>%s<span class='home-icon' data-bg='%s'></span></h2><p>%s</p>%s</div></div>", get_sub_field("section_title"),get_sub_field("section_icon")["url"],get_sub_field("section_content"),$graph);
-          }
-          else {
-            printf("<div class='row home-content'><div class='col-md-6 content'><h2>%s<span class='home-icon' data-bg='%s'></span></h2><p>%s</p>%s</div>", get_sub_field("section_title"),get_sub_field("section_icon")["url"],get_sub_field("section_content"),$graph);
-            printf("<div class='col-md-6 homepic hidden-sm hidden-xs'><img src='%s' alt='' /></div></div>", get_sub_field("section_image")["url"]);
-            }
-          $count++;
-          endwhile;
-        }
-  section.bottom-cta
-    .container
-      .row
-        .col-md-12
-          p
-            :php
-              the_field("home_page_bottom_cta_intro_text");
-          :php
-            printf("<a class='button cta knockout' href='%s'>%s</a>", get_field("home_page_bottom_cta_target"), get_field("home_page_bottom_cta_label"));
-          a.button.cta.outline(href="/dysi-open/") Try DySi Open
-  .modal
-    .modal-dialog
-      button.modal-hide!="&times;"
-      div.blog-content
-        .video(data-id="iYvNKx7mwZ0")
+          h2 More than 20% of the Fortune 100 trusts the Dynamic Signal Employee Communication and Engagement Platform
+          //#logo-strip.logo-strip
+          #logo-terminal-grid
