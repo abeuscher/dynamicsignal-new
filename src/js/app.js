@@ -352,28 +352,6 @@ var siteActions = [{
     }
   },
   {
-    "element":"background-picker",
-    "action":function() {
-      var backgroundPicker = document.getElementById("background-picker");
-      backgroundPicker.appendChild(parseHTML(siteSettings.templates.backgroundPicker()));
-      var bgBtns = document.getElementsByClassName("button-picker");
-      var bgImages = [];
-      for(i=1;i<9;i++) {
-        bgImages.push(siteSettings.imagePath + "header-pattern-0" + i + ".jpg");
-      }
-      for(i=0;i<bgBtns.length;i++) {
-        var thisBtn = bgBtns[i];
-        thisBtn.addEventListener("click", changeBG);
-        function changeBG(e) {
-          e.preventDefault();
-          var idx = event.target.getAttribute("data-index");
-          var header = document.getElementById("this-header");
-          header.style.backgroundImage = "url('"+ bgImages[idx-1] + "')";
-        }
-      }
-    }
-  },
-  {
     "element": "toggle-main-drop",
     "action": function() {
       var menuToggle = document.getElementById("toggle-main-drop");
