@@ -1,0 +1,52 @@
+.solutions-logo-bottom {
+    background-size:contain;
+    background-repeat:no-repeat;
+    @include aspect-ratio(4,3);
+    width:31%;
+    margin:0 1%;
+    display:inline-block;
+    @include bp(m) {
+        width:14%
+    }
+}
+.solutions-slide-image {
+    background-size:contain;
+    background-repeat:no-repeat;
+    @include aspect-ratio(4,3);
+    width:100%;
+}
+ul.tab-nav {
+    list-style:none;
+    display:flex;
+    flex-wrap:nowrap;
+    margin:0 0 1em;
+    padding:0;
+    li {
+        flex-basis:31%;
+        margin-right:1%;
+        border-bottom:3px solid $light-gray;
+        padding:1em 0 .5em;
+        &.active {
+            border-color:$header-blue;
+
+            
+            a {
+                color:$header-blue;
+            }
+        }
+        a {
+            font-family:$header-font;
+            display:block;
+            font-family:$header-font;
+        }
+        &:last-child {
+            margin-right:0;
+        }
+    }
+}
+.tab-panel {
+    display:none;
+    &.active {
+        display:block;
+    }
+}

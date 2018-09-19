@@ -1,0 +1,100 @@
+extends inc/page.pug
+block template
+	:php
+		/*
+		Template Name: Solutions Single Entry Page Redesign
+		*/
+		$override_title = get_field("page_header");
+block nav
+	include ./inc/navbar-toggle.pug
+	include ./inc/side-nav.pug
+	include ./inc/header.pug
+block content
+	:php
+		$breadcrumbs = [];
+		array_push($breadcrumbs,array(
+			"title"=>"What is Dynamic Signal?",
+			"link"=>"/product/"
+		));
+		array_push($breadcrumbs,array(
+			"title"=>"Solutions",
+			"link"=>"/solutions/"
+		));
+	section.top-section-interior.use-case
+		.container 
+			.row
+				.col-md-12
+					include ./inc/breadcrumbs.pug  
+					h1
+						:php
+							the_field("page_header");
+	section
+		.container
+			.row
+				.col-md-12
+					h2
+						:php
+							the_field("top_section_header");
+					p
+						:php
+							the_field("top_section_copy");
+	section
+		.container
+			.row
+				.col-md-12
+					#solutions-top-carousel
+						:php
+							$slides = get_field("top_carousel_slides");
+							foreach($slides as $slide) {
+								printf("<div class='container'><div class='row'><div class='col-md-6'><div class='solutions-slide-image' data-bg-array='%s'></div></div><div class='col-md-6'><h2>%s</h2><p>%s</p></div></div></div>",json_encode($slide["slide_image"],JSON_UNESCAPED_SLASHES),$slide["slide_header"],$slide["slide_copy"]);
+							}
+	section.bottom-cta
+		.container
+			.row
+				.col-md-12
+					p
+						:php
+							the_field("middle_cta_header");
+					:php
+						printf("<a href='%s' class='button'>%s</a>",get_field("middle_cta_button_target"),get_field("middle_cta_button_text"));
+	:php
+		$tabs = get_field("tabs");
+		$nav="";
+		$panels="";
+		foreach($tabs as $idx=>$tab) {
+			$nav .= sprintf("<li class='%s'><a href='#' data-tab='%s'>%s</a></li>",$idx==0 ? "active" : "",strtolower($tab["tab_label"]),$tab["tab_label"]);
+			$panels .= sprintf("<div id='%s' class='row tab-panel %s'><div class='row'><div class='col-md-6'><div class='tab-image solutions-slide-image' data-bg-array='%s'></div></div><div class='col-md-6'><p>%s</p><a class='button' href='%s'>%s</a></div></div></div>", strtolower($tab["tab_label"]), $idx==0 ? "active" : "",json_encode($tab["tab_image"],JSON_UNESCAPED_SLASHES),$tab["tab_copy"],$tab["tab_button_target"],$tab["tab_button_label"]);
+		}
+	section.tabs
+		.container
+			.row
+				.col-md-12
+					ul.tab-nav#solutions-tab-nav
+						:php
+							echo $nav
+			:php
+				echo $panels;
+	section
+		.container
+			.row
+				.col-md-12
+					h2
+						:php
+							the_field("bottom_carousel_header");
+			.row
+				.col-md-12
+					#solutions-bottom-carousel
+						:php
+							$slides = get_field("bottom_carousel_slides");
+							foreach($slides as $slide) {
+								printf("<div class='container'><div class='row'><div class='col-md-6'><div class='solutions-slide-image' data-bg-array='%s'></div></div><div class='col-md-6'><div class='slide-logo' data-bg-array='%s'></div><p>%s</p></div></div></div>",json_encode($slide["slide_image"],JSON_UNESCAPED_SLASHES),json_encode($slide["slide_logo"],JSON_UNESCAPED_SLASHES),$slide["slide_copy"]);
+							}
+	section
+		.container
+			.row
+				.col-md-12
+					:php
+						$logos = get_field("bottom_logos");
+						foreach($logos as $logo) {
+							printf("<div class='solutions-logo-bottom' data-bg-array='%s'></div>",json_encode($logo["logo_image"],JSON_UNESCAPED_SLASHES));
+						}

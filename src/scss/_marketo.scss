@@ -12,23 +12,25 @@
     a {
       display: block;
       text-align: center;
-
+      display: block;
+      background:$header-blue;
+      border-radius: 30px;
+      padding: 0.5em 2em;
+      color: $white;
       img {
         display: none;
         text-align: center;
         width: 50%;
         margin: 0 auto;
-      }
-
-      span {
-        display: block;
-        background: #ccc;
-        border-radius: 30px;
-        padding: 0.5em 2em;
-        color: #000000;
+      } 
+    }
+    &:nth-child(2) {
+      a {
+        padding:.5em 0;
+        //border-radius:0;
       }
     }
-  }
+  } 
   @include bp(m) {
     li {
       width: 30%;

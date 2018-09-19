@@ -247,6 +247,62 @@ var siteActions = [{
     }
   },
   {
+    "element": "solutions-top-carousel",
+    "action": function() {
+      var logoGall = new Flickity("#solutions-top-carousel", {
+        "prevNextButtons": false,
+        "autoPlay": 5000,
+        "wrapAround": true,
+        "pageDots": false
+      });
+    }
+  },
+  {
+    "element": "solutions-bottom-carousel",
+    "action": function() {
+      var logoGall = new Flickity("#solutions-bottom-carousel", {
+        "prevNextButtons": false,
+        "autoPlay": 5000,
+        "wrapAround": true,
+        "pageDots": false
+      });
+    }
+  },
+  {
+    "element": "solutions-tab-nav",
+    "action": function() {
+      console.log("tab nav");
+      var nav = document.getElementById("solutions-tab-nav");
+      var buttons = nav.querySelectorAll("a");
+      for (i=0;i<buttons.length;i++) {
+        buttons[i].addEventListener("click", buttonClick);
+      }
+      function buttonClick(e) {
+        e.preventDefault();
+        var target = this.getAttribute("data-tab");
+        clearNav();
+        clearPanels();
+        document.getElementById(target).classList.add("active");
+        this.parentNode.classList.add("active");
+        function clearNav() {
+          var items = nav.querySelectorAll("li");
+          for (i=0;i<items.length;i++) {
+            items[i].classList.remove("active");
+          } 
+        }
+        function clearPanels() {
+          var items = document.querySelectorAll(".tab-panel");
+          for (i=0;i<items.length;i++) {
+            console.log(items[i]);
+            items[i].classList.remove("active");
+          }
+        }
+      }
+
+      
+    }
+  },
+  {
     "element": "logo-radial",
     "action": function() {
         var theLogos = document.getElementById("logo-radial");
