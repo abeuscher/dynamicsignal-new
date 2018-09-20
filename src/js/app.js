@@ -253,7 +253,7 @@ var siteActions = [{
         "prevNextButtons": false,
         "autoPlay": 5000,
         "wrapAround": true,
-        "pageDots": false
+        "pageDots": true
       });
     }
   },
@@ -264,7 +264,7 @@ var siteActions = [{
         "prevNextButtons": false,
         "autoPlay": 5000,
         "wrapAround": true,
-        "pageDots": false
+        "pageDots": true
       });
     }
   },

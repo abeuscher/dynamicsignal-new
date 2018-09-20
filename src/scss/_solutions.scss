@@ -1,6 +1,11 @@
+#solutions-top-carousel {
+    margin-bottom:$gutter-width*2;
+}
+
 .solutions-logo-bottom {
     background-size:contain;
     background-repeat:no-repeat;
+    background-position:center center;
     @include aspect-ratio(4,3);
     width:31%;
     margin:0 1%;
@@ -14,6 +19,7 @@
     background-repeat:no-repeat;
     @include aspect-ratio(4,3);
     width:100%;
+    background-position:center center;
 }
 ul.tab-nav {
     list-style:none;
@@ -27,17 +33,24 @@ ul.tab-nav {
         border-bottom:3px solid $light-gray;
         padding:1em 0 .5em;
         &.active {
-            border-color:$header-blue;
-
-            
+            border-color:$header-blue;  
             a {
                 color:$header-blue;
+            }
+            position: relative;
+            &:after {
+                content:'';
+                @include arrow(bottom,$header-blue,10px);
+                position:absolute;
+                left:50%;
+                margin-left:-10px;
+                bottom:-10px; 
             }
         }
         a {
             font-family:$header-font;
             display:block;
-            font-family:$header-font;
+            font-size:1.8em;
         }
         &:last-child {
             margin-right:0;
@@ -49,4 +62,7 @@ ul.tab-nav {
     &.active {
         display:block;
     }
+}
+section.tabs {
+    background:$lighter-gray;
 }
