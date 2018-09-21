@@ -32,9 +32,12 @@ html
       if ($override_thumb!="") {
         $featured_image = $override_thumb;
         }
-      else {
+      else if(WPSEO_Meta::get_value('featured_image')!="") {
         $featured_image = WPSEO_Meta::get_value('featured_image');
         }
+      else {
+        $featured_image = "/wp-content/themes/ds-new/images/logo-social.jpg";
+      }
       wp_reset_query();
       $link = get_the_permalink();
       echo "<title>$title</title>";
@@ -42,8 +45,10 @@ html
       echo "<meta property='og:title' content='$title' />";
       echo "<meta property='og:url' content='$link' />";
       echo "<meta property='og:description' content='$description' />";
+      echo "<meta property='og:image' content='$featured_image' />";
       echo "<meta name='twitter:title' content='$title' />";
       echo "<meta name='twitter:description' content='$description' />";
+      echo "<meta name='twitter:image' content='$featured_image' />";
       $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
       echo "<link href='$slink' rel='stylesheet' />";
   body.loading  
