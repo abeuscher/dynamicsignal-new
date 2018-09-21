@@ -87,7 +87,7 @@
 }
 
 .homepage-solutions .col-md-12 {
-  @include bp(s) {
+  @include bp(m) {
     display:flex;
     justify-content: space-between;
   }
@@ -99,12 +99,7 @@
     border:1px solid $gray;
     box-shadow:0 0 0 $gray;
     text-align: center;
-    &:first-child {
-      margin-left:0;
-    }
-    &:last-child {
-      margin-right:0;
-    }
+    margin:0 0 $gutter-width;
     &:hover {
       box-shadow:2px 3px 3px $gray;
     }
@@ -116,18 +111,36 @@
         display:inline-block;
         flex-basis:20%;
         margin-bottom:-.25em;
+        display:none;
+        @include bp(m) {
+          display:inline-block;
+        }
       }
       span.header {
         font-size:.7em;
         flex-basis:80%;
-        padding-left:.5em;
-        text-align:left;
+        padding-left:0;
+        text-align:center;
         display:inline-block;
+        @include bp(m) {
+          padding-left:.5em;
+          text-align:left;
+          font-size:.6em;
+        }
+        @include bp(l) {
+          font-size:.7em;
+        }
       }
     }
-    @include bp(s) {
+    @include bp(m) {
       padding:0 $gutter-width $gutter-width/2;
       margin:0 $gutter-width;
+      &:first-child {
+        margin-left:0;
+      }
+      &:last-child {
+        margin-right:0;
+      }
     }
   }
   
