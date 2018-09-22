@@ -1,5 +1,8 @@
-#solutions-top-carousel {
+#solutions-top-carousel, #solutions-bottom-carousel {
     margin-bottom:$gutter-width*2;
+    .container {
+        width:100%;
+    }
 }
 
 .solutions-logo-bottom {
@@ -7,15 +10,30 @@
     background-repeat:no-repeat;
     background-position:center center;
     @include aspect-ratio(4,3);
-    width:31%;
-    margin:0 1%;
+    width:29%;
+    margin:0 2%;
     display:inline-block;
     @include bp(m) {
-        width:14%
+        width:12%
+    }
+}
+.slide-logo {
+    min-width:100%;
+    min-height:40px;
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center bottom;
+    @include bp(s) {
+        min-width:100px;
+        max-width:300px;
+        min-height:auto;
+        width:33%;
+        @include aspect-ratio(3,1);
+        background-position:left bottom;
     }
 }
 .solutions-slide-image {
-    background-size:contain;
+    background-size:cover;
     background-repeat:no-repeat;
     @include aspect-ratio(4,3);
     width:100%;
@@ -50,7 +68,12 @@ ul.tab-nav {
         a {
             font-family:$header-font;
             display:block;
-            font-size:1.8em;
+            font-size:.75em;
+            text-align:center;
+            text-decoration:none;
+            @include bp(s) {
+                font-size:1.8em;
+            }
         }
         &:last-child {
             margin-right:0;

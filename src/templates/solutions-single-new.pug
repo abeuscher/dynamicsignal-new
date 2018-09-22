@@ -31,7 +31,7 @@ block content
 	section
 		.container
 			.row
-				.col-md-12
+				.col-md-12.blog-content
 					h2
 						:php
 							the_field("top_section_header");
@@ -41,7 +41,7 @@ block content
 	section
 		.container
 			.row
-				.col-md-12
+				.col-md-12.blog-content
 					#solutions-top-carousel
 						:php
 							$slides = get_field("top_carousel_slides");
@@ -63,10 +63,10 @@ block content
 		$panels="";
 		foreach($tabs as $idx=>$tab) {
 			$nav .= sprintf("<li class='%s'><a href='#' data-tab='%s'>%s</a></li>",$idx==0 ? "active" : "",strtolower($tab["tab_label"]),$tab["tab_label"]);
-			$panels .= sprintf("<div id='%s' class='row tab-panel %s'><div class='row'><div class='col-md-6'><div class='tab-image solutions-slide-image' data-bg-array='%s'></div></div><div class='col-md-6'><h2>%s</h2><p>%s</p></div></div></div>", strtolower($tab["tab_label"]), $idx==0 ? "active" : "",json_encode($tab["tab_image"],JSON_UNESCAPED_SLASHES),$tab["tab_header"],$tab["tab_copy"]);
+			$panels .= sprintf("<div id='%s' class='container tab-panel %s'><div class='row'><div class='row'><div class='col-md-6'><div class='tab-image solutions-slide-image' data-bg-array='%s'></div></div><div class='col-md-6'><h2>%s</h2><p>%s</p></div></div></div></div>", strtolower($tab["tab_label"]), $idx==0 ? "active" : "",json_encode($tab["tab_image"],JSON_UNESCAPED_SLASHES),$tab["tab_header"],$tab["tab_copy"]); 
 		}
 	section.tabs
-		.container
+		.container.blog-content
 			.row
 				.col-md-12
 					ul.tab-nav#solutions-tab-nav
@@ -74,25 +74,33 @@ block content
 							echo $nav
 			:php
 				echo $panels;
-	section
+	section.features-link
 		.container
 			.row
 				.col-md-12
+					a(href="/features/")
+						.bg(data-bg="icon-star.png")
+						:php
+							echo get_field("features_link_text");
+	section
+		.container
+			.row
+				.col-md-12.centered
 					h2
 						:php
 							the_field("bottom_carousel_header");
 			.row
-				.col-md-12
+				.col-md-12.blog-content
 					#solutions-bottom-carousel
 						:php
 							$slides = get_field("bottom_carousel_slides");
 							foreach($slides as $slide) {
-								printf("<div class='container'><div class='row'><div class='col-md-6'><div class='solutions-slide-image' data-bg-array='%s'></div></div><div class='col-md-6'><div class='slide-logo' data-bg-array='%s'></div><p>%s</p></div></div></div>",json_encode($slide["slide_image"],JSON_UNESCAPED_SLASHES),json_encode($slide["slide_logo"],JSON_UNESCAPED_SLASHES),$slide["slide_copy"]);
+								printf("<div class='container'><div class='row'><div class='col-md-4'><div class='solutions-slide-image' data-bg-array='%s'></div></div><div class='col-md-8'><div class='slide-logo' data-bg-array='%s'></div><p>%s</p></div></div></div>",json_encode($slide["slide_image"],JSON_UNESCAPED_SLASHES),json_encode($slide["slide_logo"],JSON_UNESCAPED_SLASHES),$slide["slide_copy"]);
 							}
 	section
 		.container
 			.row
-				.col-md-12
+				.col-md-12.centered
 					:php
 						$logos = get_field("bottom_logos");
 						foreach($logos as $logo) {
