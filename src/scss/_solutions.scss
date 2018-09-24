@@ -38,6 +38,9 @@
     @include aspect-ratio(4,3);
     width:100%;
     background-position:center center;
+    &.tab-image {
+        background-size:contain;
+    }
 }
 ul.tab-nav {
     list-style:none;
