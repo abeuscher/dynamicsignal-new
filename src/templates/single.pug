@@ -4,6 +4,9 @@ block template
     /*
     Template Name: Blog Entry Page
     */
+    if (get_field("social_share_image")!="") {
+      $override_thumb = get_field("social_share_image");
+    }
 block nav
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug

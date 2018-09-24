@@ -543,3 +543,26 @@ $mf-transition-speed: 0.28s !default;
     outline:none!important;
   }
 }
+.marketo-form.mktoForm#mktoForm_1948 {
+  .mktoFormRow {
+      display:block;
+      width:60%!important;
+      @include bp(m) {
+        width:80%!important;
+      }
+  }
+  .mktoButtonRow {
+    width: 40%!important;
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    button[type=submit] {
+      width:80%!important;
+      border-radius:3px;
+    }
+    @include bp(m) {
+      width: 20%!important;
+    }
+
+  }
+}

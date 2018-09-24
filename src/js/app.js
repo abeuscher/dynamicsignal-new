@@ -41,7 +41,6 @@ var siteSettings = {
     "logoTerminalGrid": require("./inc/logo-terminal-grid.pug"),
     "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
     "customerTile": require("./inc/customer-tile.pug"),
-    "productQuote": require("./inc/product-quote.pug"),
     "customerQuote": require("./inc/customer-quote.pug"),
     "partnersTestimonial": require("./inc/partner-testimonial.pug"),
     "careerVideoSlide": require("./inc/career-video-slide.pug"),
@@ -464,25 +463,6 @@ var siteActions = [{
           .addTo(controller)
           .id = i;
       }
-    }
-  },
-  {
-    "element": "product-video-carousel",
-    "action": function () {
-      var videoGall = new Flickity(document.getElementById("product-video-carousel"), {
-        "wrapAround": true,
-        "pageDots": false,
-        "lazyLoad": 6,
-        "autoPlay": 8000,
-        "adaptiveHeight": false
-      });
-      var c = [];
-      for (i in customerData) {
-        if (customerData[i].vimeo_id != "") {
-          videoGall.append(parseHTML(siteSettings.templates.productQuote(customerData[i])));
-        }
-      }
-      videoGall.resize();
     }
   },
   {

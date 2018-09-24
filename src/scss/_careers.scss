@@ -59,46 +59,6 @@
   }
 
 }
-  /*
-  &:after {
-    content: "";
-    display: block;
-    padding-top: 56.25%;
-  }
-  .video-thumb {
-    .left-gradient {
-      background:linear-gradient(to right, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 60%);
-    }
-    .content {
-      bottom:auto;
-      top:$gutter-width;
-      width:50%;
-      &> * {
-        position:static;
-        display:block;
-      }
-      h3, p {
-        text-shadow:1px 1px 3px rgba(0,0,0,.8);
-      }
-      h3 {
-        font-weight:500;
-        font-size:24px;
-      }
-      p {
-        font-style:normal;
-        font-size:20px;
-      }
-      a.video-play {
-        float:right;
-      }
-      &.left {
-        padding-left:5%;
-      }
-    }
-  }
-
-}
-*/
 #job-list {
   article {
     animation: fader .5s 1;
@@ -109,9 +69,6 @@
       100% {
         opacity: 1;
       }
-    }
-    .button-red {
-      margin-top:$gutter-width;;
     }
     h3 {
       margin:0;
