@@ -27,23 +27,22 @@ block content
           h1!=pageData.header
   section.team-members.container
     :php
-      if( have_rows('ds_team_section') ) {
-        while ( have_rows('ds_team_section') ) {
-            $res = the_row();
+      $sections = get_field("section");
+      foreach($sections as $section) {
     .row.team-header
       .col-md-12
         h2
           :php
-            $type = $res["ds_team_section_name"]=="Executives";
-            echo $res["ds_team_section_name"];
+            $type = trim($section["section_name"])=="Executives";
+            echo $section["section_name"];
     .row.team-list
       .col-md-12
         :php
             
-              foreach($res["ds_team_member"] as $key=>$player) {
-                $target = strpos($player["ds_team_member_linkedin_profile_url"],"http") ? "_blank" : "_self";
-                echo "<a class='exec-thumb' href='".$player["ds_team_member_linkedin_profile_url"]."' target='$target'  data-bg='".$player["ds_team_member_image"]."'><h3>".$player["ds_team_member_first_name"]."</h3><h4>".($type?$player["ds_team_member_job_title"]:"<i class='fa fa-linkedin-square'></i>")."</h4></a>";
+              foreach($section["people"] as $person) {
+                $target = strpos($person["linkedin_url"],"http")>-1 ? "_blank" : "_self";
+                $subhead = $type?$person["job_title"]:"<i class='fa fa-linkedin-square'></i>";
+                printf("<a class='exec-thumb' href='%s' target='%s' data-bg-array='%s'><h3>%s</h3><h4>%s</h4></a>", $person["linkedin_url"], $target,json_encode($person["profile_picture"],JSON_UNESCAPED_SLASHES), $person["first_name"],$subhead);
               } 
     :php
             }
-          }
