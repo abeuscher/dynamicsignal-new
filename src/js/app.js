@@ -84,8 +84,9 @@ window.addEventListener("load", function () {
   if (checkCookies()) {
     triggerGDPR();
   }
-
-  writeCTA();
+  
+    writeCTA();
+ 
 
   for (i in siteActions) {
     var thisAction = siteActions[i];
@@ -1010,29 +1011,31 @@ function writeCTA() {
   }
 } */
 function writeCTA() {
-  if (siteSettings.ctaBar.toggle) {
-    var bar = document.getElementById("cta-bar");
-    bar.append(parseHTML(siteSettings.templates.summitCtaBar(siteSettings.ctaBar)));
-    bar.classList.add("active");
-    var opener = document.getElementById("summit-cta-opener");
-    var popup = document.getElementById("summit-cta-popup");
-    var closer = document.getElementById("summit-cta-closer");
-    var summitText = document.getElementById("summit-text");
-    opener.addEventListener("click", function (e) {
-      e.preventDefault();
-      closer.style.display = "block";
-      summitText.style.display = "none";
-      popup.classList.add("active");
-      bar.classList.add("open");
-    });
+  if (document.getElementById("cta-bar")) {
+    if (siteSettings.ctaBar.toggle) {
+      var bar = document.getElementById("cta-bar");
+      bar.append(parseHTML(siteSettings.templates.summitCtaBar(siteSettings.ctaBar)));
+      bar.classList.add("active");
+      var opener = document.getElementById("summit-cta-opener");
+      var popup = document.getElementById("summit-cta-popup");
+      var closer = document.getElementById("summit-cta-closer");
+      var summitText = document.getElementById("summit-text");
+      opener.addEventListener("click", function (e) {
+        e.preventDefault();
+        closer.style.display = "block";
+        summitText.style.display = "none";
+        popup.classList.add("active");
+        bar.classList.add("open");
+      });
 
-    closer.addEventListener("click", function (e) {
-      e.preventDefault();
-      popup.classList.remove("active");
-      closer.style.display = "none";
-      summitText.style.display = "block";
-      bar.classList.remove("open");
-    });
+      closer.addEventListener("click", function (e) {
+        e.preventDefault();
+        popup.classList.remove("active");
+        closer.style.display = "none";
+        summitText.style.display = "block";
+        bar.classList.remove("open");
+      });
+    }
   }
 }
 

@@ -57,3 +57,12 @@
   border:none;
   outline:none;
 }
+label[for="Marketing_Opt_in__c"] {
+  span {
+    padding-left:2em;
+    display:inline-block;
+  }
+  a {
+    display:contents;
+  }
+}
