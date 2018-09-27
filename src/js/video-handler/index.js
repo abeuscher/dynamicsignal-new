@@ -34,9 +34,14 @@ ActivateVideos.prototype.init = function() {
 ActivateVideos.prototype.onYoutubeStart = function(e) {
   e.preventDefault();
   var self = this;
-  console.log(self);
+  self.setAttribute("data-content",self.innerHTML);
+  self.innerHTML = "";
   var yt = makeYoutube(self.getAttribute("data-video-id"),self);
-  yt.on("stateChange", function (e) { if (e.data==2) { e.target.destroy();} } );
+  function restoreContent(el) {
+    console.log(el); 
+    el.innerHTML = el.getAttribute("data-content");
+  }
+  yt.on("stateChange", function (e) { if (e.data==2) { e.target.destroy();restoreContent(self); } } );
 
 }
 ActivateVideos.prototype.onVimeoStart = function(e) {

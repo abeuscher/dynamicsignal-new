@@ -1,3 +1,13 @@
 .lp-container {
-    padding-top:80px;
+    padding:80px $gutter-width;
+}
+.lp-video-thumb {
+    @include aspect-ratio(16,9);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align:center;
+    .button {
+        top:50%;
+    }
 }
