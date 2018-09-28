@@ -1,13 +1,58 @@
 .lp-container {
     padding:80px $gutter-width;
+    p {
+        font-family:$header-font;
+        font-size:1.2em;
+        line-height:1.8;
+    }
 }
 .lp-video-thumb {
-    @include aspect-ratio(16,9);
-    background-size: cover;
+    //@include aspect-ratio(16,9);
+    height:100%;
+    background-size: contain;
+    background-color:$lighter-gray;
     background-repeat: no-repeat;
     background-position: center center;
     text-align:center;
-    .button {
-        top:50%;
+    .lp-play-button {
+        padding-top:50%;
+        margin-top:-1em;
+        height:50%;
+        i {
+            padding:.5em;
+            background-color:$header-blue;
+            color:$white;
+            border-radius:.25em;
+            font-size:2em;
+            
+        }
     }
+    &:hover {
+        .lp-play-button i{
+            background-color:$menu-blue;
+            color:$white;
+        }
+    }
+}
+.lp-header {
+    h1 {
+        font-size:3em;
+        .blue {
+            display:inline-block;
+        }
+    }
+}
+.lp-site-link {
+    font-weight:bold;
+    font-size:1.4em;
+    font-family:$header-font;
+}
+.lp-panels {
+    @include bp(m) {
+        display:flex;
+        #marketo-form-wrapper {
+            position:static;
+        }
+    }
+
 }

@@ -12,34 +12,33 @@ block content
                 "type":"youtube",
                 "quote":"Employees become more informed than ever and empowered by information. Dynamic Signal helps us measure the impact of both communications and integrated marketing programs.",
                 "cta":"Play Video",
-                "image":"logo-social.jpg",
+                "image":"adwords-graphic-howdsworks.jpg",
                 "cite":"David Armano - Global Strategy Director @ Edelman"
                 }
                 };
     section.lp-container
-        .row
-            .col-md-12
-                h1 CONNECT WITH 
-                    .blue YOUR EMPLOYEES
-                p Request a Demo to learn how to modernize, streamline, and measure your communication and engagement
-            .col-md-6
-                    .lp-video-thumb.video-activator(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
-                        .lp-inner-video.content
-                            a.button(href="#")
-                                span.cta!=pageData.videoInfo.cta
+        .container
+            .row
+                .col-md-12.lp-header
+                    h1 CONNECT WITH 
+                        .blue YOUR EMPLOYEES
+                    p Request a Demo to learn how to modernize, streamline, and measure your communication and engagement
+            .row.lp-panels
+                .col-md-6
+                    a.lp-play-button.modal-show(href='#')
+                        .lp-video-thumb(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
+                            .lp-play-button
                                 i.fa.fa-play
-                    p
-                        a.button.cta.knockout.modal-show(href='#') Play Video
-                            span.fa.fa-play-circle-o
-            .col-md-6
-                script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
-                #marketo-form-wrapper
-                    form.marketo-form#mktoForm_1753
-                        script.
-                            var validateCorporateEmail = true;
-            .col-md-12
-                p Bottom copy
-                a.site-link(href="/") dynamicsignal.com
+                .col-md-6
+                    script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
+                    #marketo-form-wrapper
+                        form.marketo-form#mktoForm_1753
+                            script.
+                                var validateCorporateEmail = true;
+            .row
+                .col-md-12.centered
+                    p Communicate with your employees the way they expect. Wherever they are. Information intended just for them. On the device they prefer. One platform ensures that employees are always “in the know” and have everything they need to shine on the job.
+                    a.lp-site-link(href="/") dynamicsignal.com
 block modals
   .modal
     .modal-dialog

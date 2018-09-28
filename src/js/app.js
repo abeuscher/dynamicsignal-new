@@ -84,9 +84,9 @@ window.addEventListener("load", function () {
   if (checkCookies()) {
     triggerGDPR();
   }
-  
-    writeCTA();
- 
+
+  writeCTA();
+
 
   for (i in siteActions) {
     var thisAction = siteActions[i];
@@ -551,16 +551,33 @@ var siteActions = [{
           duration: 0
         })
         .on("enter", function (e) {
-          document.getElementById("page-header").classList.add("active");
-          document.getElementById("toggle-side-nav").classList.add("short");
-          document.getElementById("btn-search-header").classList.add("short");
-          document.getElementById("cta-bar").style.display = "none";
+          if (document.getElementById("page-header")) {
+            document.getElementById("page-header").classList.add("active");
+          }
+          if (document.getElementById("toggle-side-nav")) {
+            document.getElementById("toggle-side-nav").classList.add("short");
+          }
+          if (document.getElementById("btn-search-header")) {
+            document.getElementById("btn-search-header").classList.add("short");
+          }
+          if (document.getElementById("cta-bar")) {
+            document.getElementById("cta-bar").style.display = "none";
+          }
         })
         .on("leave", function (e) {
-          document.getElementById("page-header").classList.remove("active");
-          document.getElementById("toggle-side-nav").classList.remove("short");
-          document.getElementById("btn-search-header").classList.remove("short");
-          document.getElementById("cta-bar").style.display = "block";
+          if (document.getElementById("page-header")) {
+            document.getElementById("page-header").classList.remove("active");
+          }
+          if (document.getElementById("toggle-side-nav")) {
+            document.getElementById("toggle-side-nav").classList.remove("short");
+          }
+          if (document.getElementById("btn-search-header")) {
+            document.getElementById("btn-search-header").classList.remove("short");
+          }
+          if (document.getElementById("cta-bar")) {
+            document.getElementById("cta-bar").style.display = "block";
+          }
+
         })
         .addTo(headController);
     }
