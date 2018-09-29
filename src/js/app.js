@@ -44,6 +44,7 @@ var siteSettings = {
     "customerQuote": require("./inc/customer-quote.pug"),
     "partnersTestimonial": require("./inc/partner-testimonial.pug"),
     "careerVideoSlide": require("./inc/career-video-slide.pug"),
+    "featuredJob": require("./inc/featured-job.pug"),
     "testimonialSlide": require("./inc/testimonial-slide.pug"),
     "productDisplay": require("./inc/product-display.pug"),
     "pagerThumb": require("./inc/pager-thumb.pug"),
@@ -198,8 +199,6 @@ var siteActions = [{
             if (window.history && window.history.pushState) {
               history.pushState("", document.title, "#" + section.id);
             }
-          } else {
-            console.log("element " + id + " NOT found");
           }
         });
       }
@@ -269,7 +268,6 @@ var siteActions = [{
   {
     "element": "solutions-tab-nav",
     "action": function () {
-      console.log("tab nav");
       var nav = document.getElementById("solutions-tab-nav");
       var buttons = nav.querySelectorAll("a");
       for (i = 0; i < buttons.length; i++) {
@@ -294,7 +292,6 @@ var siteActions = [{
         function clearPanels() {
           var items = document.querySelectorAll(".tab-panel");
           for (i = 0; i < items.length; i++) {
-            console.log(items[i]);
             items[i].classList.remove("active");
           }
         }
@@ -494,7 +491,7 @@ var siteActions = [{
         "adaptiveHeight": false
       });
       for (i in customerData) {
-        if (customerData[i].vimeo_id != "") {
+        if (customerData[i].vimeo_id != "" && customerData[i].vimeo_id != null) {
           videoGall.append(parseHTML(siteSettings.templates.customerQuote(customerData[i])));
         }
       }
@@ -794,7 +791,8 @@ var siteActions = [{
       var opts = {
         "jobs": jobs,
         "template": siteSettings.templates.jobListing,
-        "container": document.getElementById("job-list")
+        "featuredTemplate" : siteSettings.templates.featuredJob,
+        "container": document.getElementById("job-list") 
       }
       var theJobs = new JobList(opts);
       var opts = {
@@ -822,10 +820,7 @@ var siteActions = [{
           target.classList.add("active");
           this.classList.add("active");
           if (this.getAttribute("data-content-image")) {
-            console.log("bongo");
             theImage.style.backgroundImage = "url(" + siteSettings.imagePath + this.getAttribute("data-content-image") + ")";
-          } else {
-            console.log("no image");
           }
         })
       }

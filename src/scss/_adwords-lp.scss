@@ -1,45 +1,74 @@
 .lp-container {
     padding:80px $gutter-width;
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position: center top;
+    background-image:url($img-path+"header-hardhats-mobile.jpg");
+    #marketo-form-wrapper:before {
+        background-color:$white;
+        z-index:0;
+    }
     p {
         font-family:$header-font;
         font-size:1.2em;
         line-height:1.8;
     }
-}
-.lp-video-thumb {
-    //@include aspect-ratio(16,9);
-    height:100%;
-    background-size: contain;
-    background-color:$lighter-gray;
-    background-repeat: no-repeat;
-    background-position: center center;
-    text-align:center;
-    .lp-play-button {
-        padding-top:50%;
-        margin-top:-1em;
-        height:50%;
-        i {
-            padding:.5em;
-            background-color:$header-blue;
-            color:$white;
-            border-radius:.25em;
-            font-size:2em;
-            
-        }
+    @include bp(m) {
+        background-image:url($img-path+"header-hardhats.jpg");
+        background-size:cover;
+        padding-top:120px;
+        background-position: center -30vh;
     }
-    &:hover {
-        .lp-play-button i{
-            background-color:$menu-blue;
-            color:$white;
-        }
+}
+.lp-ebook-bucket {
+    position:relative;
+}
+.lp-ebook-thumb {
+    @include aspect-ratio(4,3);
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:contain;
+}
+.lp-ebook-bottom {
+    ul {
+        list-style:circle;
+    }
+}
+.lp-wrapper-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    height: auto;
+    margin-top:$gutter-width;
+    margin-bottom:$gutter-width;
+    @include bp(m) {
+        margin:0;
+    }
+    embed,
+    iframe,
+    object {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 }
 .lp-header {
     h1 {
-        font-size:3em;
+        font-size:1.8em;
+        margin-bottom:0;
         .blue {
             display:inline-block;
         }
+        @include bp(m) {
+            font-size:3em;
+        }
+    }
+    p {
+        margin-top:0;
     }
 }
 .lp-site-link {
@@ -47,12 +76,32 @@
     font-size:1.4em;
     font-family:$header-font;
 }
-.lp-panels {
+.row.lp-panels {
+    padding:0 $gutter-width;
     @include bp(m) {
         display:flex;
-        #marketo-form-wrapper {
-            position:static;
+        align-items:center;
+        margin:0;
+        padding:0;
+        .lp-panel {
+            flex-basis:50%;
+            padding:0;
+            &.panel-left {
+                margin-right:$gutter-width/2;
+            }
+            &.panel-right {
+                margin-left:$gutter-width/2;
+            }
         }
     }
 
+}
+body #page-header {
+    &.active {
+        //transition: none;
+        //box-shadow: none;
+        //height: 50px;
+        //background: transparent;
+    }
+    background:transparent;
 }

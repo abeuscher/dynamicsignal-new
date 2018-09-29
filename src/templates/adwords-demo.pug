@@ -24,12 +24,10 @@ block content
                         .blue YOUR EMPLOYEES
                     p Request a Demo to learn how to modernize, streamline, and measure your communication and engagement
             .row.lp-panels
-                .col-md-6
-                    a.lp-play-button.modal-show(href='#')
-                        .lp-video-thumb(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image)
-                            .lp-play-button
-                                i.fa.fa-play
-                .col-md-6
+                .lp-panel.panel-left
+                    .lp-wrapper-video
+                        iframe(width='560', height='315', src='https://www.youtube.com/embed/iYvNKx7mwZ0?rel=0&modestbranding=1', frameborder='0', allow='autoplay; encrypted-media', allowfullscreen='')
+                .lp-panel.panel-right
                     script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
                     #marketo-form-wrapper
                         form.marketo-form#mktoForm_1753
@@ -40,8 +38,3 @@ block content
                     p Communicate with your employees the way they expect. Wherever they are. Information intended just for them. On the device they prefer. One platform ensures that employees are always “in the know” and have everything they need to shine on the job.
                     a.lp-site-link(href="/") dynamicsignal.com
 block modals
-  .modal
-    .modal-dialog
-      button.modal-hide!="&times;"
-      div.blog-content
-        .video(data-id="iYvNKx7mwZ0")    

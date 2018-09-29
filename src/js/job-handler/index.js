@@ -3,6 +3,7 @@ var parseHTML = require("../utils/parse-html.js");
 
 function JobList(opts) {
   this.opts = opts;
+  this.writeFeatured();
   this.sortList(0, false, false);
   this.writeList();
 }
@@ -12,6 +13,19 @@ JobList.prototype.writeList = function() {
     var thisJob = parseHTML(this.opts.template(this.currentJobs[i]));
     this.opts.container.appendChild(thisJob);
     thisJob.classList.add("fade-in");
+  }
+};
+JobList.prototype.writeFeatured = function() {
+  console.log("featured job firing",this.opts.jobs); 
+  var featured = null;
+  for (i in this.opts.jobs) {
+    var thisJob = this.opts.jobs[i];
+    if (thisJob.featured) {
+      featured = thisJob;
+    }
+  }
+  if (document.getElementById("featured-job") && featured!=null) {
+    document.getElementById("featured-job").appendChild(parseHTML(this.opts.featuredTemplate(featured)));
   }
 };
 JobList.prototype.sortList = function(startIndex, limit, category) {
@@ -33,4 +47,4 @@ JobList.prototype.sortList = function(startIndex, limit, category) {
   this.currentJobs = currentJobs.slice(startIndex, limit);
 }
 
-module.exports = JobList;
+module.exports = JobList; 

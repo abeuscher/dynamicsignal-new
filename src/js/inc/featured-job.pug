@@ -1,0 +1,9 @@
+article.featured-job
+  .row
+    .col-xs-12
+        h1 
+          span.fa.fa-hand-o-right
+          | Featured Job : 
+          span!=locals.post_title
+          a.button.knockout(href="/career/"+locals.post_name) Read more
+          a.button.knockout(href=locals.jobvite_url,target='_blank') Apply  

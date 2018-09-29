@@ -88,6 +88,7 @@ block content
       }
       $job->jobvite_url = get_field("jobvite_url",$job);
       $job->categories = $cat;
+      $job->featured = get_field("featured",$job);
       $jobs[$key] = $job;
     }
     foreach($categories as $key=>$category) {
@@ -136,6 +137,8 @@ block content
         h2!=pageData.listingsCopy
   section.container
     .row
+      .col-md-12
+        #featured-job
       .col-md-3.hidden-s
         #job-filter
       .col-md-9

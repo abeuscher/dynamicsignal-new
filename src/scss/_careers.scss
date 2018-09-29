@@ -256,3 +256,25 @@ ul.sdr-buttons {
     }
   }
 }
+#featured-job {
+  background:$header-blue;
+  border:1px solid $black;
+  margin-bottom:$gutter-width*2;
+  padding:$gutter-width;
+  text-align: center;
+  h1 {
+    color:$white;
+    font-size:24px;
+    .button {
+      font-size:.8em;
+    }
+  }
+  span, .button {
+    margin-left:1em;
+  }
+  span.fa {
+    margin-left:0;
+    margin-right:.5em;
+    font-size:2em;
+  }
+}

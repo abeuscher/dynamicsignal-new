@@ -5,8 +5,32 @@ block template
     Template Name: Adwords - eBook Template
     */
 block content
-    section.lp-container
+    section.lp-container(data-bg="adwords-ebook-bg.jpg")
         .container
             .row
-                .col-md-12
-                    p TEST
+                .col-md-12.lp-header
+                    h1 DOWNLOAD THE FREE EBOOK
+                    p Driving Adoption for Employee Communication and Engagement Platform
+            .row.lp-panels
+                .col-md-6.lp-ebook-bucket
+                    .lp-ebook-thumb(data-bg="adwords-ebook.png")
+                .col-md-6
+                    script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
+                    #marketo-form-wrapper
+                        form.marketo-form#mktoForm_1753
+                            script.
+                                var validateCorporateEmail = true;
+            .row
+                .col-md-12.lp-ebook-bottom
+                    h2 Key takeaways from the eBook:
+                    ul
+                        li 
+                            p Launches are a collective effort.
+                            
+                        li 
+                            p Launches are a collective effort.
+                        li 
+                            p Launches are a collective effort.
+                    p.centered
+                        a.lp-site-link(href="/") dynamicsignal.com
+block modals
