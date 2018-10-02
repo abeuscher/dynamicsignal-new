@@ -4,9 +4,12 @@
     background-size:contain;
     background-position: center top;
     background-image:url($img-path+"header-hardhats-mobile.jpg");
-    #marketo-form-wrapper:before {
-        background-color:$white;
-        z-index:0;
+    #marketo-form-wrapper {
+        padding:6px $gutter-width 0;
+        &:before {
+            background-color:$white;
+            z-index:0;
+        }
     }
     p {
         font-family:$header-font;
@@ -16,7 +19,6 @@
     @include bp(m) {
         background-image:url($img-path+"header-hardhats.jpg");
         background-size:cover;
-        padding-top:120px;
         background-position: center -30vh;
     }
 }
@@ -73,7 +75,7 @@
 }
 .lp-site-link {
     font-weight:bold;
-    font-size:1.4em;
+    font-size:1.2em;
     font-family:$header-font;
 }
 .row.lp-panels {
