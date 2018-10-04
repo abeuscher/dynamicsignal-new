@@ -1,0 +1,27 @@
+#header-logo {
+    position: relative;
+    img {
+        max-width:100%;
+    }
+}
+.bucket-lp-copy {
+    flex-grow:1;
+    flex-shrink:1;
+}
+.wrapper-lp-form {
+    flex-grow:1;
+    flex-shrink:0; 
+    padding:0 $gutter-width $gutter-width;
+    margin-left:$gutter-width;
+    background:$header-blue;
+    color:$white;
+    .form-title, .form-text {
+        max-width:305px;
+    }
+    .mktoLabel {
+        text-transform:uppercase;
+        .mktoField {
+            text-transform: none;
+        }
+    }
+}

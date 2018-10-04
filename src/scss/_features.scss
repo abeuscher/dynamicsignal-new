@@ -261,7 +261,7 @@
     }
     #section-broadcasting {
         position:relative;
-        @include bp(m) {
+        @include bp(s) {
             padding-top:0;
             //padding-bottom:4vw;
             min-height:0;
@@ -286,6 +286,11 @@
                     padding-top:0;
                 }
             }
+            .bg {
+                top:40vw;
+            }
+        }
+        @include bp(m) {
             .bg {
                 top:20vw;
             }
