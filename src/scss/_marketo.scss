@@ -57,7 +57,14 @@
   border:none;
   outline:none;
 }
-label[for="Marketing_Opt_in__c"] {
+.marketo-form.mktoForm .mktoFormRow  label.mktoLabel[for="Marketing_Opt_in__c"] {
+  left:2em;
+  &.focus {
+    color: #b3b3b3;
+    font-size: .8rem;
+    font-weight: 400;
+    top:auto;
+  }
   span {
     padding-left:2em;
     display:inline-block;
@@ -65,4 +72,7 @@ label[for="Marketing_Opt_in__c"] {
   a {
     display:contents;
   }
+}
+.ds-register-msg {
+  display:none;
 }

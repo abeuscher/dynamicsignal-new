@@ -1,7 +1,9 @@
 #header-logo {
     position: relative;
+    height:80px;
     img {
-        max-width:100%;
+        width:auto;
+        max-height:80px;
     }
 }
 .bucket-lp-copy {
@@ -24,4 +26,10 @@
             text-transform: none;
         }
     }
+}
+.full-width-text {
+    line-height:1.8;
+}
+footer {
+    text-align:center;
 }
