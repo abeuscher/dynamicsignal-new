@@ -1024,6 +1024,7 @@ function writeCTA() {
 } */
 function writeCTA() {
   if (document.getElementById("cta-bar")) {
+    /*
     if (siteSettings.ctaBar.toggle) {
       var bar = document.getElementById("cta-bar");
       bar.append(parseHTML(siteSettings.templates.summitCtaBar(siteSettings.ctaBar)));
@@ -1048,6 +1049,7 @@ function writeCTA() {
         bar.classList.remove("open");
       });
     }
+    */
   }
 }
 

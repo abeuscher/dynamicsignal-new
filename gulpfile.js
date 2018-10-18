@@ -13,6 +13,8 @@ var uberembedSrcDir = srcDir + 'uber-embed/';
 var uberembedBuildDir = buildDir + 'uber-embed/';
 var marketoembedSrcDir = srcDir + 'marketo-embed/';
 var marketoembedBuildDir = buildDir + 'marketo-embed/';
+var lpSrcDir = srcDir + 'lp-embed/';
+var lpBuildDir = buildDir + 'lp-embed/';
 var dsoembedSrcDir = srcDir + 'dysi-open-cookie/';
 var dsoembedBuildDir = buildDir + 'dysi-open-cookie/';
 
@@ -64,6 +66,16 @@ var jsFiles = [{
       debug: false,
       paths: ['./bower_components', './node_modules'],
       output: "app.js"
+    }
+  },
+  {
+    "id": "lpjs",
+    "buildDir": lpBuildDir,
+    "opts": {
+      entries: [lpSrcDir + 'app.js'],
+      debug: false,
+      paths: ['./bower_components', './node_modules'],
+      output: "bundle.js"
     }
   },
   {
@@ -156,7 +168,7 @@ gulp.task('compile-sass-autoprefixed-minified', function() {
 
 gulp.task('watch-files', function() {
   gulp.watch(sassDir + '**/*.scss', ['compile-sass-autoprefixed-minified'])
-  gulp.watch([jsSrcDir + '**/*.js', jsSrcDir + '*.js',jsSrcDir + '**/*.pug', jsSrcDir + '*.pug', uberembedSrcDir + '**/*.js', uberembedSrcDir + '*.js',embedSrcDir + '*.js', embedSrcDir + '/*/*.js'], ['bundle-js'])
+  gulp.watch([jsSrcDir + '**/*.js', jsSrcDir + '*.js',jsSrcDir + '**/*.pug', jsSrcDir + '*.pug', uberembedSrcDir + '**/*.js', uberembedSrcDir + '*.js', lpSrcDir + '**/*.js', lpSrcDir + '*.js',embedSrcDir + '*.js', embedSrcDir + '/*/*.js'], ['bundle-js'])
   gulp.watch([viewsSrcDir + '*.pug', viewsSrcDir + '/*/*.pug'], ['build-views']);
   gulp.watch([miscSrcDir + "*/**", miscSrcDir + ".*"], ['move-files']);
 });
