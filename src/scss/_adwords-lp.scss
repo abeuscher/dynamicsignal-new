@@ -3,27 +3,50 @@
     background-repeat:no-repeat;
     background-size:contain;
     background-position: center top;
-    background-image:url($img-path+"header-hardhats-mobile.jpg");
+    //background-image:url($img-path+"header-hardhats-mobile.jpg");
     #marketo-form-wrapper {
-        padding:6px $gutter-width 0;
+        padding:2px $gutter-width $gutter-width;
         &:before {
             background-color:$white;
             z-index:0;
         }
+        &:before {
+            transform: scale(1);
+        }
+        
+        &:hover::before {
+            transform: scale(1);
+        }
     }
-    p {
+    p, li {
         font-family:$header-font;
         font-size:1.2em;
         line-height:1.8;
+        @include bp(l) {
+            font-size:1.4em;
+        }
+    }
+    ul {
+        li {
+            margin:0 0 $gutter-width/3;
+            padding:0;
+            p {
+                margin:0;
+                padding:0;
+            }
+        }
+    }
+    &.ebook {
+        background:none;
     }
     @include bp(m) {
-        background-image:url($img-path+"header-hardhats.jpg");
+        //background-image:url($img-path+"header-hardhats.jpg");
         background-size:cover;
         background-position: center -30vh;
+        &.e-book {
+            background:none;
+        }
     }
-}
-.lp-ebook-bucket {
-    position:relative;
 }
 .lp-ebook-thumb {
     @include aspect-ratio(4,3);
@@ -61,7 +84,7 @@
 .lp-header {
     h1 {
         font-size:1.8em;
-        margin-bottom:0;
+        margin-bottom:$gutter-width;
         .blue {
             display:inline-block;
         }
@@ -71,6 +94,14 @@
     }
     p {
         margin-top:0;
+    }
+    &.ebook {
+        h1 {
+            margin-bottom:0;
+        }
+        h3 {
+            margin-bottom:$gutter-width*2;
+        }
     }
 }
 .lp-site-link {
@@ -106,4 +137,14 @@ body #page-header {
         //background: transparent;
     }
     background:transparent;
+}
+.lp-footer {
+    .footer-top {
+        ul {
+            text-align:center;
+            li {
+                text-align: center;
+            }
+        }
+    }
 }

@@ -5,20 +5,28 @@ block template
     Template Name: Adwords - eBook Template
     */
 block content
-    section.lp-container(data-bg="adwords-ebook-bg.jpg")
+    section.lp-container.e-book
         .container
             .row
-                .col-md-12.lp-header
-                    h1 Driving Adoption for Employee Communication and Engagement Platform
-                    p Download the eBook
-                    p Hands-on examples and best practices about how companies can drive high adoption rates for their Employee Communication and Engagement Platform – at the initial launch and for ongoing success.
-            .row.lp-panels
-                .col-md-6.lp-ebook-bucket
-                    .lp-ebook-thumb(data-bg="adwords-ebook.png")
-                .col-md-6
+                .col-md-12.lp-header.ebook
+                    h1
+                        :php
+                            echo get_field("page_header");
+                            if (get_field("page_subhead")) {
+                                echo "<h3>".get_field("page_subhead")."</h3>";
+                            }           
+            .row
+                .col-md-8.lp-ebook-bucket
+                    :php
+                        echo "<div class='lp-ebook-thumb' data-bg-array='".json_encode(get_field("ebook_image"),JSON_UNESCAPED_SLASHES)."'></div>";
+                        echo get_field("page_copy");
+                .col-md-4
                     script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
                     #marketo-form-wrapper
-                        form.marketo-form#mktoForm_2044
-                            script.
-                                var validateCorporateEmail = true;
+                        :php
+                            printf("<form class='marketo-form' id='%s'>","mktoForm_".get_field("form_id"));
+                        script.
+                            var validateCorporateEmail = true;
+                        :php
+                            echo "</form>"
 block modals

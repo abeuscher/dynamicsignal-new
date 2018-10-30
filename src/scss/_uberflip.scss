@@ -1,6 +1,6 @@
 .uber-header {
   .top-nav {
-    display:none;
+    display:none!important;
     position:absolute;
     top:80px;
     z-index:0;
@@ -19,6 +19,7 @@
 .single-page {
   .uber-header {
     .top-nav {
+      display:none!important;
       top:80px;
       @include bp(m) {
         top:170px;
@@ -27,7 +28,10 @@
   }
 }
 #wrapper.uber-wrapper {
-  background:url("https://www.dynamicsignal.com/wp-content/themes/ds-new/images/header-pattern-uber.jpg") $white no-repeat right top;
+  @include bp(s) {
+    background:url("https://www.dynamicsignal.com/wp-content/themes/ds-new/images/header-pattern-uber.jpg") $white no-repeat right top;
+  }
+  
   //background-size:cover;
 }
 .page-aligner {
@@ -110,7 +114,7 @@
       }
     }
     @include bp(s) {
-      padding-top:80px;
+      padding-top:110px;
     }
   }
   .page-aligner {

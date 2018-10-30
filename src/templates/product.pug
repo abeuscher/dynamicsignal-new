@@ -30,15 +30,24 @@ block content
     $parent_title = ""; 
     $parent_url = "";
     $override_title = "What is Dynamic Signal?";
-  section.top-section#whatis-header(data-bg="whatis-bg-header.jpg")
-    .inner
-      img.center-image(src=themeDir+"images/whatis-marquee-center.png")
-      h1
-        :php
-          the_field("header_text");
-      p
-        a.button.cta.knockout.modal-show(href='#') Play Video
-          span.fa.fa-play-circle-o
+  section.top-section-product
+    .container
+      .row
+        .col-md-6
+          img.center-image(src=themeDir+"images/whatis-marquee-center.png")
+        .col-md-6
+          h1
+            :php
+              the_field("header_text");
+          p
+            :php
+              echo get_field("header_intro");
+          p
+            :php
+              echo get_Field("header_copy");
+          p
+            a.button.cta.knockout.modal-show(href='#') Play Video
+              span.fa.fa-play-circle-o
   section.container
     .row
       .col-md-12.icon-bar
@@ -54,15 +63,6 @@ block content
         a.icon-tile(href="/integrations/")
           .icon-thumb(data-bg="icon-integrations.png")
           h2 Integrations 
-  section.container.product-header
-    .row
-      .col-md-12.centered
-        h3
-          :php
-            echo get_field("header_intro");
-        p
-          :php
-            echo get_Field("header_copy");
   section.product-bucket.centered.bg-gray 
     .container
       .row

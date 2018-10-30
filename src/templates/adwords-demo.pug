@@ -16,23 +16,30 @@ block content
                 "cite":"David Armano - Global Strategy Director @ Edelman"
                 }
                 };
-    section.lp-container
+    section.lp-container(data-bg="header-hardhats.jpg")
         .container
             .row
                 .col-md-12.lp-header
-                    h1 CONNECT WITH YOUR EMPLOYEES
-                    p Request a demo and learn how to modernize, streamline, and measure your communication and engagement
-            .row.lp-panels
-                .lp-panel.panel-left
+                    h1
+                        :php
+                            echo get_field("page_header");
+                    p   
+                        :php
+                            echo get_field("page_subhead");
+            .row
+                .col-md-8
                     .lp-wrapper-video
                         iframe(src='https://player.vimeo.com/video/293345508?title=0&byline=0&portrait=0', width='640', height='360', frameborder='0', webkitallowfullscreen='', mozallowfullscreen='', allowfullscreen='')
-                .lp-panel.panel-right
+                    p
+                        :php
+                            echo get_field("page_copy");
+                .col-md-4
                     script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
                     #marketo-form-wrapper
-                        form.marketo-form#mktoForm_2040
-                            script.
-                                var validateCorporateEmail = true;
-            .row
-                .col-md-12.centered
-                    p Communicate with your employees the way they expect. Wherever they are. Information intended just for them. On the device they prefer. One platform ensures that employees are always “in the know” and have everything they need to shine on the job.
+                        :php
+                            printf("<form class='marketo-form' id='%s'>","mktoForm_".get_field("form_id"));
+                        script.
+                            var validateCorporateEmail = true;
+                        :php
+                            echo "</form>"
 block modals

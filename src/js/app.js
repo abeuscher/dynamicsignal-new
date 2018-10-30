@@ -32,9 +32,9 @@ var siteSettings = {
   "sessionCookie": "ds-count",
   "ctaBar": {
     "toggle": true,
-    "cta": "New Article : Is Your Internal Communication Tool Broken?",
-    "url": "/2018/06/10/is-your-internal-communication-tool-broken/",
-    "buttonText": "Read Article"
+    "cta": "Checkout the recap of our first annual Summit!",
+    "url": "https://resources.dynamicsignal.com/summit-by-dynamic-signal-2018",
+    "buttonText": "View Recap"
   },
   "templates": {
     "homePageLogo": require("./inc/home-logo-slide.pug"),
@@ -1013,18 +1013,19 @@ function wipeCookies() {
     });
   });
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
-/* 
+
 function writeCTA() {
-  if (siteSettings.ctaBar.toggle) {
+  console.log("write CTA");
+  if (siteSettings.ctaBar.toggle && document.getElementById("cta-bar")) {
     var bar = document.getElementById("cta-bar");
     bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
     
     bar.classList.add("active");
   }
-} */
+}  /*
 function writeCTA() {
   if (document.getElementById("cta-bar")) {
-    /*
+   
     if (siteSettings.ctaBar.toggle) {
       var bar = document.getElementById("cta-bar");
       bar.append(parseHTML(siteSettings.templates.summitCtaBar(siteSettings.ctaBar)));
@@ -1049,10 +1050,10 @@ function writeCTA() {
         bar.classList.remove("open");
       });
     }
-    */
+  
   }
 }
-
+  */
 function activateModals() {
   var opts = {
     showSelector: '.modal-show',

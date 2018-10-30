@@ -7,30 +7,66 @@
     }
 }
 .row.lp-header-image {
+    display:none;
     margin:0;
     img {
         width:100%;
         height:auto;
     }
+    @include bp(m) {
+        display:block;
+    }
+}
+.row.lp-mobile-header-image {
+    margin:0;
+    img {
+        width:100%;
+        height:auto;
+    }
+    @include bp(m) {
+        display:none;
+    }
 }
 .bucket-lp-copy {
-    flex-grow:1;
-    flex-shrink:1;
+    flex-basis:100%;
+    padding:0 $gutter-width;
+    @include bp(m) {
+        padding:0;
+        flex-basis:auto;
+        flex-grow:1;
+        flex-shrink:1;
+    }
 }
 .wrapper-lp-form {
-    flex-grow:1;
-    flex-shrink:0; 
-    padding:0 $gutter-width $gutter-width;
-    margin-left:$gutter-width;
+    flex-basis:100%;
+    @include bp(m) {
+        flex-basis:auto;
+        flex-grow:1;
+        flex-shrink:0; 
+        margin-left:$gutter-width;
+    }
+
+    padding:$gutter-width $gutter-width $gutter-width;
+
     background:$header-blue;
     color:$white;
+    align-self:flex-start;
     .form-title, .form-text {
         max-width:305px;
+        margin:0 auto;
     }
     .mktoLabel {
         text-transform:uppercase;
         .mktoField {
             text-transform: none;
+        }
+    }
+    button.mktoButton[type="submit"] {
+        background:$white!important;
+        border-radius:3px;
+        color:$blue!important;
+        &:hover {
+            background:$lighter-gray!important;
         }
     }
 }
@@ -86,6 +122,10 @@ footer {
     }
 
 }
+.mktoLabel.mktoHasWidth {
+    width:100%!important;
+  }
+
 @keyframes radial-pulse {
     0% {
       box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.5);
