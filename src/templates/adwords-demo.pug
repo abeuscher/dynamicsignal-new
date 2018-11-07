@@ -16,6 +16,9 @@ block content
                 "cite":"David Armano - Global Strategy Director @ Edelman"
                 }
                 };
+    :php
+        echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
+        ."};</script>";
     section.lp-container(data-bg="header-hardhats.jpg")
         .container
             .row
@@ -42,4 +45,8 @@ block content
                             var validateCorporateEmail = true;
                         :php
                             echo "</form>"
+        .container
+            .row
+                .col-md-12
+                    #adwords-logos.adwords-logo-garden
 block modals

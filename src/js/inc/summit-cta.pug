@@ -1,14 +1,14 @@
 .summit-cta
     a#summit-cta-closer(href="#")!="&times;"
     #summit-cta-popup
-        a.show-desktop(href="http://summit.dynamicsignal.com", target="_blank")
-            img(src="/wp-content/themes/ds-new/images/bg-summit-popup.jpg")
+        a.show-desktop(href="https://resources.dynamicsignal.com/summit-by-dynamic-signal-2018", target="_blank")
+            img(src="/wp-content/themes/ds-new/images/bg-summit-popup-recap.jpg")
     .container#summit-cta-short 
         .row
             .col-md-12
-                p.show-desktop#summit-text Announcing Summit by Dynamic Signal: 10.11.2018 in San Francisco
-                    a.button#summit-cta-opener(href="#") Details
-                p.show-mobile#summit-text SUMMIT by Dynamic Signal : 10.11.2018
+                p.show-desktop#summit-text!=locals.cta
+                    a.button#summit-cta-opener(href="#")!=locals.buttonText
+                p.show-mobile#summit-text!=locals.cta
                     br
-                    a.button(href="http://summit.dynamicsignal.com") Details
+                    a.button(href="https://resources.dynamicsignal.com/summit-by-dynamic-signal-2018")!=locals.buttonText
     

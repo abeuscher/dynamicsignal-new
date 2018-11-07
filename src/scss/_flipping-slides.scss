@@ -1,0 +1,74 @@
+.logo-flipper {
+    display:flex;
+    width:100%;
+    flex-wrap:wrap;
+    .box-1,.box-2 {
+      display:flex;
+      width:100%;
+      flex-wrap:wrap;
+    }
+    .box-2 {
+      display:none;
+    }
+    .logo-thumb {
+     
+      
+      flex-basis:33.33%;
+      min-height:50px;
+      @include bp(s) {
+        flex-basis:16.6%;
+        min-height:5vw;
+      }
+      background-repeat:no-repeat;
+      background-size:contain;
+      background-position:center; 
+      //animation:flip .5s 1 alternate;
+      backface-visibility:hidden;
+      position:relative;
+      &.flipped {
+        //display:none;
+        @include bp(s) {
+          //display:block;
+          position:absolute;
+          left:0;
+          width:100%;
+          opacity:0;
+          transform:rotateX(180deg);
+          animation:flip 5s 1 alternate-reverse both; 
+          animation-iteration-count:infinite;
+        }
+  
+      }
+    }
+    @keyframes flip{
+      0% {
+        transform:rotateX(0deg);
+        opacity:1;
+      }
+      35% {
+        transform:rotateX(0deg);
+        opacity:1;
+      }
+      65% {
+        transform:rotateX(180deg);
+        opacity:0;
+      }
+      100% {
+        transform:rotateX(180deg);
+        opacity:0;
+      }
+    }
+    @for $i from 0 through (60){
+      @if $i%2!=0 {
+        #logo-#{$i + 1}{
+          animation-delay:8s + $i/12;
+        }
+      }
+      @else {
+        #logo-#{$i + 1}{
+          animation-delay:8s + $i/12;
+        }
+      }
+  
+    }
+  }

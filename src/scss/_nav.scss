@@ -71,6 +71,12 @@
               top:11px; 
             }
           }
+          &.active {
+            text-decoration: underline;
+            &.requestdemo {
+              //display:none;
+            }
+          }
           &.requestdemo {
             color:$header-blue;
             border:1px solid $header-blue;
@@ -81,7 +87,11 @@
               background:$blue;
               color:$white;
             }
-
+            &.active {
+              background:$blue;
+              color:$white;
+              text-decoration:none;
+            }
           }
           @include bp(m) {
             font-size: 18px;
@@ -89,12 +99,7 @@
           @include bp(l) {
             font-size: 22px;
           }
-          &.active {
-            text-decoration: underline;
-            &.requestdemo {
-              //display:none;
-            }
-          }
+
         }
       }
     }

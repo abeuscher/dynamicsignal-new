@@ -34,9 +34,10 @@ var siteSettings = {
     "toggle": true,
     "cta": "Checkout the recap of our first annual Summit!",
     "url": "https://resources.dynamicsignal.com/summit-by-dynamic-signal-2018",
-    "buttonText": "View Recap"
+    "buttonText": "Details"
   },
   "templates": {
+    "adwordsGrid": require("./inc/ad-words-grid.pug"),
     "homePageLogo": require("./inc/home-logo-slide.pug"),
     "logoTerminalGrid": require("./inc/logo-terminal-grid.pug"),
     "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
@@ -731,11 +732,6 @@ var siteActions = [{
     "element": "logo-terminal-grid",
     "action": function () {
       var gridTerminal = document.getElementById("logo-terminal-grid");
-      /*
-      var firstPage = pageData.logos.filter(logo => pageData.logos.indexOf(logo)%2 == 0 || pageData.logos.indexOf(logo)==0);
-      var secondPage = pageData.logos.filter(logo => pageData.logos.indexOf(logo)%2 != 0);
-      var logos = secondPage.concat(firstPage);
-      */
       var logos = [];
       var slots = parseInt(pageData.logos.length / 2);
       for (i = 0; i < slots; i++) {
@@ -745,6 +741,22 @@ var siteActions = [{
         }
       }
       gridTerminal.append(parseHTML(siteSettings.templates.logoTerminalGrid(logos)));
+    }
+  },
+  {
+    "element": "adwords-logos",
+    "action": function () {
+      console.log("Adwords Logo Garden Found");
+      var gridTerminal = document.getElementById("adwords-logos");
+      var logos = [];
+      var slots = parseInt(pageData.logos.length / 2);
+      for (i = 0; i < slots; i++) {
+        logos.push(pageData.logos[i]);
+        if (pageData.logos[i + slots]) {
+          logos.push(pageData.logos[i + slots]);
+        }
+      }
+      gridTerminal.append(parseHTML(siteSettings.templates.adwordsGrid(logos)));
     }
   },
   {
@@ -1013,7 +1025,7 @@ function wipeCookies() {
     });
   });
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
-
+/*
 function writeCTA() {
   console.log("write CTA");
   if (siteSettings.ctaBar.toggle && document.getElementById("cta-bar")) {
@@ -1022,10 +1034,10 @@ function writeCTA() {
     
     bar.classList.add("active");
   }
-}  /*
+} 
+*/
 function writeCTA() {
   if (document.getElementById("cta-bar")) {
-   
     if (siteSettings.ctaBar.toggle) {
       var bar = document.getElementById("cta-bar");
       bar.append(parseHTML(siteSettings.templates.summitCtaBar(siteSettings.ctaBar)));
@@ -1053,7 +1065,6 @@ function writeCTA() {
   
   }
 }
-  */
 function activateModals() {
   var opts = {
     showSelector: '.modal-show',

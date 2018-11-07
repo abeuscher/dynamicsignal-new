@@ -32,6 +32,9 @@ section.blog-hero {
 
   a {
     text-decoration: underline;
+    &.button, &.apply {
+      text-decoration: none;
+    }
   }
 }
 
