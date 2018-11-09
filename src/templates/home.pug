@@ -36,13 +36,13 @@ block content
   section.hero-homepage
     .container
       .row
-        .col-md-6.hero-copy
-          h1 Connect with 
-            br
-            span.blue Your Employees
+        .col-md-7.hero-copy
+          h1 
+            span.blue Connect. Engage. Activate.
+          p Dramatically improve the employee experience by easily reaching everyone in your organization. Partner with the leading Employee Communication and Engagement Platform and together we’ll drive exceptional growth.
           :php
             echo "<a class='button cta' href='".get_field('home_page_top_cta_target')."'>".get_field('home_page_top_cta_label')."</a>";
-        .col-md-6.hero-img
+        .col-md-5.hero-img
           #mobile-screenshots
             .slide
               img.homepage-screenshot(src=themeDir+"images/mobile-homepage-1.png")

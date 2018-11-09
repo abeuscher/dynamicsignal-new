@@ -81,13 +81,16 @@ section.hero-homepage {
   .hero-copy {
     text-align: center;
     h1 {
-      text-transform: uppercase;
       font-weight:normal;
-      font-size:3em;
-      .blue {
-        font-size:.85em;
-        font-weight:bold;
-      }
+      font-size:2.45em;
+      margin:$gutter-width*2 0 0;
+      text-align:left;
+    }
+    p {
+      text-align: left;
+      line-height:1.8;
+      font-size:1.25em;
+      margin-top:0;
     }
   }
   .hero-img {
@@ -96,6 +99,7 @@ section.hero-homepage {
     }
     .slide {
       left: 0 !important;
+      bottom:0;
       opacity: 0;
       transition: opacity 0.3s ease-in-out;
       z-index: -1;

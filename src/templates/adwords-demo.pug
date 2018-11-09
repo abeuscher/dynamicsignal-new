@@ -19,7 +19,7 @@ block content
     :php
         echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
         ."};</script>";
-    section.lp-container(data-bg="header-hardhats.jpg")
+    section.lp-container
         .container
             .row
                 .col-md-12.lp-header
@@ -38,6 +38,9 @@ block content
                             echo get_field("page_copy");
                 .col-md-4
                     script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
+                    h2.lp-form-header
+                        :php
+                            echo get_field("form_header");
                     #marketo-form-wrapper
                         :php
                             printf("<form class='marketo-form' id='%s'>","mktoForm_".get_field("form_id"));

@@ -1,0 +1,38 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: SnapApp Embed Page
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  section.snapapp-header(data-bg="bg-snapapp-header.jpg")
+    .container
+        .row
+            .col-md-12
+              h1 Take the 
+                span.blue Pulse 
+                | of Your Employee Communication & Engagement
+  section
+    .container
+      .row
+        .col-md-12.snapapp-bucket
+            .snapapp-wrapper
+                #eewidget_p_5be48a050e24171b084f342a.eewidget(style='position:relative;')
+                noscript
+                    p Please enable javascript!
+block modals
+    script(type='text/javascript').
+        (function(){
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        var host = (document.location.protocol == 'http:') ?
+        'cdn.snapapp.com' : 'scdn.snapapp.com';
+        s.src = '//' + host + '/widget/widget.js';
+        s.id = 'eeload';
+        document.getElementsByTagName('head')[0].appendChild(s);
+        })();
