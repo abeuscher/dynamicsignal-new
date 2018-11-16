@@ -964,7 +964,6 @@ function triggerGDPR() {
     });
   } else {
     triggerGA();
-    //writeCTA();
   }
 }
 
@@ -1027,11 +1026,9 @@ function wipeCookies() {
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
 
 function writeCTA() {
-  console.log("write CTA");
   if (siteSettings.ctaBar.toggle && document.getElementById("cta-bar")) {
     var bar = document.getElementById("cta-bar");
     bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
-    
     bar.classList.add("active");
   }
 } 

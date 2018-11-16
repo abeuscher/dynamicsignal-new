@@ -19,7 +19,7 @@ block content
       "title"=>"Case Studies",
       "link"=>"/case-studies/"
     ));
-  section.top-section-interior
+  section.top-section-interior#case-study-page
     .container
       .row
         .col-md-12
@@ -29,7 +29,7 @@ block content
               the_title();
   :php
     if (get_field("header_type")!="video") {
-  section#case-study-page.case-study-image
+  section.case-study-image
     :php
       echo "<img src='".get_field("header_image")["url"]."' alt='' />";
   :php
