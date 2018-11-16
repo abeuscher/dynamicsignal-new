@@ -32,9 +32,9 @@ var siteSettings = {
   "sessionCookie": "ds-count",
   "ctaBar": {
     "toggle": true,
-    "cta": "Checkout the recap of our first annual Summit!",
-    "url": "https://resources.dynamicsignal.com/summit-by-dynamic-signal-2018",
-    "buttonText": "Details"
+    "cta": "Announcing the DySiCares Grant Program",
+    "url": "/dysicares/",
+    "buttonText": "Learn More"
   },
   "templates": {
     "adwordsGrid": require("./inc/ad-words-grid.pug"),
@@ -1025,7 +1025,7 @@ function wipeCookies() {
     });
   });
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
-/*
+
 function writeCTA() {
   console.log("write CTA");
   if (siteSettings.ctaBar.toggle && document.getElementById("cta-bar")) {
@@ -1035,7 +1035,7 @@ function writeCTA() {
     bar.classList.add("active");
   }
 } 
-*/
+/*
 function writeCTA() {
   if (document.getElementById("cta-bar")) {
     if (siteSettings.ctaBar.toggle) {
@@ -1065,6 +1065,7 @@ function writeCTA() {
   
   }
 }
+*/
 function activateModals() {
   var opts = {
     showSelector: '.modal-show',

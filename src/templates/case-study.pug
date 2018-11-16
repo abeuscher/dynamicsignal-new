@@ -27,9 +27,23 @@ block content
           h1
             :php
               the_title();
+  :php
+    if (get_field("header_type")!="video") {
   section#case-study-page.case-study-image
     :php
       echo "<img src='".get_field("header_image")["url"]."' alt='' />";
+  :php
+    }
+    else {
+      printf("<section id='case-study-video' data-bg-array='%s'>", json_encode(get_field("header_video_still"),JSON_UNESCAPED_SLASHES));
+  .container
+    .row
+      .col-md-12
+        :php
+          printf("<div class='case-study-video-content'><p>%s</p><cite>%s</cite><a class='button modal-show' href='#'><span class='cta'>%s</span><i class='fa fa-play'></i></a></div>",get_field("header_video_quote"),get_field("header_video_quote_source"),get_field("header_video_button_label"));
+  :php
+    echo "</section>";
+    }
   section.case-study-stats
     .container
       .row.case-study-stats
@@ -222,3 +236,10 @@ block content
             :php
               echo get_field("conclusion_paragraph");
           a.button.cta(href="/requestdemo/") Request Demo
+block modals
+  .modal
+    .modal-dialog
+      button.modal-hide!="&times;"
+      div.blog-content
+        :php
+          printf("<div class='video' data-id='%s'></div>", get_field("header_video_id"));

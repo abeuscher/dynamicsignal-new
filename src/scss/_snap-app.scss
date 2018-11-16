@@ -4,12 +4,12 @@
     border-bottom:1px solid $blue;
     h1 {
         font-weight:300;
-        font-size:2.6em;
+        font-size:2.2em;
         .blue {
             font-weight:bold;
         }
         @include bp(m) {
-            font-size:3.8em;
+            font-size:3em;
         }
     }
 }
