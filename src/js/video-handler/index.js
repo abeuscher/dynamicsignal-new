@@ -42,7 +42,10 @@ ActivateVideos.prototype.onYoutubeStart = function(e) {
     el.innerHTML = el.getAttribute("data-content");
   }
   yt.on("stateChange", function (e) { if (e.data==2) { e.target.destroy();restoreContent(self); } } );
-
+  if (self.getAttribute("data-event")) {
+    console.log(self.getAttribute("data-event"));
+    sendEvent(self.getAttribute("data-event"));
+  }
 }
 ActivateVideos.prototype.onVimeoStart = function(e) {
   e.preventDefault();
@@ -50,7 +53,9 @@ ActivateVideos.prototype.onVimeoStart = function(e) {
   var thisPlayer = this.querySelectorAll("iframe.vimeo-video")[0];
   var vimeoPlayer = new Vimeo(thisPlayer);
   thisPlayer.classList.toggle("hide");
-
+  if (self.getAttribute("data-event")) {
+    sendEvent(self.getAttribute("data-event"));
+  }
   function changeCarouselListeners(toggle) {
     var carouselButtons = document.getElementsByClassName("flickity-prev-next-button");
     if (carouselButtons.length) {
@@ -85,6 +90,14 @@ ActivateVideos.prototype.onVimeoStart = function(e) {
 
   }
   }
+}
+function sendEvent(eventName) {
+  window['GoogleAnalyticsObject'] = 'ga';
+  window['ga'] = window['ga'] || function() {
+    (window['ga'].q = window['ga'].q || []).push(arguments)
+  };
+  dataLayer = dataLayer || [];
+  dataLayer.push({"event" : eventName });
 }
 ActivateVideos.prototype.makeVimeo = function(id) {
   var video = document.createElement("iframe");

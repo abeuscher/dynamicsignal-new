@@ -40,6 +40,7 @@ var siteSettings = {
     "adwordsGrid": require("./inc/ad-words-grid.pug"),
     "homePageLogo": require("./inc/home-logo-slide.pug"),
     "logoTerminalGrid": require("./inc/logo-terminal-grid.pug"),
+    "logoPartnersGrid": require("./inc/logo-partners-grid.pug"),
     "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
     "customerTile": require("./inc/customer-tile.pug"),
     "customerQuote": require("./inc/customer-quote.pug"),
@@ -49,6 +50,7 @@ var siteSettings = {
     "testimonialSlide": require("./inc/testimonial-slide.pug"),
     "productDisplay": require("./inc/product-display.pug"),
     "pagerThumb": require("./inc/pager-thumb.pug"),
+    "homeSlides": require("./inc/homepage-slides.pug"),
     "connectorPanel": require("./inc/connector-panel.pug"),
     "connectorInfo": require("./inc/connector-info.pug"),
     "useCaseQuote": require("./inc/use-case-quote.pug"),
@@ -236,12 +238,18 @@ var siteActions = [{
   {
     "element": "mobile-screenshots",
     "action": function () {
+      var galleryBucket = document.getElementById("mobile-screenshots");
+      mobileScreens = [siteSettings.imagePath + "mobile-homepage-2.png",siteSettings.imagePath + "mobile-homepage-3.png"];
       var logoGall = new Flickity("#mobile-screenshots", {
         "prevNextButtons": false,
         "autoPlay": 5000,
         "wrapAround": true,
         "pageDots": false
       });
+      for (i=0;i<mobileScreens.length;i++) {
+        logoGall.append(parseHTML(siteSettings.templates.homeSlides(mobileScreens[i])));
+      }
+      logoGall.resize();
     }
   },
   {
@@ -744,6 +752,21 @@ var siteActions = [{
     }
   },
   {
+    "element": "logo-partners-grid",
+    "action": function () {
+      var gridTerminal = document.getElementById("logo-partners-grid");
+      var logos = [];
+      var slots = parseInt(pageData.logos.length / 2);
+      for (i = 0; i < slots; i++) {
+        logos.push(pageData.logos[i]);
+        if (pageData.logos[i + slots]) {
+          logos.push(pageData.logos[i + slots]);
+        }
+      }
+      gridTerminal.append(parseHTML(siteSettings.templates.logoPartnersGrid(logos)));
+    }
+  },
+  {
     "element": "adwords-logos",
     "action": function () {
       console.log("Adwords Logo Garden Found");
@@ -1079,6 +1102,11 @@ function activateModals() {
       theVideo[0].appendChild(parseHTML(siteSettings.templates.modalVideo({
         videoid: theID
       })));
+      console.log(theVideo[0]);
+      if (theVideo[0].getAttribute("data-event")) {
+        dataLayer = dataLayer || [];
+        dataLayer.push({"event" : theVideo[0].getAttribute("data-event") });
+      }
     }
   }
 

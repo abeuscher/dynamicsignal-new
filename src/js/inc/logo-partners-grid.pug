@@ -1,0 +1,10 @@
+.logo-flipper
+    - var last = false
+    for i,idx in locals
+        if idx%2!=0
+            .logo-thumb(data-bg-array=i.logo, id="logo-"+idx)
+                if last
+                    .logo-thumb.flipped(data-bg-array=last.logo, id="logo-"+idx)
+        else
+            - last = i;
+                
