@@ -32,9 +32,9 @@ var siteSettings = {
   "sessionCookie": "ds-count",
   "ctaBar": {
     "toggle": true,
-    "cta": "Announcing the DySiCares Grant Program",
-    "url": "/dysicares/",
-    "buttonText": "Learn More"
+    "cta": "Take The Pulse Of Your Employee Engagement",
+    "url": "/employee-engagement-assessment/",
+    "buttonText": "Start Assessment"
   },
   "templates": {
     "adwordsGrid": require("./inc/ad-words-grid.pug"),

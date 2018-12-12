@@ -34,6 +34,17 @@
   
   //background-size:cover;
 }
+.uf-stream-template-banner {
+  #wrapper.uber-wrapper {
+    @include bp(s) {
+      background:$white;
+    }
+  } 
+  #hubs-container .description-block {
+    padding-top:30px;
+    min-height:0;
+  }
+}
 .page-aligner {
   width:100%;
 }
@@ -180,4 +191,7 @@ body.pseudo-fullscreen #page-header, body.pseudo-fullscreen #toggle-side-nav {
   @include bp(s) {
     padding:0 24px;
   }
+}
+body:not(.stream-banner-hide-top-nav) .uf-stream-banner-marketing .stream-banner {
+  margin-top:80px;
 }
