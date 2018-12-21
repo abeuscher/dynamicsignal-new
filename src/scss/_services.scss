@@ -1,11 +1,102 @@
 section.services-header {
     padding:0;
-
-    @include aspect-ratio(1350,342);
+    background:$light-gray;
     .full-width-bg {
         background-size:cover;
+        max-width:1350px;
+        margin:0 auto;
+        height:100%;
+        background-position:center center;
+        @include aspect-ratio(1350,342)
     }
-
+    p.quote {
+        font-size: 16px;
+        line-height: 1.2;
+        letter-spacing: 0.5px;
+        font-weight: 700;
+        position: relative;
+        padding:0;
+        padding-left: 30px;
+        text-align: left;
+        margin: $gutter-width 0 0;
+        color:$white;
+        width:80%;
+        text-shadow:1px 1px 3px rgba(0,0,0,.7);
+        &::before {
+          display: block;
+          position: absolute;
+          top: -5px;
+          left: 0px;
+          content: "\201C";
+          font-size: 50px;
+          color: $white;
+          font-family: "Times",serif;
+        }
+        &.no-quote {
+          &::before {
+            display:none;
+          }
+          font-style: normal;
+        }
+      }
+      cite {
+        margin-top: $gutter-width/3;
+        font-style: normal;
+        font-size: 10px;
+        line-height: 1.1;
+        font-weight: 300;
+        padding-left: $gutter-width*2.5;
+        display: block;
+        margin-right: $gutter-width;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-align: left;
+        color: $white;
+  
+        .name {
+          display: block;
+        }
+  
+        .title {
+          display: block;
+          font-style: italic;
+        }
+      }
+      a.button {
+          margin-left:30px;
+      }
+      @include bp(m) {
+          p.quote {
+              font-size:24px;
+          }
+          cite {
+            font-size:14px;
+          }
+      }
+}
+section.services-integrations {
+    #services-integrations-logos {
+        .bucket {
+            width:100%;
+            display:flex;
+        }
+    }
+    .logo-wrapper {
+        flex-basis:25%;
+        padding:$gutter-width;
+        background-size:contain;
+        background-position:center center;
+        background-repeat:no-repeat;
+    }
+}
+.services-community-header {
+    background-size:cover;
+    text-align:center;
+    h2 {
+        color:$white;
+        font-size:2.4em;
+        padding:$gutter-width*3;
+    }
 }
 $checkmark-size:80px;
 .checkmark-bucket {
@@ -32,6 +123,33 @@ $checkmark-size:80px;
         }
     }
 }
+#services-mapbox {
+    @include aspect-ratio(1350,558);
+    background-size:contain;
+    background-position:center center;
+    .mapbox-number {
+        $mb-height:150px;
+        width:$mb-height;
+        height:$mb-height;
+        background-color:rgba(2,109,201,.7);
+        background-blend-mode: multiply;
+        border-radius:50%;
+        top:50%;
+        left:50%;
+        margin-top:-$mb-height/2;
+        margin-left:-$mb-height/2;
+        text-align:center;
+        color:$white;
+        p {
+            font-family:$header-font;
+            font-size:3.5em;
+            font-weight:700;
+            line-height:$mb-height;
+            margin:0;
+            padding:0;
+        }
+    }
+}
 .services-proof-points {
     padding-top:$gutter-width*3;
     .svc-experience-box {
@@ -39,20 +157,30 @@ $checkmark-size:80px;
         position:relative;
         padding:$gutter-width+ $checkmark-size/2 $gutter-width $gutter-width;
         text-align: center;
-        margin-bottom: 3.5vw;
+        margin-bottom: $checkmark-size;
+    }
+    .pp-val {
+        font-family:$header-font;
+        font-size:3em;
+        color:$header-blue;
+        font-weight:700;
     }
 
 }
-.services-tabs, .services-cs-tabs {
+.services-tabs {
     display:flex;
     flex-wrap:nowrap;
     .tab {
+        display:none;
+        @include bp(s) {
+            display:block;
+        }
         flex-basis:20%;
         a {
             display:block;
             text-align:center;
             p {
-                font-size:12px;
+                font-size:1.2em;
             }
             svg {
                 max-width:100px;
@@ -65,6 +193,8 @@ $checkmark-size:80px;
                 stroke:$light-gray;
                 stroke-width:2;
                 stroke-miterlimit:10;
+                stroke-dasharray: 300;
+                stroke-dashoffset: 300;
             }
             &:hover, &.active {
                 .stroke{
@@ -73,16 +203,86 @@ $checkmark-size:80px;
                 .circle{
                     stroke:$blue;
                 } 
+                p {
+                    color:$blue;
+                    font-weight:700;
+                }
+            }
+            &.active {
+                .circle {
+                    animation: stroke .3s $curve forwards;
+                }  
             }
         }
     }
 }
+#services-cs-tabs {
+    display:flex;
+    flex-wrap: wrap;
+    .the-thin-blue-line {
+        border-top:1px dotted $gray;
+        width:100%;
+        margin-top:-.75em;
+        z-index:0;
+    }
+    a {
+        flex-basis:20%;
+        display:none;
+        text-align:center;
+        color:$gray;
+        z-index:1;
+        @include bp(s) {
+            display:block;
+        }
+        .label {
+            display:block;
+            text-transform:lowercase;
+            text-transform: capitalize;
+        }
+        .thingy {
+            border-radius:50%;
+            width:1em;
+            height:1em;
+            background:$gray;
+            display:inline-block;
+        }
+        &.active, &:hover {
+            color:$blue;
+            font-weight:700;
+            .thingy {
+                background:$blue;
+            }
+        }
+    }
+    .services-cs-slide {
+        flex-basis:100%;
+        flex-shrink:0;
+    }
+}
 .services-slide, .services-cs-slide {
-    display:none;
+    @include bp(s) {
+        display:none;
+    }
+    
     flex-basis:100%;
     flex-wrap:nowrap;
     flex-shrink:0;
     &.active {
         display:block;
+    }
+}
+section.services-services {
+    background:$lighter-gray;
+}
+.services-community-image {
+    @include aspect-ratio(4,3);
+    width:70%;
+    margin-left:15%;
+    background-size:cover;
+    background-position: center center;
+}
+.services-community {
+    .row {
+        margin-bottom:$gutter-width;
     }
 }

@@ -14,6 +14,7 @@ var Bars = require("./bar-chart/index.js");
 var Cookies = require("js-cookie");
 var tinyModal = require("tiny-modal");
 var smoothscroll = require("smoothscroll-polyfill");
+var DigitCounter = require("./digit-counter/index.js");
 
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
@@ -51,6 +52,7 @@ var siteSettings = {
     "productDisplay": require("./inc/product-display.pug"),
     "pagerThumb": require("./inc/pager-thumb.pug"),
     "homeSlides": require("./inc/homepage-slides.pug"),
+    "servicesLogos": require("./inc/services-logos.pug"),
     "connectorPanel": require("./inc/connector-panel.pug"),
     "connectorInfo": require("./inc/connector-info.pug"),
     "useCaseQuote": require("./inc/use-case-quote.pug"),
@@ -90,7 +92,7 @@ window.addEventListener("load", function () {
   }
 
   writeCTA();
-
+  var dc = new DigitCounter();
 
   for (i in siteActions) {
     var thisAction = siteActions[i];
@@ -210,6 +212,25 @@ var siteActions = [{
     "element": "clear-storage",
     "action": function () {
       localStorage.clear();
+    }
+  }, {
+    "element": "services-integrations-logos",
+    "action": function () {
+      var theBucket = document.getElementById("services-integrations-logos");
+      if (pageData.logos) {
+        theBucket.appendChild(parseHTML(siteSettings.templates.servicesLogos(pageData)));
+      }
+    }
+  }, {
+    "element": "services-cs-tabs",
+    "action": function () {
+      makeTabs(document.querySelectorAll("#services-cs-tabs .tab"), document.querySelectorAll("#services-cs-tabs .services-cs-slide"),"data-tab-index","active");  
+    }
+  }, {
+    "element": "services-services-tabs",
+    "action": function () {
+      console.log("flag");
+      makeTabs(document.querySelectorAll("#services-services-tabs .tab a"), document.querySelectorAll("#services-services-tabs .services-slide"),"data-tab-index","active");  
     }
   },
   {
@@ -1121,4 +1142,22 @@ function activateModals() {
     var modal = tinyModal(theModals, opts);
   }
 
+}
+function makeTabs(tabs,slides,attr,className) {
+  console.log(tabs,slides);
+  for(i=0;i<tabs.length;i++) {
+    var thisTab = tabs[i];
+    thisTab.addEventListener("click", function(e) {
+      e.preventDefault();
+      clearSlides();
+      slides[this.getAttribute(attr)].classList.add(className);
+      tabs[this.getAttribute(attr)].classList.add(className);
+    });
+  }
+  function clearSlides() {
+    for (i=0;i<slides.length;i++) {
+      slides[i].classList.remove(className);
+      tabs[i].classList.remove(className);
+    }
+  }
 }
