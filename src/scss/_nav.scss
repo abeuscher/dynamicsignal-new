@@ -167,7 +167,9 @@ $sideNavWidth: 300px;
       padding: 70px $gutter-width*2;
     }
   }
-
+  .search-form {
+    opacity:0;
+  }
   ul {
     list-style: none;
     margin: 0;
@@ -232,6 +234,9 @@ body.nav-open {
   }
   .sideMenu {
     overflow-y: scroll;
+    .search-form {
+      opacity:1;
+    }
   }
   .navbar-toggle {
     right:40px;

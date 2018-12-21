@@ -262,6 +262,9 @@ ul.sdr-buttons {
   margin-bottom:$gutter-width*2;
   padding:$gutter-width;
   text-align: center;
+  &.careers {
+    padding:$gutter-width/2 $gutter-width;
+  }
   h1 {
     color:$white;
     font-size:24px;

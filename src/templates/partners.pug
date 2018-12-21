@@ -34,20 +34,20 @@ block content
     "subheader":"Improving Employee Communications Increases Client Value and Drives Revenue",
     "copyTop":"Today’s agencies are challenged with helping clients adapt to the convergence of paid, owned and earned media. That’s especially true within the digital and social media landscape. Many are adapting to this new environment, with progressive firms doing so by leveraging mobile-first solutions like Dynamic Signal to improve employee communications and drive advocacy for their clients.",
     "videoInfo": {
-      "id":"182917369",
+      "id":"306845259",
       "type":"vimeo",
-      "quote":"Employees become more informed than ever and empowered by information. Dynamic Signal helps us measure the impact of both communications and integrated marketing programs.",
+      "quote":"We look at Dynamic Signal as an industry leader. You have a great team and we really love to partner with you.",
       "cta":"Play Video",
       "image":"partners-testimonial-thumb.jpg",
-      "cite":"David Armano - Global Strategy Director @ Edelman"
+      "cite":"Aaron Strout, CMO @ W2O"
     }
     };
   section.partners-top.container
     h2 Improving Employee Communication Increases Client Value and Drives Revenue
     p.partners-header!=pageData.copyTop
     .customer-video-thumb.video-activator(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image,data-event="vidClick-Partners")
-      .left-gradient
-      .content.left.shrunk
+      .right-gradient
+      .content.right.shrunk
         p!=pageData.videoInfo.quote
         cite!=pageData.videoInfo.cite
         a.button(href="#")
@@ -58,6 +58,15 @@ block content
       .row
         .col-md-12
           #logo-partners-grid
+  section.container
+    #featured-job.careers
+      article.featured-job
+        .row
+          .col-xs-12
+              h1 
+                span.fa.fa-hand-o-right
+                | Looking for our Integration Partners? 
+                a.button.knockout(href="/integrations/") Click Here
   section.partners-testimonials.container
     #partners-testimonials
   section.uber-embed.container

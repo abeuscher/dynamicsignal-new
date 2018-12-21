@@ -1,0 +1,88 @@
+section.services-header {
+    padding:0;
+
+    @include aspect-ratio(1350,342);
+    .full-width-bg {
+        background-size:cover;
+    }
+
+}
+$checkmark-size:80px;
+.checkmark-bucket {
+    position:absolute;
+    background:$white;
+    padding:0 $gutter-width;
+    top:-$checkmark-size/2;
+    left:50%;
+    margin-left:- ($checkmark-size/2 + $gutter-width);
+    .checkmark {
+        width:$checkmark-size;
+        height:$checkmark-size;
+        box-shadow: inset 0px 0px 0px $white;
+        stroke: $header-blue;;
+
+        display:inline-block;
+        animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        .checkmark-check {
+          animation: stroke .3s $curve .8s forwards;
+        }
+        .checkmark-circle {
+          animation: stroke .6s $curve forwards;
+          fill:$white;
+        }
+    }
+}
+.services-proof-points {
+    padding-top:$gutter-width*3;
+    .svc-experience-box {
+        border:1px solid $menu-blue;
+        position:relative;
+        padding:$gutter-width+ $checkmark-size/2 $gutter-width $gutter-width;
+        text-align: center;
+        margin-bottom: 3.5vw;
+    }
+
+}
+.services-tabs, .services-cs-tabs {
+    display:flex;
+    flex-wrap:nowrap;
+    .tab {
+        flex-basis:20%;
+        a {
+            display:block;
+            text-align:center;
+            p {
+                font-size:12px;
+            }
+            svg {
+                max-width:100px;
+            }
+            .stroke{
+                fill:$light-gray;
+            }
+            .circle{
+                fill:none;
+                stroke:$light-gray;
+                stroke-width:2;
+                stroke-miterlimit:10;
+            }
+            &:hover, &.active {
+                .stroke{
+                  fill:$blue;
+                }
+                .circle{
+                    stroke:$blue;
+                } 
+            }
+        }
+    }
+}
+.services-slide, .services-cs-slide {
+    display:none;
+    flex-basis:100%;
+    flex-wrap:nowrap;
+    flex-shrink:0;
+    &.active {
+        display:block;
+    }
+}

@@ -195,3 +195,9 @@ body.pseudo-fullscreen #page-header, body.pseudo-fullscreen #toggle-side-nav {
 body:not(.stream-banner-hide-top-nav) .uf-stream-banner-marketing .stream-banner {
   margin-top:80px;
 }
+.entry-wrapper a {
+  text-decoration:underline;
+  &:hover {
+    text-decoration:none;
+  }
+}
