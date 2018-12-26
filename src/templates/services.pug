@@ -67,7 +67,7 @@ block content
             printf("<div class='col-md-4'><div class='svc-experience-box'><div class='checkmark-bucket'>");
         include ./inc/checkmark.pug
         :php
-            printf("</div><div class='pp-val' data-counter-min='0' data-counter-max='%s'></div><p>%s</p></div></div>", $item["proof_point_value"],$item["proof_point_description"]);
+            printf("</div><div class='pp-val' data-counter-min='0' data-counter-max='%s' id='pp-val-%s'></div><p>%s</p></div></div>", $item["proof_point_value"],$key,$item["proof_point_description"]);
           }
   section.services-integrations.centered
     .container
