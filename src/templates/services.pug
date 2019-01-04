@@ -45,22 +45,27 @@ block content
           printf("<div class='case-study-video-content'><p>%s</p><cite>%s,%s @ %s</cite><a class='button modal-show' href='#'><span class='cta'>%s</span><i class='fa fa-play'></i></a></div>",get_field("header_quote"),get_field("header_citation_name"),get_field("header_citation_job_title"),get_field("header_citation_company"),"Play Video");
   :php
     echo "</section>";
-  section.service-experience.centered
+  section.service-experience.centered.services-bucket
     .container
       .row
         .col-md-12
-          h2
+          h2.section-header
             :php
               echo get_field("experience_section_title");
-          h3
+          h3.subhead
             :php
               echo get_field("experience_section_subhead");
           #services-mapbox(data-bg="services-map.jpg")
             .mapbox-number
               p#map-num(data-counter-min='0',data-counter-max='50+')
-          p
-            :php
-              echo get_field("experience_section_blurb");
+            .suffix
+              p
+                :php
+                  echo get_field("experience_section_blurb");
+          .suffix-mobile
+              p
+                :php
+                  echo get_field("experience_section_blurb");
       .row.services-proof-points
         :php
           foreach(get_field("experience_proof_points") as $key=>$item) {
@@ -69,27 +74,24 @@ block content
         :php
             printf("</div><div class='pp-val' data-counter-min='0' data-counter-max='%s' id='pp-val-%s'></div><p>%s</p></div></div>", $item["proof_point_value"],$key,$item["proof_point_description"]);
           }
-  section.services-integrations.centered
+  section.services-integrations.centered.services-bucket
     .container
       .row
         .col-md-12
-          h2
+          h2.section-header
             :php
               echo get_field("integrations_section_header");
           #services-integrations-logos
-  section.services-services
+  section.services-services.services-bucket
     .container
       .row
         .col-md-12.centered
-          h2
+          h2.section-header
             :php
               echo get_field("services_section_header");
-          h3
+          h3.subhead
             :php
               echo get_field("services_section_subhead");
-          p
-            :php
-              echo get_field("services_section_blurb");
       .row
         .col-md-12#services-services-tabs
           :php
@@ -97,7 +99,7 @@ block content
               $slides = [];
               foreach(get_field("services_section_slides") as $key=>$slide) {
                 $new_tab = array("icon"=>$slide["slide_icon"],"title"=>$slide["slide_nav_title"]);
-                $new_slide = sprintf("<div class='services-slide ".($key == 0 ? "active" : "")."' id='services-slide-%s'><h2>%s</h2><div class='user-content'>%s</div></div>", $key,$slide["slide_header"],$slide["slide_content"]);
+                $new_slide = sprintf("<div class='services-slide ".($key == 0 ? "active" : "")."' id='services-slide-%s'><h2>%s</h2><div class='user-content blog-content'>%s</div></div>", $key,$slide["slide_header"],$slide["slide_content"]);
                 array_push($tabs,$new_tab);
                 array_push($slides,$new_slide);   
               }
@@ -122,19 +124,16 @@ block content
             foreach($slides as $key=>$slide) {
               echo $slide;
             }
-  section.services-cs
+  section.services-cs.services-bucket
     .container
       .row
         .col-md-12.centered
-          h2
+          h2.section-header
             :php
               echo get_field("cs_section_header");
-          h3
+          h3.subhead
             :php
               echo get_field("cs_section_subhead");
-          p
-            :php
-              echo get_field("cs_section_blurb");
       .row
         .col-md-12#services-cs-tabs
           :php
@@ -142,7 +141,7 @@ block content
             $slides = [];
             foreach(get_field("cs_section_slides") as $key=>$slide) {
               $new_tab = sprintf("<a class='tab %s' id='tab-%s' data-tab-index='%s'><span class='label'>%s</span><span class='thingy'></span></a>",($key == 0 ? "active" : ""),$key,$key,$slide["nav_title"]);
-              $new_slide = sprintf("<div class='services-cs-slide %s' id='services-slide-%s'><h2>%s</h2><div class='user-content'>%s</div></div>", ($key == 0 ? "active" : ""),$key,$slide["slide_title"],$slide["slide_content"]);
+              $new_slide = sprintf("<div class='services-cs-slide %s' id='services-slide-%s'><h2>%s</h2><div class='user-content blog-content'>%s</div></div>", ($key == 0 ? "active" : ""),$key,$slide["slide_title"],$slide["slide_content"]);
               array_push($tabs,$new_tab);
               array_push($slides,$new_slide);   
             }
@@ -160,9 +159,14 @@ block content
     .container
       :php
         foreach(get_field("community_section_blurbs") as $key=>$blurb) {
-          printf("<div class='row'><div class='col-md-6'><div class='services-community-image' data-bg-array='%s'></div></div><div class='col-md-6'><h2>%s</h2><p>%s</p></div></div>",json_encode($blurb["blurb_image"],JSON_UNESCAPED_SLASHES),$blurb["blurb_title"],$blurb["blurb_content"]);
+          printf("<div class='row'><div class='col-md-4'><div class='services-community-image' data-bg-array='%s'></div></div><div class='col-md-8'><h2>%s</h2><p>%s</p></div></div>",json_encode($blurb["blurb_image"],JSON_UNESCAPED_SLASHES),$blurb["blurb_title"],$blurb["blurb_content"]);
         }
-
+  section.bottom-cta
+    .container
+      .row
+        .col-md-12
+          p Learn more about how Dynamic Signal can help you grow your business by connecting, engaging & activating your workforce.
+          a.button.cta(href="/contact-us/") Contact Us
   :php
       $video_id = get_field("header_cta_video_id");
      }}

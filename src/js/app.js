@@ -214,6 +214,24 @@ var siteActions = [{
       localStorage.clear();
     }
   }, {
+    "element": "services-mapbox",
+    "action": function () {
+      var mapcontroller = new ScrollMagic.Controller({
+        "loglevel": 0
+      }); 
+      new ScrollMagic.Scene({
+          triggerElement: "#services-mapbox",
+          duration: 500,
+          offset: -100,
+          reverse: false 
+        })
+        .on("enter", function(e) {
+          console.log("map");
+          document.getElementById("services-mapbox").classList.add("active");
+        })
+        .addTo(mapcontroller);
+    }
+  }, {
     "element": "services-integrations-logos",
     "action": function () {
       var theBucket = document.getElementById("services-integrations-logos");
@@ -1144,7 +1162,6 @@ function activateModals() {
 
 }
 function makeTabs(tabs,slides,attr,className) {
-  console.log(tabs,slides);
   for(i=0;i<tabs.length;i++) {
     var thisTab = tabs[i];
     thisTab.addEventListener("click", function(e) {

@@ -75,19 +75,25 @@ section.services-header {
       }
 }
 section.services-integrations {
+    background:$light-gray;
     #services-integrations-logos {
         .bucket {
             width:100%;
             display:flex;
+            flex-wrap: wrap;
         }
     }
     .logo-wrapper {
         flex-basis:25%;
+        @include aspect-ratio(3,1);
         padding:$gutter-width;
-        background-size:contain;
+        background-size:80%;
         background-position:center center;
         background-repeat:no-repeat;
     }
+}
+section.services-community {
+    padding-top:0;
 }
 .services-community-header {
     background-size:cover;
@@ -127,6 +133,36 @@ $checkmark-size:80px;
     @include aspect-ratio(1350,558);
     background-size:contain;
     background-position:center center;
+    transform:scale(.9);
+    &.active {
+        animation:.5s ease-in popmap;
+        animation-fill-mode: forwards;
+    }
+    @keyframes popmap {
+        0% {
+            transform:scale(.9);
+        }
+        30% {
+            transform:scale(1.05);
+        }
+        60% {
+            transform:scale(1);
+        }
+        100% {
+            transform:sclae(1);
+        }
+    }
+    .suffix {
+        display:none;
+        font-family:$header-font;
+        @include bp(s) {
+            width:70%;
+            left:15%;
+            display:block;
+            top:65%;
+            font-size:1.6em;
+        }
+    }
     .mapbox-number {
         $mb-height:150px;
         width:$mb-height;
@@ -150,6 +186,13 @@ $checkmark-size:80px;
         }
     }
 }
+.suffix-mobile {
+    display:block;
+    font-family:$header-font;
+    @include bp(s) {
+        display:none;
+    }
+}
 .services-proof-points {
     padding-top:$gutter-width*3;
     .svc-experience-box {
@@ -157,7 +200,7 @@ $checkmark-size:80px;
         position:relative;
         padding:$gutter-width+ $checkmark-size/2 $gutter-width $gutter-width;
         text-align: center;
-        margin-bottom: $checkmark-size;
+        //margin-bottom: $checkmark-size/2;
     }
     .pp-val {
         font-family:$header-font;
@@ -181,6 +224,7 @@ $checkmark-size:80px;
             text-align:center;
             p {
                 font-size:1.2em;
+                color:$light-gray;
             }
             svg {
                 max-width:100px;
@@ -198,13 +242,13 @@ $checkmark-size:80px;
             }
             &:hover, &.active {
                 .stroke{
-                  fill:$blue;
+                  fill:$white;
                 }
                 .circle{
-                    stroke:$blue;
+                    stroke:$white;
                 } 
                 p {
-                    color:$blue;
+                    color:$white;
                     font-weight:700;
                 }
             }
@@ -240,7 +284,8 @@ $checkmark-size:80px;
             text-transform: capitalize;
         }
         .thingy {
-            border-radius:50%;
+            border-radius:50% 50% 50% 50%;
+            transform:rotate(-45deg);
             width:1em;
             height:1em;
             background:$gray;
@@ -253,11 +298,26 @@ $checkmark-size:80px;
                 background:$blue;
             }
         }
+        &.active {
+            .thingy {
+                animation:.1s ease-in divot;
+                animation-fill-mode: forwards;
+            }
+
+        }
     }
     .services-cs-slide {
         flex-basis:100%;
         flex-shrink:0;
     }
+}
+@keyframes divot {
+    0% {
+        border-radius:50% 50% 50% 50%;
+      }
+      100% {
+        border-radius:50% 50% 50% 0;
+      }
 }
 .services-slide, .services-cs-slide {
     @include bp(s) {
@@ -272,17 +332,29 @@ $checkmark-size:80px;
     }
 }
 section.services-services {
-    background:$lighter-gray;
+    background:$blue;
+    color:$white;
+    h1,h2,h3 {
+        color:$white;
+    }
 }
 .services-community-image {
     @include aspect-ratio(4,3);
-    width:70%;
-    margin-left:15%;
     background-size:cover;
     background-position: center center;
+    border:1px solid $gray;
 }
-.services-community {
+section.services-community {
+    a {
+        text-decoration:underline;
+        &:hover {
+            text-decoration: none;
+        }
+    }
     .row {
         margin-bottom:$gutter-width;
     }
+}
+.services-bucket {
+    padding:$gutter-width*3 0;
 }
