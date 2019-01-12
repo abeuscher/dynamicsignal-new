@@ -19,12 +19,17 @@
         }
     }
     p, li {
-        font-family:$header-font;
-        font-size:1.2em;
         line-height:1.8;
-        @include bp(l) {
-            font-size:1.4em;
-        }
+    }
+    &.demo {
+        p, li {
+            font-family:$header-font;
+            font-size:1.2em;
+            line-height:1.8;
+            @include bp(l) {
+                font-size:1.4em;
+            }
+        } 
     }
     ul {
         li {
@@ -93,6 +98,8 @@
         }
     }
     p {
+        font-family:$header-font;
+        font-size:1.4em;
         margin-top:0;
     }
     &.ebook {
@@ -101,6 +108,7 @@
         }
         h3 {
             margin-bottom:$gutter-width*2;
+            font-weight:300; 
         }
     }
 }

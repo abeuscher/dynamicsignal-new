@@ -61,6 +61,6 @@
     "youtube-player": "^5.5.0"
   },
   "dependencies": {
-    "yarn": "^1.7.0"
+    "yarn": "^1.13.0"
   }
 }

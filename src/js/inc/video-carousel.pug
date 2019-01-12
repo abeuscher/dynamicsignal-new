@@ -1,0 +1,12 @@
+.video-playlist.container
+    .row
+        .col-md-9.no-padding#carousel-main
+            .wrapper-video
+                iframe(width='560', height='315', src='https://www.youtube.com/embed/'+locals[0].id+'?rel=0&autoplay=1', frameborder='0', allow='encrypted-media', allowfullscreen='')
+        .col-md-3#carousel-buttons
+            for video,idx in locals
+                - var className = idx ==0 ? "video-playlist-button active" : "video-playlist-button";
+                a(class=className,data-video-tab-index=idx,data-video-id=video.id)
+                    .thumb(data-bg-array=JSON.stringify(video.thumb))
+                    h2=video.title
+

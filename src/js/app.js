@@ -68,6 +68,7 @@ var siteSettings = {
     "gdprPopup": require("./inc/gdpr-popup.pug"),
     "sdrQuote": require("./inc/sdr-quote.pug"),
     "modalVideo": require("./inc/modal-video-slide.pug"),
+    "videoCarousel": require("./inc/video-carousel.pug"),
     "whatisSlide": require("./inc/whatis-carousel-slide.pug")
   },
   "breakpoints": {
@@ -103,6 +104,7 @@ window.addEventListener("load", function () {
   activateImages();
   new ActivateVideos();
   activateModals();
+
   PDFHandler(".pdf-wrapper");
   var pies = new Pies({
     "className": "pie-wrapper",
@@ -212,6 +214,29 @@ var siteActions = [{
     "element": "clear-storage",
     "action": function () {
       localStorage.clear();
+    }
+  }, {
+    "element": "demo-videos",
+    "action": function () {
+      document.getElementById("demo-videos").appendChild(parseHTML(siteSettings.templates.videoCarousel(pageData.videos)));
+      var buttons = document.querySelectorAll("#carousel-buttons a");
+      var mainWindow = document.getElementById("carousel-main");
+      for(i=0;i<buttons.length;i++) {
+        var thisButton = buttons[i];
+        thisButton.addEventListener("click", function(e) {
+          var self = this;
+          e.preventDefault();
+          clearActive();
+          this.classList.add("active"); 
+          mainWindow.innerHTML = "";
+          mainWindow.innerHTML = siteSettings.templates.modalVideo({"videoid":self.getAttribute("data-video-id"),"pause":true});
+        });
+      }
+      function clearActive(idx) {
+        for(i=0;i<buttons.length;i++) {
+          buttons[i].classList.remove("active"); 
+        }
+      }
     }
   }, {
     "element": "services-mapbox",
@@ -1141,7 +1166,6 @@ function activateModals() {
       theVideo[0].appendChild(parseHTML(siteSettings.templates.modalVideo({
         videoid: theID
       })));
-      console.log(theVideo[0]);
       if (theVideo[0].getAttribute("data-event")) {
         dataLayer = dataLayer || [];
         dataLayer.push({"event" : theVideo[0].getAttribute("data-event") });

@@ -38,7 +38,7 @@ block content
         );
     $query = new WP_Query( $args );
 
-    
+    $events_flag = false;
     if($query->have_posts()) {
       while($query->have_posts() && $count == 0) {
       $query->the_post();
@@ -63,6 +63,9 @@ block content
       );
       $count++;
       }
+    }
+    else {
+      $events_flag = true;
     }
     $query = new WP_Query( array('post_type' => 'career','posts_per_page'   => '1') );
     $career_post = $query->get_posts()[0];
@@ -94,11 +97,15 @@ block content
         img.awards-line(src=themeDir + "images/logosline-awards.png")
       .col-md-4
         ul.side-list
+          :php
+            if (!$events_flag) {
           li.dot
             h2 Events
             :php
               printf("<h3><a href='%s'>%s</a></h3><p>%s on %s/%s/%s<br> at %s (%s)<a class='small-link' href='%s'>%s</a><a class='small-link' href='%s'>details</a></p>",$event_post["url"],$event_post["title"],$event_post["type"],$event_post["start_month"],$event_post["start_day"],$event_post["start_year"],$event_post["start_time"],$event_post["event_time_zone"],$event_post["btn_url"],$event_post["btn_text"],$event_post["url"]) ;
             a.button(href="/events") All Events  
+          :php
+            }
           li.dot
             h2 Blog
             h3

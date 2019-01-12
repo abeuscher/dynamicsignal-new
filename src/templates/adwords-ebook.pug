@@ -12,9 +12,10 @@ block content
                     h1
                         :php
                             echo get_field("page_header");
-                            if (get_field("page_subhead")) {
-                                echo "<h3>".get_field("page_subhead")."</h3>";
-                            }           
+                    :php
+                        if (get_field("page_subhead")) {
+                            echo "<p>".get_field("page_subhead")."</p>";
+                        }           
             .row
                 .col-md-8.lp-ebook-bucket
                     :php
