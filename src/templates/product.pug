@@ -46,7 +46,7 @@ block content
             :php
               echo get_Field("header_copy");
           p
-            a.button.cta.knockout.modal-show(href='#') Play Video
+            a.button.cta.knockout.modal-show(href='#',data-video-modal-id="iYvNKx7mwZ0") Play Video
               span.fa.fa-play-circle-o
   section.container
     .row
@@ -134,9 +134,3 @@ block content
         .col-md-12
           p Learn why more than 20 percent of the Fortune 100 use Dynamic Signal
           a.button.cta(href="/requestdemo/") Request Demo
-block modals
-  .modal
-    .modal-dialog
-      button.modal-hide!="&times;"
-      div.blog-content
-        .video(data-id="iYvNKx7mwZ0",data-event="vidClick-Product")      

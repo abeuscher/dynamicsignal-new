@@ -236,6 +236,9 @@ body.nav-open {
     overflow-y: scroll;
     .search-form {
       opacity:1;
+      .button, button {
+        padding:0;
+      }
     }
   }
   .navbar-toggle {

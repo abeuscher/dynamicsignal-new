@@ -60,7 +60,7 @@
 .marketo-form.mktoForm .mktoFormRow  label.mktoLabel[for="Marketing_Opt_in__c"] {
   left:2em;
   &.focus {
-    color: #b3b3b3;
+    color:$black;
     font-size: .8rem;
     font-weight: 400;
     top:auto;

@@ -109,26 +109,36 @@ var jsFiles = [{
     }
   }
 ];
+function bundleMain() {
+  for (i=0;i<jsFiles.length;i++) {
+    if (jsFiles[i].id=="js") {
+      crunchFile(jsFiles[i]);
+    }
+  }
+}
+
 function bundleJS() {
   for (i in jsFiles) {
     var theObj = jsFiles[i];
-    if (!fs.existsSync(theObj.buildDir)) {
-      fs.mkdirSync(theObj.buildDir);
-    }
-    var options = assign({}, watchify.args, theObj.opts);
-    theFile = watchify(browserify(options));
-    theFile.setter = function() {
-      var writeStream = fs.createWriteStream(theObj.buildDir + theObj.opts.output);
-      return theFile.bundle()
-        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-        .pipe(writeStream)
-        .on("finish", ugly); 
-    }
-    theFile.on('log', gutil.log);
-    theFile.transform(require("pugify"));
-    theFile.setter();
+    crunchFile(theObj);
   }
-
+}
+function crunchFile(theObj) {
+  if (!fs.existsSync(theObj.buildDir)) {
+    fs.mkdirSync(theObj.buildDir);
+  }
+  var options = assign({}, watchify.args, theObj.opts);
+  theFile = watchify(browserify(options));
+  theFile.setter = function() {
+    var writeStream = fs.createWriteStream(theObj.buildDir + theObj.opts.output);
+    return theFile.bundle()
+      .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+      .pipe(writeStream)
+      .on("finish", ugly); 
+  }
+  theFile.on('log', gutil.log);
+  theFile.transform(require("pugify"));
+  theFile.setter();
 }
 var ugly = function() {
   var self = this;
@@ -145,6 +155,8 @@ var ugly = function() {
 
 
 gulp.task('bundle-js', bundleJS);
+
+gulp.task('bundle-main', bundleMain);
 
 gulp.task('compile-sass-autoprefixed-minified', function() {
   return gulp.src(sassDir + '*.scss')
@@ -168,7 +180,8 @@ gulp.task('compile-sass-autoprefixed-minified', function() {
 
 gulp.task('watch-files', function() {
   gulp.watch(sassDir + '**/*.scss', ['compile-sass-autoprefixed-minified'])
-  gulp.watch([jsSrcDir + '**/*.js', jsSrcDir + '*.js',jsSrcDir + '**/*.pug', jsSrcDir + '*.pug', uberembedSrcDir + '**/*.js', uberembedSrcDir + '*.js', lpSrcDir + '**/*.js', lpSrcDir + '*.js',embedSrcDir + '*.js', embedSrcDir + '/*/*.js'], ['bundle-js'])
+  gulp.watch([jsSrcDir + '**/*.js', jsSrcDir + '*.js',jsSrcDir + '**/*.pug', jsSrcDir + '*.pug'], ['bundle-main'])
+  gulp.watch([uberembedSrcDir + '**/*.js', uberembedSrcDir + '*.js', lpSrcDir + '**/*.js', lpSrcDir + '*.js',embedSrcDir + '*.js', embedSrcDir + '/*/*.js'], ['bundle-js'])
   gulp.watch([viewsSrcDir + '*.pug', viewsSrcDir + '/*/*.pug'], ['build-views']);
   gulp.watch([miscSrcDir + "*/**", miscSrcDir + ".*"], ['move-files']);
 });
@@ -176,7 +189,7 @@ gulp.task('watch-files', function() {
 gulp.task('build-views', function() {
   gulp.src(viewsSrcDir + '*.pug')
     .pipe(pug({
-      "pretty": false,
+      "pretty": true,
       "filters": {
         "php": pugPhpFilter
       },

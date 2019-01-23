@@ -16,6 +16,8 @@ var tinyModal = require("tiny-modal");
 var smoothscroll = require("smoothscroll-polyfill");
 var DigitCounter = require("./digit-counter/index.js");
 
+var Modal = require("./modal/index.js");
+
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
 
@@ -31,13 +33,13 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "gdprCookie": "ds-gdpr",
   "sessionCookie": "ds-count",
-  "ctaBar": {
+  "ctaBar": { 
     "toggle": true,
     "cta": "Take The Pulse Of Your Employee Engagement",
     "url": "/employee-engagement-assessment/",
     "buttonText": "Start Assessment"
   },
-  "templates": {
+  "templates": {  
     "adwordsGrid": require("./inc/ad-words-grid.pug"),
     "homePageLogo": require("./inc/home-logo-slide.pug"),
     "logoTerminalGrid": require("./inc/logo-terminal-grid.pug"),
@@ -91,7 +93,7 @@ window.addEventListener("load", function () {
   if (checkCookies()) {
     triggerGDPR();
   }
-
+  getVertCarousels();
   writeCTA();
   var dc = new DigitCounter();
 
@@ -103,7 +105,7 @@ window.addEventListener("load", function () {
   }
   activateImages();
   new ActivateVideos();
-  activateModals();
+  var videoModals = new Modal();
 
   PDFHandler(".pdf-wrapper");
   var pies = new Pies({
@@ -251,7 +253,6 @@ var siteActions = [{
           reverse: false 
         })
         .on("enter", function(e) {
-          console.log("map");
           document.getElementById("services-mapbox").classList.add("active");
         })
         .addTo(mapcontroller);
@@ -272,7 +273,6 @@ var siteActions = [{
   }, {
     "element": "services-services-tabs",
     "action": function () {
-      console.log("flag");
       makeTabs(document.querySelectorAll("#services-services-tabs .tab a"), document.querySelectorAll("#services-services-tabs .services-slide"),"data-tab-index","active");  
     }
   },
@@ -833,7 +833,6 @@ var siteActions = [{
   {
     "element": "adwords-logos",
     "action": function () {
-      console.log("Adwords Logo Garden Found");
       var gridTerminal = document.getElementById("adwords-logos");
       var logos = [];
       var slots = parseInt(pageData.logos.length / 2);
@@ -1201,4 +1200,35 @@ function makeTabs(tabs,slides,attr,className) {
       tabs[i].classList.remove(className);
     }
   }
+}
+
+function getVertCarousels() {
+  var buckets = document.querySelectorAll(".vertical-carousel");
+  for (var i=0;i<buckets.length;i++) {
+    var theBucket = buckets[i];
+    var s = {
+      bucket:theBucket,
+      images: theBucket.querySelectorAll(".vertical-slide"),
+      controls:theBucket.querySelectorAll(".carousel-panel"),
+      currentIndex:0,
+      strip: theBucket.querySelectorAll(".inner")[0]
+      
+    };
+    for (var c = 0;c<s.controls.length;c++) {
+      s.controls[c].addEventListener("click", function(e) {
+        for (var i = 0;i<s.strip.classList.length;i++) {
+          console.log(s.strip.classList[i]);
+          if (s.strip.classList[i].indexOf("position")>-1) {
+            s.strip.classList.remove(s.strip.classList[i]);
+          }
+        }
+        for (var i=0;i<s.controls.length;i++) {
+          s.controls[i].classList.remove("active");
+        }
+        this.classList.add("active");
+        s.strip.classList.add("position-" + (parseInt(this.getAttribute("data-index")) + 1));
+      });
+    }
+  }
+
 }

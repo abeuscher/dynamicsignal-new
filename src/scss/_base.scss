@@ -11,7 +11,7 @@ body {
   opacity: 1;
   transition: opacity 0.4s ease-in-out;
   overflow-x: hidden;
-  &.nav-open {
+  &.nav-open, &.modal-open {
     overflow: hidden;
   }
   &.loading {
