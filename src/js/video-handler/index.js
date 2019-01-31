@@ -30,6 +30,18 @@ ActivateVideos.prototype.init = function() {
     }
 
   }
+
+  this.nakedVideos = document.querySelectorAll(":not(.video-activator) [data-video-id]");
+  for (var i=0;i<this.nakedVideos.length;i++) {
+    var v = this.nakedVideos[i]
+    if (v.getAttribute("data-video-type")=="vimeo") {
+      self.makeVimeo(v.getAttribute("data-video-id"));
+    }
+    else {
+      makeYoutube(v.getAttribute("data-video-id"),v);
+    }
+    
+  }
 } 
 ActivateVideos.prototype.onYoutubeStart = function(e) {
   e.preventDefault();
@@ -38,12 +50,10 @@ ActivateVideos.prototype.onYoutubeStart = function(e) {
   self.innerHTML = "";
   var yt = makeYoutube(self.getAttribute("data-video-id"),self);
   function restoreContent(el) {
-    console.log(el); 
     el.innerHTML = el.getAttribute("data-content");
   }
   yt.on("stateChange", function (e) { if (e.data==2) { e.target.destroy();restoreContent(self); } } );
   if (self.getAttribute("data-event")) {
-    console.log(self.getAttribute("data-event"));
     sendEvent(self.getAttribute("data-event"));
   }
 }

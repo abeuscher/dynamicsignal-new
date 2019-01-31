@@ -5,7 +5,7 @@ $img-path:$local-path+"images/";
 $font-path:$local-path+"fonts/";
 
 //Breakpoints
-$bps: (xs: 0, s:641px, m:1025px, l:1321px,xl:1921px);
+$bps: (xs: 0, s:641px, m:1025px, l:1201px,xl:1921px);
 
 $gutter-width:24px;
 
@@ -61,3 +61,6 @@ $header-color:$blue;
 $body-font:'Roboto', sans-serif;
 $header-font:'Roboto Slab', sans-serif;
 $nav-font:'Roboto', sans-serif;
+
+$top-margin:80px;
+$nav-height:50px;

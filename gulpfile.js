@@ -128,7 +128,7 @@ function crunchFile(theObj) {
     fs.mkdirSync(theObj.buildDir);
   }
   var options = assign({}, watchify.args, theObj.opts);
-  theFile = watchify(browserify(options));
+  theFile = browserify(options);
   theFile.setter = function() {
     var writeStream = fs.createWriteStream(theObj.buildDir + theObj.opts.output);
     return theFile.bundle()
@@ -189,7 +189,7 @@ gulp.task('watch-files', function() {
 gulp.task('build-views', function() {
   gulp.src(viewsSrcDir + '*.pug')
     .pipe(pug({
-      "pretty": true,
+      "pretty": false,
       "filters": {
         "php": pugPhpFilter
       },

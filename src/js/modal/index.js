@@ -13,7 +13,6 @@ function Modal(opts) {
     this.init();
 }
 Modal.prototype.init = function() {
-    console.log("init");
     if (this.opts.activator.length>0) {
         for (var i=0;i<this.opts.activator.length;i++) {
             var thisButton = this.opts.activator[i];

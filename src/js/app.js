@@ -15,7 +15,6 @@ var Cookies = require("js-cookie");
 var tinyModal = require("tiny-modal");
 var smoothscroll = require("smoothscroll-polyfill");
 var DigitCounter = require("./digit-counter/index.js");
-
 var Modal = require("./modal/index.js");
 
 var ScrollMagic = require("scrollmagic");
@@ -34,7 +33,7 @@ var siteSettings = {
   "gdprCookie": "ds-gdpr",
   "sessionCookie": "ds-count",
   "ctaBar": { 
-    "toggle": true,
+    "toggle": false,
     "cta": "Take The Pulse Of Your Employee Engagement",
     "url": "/employee-engagement-assessment/",
     "buttonText": "Start Assessment"
@@ -93,19 +92,18 @@ window.addEventListener("load", function () {
   if (checkCookies()) {
     triggerGDPR();
   }
-  getVertCarousels();
-  writeCTA();
-  var dc = new DigitCounter();
 
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
-      thisAction.action();
+      thisAction.action(document.getElementById(thisAction.element));
     }
   }
+  getVertCarousels();
+  var dc = new DigitCounter();
   activateImages();
   new ActivateVideos();
-  var videoModals = new Modal();
+  var Modals = new Modal();
 
   PDFHandler(".pdf-wrapper");
   var pies = new Pies({
@@ -630,9 +628,11 @@ var siteActions = [{
           if (document.getElementById("btn-search-header")) {
             document.getElementById("btn-search-header").classList.add("short");
           }
+          /*
           if (document.getElementById("cta-bar")) {
             document.getElementById("cta-bar").style.display = "none";
           }
+          */
         })
         .on("leave", function (e) {
           if (document.getElementById("page-header")) {
@@ -644,12 +644,28 @@ var siteActions = [{
           if (document.getElementById("btn-search-header")) {
             document.getElementById("btn-search-header").classList.remove("short");
           }
+          /*
           if (document.getElementById("cta-bar")) {
             document.getElementById("cta-bar").style.display = "block";
           }
-
+*/
         })
         .addTo(headController);
+    }
+  },
+  {
+    "element":"sticky-header",
+    "action":function(el) {
+      var homeController = new ScrollMagic.Controller({
+        "loglevel": 0
+      });
+      new ScrollMagic.Scene({
+          offset: 0,
+          duration: 0
+        })
+        .setPin(el)
+        .addTo(homeController);  
+       
     }
   },
   {
@@ -1004,16 +1020,22 @@ function activateImages() {
   for (i in lzImages) {
     if (isElement(lzImages[i])) {
       thisElement = lzImages[i];
-      var img = document.createElement("img");
-      if (thisElement.getAttribute("data-src").indexOf("http") > -1) {
-        img.src = thisElement.getAttribute("data-src");
-      } else {
-        img.src = siteSettings.imagePath + thisElement.getAttribute("data-src");
+      if (typeof(JSON.parse(thisElement.getAttribute("data-src"))) == 'object') {
+        var img = JSON.parse(thisElement.getAttribute("data-src")).url;
+        thisElement.src = img;
       }
+      else {
+        var img = document.createElement("img");
+        if (thisElement.getAttribute("data-src").indexOf("http") > -1) {
+          img.src = thisElement.getAttribute("data-src");
+        } else {
+          img.src = siteSettings.imagePath + thisElement.getAttribute("data-src");
+        }
 
-      img.alt = "";
-      thisElement.appendChild(img);
-    }
+        img.alt = "";
+        thisElement.appendChild(img);
+      }
+  }
   }
   var bgArrays = document.querySelectorAll("[data-bg-array]");
   for (i = 0; i < bgArrays.length; i++) {
@@ -1118,72 +1140,7 @@ function writeCTA() {
     bar.classList.add("active");
   }
 } 
-/*
-function writeCTA() {
-  if (document.getElementById("cta-bar")) {
-    if (siteSettings.ctaBar.toggle) {
-      var bar = document.getElementById("cta-bar");
-      bar.append(parseHTML(siteSettings.templates.summitCtaBar(siteSettings.ctaBar)));
-      bar.classList.add("active");
-      var opener = document.getElementById("summit-cta-opener");
-      var popup = document.getElementById("summit-cta-popup");
-      var closer = document.getElementById("summit-cta-closer");
-      var summitText = document.getElementById("summit-text");
-      opener.addEventListener("click", function (e) {
-        e.preventDefault();
-        closer.style.display = "block";
-        summitText.style.display = "none";
-        popup.classList.add("active");
-        bar.classList.add("open");
-      });
 
-      closer.addEventListener("click", function (e) {
-        e.preventDefault();
-        popup.classList.remove("active");
-        closer.style.display = "none";
-        summitText.style.display = "block";
-        bar.classList.remove("open");
-      });
-    }
-  
-  }
-}
-*/
-function activateModals() {
-  var opts = {
-    showSelector: '.modal-show',
-    hideSelector: '.modal-hide',
-    onShow: showVideo,
-    onHide: hideVideo,
-    scrollTop: true
-  };
-
-  function showVideo(target, modal) {
-    var theVideo = modal.querySelectorAll(".video");
-    if (theVideo.length > 0) {
-      var theID = theVideo[0].getAttribute("data-id");
-      theVideo[0].appendChild(parseHTML(siteSettings.templates.modalVideo({
-        videoid: theID
-      })));
-      if (theVideo[0].getAttribute("data-event")) {
-        dataLayer = dataLayer || [];
-        dataLayer.push({"event" : theVideo[0].getAttribute("data-event") });
-      }
-    }
-  }
-
-  function hideVideo(target, modal) {
-    var theVideo = modal.querySelectorAll(".video");
-    if (theVideo.length > 0) {
-      theVideo[0].innerHTML = "";
-    }
-  }
-  var theModals = document.querySelector('.modal');
-  if (theModals) {
-    var modal = tinyModal(theModals, opts);
-  }
-
-}
 function makeTabs(tabs,slides,attr,className) {
   for(i=0;i<tabs.length;i++) {
     var thisTab = tabs[i];

@@ -161,6 +161,10 @@ $sideNavWidth: 300px;
   z-index: 0;
   width:$sideNavWidth;
   .inner {
+    //visibility:hidden;
+    &>* {
+      opacity:0;
+    }
     padding: 70px $gutter-width;
     text-align:left;
     @include bp(m) {
@@ -233,6 +237,12 @@ body.nav-open {
     }
   }
   .sideMenu {
+    .inner {
+      //visibility:visible;
+      &>* {
+        opacity:1;
+      }
+    }
     overflow-y: scroll;
     .search-form {
       opacity:1;

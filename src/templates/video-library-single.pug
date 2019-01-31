@@ -1,0 +1,31 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Video Library Single
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    if( have_posts() ){
+    while( have_posts() ) {
+    the_post();
+  section.container.no-padding
+    .row.no-padding
+        .col-md-12.blog-content
+          :php
+            printf("<h2>%s</h2><div class='wrapper-video'><div data-video-id='%s' data-video-type='%s'></div></div>", get_field("video_title"), get_field("video_id"), get_field("video_type"));
+    .row.no-padding
+      .col-md-6
+        :php
+          printf("<a class='button video-single-cta' href='%s'>%s</a>", get_field("demo_button_target"), get_field("demo_button_text"));
+      .col-md-6
+        :php
+          printf("<a class='button video-single-cta' href='%s'>%s</a>", get_field("resources_button_target"), get_field("resources_button_text"));
+  :php
+    }}
+
+        
