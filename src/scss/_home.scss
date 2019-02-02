@@ -114,13 +114,7 @@ section.hero-homepage {
 }
 
 /* New Home Styles */
-.home-section {
-  background:$white;
-  position:relative;
-  &.phone-section {
-    padding-bottom:$gutter-width*2;
-  }
-}
+
 section.homepage-partners {
   background-size:cover;
   background-position:bottom center;
@@ -135,82 +129,6 @@ section.homepage-partners {
   }
   p {
     line-height:1.8;
-  }
-}
-section.homepage-halfpic {
-  background-size:contain;
-  margin-top:0;
-  padding-top:100px;
-  padding-bottom:55vw;
-  background-repeat:no-repeat;
-  overflow:hidden;
-  .halfpic-bg {
-    width:100%;
-    background-size:cover;
-    margin-bottom:$gutter-width*2;
-    background-position:right bottom;
-    &:after {
-      content:'';
-      display:block;
-      padding-bottom:50%;
-    }
-    @include bp(m) {
-      width:60%;
-      position:absolute;
-      right:0;
-      top:0;
-      margin-bottom:0;
-      &:after {
-        content:'';
-        display:block;
-        padding-bottom:80%;
-      }
-    }
-    @include bp(l) {
-      &:after {
-        content:'';
-        display:block;
-        padding-bottom:66%;
-      }
-    }
-  }
-  @include bp(s) {
-    background-position:center 10vw;
-    padding-bottom:20vw;
-  }
-  @include bp(m) {
-    padding-top:8vw;
-    padding-bottom:6vw;
-  }
-  &:after {  
-    content:'';
-    position:absolute;
-    left:0;
-    top:0;
-    right:0;
-    bottom:0;
-    z-index:0;
-    @include bp(m) {
-      background:linear-gradient(to right, $off-white 0%,$off-white 45%,rgba(255,255,255,0) 65%,rgba(255,255,255,0) 100%);
-    }
-  }
-  .col-md-6 {
-    z-index:1;
-  }
-  h1 {
-    margin:0;
-    text-transform: uppercase;
-    color:$header-blue;
-    @include bp(m) {
-      font-size:2.2em;
-    }
-  }
-  p {
-    font-size:1.4em;
-    line-height:1.8;
-  }
-  .button .fa {
-    padding-right:.5em;
   }
 }
 p.home-secondary {
@@ -278,9 +196,6 @@ p.home-secondary {
     
     display:block;
     p.source {
-      margin-top:2em;
-      font-size:.8em;
-      font-weight:300;
       @include bp(m) {
         padding-left:$gutter-width;
       }
@@ -309,6 +224,7 @@ p.home-secondary {
 }
 .demo-videos {
   background:$blue;
+  position: relative;
   padding-top:0;
   .demo-video-wrapper {
     @include bp(m) {

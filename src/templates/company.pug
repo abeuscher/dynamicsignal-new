@@ -69,64 +69,61 @@ block content
     }
     $query = new WP_Query( array('post_type' => 'career','posts_per_page'   => '1') );
     $career_post = $query->get_posts()[0];
-    
-  section.top-section#company-header(data-bg="company-bg-header.jpg")
-    .inner
-      h1 Committed to Helping Organizations Succeed Through Better Communication
-  section.container
-    .row
-      .col-md-12.icon-bar
-        a.icon-tile(href="/customers")
-          .icon-thumb(data-bg="icon-customers.png")
-          h2 Customers
-        a.icon-tile(href="/team")
-          .icon-thumb(data-bg="icon-team.png")
-          h2 Team
-        a.icon-tile(href="/agency")
-          .icon-thumb(data-bg="icon-partners.png")
-          h2 Partners
-        a.icon-tile(href="/careers")
-          .icon-thumb(data-bg="icon-careers.png")
-          h2 Careers
-  section.container
-    .row
-      .col-md-8.content
-        img(src=themeDir+"images/company-peoplepic.jpg",alt="")
-        p Employee Communication and Engagement Platforms are a critical component for the success of world-class organizations at a time of historic, unprecedented change in the global workplace. Successful serial entrepreneurs Russ Fradin, Steve Heyman and Jim Larrison founded the company in 2010 with the mission of establishing stronger bonds between organizations and their employees so great things can be achieved.
-        p Today, hundreds of enterprise organizations, including more than 20 percent of the Fortune 100, trust Dynamic Signal to align their organizations and increase productivity by delivering timely, relevant information to millions of employees around the world so they can do their jobs better.
-        img.awards-line(src=themeDir + "images/logosline-awards.png")
-      .col-md-4
-        ul.side-list
-          :php
-            if (!$events_flag) {
-          li.dot
-            h2 Events
-            :php
-              printf("<h3><a href='%s'>%s</a></h3><p>%s on %s/%s/%s<br> at %s (%s)<a class='small-link' href='%s'>%s</a><a class='small-link' href='%s'>details</a></p>",$event_post["url"],$event_post["title"],$event_post["type"],$event_post["start_month"],$event_post["start_day"],$event_post["start_year"],$event_post["start_time"],$event_post["event_time_zone"],$event_post["btn_url"],$event_post["btn_text"],$event_post["url"]) ;
-            a.button(href="/events") All Events  
-          :php
-            }
-          li.dot
-            h2 Blog
-            h3
+    printf("<section class='halfpic' id='sticky-header'>");
+    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+  .container
+      .row
+          .col-md-6
+            h1
               :php
-                //echo json_encode($blog_post);
-                printf("<a href='%s'><h3>%s</h3><p>By %s</p></a>","/blog/".$blog_post->post_name,$blog_post->post_title,get_author_name($blog_post->post_author));
-            a.button(href="/blog") All Entries  
-          li.dot
-            h2 Press
-            h3 
-              a(href="https://resources.dynamicsignal.com/press/dynamic-signal-raises-36-5-million-to-transform-employee-communication-and-engagement-in-the-enterprise") Dynamic Signal Raises $36.5 Million to Transform Employee Communication and Engagement in the Enterprise
-            p Released 2/20/18
-              a.small-link(href="https://resources.dynamicsignal.com/press/dynamic-signal-raises-36-5-million-to-transform-employee-communication-and-engagement-in-the-enterprise") read
-            a.button(href="/press") Press 
-          li.dot
-            h2 News
-            h3 
-              a(href="https://resources.dynamicsignal.com/news/why-intranets-are-still-key-digital-workplace-networks") Why Intranets Are Still Key Digital Workplace Networks
-            p Released 3/5/18
-              a.small-link(href="https://resources.dynamicsignal.com/news/why-intranets-are-still-key-digital-workplace-networks") read
-            a.button(href="/news") News
+                printf("%s",get_field("page_header"))
+  :php
+    echo "</section>";   
+  section.white-bg-section
+    .container
+      .row
+        .col-md-12.icon-bar
+          :php
+            foreach(get_field("sub_nav") as $idx=>$button) {
+              printf("<a class='icon-tile' href='%s'><div class='icon-thumb' data-bg-array='%s'></div><h2>%s</h2></a>",$button["button_target"],json_encode($button["button_icon"],JSON_UNESCAPED_SLASHES), $button["button_label"]);
+            }
+  section.white-bg-section
+    .container
+      .row
+        .col-md-8.content
+          :php
+            printf("<img src='%s' alt='' />",get_field("secondary_image")["url"]);
+            printf("%s",get_field("page_copy"));
+            printf("<img src='%s' alt='' />",get_field("awards")["url"]);
+        .col-md-4
+          ul.side-list
+            :php
+              if (!$events_flag) {
+            li.dot
+              h2 Events
+              :php
+                printf("<h3><a href='%s'>%s</a></h3><p>%s on %s/%s/%s<br> at %s (%s)<a class='small-link' href='%s'>%s</a><a class='small-link' href='%s'>details</a></p>",$event_post["url"],$event_post["title"],$event_post["type"],$event_post["start_month"],$event_post["start_day"],$event_post["start_year"],$event_post["start_time"],$event_post["event_time_zone"],$event_post["btn_url"],$event_post["btn_text"],$event_post["url"]) ;
+              a.button(href="/events") All Events  
+            :php
+              }
+            li.dot
+              h2 Blog
+              h3
+                :php
+                  printf("<a href='%s'><h3>%s</h3><p>By %s</p></a>","/blog/".$blog_post->post_name,$blog_post->post_title,get_author_name($blog_post->post_author));
+              a.button(href="/blog") All Entries  
+            li.dot
+              h2 Press
+              h3 
+                :php
+                  printf("<a href='%s'>%s</a>",get_field("press_item_link"),get_field("press_item_headline"));
+              a.button(href="/press/") All Press
+            li.dot
+              h2 News
+              h3 
+                :php
+                  printf("<a href='%s'>%s</a>",get_field("news_item_link"),get_field("news_item_headline"));
+              a.button(href="/news/") All News
   section.bottom-cta
     .container
       .row

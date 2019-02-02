@@ -113,6 +113,7 @@ section.whatis-carousel-bucket {
 }
 .product-bucket {
   min-height:40vw;
+  position:relative;
   &.bg-blue {
     background-color:$header-blue;
     color:$white;

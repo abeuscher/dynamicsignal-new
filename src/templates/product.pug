@@ -30,42 +30,44 @@ block content
     $parent_title = ""; 
     $parent_url = "";
     $override_title = "What is Dynamic Signal?";
-  section.top-section-product
+    printf("<section class='halfpic  top-section-product' id='sticky-header'>");
+    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+  .container
+      .row
+          .col-md-8.col-lg-6
+            h1
+              :php
+                the_field("header_text");
+            p
+              :php
+                echo get_field("header_intro");
+            p
+              :php
+                echo get_Field("header_copy");
+            p
+              a.button.cta.knockout.modal-show(href='#',data-video-modal-id="s2wzmwLSR-M") Play Video
+                span.fa.fa-play-circle-o
+  :php
+    echo "</section>";    
+  section.white-bg-section
     .container
       .row
-        .col-md-6
-          img.center-image(src=themeDir+"images/whatis-marquee-center.png")
-        .col-md-6
-          h1
-            :php
-              the_field("header_text");
-          p
-            :php
-              echo get_field("header_intro");
-          p
-            :php
-              echo get_Field("header_copy");
-          p
-            a.button.cta.knockout.modal-show(href='#',data-video-modal-id="iYvNKx7mwZ0") Play Video
-              span.fa.fa-play-circle-o
-  section.container
-    .row
-      .col-md-12.icon-bar.product-subnav
-        a.icon-tile(href="/solutions/")
-          .icon-thumb(data-bg="icon-solutions.png")
-          h2 Solutions
-        a.icon-tile(href="/services/")
-          .icon-thumb(data-bg="icon-services.png") 
-          h2 Services          
-        a.icon-tile(href="/features/")
-          .icon-thumb(data-bg="icon-features.png") 
-          h2 Features
-        a.icon-tile(href="https://resources.dynamicsignal.com/h/c/837672-case-studies")
-          .icon-thumb(data-bg="icon-casestudies.png")
-          h2 Case Studies
-        a.icon-tile(href="/integrations/")
-          .icon-thumb(data-bg="icon-integrations.png")
-          h2 Integrations 
+        .col-md-12.icon-bar.product-subnav
+          a.icon-tile(href="/solutions/")
+            .icon-thumb(data-bg="icon-solutions.png")
+            h2 Solutions
+          a.icon-tile(href="/services/")
+            .icon-thumb(data-bg="icon-services.png") 
+            h2 Services          
+          a.icon-tile(href="/features/")
+            .icon-thumb(data-bg="icon-features.png") 
+            h2 Features
+          a.icon-tile(href="https://resources.dynamicsignal.com/h/c/837672-case-studies")
+            .icon-thumb(data-bg="icon-casestudies.png")
+            h2 Case Studies
+          a.icon-tile(href="/integrations/")
+            .icon-thumb(data-bg="icon-integrations.png")
+            h2 Integrations 
   section.product-bucket.centered.bg-gray 
     .container
       .row
@@ -88,7 +90,7 @@ block content
           p 
             :php
               echo get_field("section_2_copy");
-  section.product-bucket.centered
+  section.product-bucket.centered.white-bg-section
     .container
       .row
         .col-md-12
@@ -110,7 +112,7 @@ block content
           p 
             :php
               echo get_field("section_4_copy");
-  section.product-bucket.centered
+  section.product-bucket.centered.white-bg-section
     .container
       .row
         .col-md-12
