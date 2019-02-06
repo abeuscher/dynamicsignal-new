@@ -1201,6 +1201,10 @@ position:relative;
     padding-bottom:$gutter-width*2;
   }
 }
+.gray-bg-section {
+  background:$lighter-gray;
+  position:relative;
+}
 
 section.halfpic {
   background-size:contain;
@@ -1282,6 +1286,9 @@ section.halfpic {
   p {
     font-size:1em;
     line-height:1.8;
+    &.solo {
+      margin-top:5em;
+    }
   }
   &.bigtext {
     p {
@@ -1304,12 +1311,14 @@ ul.plus-list {
   li {
     position:relative;
     &:before {
-      content:'+';
-      font-weight:800;
-      position:absolute;
-      top:0;
-      left:-1em;
-      color:$header-blue;
+      content:'';
     }
   }
+}
+.circle-number {
+  border-radius:50%;
+  background:$header-blue;
+  color:$white;
+  display:inline-block;
+  padding:.4em;
 }

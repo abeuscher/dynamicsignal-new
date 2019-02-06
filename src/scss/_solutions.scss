@@ -40,7 +40,7 @@
     }
 }
 .solutions-slide-image {
-    background-size:cover;
+    background-size:contain;
     background-repeat:no-repeat;
     @include aspect-ratio(4,3);
     width:100%;
@@ -98,4 +98,10 @@ ul.tab-nav {
 }
 section.tabs {
     background:$lighter-gray;
+    .blog-content {
+        padding-bottom:0;
+    }
+}
+section.features-link {
+    padding-top:0;
 }

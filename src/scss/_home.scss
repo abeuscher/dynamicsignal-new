@@ -338,6 +338,16 @@ p.home-secondary {
   .quote {
     width:60%;
     margin-left:35%;
+    font-size:1.2em;
+  }
+  cite {
+    width:50%;
+    margin-left:45%;
+    color:$white;
+    display:block;
+    font-style: normal;
+    text-transform:uppercase;
+    font-size:.8em;
   }
   &.has-quote {
     &:after {

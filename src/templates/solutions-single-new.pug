@@ -26,10 +26,7 @@ block content
 	.container
 		.row
 			.col-md-6
-				h1
-					:php
-						echo get_field("page_header");
-				p
+				p.solo
 					:php
 						the_field("top_section_header");
 				:php
@@ -40,6 +37,9 @@ block content
 		.container
 			.row
 				.col-md-12.blog-content
+					h2.centered
+						:php
+							echo get_field("top_copy_header");
 					p
 						:php
 							the_field("top_section_copy");
@@ -82,7 +82,7 @@ block content
 							echo $nav
 			:php
 				echo $panels;
-	section.features-link.white-bg-section
+	section.features-link.gray-bg-section
 		.container
 			.row
 				.col-md-12
