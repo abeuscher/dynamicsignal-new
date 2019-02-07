@@ -32,21 +32,23 @@ block content
     $override_title = "What is Dynamic Signal?";
     printf("<section class='halfpic  top-section-product' id='sticky-header'>");
     printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+  .white-gradient-header
   .container
-      .row
-          .col-md-8.col-lg-6
-            h1
-              :php
-                the_field("header_text");
-            p
-              :php
-                echo get_field("header_intro");
-            p
-              :php
-                echo get_Field("header_copy");
-            p
-              a.button.cta.knockout.modal-show(href='#',data-video-modal-id="s2wzmwLSR-M") Play Video
-                span.fa.fa-play-circle-o
+      .row-flex
+          .col-half-flex.gray-bg-section
+              .inner
+                h1
+                  :php
+                    the_field("header_text");
+                p
+                  :php
+                    echo get_field("header_intro");
+                p
+                  :php
+                    echo get_Field("header_copy");
+                p
+                  a.button.cta.knockout.modal-show(href='#',data-video-modal-id="s2wzmwLSR-M") Play Video
+                    span.fa.fa-play-circle-o
   :php
     echo "</section>";    
   section.white-bg-section

@@ -71,12 +71,14 @@ block content
     $career_post = $query->get_posts()[0];
     printf("<section class='halfpic' id='sticky-header'>");
     printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+  .white-gradient-header
   .container
-      .row
-          .col-md-6
-            h1
-              :php
-                printf("%s",get_field("page_header"))
+      .row-flex
+          .col-half-flex.gray-bg-section
+              .inner
+                h1
+                  :php
+                    printf("%s",get_field("page_header"))
   :php
     echo "</section>";   
   section.white-bg-section
@@ -84,8 +86,10 @@ block content
       .row
         .col-md-12.icon-bar
           :php
+            if (get_field("sub_nav")) {
             foreach(get_field("sub_nav") as $idx=>$button) {
               printf("<a class='icon-tile' href='%s'><div class='icon-thumb' data-bg-array='%s'></div><h2>%s</h2></a>",$button["button_target"],json_encode($button["button_icon"],JSON_UNESCAPED_SLASHES), $button["button_label"]);
+            }
             }
   section.white-bg-section
     .container

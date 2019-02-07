@@ -296,30 +296,41 @@ p.home-secondary {
     margin-bottom:0;
   }
   .inner {
-    position:absolute;
+    position: relative;
+    @include bp(m) {
+      position:absolute;
+      top:0;
+      bottom:50px;
+      right:0;
+      left:0;
+    }
     padding:$gutter-width;
-    top:0;
-    bottom:50px;
-    right:0;
-    left:0;
   }
   .panel-cta {
-    position:absolute;
+
     background:$blue;
-    bottom:0;
-    height:50px;
     color:$white;
     width:100%;
-    left:0;
+
     text-align:center;
     line-height:50px;
+    @include bp(m) {
+      position:absolute;
+      background:$blue;
+      bottom:0;
+      left:0;
+      height:50px;
+    }
   }
   &:after {
     content:'';
-    padding-bottom:65%;
+    //padding-bottom:65%;
     display:block;
-    @include bp(s) {
-      //padding-bottom:50%;
+    width:100%;
+    @include bp(m) {
+      position:static;
+      background:transparent;
+      padding-bottom:65%;
     }
   }
   h2,p {
@@ -350,9 +361,10 @@ p.home-secondary {
     font-size:.8em;
   }
   &.has-quote {
-    &:after {
+    &:before {
       content:'';
       display:block;
+      position: absolute;
       top:0;
       left:0;
       right:0;
