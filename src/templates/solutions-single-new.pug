@@ -108,7 +108,7 @@ block content
             :php
               $slides = get_field("bottom_carousel_slides");
               foreach($slides as $slide) {
-                printf("<div class='container'><div class='row'><div class='col-md-4'><div class='solutions-slide-image' data-bg-array='%s'></div></div><div class='col-md-8'><div class='slide-logo' data-bg-array='%s'></div><p>%s</p></div></div></div>",json_encode($slide["slide_image"],JSON_UNESCAPED_SLASHES),json_encode($slide["slide_logo"],JSON_UNESCAPED_SLASHES),$slide["slide_copy"]);
+                printf("<div class='container'><div class='row'><div class='col-md-4'><div class='solutions-slide-image tab-image' data-bg-array='%s'></div></div><div class='col-md-8'><div class='slide-logo' data-bg-array='%s'></div><p>%s</p></div></div></div>",json_encode($slide["slide_image"],JSON_UNESCAPED_SLASHES),json_encode($slide["slide_logo"],JSON_UNESCAPED_SLASHES),$slide["slide_copy"]);
               }
   section.white-bg-section
     .container

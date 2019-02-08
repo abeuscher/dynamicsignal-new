@@ -361,6 +361,10 @@ p.home-secondary {
     font-size:.8em;
   }
   &.has-quote {
+    background-position:-100px 0;
+    @include bp(s) {
+      background-position:center center;
+    }
     &:before {
       content:'';
       display:block;

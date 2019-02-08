@@ -31,15 +31,19 @@ ActivateVideos.prototype.init = function() {
 
   }
 
-  this.nakedVideos = document.querySelectorAll(":not(.video-activator) [data-video-id]");
+  this.nakedVideos = document.querySelectorAll("[data-video-id]");
+
   for (var i=0;i<this.nakedVideos.length;i++) {
-    var v = this.nakedVideos[i]
-    if (v.getAttribute("data-video-type")=="vimeo") {
-      self.makeVimeo(v.getAttribute("data-video-id"));
+    var v = this.nakedVideos[i];
+    if (!v.classList.contains("video-activator")) {
+      if (v.getAttribute("data-video-type")=="vimeo") {
+        self.makeVimeo(v.getAttribute("data-video-id"));
+      }
+      else {
+        makeYoutube(v.getAttribute("data-video-id"),v);
+      }
     }
-    else {
-      makeYoutube(v.getAttribute("data-video-id"),v);
-    }
+
     
   }
 } 

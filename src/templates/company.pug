@@ -69,6 +69,9 @@ block content
     }
     $query = new WP_Query( array('post_type' => 'career','posts_per_page'   => '1') );
     $career_post = $query->get_posts()[0];
+    if( have_posts() ){
+     while( have_posts() ) {
+      the_post();
     printf("<section class='halfpic' id='sticky-header'>");
     printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
   .white-gradient-header
@@ -86,10 +89,8 @@ block content
       .row
         .col-md-12.icon-bar
           :php
-            if (get_field("sub_nav")) {
             foreach(get_field("sub_nav") as $idx=>$button) {
               printf("<a class='icon-tile' href='%s'><div class='icon-thumb' data-bg-array='%s'></div><h2>%s</h2></a>",$button["button_target"],json_encode($button["button_icon"],JSON_UNESCAPED_SLASHES), $button["button_label"]);
-            }
             }
   section.white-bg-section
     .container
@@ -127,6 +128,7 @@ block content
               h3 
                 :php
                   printf("<a href='%s'>%s</a>",get_field("news_item_link"),get_field("news_item_headline"));
+                  }}
               a.button(href="/news/") All News
   section.bottom-cta
     .container
