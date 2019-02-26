@@ -11,6 +11,14 @@ $time:12s;
         flex-basis:16.6%;
       }
     }
+    &.adwords {
+      .flipper-wrapper {
+        flex-basis:33.33%;
+        @include bp(s) {
+          flex-basis:25%;
+        }
+      }
+    }
     .logo-thumb { 
       position: absolute;
       background-size:contain;

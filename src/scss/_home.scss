@@ -134,6 +134,9 @@ section.homepage-partners {
 p.home-secondary {
   font-size:1.4em;
   text-align: center;
+  &.left {
+    text-align:left;
+  }
 }
 .vertical-carousel {
   position:relative;
@@ -163,7 +166,7 @@ p.home-secondary {
       background-size:contain;
     }
     .inner {
-      transition:.2s transform ease-out;
+      transition:.35s transform ease-in;
       
       overflow:hidden;
       .vertical-slide {

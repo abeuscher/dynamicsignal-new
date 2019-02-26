@@ -46,12 +46,28 @@ $mf-transition-speed: 0.28s !default;
   &:hover::before {
     transform: scale(1);
   }
+  &.blue-form {
+    background:$blue;
+    color:$white;
+    &::before {
+      display:none;
+    }
+    &:hover::before {
+      transform:none;
+    }
+  }
 }
 
 .marketo-form {
   &.mktoForm {
     .mktoButtonWrap {
       margin:0!important;
+      margin-top:24px !important;
+      display:block;
+      @include bp(m) {
+        margin-top:0!important;
+        display:inline-block;
+      }
       &.mktoSimple .mktoButton {
         padding: 0.5em 1.5em;
         border:none;

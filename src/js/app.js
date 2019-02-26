@@ -40,6 +40,7 @@ var siteSettings = {
   },
   "templates": {  
     "adwordsGrid": require("./inc/ad-words-grid.pug"),
+    "adwordsLogoGarden": require("./inc/ad-words-logo-garden.pug"),
     "homePageLogo": require("./inc/home-logo-slide.pug"),
     "logoTerminalGrid": require("./inc/logo-terminal-grid.pug"),
     "logoPartnersGrid": require("./inc/logo-partners-grid.pug"),
@@ -856,6 +857,21 @@ var siteActions = [{
     }
   },
   {
+    "element": "adwords-logo-grid",
+    "action": function () {
+      var gridTerminal = document.getElementById("adwords-logo-grid");
+      var logos = [];
+      var slots = parseInt(pageData.logos.length / 2);
+      for (i = 0; i < slots; i++) {
+        logos.push(pageData.logos[i]);
+        if (pageData.logos[i + slots]) {
+          logos.push(pageData.logos[i + slots]);
+        }
+      }
+      gridTerminal.append(parseHTML(siteSettings.templates.adwordsLogoGarden(logos)));
+    }
+  },
+  {
     "element": "adwords-logos",
     "action": function () {
       var gridTerminal = document.getElementById("adwords-logos");
@@ -1180,20 +1196,42 @@ function getVertCarousels() {
       strip: theBucket.querySelectorAll(".inner")[0]
       
     };
-    for (var c = 0;c<s.controls.length;c++) {
+    var switcher = function() {
+      getCurrPos(s);
+      setTimeout(switcher,6500);
+    }
+    setTimeout(switcher,6500);
+    for (var c = 0;c<s.controls.length;c++) {   
       s.controls[c].addEventListener("click", function(e) {
-        for (var i = 0;i<s.strip.classList.length;i++) {
-          console.log(s.strip.classList[i]);
-          if (s.strip.classList[i].indexOf("position")>-1) {
-            s.strip.classList.remove(s.strip.classList[i]);
+        nextCarousel(this,s,parseInt(this.getAttribute("data-index")) + 1);
+        s.pause=true;
+        setTimeout(function() { s.pause=false; },6500);
+      });
+    } 
+    function getCurrPos(el) {
+      if (!el.pause) {
+        for (var i = 0;i<el.strip.classList.length;i++) {
+          if (el.strip.classList[i].indexOf("position")>-1) {
+            var next = parseInt(el.strip.classList[i].replace(/[^0-9]/gi, ''))<el.controls.length?parseInt(el.strip.classList[i].replace(/[^0-9]/gi, ''))+1:1;
+            nextCarousel(el.controls[next-1],el,next);  
           }
         }
-        for (var i=0;i<s.controls.length;i++) {
-          s.controls[i].classList.remove("active");
+      }
+    }
+    function nextCarousel(btn,el,idx) {
+      resetCarousel(el);
+      btn.classList.add("active");
+      el.strip.classList.add("position-" + idx);
+    }
+    function resetCarousel(el) {
+      for (var i = 0;i<el.strip.classList.length;i++) {
+        if (el.strip.classList[i].indexOf("position")>-1) {
+          el.strip.classList.remove(el.strip.classList[i]);
         }
-        this.classList.add("active");
-        s.strip.classList.add("position-" + (parseInt(this.getAttribute("data-index")) + 1));
-      });
+      }
+      for (var i=0;i<el.controls.length;i++) {
+        el.controls[i].classList.remove("active");
+      }
     }
   }
 

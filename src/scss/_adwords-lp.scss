@@ -21,6 +21,9 @@
     p, li {
         line-height:1.8;
     }
+    p {
+        margin-top:0;
+    }
     ul {
         li {
             margin:0 0 $gutter-width/3;
@@ -93,6 +96,7 @@
         margin-top:0;
     }
     &.ebook {
+        padding-bottom:$gutter-width;
         h1 {
             margin-bottom:0;
         }
@@ -152,4 +156,9 @@ body #page-header {
 h2.lp-form-header {
     font-size:1.2em;
     text-align:center; 
+}
+#adwords-logo-grid {
+    .flipper-wrapper {
+        height:80px;
+    }
 }

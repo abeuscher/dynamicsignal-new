@@ -76,3 +76,468 @@
 .ds-register-msg {
   display:none;
 }
+section.video-gate-header {
+  margin-top:70px;
+  padding-bottom:0;
+  padding-top:0;
+  @include bp(m) {
+    margin-top:90px;
+  }
+}
+section.video-gate {
+  padding-top:0;
+  .wrapper-video {
+    @include bp(m) {
+      margin-top:$gutter-width;
+    }
+  }
+}
+@mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
+  transition: $property $duration $ease;
+}
+
+  .video-single-cta {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    &.learn-more {
+      width: 90%;
+      margin-left:5%;
+      height: auto;
+      .circle {
+        @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+        position: relative;
+        margin: 0;
+        width: 3rem;
+        height: 3rem;
+        background: $blue;
+        border-radius: 1.625rem;
+        .icon {
+          @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          background: $blue;
+          &.arrow {
+            @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+            left: 0.625rem;
+            width: 1.125rem;
+            height: 0.125rem;
+            background: none;
+            &::before {
+              position: absolute;
+              content: '';
+              top: -0.25rem;
+              right: 0.0625rem;
+              width: 0.625rem;
+              height: 0.625rem;
+              border-top: 0.125rem solid $white;
+              border-right: 0.125rem solid $white;
+              transform: rotate(45deg);
+            }
+          }
+        }
+      }
+      .button-text {
+        @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+        position: absolute;
+        top: 0;
+        left: 1.75em;
+        right: 0;
+        bottom: 0;
+        padding: 0.75rem 0;
+        margin: 0 0 0 1.85rem;
+        color: $blue;
+        font-weight: 700;
+        line-height: 1.6;
+        text-align: left;
+        text-transform: uppercase;
+      }
+    }
+    &:hover {
+      .circle {
+        width: 100%;
+        .icon {
+          &.arrow {
+          background: $blue;
+          transform: translate(1rem, 0);
+          }
+        }
+      }
+      .button-text {
+        color: $white;
+      }
+    }
+  }
+  .wrapper-video-next-steps {
+    background:$white;
+    padding:$gutter-width/2;
+    margin-bottom:$gutter-width;
+    p {
+      color:$black;
+      margin-top:0;
+    }
+    &.demo {
+      display:none;
+      @include bp(m) {
+        display:block;
+      }
+    }
+  }
+  .wrapper-lp-form {
+    flex-basis:100%;
+    @include bp(m) {
+        flex-basis:auto;
+        flex-grow:1;
+        flex-shrink:0; 
+        margin-left:$gutter-width;
+    }
+
+    padding:$gutter-width $gutter-width $gutter-width;
+
+    background:$header-blue;
+    color:$white;
+    align-self:flex-start;
+    .form-title, .form-text {
+        max-width:305px;
+        margin:0 auto;
+    }
+    .mktoLabel {
+        text-transform:uppercase;
+        .mktoField {
+            text-transform: none;
+        }
+    }
+    button.mktoButton[type="submit"] {
+        background:$white!important;
+        border-radius:3px;
+        color:$blue!important;
+        &:hover {
+            background:$lighter-gray!important;
+        }
+    }
+}
+//New Form Styles
+.blue-form {
+  font-family:$body-font!important;
+  .mktoForm {
+    //max-width: 305px !important;
+    margin: 0 auto;
+  }
+  .mktoForm * {
+    font-family:$body-font!important;
+  }
+  .mktoLabel {
+    font-weight:300;
+    margin-top:$gutter-width/2;
+    text-transform:uppercase;
+  }
+  label[for="Country"], label[for="Company_Size2__c"] {
+    display:block!important;
+  }
+  .mktoOffset,
+  .mktoGutter,
+  .mktoClear,
+  .mktoAsterix {
+    display: none !important;
+  }
+
+  /* MARKETO FULL-WIDTH.
+* This makes the form fit whatever contains it. */
+  form,
+  .mktoFieldDescriptor,
+  .mktoFieldWrap,
+  input,
+  .mktoForm select.mktoField,
+  .mktoForm .mktoRadioList,
+  .mktoForm .mktoCheckboxList {
+    width: 100% !important;
+  }
+  .mktoForm {
+    padding: 0px !important;
+  }
+
+  .mktoForm .mktoFormCol {
+    width: 100%;
+  }
+
+  .mktoForm fieldset {
+    padding: 0px !important;
+    margin: 0 !important;
+    border: 0;
+  }
+
+  .mktoForm fieldset legend {
+    display: none !important;
+  }
+
+  .mktoForm input[type="url"],
+  .mktoForm input[type="text"],
+  .mktoForm input[type="date"],
+  .mktoForm input[type="tel"],
+  .mktoForm input[type="email"],
+  .mktoForm input[type="number"],
+  .mktoForm textarea.mktoField,
+  .mktoForm select.mktoField {
+    height: inherit !important;
+    line-height: inherit !important;
+    font-size: inherit;
+    width:100%!important;
+  }
+
+  .mktoForm input[type="text"],
+  .mktoForm input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="submit"],
+  .mktoButton,
+  .mktoForm select.mktoField,
+  .mktoForm textarea.mktoField {
+    box-shadow: none !important;
+    font-family: "Open Sans", sans-serif !important;
+    display: block;
+    width: 100%;
+    height: 40px !important;
+    padding: 10px 15px !important;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .mktoForm select.mktoField,
+  .mktoForm textarea.mktoField {
+    box-shadow: none !important;
+    font-family: "Open Sans", sans-serif !important;
+    display: block;
+    width: 100%;
+    padding: 10px 15px !important;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+  .mktoForm select.mktoField {
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: "";
+    padding: 0.2em 22px 0.2em 15px !important;
+  }
+
+  .mktoForm .mktoRadioList > input,
+  .mktoForm .mktoCheckboxList > input {
+    padding: 0;
+    float: left;
+  }
+
+  .mktoForm .mktoRadioList > label,
+  .mktoForm .mktoCheckboxList > label {
+    margin-left: 1.8em !important;
+    margin-top: -1.1em !important;
+    margin-bottom: 0.3em !important;
+    line-height: 1.2em !important;
+    display: inline-block !important;
+  }
+
+  @media only screen and (max-width: 480px) {
+    .mktoForm input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="submit"],
+    .mktoButton,
+    .mktoForm select.mktoField {
+      margin-bottom: 20px !important;
+    }
+  }
+
+  .mktoForm input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  .mktoForm select.mktoField {
+    border: 1px solid #dedede;
+    font-size: 16px !important;
+    font-weight: 200;
+  }
+
+  .mktoFieldDescriptor {
+    margin: 0 !important;
+  }
+
+  .mktoButtonRow,
+  .mktoButtonWrap {
+    display: block !important;
+    position: inherit !important;
+  }
+
+  .mktoButtonWrap {
+    margin: 0 !important;
+    text-align:center;
+  }
+
+  input[type="submit"],
+  .mktoButton {
+    box-shadow: none !important;
+    border: 0 !important;
+    font-family: "Open Sans", sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 0 15px !important;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    -webkit-animation: highlight 0.8s ease-in-out forwards 10s;
+    animation: highlight 0.8s ease-in-out forwards 10s;
+    -webkit-transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  /*# sourceMappingURL=styles.css.map */
+
+  .mktoForm .mktoError {
+    left: 0 !important;
+  }
+  label {
+    color: #ffffff !important;
+  }
+  .mktoForm input[type="text"],
+  .mktoForm input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="submit"],
+  .mktoButton,
+  .mktoForm select.mktoField,
+  .mktoForm textarea.mktoField {
+    background-color: #edf5f9;
+  }
+  .mktoForm select.mktoField,
+  .mktoForm textarea.mktoField {
+    background-color: #edf5f9;
+  }
+  /* Style dropdown arrow */
+  .mktoForm select.mktoField {
+    background: #edf5f9
+      url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAFCAYAAAB8ZH1oAAAAbklEQVQIW2P08vLzYGD4c2Hbtm0vGLAANzc3MXZ2dmNGkJyPj3/437+/jm7fvv0JslofHx/pf/8Y7bZt27wcrBAEvL39Iv79+30ephhzeugerhbzmtmz83+YSTCDUBRCnRH4//9/xq1bN61DdgYAvB01NtMHTBQAAAAASUVORK5CYII=)
+      95% 50% no-repeat !important;
+    height: 40px !important;
+    color: #b7b7b7;
+  }
+  .mktoForm .mktoRadioList > label,
+  .mktoForm .mktoCheckboxList > label {
+    color: #ffffff !important;
+  }
+  .mktoForm input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  .mktoForm select.mktoField {
+    background-color: #edf5f9;
+    color: #b7b7b7;
+  }
+  input[type="submit"],
+  .mktoButton, .button {
+    background:$bright-blue !important;
+    color: #ffffff !important;
+    text-align:center;
+    width:100%;
+    text-transform:uppercase;
+    margin-top:$gutter-width;
+    font-size:1.2em;
+  }
+  input[type="submit"]:hover,
+  .mktoButton:hover {
+    background: #026daf !important;
+  }
+  *::-webkit-input-placeholder {
+    color: #b7b7b7;
+  }
+  *::-moz-placeholder {
+    color: #b7b7b7;
+  }
+  *:-ms-input-placeholder {
+    color: #b7b7b7;
+  }
+  *::placeholder {
+    color: #b7b7b7;
+  }
+}
+section.video-gate-two-col {
+  padding-top:0;
+  padding-bottom:0;
+  margin-top:80px;
+  border-top:2px solid $blue;
+  .col-md-8,.col-md-4 {
+    padding-bottom:0;
+    @include bp(m) {
+      padding-bottom:$gutter-width*2;
+    }
+    
+  }
+  h1 {
+    font-size:1.4em;
+    font-weight:800;
+    margin:$gutter-width 0 0;
+  }
+  p.home-secondary {
+    line-height:1.8;
+    font-size:1.1em;
+    margin:0 0 $gutter-width;
+  }
+  .container {
+    @include bp(m) {
+      display:flex;
+    }
+   
+  }
+  .blue-bg {
+    background:$blue;
+    color:$white;
+    padding-bottom:$gutter-width;
+    h1,h2,h3 {
+      color:$white;
+    }
+    h3 {
+      padding-top:$gutter-width;
+      margin:0;
+    }
+
+    @include bp(m) {
+      height:100%;
+      padding-bottom:auto;
+    }
+  }
+  .blog-content {
+    p,li {
+      line-height:1.4;
+    }
+    li {
+      margin-bottom:0;
+    }
+  }
+  #mkto_gen_webinarImg {
+    display:none;
+    @include bp(m) {
+      display:block;
+    }
+  }
+}
+.video-gate-mobile {
+  display:block;
+  @include bp(m) {
+    display:none;
+  }
+}
+.video-gate-desktop {
+  display:none;
+  @include bp(m) {
+    display:block;
+  }
+}

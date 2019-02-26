@@ -56,7 +56,8 @@ ActivateVideos.prototype.onYoutubeStart = function(e) {
   function restoreContent(el) {
     el.innerHTML = el.getAttribute("data-content");
   }
-  yt.on("stateChange", function (e) { if (e.data==2) { e.target.destroy();restoreContent(self); } } );
+  yt.on("stateChange", function (e) { if (e.data==2) { console.log(e);e.target.destroy();restoreContent(self); } } );
+  
   if (self.getAttribute("data-event")) {
     sendEvent(self.getAttribute("data-event"));
   }
@@ -131,5 +132,9 @@ function makeYoutube (id, bucket, events) {
   video.loadVideoById(id); 
   player.classList.add("youtube-video");
   return video;
+}
+function makeSmartYoutube(id,bucket,events) {
+  var player = new YouTubePlayer(bucket);
+  player.loadVideoById(id);
 }
 module.exports = ActivateVideos;

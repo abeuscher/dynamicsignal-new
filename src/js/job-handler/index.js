@@ -16,7 +16,6 @@ JobList.prototype.writeList = function() {
   }
 };
 JobList.prototype.writeFeatured = function() {
-  console.log("featured job firing",this.opts.jobs); 
   var featured = null;
   for (i in this.opts.jobs) {
     var thisJob = this.opts.jobs[i];

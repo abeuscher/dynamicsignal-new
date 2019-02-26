@@ -118,18 +118,18 @@ block content
                   printf("<a href='%s'><h3>%s</h3><p>By %s</p></a>","/blog/".$blog_post->post_name,$blog_post->post_title,get_author_name($blog_post->post_author));
               a.button(href="/blog") All Entries  
             li.dot
-              h2 Press
+              h2 News Room
               h3 
                 :php
                   printf("<a href='%s'>%s</a>",get_field("press_item_link"),get_field("press_item_headline"));
-              a.button(href="/press/") All Press
+              a.button(href="/press/") News Room
             li.dot
-              h2 News
+              h2 Press Coverage
               h3 
                 :php
                   printf("<a href='%s'>%s</a>",get_field("news_item_link"),get_field("news_item_headline"));
                   }}
-              a.button(href="/news/") All News
+              a.button(href="/news/") Press Coverage
   section.bottom-cta
     .container
       .row

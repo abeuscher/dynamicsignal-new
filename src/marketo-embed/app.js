@@ -66,6 +66,13 @@ window.addEventListener("load", function() {
     theWrapper.removeEventListener("click", closeBody);
   }
   new ActivateVideos();
+  if (document.getElementById("video-demo-button")) {
+    var btn = document.getElementById("video-demo-button");
+    btn.addEventListener("click", function(e) {
+      e.preventDefault();
+      btn.innerHTML = "Request Sent!";
+    });
+  }
 });
 
 function setNav() {

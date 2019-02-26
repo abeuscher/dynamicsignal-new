@@ -74,7 +74,13 @@ FormHandler.prototype.writeUTM = function() {
 }
 FormHandler.prototype.fixForm = function() {
   var self = this;
-  var theForm = document.querySelectorAll(".marketo-form")[0];
+  if (document.querySelectorAll(".marketo-form")[0]) {
+    var theForm = document.querySelectorAll(".marketo-form")[0];
+  }
+  else {
+    var theForm = document.querySelectorAll(".marketo-blue")[0];
+  }
+  
   var theID = theForm.id.split("_")[1];
   this.id = theID;
   if (!theID) {
@@ -143,12 +149,7 @@ FormHandler.prototype.fixForm = function() {
           return false;
         });
       }
-      /*
-      if (theID == "1163") {
-        self.recaptcha(form, theForm);
-      }
-      */
-      else if (typeof validateCorporateEmail !== 'undefined') {
+      if (typeof validateCorporateEmail !== 'undefined') {
         form.onValidate(function() {
           var email = form.vals().Email;
           if (email) {
