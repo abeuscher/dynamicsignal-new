@@ -29,10 +29,10 @@ block content
       .col-half-flex.gray-bg-section
         .inner.big-text
             p.solo
+              :php
+                  the_field("top_section_header");
             :php
-                the_field("top_section_header");
-            :php
-            //printf("<a class='button cta' href='%s'><span class='fa fa-play-circle-o'></span>%s</a>", get_field("header_cta_target"), get_field("header_cta_text"));
+                printf("<a class='button cta' href='%s'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("header_cta_target"), get_field("header_cta_text"));
   :php
     echo "</section>";
   section.white-bg-section

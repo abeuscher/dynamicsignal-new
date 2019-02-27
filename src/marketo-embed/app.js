@@ -73,6 +73,17 @@ window.addEventListener("load", function() {
       btn.innerHTML = "Request Sent!";
     });
   }
+    // Activate search forms
+    var searchForms = document.querySelectorAll(".search-form");
+    for (i = 0; i < searchForms.length; i++) {
+      var thisForm = searchForms[i];
+      thisForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var query = this.querySelectorAll(".query")[0].value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+        location.href = "https://dynamicsignal.com/search/#q=" + encodeURI(query);
+        return false;
+      });
+    }
 });
 
 function setNav() {
