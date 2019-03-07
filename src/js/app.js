@@ -134,7 +134,7 @@ window.addEventListener("load", function () {
   var getForm = new FormHandler();
   getForm.catchUTM();
 
-
+  
 
   // Activate search forms
   var searchForms = document.querySelectorAll(".search-form");
@@ -1234,5 +1234,4 @@ function getVertCarousels() {
       }
     }
   }
-
 }

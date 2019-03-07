@@ -440,3 +440,118 @@ section#case-study-video {
     }
   }
 }
+
+//New Case Stufdy Styles
+
+section.case-study-single-header {
+  padding:300px 0 $gutter-width;
+  position:relative;
+  overflow:hidden;
+  .bg-image {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center top;
+  }
+  h1 {
+    color:$white;
+    text-shadow:3px 3px 10px rgba(0,0,0,.8);
+  }
+}
+section.case-study-facts {
+  padding:$gutter-width/2 0;
+  background:$light-gray;
+  h2,h3 {
+    font-weight:300;
+    text-transform:uppercase;
+    margin:0;
+    padding:0;
+  }
+  h2 {
+    font-size:18px;
+  }
+  h3 {
+    font-size:16px;
+    color:$menu-blue;
+    a {
+      color:$blue;
+      &:hover {
+        color:$black;
+      }
+    }
+  }
+}
+section.case-study-content-block {
+  .blog-content { 
+    padding-bottom:0;
+  }
+  blockquote {
+    color:$menu-blue;
+    font-weight:800;
+    font-size:20px;
+    margin:0;
+    padding:0;
+    &:before {
+      content:'“';
+      font-size:7em;
+      float:left;
+      padding-right:.25em;
+      line-height:.8;
+      width:.45em;
+      height:.5em;
+      padding-top:.1em;
+    }
+  }
+  .pic-right {
+    max-width:50%;
+    float:right;
+    padding:1em 0 1em 1em;
+  }
+  .pic-wide {
+    width:100%;
+    max-width:100%;
+    padding:$gutter-width 0;
+  }
+}
+section.case-study-takeaways {
+  background:$lighter-gray;
+  h2,h3, li {
+    color:$another-gray;
+  }
+  h2 {
+    margin:0 0 .5em;
+    font-family:$body-font;
+  }
+  h3 {
+    font-family:$body-font;
+    font-size:16px;
+    font-weight:700;
+  }
+  ul {
+    list-style-type:circle;
+  }
+  .case-study-tk {
+    display:flex;
+    .icon {
+      @include aspect-ratio(1,1);
+      background-size:contain;
+      background-repeat:no-repeat;
+      background-position:center center;
+      margin-right:$gutter-width;
+      flex-basis:70px;
+      margin:10px;
+    }
+    .content {
+      ul {
+        li {
+          line-height:1.8;
+        }
+      }
+    }
+  }
+
+}

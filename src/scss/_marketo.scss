@@ -377,7 +377,7 @@ section.video-gate {
   }
 
   .mktoButtonWrap {
-    margin: 0 !important;
+    margin: $gutter-width 0 0 !important;
     text-align:center;
   }
 
@@ -440,7 +440,7 @@ section.video-gate {
   input[type="number"],
   .mktoForm select.mktoField {
     background-color: #edf5f9;
-    color: #b7b7b7;
+    color: #000;
   }
   input[type="submit"],
   .mktoButton, .button {

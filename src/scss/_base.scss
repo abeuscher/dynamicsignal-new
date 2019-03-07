@@ -730,7 +730,7 @@ a.small-link {
 }
 .product-subnav {
   .icon-tile {
-    width:20%;
+    width:16.6%;
   }
 }
 .icon-thumb {
@@ -1273,6 +1273,9 @@ section.halfpic {
       background-position:right center;
       &:after {
         padding-bottom:0;
+      }
+      &.demo-center {
+        background-position:right top;
       }
     }
 

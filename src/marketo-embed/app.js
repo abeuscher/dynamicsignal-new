@@ -2,7 +2,13 @@ var ScrollMagic = require("scrollmagic");
 var parseHTML = require("../js/utils/parse-html.js");
 var FormHandler = require("../js/form-handler/index.js");
 var ActivateVideos = require("../js/video-handler/index.js");
-
+var Cookies = require("js-cookie");
+var siteSettings = {
+  "gdprCookie": "ds-gdpr",
+  "templates": {  
+    "gdprPopup": require("../js/inc/gdpr-popup.pug")
+  }
+}
 var templates = {
   "header": require("../templates/inc/header-embed.pug"),
   "footer": require("../templates/inc/footer.pug"),
@@ -19,7 +25,7 @@ window.addEventListener("load", function() {
   formHandler.catchUTM();
   formHandler.fixForm();
   }
-
+  triggerGDPR();
   // Add the header shrinker
   var headController = new ScrollMagic.Controller({
     "loglevel": 0
@@ -91,4 +97,50 @@ function setNav() {
   document.body.appendChild(parseHTML(templates.toggle()));
   document.body.appendChild(parseHTML(templates.sideNav(siteopts)));
   document.getElementById("wrapper").appendChild(parseHTML(templates.footer(siteopts)));
+}
+
+function triggerGDPR() {
+  var domain = "dynamicsignal.com";
+  if (!Cookies.get(siteSettings.gdprCookie)) {
+    var warning = parseHTML(siteSettings.templates.gdprPopup());
+    document.body.appendChild(warning);
+    var yesButton = document.getElementById("btn-yes");
+    var noButton = document.getElementById("btn-no");
+    yesButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      Cookies.set(siteSettings.gdprCookie, "true", {
+        expires: 365,
+        domain: domain
+      });
+      warning.remove();
+      // writeCTA();
+      return false;
+    });
+    window.addEventListener("click", function (e) {
+      Cookies.set(siteSettings.gdprCookie, "true", {
+        expires: 365,
+        domain: domain
+      });
+      triggerGA();
+      return true;
+    });
+  } else {
+    triggerGA();
+  }
+}
+function triggerGA() {
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+      'gtm.start': new Date().getTime(),
+      event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+      '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-MQKZ8M');
 }

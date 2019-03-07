@@ -1,0 +1,74 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Case Study Page - 2019
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"What Is Dynamic Signal?",
+      "link"=>"/product/"
+    ));
+    array_push($breadcrumbs,array(
+      "title"=>"Case Studies",
+      "link"=>"/case-studies/"
+    ));
+  section.case-study-single-header
+    :php
+        printf("<div class='bg-image' data-bg-array='%s'></div>", json_encode(get_field("header_bg"),JSON_UNESCAPED_SLASHES));
+    .container
+        .row
+            .col-md-12
+                h1
+                    :php
+                        echo get_field("page_title");
+  section.case-study-facts
+    .container
+        .row
+            .col-md-4
+                h2 Industry
+                h3
+                    :php
+                        echo get_field("industry");
+            .col-md-4
+                h2 Company Size
+                h3
+                    :php
+                        echo get_field("company_size");
+            .col-md-4
+                h2 Solution
+                h3
+                    :php
+                        if (count(get_field("solutions")) > 1) {
+                            foreach(get_field("solutions") as $key=>$solution) {
+                                printf("<a href='%s'>%s</a>%s ", $solution["link"],$solution["name"],$key == count(get_field("solutions"))-1 ? "" : ",");
+                            }
+                        }
+                        else {
+                            printf("<a href='%s'>%s</a>", get_field("solutions")[0]["link"],get_field("solutions")[0]["name"]);
+                        }
+  section.case-study-content-block
+    .container
+        .row
+            .col-md-12.blog-content
+                :php
+                    echo get_field("case_study_content");
+  section.case-study-takeaways
+    .container
+        .row
+            .col-md-12
+                h2 Key Takeaways
+                :php
+                    foreach(get_field("takeaways") as $idk=>$tk) {
+                        $bullets = "";
+                        foreach($tk["bullets"] as $key=>$bullet) {
+                           $bullets .= sprintf("<li>%s</li>",$bullet["content"]); 
+                        }
+                        printf("<div class='case-study-tk'><div class='icon' data-bg-array='%s'></div><div class='content'><h3>%s</h3><ul>%s</ul></div></div>",json_encode($tk["icon"],JSON_UNESCAPED_SLASHES),$tk["title"],$bullets);
+                    }

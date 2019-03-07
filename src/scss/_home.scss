@@ -288,6 +288,33 @@ p.home-secondary {
   .col-3 {
     background:$white;
   }
+  &.interior {
+    background:$white;
+    padding-top:$gutter-width;
+    .demo-video-bucket {
+      background:$blue;
+      color:$white;
+      padding-bottom:10%;
+      @include bp(m) {
+        padding-bottom:30%;
+      }
+      p,h2,h3 {
+        color:$white;
+      }
+      .demo-thumb {
+        @include aspect-ratio(16,9);
+        background-size:cover;
+        width:92%;
+        margin:0 4%;
+        display:block;
+        margin-bottom:$gutter-width;
+      }
+      .button {
+        display:block;
+        margin:0 $gutter-width $gutter-width; 
+      }
+    }
+  }
 }
 .homepage-panel-link {
   background-size:cover;
