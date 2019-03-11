@@ -1,4 +1,15 @@
-.modal-dialog
-    button.modal-hide!="&times;"
-    div.blog-content  
-        .wrapper-video(data-video-id=locals.videoid)
+.video-modal
+    .bg
+        .container
+            .row
+                .col-md-12
+                    button.modal-hide!="&times;"
+    .container
+        .row
+            col-md-12.blog-content  
+                .wrapper-video
+                    .modal-video(data-video-id=locals.videoid)
+                .wrapper-html
+                    .inner
+                        a.button(href="/requestdemo/") Request a Live Demo
+                        a.button.btn-replay(href="#") Replay Video
