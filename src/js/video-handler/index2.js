@@ -12,7 +12,8 @@ function videoHandler() {
   var self = this;
   this.settings = {
     templates: {
-      modalVideo: require("./modal-video.pug")
+      modalVideo: require("./modal-video.pug"),
+      panelVideo: require("./panel-video.pug")
     },
     modalEvents: {}
   };
@@ -25,6 +26,7 @@ videoHandler.prototype.init = function() {
   self.buildVideos();
   self.modals = document.querySelectorAll("[data-video-modal-id]");
   self.buildModals();
+  self.buildPanels();
 };
 videoHandler.prototype.buildModals = function() {
   var self = this;
@@ -39,6 +41,34 @@ videoHandler.prototype.buildModals = function() {
     self.modals[i].addEventListener("click", self.openModal);
   }
 };
+videoHandler.prototype.buildPanels = function() {
+  var self = this;
+  self.panels = document.querySelectorAll("[data-video-panel-id]");
+  console.log(self.panels);
+  for (var i=0;i<self.panels.length;i++) {
+    self.panels[i].videoid = self.panels[i].getAttribute("data-video-panel-id")
+    self.panels[i].video = parseHTML(self.settings.templates.panelVideo({videoid:self.panels[i].videoid}));
+    self.panels[i].html = self.panels[i].querySelectorAll(".wrapper-panel-html")[0];
+    self.panels[i].html.setAttribute("data-panel-idx",i);
+    self.panels[i].appendChild(self.panels[i].video);
+    self.panels[i].playerBucket = self.panels[i].video.querySelectorAll(".panel-video")[0];
+    self.panels[i].html.addEventListener("click", function(e) {
+      e.preventDefault();
+      var thisPanel = self.panels[this.getAttribute("data-panel-idx")]
+      thisPanel.html.style.display = "none";
+      thisPanel.video.style.display = "block";
+      if (!thisPanel.player) {
+        thisPanel.player = new YouTubePlayer(thisPanel.playerBucket, {videoId:thisPanel.videoid}); 
+      }
+      thisPanel.player.playVideo();
+      thisPanel.player.on("stateChange", function(e) {
+        if (e.data == 0) {
+          this.stopVideo();
+        }
+      });
+    });
+  }
+}
 videoHandler.prototype.openModal = function(e) {
   var self = this;
   document.body.classList.add("modal-open");

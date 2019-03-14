@@ -2,13 +2,14 @@
 	.container
 		.row
 			.col-md-12
-				.customer-video-thumb.video-activator(data-video-id=locals.vimeo_id,video-type="vimeo",data-bg=locals.video_thumbnail.sizes["medium_large"],data-event="vidClick-Customers")
-					.full-gradient
-					.content.left.shrunk
-						p!=locals.quote
-						cite
-							span.name!=citation_name
-							span.title!=locals.citation_title
-						a.button(href="#")
-							span.cta Play Video
-							i.fa.fa-play
+				.customer-video-thumb(data-video-panel-id=locals.vimeo_id,video-type="vimeo",data-bg=locals.video_thumbnail.sizes["medium_large"],data-event="vidClick-Customers")
+					.wrapper-panel-html
+						.full-gradient
+						.content.left.shrunk
+							p!=locals.quote
+							cite
+								span.name!=citation_name
+								span.title!=locals.citation_title
+							a.button(href="#")
+								span.cta Play Video
+								i.fa.fa-play

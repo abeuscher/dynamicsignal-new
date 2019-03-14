@@ -9,7 +9,7 @@
   "author": "Alex Beuscher",
   "license": "MIT",
   "devDependencies": {
-    "@vimeo/player": "^2.1.0",
+    "@vimeo/player": "^2.8.2",
     "bootstrap-sass": "3.3.7",
     "browserify": "^10.2.4",
     "browserify-shim": "^3.8.8",
