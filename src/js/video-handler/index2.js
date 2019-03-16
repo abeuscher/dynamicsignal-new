@@ -17,7 +17,6 @@ function videoHandler() {
     },
     modalEvents: {}
   };
-  self.init();
 }
 videoHandler.prototype.init = function() {
   var self = this;
@@ -26,7 +25,8 @@ videoHandler.prototype.init = function() {
   self.buildVideos();
   self.modals = document.querySelectorAll("[data-video-modal-id]");
   self.buildModals();
-  self.buildPanels();
+  var panels = document.querySelectorAll("[data-video-panel-id]");
+  self.buildPanels(panels,"data-video-panel-id");
 };
 videoHandler.prototype.buildModals = function() {
   var self = this;
@@ -41,12 +41,18 @@ videoHandler.prototype.buildModals = function() {
     self.modals[i].addEventListener("click", self.openModal);
   }
 };
-videoHandler.prototype.buildPanels = function() {
+videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
   var self = this;
-  self.panels = document.querySelectorAll("[data-video-panel-id]");
-  console.log(self.panels);
-  for (var i=0;i<self.panels.length;i++) {
-    self.panels[i].videoid = self.panels[i].getAttribute("data-video-panel-id")
+  if (self.panels) {
+    var bottom = self.panels.length;
+    Array.prototype.push(self.panels,panels);
+  }
+  else {
+    self.panels = panels;
+    var bottom = 0;
+  }
+  for (var i=bottom;i<self.panels.length;i++) {
+    self.panels[i].videoid = self.panels[i].getAttribute(attrName);
     self.panels[i].video = parseHTML(self.settings.templates.panelVideo({videoid:self.panels[i].videoid}));
     self.panels[i].html = self.panels[i].querySelectorAll(".wrapper-panel-html")[0];
     self.panels[i].html.setAttribute("data-panel-idx",i);
@@ -54,7 +60,7 @@ videoHandler.prototype.buildPanels = function() {
     self.panels[i].playerBucket = self.panels[i].video.querySelectorAll(".panel-video")[0];
     self.panels[i].html.addEventListener("click", function(e) {
       e.preventDefault();
-      var thisPanel = self.panels[this.getAttribute("data-panel-idx")]
+      var thisPanel = self.panels[this.getAttribute("data-panel-idx")];
       thisPanel.html.style.display = "none";
       thisPanel.video.style.display = "block";
       if (!thisPanel.player) {
@@ -62,12 +68,25 @@ videoHandler.prototype.buildPanels = function() {
       }
       thisPanel.player.playVideo();
       thisPanel.player.on("stateChange", function(e) {
-        if (e.data == 0) {
-          this.stopVideo();
-        }
+        if (e.data==0) {
+          stopVideo();
+        }   
       });
+      if (gallery) {
+        gallery.on("change", stopVideo);
+      }
+      function stopVideo(e) {
+        thisPanel.player.stopVideo();
+        thisPanel.html.style.display = "block";
+        thisPanel.video.style.display = "none";
+      }
     });
   }
+}
+videoHandler.prototype.activateCarousel = function(el,gallery) {
+  var self = this;
+  var slides = el.querySelectorAll("[data-video-carousel-id]");
+  self.buildPanels(slides,"data-video-carousel-id",gallery)
 }
 videoHandler.prototype.openModal = function(e) {
   var self = this;

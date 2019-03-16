@@ -30,12 +30,12 @@
   }
   }
   .content  {
-    top:30%;
-    bottom:$gutter-width;
+    bottom:20%;
     left:$gutter-width;
     right:50%;
     height:auto;
     width:auto;
+    position:absolute;
     &> * {
       position: static;
       display:block;

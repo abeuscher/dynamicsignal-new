@@ -8,7 +8,7 @@ var sortBy = require("lodash/sortBy");
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
-var ActivateVideos = require("./video-handler/index2.js");
+var VideoHandler = require("./video-handler/index2.js");
 var Pies = require("./pie-chart/index.js");
 var Bars = require("./bar-chart/index.js");
 var Cookies = require("js-cookie");
@@ -81,7 +81,7 @@ var siteSettings = {
     "xl": 1921
   }
 }
-
+var videoHandler = new VideoHandler();
 window.addEventListener("load", function () {
   function inIframe() {
     try {
@@ -103,7 +103,7 @@ window.addEventListener("load", function () {
   getVertCarousels();
   var dc = new DigitCounter();
   activateImages();
-  new ActivateVideos();
+  videoHandler.init();
   //var Modals = new Modal();
 
   PDFHandler(".pdf-wrapper");
@@ -568,6 +568,7 @@ var siteActions = [{
         }
       }
       videoGall.resize();
+      videoHandler.activateCarousel(document.getElementById("customer-video-carousel"),videoGall);
     }
   },
   {
@@ -606,6 +607,7 @@ var siteActions = [{
           videoGall.append(parseHTML(siteSettings.templates.careerVideoSlide(pageData.videos[i])));
         }
         videoGall.resize();
+        videoHandler.activateCarousel(document.getElementById("careers-video-carousel"),videoGall);
       }
     }
   },
