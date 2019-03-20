@@ -42,7 +42,7 @@ block content
     .row
       .col-md-12
         :php
-          printf("<div class='case-study-video-content'><p>%s</p><cite>%s, %s @ %s</cite><a class='button modal-show' href='#'><span class='cta'>%s</span><i class='fa fa-play'></i></a></div>",get_field("header_quote"),get_field("header_citation_name"),get_field("header_citation_job_title"),get_field("header_citation_company"),"Play Video");
+          printf("<div class='case-study-video-content'><p>%s</p><cite>%s, %s @ %s</cite><a class='button modal-show' data-video-modal-id='%s' href='#'><span class='cta'>%s</span><i class='fa fa-play'></i></a></div>",get_field("header_quote"),get_field("header_citation_name"),get_field("header_citation_job_title"),get_field("header_citation_company"),get_field("header_cta_video_id"),"Play Video");
   :php
     echo "</section>";
   section.service-experience.centered.services-bucket
@@ -168,7 +168,7 @@ block content
           p Learn more about how Dynamic Signal can help you grow your business by connecting, engaging & activating your workforce.
           a.button.cta(href="/contact-us/") Contact Us
   :php
-      $video_id = get_field("header_cta_video_id");
+      
      }}
 block modals
   .modal

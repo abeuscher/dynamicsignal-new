@@ -33,10 +33,10 @@ var siteSettings = {
   "gdprCookie": "ds-gdpr",
   "sessionCookie": "ds-count",
   "ctaBar": { 
-    "toggle": false,
-    "cta": "Take The Pulse Of Your Employee Engagement",
-    "url": "/employee-engagement-assessment/",
-    "buttonText": "Start Assessment"
+    "toggle": true,
+    "cta": "2019 State of Employee Communication and Engagement Study",
+    "url": "https://resources.dynamicsignal.com/ebooks-guides/state-of-employee-communication-and-engagement-study-2019",
+    "buttonText": "View"
   },
   "templates": {  
     "adwordsGrid": require("./inc/ad-words-grid.pug"),
@@ -93,7 +93,7 @@ window.addEventListener("load", function () {
   if (checkCookies()) {
     triggerGDPR();
   }
-
+  writeCTA();
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
@@ -635,7 +635,7 @@ var siteActions = [{
         }
       ];
         
-
+      var pageHeader = document.getElementById("page-header");
       var headController = new ScrollMagic.Controller({
         "loglevel": 0
       });
@@ -660,6 +660,12 @@ var siteActions = [{
             }
         })
         .addTo(headController);
+        new ScrollMagic.Scene({
+          offset: 0,
+          duration: 0
+        })
+        .setPin(pageHeader)
+        .addTo(headController);  
     }
   },
   {
@@ -1084,7 +1090,6 @@ function triggerGDPR() {
         domain: domain
       });
       warning.remove();
-      // writeCTA();
       return false;
     });
     window.addEventListener("click", function (e) {

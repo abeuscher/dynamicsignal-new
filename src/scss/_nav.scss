@@ -2,7 +2,7 @@
   cursor: pointer;
   transition: all 0s ease-in;
   position: fixed;
-  top:25px;
+  top:75px;
   right:20px;
   z-index:99;
   width: 36px;
@@ -27,7 +27,7 @@
     }
   }
   &.short {
-    top:12px;
+    top:62px;
   }
 }
 #page-header {
@@ -165,10 +165,10 @@ $sideNavWidth: 300px;
     &>* {
       opacity:0;
     }
-    padding: 70px $gutter-width;
+    padding: 120px $gutter-width 50px;
     text-align:left;
     @include bp(m) {
-      padding: 70px $gutter-width*2;
+      padding: 120px $gutter-width*2 50px;
     }
   }
   .search-form {
