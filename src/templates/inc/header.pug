@@ -1,4 +1,5 @@
 header.page-header#page-header
+  #cta-bar
   .row.inner
     .col-md-3.col-xs-9.logo-bucket
       a.logo(href=locals.siteurl+'/')
@@ -19,15 +20,20 @@ header.page-header#page-header
               $thisclass = ($key == $post_slug) ? $key." active" : $key;
               printf("<li><a href='/%s/' class='%s'>%s</a></li>",$key,$thisclass,$page);
             }
-          if showSearch!="hide"
-            li
-              a#btn-search-header(href="#")
-                span.fa.fa-search
-              #search-box-header
-                a#btn-close-search(href="#")!="&times;"
-                form.search-form(action='')
-                  input.query#oi-query(type='text', placeholder="Enter Search Term")
-                  button.submit(type="submit")
-                    i.fa.fa-search
-                  span#oi-spellcheck
-                  span#oi-header
+          li.show-mobile
+            a#btn-search-header(href="#")
+              span.fa.fa-search
+            #search-box-header
+              a#btn-close-search(href="#")!="&times;"
+              form.search-form(action='')
+                input.query#oi-query(type='text', placeholder="Enter Search Term")
+                button.submit(type="submit")
+                  i.fa.fa-search
+                span#oi-spellcheck
+                span#oi-header
+          li.show-mobile
+            .navbar-toggle#toggle-side-nav
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar

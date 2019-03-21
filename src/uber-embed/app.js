@@ -5,10 +5,11 @@ var Cookies = require("js-cookie");
 var templates = {
   "header": require("../templates/inc/header-embed.pug"),
   "footer": require("../templates/inc/footer.pug"),
-  "toggle": require("../templates/inc/navbar-toggle.pug"),
   "sideNav": require("../templates/inc/side-nav.pug"),
   "gdpr" : require("../js/inc/gdpr-popup.pug")
 }
+var ctaInfo = require("../js/cta-bar.json");
+var ctaTemplate = require("../js/inc/cta-bar.pug");
 var siteSettings = {
   "gdprCookie":"ds-gdpr"
 }
@@ -40,7 +41,6 @@ window.addEventListener("load", function() {
 
     // Drop the header, menu, and nav toggle above the wrapper
     theWrapper.parentNode.insertBefore(parseHTML(templates.header(siteopts)), theWrapper);
-    theWrapper.parentNode.insertBefore(parseHTML(templates.toggle()), theWrapper);
     theWrapper.parentNode.insertBefore(parseHTML(templates.sideNav(siteopts)), theWrapper);
     var theFooter = document.getElementsByTagName("footer")[0];
     theWrapper.replaceChild(parseHTML(templates.footer(siteopts)), theFooter);
@@ -62,17 +62,26 @@ window.addEventListener("load", function() {
         document.getElementById("toggle-side-nav").classList.remove("short");
       })
       .addTo(headController);
-
+      var pageHeader = document.getElementById("page-header");
+      new ScrollMagic.Scene({
+        offset: 0,
+        duration: 0
+      })
+      .setPin(pageHeader)
+      .addTo(headController);  
     // Add menu button listener
     var theToggle = document.getElementById("toggle-side-nav");
+    var closeButton = document.getElementById("btn-close-sidenav");
     theToggle.addEventListener("click", function(e) {
       e.preventDefault();
       if (document.body.classList.contains("nav-open")) {
         document.body.classList.remove("nav-open");
         theWrapper.removeEventListener("click", closeBody);
+        closeButton.removeEventListener("click", closeBody);
       } else {
         document.body.classList.add("nav-open");
         theWrapper.addEventListener("click", closeBody);
+        closeButton.addEventListener("click", closeBody);
       }
     });
 
@@ -80,6 +89,7 @@ window.addEventListener("load", function() {
       e.preventDefault();
       document.body.classList.remove("nav-open");
       theWrapper.removeEventListener("click", closeBody);
+      closeButton.removeEventListener("click", closeBody);
     }
 
     // Activate search forms
@@ -120,7 +130,7 @@ window.addEventListener("load", function() {
       }
     }
     triggerGDPR();
-
+    writeCTA();
 });
 
 function triggerGDPR() {
@@ -155,3 +165,10 @@ function checkCookies(){
   }
   return cookieEnabled;
 }
+function writeCTA() {
+  if (document.getElementById("cta-bar")) {
+    var bar = document.getElementById("cta-bar");
+    bar.append(parseHTML(ctaTemplate(ctaInfo)));
+    bar.classList.add("active");
+  }
+} 

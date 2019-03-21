@@ -468,11 +468,16 @@ section.case-study-facts {
   h2,h3 {
     font-weight:300;
     text-transform:uppercase;
-    margin:0;
+    margin:$gutter-width/2 0 0;
     padding:0;
+    @include bp(m) {
+      margin-top:0;
+    }
+
   }
   h2 {
     font-size:18px;
+    font-weight:bold;
   }
   h3 {
     font-size:16px;
@@ -493,8 +498,17 @@ section.case-study-content-block {
     color:$menu-blue;
     font-weight:800;
     font-size:20px;
-    margin:0;
+    margin:0 0 $gutter-width/2;
     padding:0;
+    vertical-align: top;
+    p {
+      margin-top:0;
+    }
+    cite {
+      text-align:right;
+      font-size:16px;
+      display:block;
+    }
     &:before {
       content:'“';
       font-size:7em;
@@ -510,6 +524,11 @@ section.case-study-content-block {
     max-width:50%;
     float:right;
     padding:1em 0 1em 1em;
+  }
+  .pic-left {
+    max-width:50%;
+    float:left;
+    padding:1em 1.5em 1em 0;
   }
   .pic-wide {
     width:100%;
@@ -530,6 +549,7 @@ section.case-study-takeaways {
     font-family:$body-font;
     font-size:16px;
     font-weight:700;
+    margin-left:1em;
   }
   ul {
     list-style-type:circle;

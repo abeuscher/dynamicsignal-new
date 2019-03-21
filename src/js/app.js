@@ -32,12 +32,7 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "gdprCookie": "ds-gdpr",
   "sessionCookie": "ds-count",
-  "ctaBar": { 
-    "toggle": false,
-    "cta": "Take The Pulse Of Your Employee Engagement",
-    "url": "/employee-engagement-assessment/",
-    "buttonText": "Start Assessment"
-  },
+  "ctaBar": require("./cta-bar.json"),
   "templates": {  
     "adwordsGrid": require("./inc/ad-words-grid.pug"),
     "adwordsLogoGarden": require("./inc/ad-words-logo-garden.pug"),
@@ -93,7 +88,7 @@ window.addEventListener("load", function () {
   if (checkCookies()) {
     triggerGDPR();
   }
-
+  writeCTA();
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
@@ -279,22 +274,32 @@ var siteActions = [{
     "element": "side-nav",
     "action": function () {
       var theWrapper = document.getElementById("wrapper");
+      var theHeader = document.getElementById("page-header");
       var theToggle = document.getElementById("toggle-side-nav");
+      var closeButton = document.getElementById("btn-close-sidenav");
       theToggle.addEventListener("click", function (e) {
         e.preventDefault();
+        e.stopPropagation();
         if (document.body.classList.contains("nav-open")) {
           document.body.classList.remove("nav-open");
           theWrapper.removeEventListener("click", closeBody);
+          theHeader.removeEventListener("click", closeBody);
+          closeButton.removeEventListener("click", closeBody);
         } else {
           document.body.classList.add("nav-open");
           theWrapper.addEventListener("click", closeBody);
+          theHeader.addEventListener("click", closeBody);
+          closeButton.addEventListener("click", closeBody);
         }
+
       });
 
       function closeBody(e) {
         e.preventDefault();
         document.body.classList.remove("nav-open");
         theWrapper.removeEventListener("click", closeBody);
+        theHeader.removeEventListener("click", closeBody);
+        closeButton.removeEventListener("click", closeBody);
       }
     }
   },
@@ -635,7 +640,7 @@ var siteActions = [{
         }
       ];
         
-
+      var pageHeader = document.getElementById("page-header");
       var headController = new ScrollMagic.Controller({
         "loglevel": 0
       });
@@ -660,6 +665,12 @@ var siteActions = [{
             }
         })
         .addTo(headController);
+        new ScrollMagic.Scene({
+          offset: 0,
+          duration: 0
+        })
+        .setPin(pageHeader)
+        .addTo(headController);  
     }
   },
   {
@@ -674,6 +685,7 @@ var siteActions = [{
           duration: 0
         })
         .setPin(el)
+        .setClassToggle(el,"pos-fixed")
         .addTo(homeController);         
       }     
     }
@@ -883,6 +895,7 @@ var siteActions = [{
           logos.push(pageData.logos[i + slots]);
         }
       }
+      console.log(logos);
       gridTerminal.append(parseHTML(siteSettings.templates.adwordsGrid(logos)));
     }
   },
@@ -1084,7 +1097,6 @@ function triggerGDPR() {
         domain: domain
       });
       warning.remove();
-      // writeCTA();
       return false;
     });
     window.addEventListener("click", function (e) {
