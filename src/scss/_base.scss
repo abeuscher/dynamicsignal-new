@@ -1253,6 +1253,10 @@ section.halfpic {
   background:$lighter-gray;
   padding:0;
   margin-top:-80px;
+  &.pos-fixed {
+    position:absolute!important;
+    top:0!important;
+  }
   .halfpic-bg {
     position:static;
     width:100%;

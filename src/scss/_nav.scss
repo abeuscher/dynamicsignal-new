@@ -1,6 +1,6 @@
 .navbar-toggle {
   cursor: pointer;
-  transition: all 0s ease-in;
+  transition: 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
   position: fixed;
   top:75px;
   right:20px;
@@ -33,13 +33,9 @@
 #page-header {
   .small-nav {
     text-align: right;
-    display: none;
     font-family: $nav-font;
     padding-right:2.75em;
-    @include bp(s) {
-      display: inline-block;
-      vertical-align: middle;
-    }
+    vertical-align: middle;
 
     ul {
       transition: all 0s ease-in;
@@ -49,7 +45,13 @@
 
       li {
         margin-left: $gutter-width/2;
-
+        display:none;
+        &.show-mobile {
+          display:inline-block;
+        }
+        @include bp(m) {
+          display:inline-block;
+        }
         a {
           display:inline-block;
           font-weight: 400;
@@ -105,11 +107,6 @@
     }
 
     &.interior {
-      display: none;
-      @include bp(m) {
-        display: inline-block;
-      }
-
       ul {
         margin: 0;
         padding: 0 $gutter-width 0 0;
@@ -151,6 +148,8 @@
 $sideNavWidth: 300px;
 
 .sideMenu {
+  transform:translatex(300px);
+  transition: 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
   overflow-y: none;
   background:$white;
   position: fixed;
@@ -158,8 +157,14 @@ $sideNavWidth: 300px;
   bottom: 0;
   left: auto;
   right: 0;
-  z-index: 0;
+  z-index: 99;
   width:$sideNavWidth;
+  #btn-close-sidenav {
+    position:absolute;
+    top:54px;
+    right:$gutter-width;
+    font-size:3em;
+  }
   .inner {
     //visibility:hidden;
     &>* {
@@ -228,7 +233,7 @@ $sideNavWidth: 300px;
 
 body.nav-open {
   #wrapper {
-    transform: translatex(-$sideNavWidth);
+    //transform: translatex(-$sideNavWidth);
     &:before {
       display:block;
     }
@@ -236,7 +241,15 @@ body.nav-open {
       z-index:0;
     }
   }
+  #page-header {
+    //transform:translatex(-285px);
+    &:after {
+      display:block;
+    }
+  }
   .sideMenu {
+     z-index:99;
+     transform:translatex(0);
     .inner {
       //visibility:visible;
       &>* {
@@ -251,9 +264,11 @@ body.nav-open {
       }
     }
   }
+  /*
   .navbar-toggle {
-    right:40px;
-    padding:12px 6px 0;
+    //transform:translatex(285px);
+    //padding:12px 6px 0;
+    z-index:100;
     .icon-bar {
       background: $header-blue;
       transform: rotate(45deg);
@@ -268,4 +283,5 @@ body.nav-open {
       }
     }
   }
+  */
 }
