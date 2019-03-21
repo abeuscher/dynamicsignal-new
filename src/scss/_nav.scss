@@ -129,11 +129,15 @@
     .nav-bucket {
       padding-top:8px;
     }
-    .small-nav ul {
+
+      .small-nav ul {
       transition: all 0.25s ease-in;
       vertical-align: super;
 
       li a {
+        &#btn-search-header {
+          top:11px;
+        }
         @include bp(m) {
           font-size: 16px;
         }
@@ -228,6 +232,9 @@ $sideNavWidth: 300px;
     background:rgba(0,0,0,.75);
     z-index:2;
     display:none;
+  }
+  &.marketo-wrapper {
+    position:static;
   }
 }
 

@@ -12,12 +12,13 @@ var siteSettings = {
 var templates = {
   "header": require("../templates/inc/header-embed.pug"),
   "footer": require("../templates/inc/footer.pug"),
-  "toggle": require("../templates/inc/navbar-toggle.pug"),
   "sideNav": require("../templates/inc/side-nav.pug")
 };
 var siteopts = {
   "siteurl": "https://www.dynamicsignal.com"
 };
+var ctaInfo = require("../js/cta-bar.json");
+var ctaTemplate = require("../js/inc/cta-bar.pug");
 window.addEventListener("load", function() {
   setNav();
   if (document.getElementById("marketo-form-wrapper")) {
@@ -43,6 +44,14 @@ window.addEventListener("load", function() {
       document.getElementById("toggle-side-nav").classList.remove("short");
     })
     .addTo(headController);
+
+    var pageHeader = document.getElementById("page-header");
+    new ScrollMagic.Scene({
+      offset: 0,
+      duration: 0
+    })
+    .setPin(pageHeader)
+    .addTo(headController);  
     var btn = document.getElementById("btn-search-header");
     var btnClose = document.getElementById("btn-close-search");
     var searchBox = document.getElementById("search-box-header");
@@ -55,14 +64,17 @@ window.addEventListener("load", function() {
   // Add menu button listener
   var theWrapper = document.getElementById("wrapper");
   var theToggle = document.getElementById("toggle-side-nav");
+  var closeButton = document.getElementById("btn-close-sidenav");
   theToggle.addEventListener("click", function(e) {
     e.preventDefault();
     if (document.body.classList.contains("nav-open")) {
       document.body.classList.remove("nav-open");
       theWrapper.removeEventListener("click", closeBody);
+      closeButton.removeEventListener("click", closeBody);
     } else {
       document.body.classList.add("nav-open");
       theWrapper.addEventListener("click", closeBody);
+      closeButton.addEventListener("click", closeBody);
     }
   });
 
@@ -70,6 +82,7 @@ window.addEventListener("load", function() {
     e.preventDefault();
     document.body.classList.remove("nav-open");
     theWrapper.removeEventListener("click", closeBody);
+    closeButton.removeEventListener("click", closeBody);
   }
   new ActivateVideos();
   if (document.getElementById("video-demo-button")) {
@@ -90,13 +103,16 @@ window.addEventListener("load", function() {
         return false;
       });
     }
+    writeCTA();
 });
 
 function setNav() {
-  document.body.appendChild(parseHTML(templates.header(siteopts)));
-  document.body.appendChild(parseHTML(templates.toggle()));
+  var theWrapper = document.getElementById("wrapper");
+  var theHeader = parseHTML(templates.header(siteopts));
+  theWrapper.parentNode.insertBefore(theHeader,theWrapper);
   document.body.appendChild(parseHTML(templates.sideNav(siteopts)));
-  document.getElementById("wrapper").appendChild(parseHTML(templates.footer(siteopts)));
+  theWrapper.appendChild(parseHTML(templates.footer(siteopts)));
+  theWrapper.classList.add("marketo-wrapper");
 }
 
 function triggerGDPR() {
@@ -144,3 +160,10 @@ function triggerGA() {
     f.parentNode.insertBefore(j, f);
   })(window, document, 'script', 'dataLayer', 'GTM-MQKZ8M');
 }
+function writeCTA() {
+  if (document.getElementById("cta-bar")) {
+    var bar = document.getElementById("cta-bar");
+    bar.append(parseHTML(ctaTemplate(ctaInfo)));
+    bar.classList.add("active");
+  }
+} 

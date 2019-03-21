@@ -1,6 +1,7 @@
 - 
   var siteroot = "https://www.dynamicsignal.com"
 header.page-header#page-header
+  #cta-bar
   .row.inner
     .col-md-4.col-xs-9.logo-bucket
       a.logo(href=siteroot)
@@ -15,8 +16,8 @@ header.page-header#page-header
           li
             a(href=siteroot+"/resources/") Resources
           li
-            a.dysi-open(href=siteroot+"/requestdemo/") Request a Demo
-          li
+            a.requestdemo(href=siteroot+"/requestdemo/") Request a Demo
+          li.show-mobile
             a#btn-search-header(href="#")
               span.fa.fa-search
             #search-box-header
@@ -27,3 +28,9 @@ header.page-header#page-header
                   i.fa.fa-search
                 span#oi-spellcheck
                 span#oi-header
+          li.show-mobile
+            .navbar-toggle#toggle-side-nav
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar

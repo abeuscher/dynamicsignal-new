@@ -32,12 +32,7 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "gdprCookie": "ds-gdpr",
   "sessionCookie": "ds-count",
-  "ctaBar": { 
-    "toggle": true,
-    "cta": "2019 State of Employee Communication and Engagement Study",
-    "url": "https://resources.dynamicsignal.com/ebooks-guides/state-of-employee-communication-and-engagement-study-2019",
-    "buttonText": "View"
-  },
+  "ctaBar": require("./cta-bar.json"),
   "templates": {  
     "adwordsGrid": require("./inc/ad-words-grid.pug"),
     "adwordsLogoGarden": require("./inc/ad-words-logo-garden.pug"),
@@ -900,6 +895,7 @@ var siteActions = [{
           logos.push(pageData.logos[i + slots]);
         }
       }
+      console.log(logos);
       gridTerminal.append(parseHTML(siteSettings.templates.adwordsGrid(logos)));
     }
   },
