@@ -15,13 +15,17 @@ block content
       "title"=>"Our Company",
       "link"=>"/company/"
     ));
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1 Join Our Team
-          h2 We build communication technology for the world's largest organizations.
+    printf("<section class='halfpic' id='sticky-header'>");
+    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+  .white-gradient-header
+  .container
+      .row-flex
+          .col-half-flex.gray-bg-section
+              .inner
+                h1 Join Our Team
+                p We build communication technology for the world's largest organizations.
+  :php
+    echo "</section>";   
   :php
     if( have_posts() ): while( have_posts() ): the_post();
       $videos = get_field("career_videos");
@@ -98,7 +102,7 @@ block content
     .",'categories':".json_encode($categories,JSON_UNESCAPED_SLASHES)
     .",'videos':".json_encode($videos,JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  section.careers-links
+  section.careers-links.white-bg-section
     .container.hidden-sm
       .row
         ul.nav.careers-tabs
@@ -109,37 +113,41 @@ block content
             else
               li
                 a(href="#"+link.class,id="icon-"+link.class)=link.label
-  section#about.container.careers-about
-    .row
-      .col-md-12
-        h2!=pageData.aboutHeader
-        p!=pageData.aboutSubheader
-    .row.careers-panes
-      for pane in pageData.aboutPanes
-        .col-md-3
-          h3!=pane.title
-          p!=pane.copy
-  section#video
+  section#about.careers-about.white-bg-section
+    .container
+      .row
+        .col-md-12
+          h2!=pageData.aboutHeader
+          p!=pageData.aboutSubheader
+      .row.careers-panes
+        for pane in pageData.aboutPanes
+          .col-md-3
+            h3!=pane.title
+            p!=pane.copy
+  section#video.white-bg-section
     #careers-video-carousel
-  section#culture.container
-    .row.padding-bottom
-      .col-md-12.col-center
-        h1!=pageData.cultureHeader
-        p.large-text!=pageData.cultureCopy
-    .row
-      .col-md-12.instagram-bucket
-        script(src='//lightwidget.com/widgets/lightwidget.js')
-        iframe.lightwidget-widget(src='//lightwidget.com/widgets/6201cb655e565b53b883ae24489844c2.html', scrolling='no', allowtransparency='true', style='width: 100%; border: 0; overflow: hidden;')
-  section.job-listing-header.container#jobs
-    .row
-      .col-md-12.col-center
-        h1!=pageData.listingsHeader
-        h2!=pageData.listingsCopy
-  section.container
-    .row
-      .col-md-12
-        #featured-job
-      .col-md-3.hidden-s
-        #job-filter
-      .col-md-9
-        #job-list
+  section#culture.white-bg-section
+    .container
+      .row.padding-bottom
+        .col-md-12.col-center
+          h1!=pageData.cultureHeader
+          p.large-text!=pageData.cultureCopy
+      .row
+        .col-md-12.instagram-bucket
+          script(src='//lightwidget.com/widgets/lightwidget.js')
+          iframe.lightwidget-widget(src='//lightwidget.com/widgets/6201cb655e565b53b883ae24489844c2.html', scrolling='no', allowtransparency='true', style='width: 100%; border: 0; overflow: hidden;')
+  section.job-listing-header.white-bg-section#jobs
+    .container
+      .row
+        .col-md-12.col-center
+          h1!=pageData.listingsHeader
+          h2!=pageData.listingsCopy
+  section.white-bg-section
+    .container
+      .row
+        .col-md-12
+          #featured-job
+        .col-md-3.hidden-s
+          #job-filter
+        .col-md-9
+          #job-list

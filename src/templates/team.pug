@@ -15,34 +15,36 @@ block content
       "title"=>"Our Company",
       "link"=>"/company/"
     ));
-  -
-    var pageData = {
-    "header":"Meet Our Team"
-    };
-  section.top-section-interior
+  :php
+    printf("<section class='halfpic' id='sticky-header'>");
+    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+  .white-gradient-header
+  .container
+      .row-flex
+          .col-half-flex.gray-bg-section
+              .inner
+                h1 Meet Our Team
+  :php
+    echo "</section>";   
+  section.team-members.white-bg-section
     .container
-      .row
+      :php
+        $sections = get_field("section");
+        foreach($sections as $section) {
+      .row.team-header
         .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1!=pageData.header
-  section.team-members.container
-    :php
-      $sections = get_field("section");
-      foreach($sections as $section) {
-    .row.team-header
-      .col-md-12
-        h2
+          h2
+            :php
+              $type = trim($section["section_name"])=="Executives";
+              echo $section["section_name"];
+      .row.team-list
+        .col-md-12
           :php
-            $type = trim($section["section_name"])=="Executives";
-            echo $section["section_name"];
-    .row.team-list
-      .col-md-12
-        :php
-            
-              foreach($section["people"] as $person) {
-                $target = strpos($person["linkedin_url"],"http")>-1 ? "_blank" : "_self";
-                $subhead = $type?$person["job_title"]:"<i class='fa fa-linkedin-square'></i>";
-                printf("<a class='exec-thumb' href='%s' target='%s' data-bg-array='%s'><h3>%s</h3><h4>%s</h4></a>", $person["linkedin_url"], $target,json_encode($person["profile_picture"],JSON_UNESCAPED_SLASHES), $person["first_name"],$subhead);
-              } 
-    :php
-            }
+              
+                foreach($section["people"] as $person) {
+                  $target = strpos($person["linkedin_url"],"http")>-1 ? "_blank" : "_self";
+                  $subhead = $type?$person["job_title"]:"<i class='fa fa-linkedin-square'></i>";
+                  printf("<a class='exec-thumb' href='%s' target='%s' data-bg-array='%s'><h3>%s</h3><h4>%s</h4></a>", $person["linkedin_url"], $target,json_encode($person["profile_picture"],JSON_UNESCAPED_SLASHES), $person["first_name"],$subhead);
+                } 
+      :php
+              }
