@@ -59,33 +59,38 @@
     display:inline-block;
     font-size:11px;
     margin:0;
-    line-height:1;
-    padding-bottom:.5em;
+    line-height:1.4;
+    padding:.5em 0;
     color:$white;
     @include bp(m) {
       line-height: 50px;
-      padding-bottom:0;
+      padding:0;
       font-size:14px;
     }
-    
-  }
-  .button {
-    border:1px solid $white;
+      .button {
+
     background-color:transparent;
-    padding:.25em .5em;
+    text-decoration:underline;
     margin-left:1em;
     border-radius:3px;
     display:inline-block;
     font-size:11px;
     color:$white;
+    line-height:1;
+    border:none;
     &:hover {
       background-color:$blue;
     }
     text-transform:uppercase;
     @include bp(m) {
+      text-decoration:none;
       font-size:14px;
+      border:1px solid $white;
+      padding:.25em .5em;
     }
   }
+  }
+
 
    @include bp(m) {
     height:52px;
@@ -102,6 +107,16 @@
   top:auto;
   bottom:0;
   position:fixed;
+  height:auto;
+  h2 {
+    line-height:2;
+  }
+  @include bp(m) {
+    height:100px;
+    h2 {
+      line-height:1;
+    }
+  }
 }
 .summit-cta {
   width:100%;

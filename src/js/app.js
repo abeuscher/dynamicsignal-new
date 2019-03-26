@@ -617,6 +617,7 @@ var siteActions = [{
   {
     "element": "page-header",
     "action": function () {
+      if (window.innerWidth > siteSettings.breakpoints.m) {
       var els = [
         {
         "id":"",
@@ -672,6 +673,7 @@ var siteActions = [{
         .setPin(pageHeader)
         .addTo(headController);  
     }
+  }
   },
   {
     "element":"sticky-header",

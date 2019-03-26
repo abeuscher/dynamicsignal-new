@@ -1,8 +1,8 @@
 .navbar-toggle {
   cursor: pointer;
   transition: 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
-  position: fixed;
-  top:75px;
+  position: absolute;
+  top:24px;
   right:20px;
   z-index:99;
   width: 36px;
@@ -27,7 +27,7 @@
     }
   }
   &.short {
-    top:62px;
+    top:11px;
   }
 }
 #page-header {
