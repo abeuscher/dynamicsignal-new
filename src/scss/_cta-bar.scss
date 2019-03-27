@@ -108,11 +108,13 @@
   bottom:0;
   position:fixed;
   height:auto;
+  padding-bottom:60px;
   h2 {
     line-height:2;
   }
   @include bp(m) {
     height:100px;
+    padding-bottom:$gutter-width/4;
     h2 {
       line-height:1;
     }
