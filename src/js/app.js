@@ -786,29 +786,6 @@ var siteActions = [{
     }
   },
   {
-    "element": "home-hero-video",
-    "action": function () {
-      function resizeBanner() {
-        var videoBucket = document.getElementById("home-hero-video");
-        if (window.innerWidth < siteSettings.breakpoints.m) {
-          videoBucket.innerHTML = "";
-          videoBucket.style.background = "url('" + siteSettings.imagePath + videoBucket.getAttribute("data-mobile-bg") + "') no-repeat center top";
-          videoBucket.style.backgroundSize = "cover";
-        } else {
-          if (videoBucket.querySelectorAll("video").length < 1) {
-            var video = document.createElement("video");
-            video.src = siteSettings.videoPath + videoBucket.getAttribute("data-video");
-            video.setAttribute("autoplay", true);
-            video.setAttribute("loop", true);
-            videoBucket.appendChild(video);
-          }
-        }
-      }
-      window.addEventListener("resize", resizeBanner);
-      resizeBanner();
-    }
-  },
-  {
     "element": "logo-grid",
     "action": function () {
       var gridGall = new Flickity("#logo-grid", {
@@ -916,24 +893,6 @@ var siteActions = [{
     }
   },
   {
-    "element": "whatis-carousel",
-    "action": function () {
-      theCarousel = document.getElementById("whatis-carousel");
-      thePicture = document.getElementById("whatis-carousel-image");
-      var buttons = theCarousel.querySelectorAll(".carousel-button");
-      for (i = 0; i < buttons.length; i++) {
-        var theButton = buttons[i];
-        theButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          thePicture.style.backgroundImage = "url('" + siteSettings.imagePath + this.getAttribute("data-image") + "')";
-          removeClassFromClass("carousel-button", "active");
-          this.classList.add("active");
-          return false;
-        });
-      }
-    }
-  },
-  {
     "element": "job-list",
     "action": function () {
       var jobs = sortBy(pageData.jobs, function (i) {
@@ -956,79 +915,6 @@ var siteActions = [{
         "jobList": theJobs
       }
       var theFilter = new JobFilter(opts);
-    }
-  },
-  {
-    "element": "content-menu",
-    "action": function () {
-      var theMenu = document.getElementById("content-menu");
-      var thePane = document.getElementById("features-content-panes");
-      var theImage = document.getElementById("content-lower-image");
-      var theLinks = theMenu.querySelectorAll("a");
-      for (i = 0; i < theLinks.length; i++) {
-        var thisLink = theLinks[i];
-        thisLink.addEventListener("click", function (e) {
-          e.preventDefault();
-          var target = document.getElementById(this.getAttribute("data-target"));
-          clearPanes();
-          target.classList.add("active");
-          this.classList.add("active");
-          if (this.getAttribute("data-content-image")) {
-            theImage.style.backgroundImage = "url(" + siteSettings.imagePath + this.getAttribute("data-content-image") + ")";
-          }
-        })
-      }
-
-      function clearPanes() {
-        var panes = thePane.querySelectorAll(".features-content-pane");
-        for (i = 0; i < panes.length; i++) {
-          panes[i].classList.remove("active");
-        }
-        var links = theMenu.querySelectorAll("a");
-        for (i = 0; i < links.length; i++) {
-          links[i].classList.remove("active");
-        }
-      }
-    }
-  },
-  {
-    "element": "product-display",
-    "action": function () {
-      var bucket = document.getElementById("product-display");
-      bucket.appendChild(parseHTML(siteSettings.templates.productDisplay(pageData)));
-      var buttons = document.querySelectorAll(".mobile-product-tile");
-      for (i in buttons) {
-        if (isElement(buttons[i])) {
-          var thisButton = buttons[i];
-          thisButton.addEventListener("click", function (e) {
-            e.preventDefault();
-            addClass(this, "active", "mobile-product-tile");
-            displayTile(this.getAttribute("data-target"), "mobile-image");
-            return false;
-          });
-        }
-      }
-      var buttons = document.querySelectorAll(".desktop-product-tile");
-      for (i in buttons) {
-        if (isElement(buttons[i])) {
-          var thisButton = buttons[i];
-          thisButton.addEventListener("click", function (e) {
-            e.preventDefault();
-            displayTile(this.getAttribute("data-target"), "desktop-image");
-            return false;
-          });
-        }
-      }
-
-      function displayTile(id, setClass) {
-        var tiles = document.getElementsByClassName(setClass);
-        for (i in tiles) {
-          if (tiles[i].classList) {
-            tiles[i].classList.remove("active");
-          }
-        }
-        document.getElementById(id).classList.add("active");
-      }
     }
   }
 ];
