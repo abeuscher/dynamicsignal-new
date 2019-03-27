@@ -1,18 +1,19 @@
 #cta-bar, #gdpr-warning {
   display:none;
   z-index:1;
-  position:fixed;
+  position:absolute;
   background:$menu-blue;
   color:$white;
   box-shadow:0 0 20px rgba(0,0,0,.1);
   //border-top:1px solid $blue;
   width:100%;
   margin:0;
-  min-height:50px;
+  height:50px;
+  overflow:hidden;
   vertical-align: middle;
   padding-bottom:$gutter-width/4;
   color:$black;
-  top:80px;
+  top:0;
   left:0;
   text-align:center;
   .show-mobile {
@@ -56,29 +57,40 @@
   }
   h2 {
     display:inline-block;
-    font-size:14px;
+    font-size:11px;
     margin:0;
     line-height:1.4;
-    padding-bottom:.5em;
+    padding:.5em 0;
     color:$white;
     @include bp(m) {
       line-height: 50px;
-      padding-bottom:0;
+      padding:0;
+      font-size:14px;
     }
-    
-  }
-  .button {
-    border:1px solid $white;
+      .button {
+
     background-color:transparent;
-    padding:.25em .5em;
+    text-decoration:underline;
     margin-left:1em;
     border-radius:3px;
+    display:inline-block;
+    font-size:11px;
+    color:$white;
+    line-height:1;
+    border:none;
     &:hover {
       background-color:$blue;
     }
     text-transform:uppercase;
-    font-size:.8em;
+    @include bp(m) {
+      text-decoration:none;
+      font-size:14px;
+      border:1px solid $white;
+      padding:.25em .5em;
+    }
   }
+  }
+
 
    @include bp(m) {
     height:52px;
@@ -94,6 +106,19 @@
 #gdpr-warning {
   top:auto;
   bottom:0;
+  position:fixed;
+  height:auto;
+  padding-bottom:60px;
+  h2 {
+    line-height:2;
+  }
+  @include bp(m) {
+    height:100px;
+    padding-bottom:$gutter-width/4;
+    h2 {
+      line-height:1;
+    }
+  }
 }
 .summit-cta {
   width:100%;

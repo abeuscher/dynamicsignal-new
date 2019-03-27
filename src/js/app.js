@@ -32,12 +32,7 @@ var siteSettings = {
   "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "gdprCookie": "ds-gdpr",
   "sessionCookie": "ds-count",
-  "ctaBar": { 
-    "toggle": false,
-    "cta": "Take The Pulse Of Your Employee Engagement",
-    "url": "/employee-engagement-assessment/",
-    "buttonText": "Start Assessment"
-  },
+  "ctaBar": require("./cta-bar.json"),
   "templates": {  
     "adwordsGrid": require("./inc/ad-words-grid.pug"),
     "adwordsLogoGarden": require("./inc/ad-words-logo-garden.pug"),
@@ -93,7 +88,7 @@ window.addEventListener("load", function () {
   if (checkCookies()) {
     triggerGDPR();
   }
-
+  writeCTA();
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
@@ -279,22 +274,32 @@ var siteActions = [{
     "element": "side-nav",
     "action": function () {
       var theWrapper = document.getElementById("wrapper");
+      var theHeader = document.getElementById("page-header");
       var theToggle = document.getElementById("toggle-side-nav");
+      var closeButton = document.getElementById("btn-close-sidenav");
       theToggle.addEventListener("click", function (e) {
         e.preventDefault();
+        e.stopPropagation();
         if (document.body.classList.contains("nav-open")) {
           document.body.classList.remove("nav-open");
           theWrapper.removeEventListener("click", closeBody);
+          theHeader.removeEventListener("click", closeBody);
+          closeButton.removeEventListener("click", closeBody);
         } else {
           document.body.classList.add("nav-open");
           theWrapper.addEventListener("click", closeBody);
+          theHeader.addEventListener("click", closeBody);
+          closeButton.addEventListener("click", closeBody);
         }
+
       });
 
       function closeBody(e) {
         e.preventDefault();
         document.body.classList.remove("nav-open");
         theWrapper.removeEventListener("click", closeBody);
+        theHeader.removeEventListener("click", closeBody);
+        closeButton.removeEventListener("click", closeBody);
       }
     }
   },
@@ -614,6 +619,7 @@ var siteActions = [{
   {
     "element": "page-header",
     "action": function () {
+      if (window.innerWidth > siteSettings.breakpoints.m) {
       var els = [
         {
         "id":"",
@@ -637,7 +643,7 @@ var siteActions = [{
         }
       ];
         
-
+      var pageHeader = document.getElementById("page-header");
       var headController = new ScrollMagic.Controller({
         "loglevel": 0
       });
@@ -662,7 +668,14 @@ var siteActions = [{
             }
         })
         .addTo(headController);
+        new ScrollMagic.Scene({
+          offset: 0,
+          duration: 0
+        })
+        .setPin(pageHeader)
+        .addTo(headController);  
     }
+  }
   },
   {
     "element":"sticky-header",
@@ -676,6 +689,7 @@ var siteActions = [{
           duration: 0
         })
         .setPin(el)
+        .setClassToggle(el,"pos-fixed")
         .addTo(homeController);         
       }     
     }
@@ -774,29 +788,6 @@ var siteActions = [{
     }
   },
   {
-    "element": "home-hero-video",
-    "action": function () {
-      function resizeBanner() {
-        var videoBucket = document.getElementById("home-hero-video");
-        if (window.innerWidth < siteSettings.breakpoints.m) {
-          videoBucket.innerHTML = "";
-          videoBucket.style.background = "url('" + siteSettings.imagePath + videoBucket.getAttribute("data-mobile-bg") + "') no-repeat center top";
-          videoBucket.style.backgroundSize = "cover";
-        } else {
-          if (videoBucket.querySelectorAll("video").length < 1) {
-            var video = document.createElement("video");
-            video.src = siteSettings.videoPath + videoBucket.getAttribute("data-video");
-            video.setAttribute("autoplay", true);
-            video.setAttribute("loop", true);
-            videoBucket.appendChild(video);
-          }
-        }
-      }
-      window.addEventListener("resize", resizeBanner);
-      resizeBanner();
-    }
-  },
-  {
     "element": "logo-grid",
     "action": function () {
       var gridGall = new Flickity("#logo-grid", {
@@ -885,6 +876,7 @@ var siteActions = [{
           logos.push(pageData.logos[i + slots]);
         }
       }
+      console.log(logos);
       gridTerminal.append(parseHTML(siteSettings.templates.adwordsGrid(logos)));
     }
   },
@@ -900,24 +892,6 @@ var siteActions = [{
         testimonialGall.append(parseHTML(siteSettings.templates.testimonialSlide(pageData.testimonials[i])));
       }
       testimonialGall.resize();
-    }
-  },
-  {
-    "element": "whatis-carousel",
-    "action": function () {
-      theCarousel = document.getElementById("whatis-carousel");
-      thePicture = document.getElementById("whatis-carousel-image");
-      var buttons = theCarousel.querySelectorAll(".carousel-button");
-      for (i = 0; i < buttons.length; i++) {
-        var theButton = buttons[i];
-        theButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          thePicture.style.backgroundImage = "url('" + siteSettings.imagePath + this.getAttribute("data-image") + "')";
-          removeClassFromClass("carousel-button", "active");
-          this.classList.add("active");
-          return false;
-        });
-      }
     }
   },
   {
@@ -943,79 +917,6 @@ var siteActions = [{
         "jobList": theJobs
       }
       var theFilter = new JobFilter(opts);
-    }
-  },
-  {
-    "element": "content-menu",
-    "action": function () {
-      var theMenu = document.getElementById("content-menu");
-      var thePane = document.getElementById("features-content-panes");
-      var theImage = document.getElementById("content-lower-image");
-      var theLinks = theMenu.querySelectorAll("a");
-      for (i = 0; i < theLinks.length; i++) {
-        var thisLink = theLinks[i];
-        thisLink.addEventListener("click", function (e) {
-          e.preventDefault();
-          var target = document.getElementById(this.getAttribute("data-target"));
-          clearPanes();
-          target.classList.add("active");
-          this.classList.add("active");
-          if (this.getAttribute("data-content-image")) {
-            theImage.style.backgroundImage = "url(" + siteSettings.imagePath + this.getAttribute("data-content-image") + ")";
-          }
-        })
-      }
-
-      function clearPanes() {
-        var panes = thePane.querySelectorAll(".features-content-pane");
-        for (i = 0; i < panes.length; i++) {
-          panes[i].classList.remove("active");
-        }
-        var links = theMenu.querySelectorAll("a");
-        for (i = 0; i < links.length; i++) {
-          links[i].classList.remove("active");
-        }
-      }
-    }
-  },
-  {
-    "element": "product-display",
-    "action": function () {
-      var bucket = document.getElementById("product-display");
-      bucket.appendChild(parseHTML(siteSettings.templates.productDisplay(pageData)));
-      var buttons = document.querySelectorAll(".mobile-product-tile");
-      for (i in buttons) {
-        if (isElement(buttons[i])) {
-          var thisButton = buttons[i];
-          thisButton.addEventListener("click", function (e) {
-            e.preventDefault();
-            addClass(this, "active", "mobile-product-tile");
-            displayTile(this.getAttribute("data-target"), "mobile-image");
-            return false;
-          });
-        }
-      }
-      var buttons = document.querySelectorAll(".desktop-product-tile");
-      for (i in buttons) {
-        if (isElement(buttons[i])) {
-          var thisButton = buttons[i];
-          thisButton.addEventListener("click", function (e) {
-            e.preventDefault();
-            displayTile(this.getAttribute("data-target"), "desktop-image");
-            return false;
-          });
-        }
-      }
-
-      function displayTile(id, setClass) {
-        var tiles = document.getElementsByClassName(setClass);
-        for (i in tiles) {
-          if (tiles[i].classList) {
-            tiles[i].classList.remove("active");
-          }
-        }
-        document.getElementById(id).classList.add("active");
-      }
     }
   }
 ];
@@ -1086,7 +987,6 @@ function triggerGDPR() {
         domain: domain
       });
       warning.remove();
-      // writeCTA();
       return false;
     });
     window.addEventListener("click", function (e) {

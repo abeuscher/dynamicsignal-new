@@ -345,7 +345,7 @@ section {
   background:$light-gray;
   min-height: 250px;
   .row {
-    padding-top: 120px;
+    padding-top: 0;
   }
 
   h1 {
@@ -1216,6 +1216,10 @@ position:relative;
   background:$lighter-gray;
   position:relative;
 }
+.blue-bg-section {
+  background:$blue;
+  position:relative;
+}
 
 p.source {
   margin-top:2em;
@@ -1263,6 +1267,11 @@ section.halfpic {
   position:relative;
   background:$lighter-gray;
   padding:0;
+  margin-top:-80px;
+  &.pos-fixed {
+    position:fixed!important;
+    top:50px!important;
+  }
   .halfpic-bg {
     position:static;
     width:100%;

@@ -40,7 +40,7 @@ block content
     .row
       .col-md-12
         :php
-          printf("<div class='case-study-video-content'><p>%s</p><cite>%s</cite><a class='button modal-show' href='#'><span class='cta'>%s</span><i class='fa fa-play'></i></a></div>",get_field("header_video_quote"),get_field("header_video_quote_source"),get_field("header_video_button_label"));
+          printf("<div class='case-study-video-content'><p>%s</p><cite>%s</cite><a class='button modal-show' data-video-modal-id='%s' href='#'><span class='cta'>%s</span><i class='fa fa-play'></i></a></div>",get_field("header_video_quote"),get_field("header_video_quote_source"),get_field("header_video_id"),get_field("header_video_button_label"));
   :php
     echo "</section>";
     }
@@ -236,10 +236,3 @@ block content
             :php
               echo get_field("conclusion_paragraph");
           a.button.cta(href="/requestdemo/") Request Demo
-block modals
-  .modal
-    .modal-dialog
-      button.modal-hide!="&times;"
-      div.blog-content
-        :php
-          printf("<div class='video' data-id='%s'></div>", get_field("header_video_id"));
