@@ -572,8 +572,8 @@ var siteActions = [{
           videoGall.append(parseHTML(siteSettings.templates.customerQuote(customerData[i])));
         }
       }
-      videoGall.resize();
       videoHandler.activateCarousel(document.getElementById("customer-video-carousel"),videoGall);
+      videoGall.resize();
     }
   },
   {

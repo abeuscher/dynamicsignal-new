@@ -54,17 +54,17 @@ videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
   for (var i=bottom;i<self.panels.length;i++) {
     self.panels[i].videoid = self.panels[i].getAttribute(attrName);
     self.panels[i].video = parseHTML(self.settings.templates.panelVideo({videoid:self.panels[i].videoid}));
-    self.panels[i].html = self.panels[i].querySelectorAll(".wrapper-panel-html")[0];
-    self.panels[i].html.setAttribute("data-panel-idx",i);
+    self.panels[i].theHtml = self.panels[i].querySelectorAll(".wrapper-panel-html")[0];
+    self.panels[i].theHtml.setAttribute("data-panel-idx",i);
     self.panels[i].appendChild(self.panels[i].video);
     self.panels[i].playerBucket = self.panels[i].video.querySelectorAll(".panel-video")[0];
-    self.panels[i].html.addEventListener("click", function(e) {
+    self.panels[i].theHtml.addEventListener("click", function(e) {
       e.preventDefault();
       var thisPanel = self.panels[this.getAttribute("data-panel-idx")];
-      thisPanel.html.style.display = "none";
+      thisPanel.theHtml.style.display = "none";
       thisPanel.video.style.display = "block";
       if (!thisPanel.player) {
-        thisPanel.player = new YouTubePlayer(thisPanel.playerBucket, {videoId:thisPanel.videoid}); 
+        thisPanel.player = new YouTubePlayer(thisPanel.playerBucket, {videoId:thisPanel.videoid,playerVars:{rel:0}}); 
       }
       thisPanel.player.playVideo();
       thisPanel.player.on("stateChange", function(e) {
@@ -77,7 +77,7 @@ videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
       }
       function stopVideo(e) {
         thisPanel.player.stopVideo();
-        thisPanel.html.style.display = "block";
+        thisPanel.theHtml.style.display = "block";
         thisPanel.video.style.display = "none";
       }
     });
@@ -86,7 +86,8 @@ videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
 videoHandler.prototype.activateCarousel = function(el,gallery) {
   var self = this;
   var slides = el.querySelectorAll("[data-video-carousel-id]");
-  self.buildPanels(slides,"data-video-carousel-id",gallery)
+  self.buildPanels(slides,"data-video-carousel-id",gallery);
+  return true;
 }
 videoHandler.prototype.openModal = function(e) {
   var self = this;
@@ -95,7 +96,7 @@ videoHandler.prototype.openModal = function(e) {
   self.playerBucket = self.modal.querySelectorAll(".modal-video")[0];
   self.playerToggle = self.modal.querySelectorAll(".wrapper-video")[0];
   if (!self.modal.player) {
-    self.modal.player = new YouTubePlayer(self.playerBucket);
+    self.modal.player = new YouTubePlayer(self.playerBucket, {playerVars:{rel:0}});
     self.modal.player.on("stateChange", function(e) {
       if (e.data == 0) {
         self.playerToggle.style.display = "none";
@@ -112,7 +113,7 @@ videoHandler.prototype.openModal = function(e) {
         }
       }
     });
-    self.modal.player.cueVideoById(self.playerBucket.getAttribute("data-video-id"));
+    self.modal.player.loadVideoById(self.playerBucket.getAttribute("data-video-id"));
   } else {
     self.modal.player.playVideo();
   }
@@ -128,7 +129,7 @@ videoHandler.prototype.openModal = function(e) {
 videoHandler.prototype.buildVideos = function() {
   var self = this;
   for (var i = 0; i < self.videos.length; i++) {
-    self.videos[i].player = new YouTubePlayer(self.videos[i]);
+    self.videos[i].player = new YouTubePlayer(self.videos[i],{playerVars:{rel:0}});
   }
 };
 videoHandler.prototype.playVideo = function(player, id, cb) {
