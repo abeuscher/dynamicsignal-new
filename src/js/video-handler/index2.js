@@ -58,14 +58,14 @@ videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
     self.panels[i].theHtml.setAttribute("data-panel-idx",i);
     self.panels[i].appendChild(self.panels[i].video);
     self.panels[i].playerBucket = self.panels[i].video.querySelectorAll(".panel-video")[0];
+    if (!self.panels[i].player) {
+      self.panels[i].player = new YouTubePlayer(self.panels[i].playerBucket, {videoId:self.panels[i].videoid,playerVars:{rel:0}}); 
+    }   
     self.panels[i].theHtml.addEventListener("click", function(e) {
       e.preventDefault();
       var thisPanel = self.panels[this.getAttribute("data-panel-idx")];
-      thisPanel.theHtml.style.display = "none";
-      thisPanel.video.style.display = "block";
-      if (!thisPanel.player) {
-        thisPanel.player = new YouTubePlayer(thisPanel.playerBucket, {videoId:thisPanel.videoid,playerVars:{rel:0}}); 
-      }
+      thisPanel.theHtml.classList.remove("active");
+      thisPanel.video.classList.add("active");
       thisPanel.player.playVideo();
       thisPanel.player.on("stateChange", function(e) {
         if (e.data==0) {
@@ -77,8 +77,8 @@ videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
       }
       function stopVideo(e) {
         thisPanel.player.stopVideo();
-        thisPanel.theHtml.style.display = "block";
-        thisPanel.video.style.display = "none";
+        thisPanel.theHtml.classList.add("active");
+        thisPanel.video.classList.remove("active");
       }
     });
   }
@@ -99,15 +99,15 @@ videoHandler.prototype.openModal = function(e) {
     self.modal.player = new YouTubePlayer(self.playerBucket, {playerVars:{rel:0}});
     self.modal.player.on("stateChange", function(e) {
       if (e.data == 0) {
-        self.playerToggle.style.display = "none";
-        self.postMsg.style.display = "block";
+        self.playerToggle.classList.remove("active");
+        self.postMsg.classList.add("active");
         var playButtons = self.postMsg.querySelectorAll(".btn-replay");
         for (var i=0;i<playButtons.length;i++) {
           playButtons[i].addEventListener("click", function(e) {
             e.preventDefault();
             e.stopPropagation();
-            self.playerToggle.style.display = "block";
-            self.postMsg.style.display = "none";
+            self.playerToggle.classList.add("active");
+            self.postMsg.classList.remove("active");
             self.modal.player.playVideo();
           });
         }
@@ -121,8 +121,8 @@ videoHandler.prototype.openModal = function(e) {
   this.bg.addEventListener("click", function(e) {
     document.body.classList.remove("modal-open");
     self.modal.classList.remove("active");
-    self.playerToggle.style.display = "block";
-    self.postMsg.style.display = "none";
+    self.playerToggle.classList.add("active");
+    self.postMsg.classLsit.remove("active");
     self.modal.player.stopVideo();
   });
 };

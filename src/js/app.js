@@ -76,7 +76,7 @@ var siteSettings = {
     "xl": 1921
   }
 }
-var videoHandler = new VideoHandler();
+
 window.addEventListener("load", function () {
   function inIframe() {
     try {
@@ -98,6 +98,7 @@ window.addEventListener("load", function () {
   getVertCarousels();
   var dc = new DigitCounter();
   activateImages();
+  var videoHandler = new VideoHandler();
   videoHandler.init();
   //var Modals = new Modal();
 
@@ -569,9 +570,11 @@ var siteActions = [{
       });
       for (i in customerData) {
         if (customerData[i].vimeo_id != "" && customerData[i].vimeo_id != null) {
+          console.log(customerData[i].post_title,customerData[i].ID, customerData[i].vimeo_id);
           videoGall.append(parseHTML(siteSettings.templates.customerQuote(customerData[i])));
         }
       }
+      var videoHandler = new VideoHandler();
       videoHandler.activateCarousel(document.getElementById("customer-video-carousel"),videoGall);
       videoGall.resize();
     }
@@ -612,6 +615,7 @@ var siteActions = [{
           videoGall.append(parseHTML(siteSettings.templates.careerVideoSlide(pageData.videos[i])));
         }
         videoGall.resize();
+        var videoHandler = new VideoHandler();
         videoHandler.activateCarousel(document.getElementById("careers-video-carousel"),videoGall);
       }
     }
@@ -989,14 +993,16 @@ function triggerGDPR() {
       warning.remove();
       return false;
     });
-    window.addEventListener("click", function (e) {
+    window.addEventListener("click", startTheTracking);
+    function startTheTracking(e) {
       Cookies.set(siteSettings.gdprCookie, "true", {
         expires: 365,
         domain: domain
       });
       triggerGA();
+      window.removeEventListener("click", startTheTracking);
       return true;
-    });
+    }
   } else {
     triggerGA();
   }
@@ -1009,7 +1015,7 @@ function triggerGA() {
       'gtm.start': new Date().getTime(),
       event: 'gtm.js'
     });
-    var f = d.getElementsByTagName(s)[0],
+    var f = d.body.firstChild,
       j = d.createElement(s),
       dl = l != 'dataLayer' ? '&l=' + l : '';
     j.async = true;
