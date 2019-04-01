@@ -14,7 +14,8 @@ $nav-bg-short:rgba(255,255,255,1);
   z-index:98;
   transition: 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
   .inner {
-    padding:50px $gutter-width 0;
+    padding:50px 0 0;
+    margin:0;
   }
   .logo {
     display:inline-block;

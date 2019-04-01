@@ -612,6 +612,7 @@ var siteActions = [{
           "adaptiveHeight": false
         });
         for (i in pageData.videos) {
+          console.log(pageData.videos[i].video_title, pageData.videos[i].vimeo_id);
           videoGall.append(parseHTML(siteSettings.templates.careerVideoSlide(pageData.videos[i])));
         }
         videoGall.resize();

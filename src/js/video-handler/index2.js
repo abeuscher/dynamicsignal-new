@@ -119,11 +119,13 @@ videoHandler.prototype.openModal = function(e) {
   }
   this.bg = this.modal.querySelectorAll(".bg")[0];
   this.bg.addEventListener("click", function(e) {
+    self.modal.player.stopVideo();
     document.body.classList.remove("modal-open");
     self.modal.classList.remove("active");
     self.playerToggle.classList.add("active");
     self.postMsg.classLsit.remove("active");
-    self.modal.player.stopVideo();
+    
+    console.log(self.modal);
   });
 };
 videoHandler.prototype.buildVideos = function() {
