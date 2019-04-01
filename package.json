@@ -1,6 +1,6 @@
 {
   "name": "dynamic-signal",
-  "version": "2.2.2",
+  "version": "3.0.0",
   "description": "DS Rebrand",
   "main": "gulpfile.js",
   "scripts": {
