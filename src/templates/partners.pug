@@ -45,14 +45,15 @@ block content
   section.partners-top.container
     h2 Improving Employee Communication Increases Client Value and Drives Revenue
     p.partners-header!=pageData.copyTop
-    .customer-video-thumb.video-activator(data-video-id=pageData.videoInfo.id,video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image,data-event="vidClick-Partners")
-      .right-gradient
-      .content.right.shrunk
-        p!=pageData.videoInfo.quote
-        cite!=pageData.videoInfo.cite
-        a.button(href="#")
-          span.cta!=pageData.videoInfo.cta
-          i.fa.fa-play
+    .customer-video-thumb(data-video-panel-id="C0qQ_enRs_w",video-type=pageData.videoInfo.type,data-bg=pageData.videoInfo.image,data-event="vidClick-Partners")
+      .wrapper-panel-html
+        .right-gradient
+        .content.right.shrunk
+          p!=pageData.videoInfo.quote
+          cite!=pageData.videoInfo.cite
+          a.button(href="#")
+            span.cta!=pageData.videoInfo.cta
+            i.fa.fa-play
   section.logo-strip-bucket
     .container
       .row

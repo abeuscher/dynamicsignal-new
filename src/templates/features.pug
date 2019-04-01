@@ -61,27 +61,34 @@ block content
             }
         ]
         };
-  section.top-section-interior.resources.single-line
+  :php
+    printf("<section class='halfpic' id='sticky-header'>");
+    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+  .white-gradient-header
+  .container
+      .row-flex
+          .col-half-flex.gray-bg-section
+              .inner
+                h1 Features
+  :php
+    echo "</section>";
+  section.white-bg-section
     .container
-      .row
-        .col-md-12
-            include ./inc/breadcrumbs.pug
-            h1 Features
-  section.container
-    .row
-        .col-md-12.centered
-            p 
-                :php
-                    echo get_field("heading_copy");
-  section.container.feature-icon-menu#feature-menu
-    .row
-        .col-md-10.col-md-offset-1
-            for feature, idx in pageData.features
-                a(href="#section-"+feature.title.toLowerCase().replace(" ","-"))
-                    i(class="fa " + feature.icon)
-                    h2!=feature.title
+        .row
+            .col-md-12.centered
+                p 
+                    :php
+                        echo get_field("heading_copy");
+  section.white-bg-section.feature-icon-menu#feature-menu
+    .container
+        .row
+            .col-md-10.col-md-offset-1
+                for feature, idx in pageData.features
+                    a(href="#section-"+feature.title.toLowerCase().replace(" ","-"))
+                        i(class="fa " + feature.icon)
+                        h2!=feature.title
   #features-sections 
-    section#section-content-personalization.feature-bucket
+    section#section-content-personalization.feature-bucket.white-bg-section
         #section-content-personalization-anchor.anchor-target
             .container
                 .row.top
@@ -115,25 +122,26 @@ block content
                     ul.hmenu 
                         li
                             a.button(href='https://support.dynamicsignal.com') Learn More
-    section#section-social-sharing.container.feature-bucket
+    section#section-social-sharing.white-bg-section.feature-bucket
         #section-social-sharing.anchor-target
-            .row
-                .col-md-12.centered
-                    h2  
-                        :php
-                            echo get_field("social_sharing_header");
-                    h3 
-                        :php
-                            echo get_field("social_sharing_subheader");
-                    p  
-                        :php
-                            echo get_field("social_sharing_copy");
-                    ul.hmenu
-                        li
-                            a.button(href='https://support.dynamicsignal.com') Learn More
-                .col-md-12.content-image
-                    .bg(data-bg="features-mainpic-socialsharing.jpg")
-    section#section-reporting.feature-bucket
+            .container
+                .row
+                    .col-md-12.centered
+                        h2  
+                            :php
+                                echo get_field("social_sharing_header");
+                        h3 
+                            :php
+                                echo get_field("social_sharing_subheader");
+                        p  
+                            :php
+                                echo get_field("social_sharing_copy");
+                        ul.hmenu
+                            li
+                                a.button(href='https://support.dynamicsignal.com') Learn More
+                    .col-md-12.content-image
+                        .bg(data-bg="features-mainpic-socialsharing.jpg")
+    section#section-reporting.feature-bucket.gray-bg-section
         #section-reporting-anchor.anchor-target
             .container
                 .row
@@ -152,7 +160,7 @@ block content
                                 a.button(href='https://support.dynamicsignal.com') Learn More
                     .col-md-12.content-image.tall
                         .bg(data-bg="features-mainpic-reporting.jpg")
-    section#section-video.feature-bucket
+    section#section-video.feature-bucket.white-bg-section
         #section-video-anchor.anchor-target
             .container
                 .row
@@ -171,7 +179,7 @@ block content
                         ul.hmenu
                             li
                                 a.button(href='https://support.dynamicsignal.com') Learn More
-    section#section-newsletters.feature-bucket
+    section#section-newsletters.feature-bucket.gray-bg-section
         #section-newsletters-anchor.anchor-target
             .container
                 .bg(data-bg="features-mainpic-newsletters.jpg")
@@ -188,7 +196,7 @@ block content
                     ul.hmenu
                         li
                             a.button(href='https://support.dynamicsignal.com') Learn More        
-    section#section-surveys.feature-bucket
+    section#section-surveys.feature-bucket.white-bg-section
         #section-surveys-anchor
             .container
                 .row
@@ -207,7 +215,7 @@ block content
                                 a.button(href='https://support.dynamicsignal.com') Learn More
                     .col-md-12.content-image.tall
                         .bg(data-bg="features-mainpic-surveys.jpg")
-    section#section-smartcontent.feature-bucket
+    section#section-smartcontent.feature-bucket.gray-bg-section
         #section-smartcontent-anchor.anchor-target
             .container
                 .row
@@ -226,7 +234,7 @@ block content
                                 a.button(href='https://support.dynamicsignal.com') Learn More
                     .col-md-12.content-image.tall
                         .bg(data-bg="features-mainpic-smartcontent.jpg")
-    section#section-permissions.feature-bucket
+    section#section-permissions.feature-bucket.blue-bg-section
         #section-permissions-anchor.anchor-target
             .container
                 .row
@@ -242,7 +250,7 @@ block content
                                 echo get_field("permissions_copy");
                     .col-md-12.content-image.tall
                         .bg(data-bg="features-mainpic-permission.jpg")   
-    section#section-integrations.feature-bucket
+    section#section-integrations.feature-bucket.white-bg-section
         #section-integrations-anchor.anchor-target
             .container
                 .flex-row

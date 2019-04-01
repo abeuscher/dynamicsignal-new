@@ -345,7 +345,7 @@ section {
   background:$light-gray;
   min-height: 250px;
   .row {
-    padding-top: 120px;
+    padding-top: 0;
   }
 
   h1 {
@@ -557,7 +557,16 @@ section.logo-strip-bucket {
   .button {
     z-index:0;
   }
-
+  .wrapper-panel-html {
+    .left-gradient {
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+        background: linear-gradient(to right, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+    }
+  }
   iframe {
     width: 100%;
     height: 100%;
@@ -1152,9 +1161,11 @@ img.right-padded {
   max-width:50%;
 }
 .modal {background: rgba(0,0,0,.7); z-index:999;
-
 }
-.modal-dialog {margin: 100px auto; max-width: 70%; background: $black; 
+.modal-dialog {
+  margin: 100px auto; 
+  max-width: 70%; 
+  background: $black; 
 position:relative;
 .blog-content {
   padding:0;
@@ -1203,6 +1214,10 @@ position:relative;
 }
 .gray-bg-section {
   background:$lighter-gray;
+  position:relative;
+}
+.blue-bg-section {
+  background:$blue;
   position:relative;
 }
 
@@ -1254,8 +1269,8 @@ section.halfpic {
   padding:0;
   margin-top:-80px;
   &.pos-fixed {
-    position:absolute!important;
-    top:0!important;
+    position:fixed!important;
+    top:50px!important;
   }
   .halfpic-bg {
     position:static;
@@ -1322,6 +1337,106 @@ section.halfpic {
           margin-top:0;
         }
       }
+    }
+  }
+}
+.video-modal {
+  display:none;
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  text-align:right;
+  .bg {
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background:rgba(0,0,0,.7);  
+  }
+  .main-window {
+    margin-top:4em;
+  }
+  &.active {
+    display:block;
+    z-index:99;
+  }
+  .modal-hide {
+    font-size:3em;
+    background:transparent;
+    border:none;
+    color:$white;
+  }
+  .wrapper-video, .wrapper-html {
+    //margin-top:4em;
+  }
+  .wrapper-video {
+    display:block;
+    @include bp(m) {
+      display:none;
+      &.active {
+        display:block;
+      }
+    }
+  }
+  .wrapper-html {
+    display:none;
+    @include aspect-ratio(16,9);
+    background:$black;
+    &.active {
+      display:none;
+      @include bp(m) {
+        display:block;
+      }
+    }
+    .inner {
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      background:$white;
+      padding:$gutter-width;
+      flex-wrap:wrap;
+      font-size:.8em;
+      .col-wide {
+        h1 {
+          margin:0;
+        }
+        p {
+          margin:0;
+        }
+        text-align:center;
+        flex-basis:100%;
+      }
+      .col-three {
+        h2 {
+          font-size:16px;
+          font-weight:800;
+        }
+        flex-basis:30%;
+        text-align:center;
+        .button {
+          margin-top:$gutter-width;
+        }
+      }
+      @include bp(m) {
+        font-size:1em;
+        .col-three {
+          h2 {
+            font-size:20px;
+          }
+        }
+      }
+    }
+  }
+}
+.video-panel {
+  display:block;
+  @include bp(m) {
+    display:none;
+    &.active {
+      display:block;
     }
   }
 }

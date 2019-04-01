@@ -1,8 +1,8 @@
 .navbar-toggle {
   cursor: pointer;
-  transition: 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
-  position: fixed;
-  top:75px;
+  //transition: top 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
+  position: absolute;
+  top:24px;
   right:20px;
   z-index:99;
   width: 36px;
@@ -20,21 +20,23 @@
     height: 2px;
     border-radius: 1px;
     background: $menu-blue;
-    transition: all 0.25s ease-in;
+    //transition: all 0.25s ease-in;
 
     &+.icon-bar {
       margin-top: 4px;
     }
   }
   &.short {
-    top:62px;
+    top:15px;
+  }
+  @include bp(m) {
+    top:28px;
   }
 }
 #page-header {
   .small-nav {
     text-align: right;
     font-family: $nav-font;
-    padding-right:2.75em;
     vertical-align: middle;
 
     ul {
@@ -63,14 +65,15 @@
             color: $header-blue;
           }
           &#btn-search-header {
-            position:absolute;
-            top:24px;
-            right:65px;
+            margin-left:-36px;
             span {
               display:block;
             }
             &.short {
-              top:11px; 
+              //top:11px; 
+            }
+            @include bp(m) {
+              margin:0;
             }
           }
           &.active {
@@ -124,7 +127,7 @@
   }
   &.active {
     .navbar-toggle {
-      transition: all 0.25s ease-in;
+      //transition: all 0.25s ease-in;
     }
     .nav-bucket {
       padding-top:8px;
