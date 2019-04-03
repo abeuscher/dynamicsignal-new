@@ -20,6 +20,15 @@ var siteopts = {
 var ctaInfo = require("../js/cta-bar.json");
 var ctaTemplate = require("../js/inc/cta-bar.pug");
 window.addEventListener("load", function() {
+  if (typeof(knownVisitor)=='undefined' && typeof(thisPageIsAGate)!='undefined') {
+    if (typeof(gateUrl)!='undefined') {
+      if (gateUrl!="") {
+        location.href = gateUrl;
+      }
+    }
+  } 
+
+
   setNav();
   if (document.getElementById("marketo-form-wrapper")) {
   var formHandler = new FormHandler();

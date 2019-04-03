@@ -1219,6 +1219,10 @@ position:relative;
 .blue-bg-section {
   background:$blue;
   position:relative;
+  color:$white;
+  h1,h2,h3,h4,h5,h6,cite,p,ul,li,a {
+    color:$white;
+  }
 }
 
 p.source {
