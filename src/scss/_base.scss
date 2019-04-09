@@ -717,42 +717,6 @@ a.small-link {
   z-index: 0;
 }
 
-.icon-bar {
-  text-align: center;
-}
-
-.icon-tile {
-  display: inline-block;
-  text-align: center;
-  width: 25%;
-
-  h2 {
-    color: $header-blue;
-    font-size: 4vw;
-    margin: 0.25em 0;
-  }
-  @include bp(m) {
-    h2 {
-      font-size: 1.6em;
-    }
-  }
-}
-.product-subnav {
-  .icon-tile {
-    width:16.6%;
-  }
-}
-.icon-thumb {
-  @include aspect-ratio(1,1);
-  width: 50%;
-  margin: 0 25%;
-  background-size: contain;
-  background-repeat:no-repeat;
-  @include bp(m) {
-    width: 30%;
-    margin: 0 35%;
-  }
-}
 
 section.contact-map {
   padding-top: 0;

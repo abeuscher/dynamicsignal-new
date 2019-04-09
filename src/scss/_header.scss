@@ -1,55 +1,184 @@
 $nav-height-tall:130px;
-$nav-bg-tall:rgba(255,255,255,.85);
+$nav-bg-tall:rgba(255,255,255,1);
 $nav-height-short:100px;
 $nav-bg-short:rgba(255,255,255,1);
 
-#page-header {
-  transition:all 0s ease-in;
+
+$nav-tall: 80px;
+$nav-short: 50px;
+$nav-base: 15px;
+$arrow-width: 7px;
+
+@mixin ds-transition() {
+  transition: 0.4s cubic-bezier(0.335, 0.815, 0.47, 1);
+}
+
+header.page-header {
+  z-index: 2;
   background:$nav-bg-tall;
-  height:$nav-height-tall;
-  position: absolute;
-  top:0;
-  position:relative; 
-  width:100%!important;
-  z-index:98;
-  transition: 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
-  .inner {
-    padding:50px 0 0;
-    margin:0;
+  width: 100%;
+  padding-top:$nav-short;
+  nav.main {
+    display: flex;
+    vertical-align: bottom;
   }
-  .logo {
-    display:inline-block;
-    margin-top:5px;
-    position:relative;
-    img {
-      height:($nav-height-tall - 50) * .75;
-      width:auto;
-    }
-    &:hover {
-      color:$beige;
-    }
-  }
-  &.active {
-    transition:all .25s ease-in;
-    box-shadow:0 0 24px rgba(0,0,0,.1);
-    height:$nav-height-short;
-    background:$nav-bg-short;
-    .logo {
-      margin-top:0;
+    .logo-bucket {
+      height: $nav-tall;
+      position: relative;
+      display: inline-block;
       img {
-        height:$nav-height-short - 50;
+        height: 100%;
+        max-height: 100%;
+        width: auto;
+      }
+      padding-left: $nav-base*2;
+      flex-basis: 20%;
+    }
+    .cta {
+      border: 1px solid $blue;
+      border-radius: 3px;
+      @include ds-transition();
+      &:hover {
+        background: $blue;
+        color: white;
+      }
+    }
+  ul.top-nav {
+    flex-basis: 80%;
+    text-align: right;
+    position: relative;
+    align-self: center;
+    margin: 0;
+    padding: 0;
+    background:$white;
+    li {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      a {
+        display: block;
+        padding: 0 $nav-base*1.5;
+        color: #000;
+        text-transform: capitalize;
+        font-size: 18px;
+        line-height:2.2;
+        position: relative;
+        &.hamburger {
+          padding: 22px 60px 0 0;
+        }
+      }
+    }
+    li.has-drop {
+      //position: relative;
+      text-align: left;
+      a {
+        line-height:$nav-tall;
+      }
+      .drop {
+        &:before {
+          content: "";
+          border: $arrow-width solid transparent;
+          border-bottom: $arrow-width solid $light-gray;
+          position: absolute;
+          left: $gutter-width + $arrow-width/2;
+          margin-left: -1 * $arrow-width/2;
+          top: -2 * $arrow-width;
+        }
+        background: $light-gray;
+        margin: 0;
+        padding: $nav-base/2 0 $nav-base;
+        transform: translateY(-100%);
+
+        transition: transform 0.2s ease-out;
+        position: absolute;
+        top: $nav-tall;
+        z-index: -1;
+        left: 0;
+        min-width: 100%;
+    
+        li {
+          display: block;
+          margin: 0;
+          padding: 0;
+          a {
+            line-height:2;
+            font-size: 14px;
+            white-space: nowrap;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      &:hover {
+        &:before {
+          opacity: 1;
+          z-index:2;
+        }
+        .drop {
+          transform: translateY(0);
+        }
       }
     }
   }
-  &:after {
-    content:'';
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    background:rgba(0,0,0,.8);
-    z-index:2;
-    display:none;
+  &.active {
+    background:$nav-bg-short;
+    .logo-bucket {
+      height:$nav-short;
+    }
+    ul.top-nav {
+      li.has-drop {
+        a {
+          line-height:$nav-short;
+        }
+        .drop {
+          top:$nav-short;
+        }
+      }
+
+    }
+
+
+  }
+}
+ul.hmenu {
+  display: inline-block;
+  list-style: none;
+  li {
+    display: inline-block;
+  }
+}
+
+
+
+.hamburger {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  
+  .line {
+    width: 30px;
+    height: 3px;
+    background: #000;
+    border-radius: 3px;
+    position: absolute;
+    transition: all 0.25s ease-out;
+    &.top {
+      transform: translateY(-10px);
+    }
+    &.bottom {
+      transform: translateY(10px);
+    }
+  }
+  &.active {
+    .line.middle {
+      opacity: 0;
+    }
+    .line.top {
+      transform: rotate(45deg);
+    }
+    .line.bottom {
+      transform: rotate(-45deg);
+    }
   }
 }
