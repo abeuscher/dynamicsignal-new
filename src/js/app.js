@@ -8,14 +8,13 @@ var sortBy = require("lodash/sortBy");
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
-var VideoHandler = require("./video-handler/index2.js");
+var VideoHandler = require("./video-handler/index.js");
 var Pies = require("./pie-chart/index.js");
 var Bars = require("./bar-chart/index.js");
 var Cookies = require("js-cookie");
 var tinyModal = require("tiny-modal");
 var smoothscroll = require("smoothscroll-polyfill");
 var DigitCounter = require("./digit-counter/index.js");
-var Modal = require("./modal/index.js");
 
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
@@ -100,8 +99,7 @@ window.addEventListener("load", function () {
   activateImages();
   var videoHandler = new VideoHandler();
   videoHandler.init();
-  //var Modals = new Modal();
-
+  activateEvents();
   PDFHandler(".pdf-wrapper");
   var pies = new Pies({
     "className": "pie-wrapper",
@@ -1142,5 +1140,20 @@ function getVertCarousels() {
         el.controls[i].classList.remove("active");
       }
     }
+  }
+}
+function activateEvents() {
+  var triggers = document.querySelectorAll("[data-event]");
+  for (i=0;i<triggers.length;i++) {
+    triggers[i].addEventListener("click", logEvent);
+  }
+  function logEvent(e) {
+    var eventName = e.target.getAttribute("data-event");
+    window['GoogleAnalyticsObject'] = 'ga';
+    window['ga'] = window['ga'] || function() {
+      (window['ga'].q = window['ga'].q || []).push(arguments)
+    };
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({"event" : eventName });
   }
 }

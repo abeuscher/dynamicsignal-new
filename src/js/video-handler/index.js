@@ -1,140 +1,149 @@
-var Vimeo = require('@vimeo/player');
+var Vimeo = require("@vimeo/player");
 var YouTubePlayer = require("youtube-player");
+var parseHTML = require("../utils/parse-html.js");
 
-function ActivateVideos() {
-  this.init();
+/*
+data-video-id : triggers video behavior
+data-video-modal-id : triggers modal behavior
+.video-activator : indicates a play button
+*/
+
+function videoHandler() {
+  var self = this;
+  this.settings = {
+    templates: {
+      modalVideo: require("./modal-video.pug"),
+      panelVideo: require("./panel-video.pug")
+    },
+    modalEvents: {}
+  };
 }
-ActivateVideos.prototype.init = function() {
+videoHandler.prototype.init = function() {
   var self = this;
-  this.videos = document.querySelectorAll(".video-activator");
-  this.players = [];
-  for (i=0;i<this.videos.length;i++) {
-    var thisBucket = this.videos[i];
-    if (thisBucket.getAttribute("video-type")=="youtube") {
-      if (window.innerWidth<1024) {
-        var yt = makeYoutube(thisBucket.getAttribute("data-video-id"),thisBucket);
-      }
-      else {
-        thisBucket.addEventListener("click", self.onYoutubeStart);
-      }
-    }
-    else {
-      var thisPlayer = this.makeVimeo(thisBucket.getAttribute("data-video-id"));
-      thisBucket.appendChild(thisPlayer);
-      if (window.innerWidth<1024) {
-        thisPlayer.classList.toggle("hide");
-      }
-      else {
-        thisBucket.addEventListener("click", self.onVimeoStart);
-      }
-    }
 
-  }
-
-  this.nakedVideos = document.querySelectorAll("[data-video-id]");
-
-  for (var i=0;i<this.nakedVideos.length;i++) {
-    var v = this.nakedVideos[i];
-    if (!v.classList.contains("video-activator")) {
-      if (v.getAttribute("data-video-type")=="vimeo") {
-        self.makeVimeo(v.getAttribute("data-video-id"));
-      }
-      else {
-        makeYoutube(v.getAttribute("data-video-id"),v);
-      }
-    }
-
-    
-  }
-} 
-ActivateVideos.prototype.onYoutubeStart = function(e) {
-  e.preventDefault();
+  self.videos = document.querySelectorAll("[data-video-id]");
+  self.buildVideos();
+  self.modals = document.querySelectorAll("[data-video-modal-id]");
+  self.buildModals();
+  var panels = document.querySelectorAll("[data-video-panel-id]");
+  self.buildPanels(panels,"data-video-panel-id");
+};
+videoHandler.prototype.buildModals = function() {
   var self = this;
-  self.setAttribute("data-content",self.innerHTML);
-  self.innerHTML = "";
-  var yt = makeYoutube(self.getAttribute("data-video-id"),self);
-  function restoreContent(el) {
-    el.innerHTML = el.getAttribute("data-content");
+  for (var i = 0; i < self.modals.length; i++) {
+    self.modals[i].videoid = self.modals[i].getAttribute("data-video-modal-id");
+    var data = {
+      videoid: self.modals[i].videoid
+    };
+    self.modals[i].modal = parseHTML(self.settings.templates.modalVideo(data));
+    self.modals[i].postMsg = self.modals[i].modal.querySelectorAll(".wrapper-html")[0];
+    document.body.appendChild(self.modals[i].modal);
+    self.modals[i].addEventListener("click", self.openModal);
   }
-  yt.on("stateChange", function (e) { if (e.data==2) { console.log(e);e.target.destroy();restoreContent(self); } } );
-  
-  if (self.getAttribute("data-event")) {
-    sendEvent(self.getAttribute("data-event"));
+};
+videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
+  var self = this;
+  if (self.panels) {
+    var bottom = self.panels.length;
+    Array.prototype.push(self.panels,panels);
+  }
+  else {
+    self.panels = panels;
+    var bottom = 0;
+  }
+  for (var i=bottom;i<self.panels.length;i++) {
+    self.panels[i].videoid = self.panels[i].getAttribute(attrName);
+    self.panels[i].video = parseHTML(self.settings.templates.panelVideo({videoid:self.panels[i].videoid}));
+    self.panels[i].theHtml = self.panels[i].querySelectorAll(".wrapper-panel-html")[0];
+    self.panels[i].theHtml.setAttribute("data-panel-idx",i);
+    self.panels[i].appendChild(self.panels[i].video);
+    self.panels[i].playerBucket = self.panels[i].video.querySelectorAll(".panel-video")[0];
+    if (!self.panels[i].player) {
+      self.panels[i].player = new YouTubePlayer(self.panels[i].playerBucket, {videoId:self.panels[i].videoid,playerVars:{rel:0}}); 
+    }   
+    self.panels[i].theHtml.addEventListener("click", function(e) {
+      e.preventDefault();
+      var thisPanel = self.panels[this.getAttribute("data-panel-idx")];
+      if (thisPanel.getAttribute("data-panel-event")!="") {
+        logEvent(thisPanel.getAttribute("data-panel-event"));
+      }
+      thisPanel.theHtml.classList.remove("active");
+      thisPanel.video.classList.add("active");
+      thisPanel.player.playVideo();
+      thisPanel.player.on("stateChange", function(e) {
+        if (e.data==0) {
+          stopVideo();
+        }   
+      });
+      if (gallery) {
+        gallery.on("change", stopVideo);
+      }
+      function stopVideo(e) {
+        thisPanel.player.stopVideo();
+        thisPanel.theHtml.classList.add("active");
+        thisPanel.video.classList.remove("active");
+      }
+    });
   }
 }
-ActivateVideos.prototype.onVimeoStart = function(e) {
-  e.preventDefault();
+videoHandler.prototype.activateCarousel = function(el,gallery) {
   var self = this;
-  var thisPlayer = this.querySelectorAll("iframe.vimeo-video")[0];
-  var vimeoPlayer = new Vimeo(thisPlayer);
-  thisPlayer.classList.toggle("hide");
-  if (self.getAttribute("data-event")) {
-    sendEvent(self.getAttribute("data-event"));
-  }
-  function changeCarouselListeners(toggle) {
-    var carouselButtons = document.getElementsByClassName("flickity-prev-next-button");
-    if (carouselButtons.length) {
-      for (i=0;i<carouselButtons.length;i++) {
-        carouselButtons[i].removeEventListener("click", carouselListener);
-        if (toggle) {
-          carouselButtons[i].addEventListener("click", carouselListener);
+  var slides = el.querySelectorAll("[data-video-carousel-id]");
+  self.buildPanels(slides,"data-video-carousel-id",gallery);
+  return true;
+}
+videoHandler.prototype.openModal = function(e) {
+  var self = this;
+  document.body.classList.add("modal-open");
+  self.modal.classList.add("active");
+  self.playerBucket = self.modal.querySelectorAll(".modal-video")[0];
+  self.playerToggle = self.modal.querySelectorAll(".wrapper-video")[0];
+  if (!self.modal.player) {
+    self.modal.player = new YouTubePlayer(self.playerBucket, {playerVars:{rel:0}});
+    self.modal.player.on("stateChange", function(e) {
+      if (e.data == 0) {
+        self.playerToggle.classList.remove("active");
+        self.postMsg.classList.add("active");
+        var playButtons = self.postMsg.querySelectorAll(".btn-replay");
+        for (var i=0;i<playButtons.length;i++) {
+          playButtons[i].addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            self.playerToggle.classList.add("active");
+            self.postMsg.classList.remove("active");
+            self.modal.player.playVideo();
+          });
         }
       }
-    }
-  }
-  changeCarouselListeners(true);
-  function carouselListener(e) {
-    var thisPlayer = document.querySelectorAll("iframe.vimeo-video:not(.hide)")[0];
-    var vimeoPlayer = new Vimeo(thisPlayer);
-    vimeoPlayer.unload();
-    changeCarouselListeners();
-  }
-
-  var isPlaying = vimeoPlayer.currentTime > 0 && !vimeoPlayer.paused && !vimeoPlayer.ended && vimeoPlayer.readyState > 2;
-  if (!isPlaying) {
- 
-    vimeoPlayer.play()
-    .then(function() {
-      vimeoPlayer.on('pause', vimeoListener);
     });
-
-  function vimeoListener(e) {
-    vimeoPlayer.off('pause', vimeoListener);
-    vimeoPlayer.unload();
-    thisPlayer.classList.toggle("hide");
-
+    self.modal.player.loadVideoById(self.playerBucket.getAttribute("data-video-id"));
+  } else {
+    self.modal.player.playVideo();
   }
+  this.bg = this.modal.querySelectorAll(".bg")[0];
+  this.bg.addEventListener("click", function(e) {
+    self.modal.player.stopVideo();
+    document.body.classList.remove("modal-open");
+    self.modal.classList.remove("active");
+    self.playerToggle.classList.add("active");
+    self.postMsg.classList.remove("active");
+  });
+};
+videoHandler.prototype.buildVideos = function() {
+  var self = this;
+  for (var i = 0; i < self.videos.length; i++) {
+    self.videos[i].player = new YouTubePlayer(self.videos[i],{playerVars:{rel:0}});
   }
-}
-function sendEvent(eventName) {
+};
+videoHandler.prototype.playVideo = function(player, id, cb) {
+  player.loadVideoById(id);
+};
+function logEvent(eventName) {
   window['GoogleAnalyticsObject'] = 'ga';
   window['ga'] = window['ga'] || function() {
     (window['ga'].q = window['ga'].q || []).push(arguments)
   };
-  dataLayer = dataLayer || [];
-  dataLayer.push({"event" : eventName });
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({"event" : eventName });
 }
-ActivateVideos.prototype.makeVimeo = function(id) {
-  var video = document.createElement("iframe");
-  video.src = "https://player.vimeo.com/video/"+id+"?title=0&byline=0&portrait=0";
-  video.setAttribute("webkitallowfullscreen","true");
-  video.setAttribute("mozallowfullscreen","true");
-  video.setAttribute("allowfullscreen","");
-  video.classList.add("vimeo-video");
-  video.classList.add("hide");
-  return video;
-}
-function makeYoutube (id, bucket, events) {
-  var player = document.createElement("div");
-  bucket.appendChild(player);
-  var video = new YouTubePlayer(player);
-  
-  video.loadVideoById(id); 
-  player.classList.add("youtube-video");
-  return video;
-}
-function makeSmartYoutube(id,bucket,events) {
-  var player = new YouTubePlayer(bucket);
-  player.loadVideoById(id);
-}
-module.exports = ActivateVideos;
+module.exports = videoHandler;
