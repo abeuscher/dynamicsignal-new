@@ -29,7 +29,7 @@
 }
 #wrapper.uber-wrapper {
   @include bp(s) {
-    background:url("https://www.dynamicsignal.com/wp-content/themes/ds-new/images/header-pattern-uber.jpg") $white no-repeat right top;
+    //background:url("https://www.dynamicsignal.com/wp-content/themes/ds-new/images/header-pattern-uber.jpg") $white no-repeat right top;
   }
   
   //background-size:cover;
@@ -82,7 +82,7 @@
       margin-top:170px;
     }
     @include bp(m) {
-      margin-top:114px;
+      margin-top:50px;
       width: 970px;
     }
     @include bp(l) {
@@ -107,7 +107,7 @@
   .description-block {
     padding-top:130px;
     background-size: 100%;
-    min-height: 250px;
+    //min-height: 250px;
     margin:0;
     h1, p {
       margin-right: auto;
@@ -125,7 +125,7 @@
       }
     }
     @include bp(s) {
-      padding-top:110px;
+      padding-top:60px;
     }
   }
   .page-aligner {
