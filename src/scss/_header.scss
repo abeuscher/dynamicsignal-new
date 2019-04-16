@@ -49,7 +49,7 @@ header.page-header {
         line-height:50px;
         color: #000;
         text-transform: capitalize;
-        font-size: 18px;
+        font-size: 14px; 
         position: relative;
         &.hamburger {
           padding: 17px 60px 0 12px;
@@ -58,14 +58,15 @@ header.page-header {
           padding:0 $gutter-width/2;
         }
         &.cta {
-          border: 1px solid $blue;
+          border: 1px solid $header-blue;
+          color:$header-blue;
           border-radius: 6px;
           @include ds-transition();
           line-height:2;
           padding:0 $gutter-width/2;
           margin:0 $gutter-width/2;
           &:hover {
-            background: $blue;
+            background: $header-blue;
             color: white;
             text-decoration:none;
           }
