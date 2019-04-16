@@ -94,6 +94,7 @@ videoHandler.prototype.activateCarousel = function(el,gallery) {
 }
 videoHandler.prototype.openModal = function(e) {
   var self = this;
+  e.preventDefault();
   document.body.classList.add("modal-open");
   self.modal.classList.add("active");
   self.playerBucket = self.modal.querySelectorAll(".modal-video")[0];

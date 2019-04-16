@@ -78,6 +78,9 @@ ul.oi-results {
   &.active {
     display:block;
   }
+  #oi-header {
+    color:$black;
+  }
   #btn-close-search {
     position: absolute;
     top:3px;
@@ -117,6 +120,7 @@ ul.oi-results {
     border:1px solid $gray;
     border-left:none;
     color:$gray;
+    text-align:right;
   }
 }
 section.search-results {

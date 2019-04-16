@@ -82,6 +82,7 @@ header.page-header#page-header
       a.cta(href="/requestdemo/") Request a Demo
       :php
         echo "</li>";
+        if ($post_slug!="search") {
       li.show-mobile
         a#btn-search-header(href="#") 
           span.fa.fa-search
@@ -93,6 +94,8 @@ header.page-header#page-header
               i.fa.fa-search
             span#oi-spellcheck
             span#oi-header
+      :php
+        }
       li.show-mobile
         a.hamburger#toggle-side-nav(href="#")
           .line.top

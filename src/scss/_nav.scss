@@ -20,8 +20,6 @@
     height: 2px;
     border-radius: 1px;
     background: $menu-blue;
-    //transition: all 0.25s ease-in;
-
     &+.icon-bar {
       margin-top: 4px;
     }
@@ -33,130 +31,9 @@
     top:28px;
   }
 }
-/*
-#page-header {
-  .small-nav {
-    text-align: right;
-    font-family: $nav-font;
-    vertical-align: middle;
 
-    ul {
-      transition: all 0s ease-in;
-      display: inline-block;
-      margin: 0 $gutter-width 0 0;
-      padding: $gutter-width 0 0;
-
-      li {
-        margin-left: $gutter-width/2;
-        display:none;
-        &.show-mobile {
-          display:inline-block;
-        }
-        @include bp(m) {
-          display:inline-block;
-        }
-        a {
-          display:inline-block;
-          font-weight: 400;
-          font-size: 14px;
-          color: $menu-blue;
-          transition: all 0.1s ease-in;
-          padding:$gutter-width/4;
-          &:hover {
-            color: $header-blue;
-          }
-          &#btn-search-header {
-            margin-left:-36px;
-            span {
-              display:block;
-            }
-            &.short {
-              //top:11px; 
-            }
-            @include bp(m) {
-              margin:0;
-            }
-          }
-          &.active {
-            text-decoration: underline;
-            &.requestdemo {
-              //display:none;
-            }
-          }
-          &.requestdemo {
-            color:$header-blue;
-            border:1px solid $header-blue;
-            border-radius:3px;
-            padding:$gutter-width/4 $gutter-width/2;
-            transition:.25s all ease-in;
-            &:hover {
-              background:$blue;
-              color:$white;
-            }
-            &.active {
-              background:$blue;
-              color:$white;
-              text-decoration:none;
-            }
-          }
-          @include bp(m) {
-            font-size: 18px;
-          }
-          @include bp(l) {
-            font-size: 22px;
-          }
-
-        }
-      }
-    }
-
-    &.interior {
-      ul {
-        margin: 0;
-        padding: 0 $gutter-width 0 0;
-
-        li {
-          a {
-            font-size: 18px;
-          }
-        }
-      }
-    }
-  }
-  .nav-bucket {
-    padding-top:22px;
-  }
-  &.active {
-    .navbar-toggle {
-      //transition: all 0.25s ease-in;
-    }
-    .nav-bucket {
-      padding-top:8px;
-    }
-
-      .small-nav ul {
-      transition: all 0.25s ease-in;
-      vertical-align: super;
-
-      li a {
-        &#btn-search-header {
-          top:11px;
-        }
-        @include bp(m) {
-          font-size: 16px;
-        }
-        @include bp(l) {
-          font-size: 18px;
-        }
-      }
-    }
-  }
-}
-*/
-$sideNavWidth: 300px;
-
-.sideMenu {
-  transform:translatex(300px);
+.side-nav {
+  transform:translatex($side-nav-width);
   transition: 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
   overflow-y: none;
   background:$white;
@@ -166,7 +43,7 @@ $sideNavWidth: 300px;
   left: auto;
   right: 0;
   z-index: 99;
-  width:$sideNavWidth;
+  width:$side-nav-width;
   #btn-close-sidenav {
     position:absolute;
     top:74px;
@@ -177,7 +54,6 @@ $sideNavWidth: 300px;
     padding-top:14px;
   }
   .inner {
-    //visibility:hidden;
     &>* {
       opacity:0;
     }
@@ -206,6 +82,9 @@ $sideNavWidth: 300px;
         &.demo {
           color:$header-blue;
         }
+        &:hover {
+          text-decoration:underline;
+        }
       }
 
       ul {
@@ -220,7 +99,9 @@ $sideNavWidth: 300px;
       }
     }
   }
-  &.short {
+}
+body.nav-short {
+  .side-nav {
     #btn-close-sidenav {
       top:54px;
     }  
@@ -266,11 +147,10 @@ body.nav-open {
       display:block;
     }
   }
-  .sideMenu {
+  .side-nav {
      z-index:99;
      transform:translatex(0);
     .inner {
-      //visibility:visible;
       &>* {
         opacity:1;
       }
@@ -283,24 +163,4 @@ body.nav-open {
       }
     }
   }
-  /*
-  .navbar-toggle {
-    //transform:translatex(285px);
-    //padding:12px 6px 0;
-    z-index:100;
-    .icon-bar {
-      background: $header-blue;
-      transform: rotate(45deg);
-
-      &+.icon-bar {
-        margin-top: -2px;
-        transform: rotate(-45deg);
-      }
-
-      &:last-child {
-        width: 0;
-      }
-    }
-  }
-  */
 }

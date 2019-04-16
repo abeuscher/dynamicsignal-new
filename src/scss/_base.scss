@@ -8,16 +8,9 @@ body {
   font-family: $body-font;
   color: $body-text-color;
   font-weight: 300;
-  opacity: 1;
-  transition: opacity 0.4s ease-in-out;
   overflow-x: hidden;
   &.nav-open, &.modal-open {
-    overflow: hidden;
-  }
-  &.loading {
-    @include bp(m) {
-      //opacity:0;
-    }
+    overflow:hidden;
   }
 }
 
@@ -1343,9 +1336,9 @@ section.halfpic {
     background:transparent;
     border:none;
     color:$white;
-  }
-  .wrapper-video, .wrapper-html {
-    //margin-top:4em;
+    &:active {
+      outline:none;
+    }
   }
   .wrapper-video {
     display:block;
@@ -1412,6 +1405,48 @@ section.halfpic {
     display:none;
     &.active {
       display:block;
+    }
+  }
+}
+ul.hmenu {
+  display: inline-block;
+  list-style: none;
+  li {
+    display: inline-block;
+  }
+}
+.hamburger {
+  position: relative;
+  width: 26px;
+  height: 25px;
+  .line {
+    width: 26px;
+    height: 3px;
+    background: #000;
+    border-radius: 3px;
+    position: absolute;
+    transition: transform 0.25s ease-out;
+    &.top {
+      transform: translateY(-8px);
+    }
+    &.bottom {
+      transform: translateY(8px);
+    }
+  }
+  &.active {
+    .line.middle {
+      opacity: 0;
+    }
+    .line.top {
+      transform: rotate(45deg);
+    }
+    .line.bottom {
+      transform: rotate(-45deg);
+    }
+  }
+  &:hover {
+    .line {
+      background:$blue;
     }
   }
 }

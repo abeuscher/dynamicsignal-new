@@ -2,25 +2,30 @@ header.page-header {
   z-index: 2;
   background:$nav-bg-tall;
   width: 100%;
-  padding-top:$nav-short;
+  padding-top:$cta-bar-short;
   box-shadow:0px 0px 10px rgba(0,0,0,0);
   @include ds-transition();
+  @include bp(s) {
+    padding-top:$cta-bar-tall;
+  }
   nav.main {
     display: flex;
     vertical-align: bottom;
   }
   .logo-bucket {
-    
     padding-left: $gutter-width;
     flex-basis: 20%;
     position: relative;
     display: inline-block;
     
     img {
-      height: $nav-tall;
+      height: $nav-short;
       @include ds-transition();
       max-height: 100%;
       width: auto;
+      @include bp(s) {
+        height:$nav-tall;
+      }
     }
   }
   ul.top-nav {
@@ -47,10 +52,10 @@ header.page-header {
         font-size: 18px;
         position: relative;
         &.hamburger {
-          padding: 17px 60px 0 0;
+          padding: 17px 60px 0 12px;
         }
         &#btn-search-header {
-          padding:0 $gutter-width;
+          padding:0 $gutter-width/2;
         }
         &.cta {
           border: 1px solid $blue;
@@ -58,7 +63,7 @@ header.page-header {
           @include ds-transition();
           line-height:2;
           padding:0 $gutter-width/2;
-          margin:0 0 0 $gutter-width/2;
+          margin:0 $gutter-width/2;
           &:hover {
             background: $blue;
             color: white;
@@ -97,6 +102,19 @@ header.page-header {
       position: relative;
       text-align: left;
       .drop {
+        z-index: 1;
+        background: $blue;
+        margin: 0;
+        border-radius:3px;
+        padding: $gutter-width/4 0 $gutter-width/3;
+        transform: rotateY(90deg);
+        position: absolute;
+        top: 50px;
+        z-index: 2;
+        left: 0;
+        min-width: 100%;
+        box-shadow:0px 5px 10px rgba(0,0,0,.3);
+        @include ds-transition();
         &:before {
           content: "";
           transition: all 0.2s 0.1s ease-in;
@@ -106,27 +124,14 @@ header.page-header {
           left: $gutter-width/2;
           margin-left: -1 * $arrow-width/2;
           top: -2 * $arrow-width;
-        }
-        z-index: 1;
-        background: $blue;
-        margin: 0;
-        border-radius:3px;
-        padding: $gutter-width/4 0;
-        transform: rotateY(90deg);
-        transition: transform 0.2s ease-out;
-        position: absolute;
-        top: 50px;
-        z-index: 2;
-        left: $gutter-width*.25;
-        min-width: 100%;
-    
+        }    
         li {
           display: block;
           margin: 0;
           padding: 0;
           hr {
             margin:$gutter-width/3 $gutter-width/2;
-            border-color:$lighter-gray;
+            border-color:rgba(255,255,255,0.3);
           }
           a {
             line-height: 1.2;
@@ -157,9 +162,13 @@ header.page-header {
       }
     }
   }
-  &.active {
+}
+
+body.nav-short {
+  header.page-header {
     background:$nav-bg-short;
     box-shadow:0px 0px 10px rgba(0,0,0,.2);
+    padding-top:$cta-bar-short;
     .logo-bucket img {
       height:$nav-short;
     }
@@ -170,57 +179,11 @@ header.page-header {
         }
         .drop {
           top:$nav-short;
+          a {
+            line-height:1.2;
+          }
         }
       }
-
-    }
-
-
-  }
-}
-ul.hmenu {
-  display: inline-block;
-  list-style: none;
-  li {
-    display: inline-block;
-  }
-}
-
-
-
-.hamburger {
-  position: relative;
-  width: 26px;
-  height: 25px;
-  
-  .line {
-    width: 26px;
-    height: 3px;
-    background: #000;
-    border-radius: 3px;
-    position: absolute;
-    transition: transform 0.25s ease-out;
-    &.top {
-      transform: translateY(-8px);
-    }
-    &.bottom {
-      transform: translateY(8px);
-    }
-  }
-  &.active {
-    .line.middle {
-      opacity: 0;
-    }
-    .line.top {
-      transform: rotate(45deg);
-    }
-    .line.bottom {
-      transform: rotate(-45deg);
-    }
-  }
-  &:hover {
-    .line {
-      background:$blue;
     }
   }
 }

@@ -5,17 +5,16 @@
   background:$menu-blue;
   color:$white;
   box-shadow:0 0 20px rgba(0,0,0,.1);
-  //border-top:1px solid $blue;
   width:100%;
   margin:0;
-  height:50px;
+  height:$cta-bar-short;
   overflow:hidden;
   vertical-align: middle;
-  padding-bottom:$gutter-width/4;
   color:$black;
   top:0;
   left:0;
   text-align:center;
+  @include ds-transition();
   .show-mobile {
     display:block;
     @include bp(m) {
@@ -27,14 +26,6 @@
     @include bp(m) {
       display:block;
     }
-  }
-  #summit-cta-closer {
-    display:none;
-    float:right;
-    font-size:4em;
-    padding-right:$gutter-width;
-    line-height:50px;
-    color:$header-blue;
   }
   a.button-cta-bottom {
     border-radius:5px;
@@ -62,8 +53,9 @@
     line-height:1.4;
     padding:.5em 0;
     color:$white;
-    @include bp(m) {
-      line-height: 50px;
+    @include ds-transition();
+    @include bp(s) {
+      line-height: $cta-bar-tall;
       padding:0;
       font-size:14px;
     }
@@ -82,7 +74,7 @@
       background-color:$blue;
     }
     text-transform:uppercase;
-    @include bp(m) {
+    @include bp(s) {
       text-decoration:none;
       font-size:14px;
       border:1px solid $white;
@@ -92,8 +84,8 @@
   }
 
 
-   @include bp(m) {
-    height:52px;
+   @include bp(s) {
+    height:$cta-bar-tall;
    }
     &.open {
       height:auto;
@@ -120,99 +112,14 @@
     }
   }
 }
-.summit-cta {
-  width:100%;
-  font-size:18px;
-  p {
-    margin:0;
-    line-height:1;
-    padding:6px 5px 0;
-    font-size:12px;
-    @include bp(m) {
-      padding:0;
-      font-size:14px;
-      line-height:50px;
-      font-weight:600;
-    }
-    a.button {
-      margin-left:1em;
-      background:$header-blue;
-      line-height:1;
-      text-transform: uppercase;
-      font-weight:400;
-      font-size:12px;
-      margin-top:5px;
+body.nav-short {
+  #cta-bar {
+    height:$cta-bar-short;
+    h2 {
       @include bp(m) {
-        font-size:14px;
-        margin-top:0;
+        line-height:$cta-bar-short;
       }
-    }
-    
-    color:$white;
-  }
-  #summit-cta-popup {
-    display:none;
-    position:fixed;
-    top:130px;
-    a {
-      position:relative;
-    }
-    img {
-      max-width:100%;
-      border-bottom:5px solid yellow;
-    }
-    .inner {
-      display: inline-block;
-      position: relative;
-      margin: 0 auto;
-    }
-     @include bp(s) {
-        .inner {
-            width:750px
-        }
-    }
-    
-    @include bp(m) {
-        .inner {
-            width:970px
-        }
-    }
-    
-    @include bp(l) {
-        .inner {
-            width:1170px
-        }
-    }
-
-    &.active {
-      display:block;
-    }
-    &:after {
-      content: "";
-      display: block;
-      padding-top: 13.02083%;
-    }
-
-    .row {
-      position:relative;
-    }
-    ul.reg-buttons {
-      list-style:none;
-      margin:0;
-      padding:0;
-      text-align: right;
-      position:absolute;
-      right:0;
-      top:4vw;
-      li {
-        padding-bottom:1em;
-      }
-       a.text-link {
-        text-decoration:underline;
-        &:hover {
-          text-decoration: none;
-        }
-       }
+      
     }
   }
 }
