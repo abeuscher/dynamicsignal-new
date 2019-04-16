@@ -70,18 +70,18 @@
     },
     {
       "title": "Solutions",
-      "url": "/company/",
+      "url": "/xolutions/",
       "children": [{
-          "title": "Workforce Communication",
-          "url": "#"
+          "title": "Communication",
+          "url": "/workforce-communication/"
         },
         {
-          "title": "Employee Advocacy",
-          "url": "/team/"
+          "title": "Human Resources",
+          "url": "/employee-advocacy/"
         },
         {
-          "title": "Employee Experience",
-          "url": "/agency/"
+          "title": "Marketing",
+          "url": "/employee-experience/"
         },
         {
           "title": "Healthcare",
@@ -89,11 +89,11 @@
         },
         {
           "title": "Manufacturing",
-          "url": "/team/"
+          "url": "#"
         },
         {
           "title": "Retail",
-          "url": "/agency/"
+          "url": "#"
         }
       ]
     },
@@ -134,7 +134,10 @@
   ];
   
 aside.sideMenu.right#side-nav
-  a#btn-close-sidenav!="&times;"
+  a#btn-close-sidenav.hamburger.active
+    .line.top
+    .line.middle
+    .line.bottom
   .inner
     if showSearch!="hide"
       #search-box-sidenav

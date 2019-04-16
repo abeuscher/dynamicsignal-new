@@ -1,63 +1,88 @@
 header.page-header#page-header
+  :php
+    global $post;
+    $post_slug=$post->post_name;
+    $pages = array(
+      "product"=>"What is Dynamic Signal",
+      "company"=>"Our Company",
+      "solutions"=>"Solutions",
+      "resources"=>"Resources",
+      "requestdemo"=>"Request a Demo"
+    );
+    $page_classes = [];
+    foreach($pages as $key=>$page) {
+      $page_classes[] = ($key == $post_slug) ? $key." active" : $key;
+    }
   #cta-bar
   nav.main
-    .logo-bucket
+    a.logo-bucket(href="/")
       img#logo(src="https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/images/logo-header.png")
     ul.hmenu.top-nav
-      li.has-drop.active
-        a(href="#") What is Dynamic Signal?
-        ul.drop
-          li
-            a(href="/demo-center/") Demo Center
-          li
-            a(href="/services/") Services
-          li
-            a(href="/features/") Features
-          li
-            a(href="https://resources.dynamicsignal.com/case-studies") Case Studies
-          li
-            a(href="/integrations/") Integrations
-      li.has-drop
-        a(href="/company/") Our Company
-        ul.drop
-          li
-            a(href="/customers/") Customers
-          li
-            a(href="/team/") Team
-          li
-            a(href="/agency/") Partners
-          li
-            a(href="/careers/") Careers
-          li
-            a(href="events/") Events
-          li
-            a(href="/blog/") Blog
-          li
-            a(href="https://resources.dynamicsignal.com/news-room") News Room
-          li
-            a(href="https://resources.dynamicsignal.com/press-coverage") Press Coverage
-      li.has-drop
-        a(href="/solutions/") Solutions
-        ul.drop
-          li
-            a(href="/workforce-communication/") Workforce Communication
-          li
-            a(href="/employee-experience/") Employee Experience
-          li
-            a(href="/employee=advocacy/") Employee Advocacy
-          li
-            hr
-          li
-            a(href="#") Healthcare
-          li
-            a(href="#") Manufacturing
-          li
-            a(href="#") Retail  
-      li
-        a(href="/resources/") Resources
-      li
-        a.cta(href="/requestdemo/") Request a Demo
-      li
+      :php
+        printf("<li class='has-drop %s'>", $page_classes[0]);
+      a(href="/product/") What is Dynamic Signal?
+      ul.drop
+        li
+          a(href="/demo-center/") Demo Center
+        li
+          a(href="/services/") Services
+        li
+          a(href="/features/") Features
+        li
+          a(href="https://resources.dynamicsignal.com/case-studies") Case Studies
+        li
+          a(href="/integrations/") Integrations
+      :php
+        echo "</li>";
+        printf("<li class='has-drop %s'>", $page_classes[1]);
+      a(href="/company/") Our Company
+      ul.drop
+        li
+          a(href="/customers/") Customers
+        li
+          a(href="/team/") Team
+        li
+          a(href="/agency/") Partners
+        li
+          a(href="/careers/") Careers
+        li
+          a(href="events/") Events
+        li
+          a(href="/blog/") Blog
+        li
+          a(href="https://resources.dynamicsignal.com/news-room") News Room
+        li
+          a(href="https://resources.dynamicsignal.com/press-coverage") Press Coverage
+      :php
+        echo "</li>";
+        printf("<li class='has-drop %s'>", $page_classes[2]);
+      a(href="/solutions/") Solutions
+      ul.drop
+        li
+          a(href="/workforce-communication/") Communication
+        li
+          a(href="/employee-experience/") Human Resources
+        li
+          a(href="/employee=advocacy/") Marketing
+        li
+          hr
+        li
+          a(href="#") Healthcare
+        li
+          a(href="#") Manufacturing
+        li
+          a(href="#") Retail  
+      :php
+        echo "</li>";
+        printf("<li class='%s'>", $page_classes[3]);
+      a(href="/resources/") Resources
+      :php
+        echo "</li>";
+        printf("<li class='%s show-medium'>", $page_classes[4]);
+      a.cta(href="/requestdemo/") Request a Demo
+      :php
+        echo "</li>";
+      li.show-mobile
         a#btn-search-header(href="#") 
           span.fa.fa-search
         #search-box-header
@@ -68,7 +93,7 @@ header.page-header#page-header
               i.fa.fa-search
             span#oi-spellcheck
             span#oi-header
-      li
+      li.show-mobile
         a.hamburger#toggle-side-nav(href="#")
           .line.top
           .line.middle

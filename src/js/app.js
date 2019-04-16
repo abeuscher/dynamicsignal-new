@@ -272,7 +272,7 @@ var siteActions = [{
   {
     "element": "side-nav",
     "action": function () {
-      var theWrapper = document.getElementById("wrapper");
+      var theWrapper = document.getElementById("overlay");
       var theHeader = document.getElementById("page-header");
       var theToggle = document.getElementById("toggle-side-nav");
       var closeButton = document.getElementById("btn-close-sidenav");
@@ -642,6 +642,10 @@ var siteActions = [{
         },
         {
         "id":"sticky-header",
+        "classname":"short"
+        },
+        {
+        "id":"side-nav",
         "classname":"short"
         }
       ];

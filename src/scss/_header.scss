@@ -1,48 +1,28 @@
-$nav-height-tall:130px;
-$nav-bg-tall:rgba(255,255,255,1);
-$nav-height-short:100px;
-$nav-bg-short:rgba(255,255,255,1);
-
-
-$nav-tall: 80px;
-$nav-short: 50px;
-$nav-base: 15px;
-$arrow-width: 7px;
-
-@mixin ds-transition() {
-  transition: 0.4s cubic-bezier(0.335, 0.815, 0.47, 1);
-}
-
 header.page-header {
   z-index: 2;
   background:$nav-bg-tall;
   width: 100%;
   padding-top:$nav-short;
+  box-shadow:0px 0px 10px rgba(0,0,0,0);
+  @include ds-transition();
   nav.main {
     display: flex;
     vertical-align: bottom;
   }
-    .logo-bucket {
+  .logo-bucket {
+    
+    padding-left: $gutter-width;
+    flex-basis: 20%;
+    position: relative;
+    display: inline-block;
+    
+    img {
       height: $nav-tall;
-      position: relative;
-      display: inline-block;
-      img {
-        height: 100%;
-        max-height: 100%;
-        width: auto;
-      }
-      padding-left: $nav-base*2;
-      flex-basis: 20%;
-    }
-    .cta {
-      border: 1px solid $blue;
-      border-radius: 3px;
       @include ds-transition();
-      &:hover {
-        background: $blue;
-        color: white;
-      }
+      max-height: 100%;
+      width: auto;
     }
+  }
   ul.top-nav {
     flex-basis: 80%;
     text-align: right;
@@ -50,60 +30,113 @@ header.page-header {
     align-self: center;
     margin: 0;
     padding: 0;
-    background:$white;
     li {
       margin: 0;
       padding: 0;
       position: relative;
+      display:none;
+      &.show-mobile {
+        display:inline-block;
+      }
       a {
         display: block;
-        padding: 0 $nav-base*1.5;
+        padding: 0 $gutter-width/2;
+        line-height:50px;
         color: #000;
         text-transform: capitalize;
         font-size: 18px;
-        line-height:2.2;
         position: relative;
         &.hamburger {
-          padding: 22px 60px 0 0;
+          padding: 17px 60px 0 0;
         }
+        &#btn-search-header {
+          padding:0 $gutter-width;
+        }
+        &.cta {
+          border: 1px solid $blue;
+          border-radius: 6px;
+          @include ds-transition();
+          line-height:2;
+          padding:0 $gutter-width/2;
+          margin:0 0 0 $gutter-width/2;
+          &:hover {
+            background: $blue;
+            color: white;
+            text-decoration:none;
+          }
+        }
+        &:hover {
+          text-decoration:underline;
+        }
+      }
+      &:hover, &.active {
+        a {
+          color:$blue;
+        }
+      }
+      &.active {
+        > a {
+          text-decoration:underline;
+        }
+        a.cta {
+          text-decoration:none;
+          background:$blue;
+          color:$white;
+        }
+      }
+      @include bp(m) {
+        &.show-medium {
+          display:inline-block;
+        } 
+      }
+      @include bp(l) {
+        display:inline-block;
       }
     }
     li.has-drop {
-      //position: relative;
+      position: relative;
       text-align: left;
-      a {
-        line-height:$nav-tall;
-      }
       .drop {
         &:before {
           content: "";
+          transition: all 0.2s 0.1s ease-in;
           border: $arrow-width solid transparent;
-          border-bottom: $arrow-width solid $light-gray;
+          border-bottom: $arrow-width solid $blue;
           position: absolute;
-          left: $gutter-width + $arrow-width/2;
+          left: $gutter-width/2;
           margin-left: -1 * $arrow-width/2;
           top: -2 * $arrow-width;
         }
-        background: $light-gray;
+        z-index: 1;
+        background: $blue;
         margin: 0;
-        padding: $nav-base/2 0 $nav-base;
-        transform: translateY(-100%);
-
+        border-radius:3px;
+        padding: $gutter-width/4 0;
+        transform: rotateY(90deg);
         transition: transform 0.2s ease-out;
         position: absolute;
-        top: $nav-tall;
-        z-index: -1;
-        left: 0;
+        top: 50px;
+        z-index: 2;
+        left: $gutter-width*.25;
         min-width: 100%;
     
         li {
           display: block;
           margin: 0;
           padding: 0;
+          hr {
+            margin:$gutter-width/3 $gutter-width/2;
+            border-color:$lighter-gray;
+          }
           a {
-            line-height:2;
-            font-size: 14px;
+            line-height: 1.2;
+            font-size: .8em;
+            letter-spacing:0.5px;
             white-space: nowrap;
+            font-weight:400;
+            color:#fff;
+            padding:$gutter-width/3 $gutter-width/2;
+            text-shadow:none;
             &:hover {
               text-decoration: underline;
             }
@@ -111,19 +144,23 @@ header.page-header {
         }
       }
       &:hover {
-        &:before {
+        a {
+          color:$blue;
+        }
+        &:after {
           opacity: 1;
-          z-index:2;
+          transform: rotateZ(0);
         }
         .drop {
-          transform: translateY(0);
+          transform: rotateY(0);
         }
       }
     }
   }
   &.active {
     background:$nav-bg-short;
-    .logo-bucket {
+    box-shadow:0px 0px 10px rgba(0,0,0,.2);
+    .logo-bucket img {
       height:$nav-short;
     }
     ul.top-nav {
@@ -153,21 +190,21 @@ ul.hmenu {
 
 .hamburger {
   position: relative;
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 25px;
   
   .line {
-    width: 30px;
+    width: 26px;
     height: 3px;
     background: #000;
     border-radius: 3px;
     position: absolute;
-    transition: all 0.25s ease-out;
+    transition: transform 0.25s ease-out;
     &.top {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
     }
     &.bottom {
-      transform: translateY(10px);
+      transform: translateY(8px);
     }
   }
   &.active {
@@ -179,6 +216,11 @@ ul.hmenu {
     }
     .line.bottom {
       transform: rotate(-45deg);
+    }
+  }
+  &:hover {
+    .line {
+      background:$blue;
     }
   }
 }

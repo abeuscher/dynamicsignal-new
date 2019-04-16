@@ -68,22 +68,26 @@ ul.oi-results {
 #search-box-header {
   display:none;
   position:absolute;
-  top:85px;
+  top:50px;
   right:5px;
   width:350px;
   height:100px;
   padding:35px 10px 0;
-  background:$white;
+  background:$blue;
+  color:$white;
   &.active {
     display:block;
   }
   #btn-close-search {
     position: absolute;
-    top:0;
-    right:5px;
-    color:$menu-blue;
+    top:3px;
+    right:12px;
+    padding:0;
+    line-height:1;
+    color:$white;
     &:hover {
-      color:$blue;
+      color:$lighter-gray;
+      text-decoration:none;
     }
   }
   .search-form {

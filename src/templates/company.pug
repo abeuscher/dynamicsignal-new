@@ -87,14 +87,6 @@ block content
   section.white-bg-section
     .container
       .row
-        .col-md-12.icon-bar
-          :php
-            foreach(get_field("sub_nav") as $idx=>$button) {
-              printf("<a class='icon-tile' href='%s'><div class='icon-thumb' data-bg-array='%s'></div><h2>%s</h2></a>",$button["button_target"],json_encode($button["button_icon"],JSON_UNESCAPED_SLASHES), $button["button_label"]);
-            }
-  section.white-bg-section
-    .container
-      .row
         .col-md-8.content
           :php
             printf("<img src='%s' alt='' />",get_field("secondary_image")["url"]);
