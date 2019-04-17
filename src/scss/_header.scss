@@ -123,7 +123,7 @@ header.page-header {
           border-bottom: $arrow-width solid $blue;
           position: absolute;
           left: $gutter-width/2;
-          margin-left: -1 * $arrow-width/2;
+          margin-left: -3px;
           top: -2 * $arrow-width;
         }    
         li {
@@ -152,10 +152,6 @@ header.page-header {
       &:hover {
         a {
           color:$blue;
-        }
-        &:after {
-          opacity: 1;
-          transform: rotateZ(0);
         }
         .drop {
           transform: rotateY(0);
