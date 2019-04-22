@@ -10,7 +10,6 @@ var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
 var VideoHandler = require("./video-handler/index.js");
 var Cookies = require("js-cookie");
-var tinyModal = require("tiny-modal");
 var smoothscroll = require("smoothscroll-polyfill");
 var DigitCounter = require("./digit-counter/index.js");
 
@@ -22,7 +21,6 @@ var isElement = require("./utils/is-element.js");
 var removeClassFromClass = require("./utils/remove-class-from-class.js");
 
 var FormHandler = require("./form-handler/index.js");
-var PDFHandler = require("./pdf-handler/index.js");
 
 var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
@@ -98,7 +96,6 @@ window.addEventListener("load", function () {
   var videoHandler = new VideoHandler();
   videoHandler.init();
   activateEvents();
-  PDFHandler(".pdf-wrapper");
   var s = getMobileOperatingSystem();
   if (s) {
     var mobilePanels = document.querySelectorAll(".mobile-cta");

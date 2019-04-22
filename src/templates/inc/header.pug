@@ -84,7 +84,7 @@ header.page-header#page-header
         echo "</li>";
         if ($post_slug!="search") {
       li.show-mobile
-        a#btn-search-header(href="#") 
+        a#btn-search-header(href="#",title="search") 
           span.fa.fa-search
         #search-box-header
           a#btn-close-search(href="#")!="&times;"
@@ -97,7 +97,7 @@ header.page-header#page-header
       :php
         }
       li.show-mobile
-        a.hamburger#toggle-side-nav(href="#")
+        a.hamburger#toggle-side-nav(href="#",title="menu")
           .line.top
           .line.middle
           .line.bottom

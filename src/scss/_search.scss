@@ -98,9 +98,7 @@ ul.oi-results {
   }
 
 }
-#search-box-sidenav {
-  display:block;
-}
+
 .search-form {
   input[type='text'] {
     width:80%;
@@ -127,4 +125,12 @@ section.search-results {
   min-height:400px;
   min-height:20vw;
 
+}
+#search-box-sidenav {
+  display:block;
+  .search-form {
+    button[type='submit'] {
+      text-align:center;
+    }
+  }
 }
