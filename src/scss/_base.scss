@@ -1337,6 +1337,9 @@ section.halfpic {
     .inner.big-text {
       font-size:1.4em;
     }
+    h1 {
+      font-size:1.6em;
+    }
     @include bp(m) {
       padding-top:80px;
       flex-basis:50%;
