@@ -115,9 +115,11 @@ section.blog-hero {
     }
   }
 }
+.tag-cloud {
 
+}
 .blog-tile-wide {
-  margin: $gutter-width;
+  margin: $gutter-width 0;
   display: block;
 
   &:after {
@@ -152,6 +154,12 @@ section.blog-hero {
       color: transparent;
       background: rgba(0,0,0,0);
     }
+    &:hover {
+      &:after {
+        color: $white;
+        background: rgba(0,0,0,.6);
+      }
+    }
   }
 
   .description {
@@ -181,14 +189,7 @@ section.blog-hero {
     margin:0 0 $gutter-width/4;
   }
   &:hover {
-    background: $light-gray;
-
-    .thumb {
-      &:after {
-        color: $white;
-        background: rgba(0,0,0,.6);
-      }
-    }
+    //background: $light-gray;
   }
 }
 

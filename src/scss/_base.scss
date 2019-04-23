@@ -119,6 +119,9 @@ a {
 
     .col-3 {
       flex-basis: 33%;
+      article {
+        height:100%;
+      }
     }
   }
 
