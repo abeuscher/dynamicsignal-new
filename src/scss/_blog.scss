@@ -427,3 +427,20 @@ ul.social-share li i.fa-circle {
     padding-bottom:1em;
   }
 }
+.blog-image-header {
+  background-size:cover;
+  padding:$gutter-width*2;
+  border-radius:5px;
+  border:1px solid $blue;
+  h2 {
+    font-size:36px;
+    color:$blue;
+    margin-top:0;
+    margin-bottom:6px;
+  }
+  h3 {
+    font-size:24px;
+    color:$blue;
+    margin:0;
+  }
+}
