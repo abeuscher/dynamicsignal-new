@@ -21,7 +21,7 @@ block content
         "slug"=>"customer-stories"
         ],
       [
-        "name"=>"DySi News and Culture",
+        "name"=>"DySi News & Culture",
         "slug"=>"news-and-culture"
         ]
     );
@@ -37,7 +37,19 @@ block content
         array_push($filtered_posts,array("category"=>$category,"post"=>$query->posts[0])); 
         }  
     }
-    $query = new WP_Query( array( 'meta_key' => 'front_page_featured_entry','meta_value' => 'true', 'posts_per_page' => 1,'orderby'=>'date','order'=>'asc') );
+    $args = array(
+      'posts_per_page' => 1,
+      'orderby'    => 'post_date',
+      'order'      => 'DESC',
+      'ignore_sticky_posts'=>1,
+      'meta_query' => array(
+        array(
+          'key' => 'front_page_featured_entry',
+          'value' => 'true'
+        )
+      )
+    );
+    $query = new WP_Query($args);
     if ($query->have_posts()) {
       $featured = $query->posts[0];
     }
@@ -51,41 +63,28 @@ block content
       .row
         .col-md-12
           include ./inc/breadcrumbs.pug
-  section
+  section.no-padding
     .container
       .row.padding-bottom
         .col-md-12
-            a.story-tile-link(href='https://resources.dynamicsignal.com/ebooks-guides/state-of-employee-communication-and-engagement-study-2019')
-                .row
-                    .col-md-12
-                        .featured-thumb(data-bg-array='{"ID":19258,"id":19258,"title":"2019 State of Employee Communication and Engagement Study","filename":"ece-study-2019.jpg","filesize":140046,"url":"https://dynamicsignal.local/wp-content/uploads/2019/03/ece-study-2019.jpg","link":"https://dynamicsignal.local/resources/ece-study-2019/","alt":"2019 State of Employee Communication and Engagement Study","author":"11","description":"2019 State of Employee Communication and Engagement Study","caption":"2019 State of Employee Communication and Engagement Study","name":"ece-study-2019","status":"inherit","uploaded_to":14471,"date":"2019-03-20 14:07:44","modified":"2019-03-20 14:08:11","menu_order":0,"mime_type":"image/jpeg","type":"image","subtype":"jpeg","icon":"https://dynamicsignal.local/wp-includes/images/media/default.png","width":1663,"height":593,"sizes":{"thumbnail":"https://dynamicsignal.local/wp-content/uploads/2019/03/ece-study-2019-150x150.jpg","thumbnail-width":150,"thumbnail-height":150,"medium":"https://dynamicsignal.local/wp-content/uploads/2019/03/ece-study-2019-300x107.jpg","medium-width":300,"medium-height":107,"medium_large":"https://dynamicsignal.local/wp-content/uploads/2019/03/ece-study-2019-768x274.jpg","medium_large-width":768,"medium_large-height":274,"large":"https://dynamicsignal.local/wp-content/uploads/2019/03/ece-study-2019-1024x365.jpg","large-width":1024,"large-height":365,"event-thumb":"https://dynamicsignal.local/wp-content/uploads/2019/03/ece-study-2019-198x198.jpg","event-thumb-width":198,"event-thumb-height":198,"vse-shuffle":"https://dynamicsignal.local/wp-content/uploads/2019/03/ece-study-2019-270x230.jpg","vse-shuffle-width":270,"vse-shuffle-height":230}}', style='background-image: url("https://dynamicsignal.local/wp-content/uploads/2019/03/ece-study-2019.jpg");')
-                            h1 2019 State of Employee Communication and Engagement Study
-                .row
-                    .col-md-12
-                        ul.post-meta.hmenu
-                            li
-                                span.fa.fa-book
-                                | eBook
-                            li
-                                span.fa.fa-caret-right
-                                | eBooks & Guides
-                        p
-                          :php
-                            echo $featured->post_title." ,".$featured->front_page_featured_entry." !";
-  section
+            :php
+              printf("<a class='story-tile-link' href='%s'><div class='row'><div class='col-md-12'><div class='featured-thumb' data-bg='%s'><h1>%s</h1></div></div></div><div class='row'><div class='col-md-12'><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Editor's Pick</li></ul><p>%s</p></div></div></a>", get_the_permalink($featured), get_the_post_thumbnail_url($featured), $featured->post_title,htmlentities(WPSEO_Meta::get_value('metadesc', $featured->ID), ENT_QUOTES));
+  section.no-padding
     .container
       .row
-        .even-height-wrapper
-          :php
-            foreach($filtered_posts as $key=>$post) {
-            $p = $post["post"];
-            $c = $post["category"];
-            printf("<div class='col-3'><a class='category-link-title' href='%s'><h2>%s<span class='view-button'>View All<span class='divot'>»</span></span></h2></a><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><a class='story-tile-link' href='%s' itemprop='url'><div class='featured-thumb' data-bg='%s'></div><h3 itemprop='title'>%s</h3></a></article></div>","/category/".$c["slug"],$c["name"],get_the_ID(), $p->post_name, get_the_post_thumbnail_url($p), $p->post_title);  
-            }
+        .col-md-12
+          .even-height-wrapper
+            :php
+              foreach($filtered_posts as $key=>$post) {
+              $p = $post["post"];
+              $c = $post["category"];
+              printf("<div class='col-3'><a class='category-link-title' href='%s'><h3>%s<span class='view-button'>View All<span class='divot'>»</span></span></h3></a><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><a class='story-tile-link' href='%s' itemprop='url'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Featured</li></ul><h4 itemprop='title'>%s</h4></a></article></div>","/category/".$c["slug"],$c["name"],get_the_ID(), $p->post_name, get_the_post_thumbnail_url($p), $p->post_title);  
+              }
   section
     .container
       .row
         .col-md-12
+          h2 Most Recent
           :php
             $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
             $count = 0;
@@ -98,8 +97,9 @@ block content
                     $tags = "";
                     if ($post_tags) {
                       foreach($post_tags as $key=>$tag) {
-                        $tags .= sprintf("<a href='/tag/%s'>%s</a>, ", $tag->slug,$tag->name);
+                        $tags .= sprintf("<a href='/tag/%s'>%s</a> | ", $tag->slug,$tag->name);
                       }
+                      $tags = rtrim($tags,"| ");
                     }
                     printf("<article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'>
                               <meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>
@@ -109,12 +109,12 @@ block content
                               </a>
                                 <div class='description'>
                                   <a href='%s' itemprop='url'><h3 itemprop='headline'>%s</h3></a>
-                                  <p class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</p>
                                   <div class='author-block'>%s</div></a>
+                                  <p class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</p>
                                   <div class='tag-cloud'>%s</div>
                                 </div>
                               </div>  
-                            </article>",get_the_ID(),get_permalink(),get_the_post_thumbnail_url(),get_permalink(),get_the_title(),get_the_time('c'),get_the_time('c'),get_the_date(),get_the_author(),$tags);
+                            </article>",get_the_ID(),get_permalink(),get_the_post_thumbnail_url(),get_permalink(),get_the_title(),get_the_author(),get_the_time('c'),get_the_time('c'),get_the_date(),$tags);
                       $count++;
                       }}
   section.container

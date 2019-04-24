@@ -121,8 +121,8 @@ section.blog-hero {
 .blog-tile-wide {
   margin: $gutter-width 0;
   display: block;
-
-  &:after {
+  position:relative;
+  &:after { 
     content: "";
     display: table;
     clear: both;
@@ -131,13 +131,36 @@ section.blog-hero {
     margin: $gutter-width 0;
     border: 1px solid $light-gray;
   }
+  .tag-cloud {
+    background:$light-gray;
+    padding:$gutter-width/2 $gutter-width;
 
+    font-size:.8em;
+    color:$light-blue;
+
+    a {
+      color:$blue;
+      &:hover {
+        color:$menu-blue;
+        text-decoration:underline;
+      }
+    }
+    @include bp(m) {
+      position:absolute;
+      bottom:0;
+      right:0;
+      left:30%;
+    }
+  }
   .thumb {
     width: 100%;
     @include aspect-ratio(4,3);
     background-size: cover;
     background-position: center center;
+    display:none;
+
     @include bp(m) {
+      display:block;
       width: 30%;
       float: left;
     }
@@ -163,10 +186,14 @@ section.blog-hero {
   }
 
   .description {
-    width: 70%;
-    float: left;
-    padding-left: $gutter-width;
+
+
     line-height: 1.7;
+    @include bp(m) {
+      padding-left: $gutter-width;
+      width: 70%;
+      float: left;
+    }
   }
 
   .author-block {
@@ -186,7 +213,7 @@ section.blog-hero {
     color:$classic-gray;
   }
   h3 {
-    margin:0 0 $gutter-width/4;
+    margin:$gutter-width 0 $gutter-width/4;
   }
   &:hover {
     //background: $light-gray;
