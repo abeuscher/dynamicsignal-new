@@ -1,36 +1,76 @@
-- 
-  var siteroot = "https://www.dynamicsignal.com"
+ - var url = "https://dynamicsignal.com"
 header.page-header#page-header
   #cta-bar
-  .row.inner
-    .col-md-4.col-xs-9.logo-bucket
-      a.logo(href=siteroot)
-        img(src='https://dynamicsignal.com/wp-content/themes/ds-new/images/logo-header.png',alt='Dynamic Signal')
-    .col-md-8.col-xs-3.right.nav-bucket
-      nav.small-nav.interior
-        ul.hmenu
+  nav.main
+    a.logo-bucket(href="/")
+      img#logo(src="https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/images/logo-header.png")
+    ul.hmenu.top-nav
+      li.has-drop
+        a(href=url + "/product/") Platform
+        ul.drop
           li
-            a(href=siteroot+"/product/") What Is Dynamic Signal
+            a(href=url + "/demo-center/") Demo Center
           li
-            a(href=siteroot+"/company/") Our Company
+            a(href=url + "/services/") Services
           li
-            a(href=siteroot+"/resources/") Resources
+            a(href=url + "/features/") Features
           li
-            a.requestdemo(href=siteroot+"/requestdemo/") Request a Demo
-          li.show-mobile
-            a#btn-search-header(href="#")
-              span.fa.fa-search
-            #search-box-header
-              a#btn-close-search(href="#")!="&times;"
-              form.search-form(action='')
-                input.query#oi-query(type='text', placeholder="Enter Search Term")
-                button.submit(type="submit")
-                  i.fa.fa-search
-                span#oi-spellcheck
-                span#oi-header
-          li.show-mobile
-            .navbar-toggle#toggle-side-nav
-              span.sr-only Toggle navigation
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
+            a(href=url + "https://resources.dynamicsignal.com/case-studies") Case Studies
+          li
+            a(href=url + "/integrations/") Integrations
+      li.has-drop
+        a(href=url + "/company/") Company
+        ul.drop
+          li
+            a(href=url + "/customers/") Customers
+          li
+            a(href=url + "/team/") Team
+          li
+            a(href=url + "/agency/") Partners
+          li
+            a(href=url + "/careers/") Careers
+          li
+            hr
+          li
+            a(href=url + "/events/") Events
+          li
+            a(href=url + "/blog/") Blog
+          li
+            a(href=url + "/news-and-press/") News & Press
+      li.has-drop
+        a(href=url + "/solutions/") Solutions
+        ul.drop
+          li
+            a(href=url + "/workforce-communication/") Communication
+          li
+            a(href=url + "/employee-experience/") Human Resources
+          li
+            a(href=url + "/employee-advocacy/") Marketing
+          li
+            hr
+          li
+            a(href=url + "https://resources.dynamicsignal.com/healthcare") Healthcare
+          li
+            a(href=url + "https://resources.dynamicsignal.com/manufacturing") Manufacturing
+          li
+            a(href=url + "https://resources.dynamicsignal.com/retail") Retail  
+      li
+        a(href=url + "/resources/") Resources
+      li.show-medium
+        a.cta(href=url + "/requestdemo/") Request a Demo
+      li.show-mobile
+        a#btn-search-header(href="#",title="search") 
+          span.fa.fa-search
+        #search-box-header
+          a#btn-close-search(href="#")!="&times;"
+          form.search-form(action='')
+            input.query#oi-query(type='text', placeholder="Enter Search Term")
+            button.submit(type="submit")
+              i.fa.fa-search
+            span#oi-spellcheck
+            span#oi-header
+      li.show-mobile
+        a.hamburger#toggle-side-nav(href="#",title="menu")
+          .line.top
+          .line.middle
+          .line.bottom
