@@ -718,22 +718,6 @@ a.small-link {
 }
 
 
-section.contact-map {
-  padding-top: 0;
-  overflow:hidden;
-}
-
-.contact-map iframe {
-  pointer-events: none;
-  width: 100%;
-  display: block;
-  position: relative;
-  top:-46px;
-}
-
-.contact-map iframe.clicked {
-  pointer-events: auto;
-}
 
 .text-right {
   text-align: right;
