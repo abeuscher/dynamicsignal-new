@@ -40,27 +40,27 @@ window.addEventListener("load", function() {
   var headController = new ScrollMagic.Controller({
     "loglevel": 0
   });
+  var headerLock = new ScrollMagic.Scene({
+    offset: 10,
+    duration: 0
+  })
+  .on("enter", function (e) {
+    if (!document.body.classList.contains("nav-short")) {
+      document.body.classList.add("nav-short");
+    }
+  })
+  .on("leave", function (e) {
+    if (document.body.classList.contains("nav-short")) {
+      document.body.classList.remove("nav-short");
+    }
+  })
+  .addTo(headController);
   new ScrollMagic.Scene({
-      offset: 10,
-      duration: 0
-    })
-    .on("enter", function(e) {
-      document.getElementById("page-header").classList.add("active");
-      document.getElementById("toggle-side-nav").classList.add("short");
-    })
-    .on("leave", function(e) {
-      document.getElementById("page-header").classList.remove("active");
-      document.getElementById("toggle-side-nav").classList.remove("short");
-    })
-    .addTo(headController);
+    offset: 0,
+    duration: 0
+  });
+  headerLock.addTo(headController);  
 
-    var pageHeader = document.getElementById("page-header");
-    new ScrollMagic.Scene({
-      offset: 0,
-      duration: 0
-    })
-    .setPin(pageHeader)
-    .addTo(headController);  
     var btn = document.getElementById("btn-search-header");
     var btnClose = document.getElementById("btn-close-search");
     var searchBox = document.getElementById("search-box-header");
@@ -116,10 +116,14 @@ window.addEventListener("load", function() {
 });
 
 function setNav() {
+  var theOverlay = document.createElement("div");
+  theOverlay.id = "overlay";
+
   var theWrapper = document.getElementById("wrapper");
   var theHeader = parseHTML(templates.header(siteopts));
   theWrapper.parentNode.insertBefore(theHeader,theWrapper);
   document.body.appendChild(parseHTML(templates.sideNav(siteopts)));
+  document.body.appendChild(theOverlay);
   theWrapper.appendChild(parseHTML(templates.footer(siteopts)));
   theWrapper.classList.add("marketo-wrapper");
 }

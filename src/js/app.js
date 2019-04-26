@@ -603,7 +603,7 @@ var siteActions = [{
         var headController = new ScrollMagic.Controller({
           "loglevel": 0
         });
-        new ScrollMagic.Scene({
+        var headerLock = new ScrollMagic.Scene({
             offset: 10,
             duration: 0
           })
@@ -621,9 +621,8 @@ var siteActions = [{
           new ScrollMagic.Scene({
             offset: 0,
             duration: 0
-          })
-          .setPin(pageHeader, {pushFollowers:false})
-          .addTo(headController);  
+          });
+        headerLock.addTo(headController);  
       }
   }
   },
