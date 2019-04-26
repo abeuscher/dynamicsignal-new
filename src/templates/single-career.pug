@@ -13,7 +13,7 @@ block content
   :php
     $breadcrumbs = [];
     array_push($breadcrumbs,array(
-      "title"=>"Our Company",
+      "title"=>"Company",
       "link"=>"/company/"
     ));
     array_push($breadcrumbs,array(
@@ -23,7 +23,7 @@ block content
     if( have_posts() ){
      while( have_posts() ) {
       the_post();
-  section.top-section-interior
+  section.top-section-interior.generic
     .container
       .row
         .col-md-12

@@ -1,39 +1,103 @@
 header.page-header#page-header
+  :php
+    global $post;
+    $post_slug=$post->post_name;
+    $pages = array(
+      "product"=>"What is Dynamic Signal",
+      "company"=>"Our Company",
+      "solutions"=>"Solutions",
+      "resources"=>"Resources",
+      "requestdemo"=>"Request a Demo"
+    );
+    $page_classes = [];
+    foreach($pages as $key=>$page) {
+      $page_classes[] = ($key == $post_slug) ? $key." active" : $key;
+    }
   #cta-bar
-  .row.inner
-    .col-md-3.col-xs-9.logo-bucket
-      a.logo(href=locals.siteurl+'/')
-        img(src='https://dynamicsignal.com/wp-content/themes/ds-new/images/logo-header.png',alt='Dynamic Signal')
-    .col-md-9.col-xs-3.right.nav-bucket
-      nav.small-nav.interior
-        ul.hmenu
-          :php
-            global $post;
-            $post_slug=$post->post_name;
-            $pages = array(
-              "product"=>"What is Dynamic Signal",
-              "company"=>"Our Company",
-              "resources"=>"Resources",
-              "requestdemo"=>"Request a Demo"
-            );
-            foreach($pages as $key=>$page) {
-              $thisclass = ($key == $post_slug) ? $key." active" : $key;
-              printf("<li><a href='/%s/' class='%s'>%s</a></li>",$key,$thisclass,$page);
-            }
-          li.show-mobile
-            a#btn-search-header(href="#")
-              span.fa.fa-search
-            #search-box-header
-              a#btn-close-search(href="#")!="&times;"
-              form.search-form(action='')
-                input.query#oi-query(type='text', placeholder="Enter Search Term")
-                button.submit(type="submit")
-                  i.fa.fa-search
-                span#oi-spellcheck
-                span#oi-header
-          li.show-mobile
-            .navbar-toggle#toggle-side-nav
-              span.sr-only Toggle navigation
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
+  nav.main
+    a.logo-bucket(href="/")
+      img#logo(src="https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/images/logo-header.png")
+    ul.hmenu.top-nav
+      :php
+        printf("<li class='has-drop %s'>", $page_classes[0]);
+      a(href="/product/") Platform
+      ul.drop
+        li
+          a(href="/demo-center/") Demo Center
+        li
+          a(href="/services/") Services
+        li
+          a(href="/features/") Features
+        li
+          a(href="https://resources.dynamicsignal.com/case-studies") Case Studies
+        li
+          a(href="/integrations/") Integrations
+      :php
+        echo "</li>";
+        printf("<li class='has-drop %s'>", $page_classes[1]);
+      a(href="/company/") Company
+      ul.drop
+        li
+          a(href="/customers/") Customers
+        li
+          a(href="/team/") Team
+        li
+          a(href="/agency/") Partners
+        li
+          a(href="/careers/") Careers
+        li
+          hr
+        li
+          a(href="events/") Events
+        li
+          a(href="/blog/") Blog
+        li
+          a(href="/news-and-press/") News & Press
+      :php
+        echo "</li>";
+        printf("<li class='has-drop %s'>", $page_classes[2]);
+      a(href="/solutions/") Solutions
+      ul.drop
+        li
+          a(href="/workforce-communication/") Communication
+        li
+          a(href="/employee-experience/") Human Resources
+        li
+          a(href="/employee-advocacy/") Marketing
+        li
+          hr
+        li
+          a(href="https://resources.dynamicsignal.com/healthcare") Healthcare
+        li
+          a(href="https://resources.dynamicsignal.com/manufacturing") Manufacturing
+        li
+          a(href="https://resources.dynamicsignal.com/retail") Retail  
+      :php
+        echo "</li>";
+        printf("<li class='%s'>", $page_classes[3]);
+      a(href="/resources/") Resources
+      :php
+        echo "</li>";
+        printf("<li class='%s show-medium'>", $page_classes[4]);
+      a.cta(href="/requestdemo/") Request a Demo
+      :php
+        echo "</li>";
+        if ($post_slug!="search") {
+      li.show-mobile
+        a#btn-search-header(href="#",title="search") 
+          span.fa.fa-search
+        #search-box-header
+          a#btn-close-search(href="#")!="&times;"
+          form.search-form(action='')
+            input.query#oi-query(type='text', placeholder="Enter Search Term")
+            button.submit(type="submit")
+              i.fa.fa-search
+            span#oi-spellcheck
+            span#oi-header
+      :php
+        }
+      li.show-mobile
+        a.hamburger#toggle-side-nav(href="#",title="menu")
+          .line.top
+          .line.middle
+          .line.bottom

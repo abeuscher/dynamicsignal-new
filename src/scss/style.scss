@@ -4,7 +4,7 @@ Theme URI: http://dynamicsignal.com
 Author: Al Beuscher
 Author URI: http://alexbeuscher.com/
 Description: Theme for dynamicsignal.com. Uses ACF for custom fields, NPM for packaging, and Pug templating. See readme file for installation instructions.
-Version: 3.0.0
+Version: 3.1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: dynamicsignal
@@ -18,6 +18,7 @@ $fa-font-path: $font-path;
 @import "./_parallax.scss";
 @import "./_case-study.scss";
 @import "./_nav.scss";
+@import "./_sub-nav.scss";
 @import "./_breadcrumbs.scss";
 @import "./_grid.scss";
 @import "./_footer.scss";
@@ -37,6 +38,7 @@ $fa-font-path: $font-path;
 @import "./_contact.scss";
 @import "./_support.scss";
 @import "./_careers.scss";
+@import "./_news-and-press.scss";
 @import "./_team.scss";
 @import "./_uberflip.scss";
 @import "./_marketo.scss";

@@ -22,13 +22,13 @@ html
         $title = trim(WPSEO_Meta::get_value('title'))=="" ? get_the_title() :  WPSEO_Meta::get_value('title');
       }
       if (!strpos($title,"Dynamic Signal")) {
-      $title .= " | Dynamic Signal";
+        $title .= " | Dynamic Signal";
       }
       if ($override_description!="") {
-        $description = $override_description;
+        $description = htmlentities($override_description, ENT_QUOTES);
         }
       else {
-        $description = WPSEO_Meta::get_value('metadesc');
+        $description = htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES);
         }
       if ($override_thumb!="") {
         $featured_image = $override_thumb;
@@ -53,6 +53,7 @@ html
       $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
       echo "<link href='$slink' rel='stylesheet' />";
   body
+    #overlay
     block nav
     #wrapper
       block content

@@ -14,7 +14,9 @@ $time:12s;
     &.adwords {
       .flipper-wrapper {
         flex-basis:33.33%;
+        min-height:100px; 
         @include bp(s) {
+          min-height:100px; 
           flex-basis:25%;
         }
       }

@@ -29,23 +29,6 @@ $mf-transition-speed: 0.28s !default;
   width: 100%;
   padding: $gutter-width/2 $gutter-width;
   border-radius: 1px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: $shadow-8;
-    transform: scale(0.98);
-    transition: transform $mf-transition-speed ease-in-out;
-    z-index: -1;
-  }
-
-  &:hover::before {
-    transform: scale(1);
-  }
   &.blue-form {
     background:$blue;
     color:$white;

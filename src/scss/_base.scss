@@ -8,16 +8,9 @@ body {
   font-family: $body-font;
   color: $body-text-color;
   font-weight: 300;
-  opacity: 1;
-  transition: opacity 0.4s ease-in-out;
   overflow-x: hidden;
   &.nav-open, &.modal-open {
-    overflow: hidden;
-  }
-  &.loading {
-    @include bp(m) {
-      //opacity:0;
-    }
+    overflow:hidden;
   }
 }
 
@@ -342,13 +335,14 @@ section {
 }
 
 .top-section-interior {
-  background:$light-gray;
-  min-height: 250px;
+  //background:$light-gray;
+  min-height: 80px;
   .row {
-    padding-top: 0;
+    padding-top: 130px;
   }
 
   h1 {
+    display:none;
     margin-bottom: 0;
     font-size:2.2em;
     margin-top:50px;
@@ -358,11 +352,17 @@ section {
   h2 {
     font-size: 1.4em;
     margin: .25em 0 0;
+    display:none;
+  }
+  &.generic {
+    h1,h2 {
+      display:block;
+    }
   }
   @include bp(m) {
     //background: url($img-path + "bg-header-interior.png") $light-gray no-repeat bottom right;
-    background: url($img-path + "header-pattern-08.jpg") $light-gray no-repeat center-top;
-    background-size:cover;
+    //background: url($img-path + "header-pattern-08.jpg") $light-gray no-repeat center-top;
+    //background-size:cover;
     //background:linear-gradient(135deg, #e9e9e9 0%,#d1d1d1 100%);
     h1 {
       font-size:3.2em;
@@ -717,42 +717,6 @@ a.small-link {
   z-index: 0;
 }
 
-.icon-bar {
-  text-align: center;
-}
-
-.icon-tile {
-  display: inline-block;
-  text-align: center;
-  width: 25%;
-
-  h2 {
-    color: $header-blue;
-    font-size: 4vw;
-    margin: 0.25em 0;
-  }
-  @include bp(m) {
-    h2 {
-      font-size: 1.6em;
-    }
-  }
-}
-.product-subnav {
-  .icon-tile {
-    width:16.6%;
-  }
-}
-.icon-thumb {
-  @include aspect-ratio(1,1);
-  width: 50%;
-  margin: 0 25%;
-  background-size: contain;
-  background-repeat:no-repeat;
-  @include bp(m) {
-    width: 30%;
-    margin: 0 35%;
-  }
-}
 
 section.contact-map {
   padding-top: 0;
@@ -1219,6 +1183,10 @@ position:relative;
 .blue-bg-section {
   background:$blue;
   position:relative;
+  color:$white;
+  h1,h2,h3,h4,h5,h6,cite,p,ul,li,a {
+    color:$white;
+  }
 }
 
 p.source {
@@ -1267,7 +1235,7 @@ section.halfpic {
   position:relative;
   background:$lighter-gray;
   padding:0;
-  margin-top:-80px;
+  margin-top:50px;
   &.pos-fixed {
     position:fixed!important;
     top:50px!important;
@@ -1326,6 +1294,9 @@ section.halfpic {
     .inner.big-text {
       font-size:1.4em;
     }
+    h1 {
+      font-size:1.6em;
+    }
     @include bp(m) {
       padding-top:80px;
       flex-basis:50%;
@@ -1368,9 +1339,9 @@ section.halfpic {
     background:transparent;
     border:none;
     color:$white;
-  }
-  .wrapper-video, .wrapper-html {
-    //margin-top:4em;
+    &:active {
+      outline:none;
+    }
   }
   .wrapper-video {
     display:block;
@@ -1437,6 +1408,48 @@ section.halfpic {
     display:none;
     &.active {
       display:block;
+    }
+  }
+}
+ul.hmenu {
+  display: inline-block;
+  list-style: none;
+  li {
+    display: inline-block;
+  }
+}
+.hamburger {
+  position: relative;
+  width: 26px;
+  height: 25px;
+  .line {
+    width: 26px;
+    height: 3px;
+    background: #000;
+    border-radius: 3px;
+    position: absolute;
+    transition: transform 0.25s ease-out;
+    &.top {
+      transform: translateY(-8px);
+    }
+    &.bottom {
+      transform: translateY(8px);
+    }
+  }
+  &.active {
+    .line.middle {
+      opacity: 0;
+    }
+    .line.top {
+      transform: rotate(45deg);
+    }
+    .line.bottom {
+      transform: rotate(-45deg);
+    }
+  }
+  &:hover {
+    .line {
+      background:$blue;
     }
   }
 }

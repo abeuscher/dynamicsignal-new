@@ -10,16 +10,13 @@
       "class":"demo"
     },
     {
-      "title": "What is Dynamic Signal",
+      "title": "Platform",
       "url": "/product/",
       "children": [
         {
           "title": "Demo Center",
-          "url": "/demo-center/"
-        },
-        {
-          "title": "Solutions",
-          "url": "/solutions/"
+          "url": "/demo-center/",
+          "class":"demo"
         },
         {
           "title": "Services",
@@ -40,7 +37,7 @@
       ]
     },
     {
-      "title": "Our Company",
+      "title": "Company",
       "url": "/company/",
       "children": [{
           "title": "Customers",
@@ -59,7 +56,7 @@
           "url": "/careers/"
         },
         {
-          "title": "Events & Webinars",
+          "title": "Events",
           "url": "/events/"
         },
         {
@@ -67,12 +64,37 @@
           "url": "/blog/"
         },
         {
-          "title": "News Room",
-          "url": "https://resources.dynamicsignal.com/news-room"
+          "title": "News & Press",
+          "url": "/news-and-press/"
+        }
+      ]
+    },
+    {
+      "title": "Solutions",
+      "url": "/xolutions/",
+      "children": [{
+          "title": "Communication",
+          "url": "/workforce-communication/"
         },
         {
-          "title": "Press Coverage",
-          "url": "https://resources.dynamicsignal.com/press-coverage"
+          "title": "Human Resources",
+          "url": "/employee-advocacy/"
+        },
+        {
+          "title": "Marketing",
+          "url": "/employee-experience/"
+        },
+        {
+          "title": "Healthcare",
+          "url": "https://resources.dynamicsignal.com/healthcare"
+        },
+        {
+          "title": "Manufacturing",
+          "url": "https://resources.dynamicsignal.com/manufacturing"
+        },
+        {
+          "title": "Retail",
+          "url": "https://resources.dynamicsignal.com/retail"
         }
       ]
     },
@@ -112,8 +134,11 @@
     }
   ];
   
-aside.sideMenu.right#side-nav
-  a#btn-close-sidenav!="&times;"
+aside.side-nav.right#side-nav
+  a#btn-close-sidenav.hamburger.active(href="#", title="close menu")
+    .line.top
+    .line.middle
+    .line.bottom
   .inner
     if showSearch!="hide"
       #search-box-sidenav
