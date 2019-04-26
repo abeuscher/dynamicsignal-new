@@ -33,18 +33,22 @@ window.addEventListener("load", function() {
     theWrapper.id = "wrapper";
     theWrapper.classList.add("uber-wrapper");
 
+    var theOverlay = document.createElement("div");
+    theOverlay.id = "overlay";
+
     // Empty the body into the wrapper
     while (document.body.firstChild) {
       theWrapper.appendChild(document.body.firstChild);
     }
     document.body.appendChild(theWrapper);
-
+    
     // Drop the header, menu, and nav toggle above the wrapper
     theWrapper.parentNode.insertBefore(parseHTML(templates.header(siteopts)), theWrapper);
     theWrapper.parentNode.insertBefore(parseHTML(templates.sideNav(siteopts)), theWrapper);
     var theFooter = document.getElementsByTagName("footer")[0];
     theWrapper.replaceChild(parseHTML(templates.footer(siteopts)), theFooter);
-
+    document.body.append(theOverlay);
+    
     // Add the header shrinker
     var headController = new ScrollMagic.Controller({
       "loglevel": 0
