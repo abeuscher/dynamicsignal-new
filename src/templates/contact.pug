@@ -9,17 +9,6 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  -
-    var pageData = {
-    "header":"Contact Us",
-    "subheader":"We would love to hear from you!"
-    };
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          h1!=pageData.header
-          h2!=pageData.subheader
   section.contact-map#map-container
     iframe#the-contact-map.embed-responsive-item(src='https://www.google.com/maps/d/u/0/embed?mid=12UcD-a29LLoAjqT2Gbbfr0U3NEVNG69l', width='100%', height='450', frameborder='0', style='border:0', allowfullscreen='')
   section.contact-details.container
