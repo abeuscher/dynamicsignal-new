@@ -13,7 +13,8 @@ function videoHandler() {
   this.settings = {
     templates: {
       modalVideo: require("./modal-video.pug"),
-      panelVideo: require("./panel-video.pug")
+      panelVideo: require("./panel-video.pug"),
+      multiVideo: require("./multi-video.pug")
     },
     modalEvents: {}
   };
@@ -42,7 +43,22 @@ videoHandler.prototype.buildModals = function() {
   }
 };
 videoHandler.prototype.buildMultiplayer = function(bucket) {
-  var video_ids = bucket.getAttribute("data-multivideo-ids").split(",");
+  var self = this;
+  var data = pageData.videos[bucket.getAttribute("data-multiplayer-id")];
+  bucket.appendChild(parseHTML(self.settings.templates.multiVideo(data)));
+  
+  var screen = bucket.querySelectorAll(".player")[0];
+  var buttons = bucket.querySelectorAll(".buttons a");
+  
+  var player = new YouTubePlayer(screen, {playerVars:{rel:0}});
+
+  player.cueVideoById(buttons[0].getAttribute("data-launch-id"));
+
+  for (i=0;i<buttons.length;i++) {
+    buttons[i].addEventListener("click", function() {
+      player.loadVideoById(this.getAttribute("data-launch-id"));
+    });
+  }
 }
 videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
   var self = this;

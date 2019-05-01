@@ -93,7 +93,10 @@ window.addEventListener("load", function() {
     theWrapper.removeEventListener("click", closeBody);
     closeButton.removeEventListener("click", closeBody);
   }
-  new ActivateVideos();
+  var videoHandler = new ActivateVideos();
+  if (document.getElementById("multivideo")) {
+    videoHandler.buildMultiplayer(document.getElementById("multivideo"));
+  }
   if (document.getElementById("video-demo-button")) {
     var btn = document.getElementById("video-demo-button");
     btn.addEventListener("click", function(e) {

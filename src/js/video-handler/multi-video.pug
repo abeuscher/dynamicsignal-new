@@ -1,0 +1,7 @@
+.inner
+    .wrapper-video
+        .player
+    .buttons
+        for item in locals
+            if item.title!=""
+                a.btn-launch(href="#",data-launch-id=item.id)!=item.title

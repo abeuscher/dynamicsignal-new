@@ -107,6 +107,16 @@ var jsFiles = [{
       paths: ['./bower_components', './node_modules'],
       output: "bundle.js"
     }
+  },
+  {
+    "id": "marketojsnew",
+    "buildDir": marketoembedBuildDir,
+    "opts": {
+      entries: [marketoembedSrcDir + 'app.js'],
+      debug: false,
+      paths: ['./bower_components', './node_modules'],
+      output: "other-bundle.js"
+    }
   }
 ];
 function bundleMain() {

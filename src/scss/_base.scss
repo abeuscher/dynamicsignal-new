@@ -1451,3 +1451,14 @@ section.halfpic {
     }
   }
 }
+.multi-video-player {
+  .buttons {
+    display:flex;
+    .btn {
+      padding:3px 6px; 
+      background:$blue;
+      color:$white;
+      text-decoration:none;
+    }
+  }
+}
