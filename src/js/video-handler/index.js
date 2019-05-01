@@ -41,8 +41,8 @@ videoHandler.prototype.buildModals = function() {
     self.modals[i].addEventListener("click", self.openModal);
   }
 };
-videoHandler.prototype.buildMultiplayer = function(bucket, videoData) {
-  
+videoHandler.prototype.buildMultiplayer = function(bucket) {
+  var video_ids = bucket.getAttribute("data-multivideo-ids").split(",");
 }
 videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
   var self = this;
