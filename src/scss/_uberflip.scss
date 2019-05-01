@@ -34,6 +34,9 @@
   
   //background-size:cover;
 }
+.hmenu.topnav {
+  background:none!important;
+}
 .uf-stream-template-banner {
   #wrapper.uber-wrapper {
     @include bp(s) {
@@ -53,6 +56,7 @@
   margin-left: auto;
   padding-left: $gutter-width;
   padding-right: $gutter-width;
+  margin-top:130px!important;
   @include bp(s) {
     width: auto;
   }
@@ -168,6 +172,9 @@ html.touch .single-page .top-nav .nav-back, .single-page .top-nav .nav-back {
 .main,body.lab_no_header.hub-page .main, body.lab_no_header.hub-page.hubs-embedded-iframe .main,.main.clearfix {
   display:block;
   margin-top:0;
+}
+nav.main,body.lab_no_header.hub-page nav.main, body.lab_no_header.hub-page.hubs-embedded-iframe nav.main,nav.main.clearfix {
+  display:flex;
 }
 body.lab_no_header.hub-page header#page-header, body.lab_no_header.hub-page.hubs-embedded-iframe header#page-header {
   height:80px!important;

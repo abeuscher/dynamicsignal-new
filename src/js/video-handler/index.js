@@ -53,10 +53,15 @@ videoHandler.prototype.buildMultiplayer = function(bucket) {
   var player = new YouTubePlayer(screen, {playerVars:{rel:0}});
 
   player.cueVideoById(buttons[0].getAttribute("data-launch-id"));
+  buttons[0].classList.add("active");
 
   for (i=0;i<buttons.length;i++) {
     buttons[i].addEventListener("click", function() {
       player.loadVideoById(this.getAttribute("data-launch-id"));
+      for (i=0;i<buttons.length;i++) {
+        buttons[i].classList.contains("active") ? buttons[i].classList.remove("active") : "";
+      }
+      this.classList.add("active");
     });
   }
 }
@@ -113,6 +118,7 @@ videoHandler.prototype.activateCarousel = function(el,gallery) {
 }
 videoHandler.prototype.openModal = function(e) {
   var self = this;
+  e.preventDefault();
   document.body.classList.add("modal-open");
   self.modal.classList.add("active");
   self.playerBucket = self.modal.querySelectorAll(".modal-video")[0];

@@ -311,7 +311,9 @@ section.video-gate {
     -webkit-appearance: none;
     border-radius: 0;
   }
-
+  .mktoForm textarea.mktoField {
+    height:8em!important;
+  }
   .mktoForm select.mktoField,
   .mktoForm textarea.mktoField {
     box-shadow: none !important;
@@ -473,6 +475,7 @@ section.video-gate-two-col {
   padding-top:0;
   padding-bottom:0;
   border-top:2px solid $blue;
+  margin-top:135px;
   .col-md-8,.col-md-4 {
     padding-bottom:0;
     @include bp(m) {

@@ -33,42 +33,46 @@ window.addEventListener("load", function() {
     theWrapper.id = "wrapper";
     theWrapper.classList.add("uber-wrapper");
 
+    var theOverlay = document.createElement("div");
+    theOverlay.id = "overlay";
+
     // Empty the body into the wrapper
     while (document.body.firstChild) {
       theWrapper.appendChild(document.body.firstChild);
     }
     document.body.appendChild(theWrapper);
-
+    
     // Drop the header, menu, and nav toggle above the wrapper
     theWrapper.parentNode.insertBefore(parseHTML(templates.header(siteopts)), theWrapper);
     theWrapper.parentNode.insertBefore(parseHTML(templates.sideNav(siteopts)), theWrapper);
     var theFooter = document.getElementsByTagName("footer")[0];
     theWrapper.replaceChild(parseHTML(templates.footer(siteopts)), theFooter);
-
+    document.body.append(theOverlay);
+    
     // Add the header shrinker
     var headController = new ScrollMagic.Controller({
       "loglevel": 0
     });
+    var headerLock = new ScrollMagic.Scene({
+      offset: 10,
+      duration: 0
+    })
+    .on("enter", function (e) {
+      if (!document.body.classList.contains("nav-short")) {
+        document.body.classList.add("nav-short");
+      }
+    })
+    .on("leave", function (e) {
+      if (document.body.classList.contains("nav-short")) {
+        document.body.classList.remove("nav-short");
+      }
+    })
+    .addTo(headController);
     new ScrollMagic.Scene({
-        offset: 10,
-        duration: 0
-      })
-      .on("enter", function(e) {
-        document.getElementById("page-header").classList.add("active");
-        document.getElementById("toggle-side-nav").classList.add("short");
-      })
-      .on("leave", function(e) {
-        document.getElementById("page-header").classList.remove("active");
-        document.getElementById("toggle-side-nav").classList.remove("short");
-      })
-      .addTo(headController);
-      var pageHeader = document.getElementById("page-header");
-      new ScrollMagic.Scene({
-        offset: 0,
-        duration: 0
-      })
-      .setPin(pageHeader)
-      .addTo(headController);  
+      offset: 0,
+      duration: 0
+    });
+  headerLock.addTo(headController);  
     // Add menu button listener
     var theToggle = document.getElementById("toggle-side-nav");
     var closeButton = document.getElementById("btn-close-sidenav");

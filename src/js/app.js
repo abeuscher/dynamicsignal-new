@@ -9,10 +9,7 @@ var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
 var VideoHandler = require("./video-handler/index.js");
-var Pies = require("./pie-chart/index.js");
-var Bars = require("./bar-chart/index.js");
 var Cookies = require("js-cookie");
-var tinyModal = require("tiny-modal");
 var smoothscroll = require("smoothscroll-polyfill");
 var DigitCounter = require("./digit-counter/index.js");
 
@@ -24,7 +21,6 @@ var isElement = require("./utils/is-element.js");
 var removeClassFromClass = require("./utils/remove-class-from-class.js");
 
 var FormHandler = require("./form-handler/index.js");
-var PDFHandler = require("./pdf-handler/index.js");
 
 var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
@@ -100,16 +96,6 @@ window.addEventListener("load", function () {
   var videoHandler = new VideoHandler();
   videoHandler.init();
   activateEvents();
-  PDFHandler(".pdf-wrapper");
-  var pies = new Pies({
-    "className": "pie-wrapper",
-    "mask": true,
-    "color": "yellow",
-    "backgroundColor": "white"
-  });
-  var bars = new Bars({
-    "className": "bar-wrapper"
-  });
   var s = getMobileOperatingSystem();
   if (s) {
     var mobilePanels = document.querySelectorAll(".mobile-cta");
@@ -197,7 +183,6 @@ var siteActions = [{
               behavior: 'smooth',
               "block": "start"
             });
-            //controller.scrollTo(section); 
             if (window.history && window.history.pushState) {
               history.pushState("", document.title, "#" + section.id);
             }
@@ -272,7 +257,7 @@ var siteActions = [{
   {
     "element": "side-nav",
     "action": function () {
-      var theWrapper = document.getElementById("wrapper");
+      var theWrapper = document.getElementById("overlay");
       var theHeader = document.getElementById("page-header");
       var theToggle = document.getElementById("toggle-side-nav");
       var closeButton = document.getElementById("btn-close-sidenav");
@@ -412,10 +397,12 @@ var siteActions = [{
       var btn = document.getElementById("btn-search-header");
       var btnClose = document.getElementById("btn-close-search");
       var searchBox = document.getElementById("search-box-header");
-      btn.addEventListener("click", function () {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
         searchBox.classList.toggle("active");
       });
-      btnClose.addEventListener("click", function () {
+      btnClose.addEventListener("click", function (e) {
+        e.preventDefault();
         searchBox.classList.toggle("active");
       });
 
@@ -485,22 +472,11 @@ var siteActions = [{
     "action": function () {
       var menuToggle = document.getElementById("toggle-main-drop");
       var drop = document.getElementById("mobile-drop");
-      menuToggle.addEventListener("click", function () {
+      menuToggle.addEventListener("click", function (e) {
+        e.preventDefault();
         drop.classList.toggle("expanded");
         menuToggle.classList.toggle("active");
       });
-      var toggles = document.querySelectorAll(".dropdown-toggle");
-      for (i = 0; i < toggles.length; i++) {
-        toggles[i].addEventListener("click", mobileCollapse);
-      }
-
-      function mobileCollapse(e) {
-        if (window.innerWidth < siteSettings.breakpoints.m) {
-          e.preventDefault();
-          var drop = this.parentNode.querySelectorAll(".dropdown-menu")[0];
-          drop.classList.toggle("expanded");
-        }
-      }
     }
   },
   {
@@ -623,61 +599,31 @@ var siteActions = [{
     "element": "page-header",
     "action": function () {
       if (window.innerWidth > siteSettings.breakpoints.m) {
-      var els = [
-        {
-        "id":"",
-        "classname":""
-        },
-        {
-        "id":"page-header",
-        "classname":"active"
-        },
-        {
-        "id":"toggle-side-nav",
-        "classname":"short"
-        },
-        {
-        "id":"btn-search-header",
-        "classname":"short"
-        },
-        {
-        "id":"sticky-header",
-        "classname":"short"
-        }
-      ];
-        
-      var pageHeader = document.getElementById("page-header");
-      var headController = new ScrollMagic.Controller({
-        "loglevel": 0
-      });
-      new ScrollMagic.Scene({
-          offset: 10,
-          duration: 0
-        })
-        .on("enter", function (e) {
-          for (var i = 0;i<els.length;i++) {
-            var theEl = document.getElementById(els[i].id);
-            if (theEl) {
-              theEl.classList.add(els[i].classname);
+        var pageHeader = document.getElementById("page-header");
+        var headController = new ScrollMagic.Controller({
+          "loglevel": 0
+        });
+        var headerLock = new ScrollMagic.Scene({
+            offset: 10,
+            duration: 0
+          })
+          .on("enter", function (e) {
+            if (!document.body.classList.contains("nav-short")) {
+              document.body.classList.add("nav-short");
             }
-          }
-        })
-        .on("leave", function (e) {
-            for (var i = 0;i<els.length;i++) {
-              var theEl = document.getElementById(els[i].id);
-              if (theEl) {
-                theEl.classList.remove(els[i].classname);
-              }
+          })
+          .on("leave", function (e) {
+            if (document.body.classList.contains("nav-short")) {
+              document.body.classList.remove("nav-short");
             }
-        })
-        .addTo(headController);
-        new ScrollMagic.Scene({
-          offset: 0,
-          duration: 0
-        })
-        .setPin(pageHeader)
-        .addTo(headController);  
-    }
+          })
+          .addTo(headController);
+          new ScrollMagic.Scene({
+            offset: 0,
+            duration: 0
+          });
+        headerLock.addTo(headController);  
+      }
   }
   },
   {
@@ -691,7 +637,7 @@ var siteActions = [{
           offset: 0,
           duration: 0
         })
-        .setPin(el)
+        .setPin(el, {pushFollowers:false})
         .setClassToggle(el,"pos-fixed")
         .addTo(homeController);         
       }     
