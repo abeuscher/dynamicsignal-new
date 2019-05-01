@@ -127,6 +127,7 @@ window.addEventListener("load", function () {
       return false;
     });
   }
+  flickerIn();
 });
 
 function getMobileOperatingSystem() {
@@ -1102,4 +1103,29 @@ function activateEvents() {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({"event" : eventName });
   }
+}
+function flickerIn() {
+  var flickContent = document.querySelectorAll(".flicker-in");
+  var flickcontroller = new ScrollMagic.Controller({
+    "loglevel": 0
+  });
+
+  for (i=0;i<flickContent.length;i++) {
+    var thisBlock = flickContent[i];
+    new ScrollMagic.Scene({
+      triggerElement: thisBlock,
+      duration: 0,
+      offset: -250,
+      reverse: false 
+    })
+    .on("enter", function(e) {
+      if (!document.getElementById(e.currentTarget.id).classList.contains(".active")) {
+        document.getElementById(e.currentTarget.id).classList.add("active");
+      } 
+    })
+    .addTo(flickcontroller)
+    .id = thisBlock.id;
+  }
+
+
 }

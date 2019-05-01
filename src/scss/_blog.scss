@@ -118,10 +118,15 @@ section.blog-hero {
 .tag-cloud {
 
 }
+.blog-roll-bucket {
+  margin:$gutter-width/2 0;
+  border-bottom:1px solid $middle-gray;
+}
 .blog-tile-wide {
-  margin: $gutter-width 0;
+  margin: 0;
   display: block;
   position:relative;
+  
   &:after { 
     content: "";
     display: table;
@@ -129,15 +134,13 @@ section.blog-hero {
   }
   @include bp(m) {
     margin: $gutter-width 0;
-    border: 1px solid $light-gray;
   }
   .tag-cloud {
-    background:$light-gray;
-    padding:$gutter-width/2 $gutter-width;
+    padding:$gutter-width/2 $gutter-width $gutter-width/2 0;
 
     font-size:.8em;
     color:$light-blue;
-
+    font-style:italic;
     a {
       color:$blue;
       &:hover {
@@ -148,8 +151,8 @@ section.blog-hero {
     @include bp(m) {
       position:absolute;
       bottom:0;
-      right:0;
-      left:30%;
+      left:0;
+      right:30%;
     }
   }
   .thumb {
@@ -190,30 +193,50 @@ section.blog-hero {
 
     line-height: 1.7;
     @include bp(m) {
-      padding-left: $gutter-width;
+      padding-right:$gutter-width;
       width: 70%;
       float: left;
     }
   }
 
   .author-block {
-    img {
-      display: none;
+    display:none;
+    margin-bottom:$gutter-width/3;
+    width:100%;
+    vertical-align: middle;
+    color:$another-gray;
+    .small-author-thumb {
+      float:left;
+      color:transparent;
+      font-size:0;
+      width:60px;
+      img {
+        width:50px;
+      }
     }
-
-    &:before {
-      content: 'By ';
+    .name {
+      margin:0 0 0;
+      font-style:italic;
     }
-    margin-bottom: $gutter-width/2;
+    @include bp(m) {
+      display:block;
+    }
   }
   p.blog-date {
     margin:0;
     font-size:.8em;
     font-style:italic;
-    color:$classic-gray;
+    color:$another-gray;
   }
   h3 {
-    margin:$gutter-width 0 $gutter-width/4;
+    display:block;
+    clear:both;
+    padding:0;
+    margin:0 0 $gutter-width/3;
+    font-weight:400;
+  }
+  .excerpt {
+    margin:0;
   }
   &:hover {
     //background: $light-gray;
