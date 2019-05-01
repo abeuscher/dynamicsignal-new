@@ -191,11 +191,14 @@ section.blog-hero {
   .description {
 
 
-    line-height: 1.7;
+    line-height: 1.2;
     @include bp(m) {
       padding-right:$gutter-width;
       width: 70%;
       float: left;
+    }
+    @include bp(l) {
+      line-height:1.7;
     }
   }
 
@@ -205,6 +208,7 @@ section.blog-hero {
     width:100%;
     vertical-align: middle;
     color:$another-gray;
+    min-height:50px;
     .small-author-thumb {
       float:left;
       color:transparent;
@@ -232,7 +236,7 @@ section.blog-hero {
     display:block;
     clear:both;
     padding:0;
-    margin:0 0 $gutter-width/3;
+    margin:$gutter-width/2 0 $gutter-width/3;
     font-weight:400;
   }
   .excerpt {
