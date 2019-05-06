@@ -95,6 +95,7 @@ block content
                       }
                       $tags = rtrim($tags,"| ");
                     }
+                    $thumb = get_field("social_share_image") ? get_field("social_share_image") : get_the_post_thumbnail_url();
                     $authorname = get_the_author_meta('display_name',get_the_author_id());
                     $email =  get_the_author_meta('email',get_the_author_id());
                     $authormeta = get_avatar($email);
@@ -115,7 +116,7 @@ block content
                                   <div class='thumb' data-bg='%s'></div>
                                 </a> 
                               </div>  
-                            </article>",get_the_ID(),get_the_author(),$authorname,get_the_time('c'),get_the_time('c'),get_the_date(),get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),get_the_post_thumbnail_url());  $count++;
+                            </article>",get_the_ID(),get_the_author(),$authorname,get_the_time('c'),get_the_time('c'),get_the_date(),get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),$thumb);  $count++;
                       }}
   section.container.pagination
     .row
