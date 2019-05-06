@@ -42,7 +42,35 @@ block content
             if( $query->have_posts() ) {
                 while( $query->have_posts() ) {
                     $query->the_post();
-                    printf("<article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><a class='blog-tile-wide' href='%s' itemprop='url'><div class='thumb' data-bg='%s'></div><div class='description'><h3 itemprop='headline'>%s</h3><div class='author-block' itemprop='author' itemscope itemtype='https://schema.org/Person'><span itemprop='name'>%s</span></div><div class='excerpt' itemprop='description'>%s</div></div></a></article>",get_the_ID(),get_permalink(),get_the_post_thumbnail_url(),get_the_title(),get_the_author(),get_the_excerpt());
+                                        $post_tags = get_the_tags();
+                    $tags = "";
+                    if ($post_tags) {
+                      foreach($post_tags as $key=>$tag) {
+                        $tags .= sprintf("<a href='/tag/%s'>%s</a> | ", $tag->slug,$tag->name);
+                      }
+                      $tags = rtrim($tags,"| ");
+                    }
+                    $authorname = get_the_author_meta('display_name',get_the_author_id());
+                    $email =  get_the_author_meta('email',get_the_author_id());
+                    $authormeta = get_avatar($email);
+                    printf("<article class='blog-roll-bucket flicker-in' id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'>
+                              <meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>
+                              <div class='blog-tile-wide'>
+                                <div class='description'>
+                                  <div class='author-block'>
+                                    <div class='small-author-thumb'>%s</div>
+                                    <p class='name'>%s</p>
+                                    <p class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</p>
+                                  </div>
+                                  <a href='%s' itemprop='url'><h3 itemprop='headline'>%s</h3></a>
+                                  <p class='excerpt'>%s</p>
+                                  <div class='tag-cloud'>%s</div>
+                                </div>
+                                <a href='%s' itemprop='url'>
+                                  <div class='thumb' data-bg='%s'></div>
+                                </a> 
+                              </div>  
+                            </article>",get_the_ID(),get_the_author(),$authorname,get_the_time('c'),get_the_time('c'),get_the_date(),get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),get_the_post_thumbnail_url());
                       $count++;
                       }}
   section.container.pagination
