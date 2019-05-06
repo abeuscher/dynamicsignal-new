@@ -108,6 +108,7 @@ a {
     display: flex;
     width: 100%;
     margin-bottom:$gutter-width;
+    justify-content: space-between;
     .col-2,
     .col-3 {
       padding: 0 10px;
@@ -119,6 +120,19 @@ a {
 
     .col-3 {
       flex-basis: 33%;
+      article {
+        height:100%;
+      }
+      padding:0 $gutter-width/2;
+      h4 {
+        font-size:1.2em;
+      }
+      &:first-child {
+        padding-left:0;
+      }
+      &:last-child {
+        padding-right:0;
+      }
     }
   }
 
@@ -717,24 +731,6 @@ a.small-link {
   z-index: 0;
 }
 
-
-section.contact-map {
-  padding-top: 0;
-  overflow:hidden;
-}
-
-.contact-map iframe {
-  pointer-events: none;
-  width: 100%;
-  display: block;
-  position: relative;
-  top:-46px;
-}
-
-.contact-map iframe.clicked {
-  pointer-events: auto;
-}
-
 .text-right {
   text-align: right;
 }
@@ -751,7 +747,6 @@ section.contact-map {
 .featured-item {
   display: block;
 }
-
 .featured-thumb {
   display: block;
   position: relative;
@@ -759,10 +754,8 @@ section.contact-map {
   &:after {
     content: "";
     display: block;
-    //@include bp(m) {
-      padding-top: 15.62%;
-      padding-bottom: 15.62%;
-    //}
+    padding-top: 15.62%;
+    padding-bottom: 15.62%;
 
   }
   background-size: cover;
@@ -780,7 +773,18 @@ section.contact-map {
 
   }
 }
-
+/*
+.blog-featured-bucket {
+  .featured-thumb {
+    &:after {
+      padding:30% 0;
+    }
+  }
+  .story-tile-link {
+    height:90%;
+  }
+}
+*/
 .post-meta {
   $meta-color: lighten($classic-gray,20%);
   display: block;
@@ -822,16 +826,22 @@ section.contact-map {
     }
   }
 
-  h2 {
+  h2,h3 {
     color: $menu-blue;
     border-bottom: 1px solid transparent;
   }
-
+  h3 {
+    font-size:1.1em;
+    font-weight:300;
+    .view-button {
+      padding-top:.25em;
+    }
+  }
   &:hover {
     color: $header-blue;
 
     .view-button,
-    h2 {
+    h2,h3 {
       color: $header-blue;
     }
 
@@ -843,7 +853,7 @@ section.contact-map {
       }
     }
 
-    h2 {
+    h2,h3 {
       border-bottom-color: $header-blue;
     }
   }
@@ -851,13 +861,15 @@ section.contact-map {
 
 .story-tile-link {
   display: block;
-  border: 1px solid $light-gray;
   transition: 0.25s all ease-in;
   height:80%;
+  &.blog-front {
+    border-bottom:1px solid $middle-gray;
+  }
   &.sdr-page {
     height:100%;
   }
-  h3,
+  h3,h4,
   p,
   ul {
     padding: 0 $gutter-width/2;
@@ -885,7 +897,7 @@ section.contact-map {
 
   &:hover {
     background: $light-gray;
-
+    color:$black;
     .featured-thumb {
       &:after {
         color: $white;
@@ -1305,6 +1317,7 @@ section.halfpic {
       .inner {
         padding:4vw 0;
         h1 {
+          
           margin-top:0;
         }
       }
@@ -1452,4 +1465,16 @@ ul.hmenu {
       background:$blue;
     }
   }
+}
+.flicker-in {
+  @include bp(m) {
+    @include ds-transition();
+    opacity:0;
+    transform:translateY(50px);
+    &.active {
+      opacity:1;
+      transform:translateY(0);
+    }
+  }
+
 }

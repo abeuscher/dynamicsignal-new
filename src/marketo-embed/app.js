@@ -116,10 +116,14 @@ window.addEventListener("load", function() {
 });
 
 function setNav() {
+  var theOverlay = document.createElement("div");
+  theOverlay.id = "overlay";
+
   var theWrapper = document.getElementById("wrapper");
   var theHeader = parseHTML(templates.header(siteopts));
   theWrapper.parentNode.insertBefore(theHeader,theWrapper);
   document.body.appendChild(parseHTML(templates.sideNav(siteopts)));
+  document.body.appendChild(theOverlay);
   theWrapper.appendChild(parseHTML(templates.footer(siteopts)));
   theWrapper.classList.add("marketo-wrapper");
 }

@@ -2,7 +2,7 @@ extends inc/page.pug
 block template
   :php
     /*
-    Template Name: Blog View All
+    Template Name: Blog Roll 2019
     */
 block nav
   include ./inc/navbar-toggle.pug
@@ -10,17 +10,6 @@ block nav
   include ./inc/header.pug
 block content
   :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Company",
-      "link"=>"/company/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Blog",
-      "link"=>"/blog/"
-    ));
-    $override_title = "All Entries";
-
     $featured_ids = [];
     $args = array(
       'posts_per_page' => 1,
@@ -36,8 +25,11 @@ block content
     );
     $query = new WP_Query($args);
     if ($query->have_posts()) {
-      array_push($featured_ids,$query->posts[0]->ID);
+      $featured = $query->posts[0];
+      array_push($featured_ids,$featured->ID);
     }
+
+
     $parent_category = "blog-categories";
     $category_entries = array(
       [
@@ -59,31 +51,55 @@ block content
     foreach ($category_entries as $key=>$category) {
       $query = new WP_Query( array( 'post__not_in' => $featured_ids, 'category_name' => $parent_category.'+'.$category["slug"],'post__in'  => get_option( 'sticky_posts' ),'ignore_sticky_posts' => 0,'posts_per_page' => 1) );
       if ($query->have_posts()) {
+        array_push($filtered_posts,array("category"=>$category,"post"=>$query->posts[0]));  
         array_push($featured_ids,$query->posts[0]->ID);
         }
       else {
         $query = new WP_Query( array( 'category_name' => $parent_category.'+'.$category["slug"],'posts_per_page' => 1) );
+        array_push($filtered_posts,array("category"=>$category,"post"=>$query->posts[0])); 
         array_push($featured_ids,$query->posts[0]->ID);
         }  
     }
 
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Our Company",
+      "link"=>"/company/"
+    ));
   section.top-section-interior
     .container
       .row
         .col-md-12
           include ./inc/breadcrumbs.pug
-          h1
+  section.no-padding
+    .container
+      .row.padding-bottom
+        .col-md-12
             :php
-              echo $override_title;
-  section
+              $thumb = get_field("social_share_image", $featured) ? get_field("social_share_image", $featured) : get_the_post_thumbnail_url($featured);
+              printf("<a class='story-tile-link blog-front' href='%s'><div class='row'><div class='col-md-12'><div class='featured-thumb' data-bg='%s'><h1>%s</h1></div></div></div><div class='row'><div class='col-md-12'><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Editor's Pick</li></ul><p>%s</p></div></div></a>", get_the_permalink($featured), $thumb, get_the_title($featured),htmlentities(WPSEO_Meta::get_value('metadesc', $featured->ID), ENT_QUOTES));
+  section.no-padding
     .container
       .row
         .col-md-12
+          .even-height-wrapper
+            :php
+              foreach($filtered_posts as $key=>$post) {
+              $p = $post["post"];
+              $c = $post["category"];
+              $thumb = get_field("social_share_image", $p) ? get_field("social_share_image", $p) : get_the_post_thumbnail_url($p);
+              printf("<div class='col-3'><a class='category-link-title' href='%s'><h3>%s<span class='view-button'>View All<span class='divot'>»</span></span></h3></a><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article' class='blog-featured-bucket'><a class='story-tile-link' href='%s' itemprop='url'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Featured</li></ul><h4 itemprop='title'>%s</h4></a></article></div>","/category/".$c["slug"],$c["name"],get_the_ID(), $p->post_name, $thumb, $p->post_title);  
+              }
+  section.no-padding-top
+    .container
+      .row
+        .col-md-12
+          h2 Most Recent
           :php
-            $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) + 1  : 2;
+            $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
             $count = 0;
             $page_object = get_queried_object();
-            $query = new WP_Query( array('post__not_in' => $featured_ids,'post_type' => 'post','paged' => $paged,'posts_per_page' => 10,'orderby'=>'post_date','ignore_sticky_posts'=>1,'post_status'=>'publish') );
+            $query = new WP_Query( array('post__not_in'=>$featured_ids,'post_type' => 'post','paged' => $paged,'posts_per_page' => 10,'orderby'=>'post_date','ignore_sticky_posts'=>1,'post_status'=>'publish') );
             if( $query->have_posts() ) {
                 while( $query->have_posts() ) {
                     $query->the_post();
@@ -115,16 +131,10 @@ block content
                                   <div class='thumb' data-bg='%s'></div>
                                 </a> 
                               </div>  
-                            </article>",get_the_ID(),get_the_author(),$authorname,get_the_time('c'),get_the_time('c'),get_the_date(),get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),get_the_post_thumbnail_url());  $count++;
+                            </article>",get_the_ID(),get_the_author(),$authorname,get_the_time('c'),get_the_time('c'),get_the_date(),get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),get_the_post_thumbnail_url());
+                      $count++;
                       }}
-  section.container.pagination
+  section.container
     .row
       .col-md-12
-        :php
-          $big = 999999999;
-          echo paginate_links( array(
-          	'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-          	'format' => '?paged=%#%',
-          	'current' => max( 1, get_query_var('paged') ),
-          	'total' => $query->max_num_pages
-          ) );
+        a.button(href="/blog-roll/") More Entries

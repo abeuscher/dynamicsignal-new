@@ -115,27 +115,55 @@ section.blog-hero {
     }
   }
 }
+.tag-cloud {
 
+}
+.blog-roll-bucket {
+  margin:$gutter-width/2 0;
+  border-bottom:1px solid $middle-gray;
+}
 .blog-tile-wide {
-  margin: $gutter-width;
+  margin: 0;
   display: block;
-
-  &:after {
+  position:relative;
+  
+  &:after { 
     content: "";
     display: table;
     clear: both;
   }
   @include bp(m) {
     margin: $gutter-width 0;
-    border: 1px solid $light-gray;
   }
+  .tag-cloud {
+    padding:$gutter-width/2 $gutter-width $gutter-width/2 0;
 
+    font-size:.8em;
+    color:$light-blue;
+    font-style:italic;
+    a {
+      color:$blue;
+      &:hover {
+        color:$menu-blue;
+        text-decoration:underline;
+      }
+    }
+    @include bp(m) {
+      position:absolute;
+      bottom:0;
+      left:0;
+      right:30%;
+    }
+  }
   .thumb {
     width: 100%;
     @include aspect-ratio(4,3);
     background-size: cover;
     background-position: center center;
+    display:none;
+
     @include bp(m) {
+      display:block;
       width: 30%;
       float: left;
     }
@@ -152,43 +180,70 @@ section.blog-hero {
       color: transparent;
       background: rgba(0,0,0,0);
     }
-  }
-
-  .description {
-    width: 70%;
-    float: left;
-    padding-left: $gutter-width;
-    line-height: 1.7;
-  }
-
-  .author-block {
-    img {
-      display: none;
-    }
-
-    &:before {
-      content: 'By ';
-    }
-    margin-bottom: $gutter-width/2;
-  }
-  p.blog-date {
-    margin:0;
-    font-size:.8em;
-    font-style:italic;
-    color:$classic-gray;
-  }
-  h3 {
-    margin:0 0 $gutter-width/4;
-  }
-  &:hover {
-    background: $light-gray;
-
-    .thumb {
+    &:hover {
       &:after {
         color: $white;
         background: rgba(0,0,0,.6);
       }
     }
+  }
+
+  .description {
+
+
+    line-height: 1.2;
+    @include bp(m) {
+      padding-right:$gutter-width;
+      width: 70%;
+      float: left;
+    }
+    @include bp(l) {
+      line-height:1.7;
+    }
+  }
+
+  .author-block {
+    display:none;
+    margin-bottom:$gutter-width/3;
+    width:100%;
+    vertical-align: middle;
+    color:$another-gray;
+    min-height:50px;
+    .small-author-thumb {
+      float:left;
+      color:transparent;
+      font-size:0;
+      width:60px;
+      img {
+        width:50px;
+      }
+    }
+    .name {
+      margin:0 0 0;
+      font-style:italic;
+    }
+    @include bp(m) {
+      display:block;
+    }
+  }
+  p.blog-date {
+    margin:0;
+    font-size:.8em;
+    font-style:italic;
+    color:$another-gray;
+  }
+  h3 {
+    display:block;
+    clear:both;
+    padding:0;
+    margin:$gutter-width/2 0 $gutter-width/3;
+    font-weight:400;
+  }
+  .excerpt {
+    margin:0;
+  }
+  &:hover {
+    //background: $light-gray;
   }
 }
 

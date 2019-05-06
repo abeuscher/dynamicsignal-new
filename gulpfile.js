@@ -15,8 +15,6 @@ var marketoembedSrcDir = srcDir + 'marketo-embed/';
 var marketoembedBuildDir = buildDir + 'marketo-embed/';
 var lpSrcDir = srcDir + 'lp-embed/';
 var lpBuildDir = buildDir + 'lp-embed/';
-var dsoembedSrcDir = srcDir + 'dysi-open-cookie/';
-var dsoembedBuildDir = buildDir + 'dysi-open-cookie/';
 
 // Include gulp
 var watchify = require('watchify');
@@ -83,16 +81,6 @@ var jsFiles = [{
     "buildDir": uberembedBuildDir,
     "opts": {
       entries: [uberembedSrcDir + 'app.js'],
-      debug: false,
-      paths: ['./bower_components', './node_modules'],
-      output: "bundle.js"
-    }
-  },
-  {
-    "id": "dysiopen",
-    "buildDir": dsoembedBuildDir,
-    "opts": {
-      entries: [dsoembedSrcDir + 'app.js'],
       debug: false,
       paths: ['./bower_components', './node_modules'],
       output: "bundle.js"
@@ -189,7 +177,7 @@ gulp.task('watch-files', function() {
 gulp.task('build-views', function() {
   gulp.src(viewsSrcDir + '*.pug')
     .pipe(pug({
-      "pretty": false,
+      "pretty": true,
       "filters": {
         "php": pugPhpFilter
       },
