@@ -4,5 +4,8 @@
     .buttons
         for item in locals
             if item.title!=""
-                a.btn-launch(href="#",data-launch-id=item.id)!=item.title
-                    span.fa.fa-play
+                a.btn-launch(href="#",data-launch-id=item.id)
+                    span.thumb(data-bg=item.thumb)
+                    span.words
+                        p!=item.title
+                            span.fa.fa-play

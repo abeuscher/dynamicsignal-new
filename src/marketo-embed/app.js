@@ -1,7 +1,9 @@
 var ScrollMagic = require("scrollmagic");
 var parseHTML = require("../js/utils/parse-html.js");
+var isElement = require("../js/utils/is-element.js");
 var FormHandler = require("../js/form-handler/index.js");
 var ActivateVideos = require("../js/video-handler/index.js");
+
 var Cookies = require("js-cookie");
 var siteSettings = {
   "gdprCookie": "ds-gdpr",
@@ -96,6 +98,7 @@ window.addEventListener("load", function() {
   var videoHandler = new ActivateVideos();
   if (document.getElementById("multivideo")) {
     videoHandler.buildMultiplayer(document.getElementById("multivideo"));
+    activateImages();
   }
   if (document.getElementById("video-demo-button")) {
     var btn = document.getElementById("video-demo-button");
@@ -116,6 +119,7 @@ window.addEventListener("load", function() {
       });
     }
     writeCTA();
+
 });
 
 function setNav() {
@@ -183,3 +187,43 @@ function writeCTA() {
     bar.classList.add("active");
   }
 } 
+function activateImages() {
+  var backgroundImages = document.querySelectorAll("[data-bg]");
+  for (i in backgroundImages) {
+    if (isElement(backgroundImages[i])) {
+      thisElement = backgroundImages[i];
+      if (thisElement.getAttribute("data-bg").indexOf("http") > -1) {
+        thisElement.style.backgroundImage = "url('" + thisElement.getAttribute("data-bg") + "')";
+      } else {
+        thisElement.style.backgroundImage = "url('" + siteSettings.imagePath + thisElement.getAttribute("data-bg") + "')";
+      }
+    }
+  }
+  var lzImages = document.querySelectorAll("[data-src]");
+  for (i in lzImages) {
+    if (isElement(lzImages[i])) {
+      thisElement = lzImages[i];
+      if (typeof(JSON.parse(thisElement.getAttribute("data-src"))) == 'object') {
+        var img = JSON.parse(thisElement.getAttribute("data-src")).url;
+        thisElement.src = img;
+      }
+      else {
+        var img = document.createElement("img");
+        if (thisElement.getAttribute("data-src").indexOf("http") > -1) {
+          img.src = thisElement.getAttribute("data-src");
+        } else {
+          img.src = siteSettings.imagePath + thisElement.getAttribute("data-src");
+        }
+
+        img.alt = "";
+        thisElement.appendChild(img);
+      }
+  }
+  }
+  var bgArrays = document.querySelectorAll("[data-bg-array]");
+  for (i = 0; i < bgArrays.length; i++) {
+    var el = bgArrays[i];
+    var imageArray = JSON.parse(el.getAttribute("data-bg-array"));
+    el.style.backgroundImage = "url('" + imageArray.url + "')";
+  }
+}

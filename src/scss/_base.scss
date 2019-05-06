@@ -1439,22 +1439,27 @@ ul.hmenu {
 }
 .multi-video-player {
   .buttons {
-    display:flex;
+    margin-bottom:$gutter-width;
     .btn-launch {
-      text-align:center;
-      flex-grow:1;
-      flex-shrink:1;
-      padding:12px 24px; 
+      display:flex;
+      width:100%;
+      padding:12px; 
       background:$blue;
       color:$white;
       text-decoration:none;
-      border-right:1px solid $white;
       @include ds-transition();
-      .fa {
-        padding-left:.5em;
+      .thumb {
+        @include aspect-ratio(4,3);
+        flex-basis:25%;
+        margin-right:12px;
+        background-size:cover;
+        background-position:center center;
       }
-      &:last-child {
-        border-right:none;
+      .words {
+        flex-basis:75%;
+        .fa {
+          padding-left:1em;
+        }
       }
       &:hover, &.active { 
         background:$menu-blue;
