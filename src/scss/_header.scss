@@ -25,6 +25,7 @@ header.page-header {
       @include ds-transition();
       max-height: 100%;
       width: auto;
+      max-width:none;
       @include bp(s) {
         height:$nav-tall;
       }
