@@ -1,0 +1,50 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Solutions
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Platform",
+      "link"=>"/product/"
+    ));
+  -
+    var pageData = {
+    "header":"Solutions",
+    "subheader":"For Every Department in the Enterprise"
+    };
+  section.top-section-interior
+    .container 
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug  
+          h1!=pageData.header
+          h2!=pageData.subheader
+  section
+    .container
+      .row
+        .col-md-4.padding-bottom
+          a.story-tile-link(href='/workforce-communication/')
+            .featured-thumb(data-bg-array='{"id":14762,"alt":"","title":"company-news","caption":"","description":"","mime_type":"image/jpeg","url":"https://dynamicsignal.com/wp-content/uploads/2018/02/company-news.jpg","width":400,"height":225,"sizes":{"thumbnail":"https://dynamicsignal.com/wp-content/uploads/2018/02/company-news-150x150.jpg","thumbnail-width":150,"thumbnail-height":150,"medium":"https://dynamicsignal.com/wp-content/uploads/2018/02/company-news-300x169.jpg","medium-width":300,"medium-height":169,"medium_large":"https://dynamicsignal.com/wp-content/uploads/2018/02/company-news.jpg","medium_large-width":400,"medium_large-height":225,"large":"https://dynamicsignal.com/wp-content/uploads/2018/02/company-news.jpg","large-width":400,"large-height":225,"event-thumb":"https://dynamicsignal.com/wp-content/uploads/2018/02/company-news-198x198.jpg","event-thumb-width":198,"event-thumb-height":198,"vse-shuffle":"https://dynamicsignal.com/wp-content/uploads/2018/02/company-news-270x225.jpg","vse-shuffle-width":270,"vse-shuffle-height":225}}', style='background-image: url("https://dynamicsignal.com/wp-content/uploads/2018/02/company-news.jpg");')
+            h3 Workforce Communication
+        .col-md-4.padding-bottom
+          a.story-tile-link(href='/employee-experience/')
+            .featured-thumb(data-bg-array='{"id":14768,"alt":"","title":"mobile-intranet","caption":"","description":"","mime_type":"image/jpeg","url":"https://dynamicsignal.com/wp-content/uploads/2018/02/mobile-intranet.jpg","width":400,"height":225,"sizes":{"thumbnail":"https://dynamicsignal.com/wp-content/uploads/2018/02/mobile-intranet-150x150.jpg","thumbnail-width":150,"thumbnail-height":150,"medium":"https://dynamicsignal.com/wp-content/uploads/2018/02/mobile-intranet-300x169.jpg","medium-width":300,"medium-height":169,"medium_large":"https://dynamicsignal.com/wp-content/uploads/2018/02/mobile-intranet.jpg","medium_large-width":400,"medium_large-height":225,"large":"https://dynamicsignal.com/wp-content/uploads/2018/02/mobile-intranet.jpg","large-width":400,"large-height":225,"event-thumb":"https://dynamicsignal.com/wp-content/uploads/2018/02/mobile-intranet-198x198.jpg","event-thumb-width":198,"event-thumb-height":198,"vse-shuffle":"https://dynamicsignal.com/wp-content/uploads/2018/02/mobile-intranet-270x225.jpg","vse-shuffle-width":270,"vse-shuffle-height":225}}', style='background-image: url("https://dynamicsignal.com/wp-content/uploads/2018/02/mobile-intranet.jpg");')
+            h3 Employee Experience
+        .col-md-4.padding-bottom
+          a.story-tile-link(href='/employee-advocacy/')
+            .featured-thumb(data-bg-array='{"id":16848,"alt":"","title":"Top view of young businesswoman using technology.","caption":"Top view of young businesswoman using technology.","description":"","mime_type":"image/jpeg","url":"https://dynamicsignal.com/wp-content/uploads/2018/09/iStock-920188682-small.jpg","width":2300,"height":1533,"sizes":{"thumbnail":"https://dynamicsignal.com/wp-content/uploads/2018/09/iStock-920188682-small-150x150.jpg","thumbnail-width":150,"thumbnail-height":150,"medium":"https://dynamicsignal.com/wp-content/uploads/2018/09/iStock-920188682-small-300x200.jpg","medium-width":300,"medium-height":200,"medium_large":"https://dynamicsignal.com/wp-content/uploads/2018/09/iStock-920188682-small-768x512.jpg","medium_large-width":768,"medium_large-height":512,"large":"https://dynamicsignal.com/wp-content/uploads/2018/09/iStock-920188682-small-1024x683.jpg","large-width":1024,"large-height":683,"event-thumb":"https://dynamicsignal.com/wp-content/uploads/2018/09/iStock-920188682-small-198x198.jpg","event-thumb-width":198,"event-thumb-height":198,"vse-shuffle":"https://dynamicsignal.com/wp-content/uploads/2018/09/iStock-920188682-small-270x230.jpg","vse-shuffle-width":270,"vse-shuffle-height":230}}')
+            h3 Employee Advocacy
+  section.bottom-cta
+    .container
+        .row
+            .col-md-12
+                p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal
+                a.button.cta.knockout(href="/requestdemo") Request Demo

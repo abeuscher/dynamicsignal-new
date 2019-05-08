@@ -1,0 +1,44 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Career Single Entry Page
+    */
+    $override_description = get_the_excerpt();
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Company",
+      "link"=>"/company/"
+    ));
+    array_push($breadcrumbs,array(
+      "title"=>"Careers",
+      "link"=>"/careers/"
+    ));
+    if( have_posts() ){
+     while( have_posts() ) {
+      the_post();
+  section.top-section-interior.generic
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1
+            :php
+              the_title();
+  include ./inc/social-menu.pug
+  section.container.blog-content
+    .row
+      .col-md-12
+        article.blog-post
+          .blog-post-body
+            :php
+              the_content();
+              printf("<a class='button apply' target='_blank' href='%s'>Apply Now</a>", get_field("jobvite_url"));
+        :php
+          }}

@@ -1,0 +1,36 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Author Article Listing
+    */
+    $override_title = "Author : " . get_author_name();
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Company",
+      "link"=>"/company/"
+    ));
+    array_push($breadcrumbs,array(
+      "title"=>"Blog",
+      "link"=>"/blog/"
+    ));
+    $override_title = "Author : " . get_author_name();
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1
+            :php
+              echo $override_title;
+  :php
+    $author = get_the_author_id();
+    $query = new WP_Query( array('post_type' => 'post','paged' => $paged,'posts_per_page' => 9,'author'=>$author) );
+  include ./inc/blog-loop.pug

@@ -1,0 +1,84 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Demo Request Form
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    printf("<section class='halfpic' id='sticky-header'>");
+    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+  .white-gradient-header
+  .container
+      .row-flex
+          .col-half-flex.gray-bg-section
+              .inner
+                h1 Request a Demo
+                p Your Employee Communication and Engagement Platform
+  :php
+    echo "</section>";   
+  section.bottom-cta.mobile-cta
+    .container
+      .row
+        .col-md-12
+          h2 Download and Try DySi Open
+          p Get a hands on demonstration of our mobile app!
+          ul.app-buttons.hmenu
+            li
+              a(href="itms://appstore.com/us/app/dysi-open/id1339399649?mt=8",target="_blank")
+                img(src=themeDir + "/images/btn-itunes.png")
+            li
+              a(href="https://play.google.com/store/apps/details?id=com.dynamicsignal.appstore.dysi&hl=en",target="_blank")
+                img(src=themeDir + "/images/btn-android.png")
+  section.signup-form-bucket.white-bg-section
+    .container
+      .row
+        .col-md-6
+          div(style='text-align: center;')
+            img(src=themeDir+'images/pic-demo-request.jpg', alt='')
+          p A member of our team will be in touch to schedule a personalized look at the Dynamic Signal platform.
+          ul.demo-list.fa-ul
+            li
+              i.fa-li.fa.fa-check
+              | Keep employees informed
+            li
+              i.fa-li.fa.fa-check
+              | Increase engagement
+            li
+              i.fa-li.fa.fa-check
+              | Retain your top talent
+            li
+              i.fa-li.fa.fa-check
+              | Boost productivity
+            li
+              i.fa-li.fa.fa-check
+              | Empower advocacy
+        .col-md-6
+          script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
+          #marketo-form-wrapper.blue-form
+            form.marketo-blue.blue-form#mktoForm_1163
+              script.
+                var validateCorporateEmail = true;
+          p#required-warning
+            span.asterisk *
+            |  If a form doesn’t appear above, please pause or disable your Ad Blocker in your browser and reload this page.
+            br
+            span.asterisk *
+            |  all fields are required.
+  section.bottom-cta.desktop-cta
+    .container
+      .row
+        .col-md-12
+          h2 Download and Try DySi Open
+          p Get a hands on demonstration of our mobile app!
+          ul.app-buttons.hmenu
+            li
+              a(href="itms://itunes.apple.com/us/app/dysi-open/id1339399649?mt=8",target="_blank")
+                img(src=themeDir + "/images/btn-itunes.png")
+            li
+              a(href="https://play.google.com/store/apps/details?id=com.dynamicsignal.appstore.dysi&hl=en",target="_blank")
+                img(src=themeDir + "/images/btn-android.png")
