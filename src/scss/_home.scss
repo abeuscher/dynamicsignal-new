@@ -13,7 +13,12 @@
     width:20%;
   }
 }
-
+.home-third-section {
+  padding-top:0;
+  p.home-secondary {
+    margin-top:0;
+  }
+}
 .homepage-solutions .col-md-12 {
   @include bp(m) {
     display:flex;

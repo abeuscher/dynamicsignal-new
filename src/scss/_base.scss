@@ -1308,6 +1308,10 @@ section.halfpic {
     }
     h1 {
       font-size:1.6em;
+      &.home-header-text {
+        font-size:2.4em;
+        line-height:1;
+      }
     }
     @include bp(m) {
       padding-top:80px;
@@ -1315,11 +1319,16 @@ section.halfpic {
       display:flex;
       flex-direction:column;
       .inner {
-        padding:4vw 0;
+        padding:8vw 0;
         h1 {
           
           margin-top:0;
         }
+      }
+    }
+    @include bp(l) {
+      .inner {
+        padding:4vw 0;
       }
     }
   }

@@ -58,6 +58,30 @@ section.blog-hero {
       text-decoration: none;
     }
   }
+  .snippet {
+    i {
+      font-style:normal;
+      width:1.5em;
+      height:1.5em;
+      display:inline-block;
+      border-radius:50%;
+      text-align:center;
+      overflow:hidden;
+      background:$menu-blue;
+      color:$white;
+      font-weight:600;
+      line-height:1.5em;
+      margin-bottom:-6px;
+    }
+    background:$light-gray;
+    border-radius:5px;
+    padding:$gutter-width/2;
+  }
+}
+.abstract {
+  border:1px solid $light-gray;
+  border-radius:5px;
+  padding:$gutter-width/2;
 }
 
 .alignright {
