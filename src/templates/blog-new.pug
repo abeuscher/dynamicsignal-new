@@ -63,8 +63,8 @@ block content
 
     $breadcrumbs = [];
     array_push($breadcrumbs,array(
-      "title"=>"Our Company",
-      "link"=>"/company/"
+      "title"=>"Resources",
+      "link"=>"/resources/"
     ));
   section.top-section-interior
     .container
@@ -76,7 +76,7 @@ block content
       .row.padding-bottom
         .col-md-12
             :php
-              $thumb = get_field("social_share_image", $featured) ? get_field("social_share_image", $featured) : get_the_post_thumbnail_url($featured);
+              $thumb = get_the_post_thumbnail_url($featured);
               printf("<a class='story-tile-link blog-front' href='%s'><div class='row'><div class='col-md-12'><div class='featured-thumb' data-bg='%s'><h1>%s</h1></div></div></div><div class='row'><div class='col-md-12'><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Editor's Pick</li></ul><p>%s</p></div></div></a>", get_the_permalink($featured), $thumb, get_the_title($featured),htmlentities(WPSEO_Meta::get_value('metadesc', $featured->ID), ENT_QUOTES));
   section.no-padding
     .container
@@ -87,7 +87,7 @@ block content
               foreach($filtered_posts as $key=>$post) {
               $p = $post["post"];
               $c = $post["category"];
-              $thumb = get_field("social_share_image", $p) ? get_field("social_share_image", $p) : get_the_post_thumbnail_url($p);
+              $thumb = get_the_post_thumbnail_url($p);
               printf("<div class='col-3'><a class='category-link-title' href='%s'><h3>%s<span class='view-button'>View All<span class='divot'>»</span></span></h3></a><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article' class='blog-featured-bucket'><a class='story-tile-link' href='%s' itemprop='url'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Featured</li></ul><h4 itemprop='title'>%s</h4></a></article></div>","/category/".$c["slug"],$c["name"],get_the_ID(), $p->post_name, $thumb, $p->post_title);  
               }
   section.no-padding-top
