@@ -1,18 +1,16 @@
 footer
 	.container
 		.row.footer-top
-			.col-md-2.address-block
+			.col-md-6.address-block
 				ul(itemscope itemtype="http://schema.org/LocalBusiness")
 					li.logo-footer-bucket
 						img.logo-footer(src='https://dynamicsignal.com/wp-content/themes/ds-new/images/logo-header.png',alt='Dynamic Signal',itemprop="logo")
 					li.footer-address
-						p(itemprop="address" itemscope itemtype="http://schema.org/PostalAddress") 1111 Bayhill Drive, Suite 125
+						p(itemprop="address" itemscope itemtype="http://schema.org/PostalAddress") Unit 8, Baden Place
 							br
-							span(itemprop="addressLocality") San Bruno, 
-							span(itemprop="addressRegion") California 
-							span(itempropr="postalCode") 94066
-					li.footer-phone
-						p(itemprop="telephone") 650-231-2550
+							span(itemprop="addressLocality") Crosby Row, 
+							span(itemprop="addressRegion") London 
+							span(itempropr="postalCode") SE1 1YW
 				ul.hmenu
 					li
 						a(href='https://www.facebook.com/DynamicSignal/')
@@ -41,19 +39,7 @@ footer
 					li
 						a(href="https://play.google.com/store/apps/details?id=com.dynamicsignal.appstore.dysi&hl=en",target="_blank")
 							img(src="https://dynamicsignal.com/wp-content/themes/ds-new/images/btn-android.png")
-			.col-md-2
-				h5 
-					a(href=locals.siteurl + "/product/") Platform
-				ul
-					li
-						a(href=locals.siteurl + '/features/') Features	
-					li
-						a(href=locals.siteurl + '/services/') Services
-					li
-						a(href=locals.siteurl + '/integrations/') Integrations						
-					li
-						a(href=locals.siteurl + '/demo-center/') Demo Center
-			.col-md-2
+			.col-md-3
 				h5
 					a(href="/solutions/") Solutions
 				ul
@@ -69,35 +55,10 @@ footer
 						a(href="https://resources.dynamicsignal.com/manufacturing") Manufacturing
 					li
 						a(href="https://resources.dynamicsignal.com/retail") Retail  
-			.col-md-2
-				h5 
-					a(href=locals.siteurl + "/customers/") Customers
-				ul
-					li
-						a(href=locals.siteurl + 'https://resources.dynamicsignal.com/case-studies') Case Studies
-					li
-						a(href=locals.siteurl + 'https://resources.dynamicsignal.com/customer-testimonials') Testimonials
-				h5 
-					a(href=locals.siteurl + "/company/") Company
-				ul
-					li
-						a(href=locals.siteurl + '/team/') Team
-					li
-						a(href=locals.siteurl + '/careers/') Careers	
-					li
-						a(href=locals.siteurl + '/events/') Events & Webinars											
-					li
-						a(href=locals.siteurl + '/agency/') Partners
-			.col-md-2
-				h5 
-					a(href=locals.siteurl + "/resources/") Resources
-				ul
-					li
-						a(href=locals.siteurl + '/blog/') Blog
-					li
-						a(href=locals.siteurl + '/news-and-press/') News & Press
-			.col-md-2
+			.col-md-3
 				ul.no-header
+					li
+						a.demo-link(href=locals.siteurl + '/blog/') Blog			
 					li
 						a.demo-link(href=locals.siteurl + '/requestdemo/') Request Demo
 					li
