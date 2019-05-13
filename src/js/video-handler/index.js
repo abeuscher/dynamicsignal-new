@@ -56,12 +56,21 @@ videoHandler.prototype.buildMultiplayer = function(bucket) {
   buttons[0].classList.add("active");
 
   for (i=0;i<buttons.length;i++) {
-    buttons[i].addEventListener("click", function() {
-      player.loadVideoById(this.getAttribute("data-launch-id"));
-      for (i=0;i<buttons.length;i++) {
-        buttons[i].classList.contains("active") ? buttons[i].classList.remove("active") : "";
-      }
-      this.classList.add("active");
+    buttons[i].addEventListener("click", function(e) {
+      e.preventDefault();
+      var self = this;
+      player.getPlayerState()
+        .then(function(data) {
+          console.log(data);
+          if (!self.classList.contains("active") || data !=1) {
+            player.loadVideoById(self.getAttribute("data-launch-id"));
+            for (i=0;i<buttons.length;i++) {
+              buttons[i].classList.contains("active") ? buttons[i].classList.remove("active") : "";
+            }
+            self.classList.add("active");
+          }
+        });
+
     });
   }
 }

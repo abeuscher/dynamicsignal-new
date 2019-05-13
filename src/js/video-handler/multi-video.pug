@@ -6,7 +6,9 @@
             if item.title!=""
                 a.btn-launch(href="#",data-launch-id=item.id)
                     span.thumb(data-bg=item.thumb)
+                        .inner
+                            span.fa.fa-play-circle
                     span.words
-                        p!=item.title
+                        p.title!=item.title
                             span.fa.fa-play
                         p.description!=item.description

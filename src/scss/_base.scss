@@ -1454,6 +1454,37 @@ ul.hmenu {
         margin-right:12px;
         background-size:cover;
         background-position:center center;
+        max-height:100px;
+        @include bp(m) {
+          max-height:none;
+        }
+        .inner {
+          display:none;
+          top:0;
+          bottom:0;
+          left:0;
+          right:0;
+          align-items:center;
+          .fa {
+            font-size:3em;
+            color:$blue;
+            text-align:center;
+            flex-basis:100%;
+            @include bp(m) {
+              font-size:6em;
+            }
+          }
+        }
+
+      }
+      .title {
+        font-weight:800;
+      }
+      .state {
+        display:none;
+        font-style:italic;
+        color:$blue;
+        font-size:.8em;
       }
       .words {
         flex-basis:75%;
@@ -1463,6 +1494,17 @@ ul.hmenu {
       }
       &:hover, &.active { 
         background:$gray;
+      }
+      &.active {
+        .title, .fa {
+          color:$blue;
+        } 
+        .thumb {
+          border:1px solid $blue;
+          .inner {
+            display:flex;
+          }
+        }
       }
     }
   }
