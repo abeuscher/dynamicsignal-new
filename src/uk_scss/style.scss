@@ -1,0 +1,58 @@
+/*!
+Theme Name: DynamicSignal-UK
+Theme URI: http://dynamicsignal.com
+Author: Al Beuscher
+Author URI: http://alexbeuscher.com/
+Description: Theme for dynamicsignal.co.uk. Uses ACF for custom fields, NPM for packaging, and Pug templating. See readme file for installation instructions.
+Version: 0.0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: dynamicsignal
+*/
+@import "../scss/_normalize.scss";
+@import "./_paths.scss";
+@import "../scss/_variables.scss";
+@import "../scss/_sass-mixins.scss";
+$fa-font-path: $font-path;
+@import "../../node_modules/font-awesome/scss/font-awesome.scss";
+@import "../scss/_flickity.scss";
+@import "../scss/_parallax.scss";
+@import "../scss/_case-study.scss";
+@import "../scss/_nav.scss";
+@import "../scss/_sub-nav.scss";
+@import "../scss/_breadcrumbs.scss";
+@import "../scss/_grid.scss";
+@import "../scss/_footer.scss";
+@import "../scss/_header.scss";
+@import "../scss/_connectors.scss";
+@import "../scss/_home.scss";
+@import "../scss/_flipping-slides.scss";
+@import "../scss/_customers.scss";
+@import "../scss/_company.scss";
+@import "../scss/_solutions.scss";
+@import "../scss/_services.scss";
+@import "../scss/_events.scss";
+@import "../scss/_partners.scss";
+@import "../scss/_blog.scss";
+@import "../scss/_use-cases.scss";
+@import "../scss/_demo-request.scss";
+@import "../scss/_contact.scss";
+@import "../scss/_support.scss";
+@import "../scss/_careers.scss";
+@import "../scss/_news-and-press.scss";
+@import "../scss/_team.scss";
+@import "../scss/_uberflip.scss";
+@import "../scss/_marketo.scss";
+@import "../scss/_forms.scss";
+@import "../scss/_vidyard.scss";
+@import "../scss/_snap-app.scss";
+@import "../scss/_use-cases-single.scss";
+@import "../scss/_products.scss";
+@import "../scss/_cta-bar.scss";
+@import "../scss/_video-playlist.scss";
+@import "../scss/_pie-chart.scss";
+@import "../scss/_bar-chart.scss";
+@import "../scss/_search.scss";
+@import "../scss/_legal.scss";
+@import "../scss/_features.scss";
+@import "../scss/_base.scss";

@@ -1,0 +1,131 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Blog View All
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Company",
+      "link"=>"/company/"
+    ));
+    array_push($breadcrumbs,array(
+      "title"=>"Blog",
+      "link"=>"/blog/"
+    ));
+    $override_title = "All Entries";
+
+    $featured_ids = [];
+    $args = array(
+      'posts_per_page' => 1,
+      'orderby'    => 'post_date',
+      'order'      => 'DESC',
+      'ignore_sticky_posts'=>1,
+      'meta_query' => array(
+        array(
+          'key' => 'front_page_featured_entry',
+          'value' => 'true'
+        )
+      )
+    );
+    $query = new WP_Query($args);
+    if ($query->have_posts()) {
+      array_push($featured_ids,$query->posts[0]->ID);
+    }
+    $parent_category = "blog-categories";
+    $category_entries = array(
+      [
+        "name"=>"Best Practices",
+        "slug"=>"best-practices"
+        ],
+      [
+        "name"=>"Customer Stories",
+        "slug"=>"customer-stories"
+        ],
+      [
+        "name"=>"DySi News & Culture",
+        "slug"=>"news-and-culture"
+        ]
+    );
+    $categories = ["best-practices","customer-stories","news"];
+    
+    $filtered_posts = [];
+    foreach ($category_entries as $key=>$category) {
+      $query = new WP_Query( array( 'post__not_in' => $featured_ids, 'category_name' => $parent_category.'+'.$category["slug"],'post__in'  => get_option( 'sticky_posts' ),'ignore_sticky_posts' => 0,'posts_per_page' => 1) );
+      if ($query->have_posts()) {
+        array_push($featured_ids,$query->posts[0]->ID);
+        }
+      else {
+        $query = new WP_Query( array( 'category_name' => $parent_category.'+'.$category["slug"],'posts_per_page' => 1) );
+        array_push($featured_ids,$query->posts[0]->ID);
+        }  
+    }
+
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1
+            :php
+              echo $override_title;
+  section
+    .container
+      .row
+        .col-md-12
+          :php
+            $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) + 1  : 2;
+            $count = 0;
+            $page_object = get_queried_object();
+            $query = new WP_Query( array('post__not_in' => $featured_ids,'post_type' => 'post','paged' => $paged,'posts_per_page' => 10,'orderby'=>'post_date','ignore_sticky_posts'=>1,'post_status'=>'publish') );
+            if( $query->have_posts() ) {
+                while( $query->have_posts() ) {
+                    $query->the_post();
+                    $post_tags = get_the_tags();
+                    $tags = "";
+                    if ($post_tags) {
+                      foreach($post_tags as $key=>$tag) {
+                        $tags .= sprintf("<a href='/tag/%s'>%s</a> | ", $tag->slug,$tag->name);
+                      }
+                      $tags = rtrim($tags,"| ");
+                    }
+                    $thumb = get_field("social_share_image") ? get_field("social_share_image") : get_the_post_thumbnail_url();
+                    $authorname = get_the_author_meta('display_name',get_the_author_id());
+                    $email =  get_the_author_meta('email',get_the_author_id());
+                    $authormeta = get_avatar($email);
+                    printf("<article class='blog-roll-bucket flicker-in' id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'>
+                              <meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>
+                              <div class='blog-tile-wide'>
+                                <div class='description'>
+                                  <div class='author-block'>
+                                    <div class='small-author-thumb'>%s</div>
+                                    <p class='name'>%s</p>
+                                    <p class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</p>
+                                  </div>
+                                  <a href='%s' itemprop='url'><h3 itemprop='headline'>%s</h3></a>
+                                  <p class='excerpt'>%s</p>
+                                  <div class='tag-cloud'>%s</div>
+                                </div>
+                                <a href='%s' itemprop='url'>
+                                  <div class='thumb' data-bg='%s'></div>
+                                </a> 
+                              </div>  
+                            </article>",get_the_ID(),get_the_author(),$authorname,get_the_time('c'),get_the_time('c'),get_the_date(),get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),$thumb);  $count++;
+                      }}
+  section.container.pagination
+    .row
+      .col-md-12
+        :php
+          $big = 999999999;
+          echo paginate_links( array(
+          	'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+          	'format' => '?paged=%#%',
+          	'current' => max( 1, get_query_var('paged') ),
+          	'total' => $query->max_num_pages
+          ) );

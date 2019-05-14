@@ -16,6 +16,13 @@ var marketoembedBuildDir = buildDir + 'marketo-embed/';
 var lpSrcDir = srcDir + 'lp-embed/';
 var lpBuildDir = buildDir + 'lp-embed/';
 
+var ukTemplatesSrc = srcDir + "uk_templates/";
+var ukStylesSrc = srcDir + "uk_scss/";
+var ukJSSrc = srcDir + "uk_js/";
+var ukBuildDir = "app/public/wp-content/themes/ds-uk/";
+var ukJsBuild = ukBuildDir + "js/";
+
+
 // Include gulp
 var watchify = require('watchify');
 var browserify = require('browserify');
@@ -94,12 +101,29 @@ var jsFiles = [{
       debug: false,
       paths: ['./bower_components', './node_modules'],
       output: "bundle.js"
-    }
+    },
+  },
+    {
+      "id": "ukjs",
+      "buildDir": ukJsBuild,
+      "opts": {
+        entries: [ukJSSrc + 'app.js'],
+        debug: false,
+        paths: ['./bower_components', './node_modules'],
+        output: "bundle.js"
+      }
   }
 ];
 function bundleMain() {
   for (i=0;i<jsFiles.length;i++) {
     if (jsFiles[i].id=="js") {
+      crunchFile(jsFiles[i]);
+    }
+  }
+}
+function bundleUK() {
+  for (i=0;i<jsFiles.length;i++) {
+    if (jsFiles[i].id=="ukjs") {
       crunchFile(jsFiles[i]);
     }
   }
@@ -146,6 +170,8 @@ gulp.task('bundle-js', bundleJS);
 
 gulp.task('bundle-main', bundleMain);
 
+gulp.task('bundle-uk', bundleUK);
+
 gulp.task('compile-sass-autoprefixed-minified', function() {
   return gulp.src(sassDir + '*.scss')
     .pipe(sass({
@@ -165,6 +191,25 @@ gulp.task('compile-sass-autoprefixed-minified', function() {
     }))
     .pipe(gulp.dest(cssDir));
 });
+gulp.task('compile-sass-uk', function() {
+  return gulp.src(ukStylesSrc + '*.scss')
+    .pipe(sass({
+      outputStyle: 'compressed',
+      includePaths: ['node_modules/susy/sass']
+    }))
+    .on('error', function(error) {
+      console.log(error);
+      this.emit('end');
+    })
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions', 'ie 8', 'ie 9', '> 1%'],
+      cascade: false
+    }))
+    .pipe(cssmin({
+      keepSpecialComments: true
+    }))
+    .pipe(gulp.dest(ukBuildDir));
+});
 
 gulp.task('watch-files', function() {
   gulp.watch(sassDir + '**/*.scss', ['compile-sass-autoprefixed-minified'])
@@ -172,6 +217,12 @@ gulp.task('watch-files', function() {
   gulp.watch([uberembedSrcDir + '**/*.js', uberembedSrcDir + '*.js', lpSrcDir + '**/*.js', lpSrcDir + '*.js',embedSrcDir + '*.js', embedSrcDir + '/*/*.js'], ['bundle-js'])
   gulp.watch([viewsSrcDir + '*.pug', viewsSrcDir + '/*/*.pug'], ['build-views']);
   gulp.watch([miscSrcDir + "*/**", miscSrcDir + ".*"], ['move-files']);
+});
+gulp.task('watch-files-uk', function() {
+  gulp.watch(sassDir + '**/*.scss', ['compile-sass-uk'])
+  gulp.watch([ukJSSrc + '**/*.js', ukJSSrc + '*.js',ukJSSrc + '**/*.pug', ukJSSrc + '*.pug'], ['bundle-uk'])
+  gulp.watch([ukTemplatesSrc + '*.pug', ukTemplatesSrc + '/*/*.pug'], ['build-views-uk']);
+  gulp.watch([miscSrcDir + "*/**", miscSrcDir + ".*"], ['move-files-uk']);
 });
 
 gulp.task('build-views', function() {
@@ -189,20 +240,51 @@ gulp.task('build-views', function() {
     .pipe(extReplace(".php"))
     .pipe(gulp.dest(viewsBuildDir));
 });
+gulp.task('build-views-uk', function() {
+  gulp.src(ukTemplatesSrc + '*.pug')
+    .pipe(pug({
+      "pretty": true,
+      "filters": {
+        "php": pugPhpFilter
+      },
+      "extension": "php",
+      "locals": {
+        siteurl: ""
+      }
+    }))
+    .pipe(extReplace(".php"))
+    .pipe(gulp.dest(ukBuildDir));
+});
 gulp.task('clean-dir', function() {
   return gulp.src(buildDir + "*", {
       read: true
     })
     .pipe(clean());
 });
+gulp.task('clean-uk-dir', function() {
+  return gulp.src(ukBuildDir + "*", {
+      read: true
+    })
+    .pipe(clean());
+});
+
 gulp.task('move-files', function() {
   gulp.src([miscSrcDir + "*/**", miscSrcDir + ".*"])
     .pipe(gulp.dest(buildDir));
 });
+
 gulp.task('move-thumb', function() {
   gulp.src([srcDir + "*.png"])
     .pipe(gulp.dest(buildDir));
 });
 
+gulp.task('move-uk-files', function() {
+  gulp.src([miscSrcDir + "*/**", miscSrcDir + ".*"])
+    .pipe(gulp.dest(ukBuildDir));
+  gulp.src([srcDir + "*.png"])
+    .pipe(gulp.dest(ukBuildDir));   
+});
+
 // Default Task
 gulp.task('default', ['compile-sass-autoprefixed-minified', 'bundle-js', 'build-views', 'watch-files', 'move-files', 'move-thumb']);
+gulp.task('uk', ['compile-sass-uk', 'bundle-uk', 'build-views-uk', 'watch-files-uk', 'move-uk-files']);

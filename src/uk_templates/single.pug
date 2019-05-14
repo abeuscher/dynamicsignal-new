@@ -1,0 +1,135 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Blog Entry Page
+    */
+    if (get_field("social_share_image")!="") {
+      $override_thumb = get_field("social_share_image");
+    }
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug  
+block content
+  :php
+    if( have_posts() ){
+     while( have_posts() ) {
+      the_post();
+      $showcta = get_field("show_cta")[0];
+      $start_date = get_the_date();
+
+      $breadcrumbs = [];
+      array_push($breadcrumbs,array(
+        "title"=>"Company",
+        "link"=>"/company/"
+      ));
+      array_push($breadcrumbs,array(
+        "title"=>"Blog",
+        "link"=>"/blog/"
+      ));
+  section.top-section-blog
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+  :php
+    printf("<article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>",get_the_ID());
+  section.blog-hero
+    :php
+      echo "<div class='blog-header'><div class='blog-thumb' itemprop='image' itemscope itemtype='https://schema.org/ImageObject'>";
+      the_post_thumbnail( 'full', array('class' => 'img-responsive') );
+      echo "</div>";
+    .inner
+      .container
+        .row
+          .col-md-12
+            h1.blog-title(itemprop="headline")
+              :php
+                echo get_the_title();
+            p.author By
+              :php
+                $authorslug = get_userdata(get_the_author_id())->user_nicename;
+                echo " <a class='author-link' href=\"/author/$authorslug\" itemprop='author' itemscope itemtype='https://schema.org/Person'><span itemprop='name'>".get_author_name() . "</span></a>" ;
+            ul.social-share
+              li
+                :php
+                  echo "<a href='https://www.facebook.com/sharer/sharer.php?u=".urlencode(get_permalink())."' target='_blank'>";
+                span.fa-1x.fa-stack
+                  i.fa.fa-circle.fa-stack-2x
+                  i.fa.fa-stack-1x.fa-facebook
+                :php
+                  echo "</a>";
+              li
+                :php
+                  echo "<a href='https://twitter.com/intent/tweet?text=".urlencode(get_the_title()." by ".get_author_name())."&url=".urlencode(get_permalink())."' target='_blank'>";
+                span.fa-1x.fa-stack
+                  i.fa.fa-circle.fa-stack-2x
+                  i.fa.fa-stack-1x.fa-twitter
+                  :php
+                    echo "</a>";
+              li
+                :php
+                  echo "<a href='https://www.linkedin.com/shareArticle?mini=true&url=".get_permalink()."&title=".get_the_title()."&summary=".urlencode(get_the_excerpt())."' target='_blank'>";
+                span.fa-1x.fa-stack
+                  i.fa.fa-circle.fa-stack-2x
+                  i.fa.fa-stack-1x.fa-inverse.fa-linkedin
+                :php
+                  echo "</a>";
+            :php
+              printf("<span class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</span>",get_the_time('c'),get_the_time('c'),get_the_date());
+    :php
+      echo "</div>";
+  section.container.blog-content
+    .container
+      .row
+        .col-md-9.blog-content(itemprop="articleBody")
+          :php
+            the_content();
+        .col-md-3.related-posts
+          include ./inc/related-posts.pug
+    .row
+      .col-md-9.author-bio
+        h2.header-right Post Author
+        :php
+          global $authordata;
+          $meta = get_user_meta($authordata->data->ID);
+          printf("<div class='author-thumb' data-bg='%s'></div>",$meta["image"][0]);
+        .author-description
+          ul.social-share
+            :php
+              if($meta["ts_fab_twitter"][0]!="") {
+                echo "<li><a href='https://twitter.com/".$meta["ts_fab_twitter"][0]."' target='_blank'>";
+            span.fa-1x.fa-stack
+              i.fa.fa-circle.fa-stack-2x
+              i.fa.fa-stack-1x.fa-twitter
+              :php
+                echo "</a></li>";
+                }
+                if($meta["ts_fab_linkedin"][0]!="") {
+                  echo "<li><a href='".$meta["ts_fab_linkedin"][0]."' target='_blank'>";
+            span.fa-1x.fa-stack
+              i.fa.fa-circle.fa-stack-2x
+              i.fa.fa-stack-1x.fa-linkedin
+              :php
+                echo "</a></li>";
+                }
+          h3
+            :php
+              echo $meta["first_name"][0]." ".$meta["last_name"][0];
+          :php
+            if($meta["description"][0]!="") {
+            echo $meta["description"][0];
+            }
+
+              }}
+  :php
+    if($showcta=="yes") {
+  section.bottom-cta
+    .container
+      .row
+        .col-md-12
+          p Learn why more than 20 percent of the Fortune 100 use Dynamic Signal
+          a.button.cta(href="/requestdemo/") Request Demo
+  :php
+    }

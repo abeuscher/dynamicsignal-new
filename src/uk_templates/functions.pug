@@ -1,0 +1,17 @@
+:php
+  add_theme_support( 'post-thumbnails' );
+  // Update CSS within in Admin
+  function admin_style() {
+    wp_enqueue_style('admin-styles', get_template_directory_uri().'/admin.css');
+  }
+  add_action('admin_enqueue_scripts', 'admin_style');
+  add_action('login_enqueue_scripts', 'admin_style');
+
+  function my_format_TinyMCE( $in ) {
+    $in['entity_encoding'] = 'raw';
+    $in['paste_remove_styles'] = true;
+    $in['paste_remove_spans'] = true;
+    return $in;
+  }
+
+  add_filter('tiny_mce_before_init', 'my_format_TinyMCE');

@@ -1,0 +1,104 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: News and Press Page
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Company",
+      "link"=>"/company/"
+    ));
+  -
+    var pageData = {
+    "header":"Solutions",
+    "subheader":"For Every Department in the Enterprise"
+    };
+  section.top-section-interior
+    .container 
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug  
+          h1!=pageData.header
+          h2!=pageData.subheader
+  section
+    .container
+      .row
+        .col-md-12.news-streams
+          h2
+            a(href="https://resources.dynamicsignal.com/news-room") News Room
+                
+          .uber-embed.news
+            // Uberflip Embedded Hub Widget
+            #UfEmbeddedHub1556219787135  
+          a.view-link(href="https://resources.dynamicsignal.com/news-room") View All News
+          hr
+          h2
+            a(href="https://resources.dynamicsignal.com/press-coverage") Press Coverage        
+          .uber-embed.press
+            #UfEmbeddedHub1556221626144
+          a.view-link(href="https://resources.dynamicsignal.com/press-coverage") View All Press
+            script.
+                window._ufHubConfig = window._ufHubConfig || [];
+                window._ufHubConfig.push({
+                'containers':{'app':'#UfEmbeddedHub1556219787135'},
+                'collection': '208133',
+                'openLink':function(url){
+                window.top.location.href=url;
+                },
+                'lazyloader':{
+                'itemDisplayLimit':20,
+                'maxTilesPerRow':5,
+                'maxItemsTotal': 5
+                },
+                'tileSize': 'small',
+                'enablePageTracking':false,
+                'baseUrl': 'https://resources.dynamicsignal.com/',
+                'filesUrl': 'https://resources.dynamicsignal.com/',
+                'generatedAtUTC': '2019-04-25 19:15:19',
+                });
+                window._ufHubConfig.push({
+                'containers':{'app':'#UfEmbeddedHub1556221626144'},
+                'collection': '206867',
+                'openLink':function(url){
+                window.top.location.href=url;
+                },
+                'lazyloader':{
+                'itemDisplayLimit':20,
+                'maxTilesPerRow':5,
+                'maxItemsTotal': 5
+                },
+                'tileSize': 'small',
+                'enablePageTracking':false,
+                'baseUrl': 'https://resources.dynamicsignal.com/',
+                'filesUrl': 'https://resources.dynamicsignal.com/',
+                'generatedAtUTC': '2019-04-25 19:47:01',
+                });
+            script.
+                (function(d,t,u) {
+                function load(){
+                var s=d.createElement(t);s.src=u;d.body.appendChild(s);
+                }
+                if (window.addEventListener) {
+                window.addEventListener('load',load,false);
+                }
+                else if (window.attachEvent) {
+                window.attachEvent('onload',load);
+                }
+                else{
+                window.onload=load;
+                }
+                }(document,'script','https://resources.dynamicsignal.com/hubsFront/embed_collection'));
+                // /End Uberflip Embedded Hub Widget
+  section.bottom-cta
+    .container
+        .row
+            .col-md-12
+                p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal
+                a.button.cta.knockout(href="/requestdemo") Request Demo

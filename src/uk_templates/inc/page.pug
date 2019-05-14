@@ -1,0 +1,62 @@
+block template
+- var themeDir = "/wp-content/themes/ds-uk/"
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(property="og:locale",content="en_US")
+    meta(property="og:site_name",content="Dynamic Signal")
+    meta(name="twitter:card",content="summary")
+    meta(name="twitter:site",content="@Dynamic_Signal")
+    link(rel="stylesheet",href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700|Roboto:400,700")
+    link(rel='shortcut icon', href=themeDir + 'images/favicon.ico?v=2') 
+    :php
+      global $wp_query;
+      $postid = $wp_query->post->ID;
+      if ($override_title!="") {
+        $title = $override_title;
+      }
+      else {
+        $title = trim(WPSEO_Meta::get_value('title'))=="" ? get_the_title() :  WPSEO_Meta::get_value('title');
+      }
+      if (!strpos($title,"Dynamic Signal")) {
+        $title .= " | Dynamic Signal";
+      }
+      if ($override_description!="") {
+        $description = htmlentities($override_description, ENT_QUOTES);
+        }
+      else {
+        $description = htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES);
+        }
+      if ($override_thumb!="") {
+        $featured_image = $override_thumb;
+        }
+      else if(WPSEO_Meta::get_value('featured_image')!="") {
+        $featured_image = WPSEO_Meta::get_value('featured_image');
+        }
+      else {
+        $featured_image = "/wp-content/themes/ds-new/images/logo-social.jpg";
+      }
+      wp_reset_query();
+      $link = get_the_permalink();
+      echo "<title>$title</title>";
+      echo "<meta name='description' content='".$description."' />";
+      echo "<meta property='og:title' content='$title' />";
+      echo "<meta property='og:url' content='$link' />";
+      echo "<meta property='og:description' content='$description' />";
+      echo "<meta property='og:image' content='$featured_image' />";
+      echo "<meta name='twitter:title' content='$title' />";
+      echo "<meta name='twitter:description' content='$description' />";
+      echo "<meta name='twitter:image' content='$featured_image' />";
+      $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
+      echo "<link href='$slink' rel='stylesheet' />";
+  body
+    #overlay
+    block nav
+    #wrapper
+      block content
+      include ./footer.pug
+    block modals
+    script(src=themeDir+"js/bundle.js",type="application/javascript")
