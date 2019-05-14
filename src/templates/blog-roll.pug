@@ -106,7 +106,6 @@ block content
                                   <div class='author-block'>
                                     <div class='small-author-thumb'>%s</div>
                                     <p class='name'>%s</p>
-                                    <p class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</p>
                                   </div>
                                   <a href='%s' itemprop='url'><h3 itemprop='headline'>%s</h3></a>
                                   <p class='excerpt'>%s</p>
@@ -116,7 +115,7 @@ block content
                                   <div class='thumb' data-bg='%s'></div>
                                 </a> 
                               </div>  
-                            </article>",get_the_ID(),get_the_author(),$authorname,get_the_time('c'),get_the_time('c'),get_the_date(),get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),$thumb);  $count++;
+                            </article>",get_the_ID(),get_the_author(),$authorname,get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),$thumb);  $count++;
                       }}
   section.container.pagination
     .row
