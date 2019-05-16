@@ -21,16 +21,8 @@ var siteopts = {
 };
 var ctaInfo = require("../js/cta-bar.json");
 var ctaTemplate = require("../js/inc/cta-bar.pug");
+
 window.addEventListener("load", function() {
-  if (typeof(knownVisitor)=='undefined' && typeof(thisPageIsAGate)!='undefined') {
-    if (typeof(gateUrl)!='undefined') {
-      if (gateUrl!="") {
-        location.href = gateUrl;
-      }
-    }
-  } 
-
-
   setNav();
   if (document.getElementById("marketo-form-wrapper")) {
   var formHandler = new FormHandler();
@@ -104,6 +96,10 @@ window.addEventListener("load", function() {
     var btn = document.getElementById("video-demo-button");
     btn.addEventListener("click", function(e) {
       e.preventDefault();
+      if (history.pushState) {
+        var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?val=demorequest';
+        window.history.pushState({path:newurl},'',newurl);
+      }
       btn.innerHTML = "Request Sent!";
     });
   }
@@ -179,6 +175,7 @@ function triggerGA() {
       '//www.googletagmanager.com/gtm.js?id=' + i + dl;
     f.parentNode.insertBefore(j, f);
   })(window, document, 'script', 'dataLayer', 'GTM-MQKZ8M');
+  setTimeout(checkVisitor,3000);
 }
 function writeCTA() {
   if (document.getElementById("cta-bar")) {
@@ -226,4 +223,14 @@ function activateImages() {
     var imageArray = JSON.parse(el.getAttribute("data-bg-array"));
     el.style.backgroundImage = "url('" + imageArray.url + "')";
   }
+}
+function checkVisitor() {
+  if (typeof(knownVisitor)=='undefined' && typeof(thisPageIsAGate)!='undefined') {
+    if (typeof(gateUrl)!='undefined') {
+      if (gateUrl!="") {
+        //location.href = gateUrl;
+        console.log("unknown visitor");
+      }
+    }
+  } 
 }

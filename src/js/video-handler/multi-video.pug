@@ -2,9 +2,9 @@
     .wrapper-video
         .player
     .buttons
-        for item in locals
+        for item, key in locals
             if item.title!=""
-                a.btn-launch(href="#",data-launch-id=item.id)
+                a.btn-launch(href="#",data-launch-id=item.id,data-video-idx=item.id)
                     span.thumb(data-bg=item.thumb)
                         .inner
                             span.fa.fa-play-circle
