@@ -21,8 +21,8 @@ block content
 
       $breadcrumbs = [];
       array_push($breadcrumbs,array(
-        "title"=>"Company",
-        "link"=>"/company/"
+        "title"=>"Resources",
+        "link"=>"/resources/"
       ));
       array_push($breadcrumbs,array(
         "title"=>"Blog",
@@ -76,8 +76,6 @@ block content
                   i.fa.fa-stack-1x.fa-inverse.fa-linkedin
                 :php
                   echo "</a>";
-            :php
-              printf("<span class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</span>",get_the_time('c'),get_the_time('c'),get_the_date());
     :php
       echo "</div>";
   section.container.blog-content
