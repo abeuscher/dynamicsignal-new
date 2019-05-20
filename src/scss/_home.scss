@@ -200,8 +200,11 @@ p.home-secondary {
   .carousel-panels {
     @include bp(m) {
       flex-basis:50%;
+     
     }
-    
+    @include bp(l) {
+      margin-top:60px;
+    }
     display:block;
     p.source {
       @include bp(m) {
