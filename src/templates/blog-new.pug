@@ -124,22 +124,25 @@ block content
                                     <p class='name'>%s</p>
                                   </div>
                                   <a href='%s' itemprop='url'><h3 itemprop='headline'>%s</h3></a>
-                                  <p class='excerpt'>%s</p>
                                   <div class='tag-cloud'>%s</div>
                                 </div>
                                 <a href='%s' itemprop='url'>
                                   <div class='thumb' data-bg='%s'></div>
                                 </a> 
                               </div>  
-                            </article>",get_the_ID(),get_the_author(),$authorname,get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),$thumb);
+                            </article>",get_the_ID(),get_the_author(),$authorname,get_permalink(),get_the_title(),$tags,get_permalink(),$thumb);
                       $count++;
                       }}
-        .col-md-4
+        .col-md-4.tag-list
+          h2.header-right Popular Tags
           :php
             if( have_posts() ){
               while( have_posts() ) {
                 the_post();
-                echo json_encode(get_field("featured_tags"));
+                foreach(get_field("featured_tags") as $idx=>$tag) {
+                  $this_tag = get_tag($tag["tag"]);
+                  printf("<p><a href='%s'>%s</a></p>", "/tag/".$this_tag->slug, $this_tag->name);
+                }
               }
             }
   section.container

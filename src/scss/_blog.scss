@@ -189,7 +189,7 @@ section.blog-hero {
       position:absolute;
       bottom:0;
       left:0;
-      right:30%;
+      right:40%;
     }
   }
   .thumb {
@@ -201,7 +201,7 @@ section.blog-hero {
 
     @include bp(m) {
       display:block;
-      width: 30%;
+      width: 40%;
       float: left;
     }
 
@@ -231,7 +231,7 @@ section.blog-hero {
     line-height: 1.2;
     @include bp(m) {
       padding-right:$gutter-width;
-      width: 70%;
+      width: 60%;
       float: left;
     }
     @include bp(l) {
@@ -535,5 +535,19 @@ ul.social-share li i.fa-circle {
     font-size:24px;
     color:$blue;
     margin:0;
+  }
+}
+.tag-list {
+  h2.header-right:first-child {
+    margin-top:34px;
+    text-transform:none;
+  }
+  p a {
+    text-decoration:underline;
+    color:$classic-gray;
+    font-size:.8em;
+    &:hover {
+      text-decoration:none;
+    }
   }
 }
