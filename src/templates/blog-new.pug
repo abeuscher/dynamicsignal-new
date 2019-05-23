@@ -93,7 +93,7 @@ block content
   section.no-padding-top
     .container
       .row
-        .col-md-12
+        .col-md-8
           h2 Most Recent
           :php
             $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
@@ -134,6 +134,14 @@ block content
                             </article>",get_the_ID(),get_the_author(),$authorname,get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),$thumb);
                       $count++;
                       }}
+        .col-md-4
+          :php
+            if( have_posts() ){
+              while( have_posts() ) {
+                the_post();
+                echo json_encode(get_field("featured_tags"));
+              }
+            }
   section.container
     .row
       .col-md-12
