@@ -60,12 +60,14 @@ videoHandler.prototype.buildMultiplayer = function(bucket) {
       e.preventDefault();
       var self = this;
       if (history.pushState) {
-        console.log(window.location.pathname + '?videoidx=' + self.getAttribute("data-video-idx"));
-        var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?videoidx=' + self.getAttribute("data-video-idx");
+        //console.log(window.location.pathname + '?videoidx=' + self.getAttribute("data-video-idx"));
+        //var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?videoidx=' + self.getAttribute("data-video-idx");
+        /*
         Munchkin.munchkinFunction('clickLink', {
           href: window.location.pathname + '?videoidx=' + self.getAttribute("data-video-idx")
          });
-        window.history.pushState({path:newurl},'',newurl);
+         */
+        //window.history.pushState({path:newurl},'',newurl);
       }
       player.getPlayerState()
         .then(function(data) {
