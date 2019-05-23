@@ -919,7 +919,7 @@ function activateImages() {
 }
 
 function triggerGDPR() {
-  var domain = "dynamicsignal.com";
+  var domain = "dynamicsignal.co.uk";
   if (!Cookies.get(siteSettings.gdprCookie)) {
     var warning = parseHTML(siteSettings.templates.gdprPopup());
     document.body.appendChild(warning);
