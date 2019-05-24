@@ -12,12 +12,11 @@ block content
   :php
     echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
     .", 'hero_words':".json_encode(get_field('header_animated_words'))."};</script>";
-    printf("<section class='homepage halfpic bigtext' id='sticky-header'>");
-    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
-  .white-gradient-header
+    printf("<section class='homepage fullpic bigtext' id='sticky-header' data-bg-array='%s'>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+    printf("<div class='fullpic-bg-mobile' data-bg-array='%s'></div>",json_encode(get_field("header_mobile_bg"), JSON_UNESCAPED_SLASHES));
   .container
-      .row-flex
-          .col-half-flex.gray-bg-section
+      .row
+          .col-md-6
               .inner
                   h1.home-header-text
                     :php
