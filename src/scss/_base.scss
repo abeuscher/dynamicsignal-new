@@ -436,6 +436,13 @@ ul.social-share {
       animation: radial-pulse 1s 1;
     }
   }
+  &.orange {
+    background:$orange;
+    border:1px solid $orange;
+    &:hover {
+      background:darken($orange,10%);
+    }
+  }
   &.outline {
     color:$white;
     background:transparent;

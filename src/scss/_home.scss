@@ -234,7 +234,8 @@ p.home-secondary {
   }
 }
 .demo-videos {
-  background:$blue;
+  background:url($img-path + "bg-home-bluetriangle.jpg") no-repeat center center;
+  background-size:cover;
   position: relative;
   padding-top:0;
   .learn-link {
@@ -247,6 +248,26 @@ p.home-secondary {
     }
   }
   .demo-video-wrapper {
+    .demo-video-bucket {
+      margin:$gutter-width/2;
+      position:relative;
+      padding-bottom:4em;
+      .outer {
+        position:absolute;
+        bottom:0;
+        right:0;
+        left:0;
+        top:90px;
+        z-index:0;
+        background:$white;
+      }
+      .button-wrapper {
+        position: relative;
+
+        width:100%;
+        text-align: center;
+      }
+    }
     @include bp(m) {
       display:flex;
       align-content: space-between;
@@ -256,23 +277,14 @@ p.home-secondary {
           position: absolute;
           bottom:$gutter-width/2;
           left:0;
-          width:100%;
-          text-align: center;
         }
 
       }
     }
-    .demo-video-bucket {
-      background:$white;
-      margin:$gutter-width/2;
-      position:relative;
-      padding-bottom:4em;
-
-    }
   }
   a h2 {
       display:block;
-      background:$blue;
+      background:transparent;
       padding:$gutter-width $gutter-width $gutter-width/2;
       color:$gray;
       margin:0;
@@ -302,6 +314,8 @@ p.home-secondary {
     text-align: center;
     display:block;
     padding:$gutter-width/2;
+    z-index:1;
+    position: relative;
   }
   .col-3 {
     background:$white;
@@ -433,5 +447,60 @@ p.home-secondary {
       bottom:0;
       background:linear-gradient(45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); 
     }
+  }
+}
+section.home-featured-article {
+  background:$white;
+  display:flex;
+  .bg {
+    display:block;
+    height:auto;
+    flex-shrink:1;
+    flex-grow:1;
+    background:url($img-path + "bgarticle.jpg") repeat-y top right;
+    background-size:cover;
+    &.right {
+      transform:rotateY(180deg);
+    }
+  }
+  .content {
+    max-width:1000px;
+    flex-basis:100%;
+    border-radius:20px 20px 0 0;
+    box-shadow:0 -5px 10px rgba(0,0,0,.1);
+    background:white;
+    border:5px solid #ccc;
+    padding:$gutter-width;
+    margin-top:$gutter-width;
+    border-bottom:none;
+    h2 {
+      margin-top:0;
+    }
+    .fa {
+      margin-right:.5em;
+      color:$canary-blue;
+    }
+  }
+  article {
+    .home-featured-thumb {
+      @include aspect-ratio(13,3);
+      width:100%;
+      background-size:cover;
+    }
+  }
+}
+.home-featured-ebook {
+  position:relative;
+  background:url($img-path + "bg-home-orangecrush.jpg") no-repeat left center;
+  background-size:cover;
+  color:$white;
+  .home-ebook-thumb {
+    @include aspect-ratio(10,6);
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center center;
+  }
+  h1, h2, h3, p {
+    color:$white;
   }
 }
