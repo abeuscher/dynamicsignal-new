@@ -12,20 +12,21 @@ block content
   :php
     echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
     .", 'hero_words':".json_encode(get_field('header_animated_words'))."};</script>";
-    printf("<section class='homepage fullpic bigtext' id='sticky-header' data-bg-array='%s'>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
-    printf("<div class='fullpic-bg-mobile' data-bg-array='%s'></div>",json_encode(get_field("header_mobile_bg"), JSON_UNESCAPED_SLASHES));
-  .container
-      .row
-          .col-md-6
-              .inner
-                  h1.home-header-text
-                    :php
-                      echo get_field("header_headline");
-                  p
-                    :php
-                      echo get_field("header_copy");
-                  :php
-                    printf("<a class='button cta modal-show' data-video-modal-id='s2wzmwLSR-M' data-event='vidClick-HomeCTA' href='#'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("header_cta_text"));
+    printf("<section class='homepage fullpic bigtext no-padding' id='sticky-header' data-bg-array='%s'>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+    printf("<div class='inner' data-bg-array='%s'>",json_encode(get_field("header_mobile_bg"), JSON_UNESCAPED_SLASHES));
+  .col-half.text
+    h1.home-header-text
+      :php
+        echo get_field("header_headline");
+    p
+      :php
+        echo get_field("header_copy");
+    :php
+      printf("<a class='button cta modal-show' data-video-modal-id='s2wzmwLSR-M' data-event='vidClick-HomeCTA' href='#'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("header_cta_text"));
+  .col-half
+  :php
+    echo "</div>";
+
   :php
     echo "</section>";
   section.white-bg-section.no-padding-bottom

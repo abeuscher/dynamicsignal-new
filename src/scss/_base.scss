@@ -1249,44 +1249,41 @@ ul.plus-list {
 
 }
 section.fullpic {
-  position:relative;
-  padding:40px 0 100px;
   background-size:cover;
   background-repeat:no-repeat;
-  background-position-x:-80vw;
-  background-position-y:top;
-  .container {
-    position:relative;
-    z-index:2;
-  }
-  .fullpic-bg-mobile {
-    width:100%;
+  min-height:400px;
+  max-height:450px;
+  .inner {
+    max-width:1280px;
+    display:flex;
+    margin:0 auto;
     background-repeat:no-repeat;
-    background-size:cover;
-    background-position:top right;
-    &:after {
-      content:'';
-      display:block;
-      width:100%;
-      padding-bottom:50%;
+    background-size:60%;
+    background-position:bottom right;
+    .col-half {
+      flex-basis:50%;
+      &.text {
+        padding:200px $gutter-width 150px;
+      }
     }
-    @include bp(m) {
-      display:none;
-    }
-  }
-  @include bp(m) {
-    padding:160px 0 100px;
-  }
-  @include bp(l) {
-    background-position:top right;
   }
 }
 @media only screen and (max-width: 1024px) {
-  section.fullpic {
-    background:none!important;
+  section.fullpic .inner {
+    background-image:none!important;
   }
 }
+.fullpic-bg-mobile {
+  width:100%;
 
+  background-position:top right;
+  &:after {
+    content:'';
+    display:block;
+    width:100%;
+    padding-bottom:50%;
+  }
+}
 section.halfpic {
   display:block;
   width:100%!important;
