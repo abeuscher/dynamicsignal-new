@@ -219,7 +219,7 @@ p.home-secondary {
         padding-left:$gutter-width;
         border-left:3px solid $gray;
         &.active {
-          border-left:3px solid $blue;
+          border-left:3px solid $orange;
         }
         &:hover {
           h2,h3,p {
@@ -266,6 +266,9 @@ p.home-secondary {
 
         width:100%;
         text-align: center;
+        .button {
+          width:90%;
+        }
       }
     }
     @include bp(m) {
@@ -476,6 +479,10 @@ section.home-featured-article {
     h2 {
       margin-top:0;
     }
+    h3 {
+      text-transform:uppercase;
+      font-size:1.8em;
+    }
     .fa {
       margin-right:.5em;
       color:$canary-blue;
@@ -494,6 +501,7 @@ section.home-featured-article {
   background:url($img-path + "bg-home-orangecrush.jpg") no-repeat left center;
   background-size:cover;
   color:$white;
+  padding:$gutter-width*3 0;
   .home-ebook-thumb {
     @include aspect-ratio(10,6);
     background-repeat:no-repeat;
