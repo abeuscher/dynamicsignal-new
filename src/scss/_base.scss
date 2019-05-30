@@ -1272,6 +1272,9 @@ section.fullpic {
     right:0;
     width:100%!important;
   }
+  .header-mobile-bg {
+    display:none;
+  }
   .inner {
     position:relative;
     max-width:1280px;
@@ -1334,8 +1337,22 @@ section.fullpic {
 
 @media only screen and (max-width: 640px) {
   section.fullpic .header-bg {
-    background:linear-gradient(to bottom, #1b3152 0%,#8fcef4 100%)!important;
+    display:none;
   }
+  
+  section.fullpic .header-mobile-bg {
+    background-size:cover;
+    background-repeat:no-repeat;
+    position:absolute;
+    background-position:center top;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    width:100%!important;  
+    display:block;
+  }
+
 }
 
 section.halfpic {
@@ -1395,6 +1412,7 @@ section.halfpic {
 }
 .home-header-text {
   font-size:2em;
+  color:$white;
   .blue {
     color:$white;
     @include bp(s) {
@@ -1402,6 +1420,7 @@ section.halfpic {
     }          
   }
   @include bp(s) {
+    color:$off-black;
     font-size:1.4em;
   }
   @include bp(m) {
