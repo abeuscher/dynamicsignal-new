@@ -1316,7 +1316,7 @@ section.fullpic {
         }
         &.text {
           flex-basis:40%;
-          padding:150px $gutter-width 50px;
+          padding:150px $gutter-width 100px;
         }
       }
       @include bp(l) {
@@ -1325,7 +1325,7 @@ section.fullpic {
         }
         &.text {
           flex-basis:50%;
-          padding:200px $gutter-width 50px;
+          padding:200px $gutter-width 100px;
         }     
       }
     }
