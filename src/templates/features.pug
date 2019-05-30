@@ -103,8 +103,163 @@ block content
                             :php
                                 echo get_field ("content_personalization_copy");
                 .row
-                    .col-md-12.content-image
-                        .bg#content-lower-image(data-bg="features-mainpic-personalization.png")
+                    -
+                        var data = [
+                        {
+                        name: "Mark",
+                        position: "Marketing Editor in San Bruno, CA",
+                        thumb: "mark.jpg",
+                        assigned: [
+                            {
+                            name: "All Company News",
+                            status: "on"
+                            },
+                            {
+                            name: "Marketing Team Announcements",
+                            status: "on"
+                            },
+                            {
+                            name: "Branding Guidelines",
+                            status: "on"
+                            },
+                            {
+                            name: "HQ Office News",
+                            status: "on"
+                            },
+                            {
+                            name: "Company Press Feed",
+                            status: "on"
+                            }
+                        ],
+                        other: [
+                            {
+                            name: "Career Development Tipss",
+                            status: "on"
+                            },
+                            {
+                            name: "Volunteering News Feed",
+                            status: "off"
+                            },
+                            {
+                            name: "HQ Office Culture Events",
+                            status: "off"
+                            },
+                            {
+                            name: "Industry News",
+                            status: "on"
+                            }
+                        ]
+                        },
+                        {
+                        name: "Carolyn",
+                        position: "Account Director in Chicago, IL",
+                        thumb: "carolyn.jpg",
+                        assigned: [
+                            {
+                            name: "All Company News",
+                            status: "on"
+                            },
+                            {
+                            name: "Field Team Resources",
+                            status: "on"
+                            },
+                            {
+                            name: "Sales Materials",
+                            status: "on"
+                            },
+                            {
+                            name: "Chicago Office Events",
+                            status: "on"
+                            },
+                            {
+                            name: "Corporate Blog Feed",
+                            status: "on"
+                            }
+                        ],
+                        other: [
+                            {
+                            name: "Career Development Tipss",
+                            status: "off"
+                            },
+                            {
+                            name: "Volunteering News Feed",
+                            status: "off"
+                            },
+                            {
+                            name: "Chicago Office Culture Events",
+                            status: "on"
+                            },
+                            {
+                            name: "Industry News",
+                            status: "off"
+                            }
+                        ]
+                        },
+                        {
+                        name: "Samantha",
+                        position: "Tech Lead in Belfast Ireland",
+                        thumb: "samantha.jpg",
+                        assigned: [
+                            {
+                            name: "All Company News",
+                            status: "on"
+                            },
+                            {
+                            name: "Engineering Announcements",
+                            status: "on"
+                            },
+                            {
+                            name: "IT Support FAQs",
+                            status: "on"
+                            },
+                            {
+                            name: "Belfast Office Events",
+                            status: "on"
+                            },
+                            {
+                            name: "EMEA Team Resources",
+                            status: "on"
+                            }
+                        ],
+                        other: [
+                            {
+                            name: "Career Development Tipss",
+                            status: "off"
+                            },
+                            {
+                            name: "Volunteering News Feed",
+                            status: "off"
+                            },
+                            {
+                            name: "Belfast Office Culture Events",
+                            status: "on"
+                            },
+                            {
+                            name: "Industry News",
+                            status: "on"
+                            }
+                        ]
+                        }
+                        ];
+                    .personalization-graphic
+                        for person in data
+                            .col-md-4
+                                .headshot(data-bg=person.thumb)
+                                h4!=person.name
+                                p.job-title!=person.position
+                                .gray-table
+                                    .cell.header
+                                        p Assigned Content Categories
+                                    for item in person.assigned
+                                        div(class="cell " + item.status)
+                                            span.radio
+                                            span!=item.name
+                                    .cell.header
+                                        p Other Content Interests
+                                    for item in person.other
+                                        div(class="cell " + item.status)
+                                            span.radio
+                                            span!=item.name
     section#section-broadcasting.feature-bucket
         #section-broadcasting-anchor.anchor-target
             .container
