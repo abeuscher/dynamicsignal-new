@@ -1,5 +1,8 @@
 section.blog-hero {
-  padding-top:0;
+  padding-top:120px;
+  @include bp(m) {
+    padding-top:0;
+  }
 }
 .blog-content {
   padding-bottom: $gutter-width*2;
@@ -175,9 +178,10 @@ section.blog-hero {
   .tag-cloud {
     padding:$gutter-width/2 $gutter-width $gutter-width/2 0;
 
-    font-size:.8em;
+    font-size:.7em;
     color:$light-blue;
     font-style:italic;
+    position:static;
     a {
       color:$blue;
       &:hover {
@@ -190,6 +194,9 @@ section.blog-hero {
       bottom:0;
       left:0;
       right:40%;
+    }
+    @include bp(l) {
+      font-size:.8em;
     }
   }
   .thumb {
@@ -276,6 +283,11 @@ section.blog-hero {
     padding:0;
     margin:$gutter-width/2 0 $gutter-width/3;
     font-weight:400;
+    font-size:1em;
+    line-height:1.2;
+    @include bp(l) {
+      font-size:1.2em;
+    }
   }
   .excerpt {
     margin:0;

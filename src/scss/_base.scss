@@ -783,12 +783,12 @@ a.small-link {
     transition: 0.25s all ease-in;
     color: $white;
     text-shadow: 1px 1px 3px rgba(0,0,0,.8);
-    padding: $gutter-width;
-    margin: 0;
+    padding: $gutter-width/4;
+    margin:0;
+    position: absolute;
     @include bp(m) {
-      position: absolute;
+      padding:$gutter-width;
     }
-
   }
 }
 /*

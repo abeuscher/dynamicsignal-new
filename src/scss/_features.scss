@@ -79,11 +79,14 @@
   }
   #features-sections {
     .feature-bucket {
-      padding-top: 40px;
+      padding-top: 120px;
       @include bp(s) {
         padding-top: 120px;
         min-height: 50vw;
         padding-bottom: 5vw;
+      }
+      @include bp(m) {
+        padding-top:160px;
       }
       .centered {
         text-align: left;
