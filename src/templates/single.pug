@@ -37,7 +37,8 @@ block content
     printf("<article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>",get_the_ID());
   section.blog-hero
     :php
-      echo "<div class='blog-header'><div class='blog-thumb' itemprop='image' itemscope itemtype='https://schema.org/ImageObject'>";
+      $social_image = get_field("social_share_image") ? get_field("social_share_image") : get_the_post_thumbnail_url();
+      printf("<div class='blog-header' data-bg='%s'><div class='blog-thumb' itemprop='image' itemscope itemtype='https://schema.org/ImageObject'>", $social_image);
       the_post_thumbnail( 'full', array('class' => 'img-responsive') );
       echo "</div>";
     .inner

@@ -335,7 +335,9 @@ ul.social-share li i.fa-circle {
   overflow: hidden;
   position: relative;
   @include aspect-ratio (4,3);
-
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center top;
   ul.social-share {
     margin-top: -1*$gutter-width;
   }
@@ -400,7 +402,7 @@ ul.social-share li i.fa-circle {
   .blog-thumb {
     width: 100%;
     bottom: 0;
-
+    display:none;
     img {
       height: 100%;
       width: auto;
@@ -422,6 +424,9 @@ ul.social-share li i.fa-circle {
       width: 100%;
       position: absolute;
       background: linear-gradient(to top, rgba(0,0,0,1) 0%,rgba(0,0,0,0.1) 50%,rgba(0,0,0,0) 90%);
+    }
+    @include bp(s) {
+      display:block;
     }
   }
 
