@@ -1,0 +1,121 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Product Page
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    global $wp_query;
+     query_posts(array(
+         'post_type' => 'customer',
+         'nopaging' => true
+     ));
+     $customers = [];
+     while(have_posts()) : the_post();
+        $post->logo = get_field("logo");
+        $post->citation_name = get_field("citation_name");
+        $post->citation_title = get_field("citation_title");
+        $post->vimeo_id = get_field("vimeo_id");
+        $post->video_thumbnail = get_field("product_page_video_thumb");
+        $post->quote = get_field("quote");
+         array_push($customers,$post);
+     endwhile;
+     wp_reset_query();
+    //echo '<script>var customerData = '. json_encode($customers).';</script>';
+    $parent_title = ""; 
+    $parent_url = "";
+    $override_title = "What is Dynamic Signal?";
+    printf("<section class='halfpic  top-section-product' id='sticky-header'>");
+    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+  .white-gradient-header
+  .container
+      .row-flex
+          .col-half-flex.gray-bg-section
+              .inner
+                h1
+                  :php
+                    the_field("header_text");
+                p
+                  :php
+                    echo get_field("header_intro");
+                p
+                  :php
+                    echo get_Field("header_copy");
+                p
+                  a.button.cta.knockout.modal-show(href='#',data-video-modal-id="s2wzmwLSR-M",data-event="vidClick-Product") Play Video
+                    span.fa.fa-play-circle-o
+  :php
+    echo "</section>";    
+  section.product-bucket.centered.bg-gray 
+    .container
+      .row
+        .col-md-12
+          h2
+            :php
+              echo get_field("section_1_header");
+          .bg(data-bg="product-mainpic-diagram-new.jpg")
+          p 
+            :php
+              echo get_field("section_1_copy");
+  section.product-bucket.centered.bg-blue
+    .container
+      .row
+        .col-md-12
+          h2  
+            :php
+              echo get_field("section_2_header");
+          .bg(data-bg="features-mainpic-video-blank.png")
+          p 
+            :php
+              echo get_field("section_2_copy");
+  section.product-bucket.centered.white-bg-section
+    .container
+      .row
+        .col-md-12
+          h2 
+            :php
+              echo get_field("section_3_header");
+          .bg.short(data-bg="features-mainpic-segmentation.jpg") 
+          p  
+            :php
+              echo get_field("section_3_copy");
+  section.product-bucket.centered.bg-gray 
+    .container
+      .row
+        .col-md-12
+          h2  
+            :php
+              echo get_field("section_4_header");
+          .bg(data-bg="features-mainpic-reporting.jpg")
+          p 
+            :php
+              echo get_field("section_4_copy");
+  section.product-bucket.centered.white-bg-section
+    .container
+      .row
+        .col-md-12
+          h2 
+            :php
+              echo get_field("section_5_header");
+          ul.product-logos
+            li
+              .bg(data-bg="product-logos-gdpr.jpg")
+            li
+              .bg(data-bg="product-logos-privacy-shield.png") 
+            li
+              .bg(data-bg="product-logos-soc.png")
+            li
+              .bg(data-bg="product-logos-ssl.jpg")
+          p Enterprise-grade security and privacy safeguards employee and company information. Dynamic Signal employs industry-standard Secure Socket Layer (SSL) encryption and uses SOC 2-compliant data centers. Fully GDPR compliant and 
+            a(href="https://dynamicsignal.com/privacy/",target="_blank") EU-U.S. Privacy Shield certified.   
+  section.bottom-cta
+    .container
+      .row
+        .col-md-12
+          p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal
+          a.button.cta(href="/requestdemo/") Request Demo

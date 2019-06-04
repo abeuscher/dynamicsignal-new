@@ -1,0 +1,41 @@
+:php
+	$tags = wp_get_post_tags(get_the_ID());
+	if ($tags) {
+		echo '<h2 class="header-right">Recommended Blogs</h2>';
+		$search_terms = [];
+		foreach($tags as $key=>$tag) {
+			array_push($search_terms,$tag->term_id);
+		}
+		if (count($search_terms)>2) {
+		$search_terms = array_chunk($search_terms,2)[0];
+
+		}
+	$args=array(
+	'tag__in' => $search_terms,
+	'post__not_in' => array(get_the_ID()),
+	'posts_per_page'=>3,
+	'caller_get_posts'=>1
+	);
+	$my_query = new WP_Query($args);
+	if( $my_query->have_posts() ) {
+	while ($my_query->have_posts()) : $my_query->the_post();
+	echo '<h3><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
+	endwhile;
+	}
+	wp_reset_query();
+	}
+	$related = get_field("related_items");
+	if ($related) {
+		echo "<h2 class='header-right'>Recommended Content</h2>";
+		$target = $item["open_in_new_window"]=="yes" ? " target='_blank'" : "";
+		foreach($related as $key=>$item) {
+			echo "<h3><a href='".$item["item_url"]."' $target>".$item["item_title"]."</a></h3>";
+		}
+	}
+	if( has_tag() ) {
+	echo "<h2 class='header-right'>Tags</h2>";
+	echo "<div class='blog-tags'>";
+	echo "<p class='blog-tags'>";
+	the_tags( false );
+	echo "</p></div>";
+	}

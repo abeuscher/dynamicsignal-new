@@ -1,9 +1,16 @@
 #header-logo {
+    display:flex;
+    flex-wrap:nowrap;
     position: relative;
-    height:80px;
-    img {
+    div img, img {
         width:auto;
-        max-height:80px;
+        max-height:40px;
+        margin-right:24px;
+        margin-top:6px;
+        @include bp(m) {
+            max-height:80px;
+            margin-top:0;
+        }
     }
 }
 .row.lp-header-image {

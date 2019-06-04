@@ -4,12 +4,14 @@ var ScrollMagic = require("scrollmagic");
 var templates = {
   "header":require("../templates/inc/header-embed.pug"),
   "footer":require("../templates/inc/footer.pug"),
-  "toggle": require("../templates/inc/navbar-toggle.pug"),
   "sideNav": require("../templates/inc/side-nav.pug")
 }
 var siteopts = {
   "siteurl":"https://www.dynamicsignal.com"
 }
+var ctaInfo = require("../js/cta-bar.json");
+var ctaTemplate = require("../js/inc/cta-bar.pug");
+
 window.addEventListener("load", function() {
   function inIframe () {
       try {
@@ -21,39 +23,56 @@ window.addEventListener("load", function() {
   if (!inIframe()) {
 
     setNav();
+    writeCTA();
     // Add the header shrinker
-    var headController = new ScrollMagic.Controller({
-      "loglevel": 0
-    });
-    new ScrollMagic.Scene({
-        offset: 10,
-        duration: 0
-      })
-      .on("enter", function(e) {
-        document.getElementById("page-header").classList.add("active");
-        document.getElementById("toggle-side-nav").classList.add("short");
-      })
-      .on("leave", function(e) {
-        document.getElementById("page-header").classList.remove("active");
-        document.getElementById("toggle-side-nav").classList.remove("short");
-      })
-      .addTo(headController);
+  var headController = new ScrollMagic.Controller({
+    "loglevel": 0
+  });
+  var headerLock = new ScrollMagic.Scene({
+    offset: 10,
+    duration: 0
+  })
+  .on("enter", function (e) {
+    if (!document.body.classList.contains("nav-short")) {
+      document.body.classList.add("nav-short");
+    }
+  })
+  .on("leave", function (e) {
+    if (document.body.classList.contains("nav-short")) {
+      document.body.classList.remove("nav-short");
+    }
+  })
+  .addTo(headController);
+  new ScrollMagic.Scene({
+    offset: 0,
+    duration: 0
+  });
+  headerLock.addTo(headController);  
 
-    // Add menu button listener
-    var theWrapper = document.getElementById("wrapper");
-    var theToggle = document.getElementById("toggle-side-nav");
-    theToggle.style.margin = "0";
-    theToggle.style.display = "block";
-    theToggle.style.float = "none";
-    theToggle.addEventListener("click", function(e) {
-      e.preventDefault();
-      if (document.body.classList.contains("nav-open")) {
-        document.body.classList.remove("nav-open");
-        theWrapper.removeEventListener("click", closeBody);
-      } else {
-        document.body.classList.add("nav-open");
-        theWrapper.addEventListener("click", closeBody);
-      }
+    var btn = document.getElementById("btn-search-header");
+    var btnClose = document.getElementById("btn-close-search");
+    var searchBox = document.getElementById("search-box-header");
+    btn.addEventListener("click", function() {
+      searchBox.classList.toggle("active");
+    });
+    btnClose.addEventListener("click", function() {
+      searchBox.classList.toggle("active");
+    });
+  // Add menu button listener
+  var theWrapper = document.getElementById("wrapper");
+  var theToggle = document.getElementById("toggle-side-nav");
+  var closeButton = document.getElementById("btn-close-sidenav");
+  theToggle.addEventListener("click", function(e) {
+    e.preventDefault();
+    if (document.body.classList.contains("nav-open")) {
+      document.body.classList.remove("nav-open");
+      theWrapper.removeEventListener("click", closeBody);
+      closeButton.removeEventListener("click", closeBody);
+    } else {
+      document.body.classList.add("nav-open");
+      theWrapper.addEventListener("click", closeBody);
+      closeButton.addEventListener("click", closeBody);
+    }
     });
 
     function closeBody(e) {
@@ -84,9 +103,11 @@ window.addEventListener("load", function() {
 
 });
 function setNav() {
-  document.body.appendChild(parseHTML(templates.toggle()));
+  var theOverlay = document.createElement("div");
+  theOverlay.id = "overlay";
   document.body.appendChild(parseHTML(templates.sideNav(siteopts)));
   document.body.appendChild(parseHTML(templates.header(siteopts)));
+  document.body.appendChild(theOverlay);
   var wrapper = document.createElement("div");
   wrapper.id = "wrapper";
   document.body.appendChild(wrapper);
@@ -96,3 +117,10 @@ function setNav() {
   wrapper.appendChild(container);
   wrapper.appendChild(parseHTML(templates.footer(siteopts)));
 }
+function writeCTA() {
+  if (document.getElementById("cta-bar")) {
+    var bar = document.getElementById("cta-bar");
+    bar.append(parseHTML(ctaTemplate(ctaInfo)));
+    bar.classList.add("active");
+  }
+} 

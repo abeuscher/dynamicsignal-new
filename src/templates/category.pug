@@ -14,8 +14,8 @@ block content
   :php
     $breadcrumbs = [];
     array_push($breadcrumbs,array(
-      "title"=>"Company",
-      "link"=>"/company/"
+      "title"=>"Resources",
+      "link"=>"/resources/"
     ));
     array_push($breadcrumbs,array(
       "title"=>"Blog",
@@ -53,6 +53,7 @@ block content
                     $authorname = get_the_author_meta('display_name',get_the_author_id());
                     $email =  get_the_author_meta('email',get_the_author_id());
                     $authormeta = get_avatar($email);
+                    $thumb = get_field("social_share_image") ? get_field("social_share_image") : get_the_post_thumbnail_url();
                     printf("<article class='blog-roll-bucket flicker-in' id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'>
                               <meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>
                               <div class='blog-tile-wide'>
@@ -70,7 +71,7 @@ block content
                                   <div class='thumb' data-bg='%s'></div>
                                 </a> 
                               </div>  
-                            </article>",get_the_ID(),get_the_author(),$authorname,get_the_time('c'),get_the_time('c'),get_the_date(),get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),get_the_post_thumbnail_url());
+                            </article>",get_the_ID(),get_the_author(),$authorname,get_the_time('c'),get_the_time('c'),get_the_date(),get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),$thumb);
                       $count++;
                       }}
   section.container.pagination

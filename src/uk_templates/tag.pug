@@ -1,0 +1,52 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Tag Archive
+    */
+    $override_title = "Tag : " . ucwords(single_tag_title( '', false ));
+    $override_description = "Blog entries pertaining to " . ucwords(single_tag_title( '', false ));
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Company",
+      "link"=>"/company/"
+    ));
+    array_push($breadcrumbs,array(
+      "title"=>"Blog",
+      "link"=>"/blog/"
+    ));
+    $override_title = "Tag : " . ucwords(single_tag_title( '', false ));
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1
+            :php
+              echo $override_title;
+  section
+    .container
+      :php
+        $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+        $count = 0;
+        $query = new WP_Query( array('post_type' => 'post','paged' => $paged,'posts_per_page' => 9,'tag'=>get_queried_object()->slug) );
+        if( $query->have_posts() ) {
+            while( $query->have_posts() ) {
+                $query->the_post();
+                if ($count==0 || $count%3==0) { echo "<div class='even-height-wrapper'>"; }
+                printf("<div class='col-3'><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><a class='story-tile-link no-header' href='%s' itemprop='url'><div class='featured-thumb' data-bg='%s'></div><h3 itemprop='headline'>%s</h3></a></article></div>",get_the_ID(),get_permalink(),get_the_post_thumbnail_url(),get_the_title());
+                if ($count%3==2) { echo "</div>"; }
+                  $count++;
+                  }
+  section.container.pagination
+    .row
+      .col-md-12
+        :php
+          echo paginate_links();
+          }

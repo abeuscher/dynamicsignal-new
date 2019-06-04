@@ -1,5 +1,8 @@
 section.blog-hero {
-  padding-top:0;
+  padding-top:120px;
+  @include bp(m) {
+    padding-top:0;
+  }
 }
 .blog-content {
   padding-bottom: $gutter-width*2;
@@ -58,6 +61,43 @@ section.blog-hero {
       text-decoration: none;
     }
   }
+  .snippet {
+    background:$light-gray;
+    border-radius:5px;
+    padding:$gutter-width/2;
+    padding-left:$gutter-width*2;
+    position:relative;
+    border:1px solid $menu-blue;
+    &:before {
+      content:'i';
+      font-style:normal;
+      width:1.5em;
+      height:1.5em;
+      position:absolute;
+      top:$gutter-width/1.5;
+      left:$gutter-width/1.5;
+      border-radius:50%;
+      text-align:center;
+      overflow:hidden;
+      background:$menu-blue;
+      color:$white;
+      font-weight:600;
+      line-height:1.5em;
+      margin-bottom:-6px;
+    }
+    h1,h2,h3,h4,h5,h6, p {
+      margin:0 0 $gutter-width/2;
+    }
+  }
+}
+.abstract {
+  h1,h2,h3,h4,h5,h6, p {
+    margin:0 0 $gutter-width/2;
+  }
+  border:1px solid $light-gray;
+  border-radius:5px;
+  padding:$gutter-width/1.5;
+  background:$lighter-gray;
 }
 
 .alignright {
@@ -138,9 +178,10 @@ section.blog-hero {
   .tag-cloud {
     padding:$gutter-width/2 $gutter-width $gutter-width/2 0;
 
-    font-size:.8em;
+    font-size:.7em;
     color:$light-blue;
     font-style:italic;
+    position:static;
     a {
       color:$blue;
       &:hover {
@@ -152,7 +193,10 @@ section.blog-hero {
       position:absolute;
       bottom:0;
       left:0;
-      right:30%;
+      right:40%;
+    }
+    @include bp(l) {
+      font-size:.8em;
     }
   }
   .thumb {
@@ -164,7 +208,7 @@ section.blog-hero {
 
     @include bp(m) {
       display:block;
-      width: 30%;
+      width: 40%;
       float: left;
     }
 
@@ -194,7 +238,7 @@ section.blog-hero {
     line-height: 1.2;
     @include bp(m) {
       padding-right:$gutter-width;
-      width: 70%;
+      width: 60%;
       float: left;
     }
     @include bp(l) {
@@ -227,6 +271,7 @@ section.blog-hero {
     }
   }
   p.blog-date {
+    display:none;
     margin:0;
     font-size:.8em;
     font-style:italic;
@@ -238,6 +283,11 @@ section.blog-hero {
     padding:0;
     margin:$gutter-width/2 0 $gutter-width/3;
     font-weight:400;
+    font-size:1em;
+    line-height:1.2;
+    @include bp(l) {
+      font-size:1.2em;
+    }
   }
   .excerpt {
     margin:0;
@@ -285,7 +335,9 @@ ul.social-share li i.fa-circle {
   overflow: hidden;
   position: relative;
   @include aspect-ratio (4,3);
-
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center top;
   ul.social-share {
     margin-top: -1*$gutter-width;
   }
@@ -350,7 +402,7 @@ ul.social-share li i.fa-circle {
   .blog-thumb {
     width: 100%;
     bottom: 0;
-
+    display:none;
     img {
       height: 100%;
       width: auto;
@@ -372,6 +424,9 @@ ul.social-share li i.fa-circle {
       width: 100%;
       position: absolute;
       background: linear-gradient(to top, rgba(0,0,0,1) 0%,rgba(0,0,0,0.1) 50%,rgba(0,0,0,0) 90%);
+    }
+    @include bp(s) {
+      display:block;
     }
   }
 
@@ -497,5 +552,19 @@ ul.social-share li i.fa-circle {
     font-size:24px;
     color:$blue;
     margin:0;
+  }
+}
+.tag-list {
+  h2.header-right:first-child {
+    margin-top:34px;
+    text-transform:none;
+  }
+  p a {
+    text-decoration:underline;
+    color:$classic-gray;
+    font-size:.8em;
+    &:hover {
+      text-decoration:none;
+    }
   }
 }

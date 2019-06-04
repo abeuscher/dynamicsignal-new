@@ -13,7 +13,8 @@ function videoHandler() {
   this.settings = {
     templates: {
       modalVideo: require("./modal-video.pug"),
-      panelVideo: require("./panel-video.pug")
+      panelVideo: require("./panel-video.pug"),
+      multiVideo: require("./multi-video.pug")
     },
     modalEvents: {}
   };
@@ -41,6 +42,47 @@ videoHandler.prototype.buildModals = function() {
     self.modals[i].addEventListener("click", self.openModal);
   }
 };
+videoHandler.prototype.buildMultiplayer = function(bucket) {
+  var self = this;
+  var data = pageData.videos[bucket.getAttribute("data-multiplayer-id")];
+  bucket.appendChild(parseHTML(self.settings.templates.multiVideo(data)));
+  
+  var screen = bucket.querySelectorAll(".player")[0];
+  var buttons = bucket.querySelectorAll(".buttons a");
+  
+  var player = new YouTubePlayer(screen, {playerVars:{rel:0}});
+
+  player.cueVideoById(buttons[0].getAttribute("data-launch-id"));
+  buttons[0].classList.add("active");
+
+  for (i=0;i<buttons.length;i++) {
+    buttons[i].addEventListener("click", function(e) {
+      e.preventDefault();
+      var self = this;
+      if (history.pushState) {
+        //console.log(window.location.pathname + '?videoidx=' + self.getAttribute("data-video-idx"));
+        //var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?videoidx=' + self.getAttribute("data-video-idx");
+        /*
+        Munchkin.munchkinFunction('clickLink', {
+          href: window.location.pathname + '?videoidx=' + self.getAttribute("data-video-idx")
+         });
+         */
+        //window.history.pushState({path:newurl},'',newurl);
+      }
+      player.getPlayerState()
+        .then(function(data) {
+          if (!self.classList.contains("active") || data !=1) {
+            player.loadVideoById(self.getAttribute("data-launch-id"));
+            for (i=0;i<buttons.length;i++) {
+              buttons[i].classList.contains("active") ? buttons[i].classList.remove("active") : "";
+            }
+            self.classList.add("active");
+          }
+        });
+
+    });
+  }
+}
 videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
   var self = this;
   if (self.panels) {

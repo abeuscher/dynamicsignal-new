@@ -25,6 +25,7 @@ header.page-header {
       @include ds-transition();
       max-height: 100%;
       width: auto;
+      max-width:none;
       @include bp(s) {
         height:$nav-tall;
       }
@@ -66,16 +67,17 @@ header.page-header {
         }
         &.cta {
           border: 1px solid $header-blue;
-          color:$header-blue;
+          background:$header-blue;
+          color:$white;
           border-radius: 6px;
           @include ds-transition();
           line-height:2;
           padding:0 $gutter-width/2;
           margin:0 $gutter-width/2;
           &:hover {
-            background: $header-blue;
-            color: white;
+            background: darken($header-blue,15%);
             text-decoration:none;
+            color:$white;
           }
         }
         &:hover {
@@ -92,9 +94,9 @@ header.page-header {
           text-decoration:underline;
         }
         a.cta {
-          text-decoration:none;
-          background:$blue;
+          background: darken($header-blue,15%);
           color:$white;
+          text-decoration:none;
         }
       }
       @include bp(m) {

@@ -12,8 +12,8 @@ block content
   :php
     $breadcrumbs = [];
     array_push($breadcrumbs,array(
-      "title"=>"Company",
-      "link"=>"/company/"
+      "title"=>"Resources",
+      "link"=>"/resources/"
     ));
     array_push($breadcrumbs,array(
       "title"=>"Blog",
@@ -78,7 +78,7 @@ block content
   section
     .container
       .row
-        .col-md-12
+        .col-md-8
           :php
             $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) + 1  : 2;
             $count = 0;
@@ -95,6 +95,7 @@ block content
                       }
                       $tags = rtrim($tags,"| ");
                     }
+                    $thumb = get_field("social_share_image") ? get_field("social_share_image") : get_the_post_thumbnail_url();
                     $authorname = get_the_author_meta('display_name',get_the_author_id());
                     $email =  get_the_author_meta('email',get_the_author_id());
                     $authormeta = get_avatar($email);
@@ -105,18 +106,28 @@ block content
                                   <div class='author-block'>
                                     <div class='small-author-thumb'>%s</div>
                                     <p class='name'>%s</p>
-                                    <p class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</p>
                                   </div>
                                   <a href='%s' itemprop='url'><h3 itemprop='headline'>%s</h3></a>
-                                  <p class='excerpt'>%s</p>
                                   <div class='tag-cloud'>%s</div>
                                 </div>
                                 <a href='%s' itemprop='url'>
                                   <div class='thumb' data-bg='%s'></div>
                                 </a> 
                               </div>  
-                            </article>",get_the_ID(),get_the_author(),$authorname,get_the_time('c'),get_the_time('c'),get_the_date(),get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),get_the_post_thumbnail_url());  $count++;
+                            </article>",get_the_ID(),get_the_author(),$authorname,get_permalink(),get_the_title(),$tags,get_permalink(),$thumb);  $count++;
                       }}
+        .col-md-4.tag-list
+          h2.header-right Popular Tags
+          :php
+            if( have_posts() ){
+              while( have_posts() ) {
+                the_post();
+                foreach(get_field("featured_tags") as $idx=>$tag) {
+                  $this_tag = get_tag($tag["tag"]);
+                  printf("<p><a href='%s'>%s</a></p>", "/tag/".$this_tag->slug, $this_tag->name);
+                }
+              }
+            }
   section.container.pagination
     .row
       .col-md-12

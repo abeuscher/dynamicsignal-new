@@ -1,5 +1,5 @@
 .lp-container {
-    padding:80px $gutter-width;
+    padding:120px $gutter-width;
     background-repeat:no-repeat;
     background-size:contain;
     background-position: center top;
@@ -130,15 +130,6 @@
         }
     }
 
-}
-body #page-header {
-    &.active {
-        //transition: none;
-        //box-shadow: none;
-        //height: 50px;
-        //background: transparent;
-    }
-    background:transparent;
 }
 .lp-footer {
     .footer-top {

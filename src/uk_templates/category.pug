@@ -1,0 +1,88 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Category Archive
+    */
+    $override_title = "Category : " . ucwords(single_tag_title( '', false ));
+    $override_description = "Blog entries pertaining to " . ucwords(single_tag_title( '', false ));
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    $breadcrumbs = [];
+    array_push($breadcrumbs,array(
+      "title"=>"Company",
+      "link"=>"/company/"
+    ));
+    array_push($breadcrumbs,array(
+      "title"=>"Blog",
+      "link"=>"/blog/"
+    ));
+    $override_title = "Category : " . ucwords(single_tag_title( '', false ));
+  section.top-section-interior
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+          h1
+            :php
+              echo $override_title;
+  section
+    .container
+      .row
+        .col-md-12
+          :php
+            $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+            $count = 0;
+            $page_object = get_queried_object();
+            $query = new WP_Query( array('post_type' => 'post','paged' => $paged,'posts_per_page' => 9,'category_name'=>'blog-categories+'.$page_object->cat_name) );
+            if( $query->have_posts() ) {
+                while( $query->have_posts() ) {
+                    $query->the_post();
+                                        $post_tags = get_the_tags();
+                    $tags = "";
+                    if ($post_tags) {
+                      foreach($post_tags as $key=>$tag) {
+                        $tags .= sprintf("<a href='/tag/%s'>%s</a> | ", $tag->slug,$tag->name);
+                      }
+                      $tags = rtrim($tags,"| ");
+                    }
+                    $authorname = get_the_author_meta('display_name',get_the_author_id());
+                    $email =  get_the_author_meta('email',get_the_author_id());
+                    $authormeta = get_avatar($email);
+                    $thumb = get_field("social_share_image") ? get_field("social_share_image") : get_the_post_thumbnail_url();
+                    printf("<article class='blog-roll-bucket flicker-in' id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'>
+                              <meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>
+                              <div class='blog-tile-wide'>
+                                <div class='description'>
+                                  <div class='author-block'>
+                                    <div class='small-author-thumb'>%s</div>
+                                    <p class='name'>%s</p>
+                                    <p class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</p>
+                                  </div>
+                                  <a href='%s' itemprop='url'><h3 itemprop='headline'>%s</h3></a>
+                                  <p class='excerpt'>%s</p>
+                                  <div class='tag-cloud'>%s</div>
+                                </div>
+                                <a href='%s' itemprop='url'>
+                                  <div class='thumb' data-bg='%s'></div>
+                                </a> 
+                              </div>  
+                            </article>",get_the_ID(),get_the_author(),$authorname,get_the_time('c'),get_the_time('c'),get_the_date(),get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),$thumb);
+                      $count++;
+                      }}
+  section.container.pagination
+    .row
+      .col-md-12
+        :php
+          $big = 999999999;
+            echo paginate_links( array(
+                'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                'format' => '?paged=%#%',
+                'current' => max( 1, get_query_var('paged') ),
+                'total' => $query->max_num_pages
+              )
+            );
