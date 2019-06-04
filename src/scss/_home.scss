@@ -324,23 +324,16 @@ p.home-secondary {
     background:$white;
   }
   &.interior {
-    background:$white;
     padding-top:$gutter-width;
     .demo-video-bucket {
-      //background:$blue;
-      color:$white;
       padding-bottom:10%;
-      @include bp(m) {
-        padding-bottom:30%;
-      }
       .inner-wrapper, .button-wrapper {
-        background:$blue;
       }
       .inner-wrapper {
         height:100%;
       }
       p,h2,h3 {
-        color:$white;
+
       }
       h4 {
         text-align:center;

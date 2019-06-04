@@ -34,7 +34,7 @@ block content
           foreach(get_field("sections") as $idx=>$section) {
             printf("<div class='col-md-12'><h2>%s</h2></div>", $section["title"]);
             foreach($section["thumbs"] as $key=>$thumb) {
-              printf("<div class='col-md-4 padding-bottom'><a class='story-tile-link' href='%s'><div class='featured-thumb' data-bg-array='%s'></div><h3>%s</h3></a></div>", $thumb["url"], json_encode($thumb["image"], JSON_UNESCAPED_SLASHES), $thumb["title"]);
+              printf("<div class='col-md-4 padding-bottom'><a class='story-tile-link' href='%s'><div class='featured-thumb' data-bg-array='%s'></div><h3>%s</h3></a></div>", $thumb["url"], json_encode($thumb["image"]), $thumb["title"]);
             }
           }
   section.bottom-cta

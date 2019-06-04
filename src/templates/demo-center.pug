@@ -33,7 +33,19 @@ block content
       .demo-video-wrapper
         :php
           foreach (get_field("demo_video_buckets") as $key=>$bucket) {
-            printf("<div class='demo-video-bucket'><h4><a href='%s'>%s</a></h4><div class='inner-wrapper'><div class='inner'><h3>%s</h3><p>%s</p><div class='button-wrapper'><a href='%s'><div class='demo-thumb' data-bg-array='%s'></div></a><a class='button knockout' data-button-event='%s' href='%s'>%s</a><a class='button learn-more' href='%s'>%s</a></div></div></div></div>", $bucket["title_link"], $bucket["title"], $bucket["subhead"], $bucket["copy"], $bucket["cta_target"], json_encode($bucket["demo_thumb"],JSON_UNESCAPED_SLASHES),"demoVideoInterior_".str_replace(' ', '', $bucket["custom_event_name"]), $bucket["cta_target"],$bucket["cta_text"],$bucket["learn_more_target"],$bucket["learn_more_text"]);
-          } 
+            printf("<div class='demo-video-bucket'>
+                      <a href='%s'><h2>%s</h2></a>
+                      <div class='outer'></div>
+                      <div class='inner'>
+                        <h3>%s</h3>
+                        <div class='demo-thumb' data-bg-array='%s'></div>
+                        <p>%s</p>
+                      </div>
+                      <div class='button-wrapper'>
+                        <a class='orange button' data-button-event='%s' href='%s'>%s</a>
+                        <a class='learn-link' href='%s'>%s</a>
+                      </div>
+                    </div>", $bucket["title_link"], $bucket["title"], $bucket["subhead"], json_encode($bucket["demo_thumb"], JSON_UNESCAPED_SLASHES), $bucket["copy"], "demoVideo_".str_replace(' ', '', $bucket["custom_event_name"]), $bucket["cta_target"],$bucket["cta_text"], $bucket["learn_more_target"],$bucket["learn_more_text"]);
+          }
   :php
      }}

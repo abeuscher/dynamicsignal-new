@@ -883,6 +883,25 @@ a.small-link {
   height:80%;
   &.blog-front {
     border-bottom:1px solid $middle-gray;
+    .featured-thumb {
+      background-size:contain;
+      padding-top:30%;
+      background-repeat:no-repeat;
+      background-position:center top;
+      h1 {
+        color:$black;
+        text-shadow:none;
+      }
+      @include bp(m) {
+        background-size:cover;
+        padding-top:0;
+        h1 {
+          color:$white;
+          text-shadow:1px 1px 3px rgba(0,0,0,.8);
+        }
+
+      }
+    }
   }
   &.sdr-page {
     height:100%;
@@ -914,18 +933,20 @@ a.small-link {
   }
 
   &:hover {
-    background: $light-gray;
-    color:$black;
-    .featured-thumb {
-      &:after {
-        color: $white;
-        background: rgba(0,0,0,.6);
-      }
-
-      h1 {
-        color: rgba(255,255,255,.5);
+    @include bp(m) {
+      background: $light-gray;
+      color:$black;
+      .featured-thumb {
+          &:after {
+            color: $white;
+            background: rgba(0,0,0,.6);
+          }        
+        h1 {
+          color: rgba(255,255,255,.5);
+        }
       }
     }
+
   }
 }
 .bottom-cta {
