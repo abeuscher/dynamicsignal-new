@@ -1,0 +1,100 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Platform Page 2019
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+    :php
+        printf("<section class='platform-header' data-bg-array='%s'>", json_encode(get_field("hero_bg_image"), JSON_UNESCAPED_SLASHES));
+    .container
+        .row
+            .col-md-5
+                :php
+                    printf("<h1>%s</h1>", get_field("hero_text"));
+                    printf("<a href='#' data-video-modal-id='%s' class='button white'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("cta_video_id"), get_field("cta_text"));
+            .col-md-7.platform-image-bucket
+                :php
+                    printf("<div class='pc-image' data-bg-array='%s'></div><div class='mobile-image' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES), json_encode(get_field("hero_phone_image"), JSON_UNESCAPED_SLASHES));
+    :php
+       echo "</section>";       
+    section.worthless-bullets.no-padding
+        .container
+            .row
+                .col-md-9
+                    ul.inane-copy-points
+                        :php
+                            foreach(get_field("hero_bullets") as $key=>$bullet) {
+                                printf("<li>%s</li>", $bullet["bullet_text"]);
+                            }
+    :php
+        foreach(get_field("sections") as $idx=>$this_section) {
+            $img_bucket = sprintf("<div class='col-md-6'><div class='platform-section-image' data-bg-array='%s'></div></div>", json_encode($this_section["static_image"], JSON_UNESCAPED_SLASHES));
+            $text_bucket = sprintf("<div class='col-md-6'><h2>%s</h2><p>%s</p><a class='button' href='%s'>%s</a></div>", $this_section["header"], $this_section["copy"], $this_section["cta_url"], $this_section["cta_text"]);
+            $content = $this_section["orientation"]=="Image Left" ? $img_bucket.$text_bucket : $text_bucket.$img_bucket;
+            printf("<section id='platform-%s' class='platform-section'><div class='container'><div class='row'>%s</div></div></section>", $idx, $content);
+        }
+    section.platform-panels.blue-bg-section
+        .container
+            .row
+                .col-md-12
+                    h2
+                        :php
+                            printf("%s", get_field("panel_section_header"));
+            .platform-panel-bucket
+                :php
+                    foreach (get_field("panels") as $idx=>$panel) {
+                        printf("<div class='platform-panel'><div class='inner'><h3>%s</h3><div class='logos'></div></div></div>", $panel["title"]);
+                    }
+    section.platform-security-section
+        .container
+            .row
+                .col-md-12
+                    :php
+                        $ss = get_field("security_section");
+                    h2 
+                        :php
+                            printf("%s", $ss["header"])
+                    ul.product-logos
+                        li
+                            .bg(data-bg="product-logos-gdpr.jpg")
+                        li
+                            .bg(data-bg="product-logos-privacy-shield.png") 
+                        li
+                            .bg(data-bg="product-logos-soc.png")
+                        li
+                            .bg(data-bg="product-logos-ssl.jpg")
+                    p
+                        :php
+                            printf("%s", $ss["copy"])                    
+    section.platform-benefits-section
+        .container
+            .row
+                .col-md-12
+                    h2 The Benefits of the Dynamic Signal Platform
+                    p Dynamic Signal delivers customer success in five key areas:
+                    ul.platform-benefits
+                        li
+                            .icon(data-bg="https://dynamicsignal.com/wp-content/uploads/2019/03/icon-benefits-150x150.png")
+                            h3 Improved Business Growth
+                            p Grow revenue by increasing productivity and innovation through thoughtful enagement
+                        li
+                            .icon(data-bg="https://dynamicsignal.com/wp-content/uploads/2019/03/icon-benefits-150x150.png")
+                            h3 Improved Business Growth
+                            p Grow revenue by increasing productivity and innovation through thoughtful enagement
+                        li
+                            .icon(data-bg="https://dynamicsignal.com/wp-content/uploads/2019/03/icon-benefits-150x150.png")
+                            h3 Improved Business Growth
+                            p Grow revenue by increasing productivity and innovation through thoughtful enagement
+                        li
+                            .icon(data-bg="https://dynamicsignal.com/wp-content/uploads/2019/03/icon-benefits-150x150.png")
+                            h3 Improved Business Growth
+                            p Grow revenue by increasing productivity and innovation through thoughtful enagement
+                        li
+                            .icon(data-bg="https://dynamicsignal.com/wp-content/uploads/2019/03/icon-benefits-150x150.png")
+                            h3 Improved Business Growth
+                            p Grow revenue by increasing productivity and innovation through thoughtful enagement

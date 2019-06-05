@@ -1,0 +1,153 @@
+section.platform-header {
+    margin-top: 50px;
+    padding-top: 100px;
+    h1 {
+      color: $white;
+      padding-top:50px;
+    }
+    .button {
+        margin-bottom:50px;
+    }
+    .pc-image {
+      background-repeat: no-repeat;
+      background-size: contain;
+      &:after {
+        content: "";
+        padding-bottom: 50%;
+        display: block;
+      }
+    }
+    .platform-image-bucket {
+      position: relative;
+    }
+    .mobile-image {
+      background-size: contain;
+      width: 50%;
+      position: absolute;
+      background-repeat: no-repeat;
+      background-position: center top;
+      top: 0;
+      right: 0;
+      bottom: $gutter-width;
+      z-index: 99;
+      &:after {
+        content: "";
+        padding-bottom: 0;
+        display: block;
+      }
+      @include bp(m) {
+        width: 60%;
+        right: 30px;
+        bottom: auto;
+        &:after {
+          content: "";
+          padding-bottom: 125%;
+          display: block;
+        }
+      }
+    }
+  }
+  
+  section.worthless-bullets {
+    background: $lighter-gray;
+    position: relative;
+  }
+  ul.inane-copy-points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    li {
+      flex-basis: 33%;
+      border-left: 3px solid orange;
+      padding: 0 $gutter-width/2;
+      margin: $gutter-width 0;
+    }
+  }
+  .platform-section {
+    .platform-section-image {
+      @include aspect-ratio(13,10);
+      width: 100%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center top;
+    }
+  }
+  section.platform-panels {
+    text-align: center;
+    .platform-panel-bucket {
+      display: flex;
+      justify-content: space-between;
+      .platform-panel {
+        flex-basis: 20%;
+        flex-grow: 1;
+        flex-shrink: 1;
+        padding: 0 $gutter-width/4;
+  
+        .inner {
+          background: $white;
+          height: 100%;
+          transition: all 0.1s ease-out;
+          h3 {
+            color: $off-black;
+          }
+          .logos {
+            height: 300px;
+            width: 100%;
+            display: block;
+          }
+          &:hover,
+          &.active {
+            cursor: pointer;
+            transform: scale(1.2);
+            box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.5);
+          }
+        }
+      }
+    }
+  }
+  section.platform-security-section {
+    .bg {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+  section.platform-benefits-section {
+    background: $orange;
+    color: $white;
+    h2,
+    h3,
+    p {
+      color: $white;
+    }
+    ul.platform-benefits {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        flex-basis: 50%;
+        margin-bottom: $gutter-width;
+        clear: both;
+        h3 {
+          margin: 0;
+        }
+        p {
+          margin-top: 6px;
+        }
+      }
+      .icon {
+        width: 50px;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        float: left;
+        margin-right: 6px;
+      }
+    }
+  }
+  
