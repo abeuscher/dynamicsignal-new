@@ -236,6 +236,23 @@ var siteActions = [{
         })
         .addTo(mapcontroller);
     }
+  },{
+    "element": "platform-graph",
+    "action": function (el) {
+      var graphcontroller = new ScrollMagic.Controller({
+        "loglevel": 0
+      }); 
+      new ScrollMagic.Scene({
+          triggerElement: "#platform-graph",
+          duration: 0,
+          offset: 0,
+          reverse: false 
+        })
+        .on("enter", function(e) {
+          el.classList.remove("inactive");
+        })
+        .addTo(graphcontroller);
+    }
   }, {
     "element": "services-integrations-logos",
     "action": function () {
