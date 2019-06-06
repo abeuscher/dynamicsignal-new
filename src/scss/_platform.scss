@@ -1,9 +1,15 @@
 section.platform-header {
-    margin-top: 50px;
-    padding-top: 100px;
+    margin-top: 40px;
+    padding-top: 80px;
+    @include bp(m) {
+      margin-top: 50px;
+      padding-top: 100px;
+    }
     h1 {
       color: $white;
-      padding-top:50px;
+      @include bp(m) {
+        padding-top:50px;
+      }
     }
     .button {
         margin-bottom:50px;
@@ -48,11 +54,11 @@ section.platform-header {
     }
   }
   
-  section.worthless-bullets {
+  section.platform-bullets {
     background: $lighter-gray;
     position: relative;
   }
-  ul.inane-copy-points {
+  ul.copy-points {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -122,27 +128,43 @@ section.platform-header {
           background: $white;
           height: 100%;
           transition: all 0.1s ease-out;
-          padding-top:$gutter-width;
+          position:relative;
+          min-height:390px;
           h3 {
             color: $off-black;
             margin:0;
+            padding:$gutter-width/2 0 0;
+            width:100%;
           }
           .logos {
-            height: 300px;
-            width: 100%;
-            display: block;
-          }
+            width:50%;
+            margin-left:25%;
+            @include aspect-ratio(1,2);
+            background-size:contain;
+            background-repeat:no-repeat;
+            background-position:center bottom;
 
+            @include bp(m) {
+              position:absolute;
+              bottom:24px;
+              left:0;
+            }
+          }
         }
         @include bp(m) {
           flex-basis:20%;
           margin-bottom:0;
           .inner {
+            .logos {
+              width:80%;
+              margin-left:10%;
+            }
             &:hover,
             &.active {
               cursor: pointer;
               transform: scale(1.2);
               box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.5);
+              z-index:99;
             }
           }
         }
@@ -187,7 +209,8 @@ section.platform-header {
         clear: both;
         .text {
           display:inline-block;
-          background:$light-orange;
+          background:transparent;
+          border:1px solid $light-orange;
           padding:12px 24px;
           position:relative;
           &:before {
@@ -197,10 +220,19 @@ section.platform-header {
             left:-10px;
             top:0;
             margin-top:60px;
-            @include arrow("left",$light-orange,10px);
+            @include arrow("left",$white,10px);
+          }
+          &:after {
+            content:'';
+            display:block;
+            position:absolute;
+            left:-9px;
+            top:0;
+            margin-top:60px;
+            @include arrow("left",$orange,10px);
           }
           h3, p {
-            color:$black;
+            color:$white;
           }
           h3 {
             margin: 0;
@@ -364,7 +396,40 @@ $key-text-color: white;
         }
       }
     }
+    &.mobile {
+      flex-direction:row-reverse;
+      min-height:600px;
+      align-items: center;
+      .bars {
+        flex-basis:100%;
+        flex-direction:column;
+        height:100%;
+        align-items:flex-start;
+        .bar {
+          .inner {
+            margin-bottom:6px;
+            p {
+              color:$white;
+              padding:$gutter-width/2 $gutter-width;
+              margin:0;
+              line-height:1.2;
+              vertical-align: middle;
+            }
+            span.category {
+              padding:3px 6px;
+              background:rgba(255,255,255,.3);
+              color:$white;
+              border-radius:3px;
+              font-size:.7em;
+              margin-right:.5em;
+            }
+          }
+         
+        }
+      }
+    }
   }
+
 
   
 }

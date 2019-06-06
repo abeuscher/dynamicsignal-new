@@ -22,11 +22,11 @@ block content
                     printf("<div class='pc-image' data-bg-array='%s'></div><div class='mobile-image' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES), json_encode(get_field("hero_phone_image"), JSON_UNESCAPED_SLASHES));
     :php
        echo "</section>";       
-    section.worthless-bullets.no-padding
+    section.platform-bullets.no-padding
         .container
             .row
                 .col-md-9
-                    ul.inane-copy-points
+                    ul.copy-points
                         :php
                             foreach(get_field("hero_bullets") as $key=>$bullet) {
                                 printf("<li>%s</li>", $bullet["bullet_text"]);
@@ -49,7 +49,7 @@ block content
             .platform-panel-bucket
                 :php
                     foreach (get_field("panels") as $idx=>$panel) {
-                        printf("<div class='platform-panel'><div class='inner'><h3>%s</h3><div class='logos'></div></div></div>", $panel["title"]);
+                        printf("<div class='platform-panel'><div class='inner'><h3>%s</h3><div class='logos' data-bg-array='%s'></div></div></div>", $panel["title"],json_encode($panel["logos"], JSON_UNESCAPED_SLASHES));
                     }
     section.platform-security-section
         .container
