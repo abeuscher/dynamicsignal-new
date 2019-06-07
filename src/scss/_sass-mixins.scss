@@ -182,7 +182,7 @@ $mq-support:true;
 
   // Display the tooltip on hover and on focus.
   &:hover,
-  &:focus {
+  &:focus, &.active {
     .tooltip {
       visibility: visible;
       opacity: 1;

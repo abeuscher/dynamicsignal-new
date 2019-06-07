@@ -250,8 +250,65 @@ var siteActions = [{
         })
         .on("enter", function(e) {
           el.classList.remove("inactive");
+          setTimeout(barTimer, 3000);
         })
         .addTo(graphcontroller);
+        var bars = el.querySelectorAll(".bar .inner");
+        function barTimer(e) {
+          var flag = false, i=0;
+          while (i<bars.length) {
+            var b = bars[i];
+            if (b.classList.contains("active")) {
+              flag=true;
+              var next = i==bars.length-1 ? bars[0] : bars[i+1];
+              b.classList.remove("active");
+              next.classList.add("active");
+              break;
+            }
+            i++;
+          }
+          if (!flag) {
+            bars[0].classList.add("active");
+          }
+          setTimeout(barTimer, 3000);
+        }
+        
+    }
+  },{
+    "element": "platform-0",
+    "action": function () {
+      var sectioncontroller = new ScrollMagic.Controller({
+        "loglevel": 0
+      }); 
+      var sections = document.querySelectorAll(".platform-section");
+      console.log("here");
+      for (i=0;i<sections.length;i++) {
+        var s = sections[i];
+        var thisImage = s.querySelectorAll(".platform-section-image")[0];
+        var tweenImage = TweenMax.fromTo(thisImage, 1, {css: {y: "60"}, ease: Linear.easeOut}, {css: {y: "-60"}, ease: Linear.easeOut});
+
+        var thisText = s.querySelectorAll(".text-col")[0];
+        new ScrollMagic.Scene({
+          triggerElement: s,
+          duration: "40%",
+          offset: "-100%",
+          reverse: true 
+        })
+        .setTween(tweenImage)
+        .addTo(sectioncontroller);
+
+      }
+      var thisPhone = document.getElementById("platform-hero-phone");
+      var tweenPhone = TweenMax.fromTo(thisPhone, 1, {css: {y: "150"}, ease: Linear.easeOut}, {css: {y: "-100"}, ease: Linear.easeOut});
+      new ScrollMagic.Scene({
+        triggerElement: thisPhone,
+        duration: "50%",
+        offset: "0",
+        reverse: true 
+      })
+      .setTween(tweenPhone)
+      .addTo(sectioncontroller);
+      
     }
   }, {
     "element": "services-integrations-logos",

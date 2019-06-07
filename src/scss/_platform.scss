@@ -73,6 +73,7 @@ section.platform-header {
     }
   }
   .platform-section {
+    padding-top:$gutter-width*3;
     .bucket {
       display:flex;
       flex-wrap:wrap;
@@ -292,21 +293,45 @@ $key-text-color: white;
           @include has-tooltip($tooltip-transition-in-duration: 0.3s);
           flex-basis: 90%;
           margin: 0 12px;
+          &.active {
+            background: $bar-hover-color;
+            //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
+          }
         }
         &.dark-blue .inner {
           background:$menu-blue;
+          &.active {
+            background: $bar-hover-color;
+            //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
+          }
         }
         &.med-blue .inner {
           background:$header-blue;
+          &.active {
+            background: $bar-hover-color;
+            //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
+          }
         }
         &.orange .inner {
           background:$orange;
+          &.active {
+            background: $bar-hover-color;
+            //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
+          }
         }
         &.coral-blue .inner {
           background:$light-blue;
+          &.active {
+            background: $bar-hover-color;
+            //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
+          }
         }
         &.fun-blue .inner {
           background:$fun-blue;
+          &.active {
+            background: $bar-hover-color;
+            //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
+          }
         } 
         .bar-value {
           text-align: center;

@@ -19,7 +19,7 @@ block content
                     printf("<a href='#' data-video-modal-id='%s' class='button white'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("cta_video_id"), get_field("cta_text"));
             .col-md-7.platform-image-bucket
                 :php
-                    printf("<div class='pc-image' data-bg-array='%s'></div><div class='mobile-image' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES), json_encode(get_field("hero_phone_image"), JSON_UNESCAPED_SLASHES));
+                    printf("<div class='pc-image' data-bg-array='%s'></div><div class='mobile-image' id='platform-hero-phone' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES), json_encode(get_field("hero_phone_image"), JSON_UNESCAPED_SLASHES));
     :php
        echo "</section>";       
     section.platform-bullets.no-padding
