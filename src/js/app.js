@@ -171,8 +171,9 @@ var siteActions = [{
     }
   }, {
     "element": "feature-menu",
-    "action": function () {
+    "action": function (el) {
       var links = document.querySelectorAll("#feature-menu a");
+      var anchor = el.classList.contains("platform-bullets") ? "center" : "start";
       var controller = new ScrollMagic.Controller();
       for (i = 0; i < links.length; i++) {
         var button = links[i];
@@ -182,7 +183,7 @@ var siteActions = [{
             e.preventDefault();
             section.scrollIntoView({
               behavior: 'smooth',
-              "block": "start"
+              "block": anchor
             });
             if (window.history && window.history.pushState) {
               history.pushState("", document.title, "#" + section.id);
@@ -284,22 +285,39 @@ var siteActions = [{
       console.log("here");
       for (i=0;i<sections.length;i++) {
         var s = sections[i];
-        var thisImage = s.querySelectorAll(".platform-section-image")[0];
-        var tweenImage = TweenMax.fromTo(thisImage, 1, {css: {y: "60"}, ease: Linear.easeOut}, {css: {y: "-60"}, ease: Linear.easeOut});
-
-        var thisText = s.querySelectorAll(".text-col")[0];
-        new ScrollMagic.Scene({
-          triggerElement: s,
-          duration: "40%",
-          offset: "-100%",
-          reverse: true 
-        })
-        .setTween(tweenImage)
-        .addTo(sectioncontroller);
+        var images = s.querySelectorAll(".platform-section-image");
+        for (z=0;z<images.length;z++) {
+          var thisImage = images[z];
+          var tweenImage = TweenMax.fromTo(thisImage, 1, {css: {y: "60"}, ease: Linear.easeOut}, {css: {y: "-60"}, ease: Linear.easeOut});
+  
+          var thisText = s.querySelectorAll(".text-col")[0];
+          new ScrollMagic.Scene({
+            triggerElement: s,
+            duration: "60%",
+            offset: "-100%",
+            reverse: true 
+          })
+          .setTween(tweenImage)
+          .on("enter", function(e) {
+            console.log(this.id);
+            var el = document.getElementById(this.id);
+            if (!el.classList.contains("active")) {
+              el.classList.add("active");
+            }
+          })
+          .on("leave", function(e) {
+            var el = document.getElementById(this.id);
+            if (el.classList.contains("active")) {
+              el.classList.remove("active");
+            }
+          })
+          .addTo(sectioncontroller)
+          .id = s.id;
+        }
 
       }
       var thisPhone = document.getElementById("platform-hero-phone");
-      var tweenPhone = TweenMax.fromTo(thisPhone, 1, {css: {y: "150"}, ease: Linear.easeOut}, {css: {y: "-100"}, ease: Linear.easeOut});
+      var tweenPhone = TweenMax.fromTo(thisPhone, 1, {css: {y: "150"}, ease: Power0.easeOut}, {css: {y: "50"}, Power0: Linear.easeOut});
       new ScrollMagic.Scene({
         triggerElement: thisPhone,
         duration: "50%",
@@ -308,6 +326,7 @@ var siteActions = [{
       })
       .setTween(tweenPhone)
       .addTo(sectioncontroller);
+      
       
     }
   }, {

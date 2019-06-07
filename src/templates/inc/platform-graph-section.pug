@@ -90,10 +90,11 @@
       while s > 0
         li.line
         - s = s - graphData.step;
-    each section in graphData.sections
+    each section, sidx in graphData.sections
       each bar,idx in section.bars
+        - var active = idx == 0 && sidx == 0 ? " active" : "";
         div(style = { height : ( bar.value / graphData.scale  * 100 ) + "%", "flex-basis":flexb}, data-idx=idx, class="bar " + bar.classname )
-          .inner
+          div(class="inner" + active)
             .bar-label.tooltip
               p=bar.label
             .bar-value

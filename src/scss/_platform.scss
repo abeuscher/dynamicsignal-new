@@ -1,6 +1,9 @@
 section.platform-header {
     margin-top: 40px;
     padding-top: 80px;
+    padding-bottom:0;
+    background-size:cover;
+    background-position:center center;
     @include bp(m) {
       margin-top: 50px;
       padding-top: 100px;
@@ -21,6 +24,9 @@ section.platform-header {
         content: "";
         padding-bottom: 50%;
         display: block;
+      }
+      @include bp(m) {
+        margin-top:50px;
       }
     }
     .platform-image-bucket {
@@ -45,6 +51,7 @@ section.platform-header {
         width: 60%;
         right: 0;
         bottom: auto;
+        top:50px;
         &:after {
           content: "";
           padding-bottom: 125%;
@@ -53,10 +60,28 @@ section.platform-header {
       }
     }
   }
-  
+  @media (max-width: 1024px) {
+    section.platform-header .mobile-image {
+      transform:none!important;
+    }
+    .platform-section .platform-section-image {
+      transform:none!important;
+      visibility:visible!important;
+      position:relative!important;
+      margin-top:$gutter-width;
+      &.animated {
+        display: none!important;
+      }
+    }
+  }
   section.platform-bullets {
+    display:none;
     background: $lighter-gray;
     position: relative;
+    border-bottom:1px solid $orange;
+    @include bp(m) {
+      display:block;
+    }
   }
   ul.copy-points {
     list-style: none;
@@ -73,7 +98,10 @@ section.platform-header {
     }
   }
   .platform-section {
-    padding-top:$gutter-width*3;
+    @include bp(m) {
+      padding-top:$gutter-width*3;
+      padding-bottom:150px;
+    }
     .bucket {
       display:flex;
       flex-wrap:wrap;
@@ -82,6 +110,9 @@ section.platform-header {
         width:100%;
         @include bp(m) {
           flex-basis:50%;
+        }
+        &.image-col {
+          position:relative;
         }
       }
       &.bucket-left {
@@ -110,6 +141,22 @@ section.platform-header {
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center top;
+      position:absolute;
+      top:0;
+      left:0;
+      &.animated {
+        visibility:hidden;
+      }
+    }
+    &.active {
+      .bucket {
+        .platform-section-image {
+          visibility:hidden;
+          &.animated {
+            visibility:visible;
+          }
+        }
+      }
     }
   }
   section.platform-panels {
@@ -179,8 +226,24 @@ section.platform-header {
       background-position: center;
     }
   }
+  ul.platform-logos {
+    list-style:none; 
+    margin:0;
+    display:flex;
+    li {
+      flex-basis:25%;
+      margin-right:20px;
+      &:last-child {
+        margin-right:0; 
+      }
+      .bg {
+        min-height:4vw;
+  
+      }
+    }
+  }
   section.platform-benefits-section {
-    background: $orange;
+    background: radial-gradient(circle at center bottom, lighten($menu-blue, 10%) 0%, $menu-blue 50%, $menu-blue 100%);
     color: $white;
     h2.centered,
     p.centered {
@@ -211,7 +274,7 @@ section.platform-header {
         .text {
           display:inline-block;
           background:transparent;
-          border:1px solid $light-orange;
+          border:1px solid $white;
           padding:12px 24px;
           position:relative;
           &:before {
@@ -230,7 +293,7 @@ section.platform-header {
             left:-9px;
             top:0;
             margin-top:60px;
-            @include arrow("left",$orange,10px);
+            @include arrow("left",$menu-blue,10px);
           }
           h3, p {
             color:$white;
@@ -416,7 +479,7 @@ $key-text-color: white;
         }
         p {
           text-align: center;
-          font-size: 0.7vw;
+          font-size: 0.9vw;
           text-transform: uppercase;
         }
       }
@@ -454,7 +517,17 @@ $key-text-color: white;
       }
     }
   }
-
+  .platform-graph-footer {
+    font-size:.75em;
+    text-align:center;
+    padding-top:$gutter-width;
+    h3 {
+      margin:$gutter-width 0 0;
+    }
+    p {
+      margin:0 0 $gutter-width;
+    }
+  }
 
   
 }
