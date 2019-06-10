@@ -153,7 +153,7 @@ block content
             foreach($slides as $key=>$slide) {
               echo $slide;
             }   
-  section.services-community
+  section.services-community  
     :php
       printf("<div class='services-community-header' data-bg-array='%s'><h2>%s</h2></div>",json_encode(get_field("community_section_header_image"),JSON_UNESCAPED_SLASHES),get_field("community_header_text"));
     .container
