@@ -298,6 +298,7 @@ var siteActions = [{
             reverse: true 
           })
           .setTween(tweenImage)
+          /*
           .on("enter", function(e) {
             console.log(this.id);
             var el = document.getElementById(this.id);
@@ -311,13 +312,14 @@ var siteActions = [{
               el.classList.remove("active");
             }
           })
+          */
           .addTo(sectioncontroller)
           .id = s.id;
         }
 
       }
       var thisPhone = document.getElementById("platform-hero-phone");
-      var tweenPhone = TweenMax.fromTo(thisPhone, 1, {css: {y: "150"}, ease: Power0.easeOut}, {css: {y: "50"}, Power0: Linear.easeOut});
+      var tweenPhone = TweenMax.fromTo(thisPhone, 1, {css: {y: "100"}, ease: Power0.easeOut}, {css: {y: "50"}, Power0: Linear.easeOut});
       new ScrollMagic.Scene({
         triggerElement: thisPhone,
         duration: "50%",

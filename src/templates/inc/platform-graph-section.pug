@@ -5,24 +5,25 @@
     sections: [
       {
         name: "Growth",
+        classname:"dark-blue",
         bars: [
           {
-            label: "11% Employee Retention",
+            label: "Employee Retention",
             value: "11",
             classname: "dark-blue"
           },
           {
-            label: "16% Productivity",
+            label: "Productivity",
             value: "16",
             classname: "dark-blue"
           },
           {
-            label: "30% Faster Response to Opportunities",
+            label: "Faster Response to Opportunities",
             value: "30",
             classname: "dark-blue"
           },
           {
-            label: "32% Employee Feedback",
+            label: "Employee Feedback",
             value: "32",
             classname: "dark-blue"
           } 
@@ -30,44 +31,46 @@
       },
       {
         name: "Reduce Risk & Cost",
+        classname:"med-blue",
         bars: [
           {
-            label: "18% Faster Response to Competitive Threats",
+            label: "Technology Savings",
+            value: "16",
+            classname: "med-blue"
+          },
+          {
+            label: "Faster Response to Competitive Threats",
             value: "18",
             classname: "med-blue"
           },
           {
-            label: "20% Faster Adoption of Company Initiatives",
+            label: "Faster Adoption of Company Initiatives",
             value: "20",
             classname: "med-blue"
           },
           {
-            label: "27% Faster Crisis Response",
+            label: "Faster Crisis Response",
             value: "27",
             classname: "med-blue"
           },
           {
-            label: "35% Employees Reached",
+            label: "Employees Reached",
             value: "35",
             classname: "med-blue"
-          },
-          {
-            label: "16% Technology Savings",
-            value: "16",
-            classname: "med-blue"
-          }
+          } 
         ]
       },
       {
         name: "Brand Equity",
+        classname:"coral-blue",
         bars: [
           {
-            label: "18% Improvement in CEO Approval",
+            label: "Improvement in CEO Approval",
             value: "18",
             classname: "coral-blue"
           },
           {
-            label: "39% Brand Awareness",
+            label: "Brand Awareness",
             value: "39",
             classname: "coral-blue"
           }
@@ -96,7 +99,7 @@
         div(style = { height : ( bar.value / graphData.scale  * 100 ) + "%", "flex-basis":flexb}, data-idx=idx, class="bar " + bar.classname )
           div(class="inner" + active)
             .bar-label.tooltip
-              p=bar.label
+              p=bar.value + "% " + bar.label
             .bar-value
               p=bar.value + "%"
   .key
@@ -105,23 +108,10 @@
       .range-label(style={"flex-basis":flexb})
         .inner
           p=section.name
-//-
-    .platform-graph.mobile
-    .bars
-        - 
-            var s = graphData.scale;
-            var totalbars = 0;
-            for (i=0;i<graphData.sections.length;i++) {
-                for (z=0;z<graphData.sections[i].bars.length;z++) {
-                totalbars++;
-                }
-            }
-            var flexb = Math.round(graphData.scale/totalbars * 100) / 100 + "%";
-        each section in graphData.sections
-        each bar,idx in section.bars
-            div(class="bar " + bar.classname )
-            .inner
-                p
-                    span.category=section.name
-                    span=bar.label
-            .inner-graph(style = { width : ( ( bar.value / graphData.scale)  * 100 ) + "%", "flex-basis":flexb}, 
+.platform-graph-mobile
+  each section in graphData.sections
+    h2(class=section.classname)=section.name
+    each bar in section.bars
+      p
+        span.big-orange=bar.value + "% "
+        span.text=bar.label

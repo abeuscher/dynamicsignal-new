@@ -10,6 +10,7 @@ section.platform-header {
     }
     h1 {
       color: $white;
+      font-size:2.2em;
       @include bp(m) {
         padding-top:50px;
       }
@@ -84,23 +85,77 @@ section.platform-header {
     }
   }
   ul.copy-points {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
+    list-style:none;
+    padding:0;
+    margin:$gutter-width 0 0;
+    display:flex;
+    width:800px;
+    flex-wrap:wrap;
     li {
-      flex-basis: 33%;
-      border-left: 3px solid orange;
-      padding: 0 $gutter-width/2;
-      margin: $gutter-width 0;
-      font-size:18px;
+      flex-basis:33%;
+      flex-grow:1;
+      flex-shrink:1;
+      margin-bottom:24px;
+      display:flex;
+      a {
+        width:100%;
+        display:flex;
+      }
+      .icon {
+        width:25px;
+        flex-grow:0;
+        flex-shrink:0;
+        height:25px;
+        background:orange;
+        border-radius:50%;
+        display:inline-block;
+        background-size:contain;
+        position:relative;
+        &:after {
+          content:'';
+          display:block;
+          position:absolute;
+          border:6px solid transparent;
+          //transform:rotate(45deg);
+          border-left-color:orange;
+          top:7px;
+          left:9px;
+        }
+        &:before {
+          content:'';
+          display:block;
+          position:absolute;
+          border:6px solid transparent;
+          //transform:rotate(45deg);
+          border-left-color:white;
+          top:7px;
+          left:11px;
+        }
+      }
+      .text {
+        padding-top:3px;
+        font-family:sans-serif;
+        padding:0 10px 0 15px;
+        font-size:12px;
+        line-height:1.4;
+        flex-grow:1;
+        flex-shrink:1;
+      }
+      &:hover {
+        cursor:pointer;
+        .icon {
+          background-color:$menu-blue;
+          &:after {
+            border-left-color:$menu-blue;
+          }
+        }
+      }
     }
   }
   .platform-section {
     @include bp(m) {
       padding-top:$gutter-width*3;
-      padding-bottom:150px;
+      padding-bottom:50px;
     }
     .bucket {
       display:flex;
@@ -113,13 +168,22 @@ section.platform-header {
         }
         &.image-col {
           position:relative;
+          @include bp(m) {
+            flex-basis:65%;
+          }
+        }
+        &.text-col {
+          @include bp(m) {
+            padding:50px 0;
+            flex-basis:35%;
+          }
         }
       }
       &.bucket-left {
         flex-direction:column-reverse;
       }
       &.bucket-right {
-        //flex-direction:column;
+
       }
       @include bp(m) {
         &.bucket-left, &.bucket-right {
@@ -137,13 +201,13 @@ section.platform-header {
     }
     .platform-section-image {
       @include aspect-ratio(13,10);
-      width: 100%;
+      width: 90%;
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center top;
       position:absolute;
       top:0;
-      left:0;
+      left:5%;
       &.animated {
         visibility:hidden;
       }
@@ -161,6 +225,7 @@ section.platform-header {
   }
   section.platform-panels {
     text-align: center;
+    margin-top:$gutter-width*2;
     .platform-panel-bucket {
       display: flex;
       justify-content: space-between;
@@ -228,7 +293,7 @@ section.platform-header {
   }
   ul.platform-logos {
     list-style:none; 
-    margin:0;
+    margin:$gutter-width*2 0;
     display:flex;
     li {
       flex-basis:25%;
@@ -237,13 +302,15 @@ section.platform-header {
         margin-right:0; 
       }
       .bg {
-        min-height:4vw;
+        min-height:3.5vw;
   
       }
     }
   }
   section.platform-benefits-section {
-    background: radial-gradient(circle at center bottom, lighten($menu-blue, 10%) 0%, $menu-blue 50%, $menu-blue 100%);
+    background-size:cover;
+    background-position:center bottom;
+    background-repeat:no-repeat;
     color: $white;
     h2.centered,
     p.centered {
@@ -263,57 +330,44 @@ section.platform-header {
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
+      display: block;
       flex-wrap: wrap;
       justify-content: center;
       li {
-        flex-basis: 100%;
+        width:90%;
+        margin:0 5%;
         display:flex;
         margin-bottom: $gutter-width;
         clear: both;
+        align-items:center;
         .text {
           display:inline-block;
           background:transparent;
-          border:1px solid $white;
           padding:12px 24px;
           position:relative;
-          &:before {
-            content:'';
-            display:block;
-            position:absolute;
-            left:-10px;
-            top:0;
-            margin-top:60px;
-            @include arrow("left",$white,10px);
-          }
-          &:after {
-            content:'';
-            display:block;
-            position:absolute;
-            left:-9px;
-            top:0;
-            margin-top:60px;
-            @include arrow("left",$menu-blue,10px);
-          }
           h3, p {
             color:$white;
           }
           h3 {
             margin: 0;
-            font-size:24px;
-            font-weight:400;
+            font-size:16px;
+            font-weight:700;
+            font-family:$body-font;
           }
           p {
             margin-top: 6px;
           }
         }
         @include bp(m) {
-          flex-basis:50%;
+          width:70%;
+          margin:0 15%;
         }
       }
       .icon {
-        width: 100px;
-        height: 100%;
+        width: 50px;
+        height: 50px;
+        flex-grow:0;
+        flex-shrink:0;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
@@ -330,8 +384,11 @@ $line-color: rgba(255, 255, 255, 0.4);
 $key-text-color: white;
 .platform-graph-section {
   .platform-graph {
+    display:none;
+    @include bp(m) {
+      display:flex;
+    }
     margin: $gutter-width 0 0;
-    display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     width: 100%;
@@ -484,48 +541,42 @@ $key-text-color: white;
         }
       }
     }
-    &.mobile {
-      flex-direction:row-reverse;
-      min-height:600px;
-      align-items: center;
-      .bars {
-        flex-basis:100%;
-        flex-direction:column;
-        height:100%;
-        align-items:flex-start;
-        .bar {
-          .inner {
-            margin-bottom:6px;
-            p {
-              color:$white;
-              padding:$gutter-width/2 $gutter-width;
-              margin:0;
-              line-height:1.2;
-              vertical-align: middle;
-            }
-            span.category {
-              padding:3px 6px;
-              background:rgba(255,255,255,.3);
-              color:$white;
-              border-radius:3px;
-              font-size:.7em;
-              margin-right:.5em;
-            }
-          }
-         
-        }
+  }
+  .platform-graph-mobile {
+    display:block;
+    @include bp(m) {
+      display:none;
+    }
+    h2 {
+      padding:.5em 1em;
+      color:$white;
+      font-family:$body-font;
+      font-size:1em;
+      font-weight:700;
+      &.dark-blue {
+        background-color:$menu-blue;
+      }
+      &.med-blue {
+        background-color:$header-blue;
+      }
+      &.coral-blue {
+        background-color:$light-blue;
+      }
+    }
+    p {
+      span.big-orange {
+        font-size:1.5em;
+        font-weight:700;
+        color:$orange;
       }
     }
   }
   .platform-graph-footer {
     font-size:.75em;
     text-align:center;
-    padding-top:$gutter-width;
-    h3 {
-      margin:$gutter-width 0 0;
-    }
+    padding-top:$gutter-width*2;
     p {
-      margin:0 0 $gutter-width;
+      margin:$gutter-width/2 0 0;
     }
   }
 
