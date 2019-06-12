@@ -251,7 +251,7 @@ var siteActions = [{
         })
         .on("enter", function(e) {
           el.classList.remove("inactive");
-          setTimeout(barTimer, 3000);
+          //setTimeout(barTimer, 3000);
         })
         .addTo(graphcontroller);
         var bars = el.querySelectorAll(".bar .inner");

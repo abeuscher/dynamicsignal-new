@@ -10,7 +10,7 @@ section.platform-header {
     }
     h1 {
       color: $white;
-      font-size:2.2em;
+      text-transform:capitalize;
       @include bp(m) {
         padding-top:50px;
       }
@@ -388,7 +388,7 @@ $key-text-color: white;
     @include bp(m) {
       display:flex;
     }
-    margin: $gutter-width 0 0;
+    margin: $gutter-width*3 0 0;
     flex-wrap: nowrap;
     flex-direction: column;
     width: 100%;
@@ -414,35 +414,35 @@ $key-text-color: white;
           flex-basis: 90%;
           margin: 0 12px;
           &.active {
-            background: $bar-hover-color;
+            //background: $bar-hover-color;
             //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
           }
         }
         &.dark-blue .inner {
           background:$menu-blue;
           &.active {
-            background: $bar-hover-color;
+            //background: $bar-hover-color;
             //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
           }
         }
         &.med-blue .inner {
           background:$header-blue;
           &.active {
-            background: $bar-hover-color;
+            //background: $bar-hover-color;
             //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
           }
         }
         &.orange .inner {
           background:$orange;
           &.active {
-            background: $bar-hover-color;
+            //background: $bar-hover-color;
             //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
           }
         }
         &.coral-blue .inner {
           background:$light-blue;
           &.active {
-            background: $bar-hover-color;
+            //background: $bar-hover-color;
             //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
           }
         }
@@ -468,22 +468,25 @@ $key-text-color: white;
           padding: 1em 1.75em;
           //box-shadow: 0 0.05em 0.15em rgba(black, 0.1);
           @include tooltip(
-              $tooltip-background-color: $white,
-              $tooltip-transition-out-duration: 0.2s,
-              $tooltip-border-width:1px,
-              $tooltip-border-color:$blue
+              $tooltip-background-color: transparent
           );
           z-index:99;
           color: $black;
           p {
             margin: 0;
             font-size: 0.8em;
+            .percent {
+              font-weight:700;
+              display:block;
+              font-size:1.2em;
+            }
           }
+
         }
         &:hover {
-          cursor: pointer;
+          //cursor: pointer;
           .inner {
-            background: $bar-hover-color;
+            //background: $bar-hover-color;
             //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
           }
         }

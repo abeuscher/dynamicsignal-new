@@ -95,13 +95,14 @@
         - s = s - graphData.step;
     each section, sidx in graphData.sections
       each bar,idx in section.bars
-        - var active = idx == 0 && sidx == 0 ? " active" : "";
+        - var active = " active";
         div(style = { height : ( bar.value / graphData.scale  * 100 ) + "%", "flex-basis":flexb}, data-idx=idx, class="bar " + bar.classname )
           div(class="inner" + active)
             .bar-label.tooltip
-              p=bar.value + "% " + bar.label
+              p
+                span.percent!=bar.value + "% "
+                span=bar.label
             .bar-value
-              p=bar.value + "%"
   .key
     each section in graphData.sections
       - var flexb = Math.round(100 * section.bars.length/totalbars) + "%";
