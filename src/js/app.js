@@ -403,7 +403,7 @@ var siteActions = [{
   {
     "element": "hero-words",
     "action": function () {
-      var interval = 2500;
+      var interval = 3000;
       var wordBucket = document.getElementById("hero-words");
       pageData.hero_words.push({"word": wordBucket.innerHTML});
       wordBucket.setAttribute("data-current-index",pageData.hero_words.length);
@@ -1164,14 +1164,14 @@ function getVertCarousels() {
     };
     var switcher = function() {
       getCurrPos(s);
-      setTimeout(switcher,6500);
+      setTimeout(switcher,6000);
     }
-    setTimeout(switcher,6500);
+    setTimeout(switcher,3000);
     for (var c = 0;c<s.controls.length;c++) {   
       s.controls[c].addEventListener("click", function(e) {
         nextCarousel(this,s,parseInt(this.getAttribute("data-index")) + 1);
         s.pause=true;
-        setTimeout(function() { s.pause=false; },6500);
+        setTimeout(function() { s.pause=false; },6000);
       });
     } 
     function getCurrPos(el) {
