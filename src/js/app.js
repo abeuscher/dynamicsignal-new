@@ -282,23 +282,21 @@ var siteActions = [{
         "loglevel": 0
       }); 
       var sections = document.querySelectorAll(".platform-section");
-      console.log("here");
       for (i=0;i<sections.length;i++) {
         var s = sections[i];
         var images = s.querySelectorAll(".platform-section-image");
         for (z=0;z<images.length;z++) {
           var thisImage = images[z];
-          var tweenImage = TweenMax.fromTo(thisImage, 1, {css: {y: "60"}, ease: Linear.easeOut}, {css: {y: "-60"}, ease: Linear.easeOut});
+          var tweenImage = TweenMax.fromTo(thisImage, 1, {css: {y: "60"}, ease: Linear.easeOut}, {css: {y: "-50"}, ease: Linear.easeOut});
   
           var thisText = s.querySelectorAll(".text-col")[0];
           new ScrollMagic.Scene({
             triggerElement: s,
-            duration: "60%",
-            offset: "-100%",
+            duration: "80%",
+            offset: "10%",
             reverse: true 
           })
           .setTween(tweenImage)
-          /*
           .on("enter", function(e) {
             console.log(this.id);
             var el = document.getElementById(this.id);
@@ -312,14 +310,13 @@ var siteActions = [{
               el.classList.remove("active");
             }
           })
-          */
           .addTo(sectioncontroller)
           .id = s.id;
         }
 
       }
       var thisPhone = document.getElementById("platform-hero-phone");
-      var tweenPhone = TweenMax.fromTo(thisPhone, 1, {css: {y: "100"}, ease: Power0.easeOut}, {css: {y: "50"}, Power0: Linear.easeOut});
+      var tweenPhone = TweenMax.fromTo(thisPhone, 1, {css: {y: "80"}, ease: Power0.easeOut}, {css: {y: "-30"}, Power0: Linear.easeOut});
       new ScrollMagic.Scene({
         triggerElement: thisPhone,
         duration: "50%",
