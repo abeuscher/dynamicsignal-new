@@ -1007,7 +1007,7 @@ function activateImages() {
   for (i in lzImages) {
     if (isElement(lzImages[i])) {
       thisElement = lzImages[i];
-      if (typeof(JSON.parse(thisElement.getAttribute("data-src"))) == 'object') {
+      if (typeof(JSON.parse(thisElement.getAttribute("data-src"))) === 'object') {
         var img = JSON.parse(thisElement.getAttribute("data-src")).url;
         thisElement.src = img;
       }

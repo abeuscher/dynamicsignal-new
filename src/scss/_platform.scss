@@ -310,17 +310,18 @@ section.platform-header {
   }
   ul.platform-logos {
     list-style:none; 
-    margin:$gutter-width*2 0;
-    display:flex;
+    margin:$gutter-width*2 auto;
+    margin:0; padding:0;
     li {
-      flex-basis:25%;
-      margin-right:20px;
+      display:inline-block;
+      text-align:center;
+      margin:1vw;
       &:last-child {
         margin-right:0; 
       }
-      .bg {
-        min-height:3.5vw;
-  
+      img {
+        height:4.5vw;
+        width:auto;
       }
     }
   }
