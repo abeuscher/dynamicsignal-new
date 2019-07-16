@@ -43,10 +43,18 @@
       .content {
         max-height:0;
         overflow:hidden;
+        padding-left:1em;
       }
       label {
         color:$blue;
         font-weight:700;
+        position:relative;
+        padding-left:1em;
+        &:before {
+          content: '>';
+          left:-1em;
+          position:absolute;
+        }
       }
       input {
         display:none;
