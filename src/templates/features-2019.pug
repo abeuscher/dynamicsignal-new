@@ -29,7 +29,7 @@ block content
                     ul.copy-points
                         :php
                             foreach(get_field("hero_bullets") as $key=>$bullet) {
-                                printf("<li><a href='%s'><span class='icon'></span><span class='text'>%s</span></a></li>", "#platform-".$key, $bullet["bullet_text"]);
+                                printf("<li><a href='%s'><span class='icon'></span><span class='text'>%s</span></a></li>", "#section-".$key, $bullet["bullet_text"]);
                             }
     :php
         foreach(get_field("features_sections") as $idx=>$section) {
