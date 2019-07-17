@@ -5,6 +5,7 @@ require("./utils/remove-class.js");
 var Flickity = require("flickity");
 var uniqBy = require("lodash/uniqBy");
 var sortBy = require("lodash/sortBy");
+var collFilter = require("lodash/filter");
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
@@ -13,12 +14,13 @@ var Cookies = require("js-cookie");
 var smoothscroll = require("smoothscroll-polyfill");
 var DigitCounter = require("./digit-counter/index.js");
 
+
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
 
 var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
-var removeClassFromClass = require("./utils/remove-class-from-class.js");
+var getURLParameter = require("./utils/get-querystring.js");
 
 var FormHandler = require("./form-handler/index.js");
 
@@ -755,14 +757,21 @@ var siteActions = [{
   },
   {
     "element": "events-list",
-    "action": function () {
+    "action": function (el) {
       var pastCount = 0;
-      var bucket = document.getElementById("events-list");
+      var bucket = el;
       var pastBucket = document.getElementById("past-events") ? document.getElementById("past-events") : false;
       var currentEvents = new Array();
       var allEvents = sortBy(pageData.events, function (i) {
         return i.start_date
       });
+      console.log(allEvents);
+      var f = getURLParameter("type")
+      if (f!="") {
+        allEvents = collFilter(allEvents, function(i) {return i.type==f;});
+        console.log(allEvents);
+      }
+
       allEvents.reverse();
       for (i = 0; i < allEvents.length; i++) {
         var thisEvent = allEvents[i];
