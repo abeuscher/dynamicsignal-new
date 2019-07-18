@@ -1,8 +1,8 @@
 .features-header {
   background-size:cover;
   background-position:center top;
-  padding-top:150px;
-  padding-bottom:0;
+  padding-top:80px;
+  padding-bottom:$gutter-width;
   h1 {
     padding-top:2em;
     color:$white;
@@ -29,6 +29,8 @@
     z-index:1;
   }
   @include bp(m) {
+    padding-top:150px;
+    padding-bottom:0;
     .pc-image, .mobile-image {
       display:block;
     }
@@ -91,6 +93,35 @@
             transform:rotate(90deg);
           }
         }
+      }
+    }
+  }
+  .bucket {
+    display:flex;
+    flex-wrap:wrap;
+    &.image-left {
+      flex-direction:column;
+    }
+    &.image-right {
+      flex-direction:column-reverse;
+    }
+    @include bp(m) {
+      &.image-left {
+        flex-direction:row;
+      }
+      &.image-right {
+        flex-direction:row;
+      }
+    }
+    .col-half {
+      flex-basis:100%;
+      flex-grow:1;
+      flex-shrink:1;
+      @include bp(m) {
+        flex-basis:50%;
+      }
+      &.image-col {
+        min-height:50vh;
       }
     }
   }

@@ -33,13 +33,16 @@ block content
                             }
     :php
         foreach(get_field("features_sections") as $idx=>$section) {
-            $image_section = sprintf("<div class='features-image' data-bg-array='%s'></div>",json_encode($section["image"], JSON_UNESCAPED_SLASHES));
+            $orientation = $section["section_layout"];
+            $img_bucket = sprintf("<div class='col-half image-col'><div class='features-image' data-bg-array='%s'></div></div>",json_encode($section["image"], JSON_UNESCAPED_SLASHES));
             $bullets = "";
             foreach($section["bullets"] as $i=>$bullet) {
                 $bullets .= sprintf("<li class='feature-bullet'><input %s type='radio' name='%s' id='%s'/><label for='%s'>%s</label><div class='content'>%s</div></li>", $i == 0 ? "checked" : "","radios-".$idx, "radios-".$idx."-".$i,"radios-".$idx."-".$i, $bullet["headline"], $bullet["content"]);
             }
-            $copy = sprintf("<h2>%s</h2><p>%s</p><ul class='feature-bullets'>%s</ul>", $section["headline"], $section["subhead"], $bullets);
-            printf("<section id='section-%s' class='features-section'><div class='container'><div class='col-md-6'>%s</div><div class='col-md-6'>%s</div></div></section>", $idx, $section["section_layout"]=="left" ? $image_section : $copy, $section["section_layout"]=="left" ? $copy : $image_section);
+            $text_bucket = sprintf("<div class='col-half text-col'><h2>%s</h2><p>%s</p><ul class='feature-bullets'>%s</ul></div>", $section["headline"], $section["subhead"], $bullets);
+            $content = $orientation == "left" ? $img_bucket.$text_bucket : $text_bucket.$img_bucket;
+
+            printf("<section id='section-%s' class='features-section'><div class='container'><div class='bucket %s'>%s</div></div></section>", $idx, $orientation=="left" ? "image-left" : "image-right", $content);
         }
     section.bottom-cta
         .container
