@@ -338,6 +338,9 @@ ul.social-share li i.fa-circle {
   background-size:cover;
   background-repeat:no-repeat;
   background-position:center top;
+  &.no-image {
+    background:$blue-gradient;
+  }
   ul.social-share {
     margin-top: -1*$gutter-width;
   }
