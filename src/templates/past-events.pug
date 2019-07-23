@@ -2,7 +2,7 @@ extends inc/page.pug
 block template
   :php
     /*
-    Template Name: Events Page
+    Template Name: Past Events Page
     */
 block nav
   include ./inc/navbar-toggle.pug
@@ -10,45 +10,33 @@ block nav
   include ./inc/header.pug
 block content
   :php
-    $override_title = "Events";
+    $override_title = "Past Events";
     $breadcrumbs = [];
     array_push($breadcrumbs,array(
-      "title"=>"Company",
+      "title"=>"Our Company",
       "link"=>"/company/"
+    ));
+    array_push($breadcrumbs,array(
+      "title"=>"Events",
+      "link"=>"/events/"
     ));
   section.top-section-interior
     .container
       .row
         .col-md-12
           include ./inc/breadcrumbs.pug
-          h1 Events & Webinars
-          h2 Explore our event schedule below, connect with us online or in person
   :php
     $all_events = [];
-    $args = array(
-          'post_type' => 'event',
-          'posts_per_page' => 100,
-          'meta_key'   => 'event_start_date',
-          'orderby'    => 'meta_value_num',
-          'order'      => 'DESC',
-          'meta_query' => array(
-            array(
-              'key' => 'ds_event_type',
-              'value' => 'cswebinar',
-              'compare' => '!='
-            )
-          )
-        );
+    $args = array( 'post_type' => 'event', 'posts_per_page' => 100 );
     $events = new WP_Query( $args );
     function new_excerpt_more( $more ) {
         return '';
     }
     add_filter('excerpt_more', 'new_excerpt_more');
-    rewind_posts();
     if( $events->have_posts() ):
         while( $events->have_posts() ):
-          $events->the_post();
           $start_date = get_field( 'event_start_date' );
+          $events->the_post();
           array_push($all_events, array(
           "title"=>get_the_title(),
           "start_month"=>date("F", strtotime($start_date)),
@@ -56,7 +44,6 @@ block content
           "start_day"=>date("j", strtotime($start_date)),
           "start_year"=>date("Y", strtotime($start_date)),
           "start_time"=>get_field( 'event_start_time' ),
-          "event_time_zone"=>get_field( 'event_time_zone' ),
           "finish_date"=>get_field( 'event_end_date' ) ,
           "thumb"=>get_field('ds_event_thumbnail'),
           "btn_text"=>get_field('ds_button_text'),
@@ -76,10 +63,5 @@ block content
     ."};</script>";
   section.events-list.container
     .row
-      .col-md-9.events
-        #events-list
-      .col-md-3.past-events
-        h2 Past Events
-          span.right
-            a(href="/past-events/") View All
-        #past-events
+      .col-md-12.events
+        #past-events-full
