@@ -5,6 +5,7 @@ require("./utils/remove-class.js");
 var Flickity = require("flickity");
 var uniqBy = require("lodash/uniqBy");
 var sortBy = require("lodash/sortBy");
+var collFilter = require("lodash/filter");
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
 var ScrollSite = require("./parallax-bg/index.js");
@@ -13,12 +14,13 @@ var Cookies = require("js-cookie");
 var smoothscroll = require("smoothscroll-polyfill");
 var DigitCounter = require("./digit-counter/index.js");
 
+
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
 
 var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
-var removeClassFromClass = require("./utils/remove-class-from-class.js");
+var getURLParameter = require("./utils/get-querystring.js");
 
 var FormHandler = require("./form-handler/index.js");
 
@@ -54,6 +56,9 @@ var siteSettings = {
     "noEvents": require("./inc/no-events.pug"),
     "eventListing": require("./inc/event-listing.pug"),
     "pastEventListing": require("./inc/past-event-listing.pug"),
+    "pastEventWide": require("./inc/past-event-wide.pug"),
+    "eventBreadcrumb": require("./inc/events-breadcrumbs.pug"),
+    "pasteventBreadcrumb": require("./inc/past-events-breadcrumbs.pug"),
     "buttonPastEvents": require("./inc/button-past-events.pug"),
     "jobFilter": require("./inc/job-filter.pug"),
     "backgroundPicker": require("./inc/header-picker.pug"),
@@ -755,10 +760,10 @@ var siteActions = [{
   },
   {
     "element": "events-list",
-    "action": function () {
+    "action": function (el) {
       var pastCount = 0;
-      var bucket = document.getElementById("events-list");
-      var pastBucket = document.getElementById("past-events") ? document.getElementById("past-events") : false;
+      var bucket = el;
+      var pastBucket = document.getElementById("past-events");
       var currentEvents = new Array();
       var allEvents = sortBy(pageData.events, function (i) {
         return i.start_date
@@ -792,6 +797,52 @@ var siteActions = [{
     }
   },
   {
+    "element": "webinars-upcoming",
+    "action": function (el) {
+      var pastCount = 0;
+      var bucket = el;
+      var pastBucket = document.getElementById("past-events");
+      var currentEvents = new Array();
+      var pastEvents = new Array();
+      var allEvents = collFilter(pageData.events, function(i) {return i.type=="webinar";});
+      allEvents = sortBy(allEvents, function (i) {
+        return i.start_date
+      });
+      allEvents.reverse();
+      for (i = 0; i < allEvents.length; i++) {
+        var thisEvent = allEvents[i];
+        var rightNow = new Date();
+        rightNow.setDate(rightNow.getDate() - 1 /*days*/ );
+        var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
+        if (startDate > rightNow) {
+          currentEvents.push(thisEvent);
+        } else {
+          pastEvents.push(thisEvent);
+        }
+      }
+      if (currentEvents.length > 0) {
+        currentEvents.reverse();
+        var header = document.createElement("h2");
+        header.innerHTML = "Upcoming Webinars";
+        el.append(header);
+        for (i = 0; i < currentEvents.length; i++) {
+          el.append(parseHTML(siteSettings.templates.eventListing(currentEvents[i])));
+        }
+      }
+      if (pastEvents.length > 0) {
+        var pastBucket = document.getElementById("webinars-past");
+        var header = document.createElement("h2");
+        header.innerHTML = "Past Webinars";
+        pastBucket.append(header);
+        for (i=0;i<pastEvents.length;i++) {
+          var thisEvent = pastEvents[i];
+          pastBucket.append(parseHTML(siteSettings.templates.pastEventWide(thisEvent)));
+        }
+      }
+
+    }
+  },
+  {
     "element": "past-events-full",
     "action": function () {
       var pastCount = 0;
@@ -801,7 +852,7 @@ var siteActions = [{
         var rightNow = new Date();
         var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
         if (startDate < rightNow) {
-          bucket.append(parseHTML(siteSettings.templates.eventListing(pageData.events[i])));
+          bucket.append(parseHTML(siteSettings.templates.pastEventWide(pageData.events[i])));
         }
       }
     }

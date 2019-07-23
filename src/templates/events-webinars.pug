@@ -2,7 +2,7 @@ extends inc/page.pug
 block template
   :php
     /*
-    Template Name: Events Page
+    Template Name: Webinars Page
     */
 block nav
   include ./inc/navbar-toggle.pug
@@ -10,19 +10,18 @@ block nav
   include ./inc/header.pug
 block content
   :php
-    $override_title = "Events";
+    $override_title = "Webinars";
     $breadcrumbs = [];
     array_push($breadcrumbs,array(
-      "title"=>"Company",
-      "link"=>"/company/"
+      "title"=>"Resources",
+      "link"=>"/resources/"
     ));
   section.top-section-interior
     .container
       .row
         .col-md-12
           include ./inc/breadcrumbs.pug
-          h1 Events & Webinars
-          h2 Explore our event schedule below, connect with us online or in person
+          h1 Webinars
   :php
     $all_events = [];
     $args = array(
@@ -75,11 +74,5 @@ block content
     echo "<script>var pageData = {'events':".json_encode($all_events,JSON_UNESCAPED_SLASHES)
     ."};</script>";
   section.events-list.container
-    .row
-      .col-md-9.events
-        #events-list
-      .col-md-3.past-events
-        h2 Past Events
-          span.right
-            a(href="/past-events/") View All
-        #past-events
+    #webinars-upcoming
+    #webinars-past
