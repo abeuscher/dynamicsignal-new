@@ -188,7 +188,7 @@ var siteActions = [{
             e.preventDefault();
             section.scrollIntoView({
               behavior: 'smooth',
-              "block": anchor
+              "block": section.classList.contains('features-section') ? "start" : "center"
             });
             if (window.history && window.history.pushState) {
               history.pushState("", document.title, "#" + section.id);
