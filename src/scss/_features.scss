@@ -6,6 +6,7 @@
   h1 {
     padding-top:2em;
     color:$white;
+    text-transform:none;
   }
   .pc-image {
     display:none;
@@ -43,14 +44,14 @@
       li {
       flex-basis:25%;
       .text {
-        line-height:2;
+        font-size:1.2em;
       }
     }
   }
 }
 .features-section {
   padding-bottom:0;
-  padding-top:$gutter-width*4;
+  padding-top:$gutter-width*3;
   h2 {
     color:$blue;
     font-size:24px;
@@ -61,6 +62,7 @@
       background:$white;
       position:relative;
       display:flex;
+      margin:.5em 0 .25em;
       span {
         
         flex-shrink:1;
