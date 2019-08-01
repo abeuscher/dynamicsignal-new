@@ -38,7 +38,7 @@ block content
   section.blog-hero
     :php
       $social_image = get_field("social_share_image") ? get_field("social_share_image") : get_the_post_thumbnail_url();
-      if (get_field("show_social_share_image_for_mobile_header")=="no") {
+      if (get_field("show_social_share_for_mobile_header")=="no") {
         printf("<div class='blog-header no-image'><div class='blog-thumb' itemprop='image' itemscope itemtype='https://schema.org/ImageObject'>");
       the_post_thumbnail( 'full', array('class' => 'img-responsive') );
       echo "</div>";

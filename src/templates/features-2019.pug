@@ -1,0 +1,61 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Features Page 2019
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+    :php
+        printf("<section class='features-header' data-bg-array='%s'>", json_encode(get_field("hero_bg_image"), JSON_UNESCAPED_SLASHES));
+    .container
+        .row
+            .col-md-5
+                :php
+                    printf("<h1 class='caps'>%s</h1>", get_field("hero_text"));
+                    printf("<a href='#' data-video-modal-id='%s' class='button white'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("hero_cta_video_id"), get_field("hero_cta_text"));
+            .col-md-7.features-image-bucket
+                :php
+                    printf("<div class='pc-image' data-bg-array='%s'></div><div class='mobile-image' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES), json_encode(get_field("hero_phone_image"), JSON_UNESCAPED_SLASHES));
+    :php
+       echo "</section>";       
+    section.platform-bullets.feature-menu#feature-menu
+        .container
+            .row
+                .col-md-10
+                    ul.copy-points
+                        :php
+                            foreach(get_field("hero_bullets") as $key=>$bullet) {
+                                printf("<li><a href='%s'><span class='icon'></span><span class='text'>%s</span></a></li>", "#section-".$key, $bullet["bullet_text"]);
+                            }
+    :php
+        foreach(get_field("features_sections") as $idx=>$section) {
+            $blocks = "";
+            foreach($section["section_content_blocks"] as $zdx=>$block) {
+                $orientation = $block["block_orientation"];
+                $img_bucket = sprintf("<div class='col-half image-col'><div class='features-image' data-bg-array='%s'></div></div>",json_encode($block["block_image"], JSON_UNESCAPED_SLASHES));
+                $bullets = "";
+                foreach($block["block_bullets"] as $i=>$bullet) {
+                    $bullets .= sprintf("<li class='feature-bullet'><input %s type='radio' name='%s' id='%s'/><label for='%s'>%s</label><div class='content'>%s</div></li>", $i == 0 ? "checked" : "","radios-".$zdx."-".$idx, "radios-".$zdx."-".$idx."-".$i,"radios-".$zdx."-".$idx."-".$i, $bullet["bullet_label"], $bullet["bullet_content"]);
+                }
+                $text_bucket = sprintf("<div class='col-half text-col'><h2>%s</h2><p>%s</p><ul class='feature-bullets'>%s</ul><a class='feature-block-cta' href='%s'><span data-bg='icon-orangearrow.png'></span>%s</a></div>", $block["block_header"], $block["block_copy"], $bullets, $block["block_cta_target"],$block["block_cta_text"]);
+                $content = $orientation == "left" ? $img_bucket.$text_bucket : $text_bucket.$img_bucket;
+                $blocks .= sprintf("<div class='bucket %s'>%s</div>", $orientation=="left" ? "image-left" : "image-right", $content);
+            }
+            printf("<section id='section-%s' class='features-section'><div class='container'><div class='row'><div class='col-md-12'><h2 class='features-section-header'><span>%s</span><span></span></h2><p class='features-section-copy'>%s</p></div></div>%s</div></section>", $idx,$section["section_header"], $section["section_subhead"], $blocks);
+        }
+    section.blue-bg-section
+        .container
+            .row
+                .col-md-12
+                    h2.centered(style={"text-transform":"uppercase"})
+                        :php
+                            echo get_field("bottom_header");
+            .features-bottom
+                :php
+                    foreach(get_field("bottom_buckets") as $idx=>$bucket) {
+                        printf("<div class='feature-bottom-bucket'><div class='icon %s'></div><h2>%s</h2><p>%s</p></div>",$bucket["icon"], $bucket["title"], $bucket["copy"]);
+                    }
