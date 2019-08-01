@@ -566,3 +566,16 @@ $mf-transition-speed: 0.28s !default;
 
   }
 }
+.mktoForm label.mktoLabel[for="Marketing_Opt_in__c"] {
+  margin-left:50px;
+  width:420px!important;
+  line-height:1.4;
+  &~ .mktoLogicalField {
+    width:50px!important;
+    margin-top:-50px!important;
+  }
+  a {
+    color:$white;
+    text-decoration: underline;
+  }
+}
