@@ -535,6 +535,7 @@ main {
 .d-flex {
     display: -ms-flexbox !important;
     display: flex !important;
+    flex-wrap:wrap;
 }
 
 .col-speaker {
@@ -543,12 +544,17 @@ main {
     flex-shrink:1;
     padding-left: 15px;
     padding-right: 15px;
+    flex-basis:100%;
+    text-align:center;
     .speaker-name {
         display:block!important;
     }
     .speaker-title, .speaker-job-title {
         margin:0 0 $gutter-width/2!important;
         display:block!important;
+    }
+    @include bp(m) {
+        flex-basis:33%;
     }
 }
 
