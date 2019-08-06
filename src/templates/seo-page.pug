@@ -23,7 +23,7 @@ block content
         $nav = "";
         foreach(get_field("sections") as $idx=>$section) {
             $nav .= sprintf("<li><a href='%s'><span class='icon'></span><span class='text'>%s</span></a></li>", "#section-" . $idx, $section["section_menu_title"]);
-            $sections .= sprintf("<section class='seo-section %s' id='%s'><div class='container'><div class='row'><div class='col-md-12'><h2>%s</h2><div class='seo-content'>%s</div></div></div></div></section>", $section["section_bg_color"], "section-".$idx, $section["section_header"], $section["section_copy"]);
+            $sections .= sprintf("<section class='seo-section features-section %s' id='%s'><div class='container'><div class='row'><div class='col-md-12'><h2>%s</h2><div class='seo-content'>%s</div></div></div></div></section>", $section["section_bg_color"], "section-".$idx, $section["section_header"], $section["section_copy"]);
         }
     section.platform-bullets.feature-menu#feature-menu
         .container
