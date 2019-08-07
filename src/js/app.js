@@ -185,6 +185,7 @@ var siteActions = [{
         button.addEventListener("click", function (e) {
           var section = document.getElementById(this.getAttribute("href").substr(1));
           if (section) {
+            console.log(section.classList.contains('features-section'));
             e.preventDefault();
             section.scrollIntoView({
               behavior: 'smooth',
