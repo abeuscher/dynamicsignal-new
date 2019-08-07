@@ -11,9 +11,15 @@
     &.gray {
         background:$lighter-gray;
     }   
+    &#section-7 {
+      padding-bottom:$gutter-width*2;
+    }
 }
 .seo-content {
     line-height:1.8;
+    a {
+      text-decoration:underline;
+    }
     .img-wide {
       width:80%;
       margin:0 10%;
@@ -36,6 +42,7 @@
         font-style:italic;
         position:relative;
         padding-left:120px;
+        padding-bottom:$gutter-width/2;
         img {
             position:absolute;
             left:0;
@@ -51,9 +58,17 @@
         display:block;
     }
     ul {
-        display:table-cell;
         li {
             margin-bottom:$gutter-width/2;
+        }
+        &.two-col {
+          display:flex;
+          flex-wrap:wrap;
+          li {
+            flex-basis:50%;
+            flex-grow:1;
+            flex-shrink:1;
+          }
         }
     }
     .wrapper-video {
