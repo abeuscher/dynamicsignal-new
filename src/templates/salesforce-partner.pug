@@ -10,7 +10,7 @@ block nav
   include ./inc/header.pug
 block content
     :php
-        printf("<section class='features-header sf' data-bg-array='%s'>", json_encode(get_field("hero_bg_image"), JSON_UNESCAPED_SLASHES));
+        printf("<section class='features-header sf'>");
     .container
         .row
             .col-md-5
@@ -30,14 +30,14 @@ block content
     section.salesforce-content
         .container
             .row
-                .col-md-12
+                .col-md-12.centered
                     :php
                         printf("<h2>%s</h2>", get_field("content_headline"));
                 .col-md-6
-                    ul.salesforce-copy-points
+                    ul.sf-copy-points
                         :php
                             foreach(get_field("content_bullets") as $idx=>$bullet) {
-                                printf("<li>%s</li>", $bullet["text"]);
+                                printf("<li><span class='icon'></span><span class='text'>%s</span></li>", $bullet["text"]);
                             }
                 .col-md-6.blog-content
                     .wrapper-video
@@ -46,16 +46,16 @@ block content
     section.salesforce-cta
         .container
             .row
-                .col-md-12
+                .col-md-12.centered
                     :php
                         printf("<h2>%s</h2><a class='button orange' href='%s'>%s</a>", get_field("cta_header"), get_field("cta_link"), get_field("cta_text"));
     section.salesforce-case-studies
         .container
             .row
-                .col-md-12
+                .col-md-12.centered
                     :php
                         printf("<h2>%s</h2>", get_field("case_study_headline"));
-                    ul.case-study-list
+                    ul.sf-case-study-list
                         :php
                             foreach(get_field("case_study_links") as $idx=>$link) {
                                 printf("<li><div class='thumb' data-bg-array='%s'></div><a class='button' href='%s'>%s</a>", json_encode($link["thumb"], JSON_UNESCAPED_SLASHES), $link["url"], $link["button_text"]);

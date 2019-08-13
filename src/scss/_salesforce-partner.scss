@@ -1,5 +1,130 @@
 .features-header.sf {
+    h1 {
+        padding:1em 0 0;
+    }
     h2, h2 {
         color:$white;
+    }
+    .pc-image {
+        margin-bottom:-1*$gutter-width;
+    }
+    background:radial-gradient(circle at 70%, #7db9e8 0%,#1b3152 67%);
+}
+.salesforce-cta {
+    background:url($img-path + "bg-home-bluetriangle.jpg") no-repeat center center;
+    background-size:cover;
+    background-position:center center;
+    padding:$gutter-width 0 $gutter-width*2;
+    h2 {
+        color:$white;
+    }
+}
+.pullquote-large {
+    margin-top:$gutter-width*2;
+    blockquote {
+        margin:0;
+        padding:0;
+        display:flex;
+        align-items:center;
+        flex-wrap:wrap;
+    }
+    .thumb {
+        @include aspect-ratio(5,2);
+        flex-basis:100%;
+        flex-grow:1;
+        flex-shrink:1;
+        background-size:contain;
+        background-position:center center;
+        background-repeat:no-repeat;
+        @include bp(m) {
+            @include aspect-ratio(3,2);
+            flex-basis:25%;
+        }
+    }
+    .quote {
+        flex-basis:100%;
+        flex-grow:1;
+        flex-shrink:1;
+        font-size:1.4em;
+        line-height:1.4;
+        cite {
+            display:block;
+            margin:$gutter-width/2 0 0 $gutter-width*2;
+        }
+        @include bp(m) {
+            flex-basis:75%;
+        }
+    }
+
+}
+.salesforce-content {
+    .wrapper-video {
+        @include bp(m) {
+            margin-top:$gutter-width;
+        }
+    }
+}
+ul.sf-copy-points {
+    list-style:none;
+    margin-bottom:$gutter-width;
+    li {
+        display:flex;
+        margin-bottom:$gutter-width;
+        font-size:1.25em;
+        align-items:center;
+    }
+    .icon {
+        width:25px;
+        flex-grow:0;
+        flex-shrink:0;
+        height:25px;
+        background:$menu-blue;
+        border-radius:50%;
+        display:inline-block;
+        background-size:contain;
+        position:relative;
+        &:after {
+          content:'';
+          display:block;
+          position:absolute;
+          border:6px solid transparent;
+          //transform:rotate(45deg);
+          border-left-color:$menu-blue;
+          top:7px;
+          left:9px;
+        }
+        &:before {
+          content:'';
+          display:block;
+          position:absolute;
+          border:6px solid transparent;
+          //transform:rotate(45deg);
+          border-left-color:white;
+          top:7px;
+          left:11px;
+        }
+      }
+      .text {
+          padding-left:.5em;
+      }
+}
+.sf-case-study-list {
+    margin-bottom:$gutter-width*2;
+    .thumb {
+        @include aspect-ratio(3,1);
+        background-size:contain;
+        background-position:center center;
+        background-repeat:no-repeat;
+        display:block;
+        width:80%;
+        margin:0 10%;
+    }
+    li {
+        display:inline-block;
+        width:100%;
+        text-align:center;
+        @include bp(s) {
+            width:50%;
+        }
     }
 }
