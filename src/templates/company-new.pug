@@ -1,0 +1,67 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Company Page 2019
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+    :php
+        printf("<section class='homepage fullpic bigtext no-padding company-hero' id='sticky-header'><div class='header-bg'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
+        printf("<div class='inner'>");
+    .col-half.text
+        h1.home-header-text
+            :php
+                echo get_field("hero_text");
+        :php
+            printf("<a class='button cta modal-show' data-video-modal-id='%s' data-event='vidClick-HomeCTA' href='#'>Play Video<span class='fa fa-play-circle-o'></span></a>", get_field("header_video_id"));
+    :php
+        printf("<div class='col-half bg' data-bg-array='%s'></div>",json_encode(get_field("hero_overlay"), JSON_UNESCAPED_SLASHES));
+    :php
+        echo "</div></section>";
+        foreach(get_field("company_page_sections") as $idx=>$section) {
+            $image_col = sprintf("<div class='col-md-6'><div class='company-thumb' data-bg-array='%s'></div></div>", json_encode($section["image"], JSON_UNESCAPED_SLASHES));
+            $text_col = sprintf("<div class='col-md-6'><h2 class='blue'>%s</h2><div class='content'>%s</div></div>", $section["headline"], $section["content"]);
+            $content = $section["orientation"]=="left" ? $image_col.$text_col : $text_col.$image_col;
+            printf("<section class='feature-section white-bg-section'><div class='container'><div class='row'>%s</div></div></section>", $content);
+        }
+    section.gray-bg-section
+        .container
+            .col-md-12
+                h2
+                    :php
+                        echo get_field("diagram_headline");
+                .content
+                    :php
+                        echo get_field("diagram_copy");
+                :php
+                    printf("<div class='company-diagram' data-bg-array='%s'></div>", json_encode(get_field("diagram_image"), JSON_UNESCAPED_SLASHES));
+    :php
+        printf("<section class='company-fluff white-bg-section' data-bg-array='%s'>", json_encode(get_field("superfluous_section_image"), JSON_UNESCAPED_SLASHES));
+    .container
+        .col-md-offset-6.col-md-6
+            h2
+                :php
+                    echo get_field("superfluous_section_headline");
+            .content
+                :php
+                    echo get_field("superfluous_section_copy");    
+    :php
+        echo "</section>";
+    section.company-logo-garden.white-bg-section
+        .container
+            .col-md-12
+                h2
+                    :php
+                        echo get_field("logo_garden_headline");
+                .content
+                    :php
+                        echo get_field("logo_garden_copy"); 
+                ul.logo-line
+                    :php
+                        foreach(get_field("logo_garden_logos") as $idx=>$logo) {
+                            printf("<li><div class='thumb' data-bg-array='%s'></div></li>", json_encode($logo["image"], JSON_UNESCAPED_SLASHES));
+                        }                       
