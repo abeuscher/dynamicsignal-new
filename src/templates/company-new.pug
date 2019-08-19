@@ -23,7 +23,7 @@ block content
     :php
         echo "</div></section>";
         foreach(get_field("company_page_sections") as $idx=>$section) {
-            $image_col = sprintf("<div class='col-md-6'><div class='company-thumb' data-bg-array='%s'></div></div>", json_encode($section["image"], JSON_UNESCAPED_SLASHES));
+            $image_col = sprintf("<div class='col-md-6'><div class='company-thumb' id='image-%s' data-bg-array='%s'></div></div>", $idx, json_encode($section["image"], JSON_UNESCAPED_SLASHES));
             $text_col = sprintf("<div class='col-md-6'><h2 class='blue'>%s</h2><div class='content'>%s</div></div>", $section["headline"], $section["content"]);
             $content = $section["orientation"]=="left" ? $image_col.$text_col : $text_col.$image_col;
             printf("<section class='feature-section white-bg-section'><div class='container'><div class='row'>%s</div></div></section>", $content);

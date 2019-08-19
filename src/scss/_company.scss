@@ -28,6 +28,12 @@ section.company-proof {
         display:block;
         padding-bottom:100%;
     }
+    &#image-0 {
+        display:none;
+        @include bp(m) {
+            display:inline-block;
+        }
+    }
 }
 .company-diagram {
     @include aspect-ratio(1102,376);
@@ -36,6 +42,10 @@ section.company-proof {
     background-repeat:no-repeat;
     background-position:center center;
     padding:$gutter-width 0 $gutter-width*2;
+    display:none;
+    @include bp(m) {
+        display:block;
+    }
 }
 ul.logo-line {
     list-style:none;
