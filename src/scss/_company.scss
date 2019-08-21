@@ -34,6 +34,9 @@ section.company-proof {
             display:inline-block;
         }
     }
+    &#image-1 {
+        background-size:95%;
+    }
 }
 .company-diagram {
     @include aspect-ratio(1102,376);

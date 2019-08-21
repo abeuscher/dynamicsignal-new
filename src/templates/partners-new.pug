@@ -1,0 +1,50 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Partners Page 2019
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+    :php
+        printf("<section class='homepage fullpic bigtext no-padding company-hero' id='sticky-header'><div class='header-bg' data-bg-array='%s'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("hero_bg_image"), JSON_UNESCAPED_SLASHES),json_encode(get_field("hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
+        printf("<div class='inner'>");
+    .col-half.text
+        h1.home-header-text
+            :php
+                echo get_field("hero_text");
+    :php
+        echo "</div></section>";
+    section.gray-bg-section
+        .container
+            .row
+                .col-md-12
+                    :php
+                        printf("<h2 class='centered'>%s</h2><p class='centered'>%s</p>",get_field("top_blurb_headline"), get_field("top_blurb_copy"));
+    section.white-bg-section
+        .container
+            .row
+                .col-md-6
+                    :php
+                        printf("<h2>%s</h2><p>%s</p><a class='button' href='%s'>%s</a><a class='orange-callout' href='%s'>%s</a>", get_field("third_section_headline"), get_field("third_section_copy"), get_field("third_section_cta_link"), get_field("third_section_cta_text"), get_field("appexchange_link"), get_field("appexchange_text"));
+                .col-md-6  
+                    :php
+                        printf("<div class='partners-pc-image' data-bg-array='%s'></div>",json_encode(get_field("htird_section_image"), JSON_UNESCAPED_SLASHES));
+    section.gray-bg-section
+        .container
+            .row
+                .col-md-12
+                    :php
+                        printf("<h2>%s</h2><p>%s</p><a class='button' href='%s'>%s</a><div class='partners-diagram' data-bg-array='%s'></div>", get_field("fourth_section_headline"), get_field("fourth_section_copy"), get_field("fourth_section_cta_link"), get_field("fourth_section_cta_text"), json_encode(get_field("fourth_section_image"), JSON_UNESCAPED_SLASHES));
+    section.partners-orange
+        .container
+            .row
+                .col-md-offset-6.col-md-6
+                    :php
+                        printf("<h2>%s</h2><p>%s</p><a class='button white' href='%s'>%s</a><a class='callout-white' href='%s'>%s</a>", get_field("orange_section_headline"), get_field("orange_section_copy"), get_field("orange_section_cta_link"), get_field("orange_section_cta_text"), get_field("orange_section_bottom_link_url"), get_field("orange_section_bottom_link_text"));
+    section.bottom-cta
+        p Learn why more than 30 percent of the Fortune 100 communicates with Dynamic Signal
+        a.button.cta(href="/requestdemo/") Request Demo
