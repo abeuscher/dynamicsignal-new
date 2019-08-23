@@ -1,0 +1,69 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Agency Page
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    $override_title = "Partners";
+  :php
+    if( have_posts() ) {
+    while( have_posts() ) {
+      the_post();
+      echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
+      .", 'testimonials':".json_encode(get_field('agency_testimonials'),JSON_UNESCAPED_SLASHES)."};</script>";
+  -
+    var pageData = {
+    "header":"Grow Your Agency",
+    "subheader":"Improving Employee Communications Increases Client Value and Drives Revenue",
+    "copyTop":"Today’s agencies are challenged with helping clients adapt to the convergence of paid, owned and earned media. That’s especially true within the digital and social media landscape. Many are adapting to this new environment, with progressive firms doing so by leveraging mobile-first solutions like Dynamic Signal to improve employee communications and drive advocacy for their clients.",
+    "videoInfo": {
+      "id":"306845259",
+      "type":"vimeo",
+      "quote":"We look at Dynamic Signal as an industry leader. You have a great team and we really love to partner with you.",
+      "cta":"Play Video",
+      "image":"partners-testimonial-thumb.jpg",
+      "cite":"Aaron Strout, CMO @ W2O"
+    }
+    };
+  :php
+      printf("<section class='homepage fullpic bigtext no-padding agency-hero' id='sticky-header'><div class='header-bg' data-bg-array='%s'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("hero_bg_image"), JSON_UNESCAPED_SLASHES),json_encode(get_field("hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
+      printf("<div class='inner'>");
+  .col-half.text
+      :php
+        printf("<h1>%s</h1><a href='#' data-video-modal-id='%s' class='button white'>Play Video<span class='fa fa-play-circle-o'></span></a>", get_field("hero_text"), get_field("hero_video_id"));
+  :php
+      echo "</div></section>";    
+  section.white-bg-section
+    .container
+      .row
+        .col-md-12
+          :php
+            printf("<p class='agency-content-top'>%s</p>", get_field("content_top"));
+          #logo-partners-grid
+  section.partners-testimonials.white-bg-section
+    .container
+      #partners-testimonials
+  section.uber-embed.white-bg-section
+    .container
+      .row.col-center
+        :php
+          if ( have_rows( 'uber_embed' ) ) :
+            $count = 0;
+              while ( have_rows( 'uber_embed' ) ) : the_row();
+                $tile = get_sub_field('embed');
+                $first = ( $count === 0 ) ? 'first' : '';
+                printf( '<div class="col-md-4 %s">%s</div>', $first, $tile );
+                $count++;
+              endwhile;
+          endif;
+  section.bottom-cta
+    p Learn why more than 30 percent of the Fortune 100 communicates with Dynamic Signal
+    a.button.cta(href="/requestdemo/") Request Demo
+  :php
+    }}
