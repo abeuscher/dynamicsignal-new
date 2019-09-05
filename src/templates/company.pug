@@ -9,122 +9,68 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    $query = new WP_Query( array('post_type' => 'post','posts_per_page'   => '1','ignore_sticky_posts'=>1) );
-    $blog_post = $query->get_posts()[0];
-    
-    $args = array(
-          'post_type' => 'event',
-          'posts_per_page' => 1,
-          'showposts'=>1,
-          'meta_key'   => 'event_start_date',
-          'orderby'    => 'event_start_date',
-          'meta_type' => 'date',
-          'order'      => 'ASC',
-          'paged' => true,
-          'meta_query' => array(
-            array(
-              'key' => 'ds_event_type',
-              'value' => 'cswebinar',
-              'compare' => '!='
-            ),
-            array(
-              'key' => 'event_start_date',
-              'value' => date('Y-m-d'),
-              'compare'=>'>=',
-              'type'=>'date'
-            )
-          )
-        );
-    $query = new WP_Query( $args );
-
-    $events_flag = false;
-    if($query->have_posts()) {
-      while($query->have_posts() && $count == 0) {
-      $query->the_post();
-      $start_date = get_field( 'event_start_date' );
-      $event_post = array(
-      "title"=>get_the_title(),
-      "start_month"=>date("F", strtotime($start_date)),
-      "start_date"=>$start_date,
-      "start_day"=>date("j", strtotime($start_date)),
-      "start_year"=>date("Y", strtotime($start_date)),
-      "start_time"=>get_field( 'event_start_time' ),
-      "event_time_zone"=>get_field( 'event_time_zone' ),
-      "finish_date"=>get_field( 'event_end_date' ) ,
-      "thumb"=>get_field('ds_event_thumbnail'),
-      "btn_text"=>get_field('ds_button_text'),
-      "btn_url"=>get_field( 'ds_button_url' ),
-      "description"=>get_the_content(),
-      "excerpt"=>get_the_excerpt(),
-      "type"=>get_field( 'ds_event_type' ),
-      "url"=>get_permalink(),
-      "location"=>get_field( 'ds_event_location' )
-      );
-      $count++;
-      }
-    }
-    else {
-      $events_flag = true;
-    }
-    $query = new WP_Query( array('post_type' => 'career','posts_per_page'   => '1') );
-    $career_post = $query->get_posts()[0];
-    if( have_posts() ){
-     while( have_posts() ) {
-      the_post();
-    printf("<section class='halfpic' id='sticky-header'>");
-    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
-  .white-gradient-header
-  .container
-      .row-flex
-          .col-half-flex.gray-bg-section
-              .inner
-                h1
-                  :php
-                    printf("%s",get_field("page_header"))
-  :php
-    echo "</section>";   
-  section.white-bg-section
-    .container
-      .row
-        .col-md-8.content
-          :php
-            printf("<img src='%s' alt='' />",get_field("secondary_image")["url"]);
-            printf("%s",get_field("page_copy"));
-            printf("<img src='%s' alt='' />",get_field("awards")["url"]);
-        .col-md-4
-          ul.side-list
+    :php
+        printf("<section class='homepage fullpic bigtext no-padding company-hero' id='sticky-header'><div class='header-bg'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
+        printf("<div class='inner'>");
+    .col-half.text
+        h1.home-header-text
             :php
-              if (!$events_flag) {
-            li.dot
-              h2 Events & Webinars
-              :php
-                printf("<h3><a href='%s'>%s</a></h3><p>%s on %s/%s/%s<br> at %s (%s)<a class='small-link' href='%s'>%s</a><a class='small-link' href='%s'>details</a></p>",$event_post["url"],$event_post["title"],$event_post["type"],$event_post["start_month"],$event_post["start_day"],$event_post["start_year"],$event_post["start_time"],$event_post["event_time_zone"],$event_post["btn_url"],$event_post["btn_text"],$event_post["url"]) ;
-              a.button(href="/events") All Events & Webinars
-            :php
-              }
-            li.dot
-              h2 Blog
-              h3
+                echo get_field("hero_text");
+        :php
+            printf("<a class='button cta modal-show' data-video-modal-id='%s' data-event='vidClick-HomeCTA' href='#'>Play Video<span class='fa fa-play-circle-o'></span></a>", get_field("hero_video_id"));
+    :php
+        printf("<div class='col-half bg' data-bg-array='%s'></div>",json_encode(get_field("hero_overlay"), JSON_UNESCAPED_SLASHES));
+    :php
+        echo "</div></section>";
+        foreach(get_field("company_page_sections") as $idx=>$section) {
+            $image_col = sprintf("<div class='col-md-6'><div class='company-thumb' id='image-%s' data-bg-array='%s'></div></div>", $idx, json_encode($section["image"], JSON_UNESCAPED_SLASHES));
+            $text_col = sprintf("<div class='col-md-6'><h2 class='blue'>%s</h2><div class='content'>%s</div></div>", $section["headline"], $section["content"]);
+            $content = $section["orientation"]=="left" ? $image_col.$text_col : $text_col.$image_col;
+            printf("<section class='feature-section white-bg-section'><div class='container'><div class='row'>%s</div></div></section>", $content);
+        }
+    section.gray-bg-section
+        .container
+            .col-md-12.centered
+                h2
+                    :php
+                        echo get_field("diagram_headline");
+                .content
+                    :php
+                        echo get_field("diagram_copy");
                 :php
-                  printf("<a href='%s'><h3>%s</h3><p>By %s</p></a>","/blog/".$blog_post->post_name,$blog_post->post_title,get_author_name($blog_post->post_author));
-              a.button(href="/blog") All Entries  
-            li.dot
-              h2 News Room
-              h3 
-                :php
-                  printf("<a href='%s'>%s</a>",get_field("press_item_link"),get_field("press_item_headline"));
-              a.button(href="https://resources.dynamicsignal.com/news-room") News Room
-            li.dot
-              h2 Press Coverage
-              h3 
-                :php
-                  printf("<a href='%s'>%s</a>",get_field("news_item_link"),get_field("news_item_headline"));
-                  }}
-              a.button(href="https://resources.dynamicsignal.com/press-coverage") Press Coverage
-  section.bottom-cta
+                    printf("<div class='company-diagram' data-bg-array='%s'></div>", json_encode(get_field("diagram_image"), JSON_UNESCAPED_SLASHES));
+    :php
+        printf("<section class='company-proof white-bg-section' data-bg-array='%s'>", json_encode(get_field("superfluous_section_image"), JSON_UNESCAPED_SLASHES));
     .container
-      .row
-        .col-md-12
-          p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal
-          a.button.cta.knockout(href="/requestdemo") Request Demo
+        .col-md-offset-6.col-md-6
+            h2
+                :php
+                    echo get_field("superfluous_section_headline");
+            .content
+                :php
+                    echo get_field("superfluous_section_copy");    
+    :php
+        echo "</section>";
+    section.company-logo-garden.white-bg-section
+        .container
+            .col-md-12
+                h2.centered
+                    :php
+                        echo get_field("logo_garden_headline");
+                .content.centered
+                    :php
+                        echo get_field("logo_garden_copy"); 
+                ul.logo-line
+                    :php
+                        foreach(get_field("logo_garden_logos") as $idx=>$logo) {
+                            printf("<li><div class='thumb' data-bg-array='%s'></div></li>", json_encode($logo["image"], JSON_UNESCAPED_SLASHES));
+                        }       
+    section.company-sitemap
+        .container
+            .row
+                .col-md-12
+                    ul.sitemap-items
+                        :php
+                            foreach(get_field("sitemap_items") as $idx=>$item) {
+                                printf("<li><span class='icon'></span><div class='top-copy'><h2>%s</h2><p>%s</p></div><div class='cta'><a href='%s'>%s</a></div></li>", $item["headline"], $item["copy"], $item["cta_link"], $item["cta_label"]);
+                            }                

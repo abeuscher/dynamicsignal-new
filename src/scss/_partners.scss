@@ -1,7 +1,18 @@
-#partners-logo-strip {
-  height:80px;
+.agency-hero {
+  h1 {
+    color:$white;
+  }
 }
-
+.agency-content-top {
+  font-size:24px;
+  line-height:1.5;
+  text-align:center;
+}
+#logo-partners-grid {
+  .flipper-wrapper {
+    margin-bottom:6em;
+  }
+}
 /* Photo Banner */
 
 $logo-count: 10;
@@ -38,62 +49,6 @@ $logo-height: 80px;
 }
 
 
-.marquee-bucket {
-  width: 100%;
-  padding:0;
-  height: $logo-height;
-  overflow: hidden;
-  background:$white;
-  padding:$gutter-width 0;
-  box-sizing:content-box;
-}
-
-.marquee {
-  height: $logo-height;
-  width: ($logo-width * $logo-count);
-  margin-bottom: 5px;
-  font-size: 0;
-
-  img {
-    display:inline-block;
-    width:auto;
-    margin-bottom: $gutter-width;
-    margin-right: $gutter-width*4;
-    padding:0 $gutter-width*2;
-    height: $logo-height;
-    width: auto;
-    transition: all 0.5s ease;
-
-    &:hover {
-      transform: scale(1.2);
-    }
-    &:first-child {
-      animation: bannermove 30s linear infinite;
-    }
-  }
-}
-.partners-top {
-  .one-half {
-    width:50%;
-    float:left;
-  }
-}
-.partners-header {
-  margin:0 0 $gutter-width*2;
-  font-size:24px;
-  line-height:1.5;
-}
-
-/* Keyframe animations*/
-
-@keyframes "bannermove" {
-  0% {
-    margin-left: 0px;
-  }
-  100% {
-    margin-left: -2130px;
-  }
-}
 .agency-ebook {
   overflow: hidden;
   margin: 100px 0;
@@ -139,4 +94,45 @@ $logo-height: 80px;
       width: 73%;
     }
   }
+}
+
+.partners-third-section {
+  padding:$gutter-width*2 0;
+  .partners-pc-image {
+    @include aspect-ratio(553,374);
+    width:100%;
+    background-size:contain;
+    background-position:center center;
+    background-repeat:no-repeat;
+  }
+}
+section.partners-orange {
+  position:relative;
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  h2, p {
+    color:$white;
+  }
+}
+.partners-diagram {
+  @include aspect-ratio(1087,387);
+  width:100%;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+  margin:$gutter-width 0;
+}
+.partners-section {
+  h2 {
+    font-size:24px;
+    margin-top:0;
+  }
+  p {
+    font-size:18px;
+    line-height:1.8;
+  }
+}
+section.fullpic.partners-hero .header-bg {
+  background-position:right top;
 }

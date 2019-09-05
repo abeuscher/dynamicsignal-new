@@ -1,0 +1,46 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Video Page
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  section.video-page-title
+    .container
+      .row
+        .col-md-12
+          h1
+            :php
+              the_title();
+  :php
+    $content = get_field("content_above_video");
+    if ($content!="") {
+  section.no-padding
+    .container
+      .row
+        .col-md-12.blog_content
+          :php
+            printf("%s", $content);
+  :php
+    }
+  section
+    .container
+      .row
+        .col-md-12.blog-content
+          :php
+            printf("<div class='wrapper-video'><iframe width='560' height='315' src='https://www.youtube.com/embed/%s?rel=0' frameborder='0' allowfullscreen></iframe></div>", get_field("video_id"));
+  :php
+    $content = get_field("content_below_video");
+    if ($content!="") {  
+  section
+    .container
+      .row
+        .col-md-12.blog_content
+          :php
+            printf("%s", $content);
+  :php
+    }
