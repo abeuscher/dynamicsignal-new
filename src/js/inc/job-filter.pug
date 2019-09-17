@@ -5,7 +5,7 @@
   .row
     .col-md-12
       h4 Location
-    - var locations = ["Chicago","San Bruno","London","Atlanta","Seattle","New York","East Coast","Belfast","West Coast","Remote"];
+    - var locations = ["Chicago","San Bruno","London","Atlanta","Seattle","New York","East Coast","Belfast","West Coast","Remote","Austin"];
     for category in locals
       if category.cat_name!="Careers" && category.cat_name!="Career Locations" && locations.includes(category.cat_name)
         .col-md-12
