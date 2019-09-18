@@ -15,7 +15,7 @@ block content
     printf("<section class='homepage fullpic bigtext no-padding' id='sticky-header'><div class='header-bg' data-bg-array='%s'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("header_hero_bg"), JSON_UNESCAPED_SLASHES),json_encode(get_field("header_hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
     printf("<div class='inner'>");
   .col-half.text
-    h1.home-header-text
+    h1
       :php
         echo get_field("header_headline");
     p
@@ -36,7 +36,7 @@ block content
     .container
       .row
         .col-md-12          
-          p.home-secondary
+          p
             :php
               echo get_field("secondary_copy");
   section.white-bg-section.phone-section
@@ -50,7 +50,7 @@ block content
               foreach (get_field("carousel_slides") as $key=>$slide) {
                 $classname = $key == 0 ? "active" : "";
                 $images .= sprintf("<div class='vertical-slide %s' data-bg-array='%s' data-index='%s'></div>", $classname,json_encode($slide["slide_image"],JSON_UNESCAPED_SLASHES),$key);
-                $panels .= sprintf("<a class='carousel-panel %s' data-index='%s'><h2>%s</h2><h3>%s</h3><p>%s</p></a>",$classname,$key,$slide["title"],$slide["subhead"],$slide["copy"]);
+                $panels .= sprintf("<a class='carousel-panel %s' data-index='%s'><h2>%s</h2><p>%s</p></a>",$classname,$key,$slide["title"],$slide["copy"]);
               }
             .carousel-images
               .inner.position-1

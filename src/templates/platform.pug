@@ -15,14 +15,14 @@ block content
         .row
             .col-md-5
                 :php
-                    printf("<h1 class='caps'>%s</h1>", get_field("hero_text"));
+                    printf("<h1>%s</h1>", get_field("hero_text"));
                     printf("<a href='#' data-video-modal-id='%s' class='button white'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("cta_video_id"), get_field("cta_text"));
             .col-md-7.platform-image-bucket
                 :php
                     printf("<div class='pc-image' data-bg-array='%s'></div><div class='mobile-image' id='platform-hero-phone' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES), json_encode(get_field("hero_phone_image"), JSON_UNESCAPED_SLASHES));
     :php
        echo "</section>";       
-    section.platform-bullets#feature-menu
+    section.platform-bullets#anchor-menu(data-anchor-target="center")
         .container
             .row
                 .col-md-9
@@ -43,7 +43,7 @@ block content
         .container
             .row
                 .col-md-12
-                    h2.caps
+                    h2
                         :php
                             printf("%s", get_field("panel_section_header"));
             .platform-panel-bucket
@@ -78,7 +78,7 @@ block content
                 .col-md-12
                     :php
                         $bb = get_field("benefits_section");
-                    h2.centered.caps
+                    h2.centered
                         :php
                             echo $bb["section_header"];
                     p.centered
@@ -93,7 +93,7 @@ block content
         .container
             .row
                 .col-md-12
-                    h2.centered.caps
+                    h2.centered
                         :php
                             printf("%s", get_field("graph_header_text"));
                     include ./inc/platform-graph-section

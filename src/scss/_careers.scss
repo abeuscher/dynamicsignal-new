@@ -1,21 +1,14 @@
-.careers-links, .careers-about {
+.careers-about {
   text-align: center;
   .careers-panes {
     text-align: left;
-    color:$classic-gray;
-    line-height:1.5;
-    h3 {
-      font-size:18px;
-      font-weight:400;
-      letter-spacing:1px;
-    }
-    @include bp(m) {
-      .col-md-3 {
-        border-right:1px solid lighten($classic-gray,50%);
-        &:last-child {
-          border-right:none;
-        }
-      }
+  }
+}
+ul.copy-points.careers-menu {
+  li {
+    flex-basis:25%;
+    .text {
+      font-size:1em;
     }
   }
 }
@@ -57,7 +50,6 @@
   &:not(.is-selected) {
     opacity:0;
   }
-
 }
 #job-list {
   article {
@@ -73,18 +65,11 @@
     h3 {
       margin:0;
       span {
-        color:$gray;
-        font-weight:300;
-        text-transform: uppercase;
-        font-size:14px;
         margin-right:1em;
       }
     }
     .job-link {
       transition:all .2s ease-in;
-      font-weight:700;
-      font-size:.9em;
-      text-transform: capitalize;
       &:hover {
         text-decoration: underline;
       }
@@ -155,58 +140,6 @@ a.filter-button {
     padding:.2em .5em;
   }
 }
-ul.careers-tabs {
-  margin:0 auto;
-  padding:0;
-  list-style:none;
-  max-width:800px;
-  li {
-    float:left;
-    width:25%;
-    a {
-      display:block;
-      background-repeat:no-repeat;
-      background-position:center top;
-      color:$classic-gray;
-      padding:50px $gutter-width 0;
-      border-bottom: 2px solid transparent;
-      transition:all .2s ease-in;
-      font-size:.8em;
-      @include bp(m) {
-        font-size:1em;
-      }
-      &:hover {
-        color:$header-blue;
-        border-color:$header-blue;
-      }
-      &#icon-about {
-          background-image:url($img-path + "icon-aboutus-gray.png");
-          &:hover {
-            background-image:url($img-path + "icon-aboutus-green.png");
-          }
-      }
-      &#icon-video {
-        background-image:url($img-path + "icon-video-gray.png");
-        &:hover {
-          background-image:url($img-path + "icon-video-green.png");
-        }
-      }
-      &#icon-culture {
-        background-image:url($img-path + "icon-events-gray.png");
-        &:hover {
-          background-image:url($img-path + "icon-events-green.png");
-        }
-      }
-      &#icon-jobs {
-        background-image:url($img-path + "icon-openpositions-gray.png");
-        &:hover {
-          background-image:url($img-path + "icon-openpositions-green.png");
-        }
-      }
-    }
-
-  }
-}
 ul.sdr-buttons {
   list-style:none;
   margin:0;
@@ -267,10 +200,6 @@ ul.sdr-buttons {
   }
   h1 {
     color:$white;
-    font-size:24px;
-    .button {
-      font-size:.8em;
-    }
   }
   span, .button {
     margin-left:1em;

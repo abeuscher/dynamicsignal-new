@@ -15,14 +15,14 @@ block content
         .row
             .col-md-5
                 :php
-                    printf("<h1 class='caps'>%s</h1>", get_field("hero_text"));
+                    printf("<h1>%s</h1>", get_field("hero_text"));
                     printf("<a href='#' data-video-modal-id='%s' class='button white'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("hero_cta_video_id"), get_field("hero_cta_text"));
             .col-md-7.features-image-bucket
                 :php
                     printf("<div class='pc-image' data-bg-array='%s'></div><div class='mobile-image' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES), json_encode(get_field("hero_phone_image"), JSON_UNESCAPED_SLASHES));
     :php
        echo "</section>";       
-    section.platform-bullets.feature-menu#feature-menu
+    section.platform-bullets.feature-menu#anchor-menu
         .container
             .row
                 .col-md-10
@@ -51,7 +51,7 @@ block content
         .container
             .row
                 .col-md-12
-                    h2.centered(style={"text-transform":"uppercase"})
+                    h2.centered
                         :php
                             echo get_field("bottom_header");
             .features-bottom

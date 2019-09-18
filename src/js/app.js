@@ -175,21 +175,20 @@ var siteActions = [{
       wipeCookies();
     }
   }, {
-    "element": "feature-menu",
+    "element": "anchor-menu",
     "action": function (el) {
-      var links = document.querySelectorAll("#feature-menu a");
-      var anchor = el.classList.contains("platform-bullets") ? "center" : "start";
+      var links = el.querySelectorAll("a");
+      var anchor = el.getAttribute("data-anchor-target") ? el.getAttribute("data-anchor-target") : "start";
       var controller = new ScrollMagic.Controller();
       for (i = 0; i < links.length; i++) {
         var button = links[i];
         button.addEventListener("click", function (e) {
           var section = document.getElementById(this.getAttribute("href").substr(1));
           if (section) {
-            console.log(section.classList.contains('features-section'));
             e.preventDefault();
             section.scrollIntoView({
               behavior: 'smooth',
-              "block": section.classList.contains('features-section') ? "start" : "center"
+              "block": anchor
             });
             if (window.history && window.history.pushState) {
               history.pushState("", document.title, "#" + section.id);

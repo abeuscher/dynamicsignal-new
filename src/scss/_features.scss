@@ -5,8 +5,6 @@
   padding-bottom:$gutter-width;
   h1 {
     padding-top:2em;
-    color:$white;
-    text-transform:none;
   }
   .pc-image {
     display:none;
@@ -53,13 +51,8 @@
   padding-bottom:0;
   padding-top:$gutter-width*3;
   h2 {
-    color:$blue;
-    font-size:24px;
-    font-weight:400;
+
     &.features-section-header {
-      font-size:34px;
-      font-weight:700;
-      background:$white;
       position:relative;
       display:flex;
       margin:.5em 0 .25em;
@@ -78,9 +71,6 @@
     }
   }
   .feature-block-cta {
-    color:$orange;
-    font-weight:700;
-    text-decoration: underline;
     display:flex;
     margin-top:$gutter-width;
     margin-bottom:$gutter-width;
@@ -92,10 +82,6 @@
       background-size:contain;
       margin-right:.5em;
     }
-  }
-  .features-section-copy {
-    //font-size:20px;
-    //line-height:1.4;
   }
   ul.feature-bullets {
     list-style:none;
@@ -206,9 +192,6 @@
     text-align:center;
     h2, p {
       color:$black;
-    }
-    h2 {
-      font-size:24px;
     }
     p {
       text-align:left;

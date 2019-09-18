@@ -102,17 +102,16 @@ block content
     .",'categories':".json_encode($categories,JSON_UNESCAPED_SLASHES)
     .",'videos':".json_encode($videos,JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  section.careers-links.white-bg-section
+  section.white-bg-section#anchor-menu
     .container.hidden-sm
       .row
-        ul.nav.careers-tabs
-          for link,key in pageData.menuLinks
-            if key == 0
-              li.active
-                a(href="#"+link.class,id="icon-"+link.class)=link.label
-            else
+        .col-md-12
+          ul.copy-points.careers-menu
+            for link,key in pageData.menuLinks
               li
-                a(href="#"+link.class,id="icon-"+link.class)=link.label
+                a(href="#"+link.class,id="icon-"+link.class)
+                  span.icon
+                  span.text=link.label
   section#about.careers-about.white-bg-section
     .container
       .row
@@ -131,7 +130,7 @@ block content
       .row.padding-bottom
         .col-md-12.col-center
           h1!=pageData.cultureHeader
-          p.large-text!=pageData.cultureCopy
+          p!=pageData.cultureCopy
       .row
         .col-md-12.instagram-bucket
           script(src='//lightwidget.com/widgets/lightwidget.js')

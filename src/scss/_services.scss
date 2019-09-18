@@ -99,8 +99,6 @@ section.services-community {
     background-size:cover;
     text-align:center;
     h2 {
-        color:$white;
-        font-size:2.4em;
         padding:$gutter-width*3;
     }
 }
@@ -333,10 +331,6 @@ $checkmark-size:80px;
 }
 section.services-services {
     background:$blue;
-    color:$white;
-    h1,h2,h3 {
-        color:$white;
-    }
 }
 .services-community-image {
     @include aspect-ratio(4,3);

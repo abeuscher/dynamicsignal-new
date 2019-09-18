@@ -59,23 +59,6 @@
     padding: 0 $gutter-width*3 0 $gutter-width;
   }
 }
-
-.customer-video-thumb {
-
-
-  .content {
-
-
-
-
-    cite {
-
-    }
-
-
-  }
-}
-
 .customer-video-thumb, .dysi-video-thumb {
 
   @include aspect-ratio(16,9);
