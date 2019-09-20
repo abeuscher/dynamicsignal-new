@@ -15,7 +15,7 @@ block content
         .row
             .col-md-5
                 :php
-                    printf("<h1>%s</h1>", get_field("hero_text"));
+                    printf("<h1 class='white'>%s</h1>", get_field("hero_text"));
                     printf("<a href='#' data-video-modal-id='%s' class='button white'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("cta_video_id"), get_field("cta_text"));
             .col-md-7.platform-image-bucket
                 :php
@@ -39,7 +39,7 @@ block content
             $classname = $this_section["orientation"]=="Image Left" ? "bucket-left" : "bucket-right";
             printf("<section id='platform-%s' class='platform-section'><div class='container'><div class='bucket %s'>%s</div></div></section>", $idx, $classname, $content);
         }
-    section.platform-panels.blue-bg-section
+    section.platform-panels.blue-bg-section.padding-both
         .container
             .row
                 .col-md-12
@@ -51,7 +51,7 @@ block content
                     foreach (get_field("panels") as $idx=>$panel) {
                         printf("<div class='platform-panel'><div class='inner'><h3>%s</h3><div class='logos' data-bg-array='%s'></div></div></div>", $panel["title"],json_encode($panel["logos"], JSON_UNESCAPED_SLASHES));
                     }
-    section.platform-security-section
+    section.platform-security-section.padding-both
         .container
             .row
                 .col-md-12.centered
@@ -72,24 +72,24 @@ block content
                     p
                         :php
                             printf("%s", $ss["copy"])                    
-    section.platform-benefits-section(data-bg="bg-platform-benefits.jpg")
+    section.platform-benefits-section.padding-both(data-bg="bg-platform-benefits.jpg")
         .container
             .row
                 .col-md-12
                     :php
                         $bb = get_field("benefits_section");
-                    h2.centered
+                    h2.centered.white
                         :php
                             echo $bb["section_header"];
-                    p.centered
+                    p.centered.white
                         :php
                             echo $bb["section_subhead"];
                     ul.platform-benefits
                         :php
                             foreach($bb["tabs"] as $idx=>$tab) {
-                                printf("<li><div class='icon' data-bg-array='%s'></div><div class='text'><h3>%s</h3><p>%s</p></div></li>", json_encode($tab["tab_icon"], JSON_UNESCAPED_SLASHES), $tab["tab_content_header"], $tab["tab_content"]);
+                                printf("<li><div class='icon' data-bg-array='%s'></div><div class='text'><h3 class='white'>%s</h3><p class='white'>%s</p></div></li>", json_encode($tab["tab_icon"], JSON_UNESCAPED_SLASHES), $tab["tab_content_header"], $tab["tab_content"]);
                             }
-    section.platform-graph-section
+    section.platform-graph-section.padding-both
         .container
             .row
                 .col-md-12
@@ -105,7 +105,7 @@ block content
                         p
                             :php
                                 printf("%s", get_field("graph_lower_copy"));                    
-    section.bottom-cta
+    section.bottom-cta.padding-both
         .container
             .row
                 .col-md-12

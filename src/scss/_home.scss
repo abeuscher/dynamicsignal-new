@@ -3,7 +3,7 @@
 section.homepage-partners {
   background-size:cover;
   background-position:bottom center;
-  padding-bottom:35vw;
+  padding-bottom:25vw;
   text-align:center;
 }
 .vertical-carousel {
@@ -66,7 +66,7 @@ section.homepage-partners {
      
     }
     @include bp(l) {
-      margin-top:75px;
+      margin-top:-25px;
     }
     display:block;
     p.source {
@@ -101,26 +101,17 @@ section.homepage-partners {
   background-size:cover;
   position: relative;
   padding-top:0;
-  .learn-link {
-    color:$blue;
-    display:block;
-    text-align: center;
-    margin-top:$gutter-width/2;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
   .demo-video-wrapper {
     .demo-video-bucket {
       margin:$gutter-width/2;
       position:relative;
-      padding-bottom:4em;
+      padding-bottom:2em;
       .outer {
         position:absolute;
         bottom:0;
         right:0;
         left:0;
-        top:90px;
+        top:0;
         z-index:0;
         background:$white;
       }
@@ -129,16 +120,13 @@ section.homepage-partners {
 
         width:100%;
         text-align: center;
-        .button {
-          width:90%;
-        }
       }
     }
     @include bp(m) {
       display:flex;
       align-content: space-between;
       .demo-video-bucket {
-        flex-basis:30%;
+        flex-basis:33%;
         .button-wrapper {
           position: absolute;
           bottom:$gutter-width/2;
@@ -158,11 +146,13 @@ section.homepage-partners {
       }
   }
   .inner {
-    text-align: center;
     display:block;
     padding:$gutter-width/2;
     z-index:1;
     position: relative;
+    h3 {
+      margin:0;
+    }
   }
   .col-3 {
     background:$white;

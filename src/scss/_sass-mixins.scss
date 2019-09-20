@@ -193,3 +193,32 @@ $mq-support:true;
     }
   }
 }
+@mixin arrow-in-circle($size:25px,$background-color:$blue,$border-color:$white,$border-size:6px,$border-thickness:2px) {
+  position:relative;
+  display: inline-block;
+  width: $size;
+  height: $size;
+  background: $background-color;
+  border-radius: 50%;
+  background-size: contain;
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border: $border-size solid transparent;
+    //transform:rotate(45deg);
+    border-left-color: $background-color;
+    top: round((($size - ($border-size * 2)) / 2));
+    left: round(($size - ($border-size + $border-thickness)) / 2);
+  }
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border: $border-size solid transparent;
+    //transform:rotate(45deg);
+    border-left-color: $border-color;
+    top: round((($size - ($border-size * 2)) / 2));
+    left: round(($size - ($border-size + $border-thickness)) / 2) + $border-thickness;
+  }
+}

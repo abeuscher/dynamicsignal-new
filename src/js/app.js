@@ -184,6 +184,7 @@ var siteActions = [{
         var button = links[i];
         button.addEventListener("click", function (e) {
           var section = document.getElementById(this.getAttribute("href").substr(1));
+
           if (section) {
             e.preventDefault();
             section.scrollIntoView({
@@ -201,6 +202,34 @@ var siteActions = [{
     "element": "clear-storage",
     "action": function () {
       localStorage.clear();
+    }
+  }, {
+    "element": "feature-bullets",
+    "action": function () {
+      var bullets = document.querySelectorAll("ul.feature-bullets");
+      if (bullets.length>0) {
+        var bulletController = new ScrollMagic.Controller({
+          loglevel: 0
+        });
+        for(i=0;i<bullets.length;i++) {
+          var thisList = bullets[i];
+          var topBullet = thisList.querySelectorAll("li input")[0];
+          var sceneOpts = {
+            triggerElement : thisList,
+            offset : "-50"
+          };
+          new ScrollMagic.Scene(sceneOpts)
+          .on("enter", function(e) {
+            console.log("EL spotted",this.el);
+            if (!this.el.classList.contains("used")) {
+              this.el.setAttribute("checked","true");
+              this.el.classList.add("used");
+            }
+          })
+          .addTo(bulletController)
+          .el = topBullet;
+        }
+      }
     }
   }, {
     "element": "demo-videos",
@@ -701,7 +730,6 @@ var siteActions = [{
           "adaptiveHeight": false
         });
         for (i in pageData.videos) {
-          console.log(pageData.videos[i].video_title, pageData.videos[i].vimeo_id);
           videoGall.append(parseHTML(siteSettings.templates.careerVideoSlide(pageData.videos[i])));
         }
         videoGall.resize();

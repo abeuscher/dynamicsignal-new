@@ -1,98 +1,9 @@
-.agency-hero {
-  h1 {
-    color:$white;
-  }
-}
 .agency-content-top {
-  font-size:24px;
-  line-height:1.5;
   text-align:center;
 }
 #logo-partners-grid {
   .flipper-wrapper {
     margin-bottom:6em;
-  }
-}
-/* Photo Banner */
-
-$logo-count: 10;
-$logo-width: 350px;
-$logo-height: 80px;
-.partners-testimonial-entry {
-  margin-bottom:$gutter-width;
-  border-top:1px solid $gray;
-  padding:$gutter-width 0;
-  .testimonial-thumb {
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    float:left;
-    margin-right:$gutter-width*2;
-
-  }
-  .testimonial-body {
-    font-weight:100;
-    font-size:17.5px;
-    line-height:1.25;
-    margin-bottom:$gutter-width/2;
-  }
-  .testimonial-speaker {
-    font-style:normal;
-    font-weight:600;
-    .name {
-
-    }
-    .title {
-
-    }
-  }
-}
-
-
-.agency-ebook {
-  overflow: hidden;
-  margin: 100px 0;
-  .one-fifth, .four-fifths {
-    text-align: center;
-  }
-
-  .four-fifths {
-    p {
-      background: #DFE0E1;
-      text-align: center;
-      margin-top: 60px;
-      padding: 25px;
-      font-size: 26px;
-      font-weight: 100;
-    }
-
-    .btn-blue {
-      display: block;
-      max-width: 350px;
-      margin: 20px auto 0;
-      padding: 15px;
-      font-size: 25px;
-      font-weight: 100;
-      background:$teal;
-      color:$white;
-      transition:all .25s ease-in;
-      &:hover {
-        background:darken($teal,20%);
-      }
-    }
-  }
-  @include bp(m) {
-    .one-fifth, .four-fifths {
-      display:inline-block;
-      vertical-align: middle;
-    }
-    .one-fifth {
-      width: 23%;
-    }
-
-    .four-fifths {
-      width: 73%;
-    }
   }
 }
 
@@ -125,12 +36,7 @@ section.partners-orange {
 }
 .partners-section {
   h2 {
-    font-size:24px;
     margin-top:0;
-  }
-  p {
-    font-size:18px;
-    line-height:1.8;
   }
 }
 section.fullpic.partners-hero .header-bg {

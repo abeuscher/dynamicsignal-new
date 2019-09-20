@@ -9,30 +9,54 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: dynamicsignal
 */
+// Libraries and Settings
 @import "./_normalize.scss";
 @import "./_paths.scss";
 @import "./_variables.scss";
 @import "./_sass-mixins.scss";
+@import "./_base.scss";
+
+// Third Party
 $fa-font-path: $font-path;
 @import "../../node_modules/font-awesome/scss/font-awesome.scss";
 @import "./_flickity.scss";
+
+// Site Features / Components
 @import "./_parallax.scss";
-@import "./_case-study.scss";
+@import "./_modals.scss";
+@import "./_flipping-slides.scss";
+@import "./_video-playlist.scss";
+@import "./_video-players.scss";
+@import "./_pie-chart.scss";
+@import "./_bar-chart.scss";
+
+// Site Parts
+@import "./_buttons.scss";
 @import "./_nav.scss";
 @import "./_sub-nav.scss";
 @import "./_breadcrumbs.scss";
 @import "./_grid.scss";
+@import "./_forms.scss";
 @import "./_footer.scss";
 @import "./_header.scss";
-@import "./_connectors.scss";
+
+// For External Pages
+@import "./_uberflip.scss";
+@import "./_marketo.scss";
+@import "./_vidyard.scss";
+
+// Template Specific
 @import "./_home.scss";
-@import "./_flipping-slides.scss";
+@import "./_gdpr.scss";
+@import "./_case-study.scss";
+@import "./_connectors.scss";
 @import "./_customers.scss";
 @import "./_company.scss";
 @import "./_solutions.scss";
 @import "./_services.scss";
 @import "./_events.scss";
 @import "./_partners.scss";
+@import "./_agency.scss";
 @import "./_blog.scss";
 @import "./_use-cases.scss";
 @import "./_demo-request.scss";
@@ -41,20 +65,13 @@ $fa-font-path: $font-path;
 @import "./_careers.scss";
 @import "./_news-and-press.scss";
 @import "./_team.scss";
-@import "./_uberflip.scss";
-@import "./_marketo.scss";
 @import "./_seo-page.scss";
-@import "./_forms.scss";
-@import "./_vidyard.scss";
 @import "./_snap-app.scss";
 @import "./_use-cases-single.scss";
 @import "./_products.scss";
 @import "./_platform.scss";
 @import "./_cta-bar.scss";
-@import "./_video-playlist.scss";
-@import "./_pie-chart.scss";
-@import "./_bar-chart.scss";
 @import "./_search.scss";
 @import "./_legal.scss";
 @import "./_features.scss";
-@import "./_base.scss";
+@import "./_404.scss";

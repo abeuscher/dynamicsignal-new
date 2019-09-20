@@ -112,36 +112,36 @@ block content
                 a(href="#"+link.class,id="icon-"+link.class)
                   span.icon
                   span.text=link.label
-  section#about.careers-about.white-bg-section
+  section#about.careers-about.white-bg-section.padding-both.career-target
     .container
       .row
         .col-md-12
-          h2!=pageData.aboutHeader
-          p!=pageData.aboutSubheader
+          h2.text-center!=pageData.aboutHeader
+          p.text-center!=pageData.aboutSubheader
       .row.careers-panes
         for pane in pageData.aboutPanes
           .col-md-3
             h3!=pane.title
             p!=pane.copy
-  section#video.white-bg-section
+  section#video.white-bg-section.padding-both.career-target
     #careers-video-carousel
-  section#culture.white-bg-section
+  section#culture.white-bg-section.padding-both.career-target
     .container
       .row.padding-bottom
         .col-md-12.col-center
-          h1!=pageData.cultureHeader
-          p!=pageData.cultureCopy
+          h1.text-center!=pageData.cultureHeader
+          p.text-center!=pageData.cultureCopy
       .row
         .col-md-12.instagram-bucket
           script(src='//lightwidget.com/widgets/lightwidget.js')
           iframe.lightwidget-widget(src='//lightwidget.com/widgets/6201cb655e565b53b883ae24489844c2.html', scrolling='no', allowtransparency='true', style='width: 100%; border: 0; overflow: hidden;')
-  section.job-listing-header.white-bg-section#jobs
+  section.job-listing-header.white-bg-section#jobs.padding-both.career-target
     .container
       .row
         .col-md-12.col-center
-          h1!=pageData.listingsHeader
-          h2!=pageData.listingsCopy
-  section.white-bg-section
+          h1.text-center!=pageData.listingsHeader
+          p.text-center!=pageData.listingsCopy
+  section.white-bg-section.padding-both
     .container
       .row
         .col-md-12

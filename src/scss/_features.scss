@@ -92,9 +92,12 @@
       .content {
         max-height:0;
         overflow:hidden;
-        padding-left:1em;
-        transition:all 0s;
+        margin-left:30px;
+        transition:all .1s;
         font-size:14px;
+        p:first-child {
+          margin-top:0;
+        }
         ul {
           list-style:disc;
           display:flex;
@@ -110,18 +113,15 @@
         color:$blue;
         font-weight:700;
         position:relative;
-        padding-left:1em;
+        margin-left:30px;
         line-height:2;
-        &:before {
-          content: '\276F';
-          left:0;
-          font-size:.9em;
-          top:-.2em;
+        cursor:pointer;
+        .icon {
+          @include arrow-in-circle($size:25px);
           position:absolute;
-          transition:transform .15s ease-in;
-        }
-        &:hover {
-          cursor:pointer;
+          left:-30px;
+          top:0;
+          transition:transform .1s ease-out;
         }
       }
       input {
@@ -131,7 +131,7 @@
             max-height:100vh;
             transition:all .35s;
           }
-          ~ label:before {
+          ~ label .icon {
             transform:rotate(90deg);
           }
         }

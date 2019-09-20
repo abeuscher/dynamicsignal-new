@@ -5,11 +5,18 @@
   }
 }
 ul.copy-points.careers-menu {
+  width:100%;
   li {
     flex-basis:25%;
     .text {
       font-size:1em;
     }
+  }
+}
+section.career-target {
+  padding-top:90px;
+  &:first-child {
+    padding-top:$gutter-width;
   }
 }
 #careers-video-carousel {

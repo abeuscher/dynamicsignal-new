@@ -82,14 +82,14 @@ block content
             :php
               echo get_field("integrations_section_header");
           #services-integrations-logos
-  section.services-services.services-bucket
+  section.services-services.services-bucket.padding-both
     .container
       .row
         .col-md-12.centered
-          h2
+          h2.white
             :php
               echo get_field("services_section_header");
-          h3
+          h3.white
             :php
               echo get_field("services_section_subhead");
       .row
@@ -99,7 +99,7 @@ block content
               $slides = [];
               foreach(get_field("services_section_slides") as $key=>$slide) {
                 $new_tab = array("icon"=>$slide["slide_icon"],"title"=>$slide["slide_nav_title"]);
-                $new_slide = sprintf("<div class='services-slide ".($key == 0 ? "active" : "")."' id='services-slide-%s'><h2>%s</h2><div class='user-content blog-content'>%s</div></div>", $key,$slide["slide_header"],$slide["slide_content"]);
+                $new_slide = sprintf("<div class='services-slide ".($key == 0 ? "active" : "")."' id='services-slide-%s'><h2 class='white'>%s</h2><div class='content white'>%s</div></div>", $key,$slide["slide_header"],$slide["slide_content"]);
                 array_push($tabs,$new_tab);
                 array_push($slides,$new_slide);   
               }
@@ -113,7 +113,7 @@ block content
                 circle.circle(cx='40', cy='40', r='37.5') 
                 :php
                   echo preg_replace('/[ \t]+/', ' ', preg_replace('/\s*$^\s*/m', "\n", $tab["icon"]));
-              p
+              p.white
                 :php
                   echo $tab["title"]; 
               :php
@@ -155,7 +155,7 @@ block content
             }   
   section.services-community  
     :php
-      printf("<div class='services-community-header' data-bg-array='%s'><h2>%s</h2></div>",json_encode(get_field("community_section_header_image"),JSON_UNESCAPED_SLASHES),get_field("community_header_text"));
+      printf("<div class='services-community-header' data-bg-array='%s'><h2 class='white'>%s</h2></div>",json_encode(get_field("community_section_header_image"),JSON_UNESCAPED_SLASHES),get_field("community_header_text"));
     .container
       :php
         foreach(get_field("community_section_blurbs") as $key=>$blurb) {
