@@ -51,6 +51,7 @@ h2 {
 h3 {
   color: $off-black;
   font-size:20px;
+  font-weight:bold;
   @include bp(m) {
     font-size: 24px;
   } 
@@ -64,6 +65,13 @@ p {
   &.white {
     color:$white;
   }
+  &.footnote {
+    font-size:12px;
+    line-height:1.2;
+    @include bp(m) {
+      font-size:14px;
+    }
+  }
 }
 a {
   text-decoration: none;
@@ -75,6 +83,17 @@ a {
   }
   &.white {
     color:$white;
+  }
+  &.ext-link {
+    font-weight:bold;
+    color:$blue;
+    &:after {
+      padding-left:.5em;
+      content:'>';
+    }
+    &:hover {
+      color:darken($blue,20%);
+    }
   }
 }
 .hide {
@@ -124,6 +143,12 @@ a {
     * {
       color:$white;
     }
+  }
+}
+.margin-top-header {
+  margin-top:100px;
+  @include bp(s) {
+    margin-top:150px;
   }
 }
 .even-height-wrapper {
@@ -191,57 +216,6 @@ ul.hmenu {
 section {
   margin: 0;
   padding: 0;
-
-  &.hero {
-    position: relative;
-    text-align: center;
-    margin-top: 60px;
-    overflow: hidden;
-    @include bp(m) {
-      padding: 70px 0 0;
-      min-height: 300px;
-    }
-
-    &.has-breadcrumbs {
-      @include bp(m) {
-        padding: 0 0 $gutter-width;
-        min-height: 300px;
-      }
-    }
-
-    .cta,
-    h1,
-    h2 {
-      text-align: center;
-      z-index: 2;
-      position: relative;
-    }
-
-    h1,
-    h2 {
-      padding: 0 $gutter-width;
-      @include bp(m) {
-        padding: 0;
-      }
-    }
-
-    h2 {
-      margin-bottom: 0;
-      font-weight: 300;
-
-      br {
-        content: " ";
-        margin-right: 0.3em;
-      }
-      @include bp(m) {
-        br {
-          content: auto;
-          margin: auto;
-          display: block;
-        }
-      }
-    }
-  }
 }
 .white-bg-section {
   background: $white;
@@ -281,69 +255,11 @@ section {
     color: $white;
   }
 }
-.top-section {
-  padding: 140px 0 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center bottom;
-  min-height: 40vh;
-  h1 {
-    bottom: 50px;
-    height: auto;
-    top: auto;
-    text-align: center;
-    margin: 0;
-  }
-
-  .inner {
-    bottom: 50px;
-    top: auto;
-    height: auto;
-    text-align: center;
-
-    .center-image {
-      width: 50%;
-      max-width: 1200px;
-    }
-
-    &.home {
-      text-align: left;
-
-      h1 {
-        text-align: left;
-      }
-      bottom: 150px;
-      .button.cta {
-        margin-bottom: 1em;
-        &.knockout {
-          margin-bottom: 0;
-        }
-      }
-      @include bp(m) {
-        .button.cta {
-          margin-bottom: 0;
-          margin-right: 1em;
-          &.knockout {
-            margin-right: 0;
-          }
-        }
-      }
-    }
-  }
-  @include bp(m) {
-    min-height: 0;
-    // @include aspect-ratio (3,1);
-  }
-  @include bp(l) {
-    @include aspect-ratio (3,1);
-  }
-}
 .float-right {
   float: right;
 }
 
 .top-section-interior {
-  //background:$light-gray;
   min-height: 80px;
   .row {
     padding-top: 130px;
@@ -395,6 +311,7 @@ ul.social-share {
 
 section.logo-strip-bucket {
   background: none;
+  text-align: center;
   margin-top: 0;
   padding-bottom: $gutter-width*3;
   background: linear-gradient(
@@ -403,29 +320,9 @@ section.logo-strip-bucket {
     rgba(237, 237, 237, 0) 75%,
     rgba(237, 237, 237, 0.65) 100%
   );
-  text-align: center;
+  
   p {
     padding: $gutter-width 0 $gutter-width*2;
-  }
-
-  .logo-strip {
-    position: relative;
-    margin-bottom: $gutter-width;
-
-    .row {
-      width: 100%;
-      text-align: center;
-
-      .col-xs-2 {
-        vertical-align: middle;
-      }
-
-      img {
-        display: inline-block;
-        max-width: 100%;
-        padding: 0 5px;
-      }
-    }
   }
 }
 
@@ -1109,45 +1006,14 @@ ul.hmenu {
     text-decoration: none;
   }
   .icon {
+    @include arrow-in-circle($background-color:$white,$border-color:$menu-blue);
     margin-right: 6px;
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    background: $white;
-    border-radius: 50%;
-    background-size: contain;
     margin-bottom: -6px;
-    &:after {
-      content: "";
-      display: block;
-      position: absolute;
-      border: 6px solid transparent;
-      //transform:rotate(45deg);
-      border-left-color: $white;
-      top: 7px;
-      left: 9px;
-    }
-    &:before {
-      content: "";
-      display: block;
-      position: absolute;
-      border: 6px solid transparent;
-      //transform:rotate(45deg);
-      border-left-color: $menu-blue;
-      top: 7px;
-      left: 11px;
-    }
   }
   &.orange {
     color: $orange;
     .icon {
-      background: $orange;
-      &:after {
-        border-left-color: $orange;
-      }
-      &:before {
-        border-left-color: $white;
-      }
+      @include arrow-in-circle($background-color:$orange,$border-color:$white);
     }
   }
   &.white {
@@ -1177,35 +1043,7 @@ ul.copy-points {
       display: flex;
     }
     .icon {
-      width: 25px;
-      flex-grow: 0;
-      flex-shrink: 0;
-      height: 25px;
-      background: orange;
-      border-radius: 50%;
-      display: inline-block;
-      background-size: contain;
-      position: relative;
-      &:after {
-        content: "";
-        display: block;
-        position: absolute;
-        border: 6px solid transparent;
-        //transform:rotate(45deg);
-        border-left-color: orange;
-        top: 7px;
-        left: 9px;
-      }
-      &:before {
-        content: "";
-        display: block;
-        position: absolute;
-        border: 6px solid transparent;
-        //transform:rotate(45deg);
-        border-left-color: white;
-        top: 7px;
-        left: 11px;
-      }
+      @include arrow-in-circle($background-color:$orange,$border-color:$white);
     }
     .text {
       padding-top: 3px;
@@ -1231,4 +1069,57 @@ hr.blue-separator {
   border: 0;
   background: $blue;
   height: 1px;
+}
+.ds-quote {
+  p {
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    font-style: italic;
+    position: relative;
+    padding-left: $gutter-width*2.5;
+    text-align: left;
+    margin: 0 0 $gutter-width;
+
+    &::before {
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      content: "\201C";
+      font-size: 90px;
+      color: $white;
+      font-family: "Times",serif;
+    }
+    &.no-quote {
+      &::before {
+        display:none;
+      }
+      font-style: normal;
+    }
+  }
+  cite {
+    margin-top: $gutter-width;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: 300;
+    padding-left: $gutter-width*2.5;
+    display: block;
+    margin-right: $gutter-width;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+    color: $white;
+
+    .name {
+      display: block;
+    }
+
+    .title {
+      display: block;
+      font-style: italic;
+    }
+  }
 }

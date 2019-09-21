@@ -48,7 +48,6 @@
   }
 }
 .features-section {
-  padding-bottom:0;
   padding-top:$gutter-width*3;
   h2 {
 
@@ -163,6 +162,13 @@
         flex-basis:50%;
         flex-shrink:1;
       }
+      &.text-col {
+        .ext-link {
+          margin-left:30px;
+          padding-top:$gutter-width;
+          display:block;
+        }
+      }
     }
   }
   .features-image {
@@ -177,6 +183,9 @@
     
     
   }
+}
+.features-bottom-section {
+  margin-top:$gutter-width*2;
 }
 .features-bottom {
   display:flex;

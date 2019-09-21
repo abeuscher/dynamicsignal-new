@@ -1,14 +1,24 @@
 article
   .row
-    .col-xs-12
-      h3
+    .col-md-12.no-padding
+      h3=locals.post_title     
+      a.button.float-right(href=locals.jobvite_url,target='_blank') Apply
+      .job-category-list
+        - var categories = {"locations":[],"departments":[]}; //588 for location, 419 for category
         for category,key in locals.categories
           if category.cat_name!="Careers"
-            span=category.cat_name
-    .col-xs-6
-      h2=locals.post_title
-    .col-xs-6.apply-button
-      a.button(href=locals.jobvite_url,target='_blank') Apply
+            if category.category_parent==588
+              - categories.locations.push(category);
+            if category.category_parent==419
+              - categories.departments.push(category);
+        if (categories.locations.length)
+          span.label!=categories.locations.length>1 ? "Locations:" : "Location:"
+            for location in categories.locations
+              span!=location.name
+        if (categories.departments.length)
+          span.label!=categories.departments.length>1 ? "Departments:" : "Department:"
+            for department in categories.departments
+              span!=department.name      
   .row
     .col-md-12.job-listing-bottom
       .job-description!=locals.post_content

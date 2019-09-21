@@ -69,11 +69,20 @@ section.career-target {
         opacity: 1;
       }
     }
-    h3 {
+    .job-category-list {
       margin:0;
       span {
         margin-right:1em;
+        display:inline-block;
+        color:$gray;
+        span {
+          color:$blue;
+          display:block;
+        }
       }
+    }
+    h3 {
+      margin:0 0 $gutter-width/4;
     }
     .job-link {
       transition:all .2s ease-in;
@@ -82,7 +91,8 @@ section.career-target {
       }
     }
     .job-listing-bottom {
-      padding-bottom:$gutter-width;
+      padding:$gutter-width 0;
+      margin-bottom:$gutter-width;
       border-bottom:1px solid $middle-gray;
     }
   }

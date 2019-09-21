@@ -98,11 +98,10 @@ block content
                             printf("%s", get_field("graph_header_text"));
                     include ./inc/platform-graph-section
                     .platform-graph-footer
-                        p.no-padding
-                            strong
-                                :php
-                                    printf("%s", get_field("graph_lower_header"));                    
-                        p
+                        h3
+                            :php
+                                printf("%s", get_field("graph_lower_header"));                    
+                        p.footnote
                             :php
                                 printf("%s", get_field("graph_lower_copy"));                    
     section.bottom-cta.padding-both

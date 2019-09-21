@@ -16,14 +16,6 @@ block content
       "title"=>"Company",
       "link"=>"/company/"
     ));
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1 Events & Webinars
-          h2 Explore our event schedule below, connect with us online or in person
-  :php
     $all_events = [];
     $args = array(
           'post_type' => 'event',
@@ -74,7 +66,12 @@ block content
 
     echo "<script>var pageData = {'events':".json_encode($all_events,JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  section.events-list.container
+  section.margin-top-header.padding-bottom
+    .container
+      .row
+        .col-md-12
+          include ./inc/breadcrumbs.pug
+  section.events-list.container.padding-both
     .row
       .col-md-9.events
         #events-list

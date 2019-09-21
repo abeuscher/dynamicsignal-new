@@ -9,25 +9,7 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Resources",
-      "link"=>"/resources/"
-    ));
-  -
-    var pageData = {
-    "header":"Solutions",
-    "subheader":"For Every Department in the Enterprise"
-    };
-  section.top-section-interior
-    .container 
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug  
-          h1!=pageData.header
-          h2!=pageData.subheader
-  section
+  section.margin-top-header
     .container
       .row
         .col-md-12.news-streams

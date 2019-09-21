@@ -10,19 +10,6 @@ block nav
   include ./inc/header.pug
 block content
   :php
-    $override_title = "Customers";
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Company",
-      "link"=>"/company/"
-    ));
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1 The Trusted Industry Leader
-  :php
     global $wp_query;
      query_posts(array(
          'post_type' => 'customer',
@@ -42,9 +29,9 @@ block content
      endwhile;
      wp_reset_query();
     echo '<script>var customerData = '. json_encode($customers).';</script>';
-  section
+  section.margin-top-header
     #customer-video-carousel
-  section.customers-grid.container
+  section.customers-grid.container.padding-top
     h2 Hundreds of the world’s largest organizations, in countries around the globe, trust Dynamic Signal.
     #customers-grid
   section.bottom-cta

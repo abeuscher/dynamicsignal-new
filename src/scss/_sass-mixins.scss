@@ -201,6 +201,8 @@ $mq-support:true;
   background: $background-color;
   border-radius: 50%;
   background-size: contain;
+  flex-grow:0;
+  flex-shrink:0;
   &:after {
     content: "";
     display: block;

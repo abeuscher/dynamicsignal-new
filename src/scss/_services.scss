@@ -1,78 +1,14 @@
 section.services-header {
-    padding:0;
-    background:$light-gray;
-    .full-width-bg {
-        background-size:cover;
-        max-width:1350px;
-        margin:0 auto;
-        height:100%;
-        background-position:center center;
-        @include aspect-ratio(1350,342)
+    background-size:cover;
+    background-position:left top;
+    background-repeat:no-repeat;
+    .services-header-content {
+        padding:$gutter-width 0 $gutter-width*2;
+        .button {
+            margin-top:$gutter-width;
+            margin-left:60px;
+          }
     }
-    p.quote {
-        font-size: 16px;
-        line-height: 1.2;
-        letter-spacing: 0.5px;
-        font-weight: 700;
-        position: relative;
-        padding:0;
-        padding-left: 30px;
-        text-align: left;
-        margin: $gutter-width 0 0;
-        color:$white;
-        width:80%;
-        text-shadow:1px 1px 3px rgba(0,0,0,.7);
-        &::before {
-          display: block;
-          position: absolute;
-          top: -5px;
-          left: 0px;
-          content: "\201C";
-          font-size: 50px;
-          color: $white;
-          font-family: "Times",serif;
-        }
-        &.no-quote {
-          &::before {
-            display:none;
-          }
-          font-style: normal;
-        }
-      }
-      cite {
-        margin-top: $gutter-width/3;
-        font-style: normal;
-        font-size: 10px;
-        line-height: 1.1;
-        font-weight: 300;
-        padding-left: $gutter-width*2.5;
-        display: block;
-        margin-right: $gutter-width;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        text-align: left;
-        color: $white;
-  
-        .name {
-          display: block;
-        }
-  
-        .title {
-          display: block;
-          font-style: italic;
-        }
-      }
-      a.button {
-          margin-left:30px;
-      }
-      @include bp(m) {
-          p.quote {
-              font-size:24px;
-          }
-          cite {
-            font-size:14px;
-          }
-      }
 }
 section.services-integrations {
     background:$light-gray;

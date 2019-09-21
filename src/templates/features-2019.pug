@@ -39,15 +39,15 @@ block content
                 $img_bucket = sprintf("<div class='col-half image-col'><div class='features-image' data-bg-array='%s'></div></div>",json_encode($block["block_image"], JSON_UNESCAPED_SLASHES));
                 $bullets = "";
                 foreach($block["block_bullets"] as $i=>$bullet) {
-                    $bullets .= sprintf("<li class='feature-bullet'><input %s type='radio' name='%s' id='%s'/><label for='%s'><span class='icon'></span>%s</label><div class='content'>%s</div></li>", /* $i == 0 ? "checked" : */ "","radios-".$zdx."-".$idx, "radios-".$zdx."-".$idx."-".$i,"radios-".$zdx."-".$idx."-".$i, $bullet["bullet_label"], $bullet["bullet_content"]);
+                    $bullets .= sprintf("<li class='feature-bullet'><input %s type='radio' name='%s' id='%s'/><label for='%s'><span class='icon'></span>%s</label><div class='content'>%s</div></li>", $i == 0 ? "checked" : "","radios-".$zdx."-".$idx, "radios-".$zdx."-".$idx."-".$i,"radios-".$zdx."-".$idx."-".$i, $bullet["bullet_label"], $bullet["bullet_content"]);
                 }
-                $text_bucket = sprintf("<div class='col-half text-col'><h3>%s</h3><p>%s</p><ul class='feature-bullets'>%s</ul><a class='feature-block-cta' href='%s'><span data-bg='icon-orangearrow.png'></span>%s</a></div>", $block["block_header"], $block["block_copy"], $bullets, $block["block_cta_target"],$block["block_cta_text"]);
+                $text_bucket = sprintf("<div class='col-half text-col'><h3>%s</h3><p>%s</p><ul class='feature-bullets'>%s</ul><a class='ext-link' href='%s'>%s</a></div>", $block["block_header"], $block["block_copy"], $bullets, $block["block_cta_target"],$block["block_cta_text"]);
                 $content = $orientation == "left" ? $img_bucket.$text_bucket : $text_bucket.$img_bucket;
                 $blocks .= sprintf("<div class='bucket %s'>%s</div>", $orientation=="left" ? "image-left" : "image-right", $content);
             }
             printf("<section id='section-%s' class='features-section'><div class='container'><div class='row'><div class='col-md-12'><h2 class='features-section-header'><span>%s</span><span></span></h2><p class='features-section-copy'>%s</p></div></div>%s</div></section>", $idx,$section["section_header"], $section["section_subhead"], $blocks);
         }
-    section.blue-bg-section.padding-bottom
+    section.blue-bg-section.padding-bottom.features-bottom-section
         .container
             .row
                 .col-md-12
