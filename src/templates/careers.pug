@@ -15,15 +15,12 @@ block content
       "title"=>"Company",
       "link"=>"/company/"
     ));
-    printf("<section class='halfpic' id='sticky-header'>");
-    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
-  .white-gradient-header
+    printf("<section class='hero-with-bg' id='sticky-header' data-bg='generic-hero-bg.jpg'>");
   .container
-      .row-flex
-          .col-half-flex
-              .inner
-                h1.white Join Our Team
-                p.white We build communication technology for the world's largest organizations.
+    .row
+      .col-md-6
+        h1.white Join Our Team
+          p.white We build communication technology for the world's largest organizations.
   :php
     echo "</section>";   
   :php

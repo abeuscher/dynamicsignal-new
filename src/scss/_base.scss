@@ -879,7 +879,7 @@ section.halfpic {
   display: block;
   width: 100% !important;
   position: relative;
-  background: $black;
+  background: $lighter-gray;
   padding: 0;
   margin-top: 50px;
   &.pos-fixed {
@@ -920,11 +920,7 @@ section.halfpic {
     top: 0;
     bottom: 0;
     width: 30%;
-    background: linear-gradient(
-      to right,
-      $black,
-      rgba(0, 0, 0, 0) 100%
-    );
+    background: linear-gradient(to right, rgba(246,246,246,1),rgba(246,246,246,0) 100%);
     @include bp(m) {
       display: block;
     }
@@ -1118,5 +1114,17 @@ hr.blue-separator {
       display: block;
       font-style: italic;
     }
+  }
+}
+.hero-with-bg {
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center top;
+  padding-top:120px;
+  padding-bottom:80px;
+  @include bp(s) {
+    padding-top:190px;
+    min-height:400px;
+    padding-bottom:0;
   }
 }

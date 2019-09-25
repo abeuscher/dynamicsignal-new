@@ -16,14 +16,11 @@ block content
       "link"=>"/company/"
     ));
   :php
-    printf("<section class='halfpic' id='sticky-header'>");
-    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
-  .white-gradient-header
+    printf("<section id='sticky-header' class='hero-with-bg' data-bg='generic-hero-bg.jpg'>");
   .container
-      .row-flex
-          .col-half-flex.gray-bg-section
-              .inner
-                h1 Meet Our Team
+    .row
+      .col-md-6
+        h1.white Meet Our Team
   :php
     echo "</section>";   
   section.team-members.white-bg-section

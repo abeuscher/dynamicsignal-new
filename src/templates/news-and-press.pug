@@ -9,7 +9,12 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  section.margin-top-header
+  section#sticky-header.hero-with-bg(data-bg="generic-hero-bg.jpg")
+    .container
+      .row
+        .col-md-6
+          h1.white!="News & Press"
+  section.white-bg-section.padding-both
     .container
       .row
         .col-md-12.news-streams
