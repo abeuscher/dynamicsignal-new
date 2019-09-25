@@ -28,11 +28,6 @@ block content
         "title"=>"Blog",
         "link"=>"/blog/"
       ));
-  section.top-section-blog
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
   :php
     printf("<article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>",get_the_ID());
   section.blog-hero

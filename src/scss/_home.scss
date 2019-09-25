@@ -1,147 +1,10 @@
-.logo-slide {
-  width:33%;
-  text-align: center;
-  img {
-    height:auto;
-    width:80%;
-    @include bp(m) {
-      max-height:70px;
-      width:auto;
-    }
-  }
-  @include bp(m) {
-    width:20%;
-  }
-}
-.home-third-section {
-  padding-top:0;
-  p.home-secondary {
-    margin-top:0;
-  }
-}
-.homepage-solutions .col-md-12 {
-  @include bp(m) {
-    display:flex;
-    justify-content: space-between;
-  }
-
-  .homepage-solution-bucket {
-    flex:1;
-    display:block;
-    padding:0 $gutter-width $gutter-width/2;
-    border:1px solid $gray;
-    box-shadow:0 0 0 $gray;
-    text-align: center;
-    margin:0 0 $gutter-width;
-    transition: box-shadow .25s ease-in;
-    &:hover {
-      box-shadow:2px 3px 3px $gray;
-    }
-    h2 {
-      span.icon-solutions {
-        height:2em;
-        min-width:2em;
-        background-size:cover;
-        display:inline-block;
-        flex-basis:20%;
-        margin-bottom:-.25em;
-        display:none;
-        @include bp(m) {
-          display:inline-block;
-        }
-      }
-      span.header {
-        font-size:.7em;
-        flex-basis:80%;
-        padding-left:0;
-        text-align:center;
-        display:inline-block;
-        @include bp(m) {
-          padding-left:.5em;
-          text-align:left;
-          font-size:.6em;
-        }
-        @include bp(l) {
-          font-size:.7em;
-        }
-      }
-    }
-    @include bp(m) {
-      padding:0 $gutter-width $gutter-width/2;
-      margin:0 $gutter-width;
-      &:first-child {
-        margin-left:0;
-      }
-      &:last-child {
-        margin-right:0;
-      }
-    }
-  }
-}
-section.hero-homepage {
-  background:linear-gradient(to top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 100%);
-  background-size:cover;
-  padding-top:180px;
-  padding-bottom:0;
-  .hero-copy {
-    text-align: center;
-    h1 {
-      font-weight:normal;
-      font-size:2.45em;
-      margin:$gutter-width*2 0 0;
-      text-align:left;
-    }
-    p {
-      text-align: left;
-      line-height:1.8;
-      font-size:1.25em;
-      margin-top:0;
-    }
-  }
-  .hero-img {
-    .flickity-slider {
-      transform: none !important;
-    }
-    .slide {
-      left: 0 !important;
-      bottom:0;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-      z-index: -1;
-      &.is-selected {
-        opacity: 1;
-        z-index: 0
-      }
-    }
-    
-
-  }
-}
-
 /* New Home Styles */
 
 section.homepage-partners {
   background-size:cover;
   background-position:bottom center;
-  padding-bottom:35vw;
+  padding-bottom:25vw;
   text-align:center;
-  h2 {
-    font-size:1.8em;
-    text-transform:uppercase;
-    @include bp(m) {
-      font-size:2.2em;
-    }
-  }
-  p {
-    line-height:1.8;
-  }
-}
-p.home-secondary {
-  font-size:1.4em;
-  text-align: center;
-  &.left {
-    text-align:left;
-  }
 }
 .vertical-carousel {
   position:relative;
@@ -203,7 +66,7 @@ p.home-secondary {
      
     }
     @include bp(l) {
-      margin-top:75px;
+      margin-top:-25px;
     }
     display:block;
     p.source {
@@ -237,27 +100,17 @@ p.home-secondary {
   background:url($img-path + "bg-home-bluetriangle.jpg") no-repeat center center;
   background-size:cover;
   position: relative;
-  padding-top:0;
-  .learn-link {
-    color:$blue;
-    display:block;
-    text-align: center;
-    margin-top:$gutter-width/2;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
   .demo-video-wrapper {
     .demo-video-bucket {
       margin:$gutter-width/2;
       position:relative;
-      padding-bottom:4em;
+      padding-bottom:2em;
       .outer {
         position:absolute;
         bottom:0;
         right:0;
         left:0;
-        top:90px;
+        top:0;
         z-index:0;
         background:$white;
       }
@@ -266,16 +119,13 @@ p.home-secondary {
 
         width:100%;
         text-align: center;
-        .button {
-          width:90%;
-        }
       }
     }
     @include bp(m) {
       display:flex;
       align-content: space-between;
       .demo-video-bucket {
-        flex-basis:30%;
+        flex-basis:33%;
         .button-wrapper {
           position: absolute;
           bottom:$gutter-width/2;
@@ -290,35 +140,18 @@ p.home-secondary {
       background:transparent;
       padding:$gutter-width $gutter-width $gutter-width/2;
       color:$gray;
-      margin:0;
-      font-family: $body-font;
-      text-transform: uppercase;
       &:hover {
         color:$white;
       }
   }
-  h2 {
-    font-size:1.1em;
-    text-align: center;
-    @include bp(m) {
-      font-size:1.25em;
-    }
-  }
-  h3 {
-    font-size:1.2em;
-    @include bp(m) {
-      font-size:1.4em;
-    }
-  }
-  p {
-    line-height:1.8;
-  }
   .inner {
-    text-align: center;
     display:block;
-    padding:$gutter-width/2;
+    padding:$gutter-width;
     z-index:1;
     position: relative;
+    h3 {
+      margin:0;
+    }
   }
   .col-3 {
     background:$white;
@@ -331,13 +164,6 @@ p.home-secondary {
       }
       .inner-wrapper {
         height:100%;
-      }
-      p,h2,h3 {
-
-      }
-      h4 {
-        text-align:center;
-        font-weight:300;
       }
       .demo-thumb {
         @include aspect-ratio(16,9);
@@ -401,9 +227,6 @@ p.home-secondary {
       padding-bottom:65%;
     }
   }
-  h2,p {
-    color:$white;
-  }
   .fa {
     padding-left:.5em;
     font-size:1.2em;
@@ -422,11 +245,8 @@ p.home-secondary {
   cite {
     width:50%;
     margin-left:45%;
-    color:$white;
     display:block;
     font-style: normal;
-    text-transform:uppercase;
-    font-size:.8em;
   }
   &.has-quote {
     background-position:-100px 0;
@@ -472,10 +292,6 @@ section.home-featured-article {
     h2 {
       margin-top:0;
     }
-    h3 {
-      text-transform:uppercase;
-      font-size:1.8em;
-    }
     .fa {
       margin-right:.5em;
       color:$canary-blue;
@@ -493,15 +309,11 @@ section.home-featured-article {
   position:relative;
   background:url($img-path + "bg-home-orangecrush.jpg") no-repeat left center;
   background-size:cover;
-  color:$white;
   padding:$gutter-width*3 0;
   .home-ebook-thumb {
     @include aspect-ratio(10,6);
     background-repeat:no-repeat;
     background-size:contain;
     background-position:center center;
-  }
-  h1, h2, h3, p {
-    color:$white;
   }
 }

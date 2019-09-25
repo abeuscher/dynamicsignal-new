@@ -1,17 +1,5 @@
 .news-streams {
     padding-bottom:$gutter-width;
-    .view-link {
-        font-size:14px;
-        &:hover {
-            font-weight:700;
-        }
-    }
-    hr {
-        margin:$gutter-width 0 $gutter-width*1.5;
-        border:0;
-        background:$blue;
-        height:1px;
-    }
 }
 .uber-embed {
     .hubs-embedded {

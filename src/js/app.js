@@ -175,21 +175,21 @@ var siteActions = [{
       wipeCookies();
     }
   }, {
-    "element": "feature-menu",
+    "element": "anchor-menu",
     "action": function (el) {
-      var links = document.querySelectorAll("#feature-menu a");
-      var anchor = el.classList.contains("platform-bullets") ? "center" : "start";
+      var links = el.querySelectorAll("a");
+      var anchor = el.getAttribute("data-anchor-target") ? el.getAttribute("data-anchor-target") : "start";
       var controller = new ScrollMagic.Controller();
       for (i = 0; i < links.length; i++) {
         var button = links[i];
         button.addEventListener("click", function (e) {
           var section = document.getElementById(this.getAttribute("href").substr(1));
+
           if (section) {
-            console.log(section.classList.contains('features-section'));
             e.preventDefault();
             section.scrollIntoView({
               behavior: 'smooth',
-              "block": section.classList.contains('features-section') ? "start" : "center"
+              "block": anchor
             });
             if (window.history && window.history.pushState) {
               history.pushState("", document.title, "#" + section.id);
@@ -203,7 +203,34 @@ var siteActions = [{
     "action": function () {
       localStorage.clear();
     }
-  }, {
+  }, /*{
+    "element": "feature-bullets",
+    "action": function () {
+      var bullets = document.querySelectorAll("ul.feature-bullets");
+      if (bullets.length>0) {
+        var bulletController = new ScrollMagic.Controller({
+          loglevel: 0
+        });
+        for(i=0;i<bullets.length;i++) {
+          var thisList = bullets[i];
+          var topBullet = thisList.querySelectorAll("li input")[0];
+          var sceneOpts = {
+            triggerElement : thisList,
+            offset : "-50"
+          };
+          new ScrollMagic.Scene(sceneOpts)
+          .on("enter", function(e) {
+            if (!this.el.classList.contains("used")) {
+              this.el.setAttribute("checked","true");
+              this.el.classList.add("used");
+            }
+          })
+          .addTo(bulletController)
+          .el = topBullet;
+        }
+      }
+    }
+  },*/ {
     "element": "demo-videos",
     "action": function () {
       document.getElementById("demo-videos").appendChild(parseHTML(siteSettings.templates.videoCarousel(pageData.videos)));
@@ -660,7 +687,6 @@ var siteActions = [{
       });
       for (i in customerData) {
         if (customerData[i].vimeo_id != "" && customerData[i].vimeo_id != null) {
-          console.log(customerData[i].post_title,customerData[i].ID, customerData[i].vimeo_id);
           videoGall.append(parseHTML(siteSettings.templates.customerQuote(customerData[i])));
         }
       }
@@ -702,7 +728,6 @@ var siteActions = [{
           "adaptiveHeight": false
         });
         for (i in pageData.videos) {
-          console.log(pageData.videos[i].video_title, pageData.videos[i].vimeo_id);
           videoGall.append(parseHTML(siteSettings.templates.careerVideoSlide(pageData.videos[i])));
         }
         videoGall.resize();

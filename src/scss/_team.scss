@@ -33,8 +33,6 @@
   }
   h4 {
     top:$gutter-width*4;
-    font-size:18px;
-    font-weight:500;
     line-height:1.5;
   }
   .fa {
@@ -66,13 +64,6 @@
   h2 {
     padding: 23px;
     margin: 16px;
-    font: 700 28px/1.1 'Open Sans', "Montserrat",sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    text-align: center;
-    @include bp(m) {
-      font: 700 40px/1.1 'Open Sans', "Montserrat",sans-serif;
-    }
   }
 }
 .team-list {

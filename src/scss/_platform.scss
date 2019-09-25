@@ -1,399 +1,310 @@
 section.platform-header {
-    margin-top: 40px;
-    padding-top: 80px;
-    padding-bottom:0;
-    background-size:cover;
-    background-position:center center;
+  margin-top: 40px;
+  padding-top: 80px;
+  padding-bottom: 0;
+  background-size: cover;
+  background-position: center center;
+  @include bp(m) {
+    margin-top: 50px;
+    padding-top: 100px;
+  }
+  h1 {
+    @include bp(m) {
+      padding-top: 50px;
+    }
+  }
+  .button {
+    margin-bottom: 50px;
+  }
+  .pc-image {
+    background-repeat: no-repeat;
+    background-size: contain;
+    &:after {
+      content: "";
+      padding-bottom: 50%;
+      display: block;
+    }
     @include bp(m) {
       margin-top: 50px;
-      padding-top: 100px;
-    }
-    h1 {
-      color: $white;
-      text-transform:capitalize;
-      @include bp(m) {
-        padding-top:50px;
-      }
-    }
-    .button {
-        margin-bottom:50px;
-    }
-    .pc-image {
-      background-repeat: no-repeat;
-      background-size: contain;
-      &:after {
-        content: "";
-        padding-bottom: 50%;
-        display: block;
-      }
-      @include bp(m) {
-        margin-top:50px;
-      }
-    }
-    .platform-image-bucket {
-      position: relative;
-    }
-    .mobile-image {
-      background-size: contain;
-      width: 50%;
-      position: absolute;
-      background-repeat: no-repeat;
-      background-position: center top;
-      top: 0;
-      right: 0;
-      bottom: $gutter-width;
-      z-index: 99;
-      &:after {
-        content: "";
-        padding-bottom: 0;
-        display: block;
-      }
-      @include bp(m) {
-        width: 60%;
-        right: 0;
-        bottom: auto;
-        top:10px;
-        &:after {
-          content: "";
-          padding-bottom: 125%;
-          display: block;
-        }
-      }
-      @include bp(l) {
-        top:70px;
-      }
     }
   }
-  @media (max-width: 1200px) {
-    section.platform-header .mobile-image {
-      transform:none!important;
-    }
-    .platform-section .platform-section-image {
-      transform:none!important;
-      visibility:visible!important;
-      position:relative!important;
-      margin-top:$gutter-width;
-      &.animated {
-        display: none!important;
-      }
-    }
-  }
-  section.platform-bullets {
-    display:none;
-    background: $lighter-gray;
+  .platform-image-bucket {
     position: relative;
-    border-bottom:1px solid $orange;
-    @include bp(m) {
-      display:block;
-    }
   }
-  ul.copy-points {
-    list-style:none;
-    padding:0;
-    margin:$gutter-width 0 0;
-    display:flex;
-    width:600px;
-    flex-wrap:wrap;
-    @include bp(l) {
-      width:800px;
+  .mobile-image {
+    background-size: contain;
+    width: 50%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center top;
+    top: 0;
+    right: 0;
+    bottom: $gutter-width;
+    z-index: 99;
+    &:after {
+      content: "";
+      padding-bottom: 0;
+      display: block;
     }
-    li {
-      flex-basis:33%;
-      flex-grow:1;
-      flex-shrink:1;
-      margin-bottom:24px;
-      display:flex;
-      a {
-        width:100%;
-        display:flex;
-      }
-      .icon {
-        width:25px;
-        flex-grow:0;
-        flex-shrink:0;
-        height:25px;
-        background:orange;
-        border-radius:50%;
-        display:inline-block;
-        background-size:contain;
-        position:relative;
-        &:after {
-          content:'';
-          display:block;
-          position:absolute;
-          border:6px solid transparent;
-          //transform:rotate(45deg);
-          border-left-color:orange;
-          top:7px;
-          left:9px;
-        }
-        &:before {
-          content:'';
-          display:block;
-          position:absolute;
-          border:6px solid transparent;
-          //transform:rotate(45deg);
-          border-left-color:white;
-          top:7px;
-          left:11px;
-        }
-      }
-      .text {
-        padding-top:3px;
-        font-family:sans-serif;
-        padding:0 10px 0 15px;
-        font-size:12px;
-        line-height:1.4;
-        flex-grow:1;
-        flex-shrink:1;
-      }
-      &:hover {
-        cursor:pointer;
-        .icon {
-          background-color:$menu-blue;
-          &:after {
-            border-left-color:$menu-blue;
-          }
-        }
-      }
-    }
-  }
-  .platform-section {
     @include bp(m) {
-      min-height:15vw;
+      width: 60%;
+      right: 0;
+      bottom: auto;
+      top: 10px;
+      &:after {
+        content: "";
+        padding-bottom: 125%;
+        display: block;
+      }
     }
     @include bp(l) {
-      padding-top:$gutter-width*3;
-      padding-bottom:50px;
-      min-height:30vw;
+      top: 70px;
     }
-    .bucket {
-      display:flex;
-      flex-wrap:wrap;
-      .col-half {
-        flex-basis:100%;
-        width:100%;
+  }
+}
+@media (max-width: 1200px) {
+  section.platform-header .mobile-image {
+    transform: none !important;
+  }
+  .platform-section .platform-section-image {
+    transform: none !important;
+    visibility: visible !important;
+    position: relative !important;
+    margin-top: $gutter-width;
+    &.animated {
+      display: none !important;
+    }
+  }
+}
+section.platform-bullets {
+  display: none;
+  background: $lighter-gray;
+  position: relative;
+  border-bottom: 1px solid $orange;
+  @include bp(m) {
+    display: block;
+  }
+}
+ul.copy-points {
+  width: 600px;
+  flex-wrap: wrap;
+  @include bp(l) {
+    width: 800px;
+  }
+}
+.platform-section {
+  @include bp(m) {
+    min-height: 15vw;
+  }
+  @include bp(l) {
+    padding-top: $gutter-width*3;
+    padding-bottom: 50px;
+    min-height: 30vw;
+  }
+  .bucket {
+    display: flex;
+    flex-wrap: wrap;
+    .col-half {
+      flex-basis: 100%;
+      width: 100%;
+      @include bp(m) {
+        flex-basis: 50%;
+      }
+      &.image-col {
+        position: relative;
         @include bp(m) {
-          flex-basis:50%;
+          flex-basis: 50%;
         }
-        &.image-col {
-          position:relative;
-          @include bp(m) {
-            flex-basis:50%;
-          }
-          @include bp(l) {
-            flex-basis:65%;
-          }
-        }
-        &.text-col {
-          @include bp(m) {
-            padding:50px 0;
-            flex-basis:50%;
-          }
-          @include bp(l) {
-            padding:50px 0;
-            flex-basis:35%;
-          }
+        @include bp(l) {
+          flex-basis: 65%;
         }
       }
-      &.bucket-left {
-        flex-direction:column-reverse;
+      &.text-col {
+        @include bp(m) {
+          padding: 50px 0;
+          flex-basis: 50%;
+        }
+        @include bp(l) {
+          padding: 50px 0;
+          flex-basis: 35%;
+        }
       }
+    }
+    &.bucket-left {
+      flex-direction: column-reverse;
+    }
+    &.bucket-right {
+    }
+    @include bp(m) {
+      &.bucket-left,
       &.bucket-right {
+        flex-direction: row;
+      }
+    }
+  }
+  .platform-section-image {
+    @include aspect-ratio(13,10);
+    width: 90%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center top;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    &.animated {
+      visibility: hidden;
+    }
+  }
+  &.active {
+    .bucket {
+      .platform-section-image {
+        visibility: hidden;
+        &.animated {
+          visibility: visible;
+        }
+      }
+    }
+  }
+}
+section.platform-panels {
+  text-align: center;
+  margin-top: $gutter-width*2;
+  .platform-panel-bucket {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $gutter-width;
+    flex-wrap: wrap;
+    .platform-panel {
+      flex-basis: 100%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      padding: 0 $gutter-width/4;
+      margin-bottom: $gutter-width;
+      .inner {
+        background: $white;
+        height: 100%;
+        transition: all 0.1s ease-out;
+        position: relative;
+        min-height: 390px;
+        h3 {
+          margin: 0;
+          padding: $gutter-width/2 0 0;
+          width: 100%;
+        }
+        .logos {
+          width: 50%;
+          margin-left: 25%;
+          @include aspect-ratio(1,2);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center bottom;
 
+          @include bp(m) {
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+          }
+        }
       }
       @include bp(m) {
-        &.bucket-left, &.bucket-right {
-          flex-direction:row;
-        }
-      }
-    }
-    h2 {
-      font-size:24px;
-      color:$header-blue;
-    }
-    p {
-      font-size:18px;
-      line-height:1.8;
-    }
-    .platform-section-image {
-      @include aspect-ratio(13,10);
-      width: 90%;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center top;
-      position:absolute;
-      top:0;
-      left:5%;
-      &.animated {
-        visibility:hidden;
-      }
-    }
-    &.active {
-      .bucket {
-        .platform-section-image {
-          visibility:hidden;
-          &.animated {
-            visibility:visible;
-          }
-        }
-      }
-    }
-  }
-  section.platform-panels {
-    text-align: center;
-    margin-top:$gutter-width*2;
-    .platform-panel-bucket {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom:$gutter-width;
-      flex-wrap:wrap;
-      .platform-panel {
-        flex-basis:100%;
-        flex-grow: 1;
-        flex-shrink: 1;
-        padding: 0 $gutter-width/4;
-        margin-bottom:$gutter-width;
+        flex-basis: 20%;
+        margin-bottom: 0;
         .inner {
-          background: $white;
-          height: 100%;
-          transition: all 0.1s ease-out;
-          position:relative;
-          min-height:390px;
-          h3 {
-            color: $off-black;
-            margin:0;
-            padding:$gutter-width/2 0 0;
-            width:100%;
-          }
           .logos {
-            width:50%;
-            margin-left:25%;
-            @include aspect-ratio(1,2);
-            background-size:contain;
-            background-repeat:no-repeat;
-            background-position:center bottom;
-
-            @include bp(m) {
-              position:absolute;
-              bottom:24px;
-              left:0;
-            }
+            width: 80%;
+            margin-left: 10%;
           }
-        }
-        @include bp(m) {
-          flex-basis:20%;
-          margin-bottom:0;
-          .inner {
-            .logos {
-              width:80%;
-              margin-left:10%;
-            }
-            &:hover,
-            &.active {
-              cursor: pointer;
-              transform: scale(1.2);
-              box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.5);
-              z-index:99;
-            }
+          &:hover,
+          &.active {
+            cursor: pointer;
+            transform: scale(1.2);
+            box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.5);
+            z-index: 99;
           }
         }
       }
     }
   }
-  section.platform-security-section {
-    .bg {
+}
+section.platform-security-section {
+  .bg {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+ul.platform-logos {
+  list-style: none;
+  margin: $gutter-width*2 auto;
+  margin: 0;
+  padding: 0;
+  li {
+    display: inline-block;
+    text-align: center;
+    margin: 1vw;
+    &:last-child {
+      margin-right: 0;
+    }
+    img {
+      height: 4.5vw;
+      width: auto;
+    }
+  }
+}
+section.platform-benefits-section {
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  h2.centered.caps {
+    margin: 0;
+  }
+  p.centered {
+    margin-bottom: $gutter-width;
+  }
+  ul.platform-benefits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+    li {
+      width: 90%;
+      margin: 0 5%;
+      display: flex;
+      margin-bottom: $gutter-width;
+      clear: both;
+      align-items: center;
+      .text {
+        display: inline-block;
+        background: transparent;
+        padding: 12px 24px;
+        position: relative;
+        h3 {
+          margin: 0;
+        }
+        p {
+          margin-top: 6px;
+        }
+      }
+      @include bp(m) {
+        width: 70%;
+        margin: 0 15%;
+      }
+    }
+    .icon {
+      width: 50px;
+      height: 50px;
+      flex-grow: 0;
+      flex-shrink: 0;
       background-size: contain;
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: center center;
+      margin: 0 24px;
+      display: inline-block;
     }
   }
-  ul.platform-logos {
-    list-style:none; 
-    margin:$gutter-width*2 auto;
-    margin:0; padding:0;
-    li {
-      display:inline-block;
-      text-align:center;
-      margin:1vw;
-      &:last-child {
-        margin-right:0; 
-      }
-      img {
-        height:4.5vw;
-        width:auto;
-      }
-    }
-  }
-  section.platform-benefits-section {
-    background-size:cover;
-    background-position:center bottom;
-    background-repeat:no-repeat;
-    color: $white;
-    h2.centered,
-    p.centered {
-      color: $white;
-    }
-    p {
-      size:18px;
-      line-height:1.8;
-    }
-    h2.centered.caps {
-      margin:0;
-    }
-    p.centered {
-      margin-bottom:$gutter-width;
-    }
-    ul.platform-benefits {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: block;
-      flex-wrap: wrap;
-      justify-content: center;
-      li {
-        width:90%;
-        margin:0 5%;
-        display:flex;
-        margin-bottom: $gutter-width;
-        clear: both;
-        align-items:center;
-        .text {
-          display:inline-block;
-          background:transparent;
-          padding:12px 24px;
-          position:relative;
-          h3, p {
-            color:$white;
-          }
-          h3 {
-            margin: 0;
-            font-size:16px;
-            font-weight:700;
-            font-family:$body-font;
-          }
-          p {
-            margin-top: 6px;
-          }
-        }
-        @include bp(m) {
-          width:70%;
-          margin:0 15%;
-        }
-      }
-      .icon {
-        width: 50px;
-        height: 50px;
-        flex-grow:0;
-        flex-shrink:0;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center center;
-        margin: 0 24px;
-        display:inline-block;
-      }
-    }
-  }
+}
 $bar-color: #254e85;
 $bar-hover-color: #ff9f15;
 $key-bg: #666;
@@ -402,9 +313,9 @@ $line-color: rgba(255, 255, 255, 0.4);
 $key-text-color: white;
 .platform-graph-section {
   .platform-graph {
-    display:none;
+    display: none;
     @include bp(m) {
-      display:flex;
+      display: flex;
     }
     margin: $gutter-width*3 0 0;
     flex-wrap: nowrap;
@@ -437,40 +348,40 @@ $key-text-color: white;
           }
         }
         &.dark-blue .inner {
-          background:$menu-blue;
+          background: $menu-blue;
           &.active {
             //background: $bar-hover-color;
             //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
           }
         }
         &.med-blue .inner {
-          background:$header-blue;
+          background: $header-blue;
           &.active {
             //background: $bar-hover-color;
             //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
           }
         }
         &.orange .inner {
-          background:$orange;
+          background: $orange;
           &.active {
             //background: $bar-hover-color;
             //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
           }
         }
         &.coral-blue .inner {
-          background:$light-blue;
+          background: $light-blue;
           &.active {
             //background: $bar-hover-color;
             //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
           }
         }
         &.fun-blue .inner {
-          background:$fun-blue;
+          background: $fun-blue;
           &.active {
             background: $bar-hover-color;
             //box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.8);
           }
-        } 
+        }
         .bar-value {
           text-align: center;
           font-size: 1vw;
@@ -488,18 +399,17 @@ $key-text-color: white;
           @include tooltip(
               $tooltip-background-color: transparent
           );
-          z-index:99;
+          z-index: 99;
           color: $black;
           p {
             margin: 0;
             font-size: 0.8em;
             .percent {
-              font-weight:700;
-              display:block;
-              font-size:1.2em;
+              font-weight: 700;
+              display: block;
+              font-size: 1.2em;
             }
           }
-
         }
         &:hover {
           //cursor: pointer;
@@ -564,42 +474,40 @@ $key-text-color: white;
     }
   }
   .platform-graph-mobile {
-    display:block;
+    display: block;
     @include bp(m) {
-      display:none;
+      display: none;
     }
     h2 {
-      padding:.5em 1em;
-      color:$white;
-      font-family:$body-font;
-      font-size:1em;
-      font-weight:700;
+      padding: 0.5em 1em;
+      color: $white;
+      font-family: $body-font;
+      font-size: 1em;
+      font-weight: 700;
       &.dark-blue {
-        background-color:$menu-blue;
+        background-color: $menu-blue;
       }
       &.med-blue {
-        background-color:$header-blue;
+        background-color: $header-blue;
       }
       &.coral-blue {
-        background-color:$light-blue;
+        background-color: $light-blue;
       }
     }
     p {
       span.big-orange {
-        font-size:1.5em;
-        font-weight:700;
-        color:$orange;
+        font-size: 1.5em;
+        font-weight: 700;
+        color: $orange;
       }
     }
   }
   .platform-graph-footer {
-    font-size:.75em;
-    text-align:center;
-    padding-top:$gutter-width*2;
+    font-size: 0.75em;
+    text-align: center;
+    padding-top: $gutter-width*2;
     p {
-      margin:$gutter-width/2 0 0;
+      margin: $gutter-width/2 0 0;
     }
   }
-
-  
 }
