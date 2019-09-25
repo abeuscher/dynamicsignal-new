@@ -20,10 +20,10 @@ block content
   .white-gradient-header
   .container
       .row-flex
-          .col-half-flex.gray-bg-section
+          .col-half-flex
               .inner
-                h1 Join Our Team
-                p We build communication technology for the world's largest organizations.
+                h1.white Join Our Team
+                p.white We build communication technology for the world's largest organizations.
   :php
     echo "</section>";   
   :php
@@ -102,7 +102,7 @@ block content
     .",'categories':".json_encode($categories,JSON_UNESCAPED_SLASHES)
     .",'videos':".json_encode($videos,JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  section.white-bg-section#anchor-menu
+  section.white-bg-section#anchor-menu.platform-bullets
     .container.hidden-sm
       .row
         .col-md-12

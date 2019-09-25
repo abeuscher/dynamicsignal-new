@@ -37,7 +37,7 @@
       display: block;
     }
   }
-  h2 {
+  p {
     display: inline-block;
     font-size: 11px;
     margin: 0;
@@ -50,24 +50,12 @@
       padding: 0;
       font-size: 14px;
     }
-    .button {
-      background-color: transparent;
-      text-decoration: underline;
-      margin-left: 1em;
-      border-radius: 3px;
-      display: inline-block;
-      font-size: 11px;
-      color: $white;
-      line-height: 1;
-      border: none;
+    a {
+      margin-left:.5em;
+      color:$white;
+      text-decoration:underline;
       &:hover {
-        background-color: $blue;
-      }
-      @include bp(s) {
-        text-decoration: none;
-        font-size: 14px;
-        border: 1px solid $white;
-        padding: 0.25em 0.5em;
+        text-decoration:none;
       }
     }
   }
@@ -103,7 +91,7 @@
 body.nav-short {
   #cta-bar {
     height: $cta-bar-short;
-    h2 {
+    p {
       @include bp(m) {
         line-height: $cta-bar-short;
       }

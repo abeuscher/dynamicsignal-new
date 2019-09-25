@@ -13,7 +13,7 @@ block content
     echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
     .", 'hero_words':".json_encode(get_field('header_animated_words'))."};</script>";
     printf("<section class='homepage fullpic bigtext no-padding' id='sticky-header'><div class='header-bg' data-bg-array='%s'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("header_hero_bg"), JSON_UNESCAPED_SLASHES),json_encode(get_field("header_hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
-    printf("<div class='inner'>");
+    printf("<div class='inner container'>");
   .col-half.text
     h1
       :php
@@ -64,9 +64,6 @@ block content
                   echo get_field("carousel_source");
   section.demo-videos.padding-bottom
     .container
-      .row
-        .col-md-12
-          h2.text-white.text-center Watch a Demo
       .demo-video-wrapper
         :php
           foreach (get_field("demo_video_buckets") as $key=>$bucket) {

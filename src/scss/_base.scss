@@ -879,7 +879,7 @@ section.halfpic {
   display: block;
   width: 100% !important;
   position: relative;
-  background: $lighter-gray;
+  background: $black;
   padding: 0;
   margin-top: 50px;
   &.pos-fixed {
@@ -922,8 +922,8 @@ section.halfpic {
     width: 30%;
     background: linear-gradient(
       to right,
-      rgba(246, 246, 246, 1),
-      rgba(246, 246, 246, 0) 100%
+      $black,
+      rgba(0, 0, 0, 0) 100%
     );
     @include bp(m) {
       display: block;
@@ -953,9 +953,6 @@ section.halfpic {
   position: relative;
   .col-half-flex {
     padding-bottom: $gutter-width*2;
-    .inner.big-text {
-      font-size: 1.4em;
-    }
     @include bp(m) {
       padding-top: 80px;
       flex-basis: 50%;
