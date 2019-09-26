@@ -13,5 +13,32 @@
     $in['paste_remove_spans'] = true;
     return $in;
   }
-
   add_filter('tiny_mce_before_init', 'my_format_TinyMCE');
+
+  add_action( 'init', 'my_add_custom_feed' );
+
+  function my_add_custom_feed() {
+      global $wp_rewrite;
+
+      if ( ! $wp_rewrite->feeds ) {
+          return;
+      }
+
+      add_feed( 'blogfeed', 'MyCustomFeedCallback' );
+
+      $feeds = '(' . trim( implode( '|', $wp_rewrite->feeds ) ) . ')';
+
+      add_rewrite_rule(  
+          "^rss/($feeds)/?$",
+          "index.php?" . 'feed=$matches[1]',
+          'top'
+      );  
+  }
+  
+  /* This code seeks the template for your RSS feed */
+  function MyCustomFeedCallback(){
+      get_template_part( 'blogrss', 'blogfeed' ); // need to be in small case.
+  }
+  
+
+  

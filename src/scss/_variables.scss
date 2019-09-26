@@ -58,7 +58,7 @@ $header-color:$blue;
 //fonts
 $body-font:'Roboto', sans-serif;
 $header-font:'Roboto Slab', sans-serif;
-$nav-font:'Roboto', sans-serif;
+$nav-font:$body-font;
 
 $top-margin:80px;
 $nav-height:50px;
