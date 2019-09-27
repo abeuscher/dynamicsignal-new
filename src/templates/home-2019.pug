@@ -85,4 +85,4 @@ block content
         :php
           printf("<h2 class='text-white'>%s</h2><p class='text-white'>%s</p><a class='white button' href='%s'>%s</a>", $ebook["title"], $ebook["description"], $ebook["cta_link"], $ebook["cta_label"]);
   :php
-    printf("<section class='homepage-partners white-bg-section' data-bg-array='%s'><div class='container'><div class='row'><div class='col-md-12'><h2>%s</h2><p>%s</p><a class='button cta' href='%s'>%s</a></div></div></div></section>", json_encode(get_field("partner_section_bg"),JSON_UNESCAPED_SLASHES),get_field("partner_section_headline"),get_field("partner_section_copy"),get_field("partners_section_cta_target"),get_field("partners_section_cta_text"));
+    printf("<section class='homepage-partners white-bg-section padding-top' data-bg-array='%s'><div class='container'><div class='row'><div class='col-md-12'><h2>%s</h2><p>%s</p><a class='button cta' href='%s'>%s</a></div></div></div></section>", json_encode(get_field("partner_section_bg"),JSON_UNESCAPED_SLASHES),get_field("partner_section_headline"),get_field("partner_section_copy"),get_field("partners_section_cta_target"),get_field("partners_section_cta_text"));

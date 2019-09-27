@@ -30,6 +30,7 @@ var siteSettings = {
   "gdprCookie": "ds-gdpr",
   "sessionCookie": "ds-count",
   "ctaBar": require("./cta-bar.json"),
+  "fontApiKey":"AIzaSyCqr2-oB5Ck52ZRAxrztzvJNdiaRJyKUL0",
   "templates": {  
     "adwordsGrid": require("./inc/ad-words-grid.pug"),
     "adwordsLogoGarden": require("./inc/ad-words-logo-garden.pug"),
@@ -174,7 +175,7 @@ var siteActions = [{
     "action": function () {
       wipeCookies();
     }
-  }, {
+  },  {
     "element": "anchor-menu",
     "action": function (el) {
       var links = el.querySelectorAll("a");

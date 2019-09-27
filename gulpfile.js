@@ -149,6 +149,7 @@ function crunchFile(theObj) {
       .on("finish", ugly); 
   }
   theFile.on('log', gutil.log);
+  theFile.transform(require("babelify"));
   theFile.transform(require("pugify"));
   theFile.setter();
 }

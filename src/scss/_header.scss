@@ -12,7 +12,7 @@ header.page-header {
     vertical-align: bottom;
     .logo-bucket {
       margin-left: $gutter-width;
-      flex-basis: 20%;
+      flex-basis: 80%;
       position: relative;
       display: inline-block;
       max-height: 100%;
@@ -24,9 +24,15 @@ header.page-header {
       @include bp(s) {
         height:$nav-tall;
       }
+      @include bp(s) {
+        flex-basis:50%;
+      }
+      @include bp(l) {
+        flex-basis:20%;
+      }
     }
     ul.top-nav {
-      flex-basis: 80%;
+      flex-basis: 20%;
       text-align: right;
       position: relative;
       align-self: center;
@@ -36,6 +42,12 @@ header.page-header {
       box-shadow:none;
       border-bottom:none;
       height:auto!important;
+      @include bp(s) {
+        flex-basis:50%;
+      }
+      @include bp(l) {
+        flex-basis:80%;
+      }
       li {
         margin: 0;
         padding: 0;
@@ -183,15 +195,20 @@ header.page-header {
       .logo-bucket {
         background-image: url($img-path + "logo-header-white.png") !important;
       }
-      ul.top-nav li {
-        a {
-          color:$white;
-          text-shadow:1px 1px 5px rgba(0,0,0,.5);
-        }
-
-        &:hover {
+      ul.top-nav  {
+        .hamburger .line {
+          background:$white;
+        }        
+          li {
           a {
-            text-shadow:1px 1px 5px rgba(255,255,255,.5);
+            color:$white;
+            text-shadow:1px 1px 5px rgba(0,0,0,.5);
+          }
+
+          &:hover {
+            a {
+              text-shadow:1px 1px 5px rgba(255,255,255,.5);
+            }
           }
         }
       }     

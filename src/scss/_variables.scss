@@ -56,9 +56,9 @@ $body-link-hover-color:$header-blue;
 $header-color:$blue;
 
 //fonts
-$body-font:'Roboto', sans-serif;
-$header-font:'Roboto Slab', sans-serif;
-$nav-font:'Roboto', sans-serif;
+$body-font:'Open Sans', sans-serif;
+$header-font:'Merriweather', sans-serif;
+$nav-font:$body-font;
 
 $top-margin:80px;
 $nav-height:50px;

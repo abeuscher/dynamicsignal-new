@@ -5,6 +5,9 @@ section.homepage-partners {
   background-position:bottom center;
   padding-bottom:25vw;
   text-align:center;
+  h2 {
+    margin-top:0;
+  }
 }
 .vertical-carousel {
   position:relative;
@@ -146,7 +149,7 @@ section.homepage-partners {
   }
   .inner {
     display:block;
-    padding:$gutter-width;
+    padding:$gutter-width $gutter-width*1.5;
     z-index:1;
     position: relative;
     h3 {
@@ -310,6 +313,9 @@ section.home-featured-article {
   background:url($img-path + "bg-home-orangecrush.jpg") no-repeat left center;
   background-size:cover;
   padding:$gutter-width*3 0;
+  h2 {
+    margin:0;
+  }
   .home-ebook-thumb {
     @include aspect-ratio(10,6);
     background-repeat:no-repeat;

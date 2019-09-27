@@ -1156,3 +1156,12 @@ hr.blue-separator {
     padding-bottom:0;
   }
 }
+.font-picker {
+  position:fixed !important;
+  height:60px;
+  width:400px;
+  background:$black;
+  top:100px;
+  left:0;
+  z-index:9999;
+}
