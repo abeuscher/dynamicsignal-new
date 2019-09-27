@@ -41,7 +41,7 @@ h1 {
 h2 {
   color: $off-black;
   font-size: 24px;
-  font-weight: 300;
+  font-weight: bold;
   line-height: 1.2;
   letter-spacing: normal;
   @include bp(m) {
@@ -51,7 +51,7 @@ h2 {
 h3 {
   color: $off-black;
   font-size:20px;
-  font-weight:bold;
+  font-weight:300;
   @include bp(m) {
     font-size: 24px;
   } 
