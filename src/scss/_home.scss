@@ -1,10 +1,22 @@
 /* New Home Styles */
+section.homepage.fullpic .col-half.text {
+  h1 {
+    color:$white;
+    @include bp(s) {
+      color:$off-black;
+    }
+  }
+}
+
 
 section.homepage-partners {
   background-size:cover;
   background-position:bottom center;
-  padding-bottom:25vw;
+  padding-bottom:35vw;
   text-align:center;
+  @include bp(m) {
+    padding-bottom:25vw;
+  }
 }
 .vertical-carousel {
   position:relative;
