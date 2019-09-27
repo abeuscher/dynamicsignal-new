@@ -1,11 +1,9 @@
 section.platform-header {
-  margin-top: 40px;
   padding-top: 80px;
   padding-bottom: 0;
   background-size: cover;
   background-position: center center;
   @include bp(m) {
-    margin-top: 50px;
     padding-top: 100px;
   }
   h1 {

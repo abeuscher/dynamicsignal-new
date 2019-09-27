@@ -10,7 +10,7 @@ block nav
   include ./inc/header.pug
 block content
     :php
-        printf("<section class='homepage fullpic bigtext no-padding company-hero' id='sticky-header'><div class='header-bg'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
+        printf("<section class='fullpic bigtext no-padding company-hero' id='sticky-header'><div class='header-bg'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
         printf("<div class='inner'>");
     .col-half.text
         h1

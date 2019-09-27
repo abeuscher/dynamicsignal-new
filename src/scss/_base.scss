@@ -146,9 +146,15 @@ a {
   }
 }
 .margin-top-header {
-  margin-top:100px;
-  @include bp(s) {
-    margin-top:150px;
+  margin-top:$nav-tall;
+  @include ds-transition();
+}
+.padding-top-header {
+  padding-top:100px;
+}
+body.nav-short {
+  .margin-top-header {
+    margin-top:$nav-short;
   }
 }
 .even-height-wrapper {
@@ -798,9 +804,9 @@ section.fullpic {
     margin: 0 auto;
     .col-full {
       flex-basis:100%;
-      padding: 80px $gutter-width 50px;
+      padding: 50px $gutter-width 50px;
       @include bp(m) {
-        padding: 150px $gutter-width 50px;
+        padding: 120px $gutter-width 50px;
       }
     }
     .col-half {
@@ -854,6 +860,28 @@ section.fullpic {
       flex-direction: row;
     }
   }
+  &.homepage {
+    .header-bg {
+      background-position:top right;
+    }
+    .inner {
+      .col-half.text {
+          padding: 100px $gutter-width 50px;
+          h1, p {
+            color:$white;
+          }
+          @include bp(s) {
+            h1, p {
+              color:$off-black;
+            }
+            padding: 100px $gutter-width 50px;
+          }
+          @include bp(m) {
+            padding: 300px $gutter-width 250px;
+          }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 640px) {
@@ -881,10 +909,10 @@ section.halfpic {
   position: relative;
   background: $lighter-gray;
   padding: 0;
-  margin-top: 50px;
+  margin-top: 0;
   &.pos-fixed {
     position: fixed !important;
-    top: 50px !important;
+    top: 0 !important;
   }
   .halfpic-bg {
     position: static;

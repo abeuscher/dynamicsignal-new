@@ -171,7 +171,7 @@ body.nav-open {
   .line {
     width: 26px;
     height: 3px;
-    background: #000;
+    background: $white; 
     border-radius: 3px;
     position: absolute;
     transition: transform 0.25s ease-out;

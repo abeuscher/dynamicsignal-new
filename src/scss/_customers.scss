@@ -186,3 +186,11 @@
     line-height:1.8;
   }
 }
+.customer-video-carousel {
+  button.flickity-prev-next-button.previous {
+    left:50px;
+  }
+  button.flickity-prev-next-button.next {
+    right:50px;
+  }
+} 

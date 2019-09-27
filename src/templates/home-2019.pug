@@ -5,6 +5,7 @@ block template
     Template Name: Home Page New 2019 Look
     */
 block nav
+  - var homepage = true;    
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug
   include ./inc/header.pug
@@ -12,7 +13,7 @@ block content
   :php
     echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
     .", 'hero_words':".json_encode(get_field('header_animated_words'))."};</script>";
-    printf("<section class='homepage fullpic bigtext no-padding' id='sticky-header'><div class='header-bg' data-bg-array='%s'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("header_hero_bg"), JSON_UNESCAPED_SLASHES),json_encode(get_field("header_hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
+    printf("<section class='homepage fullpic no-padding' id='sticky-header'><div class='header-bg' data-bg-array='%s'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("header_hero_bg"), JSON_UNESCAPED_SLASHES),json_encode(get_field("header_hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
     printf("<div class='inner container'>");
   .col-half.text
     h1
@@ -23,8 +24,6 @@ block content
         echo get_field("header_copy");
     :php
       printf("<a class='button cta modal-show' data-video-modal-id='m3nT4qonFgI' data-event='vidClick-HomeCTA' href='#'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("header_cta_text"));
-  :php
-    printf("<div class='col-half bg' data-bg-array='%s'></div>",json_encode(get_field("header_hero_overlay"), JSON_UNESCAPED_SLASHES));
   :php
     echo "</div></section>";
   section.white-bg-section.padding-top
