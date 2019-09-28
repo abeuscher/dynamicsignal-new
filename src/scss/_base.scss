@@ -26,6 +26,7 @@ h6 {
 h1, h2, h3 {
   color:$off-black;
   font-weight:400;
+  margin-top:0;
   &.white {
     color:$white;
   }
