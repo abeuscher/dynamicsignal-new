@@ -111,11 +111,5 @@ block content
     .container
       .row
         .col-md-12
-          h2
-            :php
-              echo get_field("middle_cta_headline");
-          p
-            :php
-              the_field("middle_cta_header");
-          :php
-            printf("<a href='%s' class='button'>%s</a>",get_field("middle_cta_button_target"),get_field("middle_cta_button_text"));
+          p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal
+          a.button.cta(href="/requestdemo/") Request Demo
