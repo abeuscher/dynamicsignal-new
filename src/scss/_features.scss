@@ -3,9 +3,6 @@
   background-position:center top;
   padding-top:80px;
   padding-bottom:$gutter-width;
-  h1 {
-    padding-top:2em;
-  }
   .pc-image {
     display:none;
     @include aspect-ratio (750,455);
@@ -27,6 +24,11 @@
     background-repeat:none;
     background-position:top right;
     z-index:1;
+  }
+  @include bp(s) {
+    h1 {
+      padding-top:2em;
+    }
   }
   @include bp(m) {
     padding-top:150px;

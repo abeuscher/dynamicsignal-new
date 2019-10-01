@@ -71,3 +71,13 @@ $time:6s;
       }
     }
   }
+  body.modal-open {
+    .logo-flipper {
+      .logo-thumb {
+        animation:none;
+        &.flipped {
+          animation:none;
+        }
+      }
+    }
+  }

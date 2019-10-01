@@ -151,7 +151,10 @@ a {
   @include ds-transition();
 }
 .padding-top-header {
-  padding-top:100px;
+  padding-top:60px;
+  @include bp(s) {
+    padding-top:80px;
+  }
 }
 body.nav-short {
   .margin-top-header {
@@ -544,7 +547,9 @@ ul.side-list {
       color: transparent;
     }
   }
-
+  h2 {
+    font-weight:300;
+  }
   h2,
   h3 {
     color: $menu-blue;
@@ -584,7 +589,7 @@ ul.side-list {
 .story-tile-link {
   display: block;
   transition: 0.25s all ease-in;
-  height: 80%;
+  height: 90%;
   &.blog-front {
     border-bottom: 1px solid $middle-gray;
     .featured-thumb {
@@ -621,7 +626,11 @@ ul.side-list {
   p {
     line-height: 2;
   }
-
+  h3 {
+    font-size:16px;
+    line-height:1.4;
+    margin-top:$gutter-width/3;
+  }
   .featured-thumb {
     &:after {
       transition: 0.25s all ease-in;
@@ -1122,26 +1131,22 @@ hr.blue-separator {
     }
   }
   cite {
+    position:relative;
     margin-top: $gutter-width;
     font-style: normal;
-    font-size: 14px;
     line-height: 30px;
     font-weight: 300;
     padding-left: $gutter-width*2.5;
     display: block;
     margin-right: $gutter-width;
-    letter-spacing: 1px;
-    text-transform: uppercase;
     text-align: left;
     color: $white;
-
     .name {
       display: block;
     }
-
     .title {
       display: block;
-      font-style: italic;
+      //font-style: italic;
     }
   }
 }

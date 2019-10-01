@@ -740,7 +740,7 @@ var siteActions = [{
   {
     "element": "page-header",
     "action": function () {
-      if (window.innerWidth > siteSettings.breakpoints.m) {
+      if (window.innerWidth > siteSettings.breakpoints.s) {
         var pageHeader = document.getElementById("page-header");
         var headController = new ScrollMagic.Controller({
           "loglevel": 0
@@ -771,7 +771,7 @@ var siteActions = [{
   {
     "element":"sticky-header",
     "action":function(el) {
-      if (window.innerWidth > siteSettings.breakpoints.m) {
+      if (window.innerWidth > siteSettings.breakpoints.s) {
        var homeController = new ScrollMagic.Controller({
         "loglevel": 0
       });

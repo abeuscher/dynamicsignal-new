@@ -37,7 +37,7 @@ block content
             $text_bucket = sprintf("<div class='col-half text-col'><h2>%s</h2><p>%s</p></div>", $this_section["header"], $this_section["copy"]);
             $content = $this_section["orientation"]=="Image Left" ? $img_bucket.$text_bucket : $text_bucket.$img_bucket;
             $classname = $this_section["orientation"]=="Image Left" ? "bucket-left" : "bucket-right";
-            printf("<section id='platform-%s' class='platform-section'><div class='container'><div class='bucket %s'>%s</div></div></section>", $idx, $classname, $content);
+            printf("<section id='platform-%s' class='platform-section padding-both'><div class='container'><div class='bucket %s'>%s</div></div></section>", $idx, $classname, $content);
         }
     section.platform-panels.blue-bg-section.padding-both
         .container
@@ -87,7 +87,7 @@ block content
                     ul.platform-benefits
                         :php
                             foreach($bb["tabs"] as $idx=>$tab) {
-                                printf("<li><div class='icon' data-bg-array='%s'></div><div class='text'><h3 class='white'>%s</h3><p class='white'>%s</p></div></li>", json_encode($tab["tab_icon"], JSON_UNESCAPED_SLASHES), $tab["tab_content_header"], $tab["tab_content"]);
+                                printf("<li><div class='icon hidden-sm hidden-xs' data-bg-array='%s'></div><div class='text'><h3 class='white'>%s</h3><p class='white'>%s</p></div></li>", json_encode($tab["tab_icon"], JSON_UNESCAPED_SLASHES), $tab["tab_content_header"], $tab["tab_content"]);
                             }
     section.platform-graph-section.padding-both
         .container

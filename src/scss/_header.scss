@@ -2,16 +2,15 @@ header.page-header {
   position:fixed;
   top:0;
   z-index: 2;
-  background:$nav-bg-tall;
+  background:$nav-bg-short;
   width: 100%;
   padding-top:0;
-  box-shadow:0px 0px 10px rgba(0,0,0,0);
   @include ds-transition();
+  box-shadow:0px 0px 10px rgba(0,0,0,0.2);
   nav.main {
     display: flex;
     vertical-align: bottom;
     .logo-bucket {
-      margin-left: $gutter-width;
       flex-basis: 80%;
       position: relative;
       display: inline-block;
@@ -19,7 +18,7 @@ header.page-header {
       background-position:top left;
       background-size:contain;
       background-repeat:no-repeat;
-      height:$nav-tall;
+      height:$nav-short;
       @include ds-transition();
       @include bp(s) {
         height:$nav-tall;
@@ -37,7 +36,7 @@ header.page-header {
       position: relative;
       align-self: center;
       margin: 0;
-      padding: 0 $gutter-width 0 0;
+      padding: 0;
       background-color:transparent;
       box-shadow:none;
       border-bottom:none;
@@ -189,32 +188,38 @@ header.page-header {
     }
 
   }
-  &.homepage {
-    background:rgba(255,255,255,0);
-    nav.main {
-      .logo-bucket {
-        background-image: url($img-path + "logo-header-white.png") !important;
-      }
-      ul.top-nav  {
-        .hamburger .line {
-          background:$white;
-        }        
-          li {
-          a {
-            color:$white;
-            text-shadow:1px 1px 5px rgba(0,0,0,.5);
-          }
 
-          &:hover {
+  &.homepage {
+
+    @include bp(s) {
+      background:rgba(255,255,255,0);
+      nav.main {
+        ul.top-nav  {
+          .hamburger .line {
+            background:$white;
+          }        
+            li {
             a {
-              text-shadow:1px 1px 5px rgba(255,255,255,.5);
+              color:$white;
+              text-shadow:1px 1px 5px rgba(0,0,0,.5);
+            }
+  
+            &:hover {
+              a {
+                text-shadow:1px 1px 5px rgba(255,255,255,.5);
+              }
             }
           }
-        }
-      }     
+        }     
+      }
     }
   }
-  &.homepage {
+  @include bp(s) {
+    box-shadow:0px 0px 10px rgba(0,0,0,0);
+    background:$nav-bg-tall;
+    .logo-bucket {
+      height:$nav-tall;
+    }
   }
 }
 

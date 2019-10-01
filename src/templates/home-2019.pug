@@ -13,7 +13,7 @@ block content
   :php
     echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
     .", 'hero_words':".json_encode(get_field('header_animated_words'))."};</script>";
-    printf("<section class='homepage fullpic no-padding' id='sticky-header'><div class='header-bg' data-bg-array='%s'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("header_hero_bg"), JSON_UNESCAPED_SLASHES),json_encode(get_field("header_hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
+    printf("<section class='homepage fullpic no-padding'><div class='header-bg' data-bg-array='%s'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("header_hero_bg"), JSON_UNESCAPED_SLASHES),json_encode(get_field("header_hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
     printf("<div class='inner container'>");
   .col-half.text
     h1
@@ -31,13 +31,6 @@ block content
       .row
         .col-md-12
           #logo-partners-grid
-  section.white-bg-section.home-third-section.padding-both
-    .container
-      .row
-        .col-md-12          
-          p.text-center
-            :php
-              echo get_field("secondary_copy");
   section.white-bg-section.phone-section.padding-top
     .container
       .row
@@ -61,20 +54,13 @@ block content
               p.source
                 :php
                   echo get_field("carousel_source");
-  section.demo-videos.padding-both
+  section.demo-home.padding-top
     .container
       .demo-video-wrapper
         :php
           foreach (get_field("demo_video_buckets") as $key=>$bucket) {
-            printf("<div class='demo-video-bucket'><div class='outer'></div><div class='inner'><h3 class='text-center'>%s</h3><p class='padding-bottom'>%s</p></div><div class='button-wrapper'><a class='orange button' data-button-event='%s' href='%s'>%s</a></div></div>", $bucket["subhead"], $bucket["copy"], "demoVideo_".str_replace(' ', '', $bucket["custom_event_name"]), $bucket["cta_target"],$bucket["cta_text"]);
+            printf("<div class='demo-video-bucket'><div class='outer'></div><div class='inner'><h3 class='text-center'>%s</h3><p class='padding-bottom'>%s</p></div><div class='button-wrapper'><a class='button' data-button-event='%s' href='%s'>%s</a></div></div>", $bucket["subhead"], $bucket["copy"], "demoVideo_".str_replace(' ', '', $bucket["custom_event_name"]), $bucket["cta_target"],$bucket["cta_text"]);
           }
-  section.home-featured-article.white-bg-section.no-padding
-    .bg.left
-    .content
-        :php
-          $featured = get_field("featured_item");
-          printf("<h2><span class='fa fa-star'></span>%s</h2><article role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><div class='home-featured-thumb' data-bg-array='%s'></div><h3 itemprop='headline'>%s</h3><a class='orange button' href='%s' itemprop='url'>%s</a></article>", $featured["section_title"], json_encode($featured["image"], JSON_UNESCAPED_SLASHES), $featured["item_title"], $featured["cta_link"], $featured["cta_label"]);
-    .bg.right
   section.home-featured-ebook
     .container
       .col-md-6
@@ -83,6 +69,11 @@ block content
           printf("<div class='home-ebook-thumb' data-bg-array='%s'></div>", json_encode($ebook["image"], JSON_UNESCAPED_SLASHES));
       .col-md-6
         :php
-          printf("<h2 class='text-white'>%s</h2><p class='text-white'>%s</p><a class='white button' href='%s'>%s</a>", $ebook["title"], $ebook["description"], $ebook["cta_link"], $ebook["cta_label"]);
-  :php
-    printf("<section class='homepage-partners white-bg-section padding-top' data-bg-array='%s'><div class='container'><div class='row'><div class='col-md-12'><h2>%s</h2><p>%s</p><a class='button cta' href='%s'>%s</a></div></div></div></section>", json_encode(get_field("partner_section_bg"),JSON_UNESCAPED_SLASHES),get_field("partner_section_headline"),get_field("partner_section_copy"),get_field("partners_section_cta_target"),get_field("partners_section_cta_text"));
+          printf("<h2 class='text-white'>%s</h2><p class='text-white'>%s</p><a class='white button' href='%s'>%s</a>", $ebook["title"], $ebook["description"], $ebook["cta_link"], $ebook["cta_label"]);  
+  section.home-featured-article.white-bg-section.no-padding
+    .bg.left
+    .content
+        :php
+          $featured = get_field("featured_item");
+          printf("<h2><span class='fa fa-star'></span>%s</h2><article role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><div class='home-featured-thumb' data-bg-array='%s'></div><h3 itemprop='headline'>%s</h3><a class='orange button' href='%s' itemprop='url'>%s</a></article>", $featured["section_title"], json_encode($featured["image"], JSON_UNESCAPED_SLASHES), $featured["item_title"], $featured["cta_link"], $featured["cta_label"]);
+    .bg.right

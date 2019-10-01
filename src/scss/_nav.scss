@@ -46,12 +46,15 @@
   width:$side-nav-width;
   #btn-close-sidenav {
     position:absolute;
-    top:28px;
-    right:52px;
+    top:16px;
+    right:28px;
     font-size:3em;
     width:26px;
     height:29px;
     padding-top:14px;
+    @include bp(s) {
+      top:28px;
+    }
   }
   .inner {
     &>* {
