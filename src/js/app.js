@@ -74,7 +74,7 @@ var siteSettings = {
     "l": 1321,
     "xl": 1921
   }
-}
+};
 
 window.addEventListener("load", function () {
   function inIframe() {
@@ -1109,7 +1109,14 @@ function activateImages() {
 }
 
 function triggerGDPR() {
+  var h = window.location.hostname;
+  var domains = ["dynamicsignal.com","staging.dynamicsignal.flywheelsites.com","ds.local"];
   var domain = "dynamicsignal.com";
+  for (i=0;i<domains.length;i++) {
+    if (h.indexOf(domains[i])>-1) {
+      domain = domains[i];
+    }
+  }
   if (!Cookies.get(siteSettings.gdprCookie)) {
     var warning = parseHTML(siteSettings.templates.gdprPopup());
     document.body.appendChild(warning);

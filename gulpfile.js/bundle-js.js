@@ -2,7 +2,6 @@ var settings = require("../settings.js")();
 
 var fs = require("file-system");
 var browserify = require("browserify");
-var uglify = require("gulp-uglify");
 
 const { src, dest, watch } = require("gulp");
 
@@ -12,9 +11,9 @@ function bundleJS(cb) {
     settings.jsFiles[0].srcDir + "*",
     settings.jsFiles[0].srcDir + "**/*"
   ]);
-
+  bundleFile(settings.jsFiles[0]);
   // Loops through the js files, bundles them, and adds their source folders to the watcher
-  for (i = 0; i < settings.jsFiles.length; i++) {
+  for (i = 1; i < settings.jsFiles.length; i++) {
     bundleFile(settings.jsFiles[i]);
     watcher.add([
       settings.jsFiles[i].srcDir + "*",

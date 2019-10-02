@@ -42,7 +42,7 @@ block content
               foreach (get_field("carousel_slides") as $key=>$slide) {
                 $classname = $key == 0 ? "active" : "";
                 $images .= sprintf("<div class='vertical-slide %s' data-bg-array='%s' data-index='%s'></div>", $classname,json_encode($slide["slide_image"],JSON_UNESCAPED_SLASHES),$key);
-                $panels .= sprintf("<a class='carousel-panel %s' data-index='%s'><h2>%s</h2><p>%s</p></a>",$classname,$key,$slide["title"],$slide["copy"]);
+                $panels .= sprintf("<a class='carousel-panel %s' data-index='%s'><h3>%s</h3><p>%s</p></a>",$classname,$key,$slide["title"],$slide["copy"]);
               }
             .carousel-images
               .inner.position-1
@@ -59,7 +59,7 @@ block content
       .demo-video-wrapper
         :php
           foreach (get_field("demo_video_buckets") as $key=>$bucket) {
-            printf("<div class='demo-video-bucket'><div class='outer'></div><div class='inner'><h3 class='text-center'>%s</h3><p class='padding-bottom'>%s</p></div><div class='button-wrapper'><a class='button' data-button-event='%s' href='%s'>%s</a></div></div>", $bucket["subhead"], $bucket["copy"], "demoVideo_".str_replace(' ', '', $bucket["custom_event_name"]), $bucket["cta_target"],$bucket["cta_text"]);
+            printf("<div class='demo-video-bucket'><a href='%s'><div class='outer'></div><div class='inner'><h3 class='text-center'>%s</h3><p class='padding-bottom'>%s</p></div></a></div>", $bucket["cta_target"],$bucket["subhead"], $bucket["copy"]);
           }
   section.home-featured-ebook
     .container

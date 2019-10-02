@@ -12,9 +12,10 @@ function BuildTemplates(cb) {
     settings.templates[0].srcDir + "*.pug",
     settings.templates[0].srcDir + "**/*.pug"
   ]);
+  buildTemplate(settings.templates[0]);
 
   // Loop through the template sets, build them for the first time, and add them to the watcher.
-  for (i = 0; i < settings.templates.length; i++) {
+  for (i = 1; i < settings.templates.length; i++) {
     buildTemplate(settings.templates[i]);
     watcher.add([
       settings.templates[i].srcDir + "*.pug",
