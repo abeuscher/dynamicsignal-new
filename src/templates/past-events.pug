@@ -10,22 +10,6 @@ block nav
   include ./inc/header.pug
 block content
   :php
-    $override_title = "Past Events";
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Our Company",
-      "link"=>"/company/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Events",
-      "link"=>"/events/"
-    ));
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-  :php
     $all_events = [];
     $args = array( 'post_type' => 'event', 'posts_per_page' => 100 );
     $events = new WP_Query( $args );

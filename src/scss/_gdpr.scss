@@ -1,0 +1,140 @@
+
+ul.gdpr {
+    li {
+      margin:0 0 $gutter-width;
+      color:$classic-gray;
+      .blue {
+        color:$menu-blue;
+      }
+    } 
+  }
+  .top-section-gdpr {
+    min-height:10vw;
+    @include aspect-ratio(4,1);
+    background-repeat:none;
+    background-size:cover;
+    .inner {
+      position:absolute;
+      top:0;
+      width:100%;
+      left:0;
+      text-align:center;
+      padding-top:15vw;
+    }
+    h1 {
+      font-size:2.6em;
+    }
+  }
+  .gdpr-section {
+    padding-bottom:$gutter-width*4;
+    padding-top:0;
+    p, li {
+      line-height:1.8;
+    }
+    a {
+      text-decoration:underline;
+    }
+    h4 {
+      color:$header-blue;
+    }
+    h3 {
+      color:$header-blue;
+      font-size:30px;
+      margin:50px 0 25px;
+      padding:0;
+      background-size:contain;
+      background-position:left top;
+      background-repeat: no-repeat;
+      &.policy {
+          margin-top:0;
+          background-image:url($img-path + "gdpr-icon-policies.png");
+  
+      }
+      &.product {
+  
+          background-image:url($img-path + "gdpr-icon-product.png");
+  
+      }
+      &.staff {
+  
+          background-image:url($img-path + "gdpr-icon-staffing.png");
+      }
+    }
+   
+  }
+  .gdpr-table {
+    display:block;
+    position:relative;
+  }
+  .gdpr-table-row {
+    flex-basis:100%;
+    flex-shrink:0;
+    flex-grow:0;
+    display:flex;
+    flex-wrap:wrap;
+    &:nth-child(even) {
+      background:#fafafa;
+    }
+    &:nth-child(odd) {
+      background:#f4f4f4;
+    }
+    &:last-child {
+      .gdpr-table-cell {
+        border-bottom:0;
+      }
+    }
+  }
+  .gdpr-label {
+    display:block;
+    font-weight:600;
+    text-transform:uppercase;
+    margin-bottom:12px;
+    font-size:14px;
+    color:$header-blue;
+    @include bp(m) {
+      display:none;
+    }
+  }
+  .gdpr-table-cell {
+    flex-shrink:1;
+    flex-grow:1;
+    padding:26px 20px 30px;
+  
+    color:#505050;
+    &:last-child {
+      border-right:none;
+    }
+    p {
+      font-size:18px;
+      margin:0;
+      padding:0;
+      line-height:1.4;
+    }
+    &.title, &.content {
+      flex-basis:100%;
+    }
+    @include bp(m) {
+      border-right:1px solid $white;
+      border-bottom:2px solid #d6d6d6;
+      &.title {
+        flex-basis:20%;
+      }
+      &.content {
+        flex-basis:40%;
+      }
+    }
+  
+    &.header-cell {
+      display:none;
+      background:#ebebeb;
+      padding:18px 20px 16px;
+      p {
+        text-transform:uppercase;
+        color:$header-blue;
+        line-height:1;
+      }
+      @include bp(m) {
+        display:block;
+      }
+    }
+  }

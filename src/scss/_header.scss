@@ -54,7 +54,7 @@ header.page-header {
         display: block;
         padding: 0 $gutter-width/2;
         line-height:50px;
-        color: #000;
+        color: $off-black;
         text-transform: capitalize;
         font-size: 14px; 
         position: relative;
@@ -169,6 +169,8 @@ header.page-header {
         }
       }
     }
+  }
+  &.homepage {
   }
 }
 

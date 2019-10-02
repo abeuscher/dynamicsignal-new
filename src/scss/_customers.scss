@@ -59,23 +59,6 @@
     padding: 0 $gutter-width*3 0 $gutter-width;
   }
 }
-
-.customer-video-thumb {
-
-
-  .content {
-
-
-
-
-    cite {
-
-    }
-
-
-  }
-}
-
 .customer-video-thumb, .dysi-video-thumb {
 
   @include aspect-ratio(16,9);
@@ -84,7 +67,15 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-
+  .video-panel {
+    display: block;
+    @include bp(m) {
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+  }
   .full-gradient,
   .left-gradient,
   .right-gradient {
@@ -131,57 +122,7 @@
     h2 {
       color: $white;
     }
-    p {
-      font-size: 24px;
-      line-height: 36px;
-      letter-spacing: 0.5px;
-      font-weight: 500;
-      font-style: italic;
-      position: relative;
-      padding-left: $gutter-width*2.5;
-      text-align: left;
-      margin: 0 0 $gutter-width;
-
-      &::before {
-        display: block;
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        content: "\201C";
-        font-size: 90px;
-        color: $white;
-        font-family: "Times",serif;
-      }
-      &.no-quote {
-        &::before {
-          display:none;
-        }
-        font-style: normal;
-      }
-    }
-    cite {
-      margin-top: $gutter-width;
-      font-style: normal;
-      font-size: 14px;
-      line-height: 30px;
-      font-weight: 300;
-      padding-left: $gutter-width*2.5;
-      display: block;
-      margin-right: $gutter-width;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-align: left;
-      color: $white;
-      position:relative;
-      .name {
-        display: block;
-      }
-
-      .title {
-        display: block;
-        font-style: italic;
-      }
-    }
+    
     .button {
       margin: $gutter-width 0 0 $gutter-width*2.5;
       z-index: auto!important;

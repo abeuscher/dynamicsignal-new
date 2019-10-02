@@ -5,8 +5,6 @@
   padding-bottom:$gutter-width;
   h1 {
     padding-top:2em;
-    color:$white;
-    text-transform:none;
   }
   .pc-image {
     display:none;
@@ -50,16 +48,10 @@
   }
 }
 .features-section {
-  padding-bottom:0;
   padding-top:$gutter-width*3;
   h2 {
-    color:$blue;
-    font-size:24px;
-    font-weight:400;
+
     &.features-section-header {
-      font-size:34px;
-      font-weight:700;
-      background:$white;
       position:relative;
       display:flex;
       margin:.5em 0 .25em;
@@ -78,9 +70,6 @@
     }
   }
   .feature-block-cta {
-    color:$orange;
-    font-weight:700;
-    text-decoration: underline;
     display:flex;
     margin-top:$gutter-width;
     margin-bottom:$gutter-width;
@@ -93,10 +82,6 @@
       margin-right:.5em;
     }
   }
-  .features-section-copy {
-    //font-size:20px;
-    //line-height:1.4;
-  }
   ul.feature-bullets {
     list-style:none;
     margin:0;
@@ -106,9 +91,12 @@
       .content {
         max-height:0;
         overflow:hidden;
-        padding-left:1em;
-        transition:all 0s;
+        margin-left:30px;
+        transition:all .1s;
         font-size:14px;
+        p:first-child {
+          margin-top:0;
+        }
         ul {
           list-style:disc;
           display:flex;
@@ -124,18 +112,15 @@
         color:$blue;
         font-weight:700;
         position:relative;
-        padding-left:1em;
+        margin-left:30px;
         line-height:2;
-        &:before {
-          content: '\276F';
-          left:0;
-          font-size:.9em;
-          top:-.2em;
+        cursor:pointer;
+        .icon {
+          @include arrow-in-circle($size:25px);
           position:absolute;
-          transition:transform .15s ease-in;
-        }
-        &:hover {
-          cursor:pointer;
+          left:-30px;
+          top:0;
+          transition:transform .1s ease-out;
         }
       }
       input {
@@ -145,7 +130,7 @@
             max-height:100vh;
             transition:all .35s;
           }
-          ~ label:before {
+          ~ label .icon {
             transform:rotate(90deg);
           }
         }
@@ -177,6 +162,13 @@
         flex-basis:50%;
         flex-shrink:1;
       }
+      &.text-col {
+        .ext-link {
+          margin-left:30px;
+          padding-top:$gutter-width;
+          display:block;
+        }
+      }
     }
   }
   .features-image {
@@ -192,6 +184,9 @@
     
   }
 }
+.features-bottom-section {
+  margin-top:$gutter-width*2;
+}
 .features-bottom {
   display:flex;
   justify-content: space-between;
@@ -206,9 +201,6 @@
     text-align:center;
     h2, p {
       color:$black;
-    }
-    h2 {
-      font-size:24px;
     }
     p {
       text-align:left;

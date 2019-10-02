@@ -1,4 +1,5 @@
-header.page-header#page-header
+- var className = homepage == true ? "homepage page-header" : "page-header";
+header#page-header(class=className)
   :php
     global $post;
     $post_slug=$post->post_name;
@@ -71,7 +72,7 @@ header.page-header#page-header
         li
           a(href="/careers/") Careers
         li
-          a(href="events/") Events
+          a(href="/events/") Events
         li
           a(href="/partners/") Partners
       :php

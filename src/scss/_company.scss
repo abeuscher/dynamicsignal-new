@@ -89,47 +89,19 @@ section.company-sitemap {
                 flex-basis:33%;
             }
             .icon {
+                @include arrow-in-circle($background-color:$white,$border-color:$menu-blue);
                 display:none;
-                width:25px;
-                height:25px;
-                background:$white;
-                border-radius:50%;
-                background-size:contain;
                 position:absolute;
                 left:-40px;
                 top:16px;
-                &:after {
-                  content:'';
-                  display:block;
-                  position:absolute;
-                  border:6px solid transparent;
-                  //transform:rotate(45deg);
-                  border-left-color:$white;
-                  top:7px;
-                  left:9px;
-                }
-                &:before {
-                  content:'';
-                  display:block;
-                  position:absolute;
-                  border:6px solid transparent;
-                  //transform:rotate(45deg);
-                  border-left-color:$menu-blue;
-                  top:7px;
-                  left:11px;
-                }
                 @include bp(m) {
                     display:inline-block;
                 }
               }
             .top-copy {
                 padding:0 40px $gutter-width 0;
-                h2, p {
-                    color:$white;
-                }
                 h2 {
-                    font-size:1.3em;
-                    font-weight:bold;
+                    margin-top:10px
                 }
             }
             .cta {
@@ -138,7 +110,6 @@ section.company-sitemap {
                 a {
                     text-transform:uppercase;
                     text-decoration:none;
-                    color:$white;
                     &:after {
                         content:' >';
                     }

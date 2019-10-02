@@ -1,0 +1,34 @@
+.modal {
+    background: rgba(0,0,0,.7); z-index:999;
+  }
+  .modal-dialog {
+    margin: 100px auto; 
+    max-width: 70%; 
+    background: $black; 
+  position:relative;
+  .blog-content {
+    padding:0;
+  }
+  .modal-hide {
+    border:none;
+    color:$white;
+    background:transparent;
+    font-size:3.5em;
+    position:absolute;
+    padding:0;
+    right:0;
+    top:-1.1em;
+    outline:none;
+    &:active {
+      outline:none;
+    }
+    &:hover {
+      color:$lighter-gray;
+    }
+  }
+  }
+  .modal-show {
+    &:hover {
+      cursor:pointer;
+    }
+  }

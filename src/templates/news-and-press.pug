@@ -9,25 +9,12 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Company",
-      "link"=>"/company/"
-    ));
-  -
-    var pageData = {
-    "header":"Solutions",
-    "subheader":"For Every Department in the Enterprise"
-    };
-  section.top-section-interior
-    .container 
+  section#sticky-header.hero-with-bg(data-bg="generic-hero-bg.jpg")
+    .container
       .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug  
-          h1!=pageData.header
-          h2!=pageData.subheader
-  section
+        .col-md-6
+          h1.white!="News & Press"
+  section.white-bg-section.padding-both
     .container
       .row
         .col-md-12.news-streams
@@ -38,7 +25,7 @@ block content
             // Uberflip Embedded Hub Widget
             #UfEmbeddedHub1556219787135  
           a.view-link(href="https://resources.dynamicsignal.com/news-room") View All News
-          hr
+          hr.blue-separator
           h2
             a(href="https://resources.dynamicsignal.com/press-coverage") Press Coverage        
           .uber-embed.press
