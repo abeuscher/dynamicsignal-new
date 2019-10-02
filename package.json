@@ -1,6 +1,6 @@
 {
-  "name": "ds-new-preprocessor",
-  "version": "0.0.0",
+  "name": "dynamic-signal-com",
+  "version": "4.0.0",
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
