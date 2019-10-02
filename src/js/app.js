@@ -1,5 +1,3 @@
-require("dom4");
-require("fetch-ie8");
 require("./utils/remove-class.js");
 
 var Flickity = require("flickity");
