@@ -97,6 +97,9 @@ a {
     }
   }
 }
+.no-margin {
+  margin:0;
+}
 .hide {
   display: none !important;
 }
@@ -147,8 +150,11 @@ a {
   }
 }
 .margin-top-header {
-  margin-top:$nav-tall;
+  margin-top:$nav-short;
   @include ds-transition();
+  @include bp(s) {
+    margin-top:$nav-tall;
+  }
 }
 .padding-top-header {
   padding-top:60px;
@@ -549,6 +555,7 @@ ul.side-list {
   }
   h2 {
     font-weight:300;
+    margin-top:$gutter-width;
   }
   h2,
   h3 {
@@ -589,7 +596,7 @@ ul.side-list {
 .story-tile-link {
   display: block;
   transition: 0.25s all ease-in;
-  height: 90%;
+  height: 80%;
   &.blog-front {
     border-bottom: 1px solid $middle-gray;
     .featured-thumb {
@@ -614,11 +621,18 @@ ul.side-list {
   &.sdr-page {
     height: 100%;
   }
+  &.home-page {
+    height:auto;
+    margin-bottom:$gutter-width;
+  }
   h3,
   h4,
   p,
   ul {
-    padding: 0 $gutter-width/2;
+    @include bp(m) {
+      padding: 0 $gutter-width/2;
+    }
+   
   }
   &.no-header {
     height: 100%;
@@ -630,6 +644,7 @@ ul.side-list {
     font-size:16px;
     line-height:1.4;
     margin-top:$gutter-width/3;
+    padding-bottom:$gutter-width/2;
   }
   .featured-thumb {
     &:after {
@@ -644,15 +659,17 @@ ul.side-list {
       background: rgba(0, 0, 0, 0);
     }
   }
-
+  .blog-featured-bucket {
+    padding-bottom:$gutter-width;
+  }
   &:hover {
     @include bp(m) {
-      background: $light-gray;
+      background: rgba(0, 0, 0, 0.05);
       color: $black;
       .featured-thumb {
         &:after {
           color: $white;
-          background: rgba(0, 0, 0, 0.6);
+          background: rgba(0, 0, 0, 0.5);
         }
         h1 {
           color: rgba(255, 255, 255, 0.5);
@@ -880,6 +897,12 @@ section.fullpic {
           h1, p {
             color:$white;
           }
+          h1 {
+            margin-bottom:0em;
+          }
+          p {
+            margin-top:.25em;
+          }
           @include bp(s) {
             h1, p {
               color:$off-black;
@@ -887,7 +910,7 @@ section.fullpic {
             padding: 100px $gutter-width 50px;
           }
           @include bp(m) {
-            padding: 300px $gutter-width 250px;
+            padding: 18vw $gutter-width 250px;
           }
       }
     }
@@ -1072,6 +1095,7 @@ ul.copy-points {
     a {
       width: 100%;
       display: flex;
+      font-family:$nav-font;
     }
     .icon {
       @include arrow-in-circle($background-color:$orange,$border-color:$white);
@@ -1170,4 +1194,9 @@ hr.blue-separator {
   top:100px;
   left:0;
   z-index:9999;
+}
+.form-warning {
+  margin-top:-4em;
+  background:$white;
+  padding:1em;
 }

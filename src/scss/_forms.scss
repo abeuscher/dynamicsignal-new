@@ -30,6 +30,11 @@ $mf-transition-speed: 0.28s !default;
   padding: $gutter-width/2 $gutter-width;
   border-radius: 1px;
   &.blue-form {
+    padding:0;
+    form {
+      padding: $gutter-width/2 $gutter-width $gutter-width!important;
+    }
+    
     background:$blue;
     color:$white;
     &::before {

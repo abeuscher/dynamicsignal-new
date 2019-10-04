@@ -134,8 +134,10 @@ body.modal-open {
     .demo-video-bucket {
       margin:$gutter-width $gutter-width/2 $gutter-width*2;
       position:relative;
-      box-shadow: 3px 3px 15px rgba(0,0,0,.1);
+      background:rgba(0,0,0,0);
+      box-shadow: 3px 3px 15px rgba(0,0,0,0);
       padding:$gutter-width;
+      @include ds-transition();
       //border-bottom:none;
       .outer {
         position:absolute;
@@ -146,11 +148,45 @@ body.modal-open {
         z-index:0;
 
       }
-      .button-wrapper {
-        position: relative;
-
-        width:100%;
-        text-align: center;
+      .inner {
+        .icon {
+          opacity:0;
+          @include ds-transition();
+          position: absolute;
+          top: 20%;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          text-align: center;
+          font-size: 4em;
+          color:$blue;
+          p {
+            font-weight:bold;
+          }
+        }
+      }
+      img.gif-thumb {
+        position:relative;
+        max-width:100%;
+        margin-bottom:$gutter-width/2;
+      }
+      h3 {
+        margin-bottom:$gutter-width/3;
+      }
+      p {
+        margin:0 0 $gutter-width/3;
+      }
+      &:hover {
+        h3, p {
+          color:$header-blue;
+        }
+        background:rgba(0,0,0,.05);
+        box-shadow: 3px 3px 15px rgba(0,0,0,.3);
+        .inner {
+          .icon {
+            opacity:1;
+          }
+        }
       }
     }
     @include bp(m) {
@@ -158,11 +194,6 @@ body.modal-open {
       align-content: space-between;
       .demo-video-bucket {
         flex-basis:33%;
-        .button-wrapper {
-          position: absolute;
-          bottom:$gutter-width/2;
-          left:0;
-        }
 
       }
     }
@@ -254,46 +285,15 @@ body.modal-open {
 }
 
 section.home-featured-article {
-  background:$white;
-  display:flex;
-  .bg {
-    display:block;
-    height:auto;
-    flex-shrink:1;
-    flex-grow:1;
-    background:url($img-path + "bgarticle.jpg") repeat-y top right;
-    background-size:cover;
-    &.right {
-      transform:rotateY(180deg);
-    }
-  }
-  .content {
-    max-width:1146px;
-    flex-basis:100%;
-    border-radius:20px 20px 0 0;
-    box-shadow:0 -5px 10px rgba(0,0,0,.1);
-    background:white;
-    border:5px solid #ccc;
-    padding:$gutter-width;
-    margin-top:$gutter-width;
-    border-bottom:none;
-    .fa {
-      margin-right:.5em;
-      color:$canary-blue;
-    }
-  }
-  article {
-    .home-featured-thumb {
-      @include aspect-ratio(13,3);
-      width:100%;
-      background-size:cover;
-    }
-    h3 {
-      margin-top:$gutter-width/3;
-    }
+  //background:$blue-gradient-top;
+  padding:$gutter-width*3 0;
+  position:relative;
+  .story-tile-link {
+    height:110%;
   }
 }
 .home-featured-ebook {
+
   position:relative;
   background:url($img-path + "bg-home-orangecrush.jpg") no-repeat left center;
   background-size:cover;

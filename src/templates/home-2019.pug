@@ -11,6 +11,54 @@ block nav
   include ./inc/header.pug
 block content
   :php
+    $featured_ids = [];
+    $args = array(
+      'posts_per_page' => 1,
+      'orderby'    => 'post_date',
+      'order'      => 'DESC',
+      'ignore_sticky_posts'=>1,
+      'meta_query' => array(
+        array(
+          'key' => 'front_page_featured_entry',
+          'value' => 'true'
+        )
+      )
+    );
+    $query = new WP_Query($args);
+    if ($query->have_posts()) {
+      $featured = $query->posts[0];
+      array_push($featured_ids,$featured->ID);
+    }
+    $parent_category = "blog-categories";
+    $category_entries = array(
+      [
+        "name"=>"Best Practices",
+        "slug"=>"best-practices"
+        ],
+      [
+        "name"=>"Customer Stories",
+        "slug"=>"customer-stories"
+        ],
+      [
+        "name"=>"DySi News & Culture",
+        "slug"=>"news-and-culture"
+        ]
+    );
+    $categories = ["best-practices","customer-stories","news"];
+    
+    $filtered_posts = [];
+    foreach ($category_entries as $key=>$category) {
+      $query = new WP_Query( array( 'post__not_in' => $featured_ids, 'category_name' => $parent_category.'+'.$category["slug"],'post__in'  => get_option( 'sticky_posts' ),'ignore_sticky_posts' => 0,'posts_per_page' => 1) );
+      if ($query->have_posts()) {
+        array_push($filtered_posts,array("category"=>$category,"post"=>$query->posts[0]));  
+        array_push($featured_ids,$query->posts[0]->ID);
+        }
+      else {
+        $query = new WP_Query( array( 'category_name' => $parent_category.'+'.$category["slug"],'posts_per_page' => 1) );
+        array_push($filtered_posts,array("category"=>$category,"post"=>$query->posts[0])); 
+        array_push($featured_ids,$query->posts[0]->ID);
+        }  
+    }
     echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
     .", 'hero_words':".json_encode(get_field('header_animated_words'))."};</script>";
     printf("<section class='homepage fullpic no-padding'><div class='header-bg' data-bg-array='%s'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("header_hero_bg"), JSON_UNESCAPED_SLASHES),json_encode(get_field("header_hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
@@ -56,10 +104,13 @@ block content
                   echo get_field("carousel_source");
   section.demo-home.padding-top
     .container
-      .demo-video-wrapper
+      .demo-video-wrapper#demo-hover-box
         :php
           foreach (get_field("demo_video_buckets") as $key=>$bucket) {
-            printf("<div class='demo-video-bucket'><a href='%s'><div class='outer'></div><div class='inner'><h3 class='text-center'>%s</h3><p class='padding-bottom'>%s</p></div></a></div>", $bucket["cta_target"],$bucket["subhead"], $bucket["copy"]);
+            printf("<link rel='prefetch' url='%s'>",$bucket["image_animated"]);
+          }
+          foreach (get_field("demo_video_buckets") as $key=>$bucket) {
+            printf("<a href='%s' class='demo-video-bucket'><div class='outer'></div><div class='inner'><img class='gif-thumb' src='%s'  data-gif='%s' /><div class='icon'><span class='fa fa-play-circle-o'></span></div><h3 class='text-center'>%s</h3><p>%s</p></div></a>", $bucket["cta_target"],$bucket["image_static"], $bucket["image_animated"],$bucket["subhead"], $bucket["copy"]);
           }
   section.home-featured-ebook
     .container
@@ -69,11 +120,19 @@ block content
           printf("<div class='home-ebook-thumb' data-bg-array='%s'></div>", json_encode($ebook["image"], JSON_UNESCAPED_SLASHES));
       .col-md-6
         :php
-          printf("<h2 class='text-white'>%s</h2><p class='text-white'>%s</p><a class='white button' href='%s'>%s</a>", $ebook["title"], $ebook["description"], $ebook["cta_link"], $ebook["cta_label"]);  
-  section.home-featured-article.white-bg-section.no-padding
-    .bg.left
-    .content
-        :php
-          $featured = get_field("featured_item");
-          printf("<h2><span class='fa fa-star'></span>%s</h2><article role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><div class='home-featured-thumb' data-bg-array='%s'></div><h3 itemprop='headline'>%s</h3><a class='orange button' href='%s' itemprop='url'>%s</a></article>", $featured["section_title"], json_encode($featured["image"], JSON_UNESCAPED_SLASHES), $featured["item_title"], $featured["cta_link"], $featured["cta_label"]);
-    .bg.right
+          printf("<h3 class='text-white'>%s</h3><p class='text-white'>%s</p><a class='white button' href='%s'>%s</a>", $ebook["title"], $ebook["description"], $ebook["cta_link"], $ebook["cta_label"]);  
+  section.home-featured-article
+    .container
+      .row  
+        .col-md-12
+          h3 Featured Blogs
+      .row
+        .col-md-12
+          .even-height-wrapper
+            :php
+              foreach($filtered_posts as $key=>$post) {
+              $p = $post["post"];
+              $c = $post["category"];
+              $thumb = get_the_post_thumbnail_url($p);
+              printf("<div class='col-3'><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article' class='blog-featured-bucket'><a class='story-tile-link' href='%s' itemprop='url'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>%s</li></ul><h3 itemprop='title'>%s</h3></a></article></div>",get_the_ID(), $p->post_name, $thumb, $c["name"], $p->post_title);  
+              }

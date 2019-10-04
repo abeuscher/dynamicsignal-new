@@ -47,6 +47,7 @@ $icon-2:$medium-blue;
 $icon-3:$dark-shade;
 $icon-4:$brown;
 $blue-gradient:linear-gradient(135deg, rgba(0,158,255,1) 0%,rgba(50,57,84,1) 100%);
+$blue-gradient-top:linear-gradient(90deg, rgba(0,158,255,1) 0%,rgba(50,57,84,1) 100%);
 
 //colors
 $body-bg-color:linear-gradient(90deg, rgb(41, 44, 99) 0%, rgb(54, 64, 125) 100%);
@@ -58,7 +59,7 @@ $header-color:$blue;
 //fonts
 $body-font:'Source Serif Pro', sans-serif;
 $header-font:'Merriweather', sans-serif;
-$nav-font:$body-font;
+$nav-font:'Lato', sans-serif;
 
 $top-margin:80px;
 $nav-height:50px;
