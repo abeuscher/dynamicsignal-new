@@ -1136,6 +1136,7 @@ function triggerGDPR() {
   if (!Cookies.get(siteSettings.gdprCookie)) {
     var warning = parseHTML(siteSettings.templates.gdprPopup());
     document.body.appendChild(warning);
+    document.body.classList.add("gdpr-popup");
     var yesButton = document.getElementById("btn-yes");
     var noButton = document.getElementById("btn-no");
     yesButton.addEventListener("click", function (e) {
@@ -1145,6 +1146,7 @@ function triggerGDPR() {
         domain: domain
       });
       warning.remove();
+      document.body.classList.remove("gdpr-popup");
       return false;
     });
     window.addEventListener("click", startTheTracking);

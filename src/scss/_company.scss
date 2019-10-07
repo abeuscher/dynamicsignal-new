@@ -3,6 +3,16 @@ section.fullpic.company-hero {
     .inner .col-half.bg {
         margin-top:120px;
     }    
+    .inner .col-half.text {
+        h1 {
+            color:$white;
+        }
+        @include bp(s) {
+            h1 {
+                color:$off-black;
+            }
+        }
+    }
 }
 section.company-proof {
     background-size:cover;

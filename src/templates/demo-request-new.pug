@@ -1,0 +1,56 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Demo Request Form 2019
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+    :php
+        printf("<section class='fullpic bigtext no-padding demo-hero'><div class='header-bg'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
+        printf("<div class='inner'>");
+    .col-half.text
+        h1.white
+            :php
+                echo get_field("hero_text");
+    :php
+        printf("<div class='col-half bg' data-bg-array='%s'></div>",json_encode(get_field("hero_product_image"), JSON_UNESCAPED_SLASHES));
+    :php
+        echo "</div></section>";
+    section.signup-form-bucket.white-bg-section.padding-both
+        .container
+            .row
+                .col-md-6
+                    h2 Your Employee Communication and Engagement Platform
+                    p Fill out this form and a member of our sales team will help you to learn how Dynamic Signal can:
+                    ul.demo-list.fa-ul
+                        li
+                            i.fa-li.fa.fa-check
+                            | Keep employees informed
+                        li
+                            i.fa-li.fa.fa-check
+                            | Increase engagement
+                        li
+                            i.fa-li.fa.fa-check
+                            | Retain your top talent
+                        li
+                            i.fa-li.fa.fa-check
+                            | Boost productivity
+                        li
+                            i.fa-li.fa.fa-check
+                            | Empower advocacy
+                .col-md-6
+                    script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
+                    #marketo-form-wrapper.blue-form
+                        form.marketo-blue.blue-form#mktoForm_1163
+                        script.
+                            var validateCorporateEmail = true;
+                    p.form-warning.warning
+                        span.asterisk *
+                        |  If a form doesn’t appear, please pause or disable your Ad Blocker in your browser and reload this page.
+                    p.warning
+                        span.asterisk *
+                        |  all fields are required.

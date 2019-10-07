@@ -149,24 +149,31 @@ body.modal-open {
 
       }
       .inner {
+        .img-bucket {
+          position:relative;
+        }
+       
         .icon {
-          opacity:0;
+          opacity:1;
           @include ds-transition();
           position: absolute;
-          top: 20%;
+          top:0;
           right: 0;
           left: 0;
           bottom: 0;
           text-align: center;
           font-size: 4em;
           color:$blue;
+          display:flex;
+          align-items:center;
+          justify-content:center;
           p {
             font-weight:bold;
           }
         }
       }
       img.gif-thumb {
-        position:relative;
+        width:100%;
         max-width:100%;
         margin-bottom:$gutter-width/2;
       }
