@@ -307,8 +307,8 @@ section.home-featured-article {
   background:url($img-path + "bg-home-orangecrush.jpg") no-repeat left center;
   background-size:cover;
   padding:$gutter-width*3 0;
-  h2 {
-    margin:0;
+  h3 {
+    margin:2em 0 0;
   }
   .home-ebook-thumb {
     @include aspect-ratio(10,6);
