@@ -152,7 +152,7 @@ body.modal-open {
         .img-bucket {
           position:relative;
         }
-       
+        text-align:center;
         .icon {
           opacity:1;
           @include ds-transition();
@@ -201,7 +201,9 @@ body.modal-open {
       align-content: space-between;
       .demo-video-bucket {
         flex-basis:33%;
-
+        .inner {
+          text-align:left;
+        }
       }
     }
   }

@@ -16,7 +16,8 @@ header#page-header(class=className)
       $page_classes[] = ($key == $post_slug) ? $key." active" : $key;
     }
   nav(class="main")
-    a.logo-bucket(href="/",data-bg="logo-header.png")
+    a.logo-bucket(href="/")
+      img(src="/wp-content/themes/ds-new/images/logo-header.png")
     ul.hmenu.top-nav
       :php
         printf("<li class='has-drop %s'>", $page_classes[0]);
