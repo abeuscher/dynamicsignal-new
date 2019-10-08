@@ -30,6 +30,11 @@ $mf-transition-speed: 0.28s !default;
   padding: $gutter-width/2 $gutter-width;
   border-radius: 1px;
   &.blue-form {
+    padding:0;
+    form {
+      padding: $gutter-width/2 $gutter-width $gutter-width!important;
+    }
+    
     background:$blue;
     color:$white;
     &::before {
@@ -564,5 +569,18 @@ $mf-transition-speed: 0.28s !default;
       width: 20%!important;
     }
 
+  }
+}
+.mktoForm label.mktoLabel[for="Marketing_Opt_in__c"] {
+  margin-left:50px;
+  width:420px!important;
+  line-height:1.4;
+  &~ .mktoLogicalField {
+    width:50px!important;
+    margin-top:-50px!important;
+  }
+  a {
+    color:$white;
+    text-decoration: underline;
   }
 }

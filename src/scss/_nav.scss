@@ -46,12 +46,15 @@
   width:$side-nav-width;
   #btn-close-sidenav {
     position:absolute;
-    top:74px;
-    right:32px;
+    top:16px;
+    right:28px;
     font-size:3em;
     width:26px;
     height:29px;
     padding-top:14px;
+    @include bp(s) {
+      top:28px;
+    }
   }
   .inner {
     &>* {
@@ -103,7 +106,7 @@
 body.nav-short {
   .side-nav {
     #btn-close-sidenav {
-      top:54px;
+      top:16px;
     }  
     .inner {
       padding-top:100px;
@@ -161,6 +164,41 @@ body.nav-open {
       .button, button {
         padding:0;
       }
+    }
+  }
+}
+.hamburger {
+  position: relative;
+  width: 26px;
+  height: 25px;
+  .line {
+    width: 26px;
+    height: 3px;
+    background: $black; 
+    border-radius: 3px;
+    position: absolute;
+    transition: transform 0.25s ease-out;
+    &.top {
+      transform: translateY(-8px);
+    }
+    &.bottom {
+      transform: translateY(8px);
+    }
+  }
+  &.active {
+    .line.middle {
+      opacity: 0;
+    }
+    .line.top {
+      transform: rotate(45deg);
+    }
+    .line.bottom {
+      transform: rotate(-45deg);
+    }
+  }
+  &:hover {
+    .line {
+      background: $blue;
     }
   }
 }

@@ -1,0 +1,51 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Past Events Page
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  :php
+    $all_events = [];
+    $args = array( 'post_type' => 'event', 'posts_per_page' => 100 );
+    $events = new WP_Query( $args );
+    function new_excerpt_more( $more ) {
+        return '';
+    }
+    add_filter('excerpt_more', 'new_excerpt_more');
+    if( $events->have_posts() ):
+        while( $events->have_posts() ):
+          $start_date = get_field( 'event_start_date' );
+          $events->the_post();
+          array_push($all_events, array(
+          "title"=>get_the_title(),
+          "start_month"=>date("F", strtotime($start_date)),
+          "start_date"=>$start_date,
+          "start_day"=>date("j", strtotime($start_date)),
+          "start_year"=>date("Y", strtotime($start_date)),
+          "start_time"=>get_field( 'event_start_time' ),
+          "finish_date"=>get_field( 'event_end_date' ) ,
+          "thumb"=>get_field('ds_event_thumbnail'),
+          "btn_text"=>get_field('ds_button_text'),
+          "btn_url"=>get_field( 'ds_button_url' ),
+          "description"=>get_the_content(),
+          "webinar_highlights_link"=>get_field( 'webinar_highlights_link' ),
+          "webinar_recording_link"=>get_field( 'webinar_recording_link' ),
+          "excerpt"=>get_the_excerpt(),
+          "type"=>get_field( 'ds_event_type' ),
+          "url"=>get_permalink(),
+          "location"=>get_field( 'ds_event_location' )
+          ));
+        endwhile;
+    endif;
+
+    echo "<script>var pageData = {'events':".json_encode($all_events,JSON_UNESCAPED_SLASHES)
+    ."};</script>";
+  section.events-list.container.margin-top-header.padding-top-header
+    .row
+      .col-md-12.events
+        #past-events-full

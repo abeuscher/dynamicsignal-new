@@ -27,12 +27,12 @@ block content
       $start_date = get_field( 'event_start_date' );
       $parent_title = get_field('ds_event_type') == "cswebinar" ? "Webinars" : "Events";
       $parent_url = get_field('ds_event_type') == "cswebinar" ? "/webinars/" : "/events/";
-  section.top-section-interior.event-header
+  section.margin-top-header.padding-bottom
     .container
       .row
         .col-md-12
           include ./inc/breadcrumbs.pug
-  section
+  section.padding-both
     .container
       .row
         .col-md-12

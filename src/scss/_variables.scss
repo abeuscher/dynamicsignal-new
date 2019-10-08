@@ -30,6 +30,7 @@ $blue:#056fb0;
 $light-blue:#009EFF;
 $header-blue:#026daf;
 $canary-blue:#8fcef4;
+$fun-blue:#66c5ff;
 $bullet-gray:#d7d7d7;
 $menu-blue:#1b3152;
 $classic-gray:#666666;
@@ -39,12 +40,14 @@ $another-gray:#4a4a4a;
 $lighter-gray:#f5f5f5;
 $middle-gray:#cdcdcd;
 $orange:#ff9f15;
+$light-orange:#f8c689;
 
 $icon-1:$light-blue;
 $icon-2:$medium-blue;
 $icon-3:$dark-shade;
 $icon-4:$brown;
 $blue-gradient:linear-gradient(135deg, rgba(0,158,255,1) 0%,rgba(50,57,84,1) 100%);
+$blue-gradient-top:linear-gradient(90deg, rgba(0,158,255,1) 0%,rgba(50,57,84,1) 100%);
 
 //colors
 $body-bg-color:linear-gradient(90deg, rgb(41, 44, 99) 0%, rgb(54, 64, 125) 100%);
@@ -54,9 +57,9 @@ $body-link-hover-color:$header-blue;
 $header-color:$blue;
 
 //fonts
-$body-font:'Roboto', sans-serif;
-$header-font:'Roboto Slab', sans-serif;
-$nav-font:'Roboto', sans-serif;
+$body-font:'Source Serif Pro', sans-serif;
+$header-font:'Merriweather', sans-serif;
+$nav-font:'Lato', sans-serif;
 
 $top-margin:80px;
 $nav-height:50px;

@@ -105,3 +105,122 @@ $mq-support:true;
 @mixin ds-transition() {
 	transition: 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
 }
+
+@mixin tooltip(
+        $tooltip-background-color: white,
+        $tooltip-arrow-base: 10px,
+        $tooltip-arrow-length: 5px,
+        $tooltip-border-width: 0,
+        $tooltip-border-color: transparent,
+        $tooltip-transition-out-duration: 0s
+    ) {
+  // Sizing and positioning
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  bottom: 100%; // displayed on top
+  margin-bottom: $tooltip-arrow-length;
+
+  // Text and color properties.
+  background-color: $tooltip-background-color;
+  text-align: center;
+
+  // Animated properties.
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, $tooltip-arrow-length);
+  transition: visibility 0s linear $tooltip-transition-out-duration,
+    opacity $tooltip-transition-out-duration ease-in 0s,
+    transform $tooltip-transition-out-duration ease-in 0s;
+
+  // Disable events.
+  pointer-events: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    // Draw a triangle.
+    border-top: ($tooltip-arrow-length - $tooltip-border-width) solid
+      $tooltip-background-color;
+    border-left: ($tooltip-arrow-base / 2 - $tooltip-border-width) solid
+      transparent;
+    border-right: ($tooltip-arrow-base / 2 - $tooltip-border-width) solid
+      transparent;
+    // Center the triangle.
+    margin-left: ($tooltip-border-width - $tooltip-arrow-base / 2);
+  }
+
+  // Specific styles when the tooltip has a border
+  @if $tooltip-border-width {
+    border: $tooltip-border-width solid $tooltip-border-color;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      // Draw another triangle to simulate a border.
+      border-top: $tooltip-arrow-length solid $tooltip-border-color;
+      border-left: ($tooltip-arrow-base / 2) solid transparent;
+      border-right: ($tooltip-arrow-base / 2) solid transparent;
+      // Center the triangle.
+      margin-left: ($tooltip-arrow-base / -2);
+    }
+  }
+}
+
+@mixin has-tooltip($tooltip-transition-in-duration: 0.3s) {
+  position: relative;
+  // Prevent the tooltip from being clipped by its container.
+  overflow: visible;
+
+  // Display the tooltip on hover and on focus.
+  &:hover,
+  &:focus, &.active {
+    .tooltip {
+      visibility: visible;
+      opacity: 1;
+      transform: translate(-50%, 0); // horizontally centered
+      transition: visibility 0s linear 0s,
+        opacity $tooltip-transition-in-duration ease-out 0s,
+        transform $tooltip-transition-in-duration ease-out 0s;
+    }
+  }
+}
+@mixin arrow-in-circle($size:25px,$background-color:$blue,$border-color:$white,$border-size:6px,$border-thickness:2px) {
+  position:relative;
+  display: inline-block;
+  width: $size;
+  height: $size;
+  background: $background-color;
+  border-radius: 50%;
+  background-size: contain;
+  flex-grow:0;
+  flex-shrink:0;
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border: $border-size solid transparent;
+    //transform:rotate(45deg);
+    border-left-color: $background-color;
+    top: round((($size - ($border-size * 2)) / 2));
+    left: round(($size - ($border-size + $border-thickness)) / 2);
+  }
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border: $border-size solid transparent;
+    //transform:rotate(45deg);
+    border-left-color: $border-color;
+    top: round((($size - ($border-size * 2)) / 2));
+    left: round(($size - ($border-size + $border-thickness)) / 2) + $border-thickness;
+  }
+}

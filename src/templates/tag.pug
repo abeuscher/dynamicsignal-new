@@ -22,7 +22,7 @@ block content
       "link"=>"/blog/"
     ));
     $override_title = "Tag : " . ucwords(single_tag_title( '', false ));
-  section.top-section-interior
+  section.margin-top-header
     .container
       .row
         .col-md-12
@@ -30,7 +30,7 @@ block content
           h1
             :php
               echo $override_title;
-  section
+  section.padding-both
     .container
       :php
         $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;

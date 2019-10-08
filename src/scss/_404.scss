@@ -1,0 +1,15 @@
+section.header-404 {
+    padding: 80px 0 0;
+    h1,
+    h2 {
+      padding: 0 $gutter-width;
+      @include bp(m) {
+        padding: 0;
+      }
+    }
+
+    img {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+  }

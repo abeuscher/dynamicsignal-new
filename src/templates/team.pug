@@ -16,14 +16,11 @@ block content
       "link"=>"/company/"
     ));
   :php
-    printf("<section class='halfpic' id='sticky-header'>");
-    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
-  .white-gradient-header
+    printf("<section id='sticky-header' class='hero-with-bg' data-bg='generic-hero-bg.jpg'>");
   .container
-      .row-flex
-          .col-half-flex.gray-bg-section
-              .inner
-                h1 Meet Our Team
+    .row
+      .col-md-6
+        h1.white Meet Our Team
   :php
     echo "</section>";   
   section.team-members.white-bg-section
@@ -33,7 +30,7 @@ block content
         foreach($sections as $section) {
       .row.team-header
         .col-md-12
-          h2
+          h2.text-center
             :php
               $type = trim($section["section_name"])=="Executives";
               echo $section["section_name"];
@@ -44,7 +41,7 @@ block content
                 foreach($section["people"] as $person) {
                   $target = strpos($person["linkedin_url"],"http")>-1 ? "_blank" : "_self";
                   $subhead = $type?$person["job_title"]:"<i class='fa fa-linkedin-square'></i>";
-                  printf("<a class='exec-thumb' href='%s' target='%s' data-bg-array='%s'><h3>%s</h3><h4>%s</h4></a>", $person["linkedin_url"], $target,json_encode($person["profile_picture"],JSON_UNESCAPED_SLASHES), $person["first_name"],$subhead);
+                  printf("<a class='exec-thumb' href='%s' target='%s' data-bg-array='%s'><h3 class='white'>%s</h3><h4>%s</h4></a>", $person["linkedin_url"], $target,json_encode($person["profile_picture"],JSON_UNESCAPED_SLASHES), $person["first_name"],$subhead);
                 } 
       :php
               }

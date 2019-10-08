@@ -12,6 +12,7 @@ function JobFilter(opts) {
       markActive(this);
       self.opts.jobList.sortList(0,false,JSON.parse(this.getAttribute("data-value")));
       self.opts.jobList.writeList();
+      document.getElementById("jobs").scrollIntoView({behavior:"smooth"});
     });
   }
   function markActive(el) {

@@ -9,25 +9,12 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Platform",
-      "link"=>"/product/"
-    ));
-  -
-    var pageData = {
-    "header":"Solutions",
-    "subheader":"For Every Department in the Enterprise"
-    };
-  section.top-section-interior
-    .container 
+  section#sticky-header.hero-with-bg(data-bg="generic-hero-bg.jpg")
+    .container
       .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug  
-          h1!=pageData.header
-          h2!=pageData.subheader
-  section
+        .col-md-6
+          h1.white Solutions
+  section.white-bg-section.padding-both
     .container
       .row
         :php

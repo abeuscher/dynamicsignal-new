@@ -84,7 +84,7 @@ videoHandler.prototype.buildMultiplayer = function(bucket) {
   }
 }
 videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
-  var self = this;
+  var self = this, pauseAction = false;
   if (self.panels) {
     var bottom = self.panels.length;
     Array.prototype.push(self.panels,panels);
@@ -103,7 +103,19 @@ videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
     if (!self.panels[i].player) {
       self.panels[i].player = new YouTubePlayer(self.panels[i].playerBucket, {videoId:self.panels[i].videoid,playerVars:{rel:0}}); 
     }   
+    if (gallery) {
+      gallery.on("select", function(e) {
+        pauseAction = true;
+      });
+      gallery.on("settle", function(e) {
+        pauseAction = false;
+      });
+
+    }
     self.panels[i].theHtml.addEventListener("click", function(e) {
+      if (pauseAction) {
+        return;
+      }
       e.preventDefault();
       var thisPanel = self.panels[this.getAttribute("data-panel-idx")];
       if (thisPanel.getAttribute("data-panel-event")!="") {

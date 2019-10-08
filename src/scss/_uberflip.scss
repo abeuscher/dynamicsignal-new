@@ -67,6 +67,12 @@
     width: 1170px!important;
   }
 }
+.uf-stream-template-banner {
+  .page-width {
+    margin-top:0!important;
+  }
+
+}
 .share-hub, .share-item {
     top: 315px;
   }
@@ -200,7 +206,34 @@ body.pseudo-fullscreen #page-header, body.pseudo-fullscreen #toggle-side-nav {
   }
 }
 body:not(.stream-banner-hide-top-nav) .uf-stream-banner-marketing .stream-banner {
-  margin-top:80px;
+  margin-top:130px;
+  .stream-banner-content {
+    z-index:3;
+  }
+  &:before {
+    content:'';
+    background:rgba(5,111,176,.7);
+    width:100%;
+    display:block;
+    position:absolute;
+    top:0;
+    bottom:0;
+    z-index:2;
+  }
+}
+@media (max-width: 860px) {
+  body.lab_top_menu:not(.stream-banner-hide-top-nav) .uf-stream-banner-marketing .stream-banner {
+    margin-top:130px;
+  }
+}
+@media (max-width: 640px) {
+  body.lab_top_menu:not(.stream-banner-hide-top-nav) .uf-stream-banner-marketing .stream-banner {
+    margin-top:90px;
+  }
+}
+h2.stream-banner-heading {
+  font-weight:normal;
+  text-shadow:none;
 }
 .entry-wrapper a {
   text-decoration:underline;

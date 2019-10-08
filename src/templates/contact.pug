@@ -9,42 +9,42 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  section.contact-map#map-container
+  section.contact-map#map-container.margin-top-header
     iframe#the-contact-map.embed-responsive-item(src='https://www.google.com/maps/d/u/0/embed?mid=12UcD-a29LLoAjqT2Gbbfr0U3NEVNG69l', width='100%', height='450', frameborder='0', style='border:0', allowfullscreen='')
-  section.contact-details.container
+  section.container.padding-bottom
     .row
-      .col-md-offset-1.col-md-5
+      .col-md-offset-1.col-md-5.contact-details
         p Looking for solutions?
             br
             | Check our
             a.click-here-tag(href='https://support.dynamicsignal.com/', target="_blank")!=" Knowledge Base"
             | .
-        h3 Dynamic Signal HQ
+        h2 Dynamic Signal HQ
         p 1111 Bayhill Drive, Suite 125
           br
           | San Bruno, CA 94066
         p 650.231.2550 tel
-        h3 New York:
+        h2 New York:
         p 230 Park Ave
           br
           | Suite 320
           br
           | New York, NY 10169
-        h3 Chicago:
+        h2 Chicago:
         p 125 S Clark St.
           br
           | Chicago, IL 60603
-        h3 Bellevue:
+        h2 Bellevue:
         p 500 108th Ave
           br
           | Bellevue, WA 98004
-        h3 London:
+        h2 London:
         p Unit 8, Baden Place
           br
           | Crosby Row, London SE1 1YW 
           br
           | United Kingdom
-        h3 Belfast:
+        h2 Belfast:
         p The Riverhouse
           br
           | 48-60 High St., Belfast
@@ -54,10 +54,10 @@ block content
         script(src='//app-ab04.marketo.com/js/forms2/js/forms2.js')
         #marketo-form-wrapper.blue-form
           form.marketo-blue#mktoForm_1064
-        p#required-warning
+        p.warning.form-warning
           span.asterisk *
           |  If a form doesn’t appear above, please pause or disable your Ad Blocker in your browser and reload this page.
-          br
+        p.warning
           span.asterisk *
           |  all fields are required.
         script.

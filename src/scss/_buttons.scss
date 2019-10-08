@@ -1,0 +1,94 @@
+.button {
+    text-align: center;
+    font-family:$nav-font;
+    display: inline-block !important;
+    line-height:2;
+    padding:0 $gutter-width/2;
+    transition: all 0.25s ease-in;
+    background: $blue;
+    color: $white;
+    z-index: 1;
+    position: relative;
+    border:1px solid $blue;
+    border-radius:6px;
+    &:hover {
+      background: $menu-blue;
+      color: $white;
+    }
+    &.knockout {
+      background:$white;
+      color:$header-blue;
+      border:1px solid $header-blue;
+      &:hover {
+        background: $header-blue;
+        color: $white;      }
+    }
+    &.white {
+      background:$white;
+      color:$header-blue;
+      border:1px solid $white;
+      &:hover {
+        background: lighten($gray,10%);
+      }
+    }
+    &.orange {
+      background:$orange;
+      border:1px solid $orange;
+      &:hover {
+        background:darken($orange,10%);
+      }
+    }
+    &.outline {
+      color:$white;
+      background:transparent;
+      border:1px solid $white;
+      &:hover {
+        color:$black;
+        background:$white;
+      }
+    }
+    .fa {
+      padding-left: 0.5em;
+    }
+    &.lock-bottom {
+      position:absolute;
+      bottom:$gutter-width/2;
+      margin-top:$gutter-width/2;
+    }
+  
+  
+    &.video {
+      display: inline-block !important;
+    }
+    &.small {
+      padding: 0.5em 1em;
+      font-size: 0.75em;
+      margin: 0 0.5em;
+      text-transform: lowercase;
+    }
+    &.apply {
+      margin-bottom:$gutter-width*2;
+    }
+  }
+  @keyframes radial-pulse {
+    0% {
+      box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.5);
+    }
+  
+    100% {
+      box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+  }
+
+  a.small-link {
+    font-size: 0.9em;
+    display: inline-block;
+    margin-left: 1em;
+    background:$header-blue;
+    color:$white;
+    padding:2px 6px;
+    &:hover {
+        background:$menu-blue;
+        color:$white;
+    }
+  }

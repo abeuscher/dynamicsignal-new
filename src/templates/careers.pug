@@ -15,15 +15,12 @@ block content
       "title"=>"Company",
       "link"=>"/company/"
     ));
-    printf("<section class='halfpic' id='sticky-header'>");
-    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
-  .white-gradient-header
+    printf("<section class='hero-with-bg' id='sticky-header' data-bg='generic-hero-bg.jpg'>");
   .container
-      .row-flex
-          .col-half-flex.gray-bg-section
-              .inner
-                h1 Join Our Team
-                p We build communication technology for the world's largest organizations.
+    .row
+      .col-md-6
+        h1.white Join Our Team
+          p.white We build communication technology for the world's largest organizations.
   :php
     echo "</section>";   
   :php
@@ -102,47 +99,46 @@ block content
     .",'categories':".json_encode($categories,JSON_UNESCAPED_SLASHES)
     .",'videos':".json_encode($videos,JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  section.careers-links.white-bg-section
+  section.white-bg-section#anchor-menu.platform-bullets
     .container.hidden-sm
       .row
-        ul.nav.careers-tabs
-          for link,key in pageData.menuLinks
-            if key == 0
-              li.active
-                a(href="#"+link.class,id="icon-"+link.class)=link.label
-            else
+        .col-md-12
+          ul.copy-points.careers-menu
+            for link,key in pageData.menuLinks
               li
-                a(href="#"+link.class,id="icon-"+link.class)=link.label
-  section#about.careers-about.white-bg-section
+                a(href="#"+link.class,id="icon-"+link.class)
+                  span.icon
+                  span.text=link.label
+  section#about.careers-about.white-bg-section.padding-both.career-target
     .container
       .row
         .col-md-12
-          h2!=pageData.aboutHeader
-          p!=pageData.aboutSubheader
+          h2.text-center!=pageData.aboutHeader
+          p.text-center!=pageData.aboutSubheader
       .row.careers-panes
         for pane in pageData.aboutPanes
           .col-md-3
             h3!=pane.title
             p!=pane.copy
-  section#video.white-bg-section
+  section#video.white-bg-section.padding-both.career-target
     #careers-video-carousel
-  section#culture.white-bg-section
+  section#culture.white-bg-section.padding-both.career-target
     .container
       .row.padding-bottom
         .col-md-12.col-center
-          h1!=pageData.cultureHeader
-          p.large-text!=pageData.cultureCopy
+          h2.text-center!=pageData.cultureHeader
+          p.text-center!=pageData.cultureCopy
       .row
         .col-md-12.instagram-bucket
           script(src='//lightwidget.com/widgets/lightwidget.js')
           iframe.lightwidget-widget(src='//lightwidget.com/widgets/6201cb655e565b53b883ae24489844c2.html', scrolling='no', allowtransparency='true', style='width: 100%; border: 0; overflow: hidden;')
-  section.job-listing-header.white-bg-section#jobs
+  section.job-listing-header.white-bg-section#jobs.padding-both.career-target
     .container
       .row
         .col-md-12.col-center
-          h1!=pageData.listingsHeader
-          h2!=pageData.listingsCopy
-  section.white-bg-section
+          h2.text-center!=pageData.listingsHeader
+          p.text-center!=pageData.listingsCopy
+  section.white-bg-section.padding-both
     .container
       .row
         .col-md-12

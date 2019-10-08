@@ -1,142 +1,44 @@
-#partners-logo-strip {
-  height:80px;
+.agency-content-top {
+  text-align:center;
 }
-
-/* Photo Banner */
-
-$logo-count: 10;
-$logo-width: 350px;
-$logo-height: 80px;
-.partners-testimonial-entry {
-  margin-bottom:$gutter-width;
-  border-top:1px solid $gray;
-  padding:$gutter-width 0;
-  .testimonial-thumb {
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    float:left;
-    margin-right:$gutter-width*2;
-
-  }
-  .testimonial-body {
-    font-weight:100;
-    font-size:17.5px;
-    line-height:1.25;
-    margin-bottom:$gutter-width/2;
-  }
-  .testimonial-speaker {
-    font-style:normal;
-    font-weight:600;
-    .name {
-
-    }
-    .title {
-
-    }
+#logo-partners-grid {
+  .flipper-wrapper {
+    margin-bottom:6em;
   }
 }
 
-
-.marquee-bucket {
-  width: 100%;
-  padding:0;
-  height: $logo-height;
-  overflow: hidden;
-  background:$white;
-  padding:$gutter-width 0;
-  box-sizing:content-box;
-}
-
-.marquee {
-  height: $logo-height;
-  width: ($logo-width * $logo-count);
-  margin-bottom: 5px;
-  font-size: 0;
-
-  img {
-    display:inline-block;
-    width:auto;
-    margin-bottom: $gutter-width;
-    margin-right: $gutter-width*4;
-    padding:0 $gutter-width*2;
-    height: $logo-height;
-    width: auto;
-    transition: all 0.5s ease;
-
-    &:hover {
-      transform: scale(1.2);
-    }
-    &:first-child {
-      animation: bannermove 30s linear infinite;
-    }
+.partners-third-section {
+  padding:$gutter-width*2 0;
+  .partners-pc-image {
+    @include aspect-ratio(553,374);
+    width:100%;
+    background-size:contain;
+    background-position:center center;
+    background-repeat:no-repeat;
   }
 }
-.partners-top {
-  .one-half {
-    width:50%;
-    float:left;
+section.partners-orange {
+  position:relative;
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  h2, p {
+    color:$white;
   }
 }
-.partners-header {
-  margin:0 0 $gutter-width*2;
-  font-size:24px;
-  line-height:1.5;
+.partners-diagram {
+  @include aspect-ratio(1087,387);
+  width:100%;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+  margin:$gutter-width 0;
 }
-
-/* Keyframe animations*/
-
-@keyframes "bannermove" {
-  0% {
-    margin-left: 0px;
-  }
-  100% {
-    margin-left: -2130px;
+.partners-section {
+  h2 {
+    margin-top:0;
   }
 }
-.agency-ebook {
-  overflow: hidden;
-  margin: 100px 0;
-  .one-fifth, .four-fifths {
-    text-align: center;
-  }
-
-  .four-fifths {
-    p {
-      background: #DFE0E1;
-      text-align: center;
-      margin-top: 60px;
-      padding: 25px;
-      font-size: 26px;
-      font-weight: 100;
-    }
-
-    .btn-blue {
-      display: block;
-      max-width: 350px;
-      margin: 20px auto 0;
-      padding: 15px;
-      font-size: 25px;
-      font-weight: 100;
-      background:$teal;
-      color:$white;
-      transition:all .25s ease-in;
-      &:hover {
-        background:darken($teal,20%);
-      }
-    }
-  }
-  @include bp(m) {
-    .one-fifth, .four-fifths {
-      display:inline-block;
-      vertical-align: middle;
-    }
-    .one-fifth {
-      width: 23%;
-    }
-
-    .four-fifths {
-      width: 73%;
-    }
-  }
+section.fullpic.partners-hero .header-bg {
+  background-position:right top;
 }

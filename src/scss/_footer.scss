@@ -5,6 +5,10 @@ footer {
   .container {
     padding-top:$gutter-width/2;
   }
+  font-family:$nav-font;
+  h1,h2,h3,p,li {
+    font-family:$nav-font;
+  }
 }
 .footer-top {
   padding-bottom:$gutter-width*2;
@@ -14,18 +18,12 @@ footer {
       margin-bottom:inherit;
     }
   }
-  .fa-glassdoor {
-    &:after {
-      content:url($img-path+"icon-glassdoor-sm.png");
-      width:25px;
-      position: absolute;
-    left: 3px;
-    top: 2px;
-    }
-  }
+
   a {
-    letter-spacing: 1px;
+    
     color:$classic-gray;
+    
+
     &:hover {
       color:$header-blue;
       text-decoration: underline;
@@ -37,9 +35,9 @@ footer {
   }
   h5 {
     margin: $gutter-width*1.5 0 $gutter-width/2;
-    font-size:1.2em;
-    font-family:$body-font;
-    font-weight:300;
+    font-size:18px;
+    font-family:$nav-font;
+    font-weight:700;
     letter-spacing:1px;
   }
   ul {
@@ -51,8 +49,9 @@ footer {
     }
     li {
       text-align: left;
+      margin-bottom:.5em;
       a {
-        line-height:1.8;
+        line-height:1.2;font-size:16px;
       }
     }
 
@@ -88,11 +87,58 @@ footer {
     }
   }
 }
+.footer-middle {
+  font-size:.8em;
+  .col-md-6.address-block {
+    text-align: right; 
+    padding-top:$gutter-width;
+  }
+  ul {
+    display:inline-block;
+    margin:$gutter-width 0; padding:0;
+    list-style:none;
+    li {
+      display:inline-block;
+      margin-left:.5em;
+      &.show-mobile {
+        @include bp(m) {
+          display:none;
+        }
+      }
+      &.hide-mobile {
+        display:none;
+        @include bp(m) {
+          display:inline-block;
+        }
+      }
+    }
+  }
+  .fa-glassdoor {
+    &:after {
+      content:url($img-path+"icon-glassdoor-sm.png");
+      width:25px;
+      position: absolute;
+    left: 0;
+    top: 2px;
+    }
+  }
+  .footer-app-buttons {
+    margin-top:$gutter-width;
+    img {
+      max-width:150px;
+    }
+  }
+}
 .logo-footer {
   width: 200px;
-  margin: 26px auto 1.5em;
+  margin: 0 auto;
 }
-
+.privacy-shield {
+  width: 150px;
+  height:auto;
+  margin: 0;
+  display:block;
+}
 .footer-bottom {
   padding:$gutter-width/2 0 50px;
   p {
@@ -115,9 +161,13 @@ footer {
 
   }
 }
+.footer-middle, .footer-bottom {
+  background:$gray;
+}
 ul.footer-app-buttons.hmenu {
   padding-top:$gutter-width;
   li {
+    display:block;
     @include bp(m) {
       width:45%;
       img {

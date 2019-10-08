@@ -1,4 +1,5 @@
-header.page-header#page-header
+- var className = homepage ? 'page-header homepage' : 'page-header';
+header#page-header(class=className)
   :php
     global $post;
     $post_slug=$post->post_name;
@@ -14,10 +15,9 @@ header.page-header#page-header
     foreach($pages as $key=>$page) {
       $page_classes[] = ($key == $post_slug) ? $key." active" : $key;
     }
-  #cta-bar
-  nav.main
+  nav(class="main")
     a.logo-bucket(href="/")
-      img#logo(src="https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/images/logo-header.png")
+      img(src="/wp-content/themes/ds-new/images/logo-header.png")
     ul.hmenu.top-nav
       :php
         printf("<li class='has-drop %s'>", $page_classes[0]);
@@ -27,8 +27,6 @@ header.page-header#page-header
           a(href="/features/") Features        
         li
           a(href="/services/") Services   
-        li
-          a(href="/integrations/") Integrations     
         li
           hr                    
         li
@@ -52,6 +50,8 @@ header.page-header#page-header
           a(href="https://resources.dynamicsignal.com/manufacturing") Manufacturing
         li
           a(href="https://resources.dynamicsignal.com/retail") Retail  
+        li
+          a(href="/agency/") Agency  
       :php
         echo "</li>";
         printf("<li class='has-drop %s'>", $page_classes[2]);
@@ -71,9 +71,15 @@ header.page-header#page-header
         li
           a(href="/careers/") Careers
         li
-          a(href="events/") Events
+          a(href="/events/") Events
         li
-          a(href="/agency/") Partners
+          a(href="/partners/") Partners
+        li
+          hr
+        li
+          a(href="/contact-us") Contact Us
+        li
+          a(href="https://support.dynamicsignal.com/") Support
       :php
         echo "</li>";
         printf("<li class='has-drop %s'>", $page_classes[4]);
@@ -83,27 +89,13 @@ header.page-header#page-header
           a(href="/blog/") Blog
         li
           a(href="/news-and-press") News & Press
+        li
+          a(href="/webinars") Webinars
       :php
         echo "</li>";
         printf("<li class='%s show-medium'>", $page_classes[5]);
       a.cta(href="/requestdemo/") Request a Demo
-      :php
-        echo "</li>";
-        if ($post_slug!="search") {
-      li.show-mobile
-        a#btn-search-header(href="#",title="search") 
-          span.fa.fa-search
-        #search-box-header
-          a#btn-close-search(href="#")!="&times;"
-          form.search-form(action='')
-            input.query#oi-query(type='text', placeholder="Enter Search Term")
-            button.submit(type="submit")
-              i.fa.fa-search
-            span#oi-spellcheck
-            span#oi-header
-      :php
-        }
-      li.show-mobile
+      li.show-mobile.hide-large
         a.hamburger#toggle-side-nav(href="#",title="menu")
           .line.top
           .line.middle

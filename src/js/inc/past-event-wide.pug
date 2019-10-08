@@ -1,0 +1,17 @@
+- var bg = locals.thumb ? locals.thumb.sizes.large : "";
+.row.event-listing
+  .col-md-12
+    .event-thumb.no-gradient(data-bg=bg)
+    .event-info
+      h2.bump!=locals.title
+      p      
+        span!=locals.start_month + " "
+        span!=locals.start_day + ", "
+        span!=locals.start_year
+      if locals.webinar_post_event_description
+        p!=locals.webinar_post_event_description
+      .buttons
+        if locals.webinar_recording_link
+          a.button(href=locals.webinar_recording_link) Full Recording
+        if locals.webinar_highlights_link
+          a.button(href=locals.webinar_highlights_link) Highlights

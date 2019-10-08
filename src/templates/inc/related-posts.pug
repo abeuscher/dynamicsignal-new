@@ -19,7 +19,7 @@
 	$my_query = new WP_Query($args);
 	if( $my_query->have_posts() ) {
 	while ($my_query->have_posts()) : $my_query->the_post();
-	echo '<h3><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>';
+	echo '<h4><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h4>';
 	endwhile;
 	}
 	wp_reset_query();
@@ -29,7 +29,7 @@
 		echo "<h2 class='header-right'>Recommended Content</h2>";
 		$target = $item["open_in_new_window"]=="yes" ? " target='_blank'" : "";
 		foreach($related as $key=>$item) {
-			echo "<h3><a href='".$item["item_url"]."' $target>".$item["item_title"]."</a></h3>";
+			echo "<h4><a href='".$item["item_url"]."' $target>".$item["item_title"]."</a></h4>";
 		}
 	}
 	if( has_tag() ) {
