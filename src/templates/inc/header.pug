@@ -15,8 +15,6 @@ header#page-header(class=className)
     foreach($pages as $key=>$page) {
       $page_classes[] = ($key == $post_slug) ? $key." active" : $key;
     }
-  #cta-bar
-  
   nav(class="main")
     a.logo-bucket(href="/",data-bg="logo-header.png")
     ul.hmenu.top-nav
