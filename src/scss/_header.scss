@@ -14,19 +14,21 @@ header.page-header {
       flex-basis: 80%;
       position: relative;
       display: inline-block;
-      max-height: 100%;
+      margin:0;
+      padding:0;
+      @include ds-transition();
+      height:$nav-short;
       img {
         @include ds-transition();
         height:$nav-short;
-        padding:6px 0 0 6px;
-      }
-      @include bp(s) {
-        img {
-          height:$nav-tall;
-        }
       }
       @include bp(s) {
         flex-basis:50%;
+        height:$nav-tall;
+        img {
+          height:$nav-tall;
+          padding:10px 0 10px 6px;
+        }
       }
       @include bp(l) {
         flex-basis:20%;
@@ -245,7 +247,9 @@ body.nav-short {
     padding-top:0;
     nav.main {
       .logo-bucket {
+        height:$nav-short;
         img {
+          padding:0;
           height:$nav-short;
         }
       }

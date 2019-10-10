@@ -135,4 +135,4 @@ block content
               $c = $post["category"];
               $thumb = get_the_post_thumbnail_url($p);
               printf("<div class='col-3'><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article' class='blog-featured-bucket'><a class='story-tile-link' href='%s' itemprop='url'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>%s</li></ul><h3 itemprop='title'>%s</h3></a></article></div>",get_the_ID(), $p->post_name, $thumb, $c["name"], $p->post_title);  
-              }
+              }            

@@ -100,8 +100,11 @@ ul.oi-results {
 }
 
 .search-form {
+  display:flex;
   input[type='text'] {
-    width:80%;
+    flex-basis:100%;
+    flex-grow:1;
+    flex-shrink:1;
     line-height:1.4;
     height:35px;
     text-indent:5px;
@@ -112,7 +115,7 @@ ul.oi-results {
     box-shadow:none;
   }
   button[type='submit'] {
-    width:20%;
+    width:50px;
     float:right;
     border:none;
     line-height:1.4;

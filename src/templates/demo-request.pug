@@ -10,7 +10,7 @@ block nav
   include ./inc/header.pug
 block content
   :php
-    printf("<section class='halfpic'>");
+    printf("<section class='halfpic margin-top-header'>");
     printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
   .white-gradient-header
   .container

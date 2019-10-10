@@ -5,11 +5,6 @@
       "class":"demo"
     },
     {
-      "title": "Try DySi Open",
-      "url": "/dysi-open/",
-      "class":"demo"
-    },
-    {
       "title": "Platform",
       "url": "/product/",
       "children": [
@@ -121,6 +116,10 @@
     {
       "title": "Support",
       "url": "https://support.dynamicsignal.com/"
+    },
+    {
+      "title": "Search",
+      "url": "/search/"
     }
   ];
   
@@ -130,14 +129,6 @@ aside.side-nav.right#side-nav
     .line.middle
     .line.bottom
   .inner
-    if showSearch!="hide"
-      #search-box-sidenav
-        form.search-form(action='')
-          input.query#oi-query(type='text', placeholder="Enter Search Term")
-          button.submit(type="submit")
-            i.fa.fa-search
-          span#oi-spellcheck
-          span#oi-header
     ul
       for item in navItems
         - 

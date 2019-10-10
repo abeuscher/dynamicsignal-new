@@ -13,11 +13,11 @@ block content
         printf("<section class='platform-header' data-bg-array='%s'>", json_encode(get_field("hero_bg_image"), JSON_UNESCAPED_SLASHES));
     .container
         .row
-            .col-md-5
+            .col-md-6
                 :php
                     printf("<h1 class='white'>%s</h1>", get_field("hero_text"));
                     printf("<a href='#' data-video-modal-id='%s' class='button white'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("cta_video_id"), get_field("cta_text"));
-            .col-md-7.platform-image-bucket
+            .col-md-6.platform-image-bucket
                 :php
                     printf("<div class='pc-image' data-bg-array='%s'></div><div class='mobile-image' id='platform-hero-phone' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES), json_encode(get_field("hero_phone_image"), JSON_UNESCAPED_SLASHES));
     :php
@@ -108,5 +108,5 @@ block content
         .container
             .row
                 .col-md-12
-                    p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal
+                    p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal.
                     a.button.cta.knockout(href="/requestdemo") Request Demo
