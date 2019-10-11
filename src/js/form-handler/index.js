@@ -150,12 +150,13 @@ FormHandler.prototype.fixForm = function() {
 
       }
       form.onSuccess(function(values, followUpUrl) {
-        //location.href = confirmationURL;
-        console.log("form submitted");
         if (self.settings.formSubmitCallbacks.length) {
           for (i=0;i<self.settings.formSubmitCallbacks.length;i++) {
             self.settings.formSubmitCallbacks[i]();
           }
+        }
+        else {
+          location.href = followUpUrl;
         } 
         return false;
       });

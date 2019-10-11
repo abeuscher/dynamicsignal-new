@@ -227,19 +227,18 @@ section.video-gate {
     }
 }
 //New Form Styles
-.blue-form {
-  font-family:$body-font!important;
+.blue-form, .bw-form {
+  font-family:$nav-font!important;
   .mktoForm {
     //max-width: 305px !important;
     margin: 0 auto;
   }
   .mktoForm * {
-    font-family:$body-font!important;
+    font-family:$nav-font!important;
   }
   .mktoLabel {
     font-weight:300;
     margin-top:$gutter-width/2;
-    text-transform:uppercase;
   }
   label[for="Country"], label[for="Company_Size2__c"] {
     display:block!important;
@@ -548,4 +547,17 @@ section.video-gate-two-col {
 }
 #HiddenForm {
   display:none;
+}
+.bw-form {
+  label {
+    color: #000 !important;
+  }
+  input[type="submit"],
+  .mktoButton, .button {
+    background:$blue!important;
+    color: #ffffff !important;
+    text-align:center;
+    width:auto;
+    padding:0 $gutter-width!important;
+  }
 }
