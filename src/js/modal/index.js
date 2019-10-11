@@ -3,7 +3,7 @@ var parseHTML = require("../utils/parse-html.js");
 var defaultOpts = {
     "modalClass" : "modal",
     "activator" : document.querySelectorAll(".modal-show"),
-    "html" : "<div class='dicks'>dicks</div>",
+    "html" : "<div class='test'>test</div>",
     "modalVideo" : require("./modal-video.pug"),
     "attr" : "data-video-modal-id",
     "closeClass":".modal-hide"
