@@ -1,12 +1,10 @@
 require("./utils/remove-class.js");
 
 var Flickity = require("flickity");
-var uniqBy = require("lodash/uniqBy");
 var sortBy = require("lodash/sortBy");
 var collFilter = require("lodash/filter");
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
-var ScrollSite = require("./parallax-bg/index.js");
 var VideoHandler = require("./video-handler/index.js");
 var Cookies = require("js-cookie");
 var smoothscroll = require("smoothscroll-polyfill");
@@ -18,7 +16,6 @@ require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animati
 
 var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
-var getURLParameter = require("./utils/get-querystring.js");
 
 var FormHandler = require("./form-handler/index.js");
 
