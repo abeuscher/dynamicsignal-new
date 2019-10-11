@@ -10,17 +10,15 @@ var findDirMatch = require("./find-dir-match.js");
 function bundleJS(cb) {
   // This instantiates the watch function, assuming there is at least one js file in the project. If not this probably should be disabled in default.
   var watcher = watch([
-    settings.jsFiles[0].srcDir + "*",
-    settings.jsFiles[0].srcDir + "**/*"
+    settings.jsFiles[0].srcDir + "*", settings.jsFiles[0].srcDir + "**/*"
   ]);
   bundleFile(settings.jsFiles[0]);
   // Loops through the js files, bundles them, and adds their source folders to the watcher
   for (i = 1; i < settings.jsFiles.length; i++) {
     bundleFile(settings.jsFiles[i]);
     watcher.add([
-      settings.jsFiles[i].srcDir + "*",
-      settings.jsFiles[i].srcDir + "**/*"
-    ]);
+      settings.jsFiles[i].srcDir + "*", settings.jsFiles[i].srcDir + "**/*"
+    ], { ignoreInitial: false });
   }
 
   // Add the listener event to the watcher
@@ -28,12 +26,13 @@ function bundleJS(cb) {
   cb();
 }
 
-// This is the listener event, whgich finds the changed file then passes it to the bundler
+// This is the listener event, which finds the changed file then passes it to the bundler
 function triggerJS(path, stats) {
- 
-  var p = path.split("\\"); 
-  var fileSet = findDirMatch(settings.jsFiles,p);
-  bundleFile(fileSet[0]);
+  var p = path.indexOf("\\")>-1 ? path.split("\\") : path.split("/");
+  var file = findDirMatch(settings.jsFiles,p);
+  for (i=0;i<file.length;i++) {
+    bundleFile(file[i]);
+  }
 }
 
 // Bundler function. 

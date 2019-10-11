@@ -22,7 +22,8 @@ function FormHandler() {
       "ga": "utm_content",
       "mkto": "utmcontent"
     }],
-    "cookieName": "utm_data"
+    "cookieName": "utm_data",
+    "formSubmitCallbacks" : []
   };
   if (Cookies.get(this.settings.cookieName)) {
     this.settings.cookieData = JSON.parse(Cookies.get(this.settings.cookieName))
@@ -70,7 +71,12 @@ FormHandler.prototype.writeUTM = function() {
       }
     }
   }
-
+}
+FormHandler.prototype.RegisterCallback = function(cb) {
+  this.settings.formSubmitCallbacks.push(cb);
+}
+FormHandler.prototype.UnregisterCallback = function(cb) {
+  this.settings.formSubmitCallbacks = this.settings.formSubmitCallbacks.filter(thiscb=>{ return thiscb!=cb; });
 }
 FormHandler.prototype.fixForm = function() {
   var self = this;
@@ -143,12 +149,16 @@ FormHandler.prototype.fixForm = function() {
         }
 
       }
-      if (typeof confirmationURL !== 'undefined') {
-        form.onSuccess(function(values, followUpUrl) {
-          location.href = confirmationURL;
-          return false;
-        });
-      }
+      form.onSuccess(function(values, followUpUrl) {
+        //location.href = confirmationURL;
+        console.log("form submitted");
+        if (self.settings.formSubmitCallbacks.length) {
+          for (i=0;i<self.settings.formSubmitCallbacks.length;i++) {
+            self.settings.formSubmitCallbacks[i]();
+          }
+        } 
+        return false;
+      });
       if (typeof validateCorporateEmail !== 'undefined') {
         form.onValidate(function() {
           var email = form.vals().Email;

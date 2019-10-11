@@ -1,10 +1,43 @@
 .content-modal#demo-request-modal
-    .modal-inner
-        a.btn-close(href="#")!="&times;"
-        .col-left
-            .inner
-                h1 Signup Here
-        .col-right
-            .inner
-                h3 Form Below
-                #marketo-form
+    .bg
+    .modal-scroll
+        .modal-inner
+            a.btn-close(href="#")!="&times;"
+            .modal-flex#request-demo-form
+                .col-left
+                    .inner
+                        img.ds-logo-white(src="/wp-content/themes/ds-new/images/logo-header-white.png")
+                        p After filling out the form, you can expect a member of our team to reach out and schedule a personalized look at the Dynamic Signal platform.
+                        p You will learn how Dynamic Signal can help you and your organization to:
+                            ul.demo-list.fa-ul
+                                li
+                                    i.fa-li.fa.fa-check
+                                    | Keep employees informed
+                                li
+                                    i.fa-li.fa.fa-check
+                                    | Increase engagement
+                                li
+                                    i.fa-li.fa.fa-check
+                                    | Retain your top talent
+                                li
+                                    i.fa-li.fa.fa-check
+                                    | Boost productivity
+                                li
+                                    i.fa-li.fa.fa-check
+                                    | Empower advocacy
+                .col-right
+                    .inner
+                        p.show-mobile.visible-xs.visible-sm Fill out the form below to schedule a demo with a member of our sales team.
+                        #marketo-form-wrapper.blue-form
+                            form.marketo-blue.blue-form#mktoForm_1163
+                            script.
+                                var validateCorporateEmail = true;
+                        p.form-warning.warning
+                            span.asterisk *
+                            |  If a form doesn’t appear, please pause or disable your Ad Blocker in your browser and reload this page.
+                        p.warning
+                            span.asterisk *
+                            |  all fields are required.
+            .modal-flex#thank-you-message.hide.thank-you
+                .inner
+                    p Your request has been sent! A member of our sales team will be in touch with you to schedule a demo.
