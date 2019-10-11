@@ -5,6 +5,8 @@ var browserify = require("browserify");
 
 const { src, dest, watch } = require("gulp");
 
+var findDirMatch = require("./find-dir-match.js");
+
 function bundleJS(cb) {
   // This instantiates the watch function, assuming there is at least one js file in the project. If not this probably should be disabled in default.
   var watcher = watch([
@@ -28,10 +30,10 @@ function bundleJS(cb) {
 
 // This is the listener event, whgich finds the changed file then passes it to the bundler
 function triggerJS(path, stats) {
-  var files = settings.jsFiles.filter(f => {
-    return f.srcDir + f.srcFileName == "./" + path.split("\\").join("/");
-  });
-  bundleFile(files[0]);
+ 
+  var p = path.split("\\"); 
+  var fileSet = findDirMatch(settings.jsFiles,p);
+  bundleFile(fileSet[0]);
 }
 
 // Bundler function. 

@@ -43,6 +43,7 @@ var siteSettings = {
     "featuredJob": require("./inc/featured-job.pug"),
     "testimonialSlide": require("./inc/testimonial-slide.pug"),
     "productDisplay": require("./inc/product-display.pug"),
+    "demoRequestModal": require("./inc/demo-request-modal.pug"),
     "pagerThumb": require("./inc/pager-thumb.pug"),
     "homeSlides": require("./inc/homepage-slides.pug"),
     "servicesLogos": require("./inc/services-logos.pug"),
@@ -94,6 +95,7 @@ window.addEventListener("load", function () {
       thisAction.action(document.getElementById(thisAction.element));
     }
   }
+  activateRequestDemoButtons(".request-demo");
   getVertCarousels();
   var dc = new DigitCounter();
   activateImages();
@@ -1336,6 +1338,33 @@ function flickerIn() {
     .addTo(flickcontroller)
     .id = thisBlock.id;
   }
-
-
+}
+function activateRequestDemoButtons(className) {
+  var buttons = document.querySelectorAll(className);
+  for (i=0;i<buttons.length;i++) {
+    buttons[i].addEventListener("click", openDemoRequest);
+  }
+  function openDemoRequest(e) {
+    e.preventDefault();
+    document.body.classList.add("modal-open");
+    if (!document.getElementById("demo-request-modal")) {
+      document.body.appendChild(parseHTML(siteSettings.templates.demoRequestModal()));
+    }
+    var m = document.getElementById("demo-request-modal");
+    if (!m.classList.contains("active")) {
+      m.classList.add("active");
+    }
+    var closeButtons = m.querySelectorAll(".btn-close");
+    for (i=0;i<closeButtons.length;i++) {
+      closeButtons[i].addEventListener("click", closeDemoRequest);
+    }
+  }
+  function closeDemoRequest(e) {
+    e.preventDefault();
+    var m = document.getElementById("demo-request-modal");
+    if (m.classList.contains("active")) {
+      m.classList.remove("active");
+    }
+    document.body.classList.remove("modal-open");
+  }
 }

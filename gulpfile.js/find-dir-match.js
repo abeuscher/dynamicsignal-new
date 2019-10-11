@@ -1,12 +1,12 @@
-function findDirectoryMatch(collection, arr) {
-    arr.pop();
+function findDirectoryMatch(collection, path) {
+    path.pop();
     var output = collection.filter(f => {
-                return f.srcDir == "./" + arr.join("/") + "/";
+                return f.srcDir == "./" + path.join("/") + "/";
                 });
     if (output.length > 0) {
         return output;
-    } else if (arr.length > 1) {
-        return findDirectoryMatch(arr);
+    } else if (path.length > 1) {
+        return findDirectoryMatch(collection,path);
     } else {
         console.log("Error processing " + path);
     }

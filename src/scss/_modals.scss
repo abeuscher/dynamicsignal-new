@@ -32,3 +32,77 @@
       cursor:pointer;
     }
   }
+body.modal-open {
+  position:fixed;
+  width:100%;
+}  
+.content-modal {
+  display:none;
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  background:rgba(0,0,0,.8);
+  z-index:999;
+  &.active {
+    display:block;
+    .modal-inner {
+      transform:scale(0.9);
+      animation:popin .25s ease-in forwards;
+    }
+    
+  }
+  @keyframes popin {
+    0% {
+      transform:scale(0.9);
+    }
+    50% {
+      transform:scale(1.1);
+    }
+    100% {
+      transform:scale(1);
+    }
+  }
+  .modal-inner {
+    width:100%;
+    max-width:800px;
+    margin:100px auto 0;
+    background:white;
+    display:flex;
+    flex-wrap:wrap;
+    position:relative;
+    .btn-close {
+      border:none;
+      color:$white;
+      background:transparent;
+      font-size:3.5em;
+      position:absolute;
+      padding:0;
+      right:0;
+      top:-1.1em;
+      outline:none;
+      &:active {
+        outline:none;
+      }
+      &:hover {
+        color:$lighter-gray;
+      }
+    }
+  }
+  .col-left, .col-right {
+    flex-basis:100%;
+    @include bp(m) {
+      flex-basis:50%;
+    }
+    .inner {
+      padding:$gutter-width;
+    }
+  }
+  .col-left {
+    background:$blue;
+    h1, h2, h3, p {
+      color:$white;
+    }
+  }
+}
