@@ -354,25 +354,6 @@ var siteActions = [{
     }
   },
   {
-    "element": "logo-radial",
-    "action": function () {
-      var theLogos = document.getElementById("logo-radial");
-      var controller = new ScrollMagic.Controller({
-        "loglevel": 0
-      });
-
-      new ScrollMagic.Scene({
-          offset: 0,
-          triggerElement: theLogos,
-          duration: 0
-        })
-        .on("enter leave", function (e) {
-          theLogos.src = siteSettings.imagePath + "features-mainpic-integrations-animated.gif";
-        })
-        .addTo(controller);
-    }
-  },
-  {
     "element": "map-container",
     "action": function () {
       var box = document.getElementById("map-container");
