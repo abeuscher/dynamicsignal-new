@@ -1,12 +1,10 @@
 require("./utils/remove-class.js");
 
 var Flickity = require("flickity");
-var uniqBy = require("lodash/uniqBy");
 var sortBy = require("lodash/sortBy");
 var collFilter = require("lodash/filter");
 var JobList = require("./job-handler/index.js");
 var JobFilter = require("./job-handler/job-filter.js");
-var ScrollSite = require("./parallax-bg/index.js");
 var VideoHandler = require("./video-handler/index.js");
 var Cookies = require("js-cookie");
 var smoothscroll = require("smoothscroll-polyfill");
@@ -18,7 +16,6 @@ require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animati
 
 var parseHTML = require("./utils/parse-html.js");
 var isElement = require("./utils/is-element.js");
-var getURLParameter = require("./utils/get-querystring.js");
 
 var FormHandler = require("./form-handler/index.js");
 
@@ -87,7 +84,6 @@ window.addEventListener("load", function () {
   if (checkCookies()) {
     triggerGDPR();
   }
-  writeCTA();
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.getElementById(thisAction.element)) {
@@ -118,8 +114,6 @@ window.addEventListener("load", function () {
   var getForm = new FormHandler();
   getForm.catchUTM();
 
-  
-
   // Activate search forms
   var searchForms = document.querySelectorAll(".search-form");
   for (i = 0; i < searchForms.length; i++) {
@@ -147,33 +141,6 @@ function getMobileOperatingSystem() {
 
 
 var siteActions = [{
-    "element": "parallax",
-    "action": function () {
-      var Gallery = false;
-
-      function activateScroll() {
-
-        if (window.innerWidth > siteSettings.breakpoints.m) {
-          if (!Gallery) {
-            Gallery = new ScrollSite(siteSettings);
-          } else {
-            Gallery.resize();
-          }
-        } else {
-          if (Gallery) {
-            Gallery.destroy();
-          }
-        }
-      }
-      window.addEventListener("resize", activateScroll)
-      activateScroll();
-    }
-  }, {
-    "element": "clear-cookies",
-    "action": function () {
-      wipeCookies();
-    }
-  },{
     "element": "demo-hover-box",
     "action": function (el) {
       var panels = el.querySelectorAll(".demo-video-bucket");
@@ -211,61 +178,6 @@ var siteActions = [{
             }
           }
         });
-      }
-    }
-  }, {
-    "element": "clear-storage",
-    "action": function () {
-      localStorage.clear();
-    }
-  }, /*{
-    "element": "feature-bullets",
-    "action": function () {
-      var bullets = document.querySelectorAll("ul.feature-bullets");
-      if (bullets.length>0) {
-        var bulletController = new ScrollMagic.Controller({
-          loglevel: 0
-        });
-        for(i=0;i<bullets.length;i++) {
-          var thisList = bullets[i];
-          var topBullet = thisList.querySelectorAll("li input")[0];
-          var sceneOpts = {
-            triggerElement : thisList,
-            offset : "-50"
-          };
-          new ScrollMagic.Scene(sceneOpts)
-          .on("enter", function(e) {
-            if (!this.el.classList.contains("used")) {
-              this.el.setAttribute("checked","true");
-              this.el.classList.add("used");
-            }
-          })
-          .addTo(bulletController)
-          .el = topBullet;
-        }
-      }
-    }
-  },*/ {
-    "element": "demo-videos",
-    "action": function () {
-      document.getElementById("demo-videos").appendChild(parseHTML(siteSettings.templates.videoCarousel(pageData.videos)));
-      var buttons = document.querySelectorAll("#carousel-buttons a");
-      var mainWindow = document.getElementById("carousel-main");
-      for(i=0;i<buttons.length;i++) {
-        var thisButton = buttons[i];
-        thisButton.addEventListener("click", function(e) {
-          var self = this;
-          e.preventDefault();
-          clearActive();
-          this.classList.add("active"); 
-          mainWindow.innerHTML = "";
-          mainWindow.innerHTML = siteSettings.templates.modalVideo({"videoid":self.getAttribute("data-video-id"),"pause":true});
-        });
-      }
-      function clearActive(idx) {
-        for(i=0;i<buttons.length;i++) {
-          buttons[i].classList.remove("active"); 
-        }
       }
     }
   }, {
@@ -518,25 +430,6 @@ var siteActions = [{
     }
   },
   {
-    "element": "logo-radial",
-    "action": function () {
-      var theLogos = document.getElementById("logo-radial");
-      var controller = new ScrollMagic.Controller({
-        "loglevel": 0
-      });
-
-      new ScrollMagic.Scene({
-          offset: 0,
-          triggerElement: theLogos,
-          duration: 0
-        })
-        .on("enter leave", function (e) {
-          theLogos.src = siteSettings.imagePath + "features-mainpic-integrations-animated.gif";
-        })
-        .addTo(controller);
-    }
-  },
-  {
     "element": "map-container",
     "action": function () {
       var box = document.getElementById("map-container");
@@ -547,38 +440,6 @@ var siteActions = [{
           map.classList.remove("clicked");
         });
       });
-    }
-  },
-  {
-    "element": "btn-search-header",
-    "action": function () {
-      var btn = document.getElementById("btn-search-header");
-      var btnClose = document.getElementById("btn-close-search");
-      var searchBox = document.getElementById("search-box-header");
-      btn.addEventListener("click", function (e) {
-        e.preventDefault();
-        searchBox.classList.toggle("active");
-      });
-      btnClose.addEventListener("click", function (e) {
-        e.preventDefault();
-        searchBox.classList.toggle("active");
-      });
-
-    }
-  },
-  {
-    "element": "paging-thumbs",
-    "action": function () {
-      if (typeof seriesNav != "undefined") {
-        var bucket = document.getElementById("paging-thumbs");
-        if (typeof seriesNav.prevPost.post_name != "undefined") {
-          bucket.append(parseHTML(siteSettings.templates.pagerThumb(seriesNav.prevPost)));
-        }
-        if (typeof seriesNav.nextPost.post_name != "undefined") {
-          bucket.append(parseHTML(siteSettings.templates.pagerThumb(seriesNav.nextPost)));
-        }
-
-      }
     }
   },
   {
@@ -623,18 +484,6 @@ var siteActions = [{
           items[i].classList.remove("active");
         }
       }
-    }
-  },
-  {
-    "element": "toggle-main-drop",
-    "action": function () {
-      var menuToggle = document.getElementById("toggle-main-drop");
-      var drop = document.getElementById("mobile-drop");
-      menuToggle.addEventListener("click", function (e) {
-        e.preventDefault();
-        drop.classList.toggle("expanded");
-        menuToggle.classList.toggle("active");
-      });
     }
   },
   {
@@ -915,21 +764,6 @@ var siteActions = [{
     }
   },
   {
-    "element": "partners-logo-marquee",
-    "action": function () {
-      var bucket = document.getElementById("partners-logo-marquee");
-      for (i in pageData.logos) {
-        fetch(pageData.logos[i].logo.url)
-          .then(function (data) {
-            var img = document.createElement("img");
-            img.src = data.url;
-            img.alt = "";
-            bucket.appendChild(img);
-          })
-      }
-    }
-  },
-  {
     "element": "partners-testimonials",
     "action": function () {
       var bucket = document.getElementById("partners-testimonials");
@@ -1032,20 +866,6 @@ var siteActions = [{
     }
   },
   {
-    "element": "testimonial-strip",
-    "action": function () {
-      var testimonialGall = new Flickity("#testimonial-strip", {
-        "prevNextButtons": false,
-        "pageDots": false,
-        "autoPlay": 5000
-      });
-      for (i in pageData.testimonials) {
-        testimonialGall.append(parseHTML(siteSettings.templates.testimonialSlide(pageData.testimonials[i])));
-      }
-      testimonialGall.resize();
-    }
-  },
-  {
     "element": "job-list",
     "action": function () {
       var jobs = sortBy(pageData.jobs, function (i) {
@@ -1071,17 +891,6 @@ var siteActions = [{
     }
   }
 ];
-
-function addClass(el, classname, groupclass) {
-  var els = document.getElementsByClassName(groupclass);
-  for (i = 0; i < els.length; i++) {
-    var thisEl = els[i];
-    if (thisEl.classList.item(classname)) {
-      thisEl.classList.remove(classname);
-    }
-  }
-  el.classList.add(classname);
-}
 
 function activateImages() {
   var backgroundImages = document.querySelectorAll("[data-bg]");
@@ -1205,30 +1014,6 @@ function wipeCookies() {
   }
 
 }
-(function (arr) {
-  arr.forEach(function (item) {
-    if (item.hasOwnProperty('remove')) {
-      return;
-    }
-    Object.defineProperty(item, 'remove', {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function remove() {
-        if (this.parentNode !== null)
-          this.parentNode.removeChild(this);
-      }
-    });
-  });
-})([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
-
-function writeCTA() {
-  if (siteSettings.ctaBar.toggle && document.getElementById("cta-bar")) {
-    var bar = document.getElementById("cta-bar");
-    bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
-    bar.classList.add("active");
-  }
-} 
 
 function makeTabs(tabs,slides,attr,className) {
   for(i=0;i<tabs.length;i++) {
@@ -1336,6 +1121,4 @@ function flickerIn() {
     .addTo(flickcontroller)
     .id = thisBlock.id;
   }
-
-
 }
