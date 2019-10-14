@@ -1,155 +1,155 @@
 .lp-container {
-    padding:120px $gutter-width;
-    background-repeat:no-repeat;
-    background-size:contain;
-    background-position: center top;
-    //background-image:url($img-path+"header-hardhats-mobile.jpg");
-    #marketo-form-wrapper {
-        padding:2px $gutter-width $gutter-width;
-        &:before {
-            background-color:$white;
-            z-index:0;
-        }
-        &:before {
-            transform: scale(1);
-        }
-        
-        &:hover::before {
-            transform: scale(1);
-        }
+  padding: 120px $gutter-width;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center top;
+  //background-image:url($img-path+"header-hardhats-mobile.jpg");
+  #marketo-form-wrapper {
+    padding: 2px $gutter-width $gutter-width;
+    &:before {
+      background-color: $white;
+      z-index: 0;
     }
-    p, li {
-        line-height:1.8;
-    }
-    p {
-        margin-top:0;
-    }
-    ul {
-        li {
-            margin:0 0 $gutter-width/3;
-            padding:0;
-            p {
-                margin:0;
-                padding:0;
-            }
-        }
-    }
-    &.ebook {
-        background:none;
-    }
-    @include bp(m) {
-        //background-image:url($img-path+"header-hardhats.jpg");
-        background-size:cover;
-        background-position: center -30vh;
-        &.e-book {
-            background:none;
-        }
-    }
-}
-.lp-ebook-thumb {
-    @include aspect-ratio(4,3);
-    background-position:center center;
-    background-repeat:no-repeat;
-    background-size:contain;
-}
-.lp-ebook-bottom {
-    ul {
-        list-style:circle;
-    }
-}
-.lp-wrapper-video {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    height: auto;
-    margin-top:$gutter-width;
-    margin-bottom:$gutter-width;
-    @include bp(m) {
-        margin:0;
-    }
-    embed,
-    iframe,
-    object {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-}
-.lp-header {
-    h1 {
-        font-size:1.8em;
-        margin-bottom:$gutter-width;
-        .blue {
-            display:inline-block;
-        }
-        @include bp(m) {
-            font-size:3em;
-        }
-    }
-    p {
-        font-family:$header-font;
-        font-size:1.4em;
-        margin-top:0;
-    }
-    &.ebook {
-        padding-bottom:$gutter-width;
-        h1 {
-            margin-bottom:0;
-        }
-        h3 {
-            margin-bottom:$gutter-width*2;
-            font-weight:300; 
-        }
-    }
-}
-.lp-site-link {
-    font-weight:bold;
-    font-size:1.2em;
-    font-family:$header-font;
-}
-.row.lp-panels {
-    padding:0 $gutter-width;
-    @include bp(m) {
-        display:flex;
-        align-items:center;
-        margin:0;
-        padding:0;
-        .lp-panel {
-            flex-basis:50%;
-            padding:0;
-            &.panel-left {
-                margin-right:$gutter-width/2;
-            }
-            &.panel-right {
-                margin-left:$gutter-width/2;
-            }
-        }
+    &:before {
+      transform: scale(1);
     }
 
+    &:hover::before {
+      transform: scale(1);
+    }
+  }
+  p,
+  li {
+    line-height: 1.8;
+  }
+  p {
+    margin-top: 0;
+  }
+  ul {
+    li {
+      margin: 0 0 $gutter-width/3;
+      padding: 0;
+      p {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  &.ebook {
+    background: none;
+  }
+  @include bp(m) {
+    //background-image:url($img-path+"header-hardhats.jpg");
+    background-size: cover;
+    background-position: center -30vh;
+    &.e-book {
+      background: none;
+    }
+  }
+}
+.lp-ebook-thumb {
+  @include aspect-ratio(4, 3);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.lp-ebook-bottom {
+  ul {
+    list-style: circle;
+  }
+}
+.lp-wrapper-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+  margin-top: $gutter-width;
+  margin-bottom: $gutter-width;
+  @include bp(m) {
+    margin: 0;
+  }
+  embed,
+  iframe,
+  object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+.lp-header {
+  h1 {
+    font-size: 1.8em;
+    margin-bottom: $gutter-width;
+    .blue {
+      display: inline-block;
+    }
+    @include bp(m) {
+      font-size: 3em;
+    }
+  }
+  p {
+    font-family: $header-font;
+    font-size: 1.4em;
+    margin-top: 0;
+  }
+  &.ebook {
+    padding-bottom: $gutter-width;
+    h1 {
+      margin-bottom: 0;
+    }
+    h3 {
+      margin-bottom: $gutter-width * 2;
+      font-weight: 300;
+    }
+  }
+}
+.lp-site-link {
+  font-weight: bold;
+  font-size: 1.2em;
+  font-family: $header-font;
+}
+.row.lp-panels {
+  padding: 0 $gutter-width;
+  @include bp(m) {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    .lp-panel {
+      flex-basis: 50%;
+      padding: 0;
+      &.panel-left {
+        margin-right: $gutter-width/2;
+      }
+      &.panel-right {
+        margin-left: $gutter-width/2;
+      }
+    }
+  }
 }
 .lp-footer {
-    .footer-top {
-        ul {
-            text-align:center;
-            li {
-                text-align: center;
-            }
-        }
+  .footer-top {
+    ul {
+      text-align: center;
+      li {
+        text-align: center;
+      }
     }
+  }
 }
 .adwords-logo-garden {
-    padding-top:$gutter-width*2;
+  padding-top: $gutter-width * 2;
 }
 h2.lp-form-header {
-    font-size:1.2em;
-    text-align:center; 
+  font-size: 1.2em;
+  text-align: center;
 }
 #adwords-logos {
-    .flipper-wrapper {
-        min-height:100px;
-    }
+  .flipper-wrapper {
+    min-height: 100px;
+  }
 }

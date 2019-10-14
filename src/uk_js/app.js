@@ -987,7 +987,7 @@ function wipeCookies() {
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
 
 function writeCTA() {
-  if (siteSettings.ctaBar.toggle && document.getElementById("cta-bar")) {
+  if (document.getElementById("cta-bar")) {
     var bar = document.getElementById("cta-bar");
     bar.append(parseHTML(siteSettings.templates.ctaBar(siteSettings.ctaBar)));
     bar.classList.add("active");

@@ -4,9 +4,9 @@
 }
 
 .bread-crumbs {
-  display:none;
+  display: none;
   @include bp(s) {
-    display:block;
+    display: block;
   }
   font-size: 14px;
   color: $black;
@@ -17,9 +17,9 @@
   }
 
   .separator {
-    margin: 0 .75em;
-    font-size:1.3em;
-    line-height:1;
+    margin: 0 0.75em;
+    font-size: 1.3em;
+    line-height: 1;
   }
 
   a {
@@ -32,15 +32,15 @@
   }
 }
 #paging-thumbs {
-  min-height:100px;
+  min-height: 100px;
   @include bp(m) {
-    min-height:0;
+    min-height: 0;
   }
 }
 a.pager-thumb {
   position: relative;
   display: inline-block;
-  margin: 0 -.5px;
+  margin: 0 -0.5px;
   width: 50%;
   height: 100px;
   overflow: hidden;
@@ -68,17 +68,16 @@ a.pager-thumb {
 
     .next-arrow,
     .prev-arrow {
-      width:20px;
-      height:50px;
-      background:url($img-path+"chevrons.png") no-repeat;
+      width: 20px;
+      height: 50px;
+      background: url($img-path+"chevrons.png") no-repeat;
     }
     .next-arrow {
-      background-position:-90px 10px;
+      background-position: -90px 10px;
     }
     .prev-arrow {
-      background-position:0 10px;
+      background-position: 0 10px;
     }
-
   }
 
   .label-wrapper {
@@ -101,7 +100,7 @@ a.pager-thumb {
       left: 40px;
       right: 10px;
     }
-    float:left;
+    float: left;
   }
 
   &.next {
@@ -122,11 +121,11 @@ a.pager-thumb {
     h4 {
       text-align: right;
     }
-    float:right;
+    float: right;
   }
 
   &:hover {
-    background:$header-blue;
+    background: $header-blue;
     h4 {
       color: $white;
 
@@ -142,7 +141,7 @@ a.pager-thumb {
     width: 285px;
     height: 50px;
     transition: all 0.25s ease-in-out;
-    z-index:4;
+    z-index: 4;
     .label-wrapper {
       display: block;
     }
@@ -164,10 +163,10 @@ a.pager-thumb {
         display: none;
       }
       .next-arrow {
-        background-position:-60px 10px;
+        background-position: -60px 10px;
       }
       .prev-arrow {
-        background-position:-30px 10px;
+        background-position: -30px 10px;
       }
       .title-wrapper {
         opacity: 1;

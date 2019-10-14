@@ -57,19 +57,17 @@ body.modal-open {
   &.active {
     display:block;
     .modal-inner {
-      transform:scale(0.9);
-      animation:popin .25s ease-in forwards;
+      animation:popin .1s ease-in forwards;
     }
     
   }
   @keyframes popin {
     0% {
-      transform:scale(0.9);
-    }
-    50% {
+      opacity:.5;
       transform:scale(1.1);
     }
     100% {
+      opacity:1;
       transform:scale(1);
     }
   }
@@ -106,10 +104,13 @@ body.modal-open {
     }
   }
   .modal-inner {
-    
+    margin:0 $gutter-width;
     background:white;
     display:block;
     position:relative;
+    @include bp(m) {
+      margin:0;
+    }
     .btn-close {
       border:none;
       color:$white;

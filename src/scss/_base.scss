@@ -23,16 +23,18 @@ h5,
 h6 {
   font-family: $header-font;
 }
-h1, h2, h3 {
-  color:$off-black;
-  font-weight:400;
-  margin-top:0;
+h1,
+h2,
+h3 {
+  color: $off-black;
+  font-weight: 400;
+  margin-top: 0;
   &.white {
-    color:$white;
+    color: $white;
   }
 }
 h1 {
-  font-size:32px;
+  font-size: 32px;
   text-transform: capitalize;
   letter-spacing: normal;
   @include bp(m) {
@@ -51,26 +53,26 @@ h2 {
 }
 h3 {
   color: $off-black;
-  font-size:20px;
-  font-weight:300;
+  font-size: 20px;
+  font-weight: 300;
   @include bp(m) {
     font-size: 24px;
-  } 
+  }
 }
 p {
-  font-size:16px;
-  line-height:1.6;
+  font-size: 16px;
+  line-height: 1.6;
   @include bp(m) {
     font-size: 18px;
-  } 
+  }
   &.white {
-    color:$white;
+    color: $white;
   }
   &.footnote {
-    font-size:12px;
-    line-height:1.2;
+    font-size: 12px;
+    line-height: 1.2;
     @include bp(m) {
-      font-size:14px;
+      font-size: 14px;
     }
   }
 }
@@ -83,22 +85,22 @@ a {
     color: $body-link-hover-color;
   }
   &.white {
-    color:$white;
+    color: $white;
   }
   &.ext-link {
-    font-weight:bold;
-    color:$blue;
+    font-weight: bold;
+    color: $blue;
     &:after {
-      padding-left:.5em;
-      content:'>';
+      padding-left: 0.5em;
+      content: ">";
     }
     &:hover {
-      color:darken($blue,20%);
+      color: darken($blue, 20%);
     }
   }
 }
 .no-margin {
-  margin:0;
+  margin: 0;
 }
 .hide {
   display: none !important;
@@ -114,7 +116,8 @@ a {
   text-transform: uppercase;
 }
 
-.text-right, .right {
+.text-right,
+.right {
   text-align: right;
 }
 
@@ -127,7 +130,7 @@ a {
   text-align: left;
 }
 .text-white {
-  color:$white;
+  color: $white;
 }
 .blue {
   color: $bright-blue;
@@ -145,26 +148,26 @@ a {
 .content {
   &.white {
     * {
-      color:$white;
+      color: $white;
     }
   }
 }
 .margin-top-header {
-  margin-top:$nav-short;
+  margin-top: $nav-short;
   @include ds-transition();
   @include bp(s) {
-    margin-top:$nav-tall;
+    margin-top: $nav-tall;
   }
 }
 .padding-top-header {
-  padding-top:60px;
+  padding-top: 60px;
   @include bp(s) {
-    padding-top:80px;
+    padding-top: 80px;
   }
 }
 body.nav-short {
   .margin-top-header {
-    margin-top:$nav-short;
+    margin-top: $nav-short;
   }
 }
 .even-height-wrapper {
@@ -198,7 +201,6 @@ body.nav-short {
   }
 }
 
-
 .mobile-cta-home {
   display: none;
 }
@@ -207,7 +209,7 @@ body.nav-short {
   &.home {
     display: block;
     h2 {
-      padding-top: $gutter-width*1.5;
+      padding-top: $gutter-width * 1.5;
     }
   }
 }
@@ -237,7 +239,7 @@ section {
   background: $white;
   position: relative;
   &.phone-section {
-    padding-bottom: $gutter-width*2;
+    padding-bottom: $gutter-width * 2;
   }
 }
 .gray-bg-section {
@@ -318,7 +320,7 @@ ul.social-share {
 }
 
 .cta-bottom {
-  padding: $gutter-width*2 0;
+  padding: $gutter-width * 2 0;
   h2 {
     max-width: 960px;
     margin: 0 auto $gutter-width;
@@ -329,16 +331,16 @@ section.logo-strip-bucket {
   background: none;
   text-align: center;
   margin-top: 0;
-  padding-bottom: $gutter-width*3;
+  padding-bottom: $gutter-width * 3;
   background: linear-gradient(
     to bottom,
     rgba(237, 237, 237, 0) 0%,
     rgba(237, 237, 237, 0) 75%,
     rgba(237, 237, 237, 0.65) 100%
   );
-  
+
   p {
-    padding: $gutter-width 0 $gutter-width*2;
+    padding: $gutter-width 0 $gutter-width * 2;
   }
 }
 
@@ -347,7 +349,7 @@ section.logo-strip-bucket {
   background-size: 102% 102%;
   background-position: center center;
   cursor: pointer;
-  @include aspect-ratio(16,9);
+  @include aspect-ratio(16, 9);
   .button {
     z-index: 0;
   }
@@ -358,11 +360,7 @@ section.logo-strip-bucket {
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.65) 0%,
-        rgba(0, 0, 0, 0) 100%
-      );
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
     }
   }
   iframe {
@@ -554,8 +552,8 @@ ul.side-list {
     }
   }
   h2 {
-    font-weight:300;
-    margin-top:$gutter-width;
+    font-weight: 300;
+    margin-top: $gutter-width;
   }
   h2,
   h3 {
@@ -622,8 +620,8 @@ ul.side-list {
     height: 100%;
   }
   &.home-page {
-    height:auto;
-    margin-bottom:$gutter-width;
+    height: auto;
+    margin-bottom: $gutter-width;
   }
   h3,
   h4,
@@ -632,7 +630,6 @@ ul.side-list {
     @include bp(m) {
       padding: 0 $gutter-width/2;
     }
-   
   }
   &.no-header {
     height: 100%;
@@ -641,10 +638,10 @@ ul.side-list {
     line-height: 2;
   }
   h3 {
-    font-size:16px;
-    line-height:1.4;
-    margin-top:$gutter-width/3;
-    padding-bottom:$gutter-width/2;
+    font-size: 16px;
+    line-height: 1.4;
+    margin-top: $gutter-width/3;
+    padding-bottom: $gutter-width/2;
   }
   .featured-thumb {
     &:after {
@@ -660,7 +657,7 @@ ul.side-list {
     }
   }
   .blog-featured-bucket {
-    padding-bottom:$gutter-width;
+    padding-bottom: $gutter-width;
   }
   &:hover {
     @include bp(m) {
@@ -684,7 +681,7 @@ ul.side-list {
   background-size: cover;
   color: $white;
   text-align: center;
-  padding: $gutter-width*2 0;
+  padding: $gutter-width * 2 0;
   position: relative;
   h2 {
     color: $white;
@@ -710,7 +707,7 @@ ul.side-list {
 }
 ul.hmenu.app-buttons {
   &.lp {
-    margin-top: $gutter-width*2;
+    margin-top: $gutter-width * 2;
   }
   li {
     display: block;
@@ -830,7 +827,7 @@ section.fullpic {
     flex-direction: column-reverse;
     margin: 0 auto;
     .col-full {
-      flex-basis:100%;
+      flex-basis: 100%;
       padding: 50px $gutter-width 50px;
       @include bp(m) {
         padding: 120px $gutter-width 50px;
@@ -889,29 +886,31 @@ section.fullpic {
   }
   &.homepage {
     .header-bg {
-      background-position:top right;
+      background-position: top right;
     }
     .inner {
       .col-half.text {
-          padding: 100px $gutter-width 50px;
-          h1, p {
-            color:$white;
-          }
-          h1 {
-            margin-bottom:0em;
-          }
+        padding: 100px $gutter-width 50px;
+        h1,
+        p {
+          color: $white;
+        }
+        h1 {
+          margin-bottom: 0em;
+        }
+        p {
+          margin-top: 0.25em;
+        }
+        @include bp(s) {
+          h1,
           p {
-            margin-top:.25em;
+            color: $off-black;
           }
-          @include bp(s) {
-            h1, p {
-              color:$off-black;
-            }
-            padding: 100px $gutter-width 50px;
-          }
-          @include bp(m) {
-            padding: 18vw $gutter-width 250px;
-          }
+          padding: 100px $gutter-width 50px;
+        }
+        @include bp(m) {
+          padding: 18vw $gutter-width 250px;
+        }
       }
     }
   }
@@ -950,7 +949,7 @@ section.halfpic {
     position: static;
     width: 100%;
     background-size: cover;
-    background-position:center;
+    background-position: center;
     &:after {
       content: "";
       display: block;
@@ -981,7 +980,7 @@ section.halfpic {
     top: 0;
     bottom: 0;
     width: 30%;
-    background: linear-gradient(to right, rgba(246,246,246,1),rgba(246,246,246,0) 100%);
+    background: linear-gradient(to right, rgba(246, 246, 246, 1), rgba(246, 246, 246, 0) 100%);
     @include bp(m) {
       display: block;
     }
@@ -1009,9 +1008,9 @@ section.halfpic {
   margin: 0 0 0;
   position: relative;
   .col-half-flex {
-    padding: $gutter-width*2 0;
+    padding: $gutter-width * 2 0;
     @include bp(m) {
-      padding-top:0;
+      padding-top: 0;
       flex-basis: 50%;
       display: flex;
       flex-direction: column;
@@ -1029,7 +1028,6 @@ section.halfpic {
     }
   }
 }
-
 
 ul.hmenu {
   display: inline-block;
@@ -1060,14 +1058,14 @@ ul.hmenu {
     text-decoration: none;
   }
   .icon {
-    @include arrow-in-circle($background-color:$white,$border-color:$menu-blue);
+    @include arrow-in-circle($background-color: $white, $border-color: $menu-blue);
     margin-right: 6px;
     margin-bottom: -6px;
   }
   &.orange {
     color: $orange;
     .icon {
-      @include arrow-in-circle($background-color:$orange,$border-color:$white);
+      @include arrow-in-circle($background-color: $orange, $border-color: $white);
     }
   }
   &.white {
@@ -1095,10 +1093,10 @@ ul.copy-points {
     a {
       width: 100%;
       display: flex;
-      font-family:$nav-font;
+      font-family: $nav-font;
     }
     .icon {
-      @include arrow-in-circle($background-color:$orange,$border-color:$white);
+      @include arrow-in-circle($background-color: $orange, $border-color: $white);
     }
     .text {
       padding-top: 3px;
@@ -1120,7 +1118,7 @@ ul.copy-points {
   }
 }
 hr.blue-separator {
-  margin: $gutter-width 0 $gutter-width*1.5;
+  margin: $gutter-width 0 $gutter-width * 1.5;
   border: 0;
   background: $blue;
   height: 1px;
@@ -1133,7 +1131,7 @@ hr.blue-separator {
     font-weight: 500;
     font-style: italic;
     position: relative;
-    padding-left: $gutter-width*2.5;
+    padding-left: $gutter-width * 2.5;
     text-align: left;
     margin: 0 0 $gutter-width;
 
@@ -1145,22 +1143,22 @@ hr.blue-separator {
       content: "\201C";
       font-size: 90px;
       color: $white;
-      font-family: "Times",serif;
+      font-family: "Times", serif;
     }
     &.no-quote {
       &::before {
-        display:none;
+        display: none;
       }
       font-style: normal;
     }
   }
   cite {
-    position:relative;
+    position: relative;
     margin-top: $gutter-width;
     font-style: normal;
     line-height: 30px;
     font-weight: 300;
-    padding-left: $gutter-width*2.5;
+    padding-left: $gutter-width * 2.5;
     display: block;
     margin-right: $gutter-width;
     text-align: left;
@@ -1175,28 +1173,28 @@ hr.blue-separator {
   }
 }
 .hero-with-bg {
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-position:center top;
-  padding-top:120px;
-  padding-bottom:80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  padding-top: 120px;
+  padding-bottom: 80px;
   @include bp(s) {
-    padding-top:190px;
-    min-height:400px;
-    padding-bottom:0;
+    padding-top: 190px;
+    min-height: 400px;
+    padding-bottom: 0;
   }
 }
 .font-picker {
-  position:fixed !important;
-  height:60px;
-  width:400px;
-  background:$black;
-  top:100px;
-  left:0;
-  z-index:9999;
+  position: fixed !important;
+  height: 60px;
+  width: 400px;
+  background: $black;
+  top: 100px;
+  left: 0;
+  z-index: 9999;
 }
 .form-warning {
-  margin-top:-4em;
-  background:$white;
-  padding:1em;
+  margin-top: -4em;
+  background: $white;
+  padding: 1em;
 }
