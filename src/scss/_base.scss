@@ -1208,4 +1208,8 @@ hr.blue-separator {
   margin-top: -4em;
   background: $white;
   padding: 1em;
+  display:none;
+  @include bp(m) {
+    display:block;
+  }
 }

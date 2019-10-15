@@ -47,7 +47,7 @@ $mf-transition-speed: 0.28s !default;
   &.bw-form {
     padding: 0;
     form {
-      padding: $gutter-width/2 $gutter-width $gutter-width !important;
+      padding: $gutter-width/2 0 $gutter-width !important;
     }
     background: $white;
     color: $black;

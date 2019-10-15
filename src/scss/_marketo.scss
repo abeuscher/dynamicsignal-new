@@ -560,4 +560,16 @@ section.video-gate-two-col {
     width:auto;
     padding:0 $gutter-width!important;
   }
+  @media only screen and (max-width: 480px) {
+    .mktoForm input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="submit"],
+    .mktoButton,
+    .mktoForm select.mktoField {
+      margin-bottom: 0px !important;
+    }
+  }
+
 }
