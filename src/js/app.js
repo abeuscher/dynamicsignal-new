@@ -114,8 +114,9 @@ window.addEventListener("load", function () {
 
 
 var siteActions = [{
-  "element": ".demo-video-bucket",
-  "action": function (panels) {
+  "element": "#demo-hover-box",
+  "action": function () {
+    var panels = document.querySelectorAll(".demo-video-bucket");
     for (i = 0; i < panels.length; i++) {
       panels[i].thumb = panels[i].querySelectorAll(".gif-thumb")[0];
       panels[i].thumb.staticsrc = panels[i].thumb.src;
@@ -832,7 +833,7 @@ var siteActions = [{
   }
 },
 {
-  "element": "job-list",
+  "element": "#job-list",
   "action": function (els) {
     var jobs = sortBy(pageData.jobs, function (i) {
       return i.post_date

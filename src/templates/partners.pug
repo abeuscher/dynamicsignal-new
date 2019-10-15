@@ -18,19 +18,19 @@ block content
                 echo get_field("hero_text");
     :php
         echo "</div></section>";
-    section.dkblue-bg-section.partners-section.padding-both
+    section.dkblue-bg-section.partners-section.padding-both.double
         .container
             .row
                 .col-md-12
                     :php
-                        printf("<h2 class='centered'>%s</h2><p class='centered'>%s</p>",get_field("top_blurb_headline"), get_field("top_blurb_copy"));
-    section.gray-bg-section.partners-fourth-section.partners-section.padding-both
+                        printf("<h2 class='centered'>%s</h2><p>%s</p>",get_field("top_blurb_headline"), get_field("top_blurb_copy"));
+    section.gray-bg-section.partners-fourth-section.partners-section.padding-both.double
         .container
             .row
                 .col-md-12
                     :php
-                        printf("<h2 class='centered'>%s</h2><div class='partners-diagram' data-bg-array='%s'></div><p class='centered'>%s</p>", get_field("fourth_section_headline"), json_encode(get_field("fourth_section_image"), JSON_UNESCAPED_SLASHES), get_field("fourth_section_copy"));
-    section.white-bg-section.partners-third-section.partners-section.padding-both
+                        printf("<h2 class='centered'>%s</h2><div class='partners-diagram' data-bg-array='%s'></div><p>%s</p>", get_field("fourth_section_headline"), json_encode(get_field("fourth_section_image"), JSON_UNESCAPED_SLASHES), get_field("fourth_section_copy"));
+    section.white-bg-section.partners-third-section.partners-section.padding-both.double
         .container
             .row
                 .col-md-6
@@ -41,7 +41,7 @@ block content
                         printf("<div class='partners-pc-image' data-bg-array='%s'></div>",json_encode(get_field("third_section_image"), JSON_UNESCAPED_SLASHES));
     :php
         printf("<section class='partners-orange partners-section' data-bg-array='%s'>",json_encode(get_field("orange_section_bg_image"), JSON_UNESCAPED_SLASHES));
-    .container.padding-both
+    .container.padding-both.double
         .row
             .col-md-offset-6.col-md-6
                 :php
@@ -49,6 +49,6 @@ block content
     
     :php
         echo "</section>";
-    section.bottom-cta.padding-both
+    section.bottom-cta.padding-both.double
         p Learn why more than 30 percent of the Fortune 100 communicates with Dynamic Signal.
         a.button.cta.request-demo(href="/requestdemo/") Request Demo

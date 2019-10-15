@@ -28,7 +28,7 @@ block content
             $content = $section["orientation"]=="left" ? $image_col.$text_col : $text_col.$image_col;
             printf("<section class='feature-section white-bg-section padding-both'><div class='container'><div class='row'>%s</div></div></section>", $content);
         }
-    section.gray-bg-section.padding-both
+    section.gray-bg-section.padding-both.double
         .container
             .col-md-12.centered
                 h2
@@ -40,7 +40,7 @@ block content
                 :php
                     printf("<div class='company-diagram' data-bg-array='%s'></div>", json_encode(get_field("diagram_image"), JSON_UNESCAPED_SLASHES));
     :php
-        printf("<section class='company-proof white-bg-section padding-both' data-bg-array='%s'>", json_encode(get_field("superfluous_section_image"), JSON_UNESCAPED_SLASHES));
+        printf("<section class='company-proof white-bg-section padding-both double' data-bg-array='%s'>", json_encode(get_field("superfluous_section_image"), JSON_UNESCAPED_SLASHES));
     .container
         .col-md-offset-6.col-md-6
             h2
@@ -51,7 +51,7 @@ block content
                     echo get_field("superfluous_section_copy");    
     :php
         echo "</section>";
-    section.company-logo-garden.white-bg-section.padding-both
+    section.company-logo-garden.white-bg-section.padding-both.double
         .container
             .col-md-12
                 h2.centered
@@ -65,7 +65,7 @@ block content
                         foreach(get_field("logo_garden_logos") as $idx=>$logo) {
                             printf("<li><div class='thumb' data-bg-array='%s'></div></li>", json_encode($logo["image"], JSON_UNESCAPED_SLASHES));
                         }       
-    section.company-sitemap.padding-both
+    section.company-sitemap.padding-both.double
         .container
             .row
                 .col-md-12

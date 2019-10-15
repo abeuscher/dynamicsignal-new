@@ -223,14 +223,25 @@ ul.hmenu {
 }
 .padding-top {
   padding-top: $gutter-width;
+  &.double {
+    padding-top:$gutter-width*2;
+  }
 }
 .padding-bottom {
   padding-bottom: $gutter-width;
+  &.double {
+    padding-bottom:$gutter-width*2;
+  }
 }
 .padding-both {
   padding-top: $gutter-width;
   padding-bottom: $gutter-width;
+  &.double {
+    padding-top:$gutter-width*2;
+    padding-bottom:$gutter-width*2;
+  }
 }
+
 section {
   margin: 0;
   padding: 0;

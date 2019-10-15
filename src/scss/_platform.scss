@@ -185,8 +185,10 @@ section.platform-panels {
         min-height: 390px;
         h3 {
           margin: 0;
-          padding: $gutter-width/2 0 0;
+          padding: $gutter-width/2 0;
           width: 100%;
+          color:$off-black;
+          font-size:18px;
         }
         .logos {
           width: 50%;

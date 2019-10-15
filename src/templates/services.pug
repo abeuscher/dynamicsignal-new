@@ -149,7 +149,7 @@ block content
         foreach(get_field("community_section_blurbs") as $key=>$blurb) {
           printf("<div class='row'><div class='col-md-4'><div class='services-community-image' data-bg-array='%s'></div></div><div class='col-md-8'><h2>%s</h2><p>%s</p></div></div>",json_encode($blurb["blurb_image"],JSON_UNESCAPED_SLASHES),$blurb["blurb_title"],$blurb["blurb_content"]);
         }
-  section.bottom-cta
+  section.bottom-cta.padding-both
     .container
       .row
         .col-md-12

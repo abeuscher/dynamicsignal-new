@@ -39,7 +39,7 @@ block content
             $classname = $this_section["orientation"]=="Image Left" ? "bucket-left" : "bucket-right";
             printf("<section id='platform-%s' class='platform-section padding-both'><div class='container'><div class='bucket %s'>%s</div></div></section>", $idx, $classname, $content);
         }
-    section.platform-panels.blue-bg-section.padding-both
+    section.platform-panels.blue-bg-section.padding-both.double
         .container
             .row
                 .col-md-12
@@ -51,7 +51,7 @@ block content
                     foreach (get_field("panels") as $idx=>$panel) {
                         printf("<div class='platform-panel'><div class='inner'><h3>%s</h3><div class='logos' data-bg-array='%s'></div></div></div>", $panel["title"],json_encode($panel["logos"], JSON_UNESCAPED_SLASHES));
                     }
-    section.platform-security-section.padding-both
+    section.platform-security-section.padding-both.double
         .container
             .row
                 .col-md-12.centered
@@ -72,7 +72,7 @@ block content
                     p
                         :php
                             printf("%s", $ss["copy"])                    
-    section.platform-benefits-section.padding-both(data-bg="bg-platform-benefits.jpg")
+    section.platform-benefits-section.padding-both.double(data-bg="bg-platform-benefits.jpg")
         .container
             .row
                 .col-md-12
@@ -89,7 +89,7 @@ block content
                             foreach($bb["tabs"] as $idx=>$tab) {
                                 printf("<li><div class='icon hidden-sm hidden-xs' data-bg-array='%s'></div><div class='text'><h3 class='white'>%s</h3><p class='white'>%s</p></div></li>", json_encode($tab["tab_icon"], JSON_UNESCAPED_SLASHES), $tab["tab_content_header"], $tab["tab_content"]);
                             }
-    section.platform-graph-section.padding-both
+    section.platform-graph-section.padding-both.double
         .container
             .row
                 .col-md-12
@@ -104,9 +104,9 @@ block content
                         p.footnote
                             :php
                                 printf("%s", get_field("graph_lower_copy"));                    
-    section.bottom-cta.padding-both
+    section.bottom-cta.padding-both.double
         .container
             .row
                 .col-md-12
                     p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal.
-                    a.button.cta.knockout(href="/requestdemo") Request Demo
+                    a.button.cta.knockout.request-demo(href="/requestdemo") Request Demo
