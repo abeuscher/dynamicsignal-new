@@ -1060,6 +1060,7 @@ var siteActions = [{
       var theMessage = document.getElementById("thank-you-message");
       theForm.classList.add("hide");
       theMessage.classList.remove("hide");
+      /*
       setTimeout(function () {
         if (document.getElementById("demo-request-modal").classList.contains("active")) {
           document.getElementById("demo-request-modal").classList.remove("active")
@@ -1068,6 +1069,7 @@ var siteActions = [{
           document.body.classList.remove("modal-open")
         }
       }, 5000);
+      */
     }
     function closeDemoRequest(e) {
       if (e) {

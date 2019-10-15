@@ -86,19 +86,21 @@ body.modal-open {
       display:none;
     }
     &.thank-you {
-      .inner {
+      .ty-inner {
         flex-basis:100%;
         flex-grow:1;
         flex-shrink:1;
-        display:flex;
-        align-items:center;
-        justify-content: center;
         padding:$gutter-width;
-        background:$menu-blue;
-        p {
-          color:$white;
+        background:$white;
+        .inner {
+          h3 {
+            font-size:16px;
+          }
+          p {
+            font-size:14px;
+          }
         }
-        min-height:50vw;
+
       }
 
     }
