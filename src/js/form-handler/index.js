@@ -98,6 +98,10 @@ FormHandler.prototype.fixForm = function () {
     } else {
       MktoForms2.loadForm("//app-ab04.marketo.com", "362-RJN-040", theID);
       MktoForms2.whenReady(function (form) {
+        var loader = theForm.querySelectorAll(".loader")[0];
+        if (loader) {
+          loader.classList.remove("loading");
+        }
         var submitButton = theForm.querySelectorAll("button[type=submit]")[0];
         if (submitButton) {
           submitButton.classList.remove("mktoButton");

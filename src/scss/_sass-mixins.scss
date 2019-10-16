@@ -224,3 +224,24 @@ $mq-support:true;
     left: round(($size - ($border-size + $border-thickness)) / 2) + $border-thickness;
   }
 }
+@mixin spinner($color:#000,$width:128px,$border-width:16px) {
+  display: inline-block;  
+  &:after {
+    content: "";
+    display: block;
+    width: $width;
+    height: $width;
+    border-radius: 50%;
+    border: $border-width solid;
+    border-color: transparent $color transparent;
+    animation: spinner-spin 1s linear infinite;
+  }
+}
+@keyframes spinner-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -17,80 +17,67 @@ var isElement = require("./utils/is-element.js");
 
 var siteSettings = {
   "imagePath": "/wp-content/themes/ds-new/images/",
-  "videoPath": "https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/video/",
   "gdprCookie": "ds-gdpr",
   "sessionCookie": "ds-count",
   "ctaBar": require("./cta-bar.json"),
-  "fontApiKey": "AIzaSyCqr2-oB5Ck52ZRAxrztzvJNdiaRJyKUL0",
   "templates": {
-    "adwordsGrid": require("./inc/ad-words-grid.pug"),
-    "adwordsLogoGarden": require("./inc/ad-words-logo-garden.pug"),
-    "homePageLogo": require("./inc/home-logo-slide.pug"),
-    "logoTerminalGrid": require("./inc/logo-terminal-grid.pug"),
-    "logoPartnersGrid": require("./inc/logo-partners-grid.pug"),
-    "partnersPageLogo": require("./inc/partners-logo-slide.pug"),
-    "customerTile": require("./inc/customer-tile.pug"),
-    "customerQuote": require("./inc/customer-quote.pug"),
-    "partnersTestimonial": require("./inc/partner-testimonial.pug"),
-    "careerVideoSlide": require("./inc/career-video-slide.pug"),
-    "featuredJob": require("./inc/featured-job.pug"),
-    "testimonialSlide": require("./inc/testimonial-slide.pug"),
-    "productDisplay": require("./inc/product-display.pug"),
-    "demoRequestModal": require("./inc/demo-request-modal.pug"),
-    "pagerThumb": require("./inc/pager-thumb.pug"),
-    "homeSlides": require("./inc/homepage-slides.pug"),
-    "servicesLogos": require("./inc/services-logos.pug"),
-    "connectorPanel": require("./inc/connector-panel.pug"),
-    "connectorInfo": require("./inc/connector-info.pug"),
-    "useCaseQuote": require("./inc/use-case-quote.pug"),
-    "jobListing": require("./inc/job-listing.pug"),
-    "ctaBar": require("./inc/cta-bar.pug"),
-    "summitCtaBar": require("./inc/summit-cta.pug"),
-    "noEvents": require("./inc/no-events.pug"),
-    "eventListing": require("./inc/event-listing.pug"),
-    "pastEventListing": require("./inc/past-event-listing.pug"),
-    "pastEventWide": require("./inc/past-event-wide.pug"),
-    "eventBreadcrumb": require("./inc/events-breadcrumbs.pug"),
-    "pasteventBreadcrumb": require("./inc/past-events-breadcrumbs.pug"),
-    "buttonPastEvents": require("./inc/button-past-events.pug"),
-    "jobFilter": require("./inc/job-filter.pug"),
-    "backgroundPicker": require("./inc/header-picker.pug"),
-    "gdprPopup": require("./inc/gdpr-popup.pug"),
-    "sdrQuote": require("./inc/sdr-quote.pug"),
-    "modalVideo": require("./inc/modal-video-slide.pug"),
-    "videoCarousel": require("./inc/video-carousel.pug"),
-    "whatisSlide": require("./inc/whatis-carousel-slide.pug")
+    "adwordsGrid": require("./inc/ad-words-grid.pug"), // Grid for Adwords landing pages
+    "adwordsLogoGarden": require("./inc/ad-words-logo-garden.pug"), // Logo garden for adwords landing pages
+    "logoTerminalGrid": require("./inc/logo-terminal-grid.pug"), // Flipping Logo Slides
+    "logoPartnersGrid": require("./inc/logo-partners-grid.pug"), // Flipping logo slides for partners page
+    "customerTile": require("./inc/customer-tile.pug"), // Logo grid for Customers page
+    "customerQuote": require("./inc/customer-quote.pug"), // Quote carousel for customers page
+    "partnersTestimonial": require("./inc/partner-testimonial.pug"), // Testimonials opn agency partners page
+    "careerVideoSlide": require("./inc/career-video-slide.pug"), // Video slide on careers page
+    "featuredJob": require("./inc/featured-job.pug"), // Featured job popout on careers page
+    "demoRequestModal": require("./inc/demo-request-modal.pug"), // Modal Demo Request form
+    "servicesLogos": require("./inc/services-logos.pug"), // Logos for integrations section of services page
+    "connectorPanel": require("./inc/connector-panel.pug"), // On connectors page - may still be in use
+    "connectorInfo": require("./inc/connector-info.pug"), // On connectors page - may still be in use
+    "jobListing": require("./inc/job-listing.pug"), // Job listing for careers page
+    "ctaBar": require("./inc/cta-bar.pug"), // For CTA Bar - Soon to expire
+    "noEvents": require("./inc/no-events.pug"), // No events temlate for events page
+    "eventListing": require("./inc/event-listing.pug"), // Event Listing
+    "pastEventListing": require("./inc/past-event-listing.pug"), // Past event listing
+    "pastEventWide": require("./inc/past-event-wide.pug"), // Past events full page layout
+    "eventBreadcrumb": require("./inc/events-breadcrumbs.pug"), // Events breadcrumbs
+    "pasteventBreadcrumb": require("./inc/past-events-breadcrumbs.pug"), // BReadcrumbs for past events page
+    "buttonPastEvents": require("./inc/button-past-events.pug"), // Button for past events
+    "jobFilter": require("./inc/job-filter.pug"), // Job Filter for Careers Page
+    "gdprPopup": require("./inc/gdpr-popup.pug"), // Popup GDPR warning
+    "sdrQuote": require("./inc/sdr-quote.pug") // Quote carousel for SDR specific career page
   },
-  "breakpoints": {
+  "breakpoints": { // Site breakpoints.
     "xs": 0,
     "s": 641,
     "m": 1025,
     "l": 1321,
     "xl": 1921
   },
-  "formHandler": new FormHandler()
+  "formHandler": new FormHandler() // MArketo form handler
 };
 
 window.addEventListener("load", function () {
-  function inIframe() {
-    try {
-      return window.self !== window.top;
-    } catch (e) {
-      return true;
-    }
-  }
+
+  // Check to make sure browser accepts cookies, then provide GDPR warning if yes.
   if (checkCookies()) {
     triggerGDPR();
   }
+
+  // Iterate through site action array. Look for elements and if present trigger their respective actions.
+  // This is probably a weird way to do this, but it makes iteration and additions and removals very easy.
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.querySelectorAll(thisAction.element).length > 0) {
       thisAction.action(document.querySelectorAll(thisAction.element));
     }
   }
+
+  //Initiate video handler separately because it has a lot of things to do.
   var videoHandler = new VideoHandler();
   videoHandler.init();
 
+  // Check for Mobile OS and force style changes if present (overrides some weird thing on some device I forget which one)
   var s = getMobileOperatingSystem();
   if (s) {
     var mobilePanels = document.querySelectorAll(".mobile-cta");
@@ -103,6 +90,7 @@ window.addEventListener("load", function () {
     }
   }
 
+  // This seems to make things prettier when combined with scrollIntoView and the ScrollMagic effects on site.
   smoothscroll.polyfill();
 
   // Activate UTM Catcher for Marketo
@@ -309,22 +297,6 @@ var siteActions = [{
   }
 },
 {
-  "element": "#mobile-screenshots",
-  "action": function () {
-    mobileScreens = [siteSettings.imagePath + "mobile-homepage-2.png", siteSettings.imagePath + "mobile-homepage-3.png"];
-    var logoGall = new Flickity("#mobile-screenshots", {
-      "prevNextButtons": false,
-      "autoPlay": 5000,
-      "wrapAround": true,
-      "pageDots": false
-    });
-    for (i = 0; i < mobileScreens.length; i++) {
-      logoGall.append(parseHTML(siteSettings.templates.homeSlides(mobileScreens[i])));
-    }
-    logoGall.resize();
-  }
-},
-{
   "element": "#hero-words",
   "action": function (els) {
     var interval = 3000;
@@ -451,18 +423,6 @@ var siteActions = [{
         items[i].classList.remove("active");
       }
     }
-  }
-},
-{
-  "element": "#use-case-quotes",
-  "action": function () {
-    var quoteGall = new Flickity("#use-case-quotes", {
-      "prevNextButtons": false
-    });
-    for (i in useCaseQuotes) {
-      quoteGall.append(parseHTML(siteSettings.templates.useCaseQuote(useCaseQuotes[i])));
-    }
-    quoteGall.resize();
   }
 },
 {
@@ -712,22 +672,6 @@ var siteActions = [{
         bucket.append(parseHTML(siteSettings.templates.pastEventWide(pageData.events[i])));
       }
     }
-  }
-},
-{
-  "element": "#logo-strip",
-  "action": function () {
-    cellsperSlide = window.innerWidth < siteSettings.breakpoints.m ? 3 : 5;
-    var logoGall = new Flickity("#logo-strip", {
-      "prevNextButtons": false,
-      "lazyLoad": cellsperSlide * 2,
-      "autoPlay": 5000,
-      "groupCells": cellsperSlide
-    });
-    for (i in pageData.logos) {
-      logoGall.append(parseHTML(siteSettings.templates.homePageLogo(pageData.logos[i])));
-    }
-    logoGall.resize();
   }
 },
 {
