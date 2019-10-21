@@ -10,10 +10,10 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  section.container
-    .row
+  section.container.margin-top-header
+    .row.padding-both
       .col-md-8.col-md-offset-2
-        img(data-src="404-bg.jpg" alt="404 File Not Found")
+        img(src=themeDir + "/images/404-bg.jpg" alt="404 File Not Found")
         p Maybe try a search?
         #search-box-sidenav
           form.search-form(action='')

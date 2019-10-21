@@ -25,20 +25,22 @@ block content
     openindex.result.boostPopularDocuments = true;
     openindex.date.pref = 21;
     });
-  section.top-section-interior
+  section.hero-with-bg(data-bg="generic-hero-bg.jpg")
     .container
       .row
-        .col-md-12
-  section.search-results.container
+        .col-md-6
+          h1.white Search
+  section.search-results.container.white-bg-section.padding-top
     .row
       .col-md-12
+        h3 Enter Search Term:
         #search-box-sidenav
           form.search-form(action='')
             input.query#oi-query(type='text', placeholder="Enter Search Term")
             button.submit(type="submit")
               i.fa.fa-search
-            #oi-spellcheck
-            #oi-header
+        #oi-spellcheck
+        #oi-header
         #oi-results
         #oi-pager
         #oi-related-queries

@@ -26,6 +26,7 @@ h6 {
 h1, h2, h3 {
   color:$off-black;
   font-weight:400;
+  margin-top:0;
   &.white {
     color:$white;
   }
@@ -41,7 +42,7 @@ h1 {
 h2 {
   color: $off-black;
   font-size: 24px;
-  font-weight: 300;
+  font-weight: bold;
   line-height: 1.2;
   letter-spacing: normal;
   @include bp(m) {
@@ -51,7 +52,7 @@ h2 {
 h3 {
   color: $off-black;
   font-size:20px;
-  font-weight:bold;
+  font-weight:300;
   @include bp(m) {
     font-size: 24px;
   } 
@@ -95,6 +96,9 @@ a {
       color:darken($blue,20%);
     }
   }
+}
+.no-margin {
+  margin:0;
 }
 .hide {
   display: none !important;
@@ -146,9 +150,21 @@ a {
   }
 }
 .margin-top-header {
-  margin-top:100px;
+  margin-top:$nav-short;
+  @include ds-transition();
   @include bp(s) {
-    margin-top:150px;
+    margin-top:$nav-tall;
+  }
+}
+.padding-top-header {
+  padding-top:60px;
+  @include bp(s) {
+    padding-top:80px;
+  }
+}
+body.nav-short {
+  .margin-top-header {
+    margin-top:$nav-short;
   }
 }
 .even-height-wrapper {
@@ -537,7 +553,10 @@ ul.side-list {
       color: transparent;
     }
   }
-
+  h2 {
+    font-weight:300;
+    margin-top:$gutter-width;
+  }
   h2,
   h3 {
     color: $menu-blue;
@@ -602,11 +621,18 @@ ul.side-list {
   &.sdr-page {
     height: 100%;
   }
+  &.home-page {
+    height:auto;
+    margin-bottom:$gutter-width;
+  }
   h3,
   h4,
   p,
   ul {
-    padding: 0 $gutter-width/2;
+    @include bp(m) {
+      padding: 0 $gutter-width/2;
+    }
+   
   }
   &.no-header {
     height: 100%;
@@ -614,7 +640,12 @@ ul.side-list {
   p {
     line-height: 2;
   }
-
+  h3 {
+    font-size:16px;
+    line-height:1.4;
+    margin-top:$gutter-width/3;
+    padding-bottom:$gutter-width/2;
+  }
   .featured-thumb {
     &:after {
       transition: 0.25s all ease-in;
@@ -628,15 +659,17 @@ ul.side-list {
       background: rgba(0, 0, 0, 0);
     }
   }
-
+  .blog-featured-bucket {
+    padding-bottom:$gutter-width;
+  }
   &:hover {
     @include bp(m) {
-      background: $light-gray;
+      background: rgba(0, 0, 0, 0.05);
       color: $black;
       .featured-thumb {
         &:after {
           color: $white;
-          background: rgba(0, 0, 0, 0.6);
+          background: rgba(0, 0, 0, 0.5);
         }
         h1 {
           color: rgba(255, 255, 255, 0.5);
@@ -791,16 +824,16 @@ section.fullpic {
   }
   .inner {
     position: relative;
-    max-width: 1280px;
+    max-width: 1170px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column-reverse;
     margin: 0 auto;
     .col-full {
       flex-basis:100%;
-      padding: 80px $gutter-width 50px;
+      padding: 50px $gutter-width 50px;
       @include bp(m) {
-        padding: 150px $gutter-width 50px;
+        padding: 120px $gutter-width 50px;
       }
     }
     .col-half {
@@ -854,6 +887,34 @@ section.fullpic {
       flex-direction: row;
     }
   }
+  &.homepage {
+    .header-bg {
+      background-position:top right;
+    }
+    .inner {
+      .col-half.text {
+          padding: 100px $gutter-width 50px;
+          h1, p {
+            color:$white;
+          }
+          h1 {
+            margin-bottom:0em;
+          }
+          p {
+            margin-top:.25em;
+          }
+          @include bp(s) {
+            h1, p {
+              color:$off-black;
+            }
+            padding: 100px $gutter-width 50px;
+          }
+          @include bp(m) {
+            padding: 18vw $gutter-width 250px;
+          }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 640px) {
@@ -881,15 +942,15 @@ section.halfpic {
   position: relative;
   background: $lighter-gray;
   padding: 0;
-  margin-top: 50px;
   &.pos-fixed {
     position: fixed !important;
-    top: 50px !important;
+    //top: 0 !important;
   }
   .halfpic-bg {
     position: static;
     width: 100%;
     background-size: cover;
+    background-position:center;
     &:after {
       content: "";
       display: block;
@@ -909,7 +970,7 @@ section.halfpic {
         padding-bottom: 0;
       }
       &.demo-center {
-        background-position: right top;
+        background-position: 0 -50px;
       }
     }
   }
@@ -948,14 +1009,14 @@ section.halfpic {
   margin: 0 0 0;
   position: relative;
   .col-half-flex {
-    padding-bottom: $gutter-width*2;
+    padding: $gutter-width*2 0;
     @include bp(m) {
-      padding-top: 80px;
+      padding-top:0;
       flex-basis: 50%;
       display: flex;
       flex-direction: column;
       .inner {
-        padding: 8vw 0;
+        padding: 4vw 0;
         h1 {
           margin-top: 0;
         }
@@ -1034,6 +1095,7 @@ ul.copy-points {
     a {
       width: 100%;
       display: flex;
+      font-family:$nav-font;
     }
     .icon {
       @include arrow-in-circle($background-color:$orange,$border-color:$white);
@@ -1093,26 +1155,22 @@ hr.blue-separator {
     }
   }
   cite {
+    position:relative;
     margin-top: $gutter-width;
     font-style: normal;
-    font-size: 14px;
     line-height: 30px;
     font-weight: 300;
     padding-left: $gutter-width*2.5;
     display: block;
     margin-right: $gutter-width;
-    letter-spacing: 1px;
-    text-transform: uppercase;
     text-align: left;
     color: $white;
-
     .name {
       display: block;
     }
-
     .title {
       display: block;
-      font-style: italic;
+      //font-style: italic;
     }
   }
 }
@@ -1127,4 +1185,18 @@ hr.blue-separator {
     min-height:400px;
     padding-bottom:0;
   }
+}
+.font-picker {
+  position:fixed !important;
+  height:60px;
+  width:400px;
+  background:$black;
+  top:100px;
+  left:0;
+  z-index:9999;
+}
+.form-warning {
+  margin-top:-4em;
+  background:$white;
+  padding:1em;
 }

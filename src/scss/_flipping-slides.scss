@@ -62,4 +62,22 @@ $time:6s;
         opacity:1;
       }
     }
+    &.disabled {
+      .logo-thumb {
+        animation:none;
+        &.flipped {
+          animation:none;
+        }
+      }
+    }
+  }
+  body.modal-open, body.gdpr-popup {
+    .logo-flipper {
+      .logo-thumb {
+        animation:none;
+        &.flipped {
+          animation:none;
+        }
+      }
+    }
   }

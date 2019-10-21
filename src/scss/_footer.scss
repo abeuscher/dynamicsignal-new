@@ -5,6 +5,10 @@ footer {
   .container {
     padding-top:$gutter-width/2;
   }
+  font-family:$nav-font;
+  h1,h2,h3,p,li {
+    font-family:$nav-font;
+  }
 }
 .footer-top {
   padding-bottom:$gutter-width*2;
@@ -16,8 +20,10 @@ footer {
   }
 
   a {
-    letter-spacing: 1px;
+    
     color:$classic-gray;
+    
+
     &:hover {
       color:$header-blue;
       text-decoration: underline;
@@ -29,9 +35,9 @@ footer {
   }
   h5 {
     margin: $gutter-width*1.5 0 $gutter-width/2;
-    font-size:1em;
-    font-family:$body-font;
-    font-weight:300;
+    font-size:18px;
+    font-family:$nav-font;
+    font-weight:700;
     letter-spacing:1px;
   }
   ul {
@@ -45,7 +51,7 @@ footer {
       text-align: left;
       margin-bottom:.5em;
       a {
-        line-height:1.2;font-size:.8em;
+        line-height:1.2;font-size:16px;
       }
     }
 

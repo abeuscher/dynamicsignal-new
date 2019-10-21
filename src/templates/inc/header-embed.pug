@@ -1,8 +1,7 @@
 header.page-header#page-header
-  #cta-bar
   nav.main
     a.logo-bucket(href="https://dynamicsignal.com/")
-      img#logo(src="https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/images/logo-header.png")
+      img#logo(src="https://dynamicsignal.com/wp-content/themes/ds-new/images/logo-header.png")
     ul.hmenu.top-nav
       li.has-drop
         a(href="https://dynamicsignal.com/product/") Platform
@@ -52,6 +51,12 @@ header.page-header#page-header
             a(href="https://dynamicsignal.com/events/") Events
           li
             a(href="https://dynamicsignal.com/partners/") Partners
+          li
+            hr
+          li
+            a(href="https://dynamicsignal.com/contact-us") Contact Us
+          li
+            a(href="https://support.dynamicsignal.com/") Support
       li.has-drop
         a(href="https://dynamicsignal.com/resources/") Resources
         ul.drop
@@ -63,18 +68,7 @@ header.page-header#page-header
             a(href="https://dynamicsignal.com/webinars") Webinars
       li.show-medium
         a.cta(href="https://dynamicsignal.com/requestdemo/") Request a Demo
-      li.show-mobile
-        a#btn-search-header(href="#",title="search") 
-          span.fa.fa-search
-        #search-box-header
-          a#btn-close-search(href="#")!="&times;"
-          form.search-form(action='')
-            input.query#oi-query(type='text', placeholder="Enter Search Term")
-            button.submit(type="submit")
-              i.fa.fa-search
-            span#oi-spellcheck
-            span#oi-header
-      li.show-mobile
+      li.show-mobile.hide-large
         a.hamburger#toggle-side-nav(href="#",title="menu")
           .line.top
           .line.middle

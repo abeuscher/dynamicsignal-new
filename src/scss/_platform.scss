@@ -1,11 +1,9 @@
 section.platform-header {
-  margin-top: 40px;
   padding-top: 80px;
   padding-bottom: 0;
   background-size: cover;
   background-position: center center;
   @include bp(m) {
-    margin-top: 50px;
     padding-top: 100px;
   }
   h1 {
@@ -121,11 +119,10 @@ ul.copy-points {
       }
       &.text-col {
         @include bp(m) {
-          padding: 50px 0;
+          padding: 75px 0;
           flex-basis: 50%;
         }
         @include bp(l) {
-          padding: 50px 0;
           flex-basis: 35%;
         }
       }
@@ -190,6 +187,8 @@ section.platform-panels {
           margin: 0;
           padding: $gutter-width/2 0 0;
           width: 100%;
+          color:$off-black;
+          font-size:18px;
         }
         .logos {
           width: 50%;

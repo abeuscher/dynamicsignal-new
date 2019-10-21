@@ -139,7 +139,7 @@
       margin: 80px 50px 30px 50%;
 
       &.left {
-        margin: 80px 50% 30px 50px;
+        margin: 80px 30% 30px 50px;
       }
 
       a.video-play {
@@ -186,3 +186,20 @@
     line-height:1.8;
   }
 }
+.customer-video-carousel {
+  button.flickity-prev-next-button.previous {
+    left:50px;
+    display:none;
+    @include bp(m) {
+      display:inline-block;
+    }
+  }
+  button.flickity-prev-next-button.next {
+    right:50px;
+    display:none;
+    @include bp(m) {
+      display:inline-block;
+    }
+  }
+
+} 

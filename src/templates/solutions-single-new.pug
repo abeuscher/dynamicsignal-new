@@ -21,7 +21,7 @@ block content
       "link"=>"/solutions/"
     ));
   :php
-    printf("<section class='halfpic bigtext' id='sticky-header'>");
+    printf("<section class='halfpic bigtext margin-top-header'>");
     printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));    
   .white-gradient-header
   .container
@@ -35,7 +35,7 @@ block content
                 printf("<a class='button cta' href='%s'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("header_cta_target"), get_field("header_cta_text"));
   :php
     echo "</section>";
-  section.white-bg-section
+  section.white-bg-section.padding-both
     .container
       .row
         .col-md-12.blog-content
@@ -45,7 +45,7 @@ block content
           p
             :php
               the_field("top_section_copy");
-  section.white-bg-section
+  section.white-bg-section.padding-both
     .container
       .row
         .col-md-12.blog-content
@@ -66,7 +66,7 @@ block content
         }
     }
 
-  section.tabs.white-bg-section
+  section.tabs.white-bg-section.padding-both
     .container.blog-content
       .row
         .col-md-12
@@ -75,7 +75,7 @@ block content
               echo $nav
       :php
         echo $panels;
-  section.features-link.gray-bg-section
+  section.features-link.gray-bg-section.padding-both
     .container
       .row
         .col-md-12
@@ -83,7 +83,7 @@ block content
             .bg(data-bg="icon-star.png")
             :php
               echo get_field("features_link_text");
-  section.white-bg-section
+  section.white-bg-section.padding-both
     .container
       .row
         .col-md-12.centered
@@ -98,7 +98,7 @@ block content
               foreach($slides as $slide) {
                 printf("<div class='container'><div class='row'><div class='col-md-4'><div class='solutions-slide-image tab-image' data-bg-array='%s'></div></div><div class='col-md-8'><div class='slide-logo' data-bg-array='%s'></div><p>%s</p></div></div></div>",json_encode($slide["slide_image"],JSON_UNESCAPED_SLASHES),json_encode($slide["slide_logo"],JSON_UNESCAPED_SLASHES),$slide["slide_copy"]);
               }
-  section.white-bg-section
+  section.white-bg-section.padding-both
     .container
       .row
         .col-md-12.centered
@@ -111,5 +111,5 @@ block content
     .container
       .row
         .col-md-12
-          p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal
+          p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal.
           a.button.cta(href="/requestdemo/") Request Demo

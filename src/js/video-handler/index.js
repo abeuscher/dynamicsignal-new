@@ -113,10 +113,10 @@ videoHandler.prototype.buildPanels = function(panels, attrName, gallery) {
 
     }
     self.panels[i].theHtml.addEventListener("click", function(e) {
+      e.preventDefault();
       if (pauseAction) {
         return;
       }
-      e.preventDefault();
       var thisPanel = self.panels[this.getAttribute("data-panel-idx")];
       if (thisPanel.getAttribute("data-panel-event")!="") {
         logEvent(thisPanel.getAttribute("data-panel-event"));

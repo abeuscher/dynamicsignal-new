@@ -1,6 +1,8 @@
 app
 node_modules
 yarn.lock
+npm-debug.log
+yarn-error.log
 conf
 logs
 yarn.lock
