@@ -15,22 +15,16 @@ block content
         .row
             .col-md-5
                 :php
-                    printf("<h1 class='white'>%s</h1><h2>%s</h2>", get_field("hero_headline"), get_field("hero_subhead"));
+                    printf("<h1 class='white'>%s</h1><p>%s</p>", get_field("hero_headline"), get_field("hero_subhead"));
             .col-md-7.features-image-bucket
                 :php
                     printf("<div class='pc-image' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES));
     :php
        echo "</section>";    
-    section.pullquote-large
+    section.salesforce-content.padding-both
         .container
             .row
-                .col-md-12
-                    :php
-                        printf("<blockquote><div class='thumb' data-bg-array='%s'></div><div class='quote'>%s<cite>- %s</cite></div></blockquote>", json_encode(get_field("pullquote_image"), JSON_UNESCAPED_SLASHES), get_field("pullquote_text"), get_field("pullquote_source"));
-    section.salesforce-content
-        .container
-            .row
-                .col-md-12.centered
+                .col-md-12.centered.padding-both
                     :php
                         printf("<h2>%s</h2>", get_field("content_headline"));
                 .col-md-6
@@ -43,13 +37,13 @@ block content
                     .wrapper-video
                         :php
                             printf("%s", get_field("video_embed_code"));
-    section.salesforce-cta
+    section.salesforce-cta.padding-both
         .container
             .row
                 .col-md-12.centered
                     :php
-                        printf("<h2>%s</h2><a class='button orange' href='%s'>%s</a>", get_field("cta_header"), get_field("cta_link"), get_field("cta_text"));
-    section.salesforce-case-studies
+                        printf("<h2>%s</h2><a class='button orange' href='%s' target='_blank'>%s</a>", get_field("cta_header"), get_field("cta_link"), get_field("cta_text"));
+    section.salesforce-case-studies.padding-both
         .container
             .row
                 .col-md-12.centered

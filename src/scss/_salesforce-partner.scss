@@ -2,11 +2,11 @@
     h1 {
         padding:1em 0 0;
     }
-    h2, h2 {
+    h2, h2, p {
         color:$white;
     }
     .pc-image {
-        margin-bottom:-1*$gutter-width;
+        margin-bottom:0;
     }
     background:radial-gradient(circle at 70%, #7db9e8 0%,#1b3152 67%);
 }
