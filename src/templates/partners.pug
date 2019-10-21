@@ -36,6 +36,8 @@ block content
                 .col-md-6
                     :php
                         printf("<h2 class='blue'>%s</h2><p>%s</p>", get_field("third_section_headline"), get_field("third_section_copy"));
+                    p
+                        a.button(href="/partners/salesforce-partner/") Learn More
                 .col-md-6  
                     :php
                         printf("<div class='partners-pc-image' data-bg-array='%s'></div>",json_encode(get_field("third_section_image"), JSON_UNESCAPED_SLASHES));

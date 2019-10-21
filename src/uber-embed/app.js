@@ -96,27 +96,6 @@ window.addEventListener("load", function() {
       closeButton.removeEventListener("click", closeBody);
     }
 
-    // Activate search forms
-    var searchForms = document.querySelectorAll(".search-form");
-    for (i=0;i<searchForms.length;i++) {
-      var thisForm = searchForms[i];
-      thisForm.addEventListener("submit", function(e) {
-        e.preventDefault();
-        var query = this.querySelectorAll(".query")[0].value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-        location.href="https://dynamicsignal.com/search/#q=" + encodeURI(query);
-        return false;
-      });
-
-    }
-    var btn = document.getElementById("btn-search-header");
-    var btnClose = document.getElementById("btn-close-search");
-    var searchBox = document.getElementById("search-box-header");
-    btn.addEventListener("click", function() {
-      searchBox.classList.toggle("active");
-    });
-    btnClose.addEventListener("click", function() {
-      searchBox.classList.toggle("active");
-    });
     // URL hacks - can probably remove in a few months. These were added summer of 2017
     if (location.hash.indexOf("ufh") != -1) {
       location.href = "https://resources.dynamicsignal.com/h/" + location.hash.substr(5, 1) + "/" + location.hash.substr(7, location.hash.length - 1);
@@ -133,7 +112,10 @@ window.addEventListener("load", function() {
         thisLink.target = "_blank";
       }
     }
-    triggerGDPR();
+    if (checkCookies()) {
+      triggerGDPR();
+    }
+
     writeCTA();
 });
 
@@ -153,9 +135,6 @@ function triggerGDPR() {
       warning.remove();
       return false;
     });
-  }
-  else {
-    console.log("cookie found");
   }
 }
 function checkCookies(){

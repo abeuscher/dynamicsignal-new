@@ -21,6 +21,8 @@ header.page-header {
       img {
         @include ds-transition();
         height:$nav-short;
+        max-width:none;
+        width:auto;
       }
       @include bp(s) {
         flex-basis:50%;

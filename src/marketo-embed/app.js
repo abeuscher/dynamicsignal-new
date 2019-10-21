@@ -54,16 +54,6 @@ window.addEventListener("load", function() {
     duration: 0
   });
   headerLock.addTo(headController);  
-
-    var btn = document.getElementById("btn-search-header");
-    var btnClose = document.getElementById("btn-close-search");
-    var searchBox = document.getElementById("search-box-header");
-    btn.addEventListener("click", function() {
-      searchBox.classList.toggle("active");
-    });
-    btnClose.addEventListener("click", function() {
-      searchBox.classList.toggle("active");
-    });
   // Add menu button listener
   var theWrapper = document.getElementById("wrapper");
   var theToggle = document.getElementById("toggle-side-nav");

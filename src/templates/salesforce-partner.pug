@@ -1,0 +1,56 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Salesforce Partners Page
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+    :php
+        printf("<section class='features-header sf'>");
+    .container
+        .row
+            .col-md-5
+                :php
+                    printf("<h1 class='white'>%s</h1><p>%s</p>", get_field("hero_headline"), get_field("hero_subhead"));
+            .col-md-7.features-image-bucket
+                :php
+                    printf("<div class='pc-image' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES));
+    :php
+       echo "</section>";    
+    section.salesforce-content.padding-both
+        .container
+            .row
+                .col-md-12.centered.padding-both
+                    :php
+                        printf("<h2>%s</h2>", get_field("content_headline"));
+                .col-md-6
+                    ul.sf-copy-points
+                        :php
+                            foreach(get_field("content_bullets") as $idx=>$bullet) {
+                                printf("<li><span class='icon'></span><span class='text'>%s</span></li>", $bullet["text"]);
+                            }
+                .col-md-6.blog-content
+                    .wrapper-video
+                        :php
+                            printf("%s", get_field("video_embed_code"));
+    section.salesforce-cta.padding-both
+        .container
+            .row
+                .col-md-12.centered
+                    :php
+                        printf("<h2>%s</h2><a class='button orange' href='%s' target='_blank'>%s</a>", get_field("cta_header"), get_field("cta_link"), get_field("cta_text"));
+    section.salesforce-case-studies.padding-both
+        .container
+            .row
+                .col-md-12.centered
+                    :php
+                        printf("<h2>%s</h2>", get_field("case_study_headline"));
+                    ul.sf-case-study-list
+                        :php
+                            foreach(get_field("case_study_links") as $idx=>$link) {
+                                printf("<li><div class='thumb' data-bg-array='%s'></div><a class='button' href='%s'>%s</a>", json_encode($link["thumb"], JSON_UNESCAPED_SLASHES), $link["url"], $link["button_text"]);
+                            }
