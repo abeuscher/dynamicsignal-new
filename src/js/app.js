@@ -1,13 +1,11 @@
-var smoothscroll = require("smoothscroll-polyfill");
 var ScrollMagic = require("scrollmagic");
+var smoothscroll = require("smoothscroll-polyfill");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
-
 
 var FormHandler = require("./form-handler/");
 var VideoHandler = require("./video-handler/");
 var DigitCounter = require("./digit-counter/");
 var RequestDemoHandler = require("./request-demo-handler/");
-var parseHTML = require("./utils/parse-html.js");
 var MakeTabs = require("./make-tabs/");
 
 var CheckCookies = require("./utils/check-cookies");
@@ -196,56 +194,13 @@ var siteActions = [{
   "action": require("./el-vertical-carousel/")
 }, {
   "element": "[data-event]",
-  "action": function (triggers) {
-    for (i = 0; i < triggers.length; i++) {
-      triggers[i].addEventListener("click", logEvent);
-    }
-    function logEvent(e) {
-      var eventName = e.target.getAttribute("data-event");
-      window['GoogleAnalyticsObject'] = 'ga';
-      window['ga'] = window['ga'] || function () {
-        (window['ga'].q = window['ga'].q || []).push(arguments)
-      };
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ "event": eventName });
-    }
-  }
+  "action": require("./ga-event-emitter/")
 }, {
   "element": ".flicker-in",
-  "action": function (flickContent) {
-    var flickcontroller = new ScrollMagic.Controller({
-      "loglevel": 0
-    });
-
-    for (i = 0; i < flickContent.length; i++) {
-      var thisBlock = flickContent[i];
-      new ScrollMagic.Scene({
-        triggerElement: thisBlock,
-        duration: 0,
-        offset: -250,
-        reverse: false
-      })
-        .on("enter", function (e) {
-          if (!document.getElementById(e.currentTarget.id).classList.contains(".active")) {
-            document.getElementById(e.currentTarget.id).classList.add("active");
-          }
-        })
-        .addTo(flickcontroller)
-        .id = thisBlock.id;
-    }
-  }
+  "action": require("./flicker-load/")
 }, {
   "element": ".search-form",
-  "action": function (searchForms) {
-    for (i = 0; i < searchForms.length; i++) {
-      searchForms[i].addEventListener("submit", function (e) {
-        e.preventDefault();
-        var query = this.querySelectorAll(".query")[0].value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-        location.href = "https://dynamicsignal.com/search/#q=" + encodeURI(query);
-        return false;
-      });
-    }
-  }
+  "action": require("./search-form-init/")
 }, {
   "element": "[data-counter-min]",
   "action": function () {
@@ -258,9 +213,3 @@ var siteActions = [{
   }
 }
 ];
-
-
-
-
-
-
