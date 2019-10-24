@@ -11,7 +11,6 @@ var siteSettings = {
   "gdprCookie": "ds-gdpr",
   "templates": {
     "gdprPopup": require("../js/gdpr-popup/gdpr-popup.pug"),
-    "demoRequestModal": require("../js/inc/demo-request-modal.pug"), // Modal Demo Request form
     "header": require("../templates/inc/header-embed.pug"),
     "footer": require("../templates/inc/footer.pug"),
     "sideNav": require("../templates/inc/side-nav.pug")

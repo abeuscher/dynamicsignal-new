@@ -168,9 +168,6 @@ FormHandler.prototype.fixForm = function () {
           if (parseInt(theID)!=1163) {
             location.href = followUpUrl;
           }
-          else {
-            console.log(theID);
-          }
           return false;
         });
         if (typeof validateCorporateEmail !== 'undefined') {

@@ -13,7 +13,6 @@ var siteSettings = {
     "header": require("../templates/inc/header-embed.pug"),
     "footer": require("../templates/inc/footer.pug"),
     "sideNav": require("../templates/inc/side-nav.pug"),
-    "demoRequestModal": require("../js/inc/demo-request-modal.pug") // Modal Demo Request form
   },
   "formHandler": new FormHandler()
 };

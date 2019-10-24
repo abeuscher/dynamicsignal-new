@@ -5,6 +5,7 @@
 
 .bread-crumbs {
   display: none;
+  padding-bottom:$gutter-width;
   @include bp(s) {
     display: block;
   }

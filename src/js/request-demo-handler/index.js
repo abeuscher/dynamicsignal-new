@@ -1,5 +1,9 @@
 var parseHTML = require("../utils/parse-html.js");
 
+var templates = {
+  "demoRequestModal": require("./demo-request-modal.pug"), // Modal Demo Request form
+}
+
 function RequestDemoHandler (buttons, siteSettings) {
     for (i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener("click", openDemoRequest);
@@ -11,7 +15,7 @@ function RequestDemoHandler (buttons, siteSettings) {
       }
       document.body.classList.add("modal-open");
       if (!document.getElementById("demo-request-modal")) {
-        document.body.appendChild(parseHTML(siteSettings.templates.demoRequestModal()));
+        document.body.appendChild(parseHTML(templates.demoRequestModal()));
         if (typeof MktoForms2 == "object") {
           initForm();
         }
@@ -44,16 +48,6 @@ function RequestDemoHandler (buttons, siteSettings) {
       var theMessage = document.getElementById("thank-you-message");
       theForm.classList.add("hide");
       theMessage.classList.remove("hide");
-      /*
-      setTimeout(function () {
-        if (document.getElementById("demo-request-modal").classList.contains("active")) {
-          document.getElementById("demo-request-modal").classList.remove("active")
-        }
-        if (document.body.classList.contains("modal-open")) {
-          document.body.classList.remove("modal-open")
-        }
-      }, 5000);
-      */
     }
     function closeDemoRequest(e) {
       if (e) {
