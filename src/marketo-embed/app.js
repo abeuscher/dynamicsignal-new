@@ -4,30 +4,29 @@ var isElement = require("../js/utils/is-element.js");
 var FormHandler = require("../js/form-handler/index.js");
 var ActivateVideos = require("../js/video-handler/index.js");
 
+var RequestDemoHandler = require("../js/request-demo-handler/index.js");
+
 var Cookies = require("js-cookie");
 var siteSettings = {
   "gdprCookie": "ds-gdpr",
-  "templates": {  
-    "gdprPopup": require("../js/inc/gdpr-popup.pug")
-  }
+  "templates": {
+    "gdprPopup": require("../js/gdpr-popup/gdpr-popup.pug"),
+    "demoRequestModal": require("../js/inc/demo-request-modal.pug"), // Modal Demo Request form
+    "header": require("../templates/inc/header-embed.pug"),
+    "footer": require("../templates/inc/footer.pug"),
+    "sideNav": require("../templates/inc/side-nav.pug")
+  },
+  "formHandler": new FormHandler()
 }
-var templates = {
-  "header": require("../templates/inc/header-embed.pug"),
-  "footer": require("../templates/inc/footer.pug"),
-  "sideNav": require("../templates/inc/side-nav.pug")
-};
 var siteopts = {
   "siteurl": "https://www.dynamicsignal.com"
 };
-var ctaInfo = require("../js/cta-bar.json");
-var ctaTemplate = require("../js/inc/cta-bar.pug");
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
   setNav();
   if (document.getElementById("marketo-form-wrapper")) {
-  var formHandler = new FormHandler();
-  formHandler.catchUTM();
-  formHandler.fixForm();
+    siteSettings.formHandler.catchUTM();
+    siteSettings.formHandler.fixForm();
   }
   triggerGDPR();
   // Add the header shrinker
@@ -38,27 +37,27 @@ window.addEventListener("load", function() {
     offset: 10,
     duration: 0
   })
-  .on("enter", function (e) {
-    if (!document.body.classList.contains("nav-short")) {
-      document.body.classList.add("nav-short");
-    }
-  })
-  .on("leave", function (e) {
-    if (document.body.classList.contains("nav-short")) {
-      document.body.classList.remove("nav-short");
-    }
-  })
-  .addTo(headController);
+    .on("enter", function (e) {
+      if (!document.body.classList.contains("nav-short")) {
+        document.body.classList.add("nav-short");
+      }
+    })
+    .on("leave", function (e) {
+      if (document.body.classList.contains("nav-short")) {
+        document.body.classList.remove("nav-short");
+      }
+    })
+    .addTo(headController);
   new ScrollMagic.Scene({
     offset: 0,
     duration: 0
   });
-  headerLock.addTo(headController);  
+  headerLock.addTo(headController);
   // Add menu button listener
   var theWrapper = document.getElementById("wrapper");
   var theToggle = document.getElementById("toggle-side-nav");
   var closeButton = document.getElementById("btn-close-sidenav");
-  theToggle.addEventListener("click", function(e) {
+  theToggle.addEventListener("click", function (e) {
     e.preventDefault();
     if (document.body.classList.contains("nav-open")) {
       document.body.classList.remove("nav-open");
@@ -84,40 +83,39 @@ window.addEventListener("load", function() {
   }
   if (document.getElementById("video-demo-button")) {
     var btn = document.getElementById("video-demo-button");
-    btn.addEventListener("click", function(e) {
+    btn.addEventListener("click", function (e) {
       e.preventDefault();
       if (history.pushState) {
         var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?val=demorequest';
-        window.history.pushState({path:newurl},'',newurl);
+        window.history.pushState({ path: newurl }, '', newurl);
       }
       btn.innerHTML = "Request Sent!";
     });
   }
-    // Activate search forms
-    var searchForms = document.querySelectorAll(".search-form");
-    for (i = 0; i < searchForms.length; i++) {
-      var thisForm = searchForms[i];
-      thisForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var query = this.querySelectorAll(".query")[0].value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-        location.href = "https://dynamicsignal.com/search/#q=" + encodeURI(query);
-        return false;
-      });
+
+  for (i in siteActions) {
+    var thisAction = siteActions[i];
+    if (document.querySelectorAll(thisAction.element).length > 0) {
+      thisAction.action(document.querySelectorAll(thisAction.element));
     }
-    writeCTA();
-
+  }
 });
-
+var siteActions = [{
+  "element": ".request-demo",
+  "action": function (buttons) {
+    RequestDemoHandler(buttons, siteSettings);
+  }
+}];
 function setNav() {
   var theOverlay = document.createElement("div");
   theOverlay.id = "overlay";
 
   var theWrapper = document.getElementById("wrapper");
-  var theHeader = parseHTML(templates.header(siteopts));
-  theWrapper.parentNode.insertBefore(theHeader,theWrapper);
-  document.body.appendChild(parseHTML(templates.sideNav(siteopts)));
+  var theHeader = parseHTML(siteSettings.templates.header(siteopts));
+  theWrapper.parentNode.insertBefore(theHeader, theWrapper);
+  document.body.appendChild(parseHTML(siteSettings.templates.sideNav(siteopts)));
   document.body.appendChild(theOverlay);
-  theWrapper.appendChild(parseHTML(templates.footer(siteopts)));
+  theWrapper.appendChild(parseHTML(siteSettings.templates.footer(siteopts)));
   theWrapper.classList.add("marketo-wrapper");
 }
 
@@ -165,15 +163,8 @@ function triggerGA() {
       '//www.googletagmanager.com/gtm.js?id=' + i + dl;
     f.parentNode.insertBefore(j, f);
   })(window, document, 'script', 'dataLayer', 'GTM-MQKZ8M');
-  setTimeout(checkVisitor,3000);
+  setTimeout(checkVisitor, 3000);
 }
-function writeCTA() {
-  if (document.getElementById("cta-bar")) {
-    var bar = document.getElementById("cta-bar");
-    bar.append(parseHTML(ctaTemplate(ctaInfo)));
-    bar.classList.add("active");
-  }
-} 
 function activateImages() {
   var backgroundImages = document.querySelectorAll("[data-bg]");
   for (i in backgroundImages) {
@@ -190,7 +181,7 @@ function activateImages() {
   for (i in lzImages) {
     if (isElement(lzImages[i])) {
       thisElement = lzImages[i];
-      if (typeof(JSON.parse(thisElement.getAttribute("data-src"))) == 'object') {
+      if (typeof (JSON.parse(thisElement.getAttribute("data-src"))) == 'object') {
         var img = JSON.parse(thisElement.getAttribute("data-src")).url;
         thisElement.src = img;
       }
@@ -205,7 +196,7 @@ function activateImages() {
         img.alt = "";
         thisElement.appendChild(img);
       }
-  }
+    }
   }
   var bgArrays = document.querySelectorAll("[data-bg-array]");
   for (i = 0; i < bgArrays.length; i++) {
@@ -215,12 +206,12 @@ function activateImages() {
   }
 }
 function checkVisitor() {
-  if (typeof(knownVisitor)=='undefined' && typeof(thisPageIsAGate)!='undefined') {
-    if (typeof(gateUrl)!='undefined') {
-      if (gateUrl!="") {
+  if (typeof (knownVisitor) == 'undefined' && typeof (thisPageIsAGate) != 'undefined') {
+    if (typeof (gateUrl) != 'undefined') {
+      if (gateUrl != "") {
         //location.href = gateUrl;
         console.log("unknown visitor");
       }
     }
-  } 
+  }
 }

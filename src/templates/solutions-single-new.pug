@@ -49,7 +49,7 @@ block content
     .container
       .row
         .col-md-12.blog-content
-          #solutions-top-carousel
+          .solutions-carousel
             :php
               $slides = get_field("top_carousel_slides");
               foreach($slides as $slide) {
@@ -92,7 +92,7 @@ block content
               the_field("bottom_carousel_header");
       .row
         .col-md-12.blog-content
-          #solutions-bottom-carousel
+          .solutions-carousel
             :php
               $slides = get_field("bottom_carousel_slides");
               foreach($slides as $slide) {

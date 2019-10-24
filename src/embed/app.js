@@ -9,8 +9,6 @@ var templates = {
 var siteopts = {
   "siteurl":"https://www.dynamicsignal.com"
 }
-var ctaInfo = require("../js/cta-bar.json");
-var ctaTemplate = require("../js/inc/cta-bar.pug");
 
 window.addEventListener("load", function() {
   function inIframe () {
@@ -23,7 +21,6 @@ window.addEventListener("load", function() {
   if (!inIframe()) {
 
     setNav();
-    writeCTA();
     // Add the header shrinker
   var headController = new ScrollMagic.Controller({
     "loglevel": 0

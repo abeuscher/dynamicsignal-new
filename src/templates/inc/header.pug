@@ -94,7 +94,14 @@ header#page-header(class=className)
       :php
         echo "</li>";
         printf("<li class='%s show-medium'>", $page_classes[5]);
+        if (strpos($page_classes[5],"active")<-1) {
       a.request-demo.cta(href="/requestdemo/") Request a Demo
+      :php
+        }
+        else {
+      p.button.cta.inactive-demo-request Request a Demo
+      :php
+        }
       li.show-mobile.hide-large
         a.hamburger#toggle-side-nav(href="#",title="menu")
           .line.top

@@ -1,7 +1,6 @@
 var Flickity = require("flickity");
 var sortBy = require("lodash/sortBy");
-var collFilter = require("lodash/filter");
-var Cookies = require("js-cookie");
+
 var smoothscroll = require("smoothscroll-polyfill");
 var ScrollMagic = require("scrollmagic");
 require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
@@ -11,57 +10,44 @@ var JobFilter = require("./job-handler/job-filter.js");
 var FormHandler = require("./form-handler/index.js");
 var VideoHandler = require("./video-handler/index.js");
 var DigitCounter = require("./digit-counter/index.js");
-
+var RequestDemoHandler = require("./request-demo-handler/index.js");
 var parseHTML = require("./utils/parse-html.js");
-var isElement = require("./utils/is-element.js");
+var removeClassFromCollection = require("./utils/remove-class-from-collection.js");
 
-var siteSettings = {
-  "imagePath": "/wp-content/themes/ds-new/images/",
-  "gdprCookie": "ds-gdpr",
-  "sessionCookie": "ds-count",
-  "ctaBar": require("./cta-bar.json"),
-  "templates": {
-    "adwordsGrid": require("./inc/ad-words-grid.pug"), // Grid for Adwords landing pages
-    "adwordsLogoGarden": require("./inc/ad-words-logo-garden.pug"), // Logo garden for adwords landing pages
-    "logoTerminalGrid": require("./inc/logo-terminal-grid.pug"), // Flipping Logo Slides
-    "logoPartnersGrid": require("./inc/logo-partners-grid.pug"), // Flipping logo slides for partners page
-    "customerTile": require("./inc/customer-tile.pug"), // Logo grid for Customers page
-    "customerQuote": require("./inc/customer-quote.pug"), // Quote carousel for customers page
-    "partnersTestimonial": require("./inc/partner-testimonial.pug"), // Testimonials opn agency partners page
-    "careerVideoSlide": require("./inc/career-video-slide.pug"), // Video slide on careers page
-    "featuredJob": require("./inc/featured-job.pug"), // Featured job popout on careers page
-    "demoRequestModal": require("./inc/demo-request-modal.pug"), // Modal Demo Request form
-    "servicesLogos": require("./inc/services-logos.pug"), // Logos for integrations section of services page
-    "connectorPanel": require("./inc/connector-panel.pug"), // On connectors page - may still be in use
-    "connectorInfo": require("./inc/connector-info.pug"), // On connectors page - may still be in use
-    "jobListing": require("./inc/job-listing.pug"), // Job listing for careers page
-    "ctaBar": require("./inc/cta-bar.pug"), // For CTA Bar - Soon to expire
-    "noEvents": require("./inc/no-events.pug"), // No events temlate for events page
-    "eventListing": require("./inc/event-listing.pug"), // Event Listing
-    "pastEventListing": require("./inc/past-event-listing.pug"), // Past event listing
-    "pastEventWide": require("./inc/past-event-wide.pug"), // Past events full page layout
-    "eventBreadcrumb": require("./inc/events-breadcrumbs.pug"), // Events breadcrumbs
-    "pasteventBreadcrumb": require("./inc/past-events-breadcrumbs.pug"), // BReadcrumbs for past events page
-    "buttonPastEvents": require("./inc/button-past-events.pug"), // Button for past events
-    "jobFilter": require("./inc/job-filter.pug"), // Job Filter for Careers Page
-    "gdprPopup": require("./inc/gdpr-popup.pug"), // Popup GDPR warning
-    "sdrQuote": require("./inc/sdr-quote.pug") // Quote carousel for SDR specific career page
-  },
-  "breakpoints": { // Site breakpoints.
-    "xs": 0,
-    "s": 641,
-    "m": 1025,
-    "l": 1321,
-    "xl": 1921
-  },
-  "formHandler": new FormHandler() // MArketo form handler
+
+var CheckCookies = require("./utils/check-cookies.js");
+var GetMobileOS = require("./utils/get-mobile-os.js");
+var TriggerGDPR = require("./gdpr-popup/index.js");
+
+var siteSettings = require("./settings.json");
+
+siteSettings.templates = {
+  "adwordsGrid": require("./inc/ad-words-grid.pug"), // Grid for Adwords landing pages
+  "adwordsLogoGarden": require("./inc/ad-words-logo-garden.pug"), // Logo garden for adwords landing pages
+  "careerVideoSlide": require("./inc/career-video-slide.pug"), // Video slide on careers page  
+  "connectorInfo": require("./inc/connector-info.pug"), // On connectors page - may still be in use
+  "connectorPanel": require("./inc/connector-panel.pug"), // On connectors page - may still be in use          
+  "customerQuote": require("./inc/customer-quote.pug"), // Quote carousel for customers page       
+  "customerTile": require("./inc/customer-tile.pug"), // Logo grid for Customers page
+  "demoRequestModal": require("./inc/demo-request-modal.pug"), // Modal Demo Request form
+  "featuredJob": require("./inc/featured-job.pug"), // Featured job popout on careers page   
+  "jobFilter": require("./inc/job-filter.pug"), // Job Filter for Careers Page     
+  "jobListing": require("./inc/job-listing.pug"), // Job listing for careers page
+  "logoTerminalGrid": require("./inc/logo-terminal-grid.pug"), // Flipping Logo Slides
+  "logoPartnersGrid": require("./inc/logo-partners-grid.pug"), // Flipping logo slides for partners page
+  "partnersTestimonial": require("./inc/partner-testimonial.pug"), // Testimonials opn agency partners page
+  "servicesLogos": require("./inc/services-logos.pug") // Logos for integrations section of services page
 };
+siteSettings.formHandler = new FormHandler();
+siteSettings.scrollController = new ScrollMagic.Controller({
+  "loglevel": 0
+});
 
 window.addEventListener("load", function () {
 
   // Check to make sure browser accepts cookies, then provide GDPR warning if yes.
-  if (checkCookies()) {
-    triggerGDPR();
+  if (CheckCookies()) {
+    TriggerGDPR(siteSettings);
   }
 
   // Iterate through site action array. Look for elements and if present trigger their respective actions.
@@ -69,7 +55,7 @@ window.addEventListener("load", function () {
   for (i in siteActions) {
     var thisAction = siteActions[i];
     if (document.querySelectorAll(thisAction.element).length > 0) {
-      thisAction.action(document.querySelectorAll(thisAction.element));
+      thisAction.action(document.querySelectorAll(thisAction.element), siteSettings.scrollController);
     }
   }
 
@@ -78,8 +64,7 @@ window.addEventListener("load", function () {
   videoHandler.init();
 
   // Check for Mobile OS and force style changes if present (overrides some weird thing on some device I forget which one)
-  var s = getMobileOperatingSystem();
-  if (s) {
+  if (GetMobileOS()) {
     var mobilePanels = document.querySelectorAll(".mobile-cta");
     for (i = 0; i < mobilePanels.length; i++) {
       mobilePanels[i].style.display = "block";
@@ -103,147 +88,19 @@ window.addEventListener("load", function () {
 
 var siteActions = [{
   "element": "#demo-hover-box",
-  "action": function () {
-    var panels = document.querySelectorAll(".demo-video-bucket");
-    for (i = 0; i < panels.length; i++) {
-      panels[i].thumb = panels[i].querySelectorAll(".gif-thumb")[0];
-      panels[i].thumb.staticsrc = panels[i].thumb.src;
-      panels[i].addEventListener("mouseover", function (e) {
-        this.thumb.src = this.thumb.getAttribute("data-gif");
-      });
-      panels[i].addEventListener("mouseout", function (e) {
-        this.thumb.src = this.thumb.staticsrc;
-      });
-    }
-    wipeCookies();
-  }
+  "action": require("./el-demo-hover-box/index.js")
 }, {
   "element": "#anchor-menu",
-  "action": function (els) {
-    var el = els[0];
-    var links = el.querySelectorAll("a");
-    var anchor = el.getAttribute("data-anchor-target") ? el.getAttribute("data-anchor-target") : "start";
-    for (i = 0; i < links.length; i++) {
-      var button = links[i];
-      button.addEventListener("click", function (e) {
-        var section = document.getElementById(this.getAttribute("href").substr(1));
-
-        if (section) {
-          e.preventDefault();
-          section.scrollIntoView({
-            behavior: 'smooth',
-            "block": anchor
-          });
-          if (window.history && window.history.pushState) {
-            history.pushState("", document.title, "#" + section.id);
-          }
-        }
-      });
-    }
-  }
+  "action": require("./el-anchor-menu/index.js")
 }, {
   "element": "#services-mapbox",
-  "action": function (els) {
-    var mapcontroller = new ScrollMagic.Controller({
-      "loglevel": 0
-    });
-    new ScrollMagic.Scene({
-      triggerElement: "#services-mapbox",
-      duration: 500,
-      offset: -100,
-      reverse: false
-    })
-      .on("enter", function (e) {
-        els[0].classList.add("active");
-      })
-      .addTo(mapcontroller);
-  }
+  "action": require("./el-services-map/index.js")
 }, {
   "element": "#platform-graph",
-  "action": function (els) {
-    var el = els[0];
-    var graphcontroller = new ScrollMagic.Controller({
-      "loglevel": 0
-    });
-    new ScrollMagic.Scene({
-      triggerElement: "#platform-graph",
-      duration: 0,
-      offset: 0,
-      reverse: false
-    })
-      .on("enter", function (e) {
-        el.classList.remove("inactive");
-        //setTimeout(barTimer, 3000);
-      })
-      .addTo(graphcontroller);
-    var bars = el.querySelectorAll(".bar .inner");
-    function barTimer(e) {
-      var flag = false, i = 0;
-      while (i < bars.length) {
-        var b = bars[i];
-        if (b.classList.contains("active")) {
-          flag = true;
-          var next = i == bars.length - 1 ? bars[0] : bars[i + 1];
-          b.classList.remove("active");
-          next.classList.add("active");
-          break;
-        }
-        i++;
-      }
-      if (!flag) {
-        bars[0].classList.add("active");
-      }
-      setTimeout(barTimer, 3000);
-    }
-
-  }
+  "action": require("./el-platform-graph/index.js")
 }, {
   "element": "#platform-0",
-  "action": function () {
-    var sectioncontroller = new ScrollMagic.Controller({
-      "loglevel": 0
-    });
-    var sections = document.querySelectorAll(".platform-section");
-    for (i = 0; i < sections.length; i++) {
-      var s = sections[i];
-      var images = s.querySelectorAll(".platform-section-image");
-      for (z = 0; z < images.length; z++) {
-        var thisImage = images[z];
-        var tweenImage = TweenMax.fromTo(thisImage, 1, { css: { y: "60" }, ease: Linear.easeOut }, { css: { y: "-50" }, ease: Linear.easeOut });
-        new ScrollMagic.Scene({
-          triggerElement: s,
-          duration: "80%",
-          offset: "10%",
-          reverse: true
-        })
-          .setTween(tweenImage)
-          .on("enter", function (e) {
-            var el = document.getElementById(this.id);
-            if (!el.classList.contains("active")) {
-              el.classList.add("active");
-            }
-          })
-          .on("leave", function (e) {
-            var el = document.getElementById(this.id);
-            if (el.classList.contains("active")) {
-              el.classList.remove("active");
-            }
-          })
-          .addTo(sectioncontroller)
-          .id = s.id;
-      }
-    }
-    var thisPhone = document.getElementById("platform-hero-phone");
-    var tweenPhone = TweenMax.fromTo(thisPhone, 1, { css: { y: "80" }, ease: Power0.easeOut }, { css: { y: "-30" }, Power0: Linear.easeOut });
-    new ScrollMagic.Scene({
-      triggerElement: thisPhone,
-      duration: "50%",
-      offset: "0",
-      reverse: true
-    })
-      .setTween(tweenPhone)
-      .addTo(sectioncontroller);
-  }
+  "action": require("./el-platform-sections/index.js")
 }, {
   "element": "#services-integrations-logos",
   "action": function (els) {
@@ -265,36 +122,7 @@ var siteActions = [{
 },
 {
   "element": "#side-nav",
-  "action": function () {
-    var theWrapper = document.getElementById("overlay");
-    var theHeader = document.getElementById("page-header");
-    var theToggle = document.getElementById("toggle-side-nav");
-    var closeButton = document.getElementById("btn-close-sidenav");
-    theToggle.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (document.body.classList.contains("nav-open")) {
-        document.body.classList.remove("nav-open");
-        theWrapper.removeEventListener("click", closeBody);
-        theHeader.removeEventListener("click", closeBody);
-        closeButton.removeEventListener("click", closeBody);
-      } else {
-        document.body.classList.add("nav-open");
-        theWrapper.addEventListener("click", closeBody);
-        theHeader.addEventListener("click", closeBody);
-        closeButton.addEventListener("click", closeBody);
-      }
-
-    });
-
-    function closeBody(e) {
-      e.preventDefault();
-      document.body.classList.remove("nav-open");
-      theWrapper.removeEventListener("click", closeBody);
-      theHeader.removeEventListener("click", closeBody);
-      closeButton.removeEventListener("click", closeBody);
-    }
-  }
+  "action": require("./el-side-nav/index.js")
 },
 {
   "element": "#hero-words",
@@ -314,25 +142,16 @@ var siteActions = [{
   }
 },
 {
-  "element": "#solutions-top-carousel",
-  "action": function () {
-    var logoGall = new Flickity("#solutions-top-carousel", {
-      "prevNextButtons": false,
-      "autoPlay": 5000,
-      "wrapAround": true,
-      "pageDots": true
-    });
-  }
-},
-{
-  "element": "#solutions-bottom-carousel",
-  "action": function () {
-    var logoGall = new Flickity("#solutions-bottom-carousel", {
-      "prevNextButtons": false,
-      "autoPlay": 5000,
-      "wrapAround": true,
-      "pageDots": true
-    });
+  "element": ".solutions-carousel",
+  "action": function (els) {
+    for (i = 0; i < els.length; i++) {
+      new Flickity(els[i], {
+        "prevNextButtons": false,
+        "autoPlay": 5000,
+        "wrapAround": true,
+        "pageDots": true
+      });
+    }
   }
 },
 {
@@ -343,28 +162,13 @@ var siteActions = [{
     for (i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener("click", buttonClick);
     }
-
     function buttonClick(e) {
       e.preventDefault();
       var target = this.getAttribute("data-tab");
-      clearNav();
-      clearPanels();
+      removeClassFromCollection("active", nav.querySelectorAll("li"));
+      removeClassFromCollection("active", document.querySelectorAll(".tab-panel"));
       document.getElementById(target).classList.add("active");
       this.parentNode.classList.add("active");
-
-      function clearNav() {
-        var items = nav.querySelectorAll("li");
-        for (i = 0; i < items.length; i++) {
-          items[i].classList.remove("active");
-        }
-      }
-
-      function clearPanels() {
-        var items = document.querySelectorAll(".tab-panel");
-        for (i = 0; i < items.length; i++) {
-          items[i].classList.remove("active");
-        }
-      }
     }
   }
 },
@@ -409,62 +213,23 @@ var siteActions = [{
       var thisLink = leftLinks[i];
       thisLink.addEventListener("click", function () {
         if (!this.classList.contains("active")) {
-          clearSet(leftLinks);
-          clearSet(viewPanels);
+          removeClassFromCollection("active", leftLinks);
+          removeClassFromCollection("active", viewPanels);
           newIndex = this.getAttribute("data-tab");
           document.getElementById("content-pane-" + newIndex).classList.add("active");
           document.getElementById("nav-tab-" + newIndex).classList.add("active");
         }
       });
     }
-
-    function clearSet(items) {
-      for (i = 0; i < items.length; i++) {
-        items[i].classList.remove("active");
-      }
-    }
   }
 },
 {
-  "element": "#case-study-page",
-  "action": function () {
-    var bullets = document.querySelectorAll(".case-study-list svg");
-    var midPoint = window.innerHeight / 4 * -1;
-    var controller = new ScrollMagic.Controller({
-      "loglevel": 0
-    });
-    for (i = 0; i < bullets.length; i++) {
-      var thisBullet = bullets[i];
-      thisBullet.id = "bullet-" + i;
-      new ScrollMagic.Scene({
-        offset: midPoint,
-        triggerElement: thisBullet,
-        duration: 0
-      })
-        .on("enter leave", function (e) {
-          document.getElementById("bullet-" + this.id).classList.add("active");
-        })
-        .addTo(controller)
-        .id = i;
-    }
-  }
+  "element": ".case-study-list svg",
+  "action": require("./el-checkmark-bullets/")
 },
 {
   "element": "#sdr-quote-carousel",
-  "action": function () {
-    var videoGall = new Flickity(document.getElementById("sdr-quote-carousel"), {
-      "wrapAround": true,
-      "pageDots": true,
-      "lazyLoad": 6,
-      "autoPlay": 8000,
-      "adaptiveHeight": false
-    });
-    var c = [];
-    for (i in pageData.quotes) {
-      videoGall.append(parseHTML(siteSettings.templates.sdrQuote(pageData.quotes[i])));
-    }
-    videoGall.resize();
-  }
+  "action": require("./el-carousel-sdr-quote/")
 },
 {
   "element": "#customer-video-carousel",
@@ -528,151 +293,23 @@ var siteActions = [{
 },
 {
   "element": "#page-header",
-  "action": function () {
-    if (window.innerWidth > siteSettings.breakpoints.s) {
-      var pageHeader = document.getElementById("page-header");
-      var headController = new ScrollMagic.Controller({
-        "loglevel": 0
-      });
-      var headerLock = new ScrollMagic.Scene({
-        offset: 10,
-        duration: 0
-      })
-        .on("enter", function (e) {
-          if (!document.body.classList.contains("nav-short")) {
-            document.body.classList.add("nav-short");
-          }
-        })
-        .on("leave", function (e) {
-          if (document.body.classList.contains("nav-short")) {
-            document.body.classList.remove("nav-short");
-          }
-        })
-        .addTo(headController);
-      new ScrollMagic.Scene({
-        offset: 0,
-        duration: 0
-      });
-      headerLock.addTo(headController);
-    }
-  }
+  "action": require("./el-page-header/index.js")
 },
 {
   "element": "#sticky-header",
-  "action": function (els) {
-    var el = els[0];
-    if (window.innerWidth > siteSettings.breakpoints.s) {
-      var homeController = new ScrollMagic.Controller({
-        "loglevel": 0
-      });
-      new ScrollMagic.Scene({
-        offset: 0,
-        duration: 0
-      })
-        .setPin(el, { pushFollowers: false })
-        .setClassToggle(el, "pos-fixed")
-        .addTo(homeController);
-    }
-  }
+  "action": require("./el-sticky-header/index.js")
 },
 {
   "element": "#events-list",
-  "action": function (els) {
-    var pastCount = 0;
-    var bucket = els[0];
-    var pastBucket = document.getElementById("past-events");
-    var currentEvents = new Array();
-    var allEvents = sortBy(pageData.events, function (i) {
-      return i.start_date
-    });
-    allEvents.reverse();
-    for (i = 0; i < allEvents.length; i++) {
-      var thisEvent = allEvents[i];
-      var rightNow = new Date();
-      rightNow.setDate(rightNow.getDate() - 1 /*days*/);
-      var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
-      if (startDate > rightNow) {
-        currentEvents.push(thisEvent);
-      } else {
-        if (thisEvent.start_date && pastCount < 5 && pastBucket) {
-          pastBucket.append(parseHTML(siteSettings.templates.pastEventListing(thisEvent)));
-          pastCount++;
-        } else if (pastCount == 5 && pastBucket) {
-          //pastBucket.append(parseHTML(siteSettings.templates.buttonPastEvents()));
-          pastCount++;
-        }
-      }
-    }
-    if (currentEvents.length > 0) {
-      currentEvents.reverse();
-      for (i = 0; i < currentEvents.length; i++) {
-        bucket.append(parseHTML(siteSettings.templates.eventListing(currentEvents[i])));
-      }
-    } else {
-      bucket.append(parseHTML(siteSettings.templates.noEvents()))
-    }
-  }
+  "action": require("./events-handlers/events-list.js")
 },
 {
   "element": "#webinars-upcoming",
-  "action": function (els) {
-    var pastCount = 0;
-    var bucket = els[0];
-    var pastBucket = document.getElementById("past-events");
-    var currentEvents = new Array();
-    var pastEvents = new Array();
-    var allEvents = collFilter(pageData.events, function (i) { return i.type == "webinar"; });
-    allEvents = sortBy(allEvents, function (i) {
-      return i.start_date
-    });
-    allEvents.reverse();
-    for (i = 0; i < allEvents.length; i++) {
-      var thisEvent = allEvents[i];
-      var rightNow = new Date();
-      rightNow.setDate(rightNow.getDate() - 1 /*days*/);
-      var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
-      if (startDate > rightNow) {
-        currentEvents.push(thisEvent);
-      } else {
-        pastEvents.push(thisEvent);
-      }
-    }
-    if (currentEvents.length > 0) {
-      currentEvents.reverse();
-      var header = document.createElement("h2");
-      header.innerHTML = "Upcoming Webinars";
-      el.append(header);
-      for (i = 0; i < currentEvents.length; i++) {
-        el.append(parseHTML(siteSettings.templates.eventListing(currentEvents[i])));
-      }
-    }
-    if (pastEvents.length > 0) {
-      var pastBucket = document.getElementById("webinars-past");
-      var header = document.createElement("h2");
-      header.innerHTML = "Past Webinars";
-      pastBucket.append(header);
-      for (i = 0; i < pastEvents.length; i++) {
-        var thisEvent = pastEvents[i];
-        pastBucket.append(parseHTML(siteSettings.templates.pastEventWide(thisEvent)));
-      }
-    }
-
-  }
+  "action": require("./events-handlers/webinars-upcoming.js")
 },
 {
   "element": "#past-events-full",
-  "action": function (els) {
-    var pastCount = 0;
-    var bucket = els[0];
-    for (i = 0; i < pageData.events.length; i++) {
-      var thisEvent = pageData.events[i];
-      var rightNow = new Date();
-      var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
-      if (startDate < rightNow) {
-        bucket.append(parseHTML(siteSettings.templates.pastEventWide(pageData.events[i])));
-      }
-    }
-  }
+  "action": require("./events-handlers/past-events-full.js")
 },
 {
   "element": "#partners-testimonials",
@@ -798,108 +435,21 @@ var siteActions = [{
       "container": document.getElementById("job-filter"),
       "jobList": theJobs
     }
-    var theFilter = new JobFilter(opts);
+    new JobFilter(opts);
   }
 },
 {
   "element": "[data-bg]",
-  "action": function (backgroundImages) {
-    for (i in backgroundImages) {
-      if (isElement(backgroundImages[i])) {
-        thisElement = backgroundImages[i];
-        if (thisElement.getAttribute("data-bg").indexOf("http") > -1) {
-          thisElement.style.backgroundImage = "url('" + thisElement.getAttribute("data-bg") + "')";
-        } else {
-          thisElement.style.backgroundImage = "url('" + siteSettings.imagePath + thisElement.getAttribute("data-bg") + "')";
-        }
-      }
-    }
-  }
+  "action": require("./image-handlers/data-bg")
 }, {
   "element": "[data-src]",
-  "action": function (lzImages) {
-    for (i in lzImages) {
-      if (isElement(lzImages[i])) {
-        thisElement = lzImages[i];
-        if (typeof (JSON.parse(thisElement.getAttribute("data-src"))) === 'object') {
-          var img = JSON.parse(thisElement.getAttribute("data-src")).url;
-          thisElement.src = img;
-        }
-        else {
-          var img = document.createElement("img");
-          if (thisElement.getAttribute("data-src").indexOf("http") > -1) {
-            img.src = thisElement.getAttribute("data-src");
-          } else {
-            img.src = siteSettings.imagePath + thisElement.getAttribute("data-src");
-          }
-
-          img.alt = "";
-          thisElement.appendChild(img);
-        }
-      }
-    }
-  }
+  "action": require("./image-handlers/data-src")
 }, {
   "element": "[data-bg-array]",
-  "action": function (bgArrays) {
-    for (i = 0; i < bgArrays.length; i++) {
-      var el = bgArrays[i];
-      var imageArray = JSON.parse(el.getAttribute("data-bg-array"));
-      el.style.backgroundImage = "url('" + imageArray.url + "')";
-    }
-  }
+  "action": require("./image-handlers/data-bg-array")
 }, {
   "element": ".vertical-carousel",
-  "action": function (buckets) {
-    for (var i = 0; i < buckets.length; i++) {
-      var theBucket = buckets[i];
-      var s = {
-        bucket: theBucket,
-        images: theBucket.querySelectorAll(".vertical-slide"),
-        controls: theBucket.querySelectorAll(".carousel-panel"),
-        currentIndex: 0,
-        strip: theBucket.querySelectorAll(".inner")[0]
-
-      };
-      var switcher = function () {
-        getCurrPos(s);
-        setTimeout(switcher, 6000);
-      }
-      setTimeout(switcher, 3000);
-      for (var c = 0; c < s.controls.length; c++) {
-        s.controls[c].addEventListener("click", function (e) {
-          nextCarousel(this, s, parseInt(this.getAttribute("data-index")) + 1);
-          s.pause = true;
-          setTimeout(function () { s.pause = false; }, 6000);
-        });
-      }
-      function getCurrPos(el) {
-        if (!el.pause) {
-          for (var i = 0; i < el.strip.classList.length; i++) {
-            if (el.strip.classList[i].indexOf("position") > -1) {
-              var next = parseInt(el.strip.classList[i].replace(/[^0-9]/gi, '')) < el.controls.length ? parseInt(el.strip.classList[i].replace(/[^0-9]/gi, '')) + 1 : 1;
-              nextCarousel(el.controls[next - 1], el, next);
-            }
-          }
-        }
-      }
-      function nextCarousel(btn, el, idx) {
-        resetCarousel(el);
-        btn.classList.add("active");
-        el.strip.classList.add("position-" + idx);
-      }
-      function resetCarousel(el) {
-        for (var i = 0; i < el.strip.classList.length; i++) {
-          if (el.strip.classList[i].indexOf("position") > -1) {
-            el.strip.classList.remove(el.strip.classList[i]);
-          }
-        }
-        for (var i = 0; i < el.controls.length; i++) {
-          el.controls[i].classList.remove("active");
-        }
-      }
-    }
-  }
+  "action": require("./el-vertical-carousel/")
 }, {
   "element": "[data-event]",
   "action": function (triggers) {
@@ -944,8 +494,7 @@ var siteActions = [{
   "element": ".search-form",
   "action": function (searchForms) {
     for (i = 0; i < searchForms.length; i++) {
-      var thisForm = searchForms[i];
-      thisForm.addEventListener("submit", function (e) {
+      searchForms[i].addEventListener("submit", function (e) {
         e.preventDefault();
         var query = this.querySelectorAll(".query")[0].value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
         location.href = "https://dynamicsignal.com/search/#q=" + encodeURI(query);
@@ -956,187 +505,29 @@ var siteActions = [{
 }, {
   "element": "[data-counter-min]",
   "action": function () {
-    var dc = new DigitCounter();
+    new DigitCounter();
   }
 }, {
   "element": ".request-demo",
   "action": function (buttons) {
-    for (i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener("click", openDemoRequest);
-    }
-    function openDemoRequest(e) {
-      e.preventDefault();
-      if (document.body.classList.contains("nav-open")) {
-        document.body.classList.remove("nav-open");
-      }
-      document.body.classList.add("modal-open");
-      if (!document.getElementById("demo-request-modal")) {
-        document.body.appendChild(parseHTML(siteSettings.templates.demoRequestModal()));
-        if (typeof MktoForms2 == "object") {
-          initForm();
-        }
-        else {
-          var s = document.createElement('script');
-          s.type = 'text/javascript';
-          s.src = "//app-ab04.marketo.com/js/forms2/js/forms2.min.js";
-          document.body.appendChild(s);
-          s.addEventListener("load", initForm);
-        }
-
-        function initForm() {
-          siteSettings.formHandler.RegisterCallback(afterDemoSubmit);
-          siteSettings.formHandler.fixForm();
-        }
-      }
-      var m = document.getElementById("demo-request-modal");
-      if (!m.classList.contains("active")) {
-        m.classList.add("active");
-      }
-      var closeButtons = m.querySelectorAll(".btn-close");
-      for (i = 0; i < closeButtons.length; i++) {
-        closeButtons[i].addEventListener("click", closeDemoRequest);
-      }
-      var bg = m.querySelectorAll(".bg")[0];
-      bg.addEventListener("click", closeDemoRequest);
-    }
-    function afterDemoSubmit() {
-      var theForm = document.getElementById("request-demo-form");
-      var theMessage = document.getElementById("thank-you-message");
-      theForm.classList.add("hide");
-      theMessage.classList.remove("hide");
-      /*
-      setTimeout(function () {
-        if (document.getElementById("demo-request-modal").classList.contains("active")) {
-          document.getElementById("demo-request-modal").classList.remove("active")
-        }
-        if (document.body.classList.contains("modal-open")) {
-          document.body.classList.remove("modal-open")
-        }
-      }, 5000);
-      */
-    }
-    function closeDemoRequest(e) {
-      if (e) {
-        e.preventDefault();
-      }
-
-      var m = document.getElementById("demo-request-modal");
-      if (m.classList.contains("active")) {
-        m.classList.remove("active");
-      }
-      document.body.classList.remove("modal-open");
-    }
+    RequestDemoHandler(buttons, siteSettings);
   }
 }
 ];
 
-function triggerGDPR() {
-  var h = window.location.hostname;
-  var domains = ["dynamicsignal.com", "staging.dynamicsignal.flywheelsites.com", "ds.local"];
-  var domain = "dynamicsignal.com";
-  for (i = 0; i < domains.length; i++) {
-    if (h.indexOf(domains[i]) > -1) {
-      domain = domains[i];
-    }
-  }
-  if (!Cookies.get(siteSettings.gdprCookie)) {
-    var warning = parseHTML(siteSettings.templates.gdprPopup());
-    document.body.appendChild(warning);
-    document.body.classList.add("gdpr-popup");
-    var yesButton = document.getElementById("btn-yes");
-    var noButton = document.getElementById("btn-no");
-    yesButton.addEventListener("click", function (e) {
-      e.preventDefault();
-      Cookies.set(siteSettings.gdprCookie, "true", {
-        expires: 365,
-        domain: domain
-      });
-      warning.remove();
-      document.body.classList.remove("gdpr-popup");
-      return false;
-    });
-    window.addEventListener("click", startTheTracking);
-    function startTheTracking(e) {
-      Cookies.set(siteSettings.gdprCookie, "true", {
-        expires: 365,
-        domain: domain
-      });
-      triggerGA();
-      window.removeEventListener("click", startTheTracking);
-      return true;
-    }
-  } else {
-    triggerGA();
-  }
-}
 
-function triggerGA() {
-  (function (w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({
-      'gtm.start': new Date().getTime(),
-      event: 'gtm.js'
-    });
-    var f = d.body.firstChild,
-      j = d.createElement(s),
-      dl = l != 'dataLayer' ? '&l=' + l : '';
-    j.async = true;
-    j.src =
-      '//www.googletagmanager.com/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j, f);
-  })(window, document, 'script', 'dataLayer', 'GTM-MQKZ8M');
-}
 
-function checkCookies() {
-  var cookieEnabled = navigator.cookieEnabled;
-  if (!cookieEnabled) {
-    document.cookie = "testcookie";
-    cookieEnabled = document.cookie.indexOf("testcookie") != -1;
-  }
-  if (cookieEnabled) {
-    Cookies.remove("testcookie");
-  }
-  return cookieEnabled;
-}
-
-function wipeCookies() {
-
-  var cookies = document.cookie.split(";");
-
-  for (var i = 0; i < cookies.length; i++) {
-    var cookie = cookies[i];
-    var eqPos = cookie.indexOf("=");
-    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-  }
-
-}
 
 function makeTabs(tabs, slides, attr, className) {
   for (i = 0; i < tabs.length; i++) {
     var thisTab = tabs[i];
     thisTab.addEventListener("click", function (e) {
       e.preventDefault();
-      clearSlides();
+      removeClassFromCollection(className, slides);
+      removeClassFromCollection(className, tabs);
       slides[this.getAttribute(attr)].classList.add(className);
       tabs[this.getAttribute(attr)].classList.add(className);
     });
   }
-  function clearSlides() {
-    for (i = 0; i < slides.length; i++) {
-      slides[i].classList.remove(className);
-      tabs[i].classList.remove(className);
-    }
-  }
 }
 
-function getMobileOperatingSystem() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-  if (/android/i.test(userAgent)) {
-    return "Android";
-  }
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    return "iOS";
-  }
-  return false;
-}

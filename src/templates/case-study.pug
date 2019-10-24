@@ -63,14 +63,14 @@ block content
             :php
               echo "<a href='".get_field("use_case_url")."'>";
               echo get_field("use_case")."</a>";
-  section.case-study-intro-block
+  section.case-study-intro-block.padding-both
     .container.case-study
       .row
         .col-md-12
           p.case-study-intro
             :php
               echo get_field("intro_paragraph");
-  section.container.case-study
+  section.container.case-study.padding-both
     .row
       .col-md-12
         h2.col-center
@@ -97,7 +97,7 @@ block content
                 echo $value["problem_point"];
           :php
             }
-  section.case-study-quote
+  section.case-study-quote.padding-both
     .container
       .row
         .col-md-12
@@ -105,7 +105,7 @@ block content
             $classname = get_field("quotation_type") == "quote" ? "has-quote" : "";
             echo "<blockquote class='$classname'>".get_field("quotation")."</blockquote>";
             echo "<cite>".get_field("quotation_source")."</cite>";
-  section.container.case-study
+  section.container.case-study.padding-both
     .row
       .col-md-12
         h2.col-center
@@ -135,7 +135,7 @@ block content
       echo "<img src='".get_field("bottom_image")["url"]."' alt='' />";
   :php
     if (get_field("proof_type")!="noproof") {
-  section.container.case-study
+  section.container.case-study.padding-both
     .row
       .col-md-12.col-center
         :php

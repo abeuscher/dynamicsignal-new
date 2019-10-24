@@ -165,8 +165,11 @@ FormHandler.prototype.fixForm = function () {
               self.settings.formSubmitCallbacks[i]();
             }
           }
-          else {
+          if (parseInt(theID)!=1163) {
             location.href = followUpUrl;
+          }
+          else {
+            console.log(theID);
           }
           return false;
         });

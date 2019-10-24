@@ -53,13 +53,13 @@ block content
                         else {
                             printf("<a href='%s'>%s</a>", get_field("solutions")[0]["link"],get_field("solutions")[0]["name"]);
                         }
-  section.case-study-content-block
+  section.case-study-content-block.padding-both
     .container
         .row
             .col-md-12.blog-content
                 :php
                     echo get_field("case_study_content");
-  section.case-study-takeaways
+  section.case-study-takeaways.padding-both
     .container
         .row
             .col-md-12

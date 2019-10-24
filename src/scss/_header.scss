@@ -61,6 +61,17 @@ header.page-header {
         &.show-mobile {
           display:inline-block;
         }
+        p.inactive-demo-request {
+          border: 1px solid $header-blue;
+          text-shadow:none;
+          background:$menu-blue;
+          color:$gray;
+          border-radius: 6px;
+          @include ds-transition();
+          line-height:2;
+          padding:0 $gutter-width/2;
+          margin:0 $gutter-width/2;
+        }
         a {
           font-family:$nav-font;
           display: block;

@@ -801,6 +801,7 @@ ul.plus-list {
     text-align: center;
     margin-right: 0.2em;
     width: 3em;
+    z-index:1;
     &:after {
       content: "";
       position: absolute;

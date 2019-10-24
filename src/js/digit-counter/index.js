@@ -33,7 +33,6 @@ DigitCounter.prototype.set = function(el) {
         var maxCount = parseInt(el.getAttribute("data-counter-max"));
         var interval = parseInt(maxCount / 50) > 0 ? parseInt(maxCount / 50) : 1;
         var suffix = el.getAttribute("data-counter-max").replace(/[0-9]/g, '');
-        console.log(maxCount,suffix);
         el.innerHTML = minCount + suffix;
         function runCount() {
             var currentNum = parseInt(el.innerHTML);
