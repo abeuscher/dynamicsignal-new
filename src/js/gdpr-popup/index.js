@@ -6,7 +6,7 @@ var popup = require("./gdpr-popup.pug");
 
 function TriggerGDPR(siteSettings) {
   var h = window.location.hostname;
-  var domains = ["dynamicsignal.com", "staging.dynamicsignal.flywheelsites.com", "ds.local"];
+  var domains = ["dynamicsignal.com", "dynamicsignal.co.uk", "staging.dynamicsignal.flywheelsites.com", "ds.local"];
   var domain = "dynamicsignal.com";
   for (i = 0; i < domains.length; i++) {
     if (h.indexOf(domains[i]) > -1) {
