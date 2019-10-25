@@ -1,3 +1,5 @@
+var parseHTML = require("../utils/parse-html/");
+
 var templates = {
     "pastEventWide": require("./templates/past-event-wide.pug"), // Past events full page layout
 }
@@ -9,7 +11,7 @@ function PastEventsFull(els) {
         var rightNow = new Date();
         var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
         if (startDate < rightNow) {
-            bucket.append(parseHTML(siteSettings.templates.pastEventWide(pageData.events[i])));
+            bucket.append(parseHTML(templates.pastEventWide(pageData.events[i])));
         }
     }
 }

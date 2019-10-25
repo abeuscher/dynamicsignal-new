@@ -200,7 +200,7 @@ var siteActions = [{
 }, {
   "element": "[data-counter-min]",
   "action": function () {
-    new DigitCounter();
+    new DigitCounter(siteSettings.scrollController);
   }
 }, {
   "element": ".request-demo",

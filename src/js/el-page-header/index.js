@@ -1,11 +1,8 @@
 var ScrollMagic = require("scrollmagic");
 
-function PageHeader() {
+function PageHeader(els, c) {
     if (window.innerWidth > 641) {
-      var headController = new ScrollMagic.Controller({
-        "loglevel": 0
-      });
-      var headerLock = new ScrollMagic.Scene({
+      new ScrollMagic.Scene({
         offset: 10,
         duration: 0
       })
@@ -19,12 +16,7 @@ function PageHeader() {
             document.body.classList.remove("nav-short");
           }
         })
-        .addTo(headController);
-      new ScrollMagic.Scene({
-        offset: 0,
-        duration: 0
-      });
-      headerLock.addTo(headController);
+        .addTo(c);
     }
   }
   module.exports = PageHeader;

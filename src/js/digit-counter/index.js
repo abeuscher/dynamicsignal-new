@@ -1,12 +1,9 @@
 var ScrollMagic = require("scrollmagic");
 
-function DigitCounter() {
+function DigitCounter(c) {
     var self = this;
     var counters = document.querySelectorAll("[data-counter-min]");
 
-    this.controller = new ScrollMagic.Controller({
-        "loglevel": 0
-      });
       self.countUps = [];
     
       for (i = 0; i < counters.length; i++) {
@@ -23,7 +20,7 @@ function DigitCounter() {
           .on("enter", function(e) {
             self.countUps[this.id].setter();
           })
-          .addTo(self.controller)
+          .addTo(c)
           .id = i;
       }
 };

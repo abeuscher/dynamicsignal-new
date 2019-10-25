@@ -83,7 +83,10 @@ header.page-header {
           position: relative;
           
           &.hamburger {
-            padding: 17px 60px 0 12px;
+            padding: 13px 40px 0 12px;
+            @include bp(m) {
+              padding: 17px 60px 0 12px;
+            }
           }
           &#btn-search-header {
             padding:0 $gutter-width/2;

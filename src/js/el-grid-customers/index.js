@@ -1,3 +1,5 @@
+var sortBy = require("lodash/sortBy");
+
 var parseHTML = require("../utils/parse-html/");
 
 var templates = {
