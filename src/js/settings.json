@@ -1,4 +1,5 @@
 {
+    "siteurl": "https://www.dynamicsignal.com",
     "imagePath": "/wp-content/themes/ds-new/images/",
     "gdprCookie": "ds-gdpr",
     "sessionCookie": "ds-count",
