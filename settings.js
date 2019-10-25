@@ -25,7 +25,7 @@ var ukJsBuildDir = ukBuildDir + "js/";
 function siteSettings() {
   return {
     siteName: "dynamicsignal.com",
-    directories:[buildDir, jsBuildDir, ukBuildDir, ukJsBuildDir,buildDir + "embed/",buildDir + "uber-embed/",buildDir + "marketo-embed/",buildDir + "lp-embed/"],
+    directories:[buildDir, jsBuildDir, ukBuildDir, ukJsBuildDir,buildDir + "embed/",buildDir + "uber-embed/",buildDir + "marketo-embed/"],
     jsFiles: [
       {
         name: "Main Bundle",
@@ -53,13 +53,6 @@ function siteSettings() {
         srcDir: srcDir + "marketo-embed/",
         srcFileName: "app.js",
         buildDir: buildDir + "marketo-embed/",
-        buildFileName: "bundle.js"
-      },
-      {
-        name: "LP Embed Bundle",
-        srcDir: srcDir + "lp-embed/",
-        srcFileName: "app.js",
-        buildDir: buildDir + "lp-embed/",
         buildFileName: "bundle.js"
       },
       {
