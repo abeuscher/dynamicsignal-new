@@ -1,5 +1,5 @@
-var parseHTML = require("../utils/parse-html/");
-var VideoHandler = require("../video-handler/");
+var parseHTML = require("../../utils/parse-html");
+var VideoHandler = require("../../video-handler/");
 var Flickity = require("flickity");
 
 var templates = {

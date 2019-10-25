@@ -63,22 +63,22 @@ window.addEventListener("load", function () {
 
 var siteActions = [{
   "element": "#demo-hover-box",
-  "action": require("./el-demo-hover-box/")
+  "action": require("./widgets/el-demo-hover-box/")
 }, {
   "element": "#anchor-menu",
-  "action": require("./el-anchor-menu/")
+  "action": require("./widgets/el-anchor-menu/")
 }, {
   "element": "#services-mapbox",
-  "action": require("./el-services-map/")
+  "action": require("./widgets/el-services-map/")
 }, {
   "element": "#platform-graph",
-  "action": require("./el-platform-graph/")
+  "action": require("./widgets/el-platform-graph/")
 }, {
   "element": "#platform-0",
-  "action": require("./el-platform-sections/")
+  "action": require("./widgets/el-platform-sections/")
 }, {
   "element": "#services-integrations-logos",
-  "action": require("./el-services-logos/")
+  "action": require("./widgets/el-services-logos/")
 }, {
   "element": "#services-cs-tabs",
   "action": function () {
@@ -92,39 +92,39 @@ var siteActions = [{
 },
 {
   "element": "#side-nav",
-  "action": require("./el-side-nav/")
+  "action": require("./widgets/el-side-nav/")
 },
 {
   "element": "#hero-words",
-  "action": require("./el-hero-words/")
+  "action": require("./widgets/el-hero-words/")
 },
 {
   "element": ".solutions-carousel",
-  "action": require("./el-carousel-solutions/")
+  "action": require("./widgets/el-carousel-solutions/")
 },
 {
   "element": "#solutions-tab-nav",
-  "action": require("./el-solutions-tabs/")
+  "action": require("./widgets/el-solutions-tabs/")
 },
 {
   "element": "#map-container",
-  "action": require("./el-contact-map/")
+  "action": require("./widgets/el-contact-map/")
 },
 {
   "element": "#connectors",
-  "action": require("./el-connectors/")
+  "action": require("./widgets/el-connectors/")
 },
 {
   "element": ".case-study-list svg",
-  "action": require("./el-checkmark-bullets/")
+  "action": require("./widgets/el-checkmark-bullets/")
 },
 {
   "element": "#customer-video-carousel",
-  "action": require("./el-carousel-customers/")
+  "action": require("./widgets/el-carousel-customers/")
 },
 {
   "element": "#customers-grid",
-  "action": require("./el-grid-customers/")
+  "action": require("./widgets/el-grid-customers/")
 },
 {
   "element": "#marketo-form-wrapper",
@@ -134,15 +134,15 @@ var siteActions = [{
 },
 {
   "element": "#careers-video-carousel",
-  "action": require("./el-carousel-careers")
+  "action": require("./widgets/el-carousel-careers")
 },
 {
   "element": "#page-header",
-  "action": require("./el-page-header/")
+  "action": require("./widgets/el-page-header/")
 },
 {
   "element": "#sticky-header",
-  "action": require("./el-sticky-header/")
+  "action": require("./widgets/el-sticky-header/")
 },
 {
   "element": "#events-list",
@@ -158,19 +158,19 @@ var siteActions = [{
 },
 {
   "element": "#partners-testimonials",
-  "action": require("./el-partners-testimonials/")
+  "action": require("./widgets/el-partners-testimonials/")
 },
 {
   "element": "#logo-partners-grid",
-  "action": require("./el-grid-partners")
+  "action": require("./widgets/el-grid-partners")
 },
 {
   "element": "#adwords-logo-grid",
-  "action": require("./el-grid-adwords/")
+  "action": require("./widgets/el-grid-adwords/")
 },
 {
   "element": "#adwords-logos",
-  "action": require("./el-adwords-logos/")
+  "action": require("./widgets/el-adwords-logos/")
 },
 {
   "element": "#job-list",
@@ -187,7 +187,7 @@ var siteActions = [{
   "action": require("./image-handlers/data-bg-array")
 }, {
   "element": ".vertical-carousel",
-  "action": require("./el-vertical-carousel/")
+  "action": require("./widgets/el-vertical-carousel/")
 }, {
   "element": "[data-event]",
   "action": require("./ga-event-emitter/")

@@ -1,4 +1,4 @@
-var removeClassFromCollection = require("../utils/remove-class-from-collection.js");
+var removeClassFromCollection = require("../../utils/remove-class-from-collection.js");
 
 function SolutionsTabs(els) {
     var nav = els[0];

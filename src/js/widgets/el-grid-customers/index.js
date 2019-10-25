@@ -1,6 +1,6 @@
 var sortBy = require("lodash/sortBy");
 
-var parseHTML = require("../utils/parse-html/");
+var parseHTML = require("../../utils/parse-html");
 
 var templates = {
     "customerTile": require("./customer-tile.pug"), // Logo grid for Customers page

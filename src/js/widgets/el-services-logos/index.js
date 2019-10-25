@@ -1,4 +1,4 @@
-var parseHTML = require("../utils/parse-html");
+var parseHTML = require("../../utils/parse-html");
 
 var templates = {
     "servicesLogos": require("./services-logos.pug") // Logos for integrations section of services page

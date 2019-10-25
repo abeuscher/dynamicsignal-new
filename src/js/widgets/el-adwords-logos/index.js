@@ -1,4 +1,4 @@
-var parseHTML = require("../utils/parse-html/");
+var parseHTML = require("../../utils/parse-html");
 
 var templates = {
     "adwordsGrid": require("./ad-words-grid.pug"), // Grid for Adwords landing pages

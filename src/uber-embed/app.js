@@ -51,11 +51,11 @@ var siteActions = [{
   }
 }, {
   "element": "#page-header",
-  "action": require("../js/el-page-header/")
+  "action": require("../js/widgets/el-page-header/")
 },
 {
   "element": "#side-nav",
-  "action": require("../js/el-side-nav/")
+  "action": require("../js/widgets/el-side-nav/")
 }];
 
 function setUberPage() {

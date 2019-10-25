@@ -1,4 +1,4 @@
-var parseHTML = require("../utils/parse-html/");
+var parseHTML = require("../../utils/parse-html");
 
 var templates = {
     "logoPartnersGrid": require("./logo-partners-grid.pug"), // Flipping logo slides for partners page

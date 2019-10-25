@@ -1,4 +1,4 @@
-var parseHTML = require("../utils/parse-html/");
+var parseHTML = require("../../utils/parse-html");
 
 var templates = {
     "connectorPanel": require("./connector-panel.pug"), // On connectors page - may still be in use   

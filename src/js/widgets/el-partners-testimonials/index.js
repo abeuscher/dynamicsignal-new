@@ -1,4 +1,4 @@
-var parseHTML = require("../utils/parse-html/");
+var parseHTML = require("../../utils/parse-html");
 
 var templates = {
     "partnersTestimonial": require("./partner-testimonial.pug"), // Testimonials opn agency partners page

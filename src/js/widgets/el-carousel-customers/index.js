@@ -1,6 +1,6 @@
 var Flickity = require("flickity");
-var parseHTML = require("../utils/parse-html/");
-var VideoHandler = require("../video-handler/");
+var parseHTML = require("../../utils/parse-html");
+var VideoHandler = require("../../video-handler/");
 
 var templates = {
     "customerQuote": require("./customer-quote.pug"), // Quote carousel for customers page     

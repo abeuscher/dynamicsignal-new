@@ -1,4 +1,4 @@
-var parseHTML = require("../utils/parse-html/");
+var parseHTML = require("../../utils/parse-html");
 
 var templates = {
     "adwordsLogoGarden": require("./ad-words-logo-garden.pug"), // Logo garden for adwords landing pages   
