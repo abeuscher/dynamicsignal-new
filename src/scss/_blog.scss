@@ -48,11 +48,13 @@ section.blog-hero {
 
     }
   }
-
-  li,
   p {
     line-height: 1.8;
     margin: $gutter-width 0 $gutter-width/2;
+  }
+  li {
+    line-height:1.8;
+    margin:$gutter-width/4 0;
   }
   h1, h2, h3 {
     margin:$gutter-width 0 $gutter-width/4;

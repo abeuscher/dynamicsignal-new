@@ -2,6 +2,8 @@ var settings = require("../settings.js")();
 
 var fs = require("file-system");
 var browserify = require("browserify");
+var uglify = require("gulp-uglify-es").default;
+var extReplace = require("gulp-ext-replace");
 
 const { src, dest, watch } = require("gulp");
 
@@ -18,7 +20,7 @@ function bundleJS(cb) {
     bundleFile(settings.jsFiles[i]);
     watcher.add([
       settings.jsFiles[i].srcDir + "*", settings.jsFiles[i].srcDir + "**/*"
-    ], { ignoreInitial: false });
+    ]);
   }
 
   // Add the listener event to the watcher
@@ -28,9 +30,9 @@ function bundleJS(cb) {
 
 // This is the listener event, which finds the changed file then passes it to the bundler
 function triggerJS(path, stats) {
-  var p = path.indexOf("\\")>-1 ? path.split("\\") : path.split("/");
-  var file = findDirMatch(settings.jsFiles,p);
-  for (i=0;i<file.length;i++) {
+  var p = path.indexOf("\\") > -1 ? path.split("\\") : path.split("/");
+  var file = findDirMatch(settings.jsFiles, p);
+  for (i = 0; i < file.length; i++) {
     bundleFile(file[i]);
   }
 }
@@ -45,12 +47,28 @@ function bundleFile(f) {
     .transform(require("pugify"))
     .transform("uglifyify", { global: true })
     .bundle()
+    .on('error', function (err) {
+      console.log("ERROR ON:" + f.name + "\nERROR:", err.stack);
+      return false;
+    })
     .pipe(
       fs
         .createWriteStream(f.buildDir + f.buildFileName)
-        .on("close", function() {
+        .on("close", function () {
           console.log("Finished Processing JS File " + f.name);
+          minifyJS(f);
         })
     );
+}
+
+//Minify fires after fire is written and creates a second, smaller file. Hence the term "minify".
+function minifyJS(f) {
+  console.log("Begin Minifying " + f.name);
+  src(f.buildDir + f.buildFileName)
+    .pipe(uglify())
+    .pipe(extReplace(".min.js"))
+    .pipe(
+      dest(f.buildDir));
+  console.log("End Minifying " + f.name);
 }
 module.exports = bundleJS;

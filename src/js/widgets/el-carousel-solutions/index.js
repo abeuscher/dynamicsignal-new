@@ -1,6 +1,6 @@
 var Flickity = require("flickity");
 
-function SoultionsCarousel(els) {
+function SolutionsCarousel(els) {
     for (i = 0; i < els.length; i++) {
         new Flickity(els[i], {
             "prevNextButtons": false,
@@ -10,4 +10,4 @@ function SoultionsCarousel(els) {
         });
     }
 }
-module.exports = SoultionsCarousel;
+module.exports = SolutionsCarousel;

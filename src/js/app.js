@@ -33,7 +33,7 @@ window.addEventListener("load", function () {
       thisAction.action(document.querySelectorAll(thisAction.element), siteSettings.scrollController);
     }
   }
-
+  
   //Initiate video handler separately because it has a lot of things to do.
   var videoHandler = new VideoHandler();
   videoHandler.init();
