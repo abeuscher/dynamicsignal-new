@@ -9,11 +9,13 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  section#sticky-header.hero-with-bg(data-bg="generic-hero-bg.jpg")
+  section.hero-inner.text-only
     .container
-      .row
-        .col-md-6
+      .inner
+        .text
           h1.white Solutions
+          p.white Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          a.button.knockout(href="#") Learn More
   section.white-bg-section.padding-both
     .container
       .row
