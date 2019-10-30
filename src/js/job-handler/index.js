@@ -17,9 +17,10 @@ JobList.prototype.writeList = function() {
 };
 JobList.prototype.writeFeatured = function() {
   var featured = null;
+  console.log(this.opts.jobs);
   for (i in this.opts.jobs) {
     var thisJob = this.opts.jobs[i];
-    if (thisJob.featured) {
+    if (thisJob.featured.length) {
       featured = thisJob;
     }
   }
