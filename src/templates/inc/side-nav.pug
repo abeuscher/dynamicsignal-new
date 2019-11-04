@@ -151,7 +151,7 @@ aside.side-nav.right#side-nav
           if item.children
             ul
               for child in item.children
-                li
+                li(class=child.class?child.class:"")
                   - 
                     if (locals.siteurl && child.url.indexOf("http")<0) {
                       childurl = locals.siteurl + child.url;

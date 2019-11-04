@@ -7,8 +7,9 @@ var templates = {
     "pastEventWide": require("./templates/past-event-wide.pug"), // Past events full page layout
 }
 
-function WebinarsUpcoming() {
-    var pastBucket = document.getElementById("past-events");
+function WebinarsUpcoming(els) {
+    var el = els[0];
+    var pastBucket = document.getElementById("events-past");
     var currentEvents = new Array();
     var pastEvents = new Array();
     var allEvents = collFilter(pageData.events, function (i) { return i.type == "webinar"; });
