@@ -85,4 +85,7 @@ function setUberPage() {
   var theFooter = document.getElementsByTagName("footer")[0];
   theWrapper.replaceChild(parseHTML(siteSettings.templates.footer(siteSettings)), theFooter);
   document.body.append(theOverlay);
+  var descBlock = document.querySelectorAll(".description-block")[0];
+  var uberNav = document.getElementById("top-header");
+  descBlock.appendChild(uberNav);
 }

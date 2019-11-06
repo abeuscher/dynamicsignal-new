@@ -7,7 +7,7 @@ var jsBuildDir = buildDir + "js/";
 var templateSrcDir = srcDir + "templates/";
 
 var sassSrcDir = srcDir + "scss/";
-var sassBuildDir = buildDir;
+var sassBuildDir = buildDir + "uber-css/";
 
 var assetsSrcDir = srcDir + "public_transfer/";
 var assetsBuildDir = buildDir;
@@ -46,7 +46,7 @@ function siteSettings() {
         srcDir: srcDir + "uber-embed/",
         srcFileName: "app.js",
         buildDir: buildDir + "uber-embed/",
-        buildFileName: "bundle.js"
+        buildFileName: "test-bundle.js"
       },
       {
         name: "Marketo Embed Bundle",
