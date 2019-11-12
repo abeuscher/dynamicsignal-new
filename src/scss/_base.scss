@@ -781,10 +781,13 @@ p.source {
   font-weight: 300;
 }
 ul.plus-list {
+  margin:0;
+  padding:0;
   list-style-type: none;
   li {
     position: relative;
-    margin-bottom: 1.5em;
+    margin-bottom: $gutter-width/2;
+    font-size:1.4em;
     &:before {
       content: "";
     }
@@ -793,27 +796,9 @@ ul.plus-list {
 .circle-number {
   color: $header-blue;
   font-weight: 800;
-  @include bp(m) {
-    position: relative;
-    color: $white;
-    font-weight: normal;
-    display: inline-block;
-    text-align: center;
-    margin-right: 0.2em;
-    width: 3em;
-    z-index:1;
-    &:after {
-      content: "";
-      position: absolute;
-      top: -0.6em;
-      left: 0;
-      border-radius: 50%;
-      background: $header-blue;
-
-      padding: 1.5em;
-      z-index: -1;
-    }
-  }
+  line-height:1;
+  vertical-align: middle;
+  font-size:1.8em;
 }
 section.fullpic {
   position: relative;

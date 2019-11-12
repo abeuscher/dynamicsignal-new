@@ -36,7 +36,7 @@ block content
             printf("<link rel='prefetch' url='%s'>",$bucket["image_animated"]);
           }
           foreach (get_field("demo_video_buckets") as $key=>$bucket) {
-            printf("<a href='%s' class='demo-video-bucket'><div class='outer'></div><div class='inner'><div class='img-bucket'><img class='gif-thumb' src='%s'  data-gif='%s' /><div class='icon'><span class='fa fa-play-circle-o'></span></div></div><h3 class='text-center'>%s</h3><p>%s</p></div></a>", $bucket["cta_target"],$bucket["image_static"], $bucket["image_animated"],$bucket["subhead"], $bucket["copy"]);
+            printf("<a href='%s' class='demo-video-bucket'><div class='outer'></div><div class='inner'><div class='img-bucket'><img class='gif-thumb' src='%s'  data-gif='%s' /><div class='icon'><span class='fa fa-play-circle-o'></span></div></div><h3 class='text-center'>%s</h3><p>%s</p><p class='centered'><span class='button'>Watch Demo</span></p></div></a>", $bucket["cta_target"],$bucket["image_static"], $bucket["image_animated"],$bucket["subhead"], $bucket["copy"]);
           }
   :php
      }}

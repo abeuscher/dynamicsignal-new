@@ -1,4 +1,5 @@
 var parseHTML = require("../utils/parse-html.js");
+var Emitter = require("../ga-event-emitter/");
 
 var templates = {
   "demoRequestModal": require("./demo-request-modal.pug"), // Modal Demo Request form
@@ -48,6 +49,10 @@ function RequestDemoHandler (buttons, siteSettings) {
       var theMessage = document.getElementById("thank-you-message");
       theForm.classList.add("hide");
       theMessage.classList.remove("hide");
+      var eventEmitter = new Emitter([]);
+      eventEmitter.LogSingleEvent({
+        "event":"DemoRequestModalSubmit"
+      });
     }
     function closeDemoRequest(e) {
       if (e) {

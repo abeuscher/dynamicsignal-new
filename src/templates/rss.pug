@@ -1,5 +1,72 @@
 :php
-   /*
-   Template Name: RSS Page
-   */
-   bloginfo('atom_url');
+    /*
+    Template Name: DS Custom RSS Feed
+    */
+
+   header( 'Content-Type: ' . feed_content_type( 'rss2' ) . '; charset=' . get_option( 'blog_charset' ), true );
+   $more = 1;
+
+   printf("<?xml version='1.0' encoding='%s' ?>",get_option( 'blog_charset' ));
+
+   do_action( 'rss_tag_pre', 'rss2' );
+   printf("<rss version='2.0' xmlns:content='http://purl.org/rss/1.0/modules/content/' xmlns:wfw='http://wellformedweb.org/CommentAPI/' xmlns:dc='http://purl.org/dc/elements/1.1/' xmlns:atom='http://www.w3.org/2005/Atom' xmlns:sy='http://purl.org/rss/1.0/modules/syndication/' xmlns:slash='http://purl.org/rss/1.0/modules/slash/' ");
+   do_action( 'rss2_ns' );
+   printf(">");
+channel
+   title
+      :php
+         wp_title_rss();
+   :php
+      printf("<atom:link href='%s' rel='self' type='application/rss+xml' />", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+      printf("<link>%s</link>", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]")
+   description
+      :php
+         bloginfo_rss( 'description' );
+   lastBuildDate
+      :php
+         echo get_feed_build_date( 'r' );
+   language
+      :php
+         bloginfo_rss( 'language' );
+   sy:updatePeriod
+      :php
+         $duration = 'hourly';
+         echo apply_filters( 'rss_update_period', $duration );
+   sy:updateFrequency
+      :php
+         $frequency = '1';
+         echo apply_filters( 'rss_update_frequency', $frequency );
+   :php
+      do_action( 'rss2_head' );
+      while ( have_posts() ) :
+         the_post();
+   item
+      title
+         :php
+            the_title_rss();
+      :php
+         printf("<link>%s</link>", get_permalink());
+      pubDate
+         :php
+            echo mysql2date( 'D, d M Y H:i:s +0000', get_post_time( 'Y-m-d H:i:s', true ), false );
+      dc:creator 
+         :php
+            printf("<![CDATA[%s]]>",get_author_name());
+      :php
+         printf("<guid isPermaLink='true'>%s</guid>", get_the_permalink());
+         printf("<description><![CDATA[%s]]></description>",WPSEO_Meta::get_value('metadesc'));
+         if ( !get_option( 'rss_use_excerpt' ) ) :
+            $content = get_the_content_feed( 'rss2' );
+            if ( strlen( $content ) > 0 ) :
+               printf("<content:encoded><![CDATA[%s]]></content:encoded>",$content);
+            else :
+               printf("<content:encoded><![CDATA[%s]]></content:encoded>",WPSEO_Meta::get_value('metadesc'));
+            endif;
+         endif;
+         rss_enclosure();
+      :php
+         do_action( 'rss2_item' );
+   :php
+      endwhile;
+:php
+   echo "</rss>";
