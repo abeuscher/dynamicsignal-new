@@ -9,28 +9,18 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-    :php
-        printf("<section class='platform-header' data-bg-array='%s'>", json_encode(get_field("hero_bg_image"), JSON_UNESCAPED_SLASHES));
-    .container
-        .row
-            .col-md-6
-                :php
-                    printf("<h1 class='white'>%s</h1>", get_field("hero_text"));
-                    printf("<a href='#' data-video-modal-id='%s' class='button white'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("cta_video_id"), get_field("cta_text"));
-            .col-md-6.platform-image-bucket
-                :php
-                    printf("<div class='pc-image' data-bg-array='%s'></div><div class='mobile-image' id='platform-hero-phone' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES), json_encode(get_field("hero_phone_image"), JSON_UNESCAPED_SLASHES));
-    :php
-       echo "</section>";       
-    section.platform-bullets#anchor-menu(data-anchor-target="center")
+    section.hero-inner
         .container
-            .row
-                .col-md-9
-                    ul.copy-points
-                        :php
-                            foreach(get_field("hero_bullets") as $key=>$bullet) {
-                                printf("<li><a href='%s'><span class='icon'></span><span class='text'>%s</span></a></li>", "#platform-".$key, $bullet["bullet_text"]);
-                            }
+            .inner
+                .text
+                    :php
+                        printf("<h1 class='white'>%s</h1>", get_field("hero_text"));
+    section.hero-media
+        .container
+            .inner
+                .wrapper-video
+                    :php
+                        printf("<iframe width='560' height='315' src='https://www.youtube.com/embed/%s?rel=0&modestbranding=1&showinfo=0' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>", get_field("cta_video_id"))
     :php
         foreach(get_field("sections") as $idx=>$this_section) {
             $img_bucket = sprintf("<div class='col-half image-col'><div class='platform-section-image' data-bg-array='%s'></div><div class='platform-section-image animated' data-bg-array='%s'></div></div>", json_encode($this_section["static_image"], JSON_UNESCAPED_SLASHES),json_encode($this_section["animated_image"], JSON_UNESCAPED_SLASHES));

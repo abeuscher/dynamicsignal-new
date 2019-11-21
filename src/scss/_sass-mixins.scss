@@ -105,7 +105,9 @@ $mq-support:true;
 @mixin ds-transition() {
 	transition: 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
 }
-
+@mixin ds-transition-header() {
+	transition: 0.4s cubic-bezier(0.335, 0.815, 0.470, 1);
+}
 @mixin tooltip(
         $tooltip-background-color: white,
         $tooltip-arrow-base: 10px,

@@ -29,8 +29,41 @@ block content
      endwhile;
      wp_reset_query();
     echo '<script>var customerData = '. json_encode($customers).';</script>';
-  section.margin-top-header.padding-top-header
-    #customer-video-carousel.customer-video-carousel
+        query_posts(array(
+         'post_type' => 'customer',
+         'nopaging' => true,
+         	'meta_key'	=> 'featured_customer',
+           'meta_value' => true
+                )); 
+     $t = [];
+     if( have_posts() ){
+     while(have_posts()) : the_post();
+        $post->logo = get_field("logo");
+        $post->citation_name = get_field("citation_name");
+        $post->citation_title = get_field("citation_title");
+        $post->vimeo_id = get_field("vimeo_id");
+        $post->video_thumbnail = get_field("video_thumbnail");
+        $post->quote = get_field("quote");
+        $post->customer_page = get_field("customer_page");
+        $post->logo_sort_order = get_field("logo_sort_order");
+         array_push($t,$post);
+     endwhile;
+     }
+     $top_customer = $t[0];
+  section.hero-inner
+      .container
+          .inner    
+              .text
+                  h1.white Customers
+  section.hero-media.has-quote
+      .container
+          .inner
+              .wrapper-video
+                  :php
+                      printf("<iframe width='560' height='315' src='https://www.youtube.com/embed/%s?rel=0&modestbranding=1&showinfo=0' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>", $top_customer -> vimeo_id);
+              :php
+                  printf("<div class='content quote'><p>&ldquo;%s&rdquo;</p><cite><span class='name'>%s</span><span class='job-title'>%s</span></cite></div>",$top_customer->quote,$top_customer->citation_name,$top_customer->citation_title);
+              hr.orange
   section.customers-grid.container.padding-top
     h2 Hundreds of the world’s largest organizations, in countries around the globe, trust Dynamic Signal.
     #customers-grid

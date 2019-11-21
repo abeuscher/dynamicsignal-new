@@ -119,10 +119,6 @@ var siteActions = [{
   "action": require("./widgets/el-checkmark-bullets/")
 },
 {
-  "element": "#customer-video-carousel",
-  "action": require("./widgets/el-carousel-customers/")
-},
-{
   "element": "#customers-grid",
   "action": require("./widgets/el-grid-customers/")
 },
