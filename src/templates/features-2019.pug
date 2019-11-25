@@ -9,19 +9,12 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-    :php
-        printf("<section class='features-header' data-bg-array='%s'>", json_encode(get_field("hero_bg_image"), JSON_UNESCAPED_SLASHES));
-    .container#feature-bullets
-        .row
-            .col-md-5
-                :php
-                    printf("<h1 class='white'>%s</h1>", get_field("hero_text"));
-                    printf("<a href='#' data-video-modal-id='%s' class='button white'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("hero_cta_video_id"), get_field("hero_cta_text"));
-            .col-md-7.features-image-bucket
-                :php
-                    printf("<div class='pc-image' data-bg-array='%s'></div><div class='mobile-image' data-bg-array='%s'></div>", json_encode(get_field("hero_pc_image"), JSON_UNESCAPED_SLASHES), json_encode(get_field("hero_phone_image"), JSON_UNESCAPED_SLASHES));
-    :php
-       echo "</section>";       
+    section.hero-inner.text-only
+        .container
+            .inner
+                .text
+                    :php
+                        printf("<h1 class='white'>%s</h1>", get_field("hero_text")); 
     section.platform-bullets.feature-menu#anchor-menu
         .container
             .row

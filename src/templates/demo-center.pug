@@ -13,21 +13,16 @@ block content
     if( have_posts() ){
      while( have_posts() ) {
       the_post();
-    printf("<section class='halfpic margin-top-header'>");
-    printf("<div class='halfpic-bg demo-center' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
-  .white-gradient-header
-  .container
-      .row-flex
-          .col-half-flex.gray-bg-section
-              .inner
-                h2
-                  :php
-                    printf("%s",get_field("page_header"))
-                p
-                  :php
-                    printf("%s",get_field("page_subhead"))
-  :php
-    echo "</section>";   
+  section.hero-inner.text-only
+    .container
+      .inner
+        .text
+          h1.white
+            :php
+              printf("%s",get_field("page_header"))
+          p.white
+            :php
+              printf("%s",get_field("page_subhead"))
   section.demo-home.padding-top
     .container
       .demo-video-wrapper#demo-hover-box
