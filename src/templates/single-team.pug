@@ -5,6 +5,7 @@ block template
     Template Name: Team Single Entry Page
     */
 block nav
+  - var header = "white";
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug
   include ./inc/header.pug
@@ -23,13 +24,7 @@ block content
     if( have_posts() ){
      while( have_posts() ) {
       the_post();
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1 Meet Our Team
-  section.container.blog-content
+  section.container.blog-content.padding-top-header
     .row
       .col-md-12
         article.blog-post

@@ -6,23 +6,47 @@ $logo-colors: "#4B95D1", "#3581C0", "#096DB0", "#126099", "#164673", "#15375E", 
     }
   }
 }
-svg.logo {
-  @include ds-transition();
-  .ds-d {
-    fill: url(#ds-gradient);
-  }
-  .ds-text {
-    fill: $white;
-    stroke-width: 0;
-  }
-}
-#ds-gradient {
-  @for $i from 1 through 7 {
-    .stop-#{$i} {
-      stop-color: $white;
+
+
+
+  svg.logo {
+    .ds-d {
+      fill: url(#ds-gradient);
+    }
+    .ds-text {
+      fill: $white;
+      stroke-width:0;
+    } 
+    #ds-gradient {
+      @for $i from 1 through 7 {
+        .stop-#{$i} {
+          stop-color: $white;
+          animation:none;
+        }
+      }
     }
   }
-}
+  body.s {
+    svg.logo {
+      @include ds-transition();
+      .ds-d {
+        fill: url(#ds-gradient);
+      }
+      .ds-text {
+        fill: #757575;
+        stroke-width:0;
+      }
+      #ds-gradient {
+        @for $i from 1 through 7 {
+          .stop-#{$i} {
+            stop-color: #{nth($logo-colors, $i)};
+          }
+        }
+      }
+    
+    }
+  }
+
 @keyframes drawlogo {
   to {
     stroke-dashoffset: 0;
@@ -41,13 +65,8 @@ svg.logo {
   }
   #ds-gradient {
     @for $i from 1 through 7 {
-      @include fill-d($i, #{nth($logo-colors, $i)});
       .stop-#{$i} {
-        stop-color: #{nth($logo-colors, 7)};
-        animation-name: fill-#{$i};
-        animation-duration: 10s;
-        animation-fill-mode: forwards; // Stay on the last frame
-        animation-iteration-count: 1;
+        stop-color: #{nth($logo-colors, $i)};
       }
     }
   }
@@ -64,13 +83,8 @@ body.nav-short, body.nav-short .page-header.homepage, .page-header.white {
   }
   #ds-gradient {
     @for $i from 1 through 7 {
-      @include fill-d($i, #{nth($logo-colors, $i)});
       .stop-#{$i} {
-        stop-color: #{nth($logo-colors, 7)};
-        animation-name: fill-#{$i};
-        animation-duration: 10s;
-        animation-fill-mode: forwards; // Stay on the last frame
-        animation-iteration-count: 1;
+        stop-color: #{nth($logo-colors, $i)};
       }
     }
   }

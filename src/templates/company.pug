@@ -9,19 +9,19 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
+    section.hero-inner
+        .container
+            .inner
+                .text
+                    :php
+                        printf("<h1 class='white'>%s</h1>", get_field("hero_text"));
+    section.hero-media
+        .container
+            .inner
+                .wrapper-video
+                    :php
+                        printf("<iframe width='560' height='315' src='https://www.youtube.com/embed/%s?rel=0&modestbranding=1&showinfo=0' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>", get_field("hero_video_id"))
     :php
-        printf("<section class='fullpic bigtext no-padding company-hero' id='sticky-header'><div class='header-bg'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
-        printf("<div class='inner'>");
-    .col-half.text
-        h1
-            :php
-                echo get_field("hero_text");
-        :php
-            printf("<a class='button cta modal-show' data-video-modal-id='%s' data-event='vidClick-HomeCTA' href='#'>Play Video<span class='fa fa-play-circle-o'></span></a>", get_field("hero_video_id"));
-    :php
-        printf("<div class='col-half bg' data-bg-array='%s'></div>",json_encode(get_field("hero_overlay"), JSON_UNESCAPED_SLASHES));
-    :php
-        echo "</div></section>";
         foreach(get_field("company_page_sections") as $idx=>$section) {
             $image_col = sprintf("<div class='col-md-6'><div class='company-thumb' id='image-%s' data-bg-array='%s'></div></div>", $idx, json_encode($section["image"], JSON_UNESCAPED_SLASHES));
             $text_col = sprintf("<div class='col-md-6'><h2 class='blue'>%s</h2><div class='content'>%s</div></div>", $section["headline"], $section["content"]);

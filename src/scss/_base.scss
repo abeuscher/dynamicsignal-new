@@ -519,13 +519,16 @@ ul.side-list {
     padding: $gutter-width/4;
     margin: 0;
     position: absolute;
-    @include bp(s) {
-      width: 100%;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);
+
+  }
+  @include bp(m) {
+    
+    h1 {
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);
+    padding: $gutter-width;      
     }
-    @include bp(m) {
-      padding: $gutter-width;
-    }
+
   }
 }
 .post-meta {
@@ -1092,6 +1095,7 @@ ul.copy-points {
     flex-shrink: 1;
     margin-bottom: 24px;
     display: flex;
+    align-content: center;
     a {
       width: 100%;
       display: flex;

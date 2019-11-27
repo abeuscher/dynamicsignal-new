@@ -25,6 +25,9 @@
     &.text-only {
       height: 330px;
     }
+    &.has-button {
+      height:480px;
+    }
     &.no-text {
       height: 280px;
     }
@@ -43,23 +46,44 @@
   margin-top: $gutter-width * 2;
   margin-bottom: $gutter-width * 2;
   .inner-image {
-    margin:0 auto;
-    @include aspect-ratio(16,9);
-    max-height:300px;
+    margin: 0 auto;
+    @include aspect-ratio(16, 9);
+    max-height: 300px;
     .blog-thumb {
-      background-size:cover;
-      display:none;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      align-items:center;
+      justify-content: center;
+      display:flex;
+      &.hide-mobile {
+        display:none;
+      }
       &.mobile {
-        display:block;
+        display: flex;
       }
       @include bp(m) {
-        display:block;
+        &.hide-mobile {
+          display: flex;
+        }
+       
         &.mobile {
-          display:none;
+          display: none;
         }
       }
     }
+    &.contain {
+      .blog-thumb {
+        background-size: contain;
 
+        display: flex;
+      }
+      &.no-flex {
+        .blog-thumb {
+          display:block;
+        }
+      }
+    }
   }
   .inner {
     width: 90%;
@@ -83,28 +107,27 @@
       }
     }
     .content {
-      text-align:center;
-      width:90%;
-      margin:0 auto $gutter-width*1.5;
+      text-align: center;
+      width: 90%;
+      margin: 0 auto $gutter-width * 1.5;
       p {
-        font-size:1.5em;
+        font-size: 1.5em;
       }
       .name {
-        font-size:1.25em;
+        font-size: 1.25em;
       }
       cite {
         span {
-         display:block;
-        font-style:normal;         
+          display: block;
+          font-style: normal;
         }
-
       }
     }
     hr {
-      background:$orange;
-      height:1px;
-      width:70%;
-      border:none;
+      background: $orange;
+      height: 1px;
+      width: 70%;
+      border: none;
     }
   }
   &.no-text {
@@ -112,25 +135,30 @@
   }
   @include bp(s) {
     margin-top: -150px;
-    margin-bottom: 0;
+    margin-bottom: $gutter-width * 2;
     height: 300px;
     .inner {
-      width:50%;
+      width: 75%;
     }
     &.has-quote {
-      height:auto;
+      height: auto;
+    }
+  }
+  @include bp(m) {
+    .inner {
+      width: 50%;
     }
   }
 }
 .hero-blog-entry-meta {
   .inner {
-    display:flex;
+    display: flex;
     align-items: center;
     p.author {
-      flex-basis:80%;
+      flex-basis: 80%;
     }
     .social-share {
-      float:right;
+      float: right;
     }
   }
 }

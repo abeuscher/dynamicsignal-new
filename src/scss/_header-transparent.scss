@@ -22,6 +22,7 @@ header.page-header {
         height: $nav-short;
         max-width: none;
         width: auto;
+        padding: 10px 0 10px 6px;
       }
       @include bp(s) {
         flex-basis: 50%;
@@ -84,6 +85,11 @@ header.page-header {
           @include ds-transition-header();
           &.hamburger {
             padding: 13px 40px 0 12px;
+            @include bp(s) {
+              .line {
+                background:$white;
+              }
+            }
             @include bp(m) {
               padding: 17px 60px 0 12px;
             }
@@ -247,6 +253,13 @@ header.page-header {
         li {
           a {
             color:$black;
+            &.hamburger {
+              @include bp(s) {
+                .line {
+                  background:$black;
+                }
+              }
+            }
             &.cta {
               color:$white;
               &:hover {

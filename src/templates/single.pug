@@ -40,7 +40,7 @@ block content
               printf("<div class='blog-thumb mobile' itemprop='image' data-bg='%s' itemscope itemtype='https://schema.org/ImageObject'></div>", $social_image);
             }
             
-            printf("<div class='blog-thumb' itemprop='image' data-bg='%s' itemscope itemtype='https://schema.org/ImageObject'></div>", wp_get_attachment_image_src(get_post_thumbnail_id(),"default")[0]);
+            printf("<div class='blog-thumb hide-mobile' itemprop='image' data-bg='%s' itemscope itemtype='https://schema.org/ImageObject'></div>", wp_get_attachment_image_src(get_post_thumbnail_id(),"default")[0]);
   section.hero-blog-entry-meta
     .container
       .inner
@@ -76,7 +76,7 @@ block content
   section.container.blog-content
     .container.padding-top
       .row
-        .col-md-9.blog-content(itemprop="articleBody")
+        .col-md-9.blog-content.no-padding(itemprop="articleBody")
           :php
             the_content();
         .col-md-3.related-posts

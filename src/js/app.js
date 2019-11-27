@@ -18,8 +18,41 @@ siteSettings.scrollController = new ScrollMagic.Controller({
   "loglevel": 0
 });
 
-window.addEventListener("load", function () {
+function assignResizeClasses() {
+  var timeout = false, // holder for timeout id
+    delay = 250;
 
+  // window.resize callback function
+  function getDimensions() {
+    var w = window.innerWidth;
+    var bps = siteSettings.breakpoints;
+    var bpsArray = Object.keys(bps).map(function(key) {
+      return [key, bps[key]];
+    });
+    var pageClass = bpsArray[0][0];
+    for (i=1;i<bpsArray.length;i++) {
+      document.body.classList.remove(bpsArray[i][0]);
+      if (w>parseInt(bpsArray[i-1][1])) {
+        pageClass = bpsArray[i][0];
+      }
+    }
+    document.body.classList.add(pageClass);
+  }
+
+  // window.resize event listener
+  window.addEventListener('resize', function () {
+    // clear the timeout
+    clearTimeout(timeout);
+    // start timing for event "completion"
+    timeout = setTimeout(getDimensions, delay);
+  });
+
+  getDimensions();
+
+}
+
+window.addEventListener("load", function () {
+  assignResizeClasses();
   // Check to make sure browser accepts cookies, then provide GDPR warning if yes.
   if (CheckCookies()) {
     TriggerGDPR(siteSettings);
@@ -33,7 +66,7 @@ window.addEventListener("load", function () {
       thisAction.action(document.querySelectorAll(thisAction.element), siteSettings.scrollController);
     }
   }
-  
+
   //Initiate video handler separately because it has a lot of things to do.
   var videoHandler = new VideoHandler();
   videoHandler.init();
