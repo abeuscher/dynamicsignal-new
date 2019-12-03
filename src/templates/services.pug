@@ -28,7 +28,9 @@ block content
       .container
           .inner    
               .text
-                  h1.white Services
+                  h1.white
+                      :php
+                          printf("%s",get_field("headline_text"));
   section.hero-media.has-quote
       .container
           .inner

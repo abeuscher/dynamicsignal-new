@@ -26,7 +26,7 @@
       height: 330px;
     }
     &.has-button {
-      height:480px;
+      height:530px;
     }
     &.no-text {
       height: 280px;
@@ -38,6 +38,11 @@
         margin: 50px auto 0;
         width: 80%;
       }
+    }
+  }
+  @include bp(m) {
+    &.has-button {
+      height:480px;
     }
   }
 }

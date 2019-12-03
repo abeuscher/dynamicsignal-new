@@ -9,50 +9,43 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Platform",
-      "link"=>"/product/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Case Studies",
-      "link"=>"/case-studies/"
-    ));
-  section.case-study-single-header
-    :php
-        printf("<div class='bg-image' data-bg-array='%s'></div>", json_encode(get_field("header_bg"),JSON_UNESCAPED_SLASHES));
+  section.hero-inner
+      .container
+          .inner    
+              .text
+                  h1.white
+                      :php
+                            echo get_field("page_title");
+  section.hero-media
     .container
-        .row
-            .col-md-12
-                h1
-                    :php
-                        echo get_field("page_title");
-  section.case-study-facts
+        .inner-image
+            :php
+                printf("<div class='blog-thumb' data-bg-array='%s'></div>", json_encode(get_field("header_bg"),JSON_UNESCAPED_SLASHES))
+  section
     .container
-        .row
-            .col-md-4
-                h2 Industry
-                h3
-                    :php
-                        echo get_field("industry");
-            .col-md-4
-                h2 Company Size
-                h3
-                    :php
-                        echo get_field("company_size");
-            .col-md-4
-                h2 Solution
-                h3
-                    :php
-                        if (count(get_field("solutions")) > 1) {
-                            foreach(get_field("solutions") as $key=>$solution) {
-                                printf("<a href='%s'>%s</a>%s ", $solution["link"],$solution["name"],$key == count(get_field("solutions"))-1 ? "" : ",");
-                            }
-                        }
-                        else {
-                            printf("<a href='%s'>%s</a>", get_field("solutions")[0]["link"],get_field("solutions")[0]["name"]);
-                        }
+      .row.case-study-stats
+        .col-md-4.col-s-12
+          h3 Industry
+          h4
+            :php
+              echo get_field("industry");
+        .col-md-4.col-s-12
+          h3 Company Size
+          h4
+            :php
+              echo get_field("company_size");
+        .col-md-4.col-s-12
+          h3 Solution
+          h4
+            :php
+                if (count(get_field("solutions")) > 1) {
+                    foreach(get_field("solutions") as $key=>$solution) {
+                        printf("<a href='%s'>%s</a>%s ", $solution["link"],$solution["name"],$key == count(get_field("solutions"))-1 ? "" : ",");
+                    }
+                }
+                else {
+                    printf("<a href='%s'>%s</a>", get_field("solutions")[0]["link"],get_field("solutions")[0]["name"]);
+                }
   section.case-study-content-block.padding-both
     .container
         .row
