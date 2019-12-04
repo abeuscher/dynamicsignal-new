@@ -7,6 +7,7 @@ var VideoHandler = require("./video-handler/");
 var DigitCounter = require("./digit-counter/");
 var RequestDemoHandler = require("./request-demo-handler/");
 var MakeTabs = require("./make-tabs/");
+var PageResizeHandler = require("./page-resize-handler/");
 
 var CheckCookies = require("./utils/check-cookies");
 var GetMobileOS = require("./utils/get-mobile-os");
@@ -18,41 +19,9 @@ siteSettings.scrollController = new ScrollMagic.Controller({
   "loglevel": 0
 });
 
-function assignResizeClasses() {
-  var timeout = false, // holder for timeout id
-    delay = 250;
 
-  // window.resize callback function
-  function getDimensions() {
-    var w = window.innerWidth;
-    var bps = siteSettings.breakpoints;
-    var bpsArray = Object.keys(bps).map(function(key) {
-      return [key, bps[key]];
-    });
-    var pageClass = bpsArray[0][0];
-    for (i=1;i<bpsArray.length;i++) {
-      document.body.classList.remove(bpsArray[i][0]);
-      if (w>parseInt(bpsArray[i-1][1])) {
-        pageClass = bpsArray[i][0];
-      }
-    }
-    document.body.classList.add(pageClass);
-  }
-
-  // window.resize event listener
-  window.addEventListener('resize', function () {
-    // clear the timeout
-    clearTimeout(timeout);
-    // start timing for event "completion"
-    timeout = setTimeout(getDimensions, delay);
-  });
-
-  getDimensions();
-
-}
 
 window.addEventListener("load", function () {
-  assignResizeClasses();
   // Check to make sure browser accepts cookies, then provide GDPR warning if yes.
   if (CheckCookies()) {
     TriggerGDPR(siteSettings);
@@ -97,6 +66,11 @@ window.addEventListener("load", function () {
 var siteActions = [{
   "element": "#demo-hover-box",
   "action": require("./widgets/el-demo-hover-box/")
+},{
+  "element": "#page-header",
+  "action": function(els) {
+    PageResizeHandler(siteSettings.breakpoints);
+  }
 }, {
   "element": "#anchor-menu",
   "action": require("./widgets/el-anchor-menu/")

@@ -10,32 +10,22 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Platform",
-      "link"=>"/product/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Solutions",
-      "link"=>"/solutions/"
-    ));
-  :php
-    printf("<section class='halfpic bigtext' id='sticky-header'>");
-    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));    
-  .white-gradient-header
-  .container
-    .row-flex
-      .col-half-flex.gray-bg-section
-        .inner.big-text
-            p.solo
+  section.hero-inner.has-button
+    .container
+      .inner
+        .text
+            h1.white
               :php
-                  the_field("top_section_header");
+                  the_field("top_section_header");            
             :php
-                printf("<a class='button cta' href='%s'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("header_cta_target"), get_field("header_cta_text"));
-  :php
-    echo "</section>";
-  section.white-bg-section
+                printf("<a class='button cta white' href='%s' style='margin-top:18px;'>%s<span class='fa fa-play-circle-o'></span></a>",get_field("header_cta_target"), get_field("header_cta_text"));
+  section.hero-media
+    .container.centered
+        .inner-image.contain.has-button
+            :php
+                printf("<div class='blog-thumb' itemprop='image' data-bg-array='%s'></div>", json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+
+  section.white-bg-section.padding-both.double
     .container
       .row
         .col-md-12.blog-content
@@ -45,28 +35,16 @@ block content
           p
             :php
               the_field("top_section_copy");
-  section.white-bg-section
+  section.white-bg-section.padding-both.double
     .container
       .row
         .col-md-12.blog-content
-          #solutions-top-carousel
+          .solutions-carousel
             :php
               $slides = get_field("top_carousel_slides");
               foreach($slides as $slide) {
                 printf("<div class='container'><div class='row'><div class='col-md-6'><div class='solutions-slide-image' data-bg-array='%s'></div></div><div class='col-md-6'><h2>%s</h2><p>%s</p><ul class='plus-list'><li>%s</li><li>%s</li></ul><p class='source'>*%s</p></div></div></div>",json_encode($slide["slide_image"],JSON_UNESCAPED_SLASHES),$slide["slide_header"],$slide["slide_copy"],$slide["proof_point_1"],$slide["proof_point_2"],$slide["proof_point_source"]);
               }
-  section.bottom-cta
-    .container
-      .row
-        .col-md-12
-          h2
-            :php
-              echo get_field("middle_cta_headline");
-          p
-            :php
-              the_field("middle_cta_header");
-          :php
-            printf("<a href='%s' class='button'>%s</a>",get_field("middle_cta_button_target"),get_field("middle_cta_button_text"));
   :php
     $tabs = get_field("tabs");
     $nav="";
@@ -78,7 +56,7 @@ block content
         }
     }
 
-  section.tabs.white-bg-section
+  section.tabs.white-bg-section.padding-both.double
     .container.blog-content
       .row
         .col-md-12
@@ -87,7 +65,7 @@ block content
               echo $nav
       :php
         echo $panels;
-  section.features-link.gray-bg-section
+  section.features-link.gray-bg-section.padding-both.double
     .container
       .row
         .col-md-12
@@ -95,7 +73,7 @@ block content
             .bg(data-bg="icon-star.png")
             :php
               echo get_field("features_link_text");
-  section.white-bg-section
+  section.white-bg-section.padding-both.double
     .container
       .row
         .col-md-12.centered
@@ -104,13 +82,13 @@ block content
               the_field("bottom_carousel_header");
       .row
         .col-md-12.blog-content
-          #solutions-bottom-carousel
+          .solutions-carousel
             :php
               $slides = get_field("bottom_carousel_slides");
               foreach($slides as $slide) {
                 printf("<div class='container'><div class='row'><div class='col-md-4'><div class='solutions-slide-image tab-image' data-bg-array='%s'></div></div><div class='col-md-8'><div class='slide-logo' data-bg-array='%s'></div><p>%s</p></div></div></div>",json_encode($slide["slide_image"],JSON_UNESCAPED_SLASHES),json_encode($slide["slide_logo"],JSON_UNESCAPED_SLASHES),$slide["slide_copy"]);
               }
-  section.white-bg-section
+  section.white-bg-section.padding-both.double
     .container
       .row
         .col-md-12.centered
@@ -119,3 +97,9 @@ block content
             foreach($logos as $logo) {
               printf("<div class='solutions-logo-bottom' data-bg-array='%s'></div>",json_encode($logo["logo_image"],JSON_UNESCAPED_SLASHES));
             }
+  section.bottom-cta
+    .container
+      .row
+        .col-md-12
+          p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal.
+          a.button.cta.request-demo(href="/requestdemo/") Request Demo

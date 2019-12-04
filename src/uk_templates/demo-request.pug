@@ -5,12 +5,13 @@ block template
     Template Name: Demo Request Form
     */
 block nav
+  - var header = "white";
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
   :php
-    printf("<section class='halfpic' id='sticky-header'>");
+    printf("<section class='halfpic margin-top-header'>");
     printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
   .white-gradient-header
   .container
@@ -21,20 +22,7 @@ block content
                 p Your Employee Communication and Engagement Platform
   :php
     echo "</section>";   
-  section.bottom-cta.mobile-cta
-    .container
-      .row
-        .col-md-12
-          h2 Download and Try DySi Open
-          p Get a hands on demonstration of our mobile app!
-          ul.app-buttons.hmenu
-            li
-              a(href="itms://appstore.com/us/app/dysi-open/id1339399649?mt=8",target="_blank")
-                img(src=themeDir + "/images/btn-itunes.png")
-            li
-              a(href="https://play.google.com/store/apps/details?id=com.dynamicsignal.appstore.dysi&hl=en",target="_blank")
-                img(src=themeDir + "/images/btn-android.png")
-  section.signup-form-bucket.white-bg-section
+  section.signup-form-bucket.white-bg-section.padding-both
     .container
       .row
         .col-md-6
@@ -60,25 +48,12 @@ block content
         .col-md-6
           script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
           #marketo-form-wrapper.blue-form
-            form.marketo-blue.blue-form#mktoForm_2185
+            form.marketo-blue.blue-form#mktoForm_1163
               script.
                 var validateCorporateEmail = true;
-          p#required-warning
+          p.form-warning.warning
             span.asterisk *
-            |  If a form doesn’t appear above, please pause or disable your Ad Blocker in your browser and reload this page.
-            br
+            |  If a form doesn’t appear, please pause or disable your Ad Blocker in your browser and reload this page.
+          p.warning
             span.asterisk *
             |  all fields are required.
-  section.bottom-cta.desktop-cta
-    .container
-      .row
-        .col-md-12
-          h2 Download and Try DySi Open
-          p Get a hands on demonstration of our mobile app!
-          ul.app-buttons.hmenu
-            li
-              a(href="itms://itunes.apple.com/us/app/dysi-open/id1339399649?mt=8",target="_blank")
-                img(src=themeDir + "/images/btn-itunes.png")
-            li
-              a(href="https://play.google.com/store/apps/details?id=com.dynamicsignal.appstore.dysi&hl=en",target="_blank")
-                img(src=themeDir + "/images/btn-android.png")

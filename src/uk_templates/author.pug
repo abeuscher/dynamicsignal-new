@@ -10,27 +10,15 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Company",
-      "link"=>"/company/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Blog",
-      "link"=>"/blog/"
-    ));
-    $override_title = "Author : " . get_author_name();
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1
-            :php
-              echo $override_title;
-  :php
-    $author = get_the_author_id();
-    $query = new WP_Query( array('post_type' => 'post','paged' => $paged,'posts_per_page' => 9,'author'=>$author) );
-  include ./inc/blog-loop.pug
+  section.hero-inner.text-only
+      .container
+          .inner    
+              .text
+                  h1.white
+                    :php
+                      echo $override_title;
+  section.padding-both
+    :php
+      $author = get_the_author_id();
+      $query = new WP_Query( array('post_type' => 'post','paged' => $paged,'posts_per_page' => 9,'author'=>$author) );
+    include ./inc/blog-loop.pug

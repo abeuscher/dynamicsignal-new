@@ -91,6 +91,11 @@ function siteSettings() {
         name: "Main Public Assets",
         srcDir: [assetsSrcDir + "**/*"],
         buildDir: assetsBuildDir
+      },
+      {
+        name: "UK Public Assets",
+        srcDir: [assetsSrcDir + "**/*"],
+        buildDir: ukBuildDir
       }
     ]
   };

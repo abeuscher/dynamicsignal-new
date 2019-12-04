@@ -11,26 +11,14 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Company",
-      "link"=>"/company/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Blog",
-      "link"=>"/blog/"
-    ));
-    $override_title = "Tag : " . ucwords(single_tag_title( '', false ));
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1
-            :php
-              echo $override_title;
-  section
+  section.hero-inner.text-only
+      .container
+          .inner    
+              .text
+                  h1.white
+                    :php
+                      echo $override_title;
+  section.padding-both
     .container
       :php
         $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;

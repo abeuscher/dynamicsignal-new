@@ -4,22 +4,14 @@ block template
     /*
     Template Name: Blog View All
     */
+    $override_title = "DySi Blog";
 block nav
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
   :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Resources",
-      "link"=>"/resources/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Blog",
-      "link"=>"/blog/"
-    ));
-    $override_title = "All Entries";
+    
 
     $featured_ids = [];
     $args = array(
@@ -67,18 +59,17 @@ block content
         }  
     }
 
-  section.top-section-interior
+  section.hero-inner.text-only
+      .container
+          .inner    
+              .text
+                  h1.white
+                    :php
+                      echo $override_title;
+  section.padding-both
     .container
       .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1
-            :php
-              echo $override_title;
-  section
-    .container
-      .row
-        .col-md-12
+        .col-md-8
           :php
             $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) + 1  : 2;
             $count = 0;
@@ -108,16 +99,27 @@ block content
                                     <p class='name'>%s</p>
                                   </div>
                                   <a href='%s' itemprop='url'><h3 itemprop='headline'>%s</h3></a>
-                                  <p class='excerpt'>%s</p>
                                   <div class='tag-cloud'>%s</div>
                                 </div>
                                 <a href='%s' itemprop='url'>
                                   <div class='thumb' data-bg='%s'></div>
                                 </a> 
                               </div>  
-                            </article>",get_the_ID(),get_the_author(),$authorname,get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),$thumb);  $count++;
+                            </article>",get_the_ID(),get_the_author(),$authorname,get_permalink(),get_the_title(),$tags,get_permalink(),$thumb);  $count++;
                       }}
-  section.container.pagination
+        .col-md-4.tag-list
+          h2.header-right Popular Tags
+          :php
+            if( have_posts() ){
+              while( have_posts() ) {
+                the_post();
+                foreach(get_field("featured_tags") as $idx=>$tag) {
+                  $this_tag = get_tag($tag["tag"]);
+                  printf("<p><a href='%s'>%s</a></p>", "/tag/".$this_tag->slug, $this_tag->name);
+                }
+              }
+            }
+  section.container.pagination.padding-bottom
     .row
       .col-md-12
         :php

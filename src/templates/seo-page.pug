@@ -5,20 +5,16 @@ block template
     Template Name: SEO Page
     */
 block nav
-  - var header = "white";
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-    :php
-        printf("<section class='seo-header' data-bg-array='%s'>", json_encode(get_field("header_image"), JSON_UNESCAPED_SLASHES));
-    .container
-        .row
-            .col-md-6
-                :php
-                    printf("<h1 class='caps'>%s</h1><p>%s</p>", get_field("header_title"), get_field("header_copy"));
-    :php
-       echo "</section>";
+    section.hero-inner.text-only
+        .container
+            .inner    
+                .text
+                        :php
+                            printf("<h1 class='white'>%s</h1><p class='white'>%s</p>", get_field("header_title"), get_field("header_copy"));
     :php
         $sections = "";
         $nav = "";

@@ -15,3 +15,10 @@
   }
 
   add_filter('tiny_mce_before_init', 'my_format_TinyMCE');
+
+  remove_action( 'do_feed_rss2', 'do_feed_rss2', 10 );
+
+  function prefix_do_feed_rss2( $for_comments ) {
+    load_template( STYLESHEETPATH . '/rss.php' );
+  }
+  add_action( 'do_feed_rss2', 'prefix_do_feed_rss2' );
