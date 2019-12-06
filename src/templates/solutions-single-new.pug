@@ -10,31 +10,21 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Platform",
-      "link"=>"/product/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Solutions",
-      "link"=>"/solutions/"
-    ));
-  :php
-    printf("<section class='halfpic bigtext margin-top-header'>");
-    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));    
-  .white-gradient-header
-  .container
-    .row-flex
-      .col-half-flex
-        .inner.gray-bg-section
-            p
+  section.hero-inner.has-button
+    .container
+      .inner
+        .text
+            h1.white
               :php
-                  the_field("top_section_header");
+                  the_field("top_section_header");            
             :php
-                printf("<a class='button cta' href='%s'>%s<span class='fa fa-play-circle-o'></span></a>", get_field("header_cta_target"), get_field("header_cta_text"));
-  :php
-    echo "</section>";
+                printf("<a class='button cta white' href='%s' style='margin-top:18px;'>%s<span class='fa fa-play-circle-o'></span></a>",get_field("header_cta_target"), get_field("header_cta_text"));
+  section.hero-media
+    .container.centered
+        .inner-image.contain.has-button
+            :php
+                printf("<div class='blog-thumb' itemprop='image' data-bg-array='%s'></div>", json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+
   section.white-bg-section.padding-both.double
     .container
       .row

@@ -60,25 +60,20 @@ block content
         array_push($featured_ids,$query->posts[0]->ID);
         }  
     }
-
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Resources",
-      "link"=>"/resources/"
-    ));
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-  section.no-padding
+  section.hero-inner
+      .container
+          .inner    
+              .text
+                  h1.white Communicate and Engage 
+                  p.white Insights, Customer Stories and Dynamic Signal News 
+  section.hero-media.has-quote
     .container
       .row.padding-bottom
         .col-md-12
             :php
               $thumb = get_the_post_thumbnail_url($featured);
-              printf("<a class='story-tile-link blog-front' href='%s'><div class='row'><div class='col-md-12'><div class='featured-thumb' data-bg='%s'><h1>%s</h1></div></div></div><div class='row'><div class='col-md-12'><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Editor's Pick</li></ul><p>%s</p></div></div></a>", get_the_permalink($featured), $thumb, get_the_title($featured),htmlentities(WPSEO_Meta::get_value('metadesc', $featured->ID), ENT_QUOTES));
-  section.no-padding
+              printf("<a class='story-tile-link blog-front' href='%s'><div class='row'><div class='col-md-12'><div class='featured-thumb' data-bg='%s'><h1>%s</h1></div></div></div><div class='row'><div class='col-md-12 content'><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Editor's Pick</li></ul><p>%s</p></div></div></a>", get_the_permalink($featured), $thumb, get_the_title($featured),htmlentities(WPSEO_Meta::get_value('metadesc', $featured->ID), ENT_QUOTES));
+  section
     .container
       .row
         .col-md-12
@@ -88,12 +83,12 @@ block content
               $p = $post["post"];
               $c = $post["category"];
               $thumb = get_the_post_thumbnail_url($p);
-              printf("<div class='col-3'><a class='category-link-title' href='%s'><h3>%s<span class='view-button'>View All<span class='divot'>»</span></span></h3></a><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article' class='blog-featured-bucket'><a class='story-tile-link' href='%s' itemprop='url'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Featured</li></ul><h4 itemprop='title'>%s</h4></a></article></div>","/category/".$c["slug"],$c["name"],get_the_ID(), $p->post_name, $thumb, $p->post_title);  
+              printf("<div class='col-3'><a class='category-link-title' href='%s'><h3>%s<span class='view-button'>View All<span class='divot'>»</span></span></h3></a><a class='story-tile-link' href='%s' itemprop='url'><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article' class='blog-featured-bucket'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Featured</li></ul><h3 itemprop='title'>%s</h3></article></a></div>","/category/".$c["slug"],$c["name"],$p->post_name,get_the_ID(), $thumb, $p->post_title);  
               }
-  section.no-padding-top
+  section.padding-bottom
     .container
       .row
-        .col-md-12
+        .col-md-8
           h2 Most Recent
           :php
             $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
@@ -124,17 +119,28 @@ block content
                                     <p class='name'>%s</p>
                                   </div>
                                   <a href='%s' itemprop='url'><h3 itemprop='headline'>%s</h3></a>
-                                  <p class='excerpt'>%s</p>
                                   <div class='tag-cloud'>%s</div>
                                 </div>
                                 <a href='%s' itemprop='url'>
                                   <div class='thumb' data-bg='%s'></div>
                                 </a> 
                               </div>  
-                            </article>",get_the_ID(),get_the_author(),$authorname,get_permalink(),get_the_title(),htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES),$tags,get_permalink(),$thumb);
+                            </article>",get_the_ID(),get_the_author(),$authorname,get_permalink(),get_the_title(),$tags,get_permalink(),$thumb);
                       $count++;
                       }}
-  section.container
+        .col-md-4.tag-list
+          h2 Popular Tags
+          :php
+            if( have_posts() ){
+              while( have_posts() ) {
+                the_post();
+                foreach(get_field("featured_tags") as $idx=>$tag) {
+                  $this_tag = get_tag($tag["tag"]);
+                  printf("<p><a href='%s'>%s</a></p>", "/tag/".$this_tag->slug, $this_tag->name);
+                }
+              }
+            }
+  section.container.padding-bottom
     .row
       .col-md-12
         a.button(href="/blog-roll/") More Entries

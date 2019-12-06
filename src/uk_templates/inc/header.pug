@@ -1,4 +1,6 @@
-header.page-header#page-header
+- var className = homepage ? 'page-header homepage' : 'page-header';
+- className += header=="white" ? " white" : "";
+header#page-header(class=className)
   :php
     global $post;
     $post_slug=$post->post_name;
@@ -14,10 +16,9 @@ header.page-header#page-header
     foreach($pages as $key=>$page) {
       $page_classes[] = ($key == $post_slug) ? $key." active" : $key;
     }
-  #cta-bar
   nav.main
     a.logo-bucket(href="/")
-      img#logo(src="/wp-content/themes/ds-uk/images/logo-header.png")
+      include ../../templates/inc/logo.pug
     ul.hmenu.top-nav
       :php
         printf("<li class='has-drop %s'>", $page_classes[0]);
@@ -50,10 +51,10 @@ header.page-header#page-header
       :php
         echo "</li>";
         printf("<li class='%s show-medium'>", $page_classes[5]);
-      a.cta(href="/requestdemo/") Request a Demo
+      a.request-demo.cta(href="/requestdemo/") Request a Demo
       :php
         echo "</li>";
-      li.show-mobile
+      li.show-mobile.hide-large
         a.hamburger#toggle-side-nav(href="#",title="menu")
           .line.top
           .line.middle

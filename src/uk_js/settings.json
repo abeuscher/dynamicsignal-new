@@ -1,0 +1,13 @@
+{
+    "siteurl": "https://www.dynamicsignal.co.uk",
+    "imagePath": "/wp-content/themes/ds-uk/images/",
+    "gdprCookie": "ds-gdpr",
+    "sessionCookie": "ds-count",
+    "breakpoints": { // Site breakpoints.
+        "xs": 0,
+        "s": 641,
+        "m": 1025,
+        "l": 1321,
+        "xl": 1921
+    }
+}

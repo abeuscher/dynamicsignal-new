@@ -9,25 +9,14 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Legal",
-      "link"=>"/legal/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Privacy",
-      "link"=>"/privacy/"
-    ));
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1
-            :php
-              the_title();
-  section.container
+  section.hero-inner.text-only
+      .container
+          .inner    
+              .text
+                  h1.white
+                    :php
+                      the_title();
+  section.container.padding-both
     .row
       :php
         if( have_posts() ){

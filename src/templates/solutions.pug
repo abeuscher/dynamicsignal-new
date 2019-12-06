@@ -9,11 +9,11 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  section#sticky-header.hero-with-bg(data-bg="generic-hero-bg.jpg")
+  section.hero-inner.text-only
     .container
-      .row
-        .col-md-6
-          h1.white Solutions
+      .inner
+        .text
+          h1.white The Value We Deliver
   section.white-bg-section.padding-both
     .container
       .row
@@ -29,4 +29,4 @@ block content
         .row
             .col-md-12
                 p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal.
-                a.button.cta.knockout(href="/requestdemo") Request Demo
+                a.request-demo.button.cta.knockout(href="/requestdemo") Request Demo

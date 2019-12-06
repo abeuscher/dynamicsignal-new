@@ -60,13 +60,13 @@ block content
         array_push($featured_ids,$query->posts[0]->ID);
         }  
     }
-
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Resources",
-      "link"=>"/resources/"
-    ));
-  section.margin-top-header.padding-top-header
+  section.hero-inner
+      .container
+          .inner    
+              .text
+                  h1.white Communicate and Engage 
+                  p.white Insights, Customer Stories and Dynamic Signal News 
+  section.hero-media.has-quote
     .container
       .row.padding-bottom
         .col-md-12
@@ -140,7 +140,7 @@ block content
                 }
               }
             }
-  section.container
+  section.container.padding-bottom
     .row
       .col-md-12
         a.button(href="/blog-roll/") More Entries

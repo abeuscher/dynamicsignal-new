@@ -29,15 +29,14 @@ block content
     else {
       $dateline = "";
     }
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1
-            :php
-              the_title();
-  section#legal-docs.container
+  section.hero-inner.text-only
+      .container
+          .inner    
+              .text
+                  h1.white
+                    :php
+                      the_title();
+  section#legal-docs.container.padding-both
     .row
       .col-md-3.legal-links
         include ./inc/legal-menu.pug

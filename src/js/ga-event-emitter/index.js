@@ -12,4 +12,12 @@ function GAEventEmitter(triggers) {
         window.dataLayer.push({ "event": eventName });
     }
 }
+GAEventEmitter.prototype.LogSingleEvent = function(event) {
+    window['GoogleAnalyticsObject'] = 'ga';
+    window['ga'] = window['ga'] || function () {
+        (window['ga'].q = window['ga'].q || []).push(arguments)
+    };
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(event);
+}
 module.exports = GAEventEmitter;

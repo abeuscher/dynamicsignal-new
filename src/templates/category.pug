@@ -11,26 +11,17 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Resources",
-      "link"=>"/resources/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Blog",
-      "link"=>"/blog/"
-    ));
-    $override_title = "Category : " . ucwords(single_tag_title( '', false ));
-  section.margin-top-header
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1
-            :php
-              echo $override_title;
-  section
+  section.hero-inner.text-only
+      .container
+          .inner    
+              .text
+                  h1.white
+                    :php
+                      echo $override_title;
+                  p.white
+                    :php
+                      echo $override_description;
+  section.padding-both
     .container
       .row
         .col-md-12

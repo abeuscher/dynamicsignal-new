@@ -13,27 +13,25 @@ block content
     if( have_posts() ){
      while( have_posts() ) {
       the_post();
-    printf("<section class='halfpic' id='sticky-header'>");
-    printf("<div class='halfpic-bg demo-center' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
-  .white-gradient-header
-  .container
-      .row-flex
-          .col-half-flex.gray-bg-section
-              .inner.big-text
-                h2
-                  :php
-                    printf("%s",get_field("page_header"))
-                p
-                  :php
-                    printf("%s",get_field("page_subhead"))
-  :php
-    echo "</section>";   
-  section.demo-videos.interior
+  section.hero-inner.text-only
     .container
-      .demo-video-wrapper
+      .inner
+        .text
+          h1.white
+            :php
+              printf("%s",get_field("page_header"))
+          p.white
+            :php
+              printf("%s",get_field("page_subhead"))
+  section.demo-home.padding-top
+    .container
+      .demo-video-wrapper#demo-hover-box
         :php
           foreach (get_field("demo_video_buckets") as $key=>$bucket) {
-            printf("<div class='demo-video-bucket'><h4><a href='%s'>%s</a></h4><div class='inner-wrapper'><div class='inner'><h3>%s</h3><p>%s</p><div class='button-wrapper'><a href='%s'><div class='demo-thumb' data-bg-array='%s'></div></a><a class='button knockout' data-button-event='%s' href='%s'>%s</a><a class='button learn-more' href='%s'>%s</a></div></div></div></div>", $bucket["title_link"], $bucket["title"], $bucket["subhead"], $bucket["copy"], $bucket["cta_target"], json_encode($bucket["demo_thumb"],JSON_UNESCAPED_SLASHES),"demoVideoInterior_".str_replace(' ', '', $bucket["custom_event_name"]), $bucket["cta_target"],$bucket["cta_text"],$bucket["learn_more_target"],$bucket["learn_more_text"]);
-          } 
+            printf("<link rel='prefetch' url='%s'>",$bucket["image_animated"]);
+          }
+          foreach (get_field("demo_video_buckets") as $key=>$bucket) {
+            printf("<a href='%s' class='demo-video-bucket'><div class='outer'></div><div class='inner'><div class='img-bucket'><img class='gif-thumb' src='%s'  data-gif='%s' /><div class='icon'><span class='fa fa-play-circle-o'></span></div></div><h3 class='text-center'>%s</h3><p>%s</p><p class='centered'><span class='button'>Watch Demo</span></p></div></a>", $bucket["cta_target"],$bucket["image_static"], $bucket["image_animated"],$bucket["subhead"], $bucket["copy"]);
+          }
   :php
      }}

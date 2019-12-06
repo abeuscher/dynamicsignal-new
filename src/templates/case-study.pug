@@ -9,42 +9,34 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
+  section.hero-inner
+      .container
+          .inner    
+              .text
+                  h1.white
+                      :php
+                        the_title();
   :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Platform",
-      "link"=>"/product/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Case Studies",
-      "link"=>"/case-studies/"
-    ));
-  section.top-section-interior#case-study-page
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1
-            :php
-              the_title();
-  :php
-    if (get_field("header_type")!="video") {
-  section.case-study-image
-    :php
-      echo "<img src='".get_field("header_image")["url"]."' alt='' />";
+    if (get_field("header_type")=="video") {
+  section.hero-media.has-quote
+      .container
+          .inner
+              .wrapper-video
+                  :php
+                      printf("<iframe width='560' height='315' src='https://www.youtube.com/embed/%s?rel=0&modestbranding=1&showinfo=0' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>", get_field("header_video_id"));
+              :php
+                  printf("<div class='content quote'><p>%s</p><cite>%s</cite></div>",get_field("header_video_quote"),get_field("header_video_quote_source"),get_field("header_citation_job_title"),get_field("header_citation_company") );
   :php
     }
     else {
-      printf("<section id='case-study-video' data-bg-array='%s'>", json_encode(get_field("header_video_still"),JSON_UNESCAPED_SLASHES));
-  .container
-    .row
-      .col-md-12
-        :php
-          printf("<div class='case-study-video-content'><p>%s</p><cite>%s</cite><a class='button modal-show' data-video-modal-id='%s' href='#'><span class='cta'>%s</span><i class='fa fa-play'></i></a></div>",get_field("header_video_quote"),get_field("header_video_quote_source"),get_field("header_video_id"),get_field("header_video_button_label"));
+  section.hero-media
+    .container
+        .inner-image
+            :php
+                printf("<div class='blog-thumb' data-bg-array='%s'></div>", json_encode(get_field("header_image"), JSON_UNESCAPED_SLASHES))    
   :php
-    echo "</section>";
     }
-  section.case-study-stats
+  section
     .container
       .row.case-study-stats
         .col-md-4.col-s-12
@@ -170,61 +162,6 @@ block content
           }
   :php
     }
-      $args = array(
-        "post_type"=>"page",
-        "posts_per_page"=>1,
-        "meta_key"=>"sort_order",
-        "orderby"=>"meta_value_num",
-        "order"=>"DESC",
-        "meta_query"=>array(
-          "relation"=>"AND",
-          "order_clause" => array(
-                            "key"=>"sort_order",
-                            "value"=>$page_index,
-                            "compare"=>"<",
-                            "type"=>"numeric"
-                            ),
-          "template_clause" => array(
-                            "key" => "_wp_page_template",
-                            "value" => "case-study.php"
-                            )
-          )
-      );
-      $previous_post = get_posts($args)[0];
-
-      $args = array(
-        "post_type"=>"page",
-        "posts_per_page"=>1,
-        "meta_key"=>"sort_order",
-        "orderby"=>"meta_value_num",
-        "order"=>"ASC",
-        "meta_query"=>array(
-          "relation"=>"AND",
-          "order_clause" => array(
-                            "key"=>"sort_order",
-                            "value"=>$page_index,
-                            "compare"=>">",
-                            "type"=>"numeric"
-                            ),
-          "template_clause" => array(
-                            "key" => "_wp_page_template",
-                            "value" => "case-study.php"
-                            )
-          )
-      );
-      $next_post = get_posts($args)[0];
-
-      $previous_post->thumb = get_the_post_thumbnail($previous_post->ID);
-      $next_post->thumb =  get_the_post_thumbnail($next_post->ID);
-
-      $previous_post->url = "/".$previous_post->post_name;
-      $next_post->url = "/".$next_post->post_name;
-
-      $previous_post->classname="prev";
-      $next_post->classname="next";
-      $previous_post->label = "Previous Case Study";
-      $next_post->label = "Next Case Study";
-      echo "<script>var seriesNav =  { 'nextPost':" . json_encode($next_post) . ", 'prevPost' : " . json_encode($previous_post) . " };</script>";
   section.bottom-cta.case-study-bottom
     .container
       .row

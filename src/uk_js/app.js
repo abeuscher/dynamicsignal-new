@@ -7,12 +7,13 @@ var VideoHandler = require("../js/video-handler/");
 var DigitCounter = require("../js/digit-counter/");
 var RequestDemoHandler = require("../js/request-demo-handler/");
 var MakeTabs = require("../js/make-tabs/");
+var PageResizeHandler = require("../js/page-resize-handler/");
 
 var CheckCookies = require("../js/utils/check-cookies");
 var GetMobileOS = require("../js/utils/get-mobile-os");
 var TriggerGDPR = require("../js/gdpr-popup/index");
 
-var siteSettings = require("../js/settings.json");
+var siteSettings = require("./settings.json");
 siteSettings.formHandler = new FormHandler();
 siteSettings.scrollController = new ScrollMagic.Controller({
   "loglevel": 0
@@ -64,6 +65,11 @@ window.addEventListener("load", function () {
 var siteActions = [{
   "element": "#demo-hover-box",
   "action": require("../js/widgets/el-demo-hover-box/")
+},{
+  "element": "#page-header",
+  "action": function(els) {
+    PageResizeHandler(siteSettings.breakpoints);
+  }
 }, {
   "element": "#anchor-menu",
   "action": require("../js/widgets/el-anchor-menu/")

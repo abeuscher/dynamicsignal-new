@@ -9,6 +9,7 @@ var templates = {
 
 function WebinarsUpcoming(els) {
     var el = els[0];
+    var headerEl = document.getElementById("events-header");
     var pastBucket = document.getElementById("events-past");
     var currentEvents = new Array();
     var pastEvents = new Array();
@@ -30,18 +31,27 @@ function WebinarsUpcoming(els) {
     }
     if (currentEvents.length > 0) {
         currentEvents.reverse();
-        var header = document.createElement("h2");
+        var header = document.createElement("h1");
         header.innerHTML = "Upcoming Webinars";
-        el.append(header);
+        header.classList.add("white");
+        headerEl.append(header);
         for (i = 0; i < currentEvents.length; i++) {
             el.append(parseHTML(templates.eventListing(currentEvents[i])));
         }
     }
     if (pastEvents.length > 0) {
         var pastBucket = document.getElementById("webinars-past");
-        var header = document.createElement("h2");
+
+        if (currentEvents.length > 0) {
+            var header = document.createElement("h2");
+            el.append(header);
+        }
+        else {
+            var header = document.createElement("h1");
+            header.classList.add("white");
+            headerEl.append(header);
+        }
         header.innerHTML = "Past Webinars";
-        pastBucket.append(header);
         for (i = 0; i < pastEvents.length; i++) {
             var thisEvent = pastEvents[i];
             pastBucket.append(parseHTML(templates.pastEventWide(thisEvent)));

@@ -15,14 +15,11 @@ block content
       "title"=>"Company",
       "link"=>"/company/"
     ));
-  :php
-    printf("<section id='sticky-header' class='hero-with-bg' data-bg='generic-hero-bg.jpg'>");
-  .container
-    .row
-      .col-md-6
-        h1.white Meet Our Team
-  :php
-    echo "</section>";   
+  section.hero-inner.text-only
+      .container
+          .inner    
+              .text
+                  h1.white Meet Our Team
   section.team-members.white-bg-section
     .container
       :php

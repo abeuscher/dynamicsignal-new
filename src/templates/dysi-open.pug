@@ -9,17 +9,16 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    printf("<section class='halfpic' id='sticky-header'>");
-    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
-  .white-gradient-header
-  .container
-      .row-flex
-          .col-half-flex.gray-bg-section
-              .inner
-                h1 Experience DySi Open
-  :php
-    echo "</section>";   
+  section.hero-inner
+      .container
+          .inner
+              .text
+                  h1.white Experience DySi Open
+  section.hero-media
+      .container
+          .inner-image
+              :php
+                  printf("<div class='blog-thumb' data-bg-array='%s'></div>", json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES))
   section.white-bg-section
     .container
       .row

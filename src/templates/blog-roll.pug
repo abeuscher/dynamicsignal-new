@@ -4,22 +4,14 @@ block template
     /*
     Template Name: Blog View All
     */
+    $override_title = "DySi Blog";
 block nav
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
   :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Resources",
-      "link"=>"/resources/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Blog",
-      "link"=>"/blog/"
-    ));
-    $override_title = "All Entries";
+    
 
     $featured_ids = [];
     $args = array(
@@ -67,15 +59,14 @@ block content
         }  
     }
 
-  section.margin-top-header
-    .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
-          h1
-            :php
-              echo $override_title;
-  section
+  section.hero-inner.text-only
+      .container
+          .inner    
+              .text
+                  h1.white
+                    :php
+                      echo $override_title;
+  section.padding-both
     .container
       .row
         .col-md-8
@@ -128,7 +119,7 @@ block content
                 }
               }
             }
-  section.container.pagination
+  section.container.pagination.padding-bottom
     .row
       .col-md-12
         :php

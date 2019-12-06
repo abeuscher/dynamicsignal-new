@@ -24,15 +24,22 @@ block content
     /* Write integrations logos */
     echo "<script>var pageData = {'logos':".json_encode(get_field("integrations_logos"),JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  :php
-    printf("<section class='margin-top-header services-header' data-bg-array='%s'>", json_encode(get_field("header_image"),JSON_UNESCAPED_SLASHES));
-  .container
-    .row
-      .col-md-6.col-md-offset-6
-        :php
-          printf("<div class='services-header-content ds-quote white'><p class='white'>%s</p><cite>%s, %s @ %s</cite><a class='button modal-show' data-video-modal-id='%s' href='#'><span class='cta'>%s</span><i class='fa fa-play'></i></a></div>",get_field("header_quote"),get_field("header_citation_name"),get_field("header_citation_job_title"),get_field("header_citation_company"),get_field("header_cta_video_id"),"Play Video");
-  :php
-    echo "</section>";
+  section.hero-inner
+      .container
+          .inner    
+              .text
+                  h1.white
+                      :php
+                          printf("%s",get_field("headline_text"));
+  section.hero-media.has-quote
+      .container
+          .inner
+              .wrapper-video
+                  :php
+                      printf("<iframe width='560' height='315' src='https://www.youtube.com/embed/%s?rel=0&modestbranding=1&showinfo=0' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>", get_field("header_cta_video_id"));
+              :php
+                  printf("<div class='content quote'><p>%s</p><cite><span class='name'>%s</span><span class='job-title'>%s</span><span class='company'>%s</span></cite></div>",get_field("header_quote"),get_field("header_citation_name"),get_field("header_citation_job_title"),get_field("header_citation_company") );
+              hr.orange
   section.service-experience.centered.services-bucket
     .container
       .row

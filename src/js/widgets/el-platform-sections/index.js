@@ -31,15 +31,5 @@ function PlatformSections(els, c) {
                 .id = s.id;
         }
     }
-    var thisPhone = document.getElementById("platform-hero-phone");
-    var tweenPhone = TweenMax.fromTo(thisPhone, 1, { css: { y: "80" }, ease: Power0.easeOut }, { css: { y: "-30" }, Power0: Linear.easeOut });
-    new ScrollMagic.Scene({
-        triggerElement: thisPhone,
-        duration: "50%",
-        offset: "0",
-        reverse: true
-    })
-        .setTween(tweenPhone)
-        .addTo(c);
 }
 module.exports = PlatformSections;

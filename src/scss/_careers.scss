@@ -19,6 +19,16 @@ section.career-target {
     padding-top:$gutter-width;
   }
 }
+.careers-hidden-fields {
+  p {
+    color:$white;
+    font-size:2px;
+    line-height:0;
+    margin:0;
+    padding:0;
+  }
+
+}
 #careers-video-carousel {
   .flickity-prev-next-button.previous { left: 10px;
   @include bp(m) {

@@ -9,25 +9,12 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Company",
-      "link"=>"/company/"
-    ));
-  -
-    var pageData = {
-    "header":"Solutions",
-    "subheader":"For Every Department in the Enterprise"
-    };
-  section.top-section-interior
-    .container 
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug  
-          h1!=pageData.header
-          h2!=pageData.subheader
-  section
+  section.hero-inner.text-only
+    .container
+      .inner
+        .text
+          h1.white!="News Room"
+  section.white-bg-section.padding-both
     .container
       .row
         .col-md-12.news-streams
@@ -38,7 +25,7 @@ block content
             // Uberflip Embedded Hub Widget
             #UfEmbeddedHub1556219787135  
           a.view-link(href="https://resources.dynamicsignal.com/news-room") View All News
-          hr
+          hr.blue-separator
           h2
             a(href="https://resources.dynamicsignal.com/press-coverage") Press Coverage        
           .uber-embed.press
@@ -61,7 +48,7 @@ block content
                 'enablePageTracking':false,
                 'baseUrl': 'https://resources.dynamicsignal.com/',
                 'filesUrl': 'https://resources.dynamicsignal.com/',
-                'generatedAtUTC': '2019-04-25 19:15:19',
+                'generatedAtUTC': '2019-05-16 17:09:54',
                 });
                 window._ufHubConfig.push({
                 'containers':{'app':'#UfEmbeddedHub1556221626144'},
@@ -78,7 +65,7 @@ block content
                 'enablePageTracking':false,
                 'baseUrl': 'https://resources.dynamicsignal.com/',
                 'filesUrl': 'https://resources.dynamicsignal.com/',
-                'generatedAtUTC': '2019-04-25 19:47:01',
+                'generatedAtUTC': '2019-05-16 17:09:54',
                 });
             script.
                 (function(d,t,u) {

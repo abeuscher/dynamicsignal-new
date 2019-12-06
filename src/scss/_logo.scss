@@ -1,43 +1,91 @@
-$logo-colors:"#4B95D1","#3581C0","#096DB0","#126099","#164673","#15375E","#143257";
-@mixin fill-d($i,$color) {
+$logo-colors: "#4B95D1", "#3581C0", "#096DB0", "#126099", "#164673", "#15375E", "#143257";
+@mixin fill-d($i, $color) {
   @keyframes fill-#{$i} {
     to {
-      stop-color:$color;
+      stop-color: $color;
     }
-  }
-}
-svg.logo {
-  width:20vw;
-  .ds-d{fill:url(#ds-gradient);}
-	.ds-text{fill:transparent;}
-  .ds-text {
-    stroke: #757575;
-    stroke-width: 1;
-    stroke-dasharray: 500px;
-    stroke-dashoffset: 500px;
-    animation-name: drawlogo;
-    animation-duration: 5s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
-  }
-}
-#ds-gradient {
-  @for $i from 1 through 7 {
-    @include fill-d($i,#{nth($logo-colors,$i)});
-    .stop-#{$i} {
-      stop-color : #{nth($logo-colors,7)};
-      animation-name: fill-#{$i};
-      animation-duration: 10s;
-      animation-fill-mode: forwards; // Stay on the last frame
-      animation-iteration-count: 1;
-    }
-  }
-}
-@keyframes drawlogo {
-  to {
-    stroke-dashoffset: 0;
-    fill:#757575;
   }
 }
 
+
+
+  svg.logo {
+    .ds-d {
+      fill: url(#ds-gradient);
+    }
+    .ds-text {
+      fill: $white;
+      stroke-width:0;
+    } 
+    #ds-gradient {
+      @for $i from 1 through 7 {
+        .stop-#{$i} {
+          stop-color: $white;
+          animation:none;
+        }
+      }
+    }
+  }
+  body.s {
+    svg.logo {
+      @include ds-transition();
+      .ds-d {
+        fill: url(#ds-gradient);
+      }
+      .ds-text {
+        fill: #757575;
+        stroke-width:0;
+      }
+      #ds-gradient {
+        @for $i from 1 through 7 {
+          .stop-#{$i} {
+            stop-color: #{nth($logo-colors, $i)};
+          }
+        }
+      }
+    
+    }
+  }
+
+@keyframes drawlogo {
+  to {
+    stroke-dashoffset: 0;
+    fill: #757575;
+  }
+}
+.page-header.homepage {
+  svg.logo {
+    .ds-d {
+      fill: url(#ds-gradient);
+    }
+
+    .ds-text {
+      fill: #757575;
+    }
+  }
+  #ds-gradient {
+    @for $i from 1 through 7 {
+      .stop-#{$i} {
+        stop-color: #{nth($logo-colors, $i)};
+      }
+    }
+  }
+}
+body.nav-short, body.nav-short .page-header.homepage, .page-header.white {
+  svg.logo {
+    .ds-d {
+      fill: url(#ds-gradient);
+    }
+
+    .ds-text {
+      fill: #757575;
+    }
+  }
+  #ds-gradient {
+    @for $i from 1 through 7 {
+      .stop-#{$i} {
+        stop-color: #{nth($logo-colors, $i)};
+      }
+    }
+  }
+}

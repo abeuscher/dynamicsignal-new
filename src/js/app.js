@@ -7,6 +7,7 @@ var VideoHandler = require("./video-handler/");
 var DigitCounter = require("./digit-counter/");
 var RequestDemoHandler = require("./request-demo-handler/");
 var MakeTabs = require("./make-tabs/");
+var PageResizeHandler = require("./page-resize-handler/");
 
 var CheckCookies = require("./utils/check-cookies");
 var GetMobileOS = require("./utils/get-mobile-os");
@@ -18,8 +19,9 @@ siteSettings.scrollController = new ScrollMagic.Controller({
   "loglevel": 0
 });
 
-window.addEventListener("load", function () {
 
+
+window.addEventListener("load", function () {
   // Check to make sure browser accepts cookies, then provide GDPR warning if yes.
   if (CheckCookies()) {
     TriggerGDPR(siteSettings);
@@ -33,7 +35,7 @@ window.addEventListener("load", function () {
       thisAction.action(document.querySelectorAll(thisAction.element), siteSettings.scrollController);
     }
   }
-  
+
   //Initiate video handler separately because it has a lot of things to do.
   var videoHandler = new VideoHandler();
   videoHandler.init();
@@ -64,6 +66,11 @@ window.addEventListener("load", function () {
 var siteActions = [{
   "element": "#demo-hover-box",
   "action": require("./widgets/el-demo-hover-box/")
+},{
+  "element": "#page-header",
+  "action": function(els) {
+    PageResizeHandler(siteSettings.breakpoints);
+  }
 }, {
   "element": "#anchor-menu",
   "action": require("./widgets/el-anchor-menu/")
@@ -117,10 +124,6 @@ var siteActions = [{
 {
   "element": ".case-study-list svg",
   "action": require("./widgets/el-checkmark-bullets/")
-},
-{
-  "element": "#customer-video-carousel",
-  "action": require("./widgets/el-carousel-customers/")
 },
 {
   "element": "#customers-grid",

@@ -13,14 +13,14 @@ block content
     if( have_posts() ){
     while( have_posts() ) {
     the_post();
-  section.top-section-interior
-    .container
-      .row
-        .col-md-12
-          h1
-            :php
-              the_title();
-  section#legal-docs.container
+  section.hero-inner.text-only
+      .container
+          .inner    
+              .text
+                  h1.white
+                    :php
+                      the_title();
+  section#legal-docs.container.padding-both
     .row
       .col-md-3.legal-links
         include ./inc/legal-menu.pug

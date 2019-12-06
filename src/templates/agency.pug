@@ -13,13 +13,18 @@ block content
     $override_title = "Partners";
       echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
       .", 'testimonials':".json_encode(get_field('agency_testimonials'),JSON_UNESCAPED_SLASHES)."};</script>";
-      printf("<section class='homepage fullpic bigtext no-padding agency-hero' id='sticky-header'><div class='header-bg' data-bg-array='%s'></div><div class='header-mobile-bg' data-bg-array='%s'></div>",json_encode(get_field("hero_bg_image"), JSON_UNESCAPED_SLASHES),json_encode(get_field("hero_mobile_bg"), JSON_UNESCAPED_SLASHES));
-      printf("<div class='inner'>");
-  .col-full
-      :php
-        printf("<h1 class='white'>%s</h1><a href='#' data-video-modal-id='%s' class='button white'>Play Video<span class='fa fa-play-circle-o'></span></a>", get_field("hero_text"), get_field("hero_video_id"));
-  :php
-      echo "</div></section>";    
+  section.hero-inner
+      .container
+          .inner    
+              .text
+                  :php
+                      printf("<h1 class='white'>%s</h1>", get_field("hero_text"));
+  section.hero-media
+      .container
+          .inner
+              .wrapper-video
+                  :php
+                      printf("<iframe width='560' height='315' src='https://www.youtube.com/embed/%s?rel=0&modestbranding=1&showinfo=0' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>", get_field("hero_video_id"));
   section.white-bg-section.padding-both
     .container
       .row

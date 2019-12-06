@@ -12,15 +12,15 @@ block content
   :php
     $breadcrumbs = [];
     array_push($breadcrumbs,array(
-      "title"=>"Company",
-      "link"=>"/company/"
+      "title"=>"Resources",
+      "link"=>"/resources/"
     ));
     array_push($breadcrumbs,array(
       "title"=>"Blog",
       "link"=>"/blog/"
     ));
     $override_title = ucwords(single_tag_title( '', false ));
-  section.top-section-interior
+  section.margin-top-header
     .container
       .row
         .col-md-12
