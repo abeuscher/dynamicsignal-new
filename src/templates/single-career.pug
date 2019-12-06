@@ -39,9 +39,9 @@ block content
         article.blog-post
           .blog-post-body
             :php
-              the_content();
-              printf("<a class='button apply' target='_blank' href='%s'>Apply Now</a>", get_field("jobvite_url"));
               $if = get_field("invisible_fields");
+              the_content();
               printf("<div class='careers-hidden-fields'><p>%s</p><p>%s</p><p>%s</p><p>%s</p><p>%s</p><p>Open</p></div>", $if["job_id"], $if["recruiter"]["label"], $if["recruiter"]["value"], $if["seniority"], $if["employment_type"]);
+              printf("<a class='button apply' target='_blank' href='%s'>Apply Now</a>", get_field("jobvite_url"));      
         :php
           }}

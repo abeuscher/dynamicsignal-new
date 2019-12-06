@@ -5,29 +5,25 @@ block template
     Template Name: Demo Request Form
     */
 block nav
-  - var header = "white";
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  :php
-    printf("<section class='halfpic margin-top-header'>");
-    printf("<div class='halfpic-bg' data-bg-array='%s'></div>",json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
-  .white-gradient-header
-  .container
-      .row-flex
-          .col-half-flex.gray-bg-section
-              .inner
-                h1 Request a Demo
-                p Your Employee Communication and Engagement Platform
-  :php
-    echo "</section>";   
+  section.hero-inner
+    .container
+      .inner
+        .text
+            h1.white Request a Demo
+            p.white Your Employee Communication and Engagement Platform
+  section.hero-media
+    .container.centered
+        .inner-image.contain
+            :php
+                printf("<div class='blog-thumb' itemprop='image' data-bg-array='%s'></div>", json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
   section.signup-form-bucket.white-bg-section.padding-both
     .container
       .row
         .col-md-6
-          div(style='text-align: center;')
-            img(src=themeDir+'images/pic-demo-request.jpg', alt='')
           p A member of our team will be in touch to schedule a personalized look at the Dynamic Signal platform.
           ul.demo-list.fa-ul
             li
