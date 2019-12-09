@@ -6,6 +6,7 @@ var FormHandler = require("../js/form-handler/index.js");
 var CheckCookies = require("../js/utils/check-cookies.js");
 
 var TriggerGDPR = require("../js/gdpr-popup/index.js");
+var PageResizeHandler = require("../js/page-resize-handler/");
 
 var siteSettings = require("../js/settings.json");
 
@@ -52,6 +53,11 @@ var siteActions = [{
 }, {
   "element": "#page-header",
   "action": require("../js/widgets/el-page-header/")
+},{
+  "element": "#page-header",
+  "action": function(els) {
+    PageResizeHandler(siteSettings.breakpoints);
+  }
 },
 {
   "element": "#side-nav",
@@ -87,5 +93,20 @@ function setUberPage() {
   document.body.append(theOverlay);
   var descBlock = document.querySelectorAll(".description-block")[0];
   var uberNav = document.getElementById("top-header");
-  descBlock.appendChild(uberNav);
+  if (descBlock) {
+    descBlock.parentNode.insertBefore( uberNav, descBlock.nextSibling );
+  }
+  var shareWidget = document.querySelectorAll(".share-container .share-item")[0];
+  if (document.body.classList.contains("hub-page")) {
+    shareWidget = document.getElementById("share-main-hub");
+  }
+  else {
+    console.log(document.body.classList);
+  }
+  
+  var shareToggle = uberNav.querySelectorAll(".share-toggle")[0];
+  if (shareToggle) {
+    shareToggle.parentNode.insertBefore(shareWidget, shareToggle.nextSibling);
+  }
+  
 }

@@ -155,7 +155,6 @@ header.page-header {
         position: relative;
         text-align: left;
         .drop {
-          z-index: 1;
           background: $blue;
           margin: 0;
           border-radius: 3px;
@@ -164,7 +163,7 @@ header.page-header {
           display: none;
           position: absolute;
           top: 50px;
-          z-index: 2;
+          z-index: 99;
           left: 0;
           min-width: 100%;
           box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
