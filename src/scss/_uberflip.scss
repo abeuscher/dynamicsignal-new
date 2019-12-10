@@ -97,6 +97,9 @@
     height: auto;
     position: static;
     margin: 0;
+    &.resources {
+      border-top:1px solid $orange;
+    }
     .page-width {
       margin: 0 auto;
       @include bp(m) {
