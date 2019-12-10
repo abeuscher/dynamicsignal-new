@@ -695,8 +695,8 @@ ul.side-list {
   }
 }
 .bottom-cta {
-  background: url($img-path+"bg-bluewidgets.jpg");
-  background-repeat: no-repeat;
+  background: $hero-radial-gradient;
+  background-repeat: no-repeat; 
   background-size: cover;
   color: $white;
   text-align: center;
