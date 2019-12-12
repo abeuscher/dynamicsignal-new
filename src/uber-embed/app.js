@@ -100,9 +100,6 @@ function setUberPage() {
   if (document.body.classList.contains("hub-page")) {
     shareWidget = document.getElementById("share-main-hub");
   }
-  else {
-    console.log(document.body.classList);
-  }
   
   var shareToggle = uberNav.querySelectorAll(".share-toggle")[0];
   if (shareToggle) {

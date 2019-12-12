@@ -202,8 +202,9 @@
       padding-top: 60px;
     }
   }
-  .page-aligner {
+  .page-aligner, .page-aligner.list {
     width: auto !important;
+    max-width:none!important;
   }
 }
 .top-nav .nav-toggle,
@@ -421,12 +422,15 @@ h2.stream-banner-heading {
   }
 }
 @include bp(l) {
+  #hubs-container, #top-header, #bottom-footer {
+    display:none;
+  }
   body.s,
   body.xs,
   body.m,
   body.l,
   body.xl {
-    #top-header {
+    #hubs-container, #top-header, #bottom-footer {
       display: block;
     }
   }
