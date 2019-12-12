@@ -97,9 +97,6 @@
     height: auto;
     position: static;
     margin: 0;
-    &.resources {
-      border-top:1px solid $orange;
-    }
     .page-width {
       margin: 0 auto;
       @include bp(m) {
@@ -431,6 +428,16 @@ h2.stream-banner-heading {
   body.xl {
     #top-header {
       display: block;
+    }
+  }
+}
+#hubs-container {
+  #top-header .top-nav.resources ul.left-nav.desktop {
+    li ul {
+      top:35px;
+      li {
+        display:block;
+      }
     }
   }
 }

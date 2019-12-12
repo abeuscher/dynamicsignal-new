@@ -13,11 +13,20 @@ block content
     if( have_posts() ){
      while( have_posts() ) {
       the_post();
-  section.hero-inner.no-text
+  section.hero-inner.text-only
       .container
           .inner    
               .text
-  section.hero-media.has-quote
+                  :php
+                      printf("<h1 class='white'>%s</h1>", get_field("hero_header"));
+                      if (get_field("hero_subhead")!="") {
+                        printf("<p class='white'>%s</p>", get_field("hero_subhead"));
+                      }
+  section
+    #hubs-container
+      #top-header
+        include ./inc/resources-menu  
+  section.padding-top
     .container
       .row
         .col-md-12
@@ -31,11 +40,8 @@ block content
               "Blog Post" => "camera"
             );
             printf("<a class='story-tile-link' href='%s'><div class='row'><div class='col-md-12'><div class='featured-thumb' data-bg-array='%s'><h1>%s</h1></div></div></div>", get_field("featured_resource_link"), json_encode(get_field("featured_resource_image"), JSON_UNESCAPED_SLASHES), get_field("featured_resource_title"));
-            //printf("<div class='row'><div class='col-md-12'><ul class='post-meta hmenu'><li><span class='fa fa-%s'></span>%s</li><li><span class='fa fa-caret-right'></span>%s</li></ul><p>%s...</div></div></a>", $types[get_field("featured_resource_type")], get_field("featured_resource_type"), get_field("featured_resource_category"), get_field("featured_resource_description"));
-  section
-    #hubs-container
-      #top-header
-        include ./inc/resources-menu
+            printf("<div class='row'><div class='col-md-12'><ul class='post-meta hmenu'><li><span class='fa fa-%s'></span>%s</li><li><span class='fa fa-caret-right'></span>%s</li></ul><p>%s...</div></div></a>", $types[get_field("featured_resource_type")], get_field("featured_resource_type"), get_field("featured_resource_category"), get_field("featured_resource_description"));
+
   section.padding-both
     .container
       :php

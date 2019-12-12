@@ -1,0 +1,9 @@
+.slide
+    .thumb(data-bg-array=locals.thumb_image)
+    .content
+        h2!=locals.header_text
+        p!=locals.content
+        if locals.cta_type=="video"
+            a.button(data-video-modal-id=locals.cta_target)!=locals.cta_label
+        else
+            a.button(href=locals.cta_target)!=locals.cta_label
