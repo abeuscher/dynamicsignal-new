@@ -1,5 +1,5 @@
 ## Dynamic Signal
-# v 5.1.2
+# v 5.2.0
 
 This is a Wordpress theme developed for dynamicsignal.com
 
