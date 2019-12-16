@@ -1,9 +1,7 @@
 ## Dynamic Signal
 # v 5.1.2
 
-This is a Wordpress theme developed for dynamicsignal.com. It does not leverage any interior features of Wordpress, and as such does not instantiate wp_head or wp_footer.
-
-This theme was reworked in the Winter of 2017/2018 to reflect new corporate branding and a new site layout.
+This is a Wordpress theme developed for dynamicsignal.com
 
 To install, this folder should be set in the root of the backup folder from flywheel (http://getflywheel.com).
 
@@ -19,7 +17,9 @@ Then run
 
 (if gulp is not installed please find instructions at https://gulpjs.com/)
 
-This should build the theme folder (labelled "ds-new") into the wordpress theme folder.
+This should build two theme folders (labelled "ds-new" and "ds-uk") into the wordpress theme folder.
+
+Paths can be altered in settings.js at the root of the project.
 
 This app uses PUG (https://pugjs.org/) as its templating language.
 

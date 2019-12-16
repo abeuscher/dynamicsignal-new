@@ -33,8 +33,9 @@ function triggerTemplate(path, stats) {
   var p = path.split("\\");
   var templateSet = findFile(p);
   
-  // Function to recursively try to match the path with the template set. This will be a problem is I need nested source tempalte directories,
-  // But I can't think of when I would need that.
+  // Function to recursively try to match the path with the template set. This will not work if I need nested source template directories,
+  // But I can't think of when I would need that. 
+  // FIXME this function fails in a number of crucial editing scenarios.
   function findFile(arr) {
     arr.pop();
     var output = settings.templates.filter(f => {

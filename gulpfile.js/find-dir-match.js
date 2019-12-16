@@ -1,3 +1,5 @@
+// FIXME this function does not work as expected in the case of working in linked pug directories.
+
 function findDirectoryMatch(collection, path) {
     path.pop();
     var output = collection.filter(f => {

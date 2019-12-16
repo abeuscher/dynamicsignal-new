@@ -1,0 +1,12 @@
+.slide
+    if locals.cta_type=="video"
+        a.thumb(data-bg-array=locals.thumb_image,data-video-modal-id=locals.cta_target)
+    else
+        a.thumb(data-bg-array=locals.thumb_image,href=locals.cta_target)
+    .content
+        h2!=locals.header_text
+        p!=locals.content
+        if locals.cta_type=="video"
+            a.button(data-video-modal-id=locals.cta_target)!=locals.cta_label
+        else
+            a.button(href=locals.cta_target)!=locals.cta_label

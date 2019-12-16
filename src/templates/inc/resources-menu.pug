@@ -1,0 +1,25 @@
+.top-nav.resources
+  .page-width
+    .page-aligner
+      ul.left-nav.desktop
+        :php
+          $args = array(
+            'posts_per_page' => 1,
+            'post_type'    => 'resourcesmenu'
+          );
+          $query = new WP_Query($args);
+          if ($query->have_posts()) {
+            $rm = get_field("menu_data", $query->posts[0]->ID);
+            foreach($rm["menu_items"] as $key => $item) {
+              if (!$item["children"]) {
+                printf("<li class='menu-home custom-menu-item collapsed'><a href='%s'>%s</a></li>", $item["top_target"],$item["top_label"]);
+              }
+              else {
+                printf("<li class='menu-home custom-menu-item collapsed has-children'><a href='javascript:void(0)'>%s</a><div vlass='sub-menu-arrow'></div><ul>", $item["top_label"]);
+              foreach($item["children"] as $k => $child) {
+                printf("<li class='custom-menu-item collapsed has-children has-drop'><a href='%s'>%s</a></li>", $child["target"], $child["label"]);
+              }
+              printf("</ul></li>");
+              }
+            }
+          }

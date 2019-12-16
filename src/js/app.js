@@ -77,6 +77,9 @@ var siteActions = [{
 }, {
   "element": "#services-mapbox",
   "action": require("./widgets/el-services-map/")
+},{
+  "element": "#customer-stories-carousel",
+  "action": require("./widgets/customer-stories-carousel/")
 }, {
   "element": "#platform-graph",
   "action": require("./widgets/el-platform-graph/")
