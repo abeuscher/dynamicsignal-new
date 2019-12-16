@@ -3,17 +3,23 @@
     .page-aligner
       ul.left-nav.desktop
         :php
-          foreach(get_field("resource_menu") as $key => $item) {
-           
-            if (!$item["nav_children"]) {
-              printf("<li class='menu-home custom-menu-item collapsed'><a href='%s'>%s</a><div vlass='sub-menu-arrow'></div><ul>", $item["label_url"],$item["nav_label"]);
+          $args = array(
+            'posts_per_page' => 1,
+            'post_type'    => 'resourcesmenu'
+          );
+          $query = new WP_Query($args);
+          if ($query->have_posts()) {
+            $rm = get_field("menu_data", $query->posts[0]->ID);
+            foreach($rm["menu_items"] as $key => $item) {
+              if (!$item["children"]) {
+                printf("<li class='menu-home custom-menu-item collapsed'><a href='%s'>%s</a></li>", $item["top_target"],$item["top_label"]);
+              }
+              else {
+                printf("<li class='menu-home custom-menu-item collapsed has-children'><a href='javascript:void(0)'>%s</a><div vlass='sub-menu-arrow'></div><ul>", $item["top_label"]);
+              foreach($item["children"] as $k => $child) {
+                printf("<li class='custom-menu-item collapsed has-children has-drop'><a href='%s'>%s</a></li>", $child["target"], $child["label"]);
+              }
+              printf("</ul></li>");
+              }
             }
-            else {
-               printf("<li class='menu-home custom-menu-item collapsed has-children'><a href='javascript:void(0)'>%s</a><div vlass='sub-menu-arrow'></div><ul>", $item["nav_label"]);
-            foreach($item["nav_children"] as $k => $child) {
-              printf("<li class='custom-menu-item collapsed has-children has-drop'><a href='%s'>%s</a></li>", $child["url"], $child["label"]);
-            }
-            printf("</ul></li>");
-            }
-
           }

@@ -1,6 +1,5 @@
 .uber-header {
   .top-nav {
-    //display:none!important;
     border: none;
     box-shadow: none;
     position: static;
@@ -31,7 +30,7 @@
     background: $hero-radial-gradient;
   }
   #top-header {
-    display: none !important;
+    //display: none !important;
   }
   .page-width.item-level {
     max-width: none !important;
@@ -113,6 +112,11 @@
   }
   .page-width {
     margin: 0;
+  }
+  .related {
+    .carousel-nav {
+      display: none !important;
+    }
   }
   section[class*="level-"] {
     margin: $gutter-width * 2 $gutter-width $gutter-width * 2;
@@ -301,6 +305,7 @@ h2.stream-banner-heading {
 }
 #top-header ul.left-nav.desktop {
   margin: 0;
+  padding:0 $gutter-width/2;
   position: static;
   border: none;
   li {
@@ -330,6 +335,26 @@ h2.stream-banner-heading {
         cursor: pointer;
       }
     }
+    &:not(.has-children):first-child, &.menu-social, &.hover:not(.has-children):first-child {
+       a {
+        text-decoration:none!important;
+        text-decoration-color:transparent!important;
+        font-weight:bold!important;
+        &:hover {
+          color:$black;
+          text-decoration:none!important;
+          cursor:auto;
+        }
+      }
+      &:hover, &.hover {
+         a {
+          text-decoration:none!important;
+          text-decoration-color:transparent!important;
+          color:$black;
+          cursor:auto;
+        }
+      }
+    }
     &:hover {
       a {
         color: $blue;
@@ -353,7 +378,7 @@ h2.stream-banner-heading {
       min-width: 100%;
       box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
       @include ds-transition();
-      li {
+      li, li:first-child {
         margin: 0;
         padding: 0;
         border: none;
@@ -396,7 +421,11 @@ h2.stream-banner-heading {
   }
 }
 #top-header {
-  display: none;
+  display:none;
+  @include bp(l) {
+    display:block;
+
+  }
   .page-aligner {
     display: flex;
   }
@@ -421,22 +450,25 @@ h2.stream-banner-heading {
   }
 }
 @include bp(l) {
+  #top-header, #hubs-container, #bottom-footer {
+    opacity:0;
+  }
   body.s,
   body.xs,
   body.m,
   body.l,
   body.xl {
-    #top-header {
-      display: block;
+    #top-header, #hubs-container, #bottom-footer {
+      opacity:1;
     }
   }
 }
 #hubs-container {
   #top-header .top-nav.resources ul.left-nav.desktop {
     li ul {
-      top:35px;
+      top: 35px;
       li {
-        display:block;
+        display: block;
       }
     }
   }
