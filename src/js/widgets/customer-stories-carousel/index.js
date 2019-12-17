@@ -30,7 +30,7 @@ function CustomerStoryCarousel(els, c) {
         "adaptiveHeight": false,
         "asNavFor":customerBucket,
         "prevNextButtons":false,
-        "groupCells":true
+        "groupCells":6
     });    
     for (i in pageData.customer_stories) {
         logoCarousel.append(parseHTML(templates.logoSlide(pageData.customer_stories[i])));

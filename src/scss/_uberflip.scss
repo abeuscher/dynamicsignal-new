@@ -269,7 +269,7 @@ body.pseudo-fullscreen #toggle-side-nav {
   }
 }
 body:not(.stream-banner-hide-top-nav) .uf-stream-banner-marketing .stream-banner {
-  margin-top: 130px;
+  margin-top: 0;
   .stream-banner-content {
     z-index: 3;
   }
@@ -286,12 +286,12 @@ body:not(.stream-banner-hide-top-nav) .uf-stream-banner-marketing .stream-banner
 }
 @media (max-width: 860px) {
   body.lab_top_menu:not(.stream-banner-hide-top-nav) .uf-stream-banner-marketing .stream-banner {
-    margin-top: 130px;
+    //margin-top: 130px;
   }
 }
 @media (max-width: 640px) {
   body.lab_top_menu:not(.stream-banner-hide-top-nav) .uf-stream-banner-marketing .stream-banner {
-    margin-top: 90px;
+   // margin-top: 90px;
   }
 }
 h2.stream-banner-heading {
@@ -471,6 +471,53 @@ h2.stream-banner-heading {
       li {
         display: block;
       }
+    }
+  }
+}
+body.uf-stream-template-banner-marketing {
+  #top-header {
+    display:block!important;
+  }
+  #top-header .top-nav {
+    display:none!important;
+  }
+  .description-block {
+    display:none!important;
+  }
+  .stream-banner {
+    min-height:330px;
+  }
+  .stream-banner-content {
+    h2 {
+      padding-top:$gutter-width*2;
+      padding-bottom:$gutter-width;
+    }
+    p {
+      color:$white;
+      max-width:80%;
+      margin:0 auto;
+      text-align:center;
+      @include bp(m) {
+        max-width:50%;
+      }
+    }
+  }
+  &.single-page #top.hidden {
+    background:transparent;
+  }
+}
+body.single-page {
+  #top-header .top-nav {
+    display:none;
+  }
+}
+body.single-page.uf-stream-template-banner-marketing {
+  #hubs-container .level-three:not(.bottom) {
+    margin-top:-20px;
+    z-index:9999;
+    position:relative;
+    @include bp(m) {
+      margin-top:-100px;
     }
   }
 }

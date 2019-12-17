@@ -106,4 +106,13 @@ function setUberPage() {
     shareToggle.parentNode.insertBefore(shareWidget, shareToggle.nextSibling);
   }
   
+  if (uberNav.classList.contains("uf-stream-banner-marketing") && descBlock) {
+    theSubhead = descBlock.querySelectorAll("p")[0];
+    theBannerContent = document.querySelectorAll(".stream-banner-content")[0];
+    if (theSubhead && theBannerContent) {
+      theBannerContent.append(theSubhead);
+    }
+    
+  }
+
 }
