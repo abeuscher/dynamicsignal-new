@@ -9,7 +9,7 @@ var TriggerGDPR = require("../js/gdpr-popup/index");
 
 var siteSettings = require("../js/settings.json");
 siteSettings.templates = {
-  "header": require("../templates/inc/header-embed.pug"),
+  "header": require("../templates/inc/header-embed-white.pug"),
   "footer": require("../templates/inc/footer.pug"),
   "sideNav": require("../templates/inc/side-nav.pug")
 };

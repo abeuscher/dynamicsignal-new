@@ -8,6 +8,7 @@ html
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(property="og:locale",content="en_US")
     meta(property="og:site_name",content="Dynamic Signal")
+    meta(property="og:type",content="website")
     meta(name="twitter:card",content="summary")
     meta(name="twitter:site",content="@Dynamic_Signal")
     link(rel='shortcut icon', href=themeDir + 'images/favicon.ico?v=2') 
@@ -29,7 +30,10 @@ html
       else {
         $description = htmlentities(WPSEO_Meta::get_value('metadesc'), ENT_QUOTES);
         }
-      if ($override_thumb!="") {
+      if(get_field("social_share_image")!="") {
+        $featured_image = get_field("social_share_image");
+      }
+      else if ($override_thumb!="") {
         $featured_image = $override_thumb;
         }
       else if(WPSEO_Meta::get_value('featured_image')!="") {

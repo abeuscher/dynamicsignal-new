@@ -65,7 +65,7 @@ http://flickity.metafizzy.co
 
 .flickity-prev-next-button {
   position: absolute;
-  top: 50%;
+  top: $gutter-width;
   width: 44px;
   height: 44px;
   border: none;
@@ -76,6 +76,9 @@ http://flickity.metafizzy.co
   /* vertically center */
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+  @include bp(s) {
+    top:50%;
+  }
 }
 
 .flickity-prev-next-button:hover { background: white; }
