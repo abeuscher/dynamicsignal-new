@@ -1208,3 +1208,55 @@ hr.blue-separator {
     display: block;
   }
 }
+ul.blue-bullets {
+  list-style:none;
+  margin:0;
+  padding:0;
+  li {
+    padding-left:30px;
+    display:flex;
+    align-items: center;
+    margin-bottom:$gutter-width;
+    .icon {
+      @include arrow-in-circle($background-color: $menu-blue, $border-color: $white);
+    }
+    .text {
+      padding-left:10px;
+    }
+  }
+}
+.thumb-16-9 {
+  @include aspect-ratio(16,9);
+  width:100%;
+  background-position:center;
+  background-size:contain;
+  background-repeat:no-repeat;
+  display:inline-block;
+}
+.alternating-section {
+  padding-bottom:$gutter-width*3;
+  .bucket {
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    .col-half {
+      position:relative;
+      flex-basis:100%;
+      @include bp(m) {
+        flex-basis:50%;
+      }
+      &.image-col {
+        display:contents;
+        @include bp(m) {
+          display:block;
+        }
+      }
+    }
+    &.image-right {
+      flex-direction:column-reverse;
+      @include bp(m) {
+        flex-direction:row;
+      }
+    }
+  }
+}

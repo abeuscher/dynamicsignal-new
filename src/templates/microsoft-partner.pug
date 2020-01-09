@@ -1,0 +1,54 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Microsoft Partners Page
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+    section.hero-inner
+        .container
+            .inner
+                .text
+                    :php
+                        printf("<h1 class='white'>%s</h1><p class='white'>%s</p>", get_field("hero_headline"), get_field("hero_subhead"));
+    section.hero-media
+        .container
+            .inner-image.contain
+                :php
+                    printf("<div class='blog-thumb' data-bg-array='%s'></div>", json_encode(get_field("hero_image"), JSON_UNESCAPED_SLASHES))
+    section.container.padding-bottom
+        .row
+            .col-md-12
+                :php
+                    printf("<p>%s</p>", get_field("intro_blurb"));
+    :php
+        foreach(get_field("page_sections") as $idx=>$section) {
+            $textcol = sprintf("<h2>%s</h2><ul class='blue-bullets'>", $section["header_text"]);
+            foreach($section["content_bullets"] as $idx=>$bullet) {
+                $textcol .= sprintf("<li><span class='icon'></span><span class='text'>%s</span></li>", $bullet["text"]);
+            }
+            $textcol .= "</ul>";
+            $imagecol = sprintf("<div class='thumb-16-9' data-bg-array='%s'></div>", json_encode($section["section_image"], JSON_UNESCAPED_SLASHES));
+            if ($section["orientation"]=="right") {
+                printf("<section class='alternating-section'><div class='container'><div class='bucket image-right'><div class='col-half text-col'>%s</div><div class='col-half image-col'>%s</div></div></div></section>", $textcol, $imagecol);
+            }
+            else {
+                printf("<section class='alternating-section'><div class='container'><div class='bucket image-left'><div class='col-half image-col'>%s</div><div class='col-half text-col'>%s</div></div></div></section>", $imagecol, $textcol);
+            }
+        }
+    section.blue-bg-section.padding-both
+        .container
+            .row
+                .col-md-12
+                    :php
+                        printf("<div class='ms-icon-header' data-bg-array='%s'></div><h2 class='centered'>%s</h2><p class='centered'>%s</p>", json_encode(get_field("bottom_section_image"), JSON_UNESCAPED_SLASHES), get_field("bottom_header"), get_field("bottom_subhead"));
+                .col-md-12
+                    .ms-bottom-buckets 
+                        :php
+                            foreach(get_field("bottom_buckets") as $idx=>$bucket)  {
+                                printf("<div class='ms-bottom-bucket'><div class='inner'><div class='icon fa %s'></div><p>%s</p></div></div>", $bucket["icon"], $bucket["text"]);
+                            }      
