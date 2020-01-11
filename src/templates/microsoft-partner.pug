@@ -9,18 +9,18 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-    section.hero-inner
+    section.hero-inner.text-only
         .container
             .inner
                 .text
                     :php
                         printf("<h1 class='white'>%s</h1><p class='white'>%s</p>", get_field("hero_headline"), get_field("hero_subhead"));
-    section.hero-media
+    section.hero-media.short.has-quote.hidden-xs.hidden-sm
         .container
             .inner-image.contain
                 :php
                     printf("<div class='blog-thumb' data-bg-array='%s'></div>", json_encode(get_field("hero_image"), JSON_UNESCAPED_SLASHES))
-    section.container.padding-bottom
+    section.container.padding-bottom.jacked-up
         .row
             .col-md-12
                 :php
@@ -32,6 +32,9 @@ block content
                 $textcol .= sprintf("<li><span class='icon'></span><span class='text'>%s</span></li>", $bullet["text"]);
             }
             $textcol .= "</ul>";
+            if ($section["cta_block"]!="") {
+                $textcol .= $section["cta_block"];
+            }
             $imagecol = sprintf("<div class='thumb-16-9' data-bg-array='%s'></div>", json_encode($section["section_image"], JSON_UNESCAPED_SLASHES));
             if ($section["orientation"]=="right") {
                 printf("<section class='alternating-section'><div class='container'><div class='bucket image-right'><div class='col-half text-col'>%s</div><div class='col-half image-col'>%s</div></div></div></section>", $textcol, $imagecol);
@@ -40,15 +43,21 @@ block content
                 printf("<section class='alternating-section'><div class='container'><div class='bucket image-left'><div class='col-half image-col'>%s</div><div class='col-half text-col'>%s</div></div></div></section>", $imagecol, $textcol);
             }
         }
-    section.blue-bg-section.padding-both
+    section.blue-bg-section.padding-both.double
         .container
             .row
                 .col-md-12
                     :php
-                        printf("<div class='ms-icon-header' data-bg-array='%s'></div><h2 class='centered'>%s</h2><p class='centered'>%s</p>", json_encode(get_field("bottom_section_image"), JSON_UNESCAPED_SLASHES), get_field("bottom_header"), get_field("bottom_subhead"));
+                        printf("<div class='ms-icon-header' data-bg-array='%s'></div><h2 class='centered'>%s</h2><p class='centered'>%s</p><p class='centered'><a class='button white' href='%s' target='_blank'>%s</a></p>", json_encode(get_field("bottom_section_image"), JSON_UNESCAPED_SLASHES), get_field("bottom_header"), get_field("bottom_subhead"), get_field("bottom_cta_target"), get_field("bottom_cta_text"));
                 .col-md-12
                     .ms-bottom-buckets 
                         :php
                             foreach(get_field("bottom_buckets") as $idx=>$bucket)  {
                                 printf("<div class='ms-bottom-bucket'><div class='inner'><div class='icon fa %s'></div><p>%s</p></div></div>", $bucket["icon"], $bucket["text"]);
                             }      
+    section.padding-both.double.dark-gray-bg-section
+        .container
+            .row
+                .col-md-12.centered
+                    p Contact us to learn more about our partnership and solutions with Microsoft
+                    a.button.cta.knockout(href="/contact-us/") Contact Us                         

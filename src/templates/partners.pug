@@ -31,7 +31,7 @@ block content
             .row
                 .col-md-12
                     :php
-                        printf("<h2 class='centered'>%s</h2><div class='partners-diagram' data-bg-array='%s'></div><p>%s</p>", get_field("fourth_section_headline"), json_encode(get_field("fourth_section_image"), JSON_UNESCAPED_SLASHES), get_field("fourth_section_copy"));
+                        printf("<h2 class='centered'>%s</h2><div class='partners-diagram' data-bg-array='%s'></div><p>%s</p><a class='button' href='%s'>%s</a>", get_field("fourth_section_headline"), json_encode(get_field("fourth_section_image"), JSON_UNESCAPED_SLASHES), get_field("fourth_section_copy"), get_field("fourth_section_cta_link"), get_field("fourth_section_cta_text"));
     section.white-bg-section.partners-third-section.partners-section.padding-both.double
         .container
             .row

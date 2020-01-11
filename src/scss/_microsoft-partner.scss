@@ -1,10 +1,13 @@
 .ms-bottom-buckets {
     display:flex;
     justify-content: space-between;
+    flex-wrap:wrap;
     .ms-bottom-bucket {
         flex-basis:100%;
+        margin-bottom:$gutter-width;
         @include bp(m) {
             flex-basis:32.5%;
+            margin-bottom:0;
         }
         .inner {
             height:100%;
@@ -21,4 +24,7 @@
             }
         }
     }
+}
+.ms-ctas {
+    padding-left:64px;
 }

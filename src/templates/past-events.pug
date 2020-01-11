@@ -45,7 +45,12 @@ block content
 
     echo "<script>var pageData = {'events':".json_encode($all_events,JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  section.events-list.container.margin-top-header.padding-top-header
+  section.hero-inner.text-only
+    .container
+      .inner
+        .text
+          h1.white!="Past Events"
+  section.events-list.container.padding-both
     .row
       .col-md-12.events
         #past-events-full

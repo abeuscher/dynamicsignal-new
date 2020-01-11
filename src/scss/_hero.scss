@@ -50,10 +50,17 @@
   width: 100%;
   margin-top: $gutter-width * 2;
   margin-bottom: $gutter-width * 2;
+  &.short {
+    .inner-image {
+      margin: 0 auto;
+      @include aspect-ratio(3, 1);
+    }
+  }
   .inner-image {
     margin: 0 auto;
     @include aspect-ratio(16, 9);
     max-height: 300px;
+
     .blog-thumb {
       background-size: cover;
       background-repeat: no-repeat;
@@ -166,4 +173,10 @@
       float: right;
     }
   }
+}
+.jacked-up {
+  @include bp(m) {
+    margin-top:-100px;
+  }
+  
 }

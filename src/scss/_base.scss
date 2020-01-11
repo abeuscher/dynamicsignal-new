@@ -257,6 +257,25 @@ section {
   background: $lighter-gray;
   position: relative;
 }
+.dark-gray-bg-section {
+  background: $menu-blue;
+  position: relative;
+  color: $white;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  cite,
+  p,
+  ul,
+  li,
+  a {
+    color: $white;
+  }
+}
+
 .blue-bg-section {
   background: $blue;
   position: relative;

@@ -66,11 +66,11 @@ block content
 
     echo "<script>var pageData = {'events':".json_encode($all_events,JSON_UNESCAPED_SLASHES)
     ."};</script>";
-  section.margin-top-header.padding-bottom.padding-top-header
+  section.hero-inner.text-only
     .container
-      .row
-        .col-md-12
-          include ./inc/breadcrumbs.pug
+      .inner
+        .text
+          h1.white!="Events"
   section.events-list.container.padding-both
     .row
       .col-md-9.events

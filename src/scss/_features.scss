@@ -94,7 +94,7 @@
         max-height:0;
         overflow:hidden;
         margin-left:30px;
-        transition:all .1s;
+        transition:all .25s ease-out;
         font-size:14px;
         p:first-child {
           margin-top:0;
@@ -113,9 +113,10 @@
       label {
         color:$blue;
         font-weight:700;
+        font-size:20px;
         position:relative;
         margin-left:30px;
-        line-height:2;
+        line-height:1.8;
         cursor:pointer;
         .icon {
           @include arrow-in-circle($size:25px);
@@ -130,7 +131,7 @@
         &:checked {
           ~ .content {
             max-height:100vh;
-            transition:all .35s;
+            transition:all .5s ease-in;
           }
           ~ label .icon {
             transform:rotate(90deg);
