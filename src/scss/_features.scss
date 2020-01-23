@@ -94,7 +94,7 @@
         max-height:0;
         overflow:hidden;
         margin-left:30px;
-        transition:all .25s ease-out;
+        transition:all .25s linear;
         font-size:14px;
         p:first-child {
           margin-top:0;
@@ -130,8 +130,8 @@
         display:none;
         &:checked {
           ~ .content {
-            max-height:100vh;
-            transition:all .5s ease-in;
+            max-height:400px;
+            transition:all .55s linear;
           }
           ~ label .icon {
             transform:rotate(90deg);

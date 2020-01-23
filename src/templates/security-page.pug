@@ -1,0 +1,84 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Security Page
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+    section.hero-inner
+        .container
+            .inner
+                .text
+                    :php
+                        printf("<h1 class='white'>%s</h1><p class='white'>%s</p>", get_field("hero_headline"), get_field("hero_subhead"));
+    section.hero-media
+        .container
+            .inner-image.contain
+                :php
+                    printf("<div class='blog-thumb' data-bg-array='%s'></div>", json_encode(get_field("hero_image"), JSON_UNESCAPED_SLASHES))
+    section.container.padding-bottom
+        .row
+            .col-md-12
+                :php
+                    printf("<p>%s</p>", get_field("intro_blurb"));
+                    printf("<div class='security-logos'>");
+                    foreach(get_field("security_logos") as $idx=>$image) {
+                        printf("<img src='%s' alt='' />", $image["image"]["url"]);
+                    } 
+                    printf("</div>");      
+    :php
+        foreach(get_field("page_sections_upper") as $idx=>$section) {
+            $textcol = sprintf("<h2>%s</h2><ul class='blue-bullets'>", $section["header_text"]);
+            foreach($section["content_bullets"] as $idx=>$bullet) {
+                $textcol .= sprintf("<li><span class='icon'></span><span class='text'>%s</span></li>", $bullet["text"]);
+            }
+            $textcol .= "</ul>";
+            if ($section["cta_block"]!="") {
+                $textcol .= $section["cta_block"];
+            }
+            $imagecol = sprintf("<div class='thumb-16-9 cover' data-bg-array='%s'></div>", json_encode($section["section_image"], JSON_UNESCAPED_SLASHES));
+            if ($section["orientation"]=="right") {
+                printf("<section class='alternating-section'><div class='container'><div class='bucket image-right'><div class='col-half text-col'><div class='inner padding-right-m'>%s</div></div><div class='col-half image-col'><div class='inner padding-left-m'>%s</s></div></div></div></section>", $textcol, $imagecol);
+            }
+            else {
+                printf("<section class='alternating-section short-bottom'><div class='container'><div class='bucket image-left'><div class='col-half image-col'><div class='inner padding-right-m'>%s</div></div><div class='col-half text-col'><div class='inner padding-left-m'>%s</div></div></div></div></section>", $imagecol, $textcol);
+            }
+        }   
+    section.padding-both.double.gray-bg-section.margin-bottom-double
+        .container
+            .row
+                .col-md-12
+                    :php
+                        printf("<h2 class='centered'>%s</h2>", get_field("customer_logos_header"));
+                :php
+                    foreach(get_field("customer_logos") as $idx=>$image) {
+                        printf("<div class='col-md-2 col-xs-4'><div class='contained-logo-thumb' data-bg-array='%s'></div></div>", json_encode($image["image"], JSON_UNESCAPED_SLASHES));
+                    }
+    :php
+        foreach(get_field("page_sections_lower") as $idx=>$section) {
+            $textcol = sprintf("<h2>%s</h2><ul class='blue-bullets'>", $section["header_text"]);
+            foreach($section["content_bullets"] as $idx=>$bullet) {
+                $textcol .= sprintf("<li><span class='icon'></span><span class='text'>%s</span></li>", $bullet["text"]);
+            }
+            $textcol .= "</ul>";
+            if ($section["cta_block"]!="") {
+                $textcol .= $section["cta_block"];
+            }
+            $imagecol = sprintf("<div class='thumb-16-9 cover' data-bg-array='%s'></div>", json_encode($section["section_image"], JSON_UNESCAPED_SLASHES));
+            if ($section["orientation"]=="right") {
+                printf("<section class='alternating-section'><div class='container'><div class='bucket image-right'><div class='col-half text-col'><div class='inner padding-right-m'>%s</div></div><div class='col-half image-col'><div class='inner padding-left-m'>%s</div></div></div></div></section>", $textcol, $imagecol);
+            }
+            else {
+                printf("<section class='alternating-section short-bottom'><div class='container'><div class='bucket image-left'><div class='col-half image-col'><div class='inner padding-right-m'>%s</div></div><div class='col-half text-col'><div class='inner padding-left-m'>%s</div></div></div></div></section>", $imagecol, $textcol);
+            }
+        } 
+    section.padding-both.bottom-cta
+        .container
+            .row
+                .col-md-12.centered
+                    p Contact us to learn more about our commitment to security
+                    a.button.cta.knockout(href="/contact-us/") Contact Us                         

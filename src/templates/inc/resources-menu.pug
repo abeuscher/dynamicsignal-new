@@ -15,7 +15,7 @@
                 printf("<li class='menu-home custom-menu-item collapsed'><a href='%s'>%s</a></li>", $item["top_target"],$item["top_label"]);
               }
               else {
-                printf("<li class='menu-home custom-menu-item collapsed has-children'><a href='javascript:void(0)'>%s</a><div vlass='sub-menu-arrow'></div><ul>", $item["top_label"]);
+                printf("<li class='menu-home custom-menu-item collapsed has-children'><a href='javascript:void(0)'>%s</a><ul>", $item["top_label"]);
               foreach($item["children"] as $k => $child) {
                 printf("<li class='custom-menu-item collapsed has-children has-drop'><a href='%s'>%s</a></li>", $child["target"], $child["label"]);
               }

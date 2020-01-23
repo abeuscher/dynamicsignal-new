@@ -13,7 +13,7 @@ function CustomerStoryCarousel(els, c) {
     var cg = new Flickity(customerBucket, {
         "wrapAround": true,
         "pageDots": false,
-        "lazyLoad": 6,
+        "lazyLoad": 2,
         "autoPlay": 8000,
         "adaptiveHeight": false
     });

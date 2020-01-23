@@ -519,7 +519,6 @@ ul.side-list {
 }
 .featured-thumb {
   display: block;
-  
 
   &:after {
     content: "";
@@ -538,16 +537,14 @@ ul.side-list {
     padding: $gutter-width/4;
     margin: 0;
     position: absolute;
-
   }
   @include bp(m) {
     position: relative;
     h1 {
-    width: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);
-    padding: $gutter-width;      
+      width: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);
+      padding: $gutter-width;
     }
-
   }
 }
 .post-meta {
@@ -715,7 +712,7 @@ ul.side-list {
 }
 .bottom-cta {
   background: $hero-radial-gradient;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   background-size: cover;
   color: $white;
   text-align: center;
@@ -1228,54 +1225,120 @@ hr.blue-separator {
   }
 }
 ul.blue-bullets {
-  list-style:none;
-  margin:0;
-  padding:0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   li {
-    padding-left:30px;
-    display:flex;
+    padding-left: 30px;
+    display: flex;
     align-items: center;
-    margin-bottom:$gutter-width;
+    margin-bottom: $gutter-width;
     .icon {
       @include arrow-in-circle($background-color: $menu-blue, $border-color: $white);
     }
     .text {
-      padding-left:10px;
+      padding-left: 10px;
     }
   }
 }
 .thumb-16-9 {
-  @include aspect-ratio(16,9);
-  width:100%;
-  background-position:center;
-  background-size:contain;
-  background-repeat:no-repeat;
-  display:inline-block;
+  @include aspect-ratio(16, 9);
+  width: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  &.cover {
+    background-size: cover;
+  }
 }
 .alternating-section {
-  padding-bottom:$gutter-width*3;
+  margin-bottom: $gutter-width * 2;
+  &.short-bottom {
+    padding-bottom: $gutter-width;
+  }
   .bucket {
-    width:100%;
-    display:flex;
-    flex-wrap:wrap;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
     .col-half {
-      position:relative;
-      flex-basis:100%;
+      position: relative;
+      flex-basis: 100%;
       @include bp(m) {
-        flex-basis:50%;
+        flex-basis: 50%;
       }
       &.image-col {
-        display:contents;
+        display: contents;
         @include bp(m) {
-          display:block;
+          display: block;
+        }
+        .inner {
+          display: contents;
+          @include bp(m) {
+            display:block;
+          }
         }
       }
     }
-    &.image-right {
-      flex-direction:column-reverse;
+    .text-col .inner {
+      margin-top: $gutter-width;
       @include bp(m) {
-        flex-direction:row;
+        margin-top: 0;
+      }
+    }
+    &.image-right {
+      flex-direction: column-reverse;
+
+      @include bp(m) {
+        flex-direction: row;
+      }
+    }
+    &.image-left {
+      @include bp(m) {
+        .text-col .inner {
+          padding-left: $gutter-width;
+        }
       }
     }
   }
+}
+@include bp(m) {
+  .padding-right-m {
+    padding-right: $gutter-width;
+  }
+  .padding-left-m {
+    padding-left: $gutter-width;
+  }
+}
+
+.contained-logo-thumb {
+  @include aspect-ratio(3, 1);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 80px;
+}
+.security-logos {
+  text-align: center;
+  margin-bottom: $gutter-width * 2;
+  margin-top:$gutter-width*2;
+  img {
+    height: 60px;
+    width: auto;
+    display: inline-block;
+    margin: 0 $gutter-width;
+  }
+}
+.margin-top {
+  margin-top: $gutter-width;
+}
+.margin-bottom {
+  margin-bottom: $gutter-width;
+}
+.margin-both {
+  margin-top: $gutter-width;
+  margin-bottom: $gutter-width;
+}
+.margin-bottom-double {
+  margin-bottom: $gutter-width * 2;
 }

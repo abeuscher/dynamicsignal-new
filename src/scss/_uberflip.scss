@@ -186,7 +186,7 @@
     }
     h1 {
       font-size: 32px;
-      text-transform: capitalize;
+      text-transform: initial;
       letter-spacing: normal;
       font-weight: 400;
       margin-top: 0;
@@ -213,6 +213,7 @@
 }
 .top-nav .nav-toggle,
 html.touch .top-nav .nav-toggle {
+  display:none;
   background-image: none;
   text-indent: 0 !important;
   border: none !important;
@@ -327,7 +328,6 @@ h2.stream-banner-heading {
       padding: 0 $gutter-width/2;
       line-height: 50px;
       color: $black;
-      text-transform: capitalize;
       font-size: 16px;
       position: relative;
       border: none;

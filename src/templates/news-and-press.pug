@@ -13,28 +13,23 @@ block content
     .container
       .inner
         .text
-          h1.white!="News Room"
-  section
-    #hubs-container
-      #top-header
-        include ./inc/resources-menu            
+          h1.white!="News Room"    
   section.white-bg-section.padding-both
     .container
       .row
         .col-md-12.news-streams
           h2
-            a(href="https://resources.dynamicsignal.com/news-room") News Room
-                
-          .uber-embed.news
-            // Uberflip Embedded Hub Widget
-            #UfEmbeddedHub1556219787135  
-          a.view-link(href="https://resources.dynamicsignal.com/news-room") View All News
-          hr.blue-separator
-          h2
             a(href="https://resources.dynamicsignal.com/press-coverage") Press Coverage        
           .uber-embed.press
             #UfEmbeddedHub1556221626144
           a.view-link(href="https://resources.dynamicsignal.com/press-coverage") View All Press
+          hr.blue-separator
+          h2
+            a(href="https://resources.dynamicsignal.com/news-room") News Room  
+          .uber-embed.news
+            // Uberflip Embedded Hub Widget
+            #UfEmbeddedHub1556219787135  
+          a.view-link(href="https://resources.dynamicsignal.com/news-room") View All News
             script.
                 window._ufHubConfig = window._ufHubConfig || [];
                 window._ufHubConfig.push({

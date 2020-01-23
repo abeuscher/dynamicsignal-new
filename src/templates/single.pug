@@ -47,6 +47,12 @@ block content
         p.author By
           :php
             $authorslug = get_userdata(get_the_author_id())->user_nicename;
+            
+            $sharetitle = get_the_title()." by ".get_author_name();
+            //$sharetitle = str_replace("’", "", $sharetitle);
+            //$sharetitle = str_replace("'", "", $sharetitle);
+            $sharetitle = urlencode($sharetitle);
+            $sharetitle = str_replace("%26%238217%3B","%27",$sharetitle);
             echo " <a class='author-link' href=\"/author/$authorslug\" itemprop='author' itemscope itemtype='https://schema.org/Person'><span itemprop='name'>".get_author_name() . "</span></a>" ;
         ul.social-share
           li
@@ -59,7 +65,7 @@ block content
               echo "</a>";
           li
             :php
-              echo "<a href='https://twitter.com/intent/tweet?text=".urlencode(get_the_title()." by ".get_author_name())."&url=".urlencode(get_permalink())."' target='_blank'>";
+              echo "<a href='https://twitter.com/intent/tweet?text=$sharetitle&url=".urlencode(get_permalink())."' target='_blank'>";
             span.fa-1x.fa-stack
               i.fa.fa-circle.fa-stack-2x
               i.fa.fa-stack-1x.fa-twitter
