@@ -79,6 +79,7 @@ section.career-target {
         opacity: 1;
       }
     }
+
     .job-category-list {
       margin:0;
       span {
@@ -104,6 +105,11 @@ section.career-target {
       padding:$gutter-width 0;
       margin-bottom:$gutter-width;
       border-bottom:1px solid $middle-gray;
+    }
+    &.yes {
+      h3 {
+        color:$blue;
+      }
     }
   }
   .job-description {
@@ -220,8 +226,6 @@ ul.sdr-buttons {
   }
 }
 #featured-job {
-  background:$header-blue;
-  border:1px solid $black;
   margin-bottom:$gutter-width*2;
   padding:$gutter-width;
   text-align: center;
@@ -229,7 +233,7 @@ ul.sdr-buttons {
     padding:$gutter-width/2 $gutter-width;
   }
   h1 {
-    color:$white;
+    //color:$white;
   }
   span, .button {
     margin-left:1em;

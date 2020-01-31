@@ -15,6 +15,7 @@ block content
         .text
           h1.white Join Our Growing Team
           p.white We build communication technology for the world's largest organizations.
+          a.button(href="/job-listings/") View Open Positions
   :php
     if( have_posts() ): while( have_posts() ): the_post();
       $videos = get_field("career_videos");
@@ -35,10 +36,6 @@ block content
         {
           "class":"culture",
           "label":"Culture"
-        },
-        {
-          "class":"jobs",
-          "label":"Open Positions"
         }],
       "aboutHeader":"Working at Dynamic Signal",
       "aboutSubheader":"Learn more about the people, perks, and culture that make Dynamic Signal a great place to work.",
@@ -124,18 +121,9 @@ block content
         .col-md-12.instagram-bucket
           script(src='//lightwidget.com/widgets/lightwidget.js')
           iframe.lightwidget-widget(src='//lightwidget.com/widgets/6201cb655e565b53b883ae24489844c2.html', scrolling='no', allowtransparency='true', style='width: 100%; border: 0; overflow: hidden;')
-  section.job-listing-header.white-bg-section#jobs.padding-both.career-target
-    .container
-      .row
-        .col-md-12.col-center
-          h2.text-center!=pageData.listingsHeader
-          p.text-center!=pageData.listingsCopy
-  section.white-bg-section.padding-both
-    .container
-      .row
-        .col-md-12
-          #featured-job
-        .col-md-3.hidden-s
-          #job-filter
-        .col-md-9
-          #job-list
+  section.bottom-cta.padding-both.double
+      .container
+          .row
+              .col-md-12
+                  p Ready To Apply?
+                  a.button.cta.knockout.request-demo(href="/job-listings/") View Open Positions

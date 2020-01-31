@@ -1,4 +1,4 @@
-var filter = require("lodash/filter");
+var orderBy = require("lodash/orderBy");
 var parseHTML = require("../utils/parse-html.js");
 
 function JobList(opts) {
@@ -45,6 +45,7 @@ JobList.prototype.sortList = function(startIndex, limit, category) {
   }
   limit = limit ? limit : this.opts.jobs.length;
   this.currentJobs = currentJobs.slice(startIndex, limit);
+  this.currentJobs = orderBy(this.currentJobs,['featured'],['desc']);
 }
 
 module.exports = JobList; 

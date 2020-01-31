@@ -1,0 +1,49 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Job Listings
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+  section.hero-inner.text-only
+    .container
+      .inner
+        .text
+          h1.white Current Open Positions
+          p.white Think Dynamic Signal is the place for you? Browse our open positions below and feel free to contact us with any questions about the company, a specific department, or job. We'd be happy to hear from you!
+  :php
+    $args = array( 'post_type' => 'career', 'posts_per_page' => 100 );
+      
+    $jobs = get_posts( $args );
+    $categories = [];
+    $category_count=[];
+    foreach($jobs as $key => $job) {
+      $cat = get_the_category($job->ID);
+      foreach($cat as $category) {
+        $category_count[$category->cat_ID] = $category_count[$category->cat_ID] ? $category_count[$category->cat_ID]+1 : 1;
+        if (!in_array($category,$categories)) {
+          array_push($categories,$category);
+        }
+      }
+      $job->jobvite_url = get_field("jobvite_url",$job);
+      $job->categories = $cat;
+      $job->featured = get_field("featured",$job);
+      $jobs[$key] = $job;
+    }
+    foreach($categories as $key=>$category) {
+      $categories[$key]->total_entries = $category_count[$category->cat_ID];
+    }
+    echo "<script>var pageData = {'jobs':".json_encode($jobs,JSON_UNESCAPED_SLASHES)
+    .",'categories':".json_encode($categories,JSON_UNESCAPED_SLASHES)
+    ."};</script>";
+  section.white-bg-section.padding-both.double
+    .container
+      .row
+        .col-md-3.hidden-s
+          #job-filter
+        .col-md-9
+          #job-list

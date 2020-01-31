@@ -1,7 +1,13 @@
-article
+article(class=locals.featured)
   .row
     .col-md-12.no-padding
-      h3=locals.post_title     
+      if (locals.featured=="yes")
+        h3
+          span.fa.fa-star
+          span!="&nbsp;FEATURED : " + locals.post_title + "&nbsp;"
+          span.fa.fa-star
+      else
+        h3=locals.post_title   
       a.button.float-right(href=locals.jobvite_url,target='_blank') Apply
       .job-category-list
         - var categories = {"locations":[],"departments":[]}; //588 for location, 419 for category

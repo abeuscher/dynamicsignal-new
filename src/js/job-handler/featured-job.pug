@@ -1,9 +1,7 @@
 article.featured-job
   .row
     .col-xs-12
-        h2.white
-          span.fa.fa-hand-o-right
-          | Featured Job : 
+        h2 Featured : 
           span!=locals.post_title
-        a.button.knockout(href="/career/"+locals.post_name) Read more
-        a.button.knockout(href=locals.jobvite_url,target='_blank') Apply  
+        a.button(href="/career/"+locals.post_name) Read more
+        a.button(href=locals.jobvite_url,target='_blank') Apply  
