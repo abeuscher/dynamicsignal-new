@@ -79,11 +79,11 @@ block content
         .col-md-12
           .even-height-wrapper
             :php
-              foreach($filtered_posts as $key=>$post) {
-              $p = $post["post"];
+              foreach(get_field("featured_entries") as $key=>$post) {
+              $p = $post["blog_entry"];
               $c = $post["category"];
               $thumb = get_the_post_thumbnail_url($p);
-              printf("<div class='col-3'><a class='category-link-title' href='%s'><h3>%s<span class='view-button'>View All<span class='divot'>»</span></span></h3></a><a class='story-tile-link' href='%s' itemprop='url'><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article' class='blog-featured-bucket'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Featured</li></ul><h3 itemprop='title'>%s</h3></article></a></div>","/category/".$c["slug"],$c["name"],$p->post_name,get_the_ID(), $thumb, $p->post_title);  
+              printf("<div class='col-3'><a class='category-link-title' href='%s'><h3>%s<span class='view-button'>View All<span class='divot'>»</span></span></h3></a><a class='story-tile-link' href='%s' itemprop='url'><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article' class='blog-featured-bucket'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Featured</li></ul><h3 itemprop='title'>%s</h3></article></a></div>","/category/".$c[0]->slug,$c[0]->name,$p->post_name,get_the_ID(), $thumb, $p->post_title);  
               }
   section.padding-bottom
     .container

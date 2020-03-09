@@ -195,8 +195,9 @@ body.modal-open {
     @include bp(m) {
       display: flex;
       align-content: space-between;
+      flex-wrap:wrap;
       .demo-video-bucket {
-        flex-basis: 33%;
+        flex-basis: 30%;
         .inner {
           text-align: left;
         }
@@ -232,6 +233,7 @@ body.modal-open {
     @include bp(m) {
       display: flex;
       align-content: space-between;
+      flex-wrap:wrap;
       .demo-video-bucket {
         flex-basis: 33%;
         .button-wrapper {

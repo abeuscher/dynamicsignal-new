@@ -11,54 +11,6 @@ block nav
   include ./inc/header.pug
 block content
   :php
-    $featured_ids = [];
-    $args = array(
-      'posts_per_page' => 1,
-      'orderby'    => 'post_date',
-      'order'      => 'DESC',
-      'ignore_sticky_posts'=>1,
-      'meta_query' => array(
-        array(
-          'key' => 'front_page_featured_entry',
-          'value' => 'true'
-        )
-      )
-    );
-    $query = new WP_Query($args);
-    if ($query->have_posts()) {
-      $featured = $query->posts[0];
-      array_push($featured_ids,$featured->ID);
-    }
-    $parent_category = "blog-categories";
-    $category_entries = array(
-      [
-        "name"=>"Best Practices",
-        "slug"=>"best-practices"
-        ],
-      [
-        "name"=>"Customer Stories",
-        "slug"=>"customer-stories"
-        ],
-      [
-        "name"=>"DySi News & Culture",
-        "slug"=>"news-and-culture"
-        ]
-    );
-    $categories = ["best-practices","customer-stories","news"];
-    
-    $filtered_posts = [];
-    foreach ($category_entries as $key=>$category) {
-      $query = new WP_Query( array( 'post__not_in' => $featured_ids, 'category_name' => $parent_category.'+'.$category["slug"],'post__in'  => get_option( 'sticky_posts' ),'ignore_sticky_posts' => 0,'posts_per_page' => 1) );
-      if ($query->have_posts()) {
-        array_push($filtered_posts,array("category"=>$category,"post"=>$query->posts[0]));  
-        array_push($featured_ids,$query->posts[0]->ID);
-        }
-      else {
-        $query = new WP_Query( array( 'category_name' => $parent_category.'+'.$category["slug"],'posts_per_page' => 1) );
-        array_push($filtered_posts,array("category"=>$category,"post"=>$query->posts[0])); 
-        array_push($featured_ids,$query->posts[0]->ID);
-        }  
-    }
     echo "<script>var pageData = {'logos':".json_encode(get_field( 'logos' ),JSON_UNESCAPED_SLASHES)
     .", 'customer_stories':".json_encode(get_field('customer_stories')["story_tiles"])
     .", 'hero_words':".json_encode(get_field('header_animated_words'))."};</script>";
@@ -137,9 +89,9 @@ block content
         .col-md-12
           .even-height-wrapper
             :php
-              foreach($filtered_posts as $key=>$post) {
+              foreach(get_field("featured_blogs") as $key=>$post) {
               $p = $post["post"];
               $c = $post["category"];
               $thumb = get_the_post_thumbnail_url($p);
-              printf("<div class='col-3'><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article' class='blog-featured-bucket'><a class='story-tile-link' href='%s' itemprop='url'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>%s</li></ul><h3 itemprop='title'>%s</h3></a></article></div>",get_the_ID(), $p->post_name, $thumb, $c["name"], $p->post_title);  
+              printf("<div class='col-3'><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article' class='blog-featured-bucket'><a class='story-tile-link' href='%s' itemprop='url'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>%s</li></ul><h3 itemprop='title'>%s</h3></a></article></div>",get_the_ID(), $p->post_name, $thumb, $c, $p->post_title);  
               }  
