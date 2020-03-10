@@ -15,7 +15,7 @@ block content
         .text
           h1.white Join Our Growing Team
           p.white We build communication technology for the world's largest organizations.
-          a.button(href="/job-listings/") View Open Positions
+          a.button.orange(href="/job-listings/") VIEW OPEN POSITIONS
   :php
     if( have_posts() ): while( have_posts() ): the_post();
       $videos = get_field("career_videos");
@@ -126,4 +126,4 @@ block content
           .row
               .col-md-12
                   p Ready To Apply?
-                  a.button.cta.knockout.request-demo(href="/job-listings/") View Open Positions
+                  a.button.cta.knockout(href="/job-listings/") View Open Positions
