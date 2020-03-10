@@ -69,6 +69,10 @@ section.career-target {
   }
 }
 #job-list {
+  padding-top:$gutter-width;
+  @include bp(m) {
+    padding-top:0;
+  }
   article {
     animation: fader .5s 1;
     @keyframes fader {
