@@ -119,7 +119,13 @@ body.nav-short {
     }
   }
 }
-
+body.has-cta {
+  .side-nav {
+    #btn-close-sidenav {
+      top:56px;
+    }  
+  }  
+}
 #wrapper {
   min-height: 100%;
   position: relative;

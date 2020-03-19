@@ -3,6 +3,12 @@
     "imagePath": "/wp-content/themes/ds-new/images/",
     "gdprCookie": "ds-gdpr",
     "sessionCookie": "ds-count",
+    "ctaData": {
+        "content":"Coronavirus & COVID-19: Resources for Executives and Communicators",
+        "buttonText":"Learn More",
+        "buttonUrl":"https://dynamicsignal.com/coronavirus",
+        "buttonTarget":"_blank"
+    },
     "breakpoints": { // Site breakpoints.
         "xs": 0,
         "s": 641,

@@ -361,3 +361,17 @@ body.nav-short {
     background:$white;
   }
 }
+body.has-cta {
+  header.page-header {
+    top:$cta-bar-short;
+    @include bp(s) {
+      top:$cta-bar-tall;
+    }
+  }
+}
+body.has-cta.nav-short {
+  header.page-header {
+    top:$cta-bar-short;
+  }
+}
+

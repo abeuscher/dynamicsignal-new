@@ -30,6 +30,16 @@
   }
   a.button {
     margin-left:1em;
+    text-decoration:none;
+  }
+  a.display-button {
+    @include bp(s) {
+      background:$blue;
+      padding:.1em .5em;
+      border-radius:3px;
+      color:$white;
+      text-decoration:none;
+    }
   }
   &.active {
     display: block;
@@ -70,7 +80,11 @@
     background: #f2f2f2;
   }
 }
-
+.has-cta #cta-bar {
+  display:block;
+  position:fixed;
+  top:0;
+}
 #gdpr-warning {
   top: auto;
   bottom: 0;

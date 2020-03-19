@@ -19,8 +19,6 @@ siteSettings.scrollController = new ScrollMagic.Controller({
   "loglevel": 0
 });
 
-
-
 window.addEventListener("load", function () {
   // Check to make sure browser accepts cookies, then provide GDPR warning if yes.
   if (CheckCookies()) {
@@ -64,6 +62,9 @@ window.addEventListener("load", function () {
 
 
 var siteActions = [{
+  "element": "#cta-bar",
+  "action": require("./hello-bar")
+},{
   "element": "#demo-hover-box",
   "action": require("./widgets/el-demo-hover-box/")
 },{
