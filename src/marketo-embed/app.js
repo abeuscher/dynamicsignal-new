@@ -48,6 +48,9 @@ window.addEventListener("load", function () {
 });
 
 var siteActions = [{
+  "element": "#cta-bar",
+  "action": require("../js/hello-bar")
+},{
   "element": ".request-demo",
   "action": function (buttons) {
     RequestDemoHandler(buttons, siteSettings);
@@ -79,12 +82,15 @@ var siteActions = [{
 function setMarketoPage() {
   var theOverlay = document.createElement("div");
   theOverlay.id = "overlay";
+  var helloBar = document.createElement("div");
+  theOverlay.id = "cta-bar";
 
   var theWrapper = document.getElementById("wrapper");
   var theHeader = parseHTML(siteSettings.templates.header(siteSettings));
   theWrapper.parentNode.insertBefore(theHeader, theWrapper);
   document.body.appendChild(parseHTML(siteSettings.templates.sideNav(siteSettings)));
   document.body.appendChild(theOverlay);
+  document.body.appendChild(helloBar);
   theWrapper.appendChild(parseHTML(siteSettings.templates.footer(siteSettings)));
   theWrapper.classList.add("marketo-wrapper");
 }

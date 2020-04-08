@@ -46,6 +46,9 @@ window.addEventListener("load", function () {
   }
 });
 var siteActions = [{
+  "element": "#cta-bar",
+  "action": require("../js/hello-bar")
+},{
   "element": ".request-demo",
   "action": function (buttons) {
     RequestDemoHandler(buttons, siteSettings);
@@ -78,6 +81,8 @@ function setUberPage() {
 
   var theOverlay = document.createElement("div");
   theOverlay.id = "overlay";
+  var helloBar = document.createElement("div");
+  helloBar.id = "cta-bar";
 
   // Empty the body into the wrapper
   while (document.body.firstChild) {
@@ -91,6 +96,7 @@ function setUberPage() {
   var theFooter = document.getElementsByTagName("footer")[0];
   theWrapper.replaceChild(parseHTML(siteSettings.templates.footer(siteSettings)), theFooter);
   document.body.append(theOverlay);
+  document.body.append(helloBar);
   var descBlock = document.querySelectorAll(".description-block")[0];
   var uberNav = document.getElementById("top-header");
   if (descBlock) {

@@ -34,11 +34,16 @@
   }
   a.display-button {
     @include bp(s) {
-      background:$blue;
+      background:$white;
+      color:$off-black;
       padding:.1em .5em;
       border-radius:3px;
-      color:$white;
       text-decoration:none;
+      @include ds-transition();
+      &:hover {
+        background:$blue;
+        color:$white;
+      }
     }
   }
   &.active {
@@ -101,6 +106,9 @@
       line-height: 1;
     }
   }
+}
+#cta-bar {
+  background:$orange;
 }
 body.nav-short {
   #cta-bar {
