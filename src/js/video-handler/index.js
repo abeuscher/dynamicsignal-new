@@ -3,9 +3,10 @@ var YouTubePlayer = require("youtube-player");
 var parseHTML = require("../utils/parse-html.js");
 
 /*
-data-video-id : triggers video behavior
-data-video-modal-id : triggers modal behavior
-.video-activator : indicates a play button
+data-video-id : No longer in use. Needs to be removed.
+data-video-modal-id : triggers modal player
+data-video-panel-id : triggers HTML replacement player
+data-multiplayer-id : triggers multiplayer
 */
 
 function videoHandler() {

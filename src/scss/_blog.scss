@@ -534,6 +534,13 @@ ul.social-share li i.fa-circle {
   }
 }
 .speaker-profile {
+  &.float-left {
+    @include bp(s) {
+      width:40%;
+      float:left;
+      margin-right:$gutter-width;
+    }
+  }
   padding: $gutter-width * 2;
   border: 1px solid $blue;
   border-radius: 5px;
