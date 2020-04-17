@@ -1,0 +1,39 @@
+extends inc/page.pug
+block template
+  :php
+    /*
+    Template Name: Features - Quicklinks
+    */
+block nav
+  include ./inc/navbar-toggle.pug
+  include ./inc/side-nav.pug
+  include ./inc/header.pug
+block content
+    section.hero-inner
+        .container
+            .inner
+                .text
+                    :php
+                        printf("<h1 class='white'>%s</h1>", get_field("hero_headline"));
+    section.hero-media
+        .container
+            .inner-image.contain
+                :php
+                    printf("<div class='blog-thumb' data-bg-array='%s'></div>", json_encode(get_field("hero_image"), JSON_UNESCAPED_SLASHES))    
+    :php
+        foreach(get_field("page_sections") as $idx=>$section) {
+            $textcol = sprintf("<h2>%s</h2><div class='blog-content'>%s</div>", $section["header_text"], $section["content"]);    
+            $imagecol = sprintf("<div class='thumb-4-3' data-bg-array='%s'></div>", json_encode($section["section_image"], JSON_UNESCAPED_SLASHES));
+            if ($section["orientation"]=="right") {
+                printf("<section class='alternating-section'><div class='container'><div class='bucket image-right'><div class='col-half text-col'><div class='inner padding-right-m'>%s</div></div><div class='col-half image-col'><div class='inner padding-left-m'>%s</s></div></div></div></section>", $textcol, $imagecol);
+            }
+            else {
+                printf("<section class='alternating-section short-bottom'><div class='container'><div class='bucket image-left'><div class='col-half image-col'><div class='inner padding-right-m'>%s</div></div><div class='col-half text-col'><div class='inner padding-left-m'>%s</div></div></div></div></section>", $imagecol, $textcol);
+            }
+        }   
+    section.bottom-cta.padding-both.double
+        .container
+            .row
+                .col-md-12
+                    p Learn why more than 30 percent of the Fortune 100 use Dynamic Signal.
+                    a.button.cta.knockout.request-demo(href="/requestdemo") Request Demo                    

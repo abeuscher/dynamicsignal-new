@@ -1252,6 +1252,17 @@ ul.blue-bullets {
     background-size: cover;
   }
 }
+.thumb-4-3 {
+  @include aspect-ratio(4, 3);
+  width: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  &.cover {
+    background-size: cover;
+  }
+}
 .alternating-section {
   margin-bottom: $gutter-width * 2;
   &.short-bottom {
@@ -1266,6 +1277,8 @@ ul.blue-bullets {
       flex-basis: 100%;
       @include bp(m) {
         flex-basis: 50%;
+        display:flex;
+        align-items:center;
       }
       &.image-col {
         display: contents;
