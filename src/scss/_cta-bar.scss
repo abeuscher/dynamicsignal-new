@@ -39,7 +39,7 @@
       padding:.1em .5em;
       border-radius:3px;
       text-decoration:none;
-      @include ds-transition();
+      //@include ds-transition();
       &:hover {
         background:$blue;
         color:$white;

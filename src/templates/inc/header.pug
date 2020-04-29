@@ -106,7 +106,7 @@ header#page-header(class=className)
         echo "</li>";
         printf("<li class='%s show-medium'>", $page_classes[5]);
         if (strpos($page_classes[5],"active")<-1) {
-      a.request-demo.cta(href="/requestdemo/") Request a Demo
+      a.request-demo.cta(href="/requestdemo/",data-event="Header Request Demo Click") Request a Demo
       :php
         }
         else {

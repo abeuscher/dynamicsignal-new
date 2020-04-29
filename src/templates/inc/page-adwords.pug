@@ -53,11 +53,11 @@ html
 			echo "<link href='$slink' rel='stylesheet' />";
 	body  
 		#overlay
-		header.page-header#page-header
-			#cta-bar
+		#cta-bar
+		header.page-header.homepage#page-header
 			nav.main
 				a.logo-bucket(href="/")
-					img#logo(src="https://dyrbj6mjld-flywheel.netdna-ssl.com/wp-content/themes/ds-new/images/logo-header.png")
+					include ./logo.pug
 		#wrapper
 			block content
 			footer.lp-footer
