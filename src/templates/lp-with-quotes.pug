@@ -2,7 +2,7 @@ extends inc/page.pug
 block template
   :php
     /*
-    Template Name: Landing Page wih Marketo Form
+    Template Name: Landing Page wih Quotes
     */
 block nav
   include ./inc/navbar-toggle.pug
@@ -27,24 +27,9 @@ block content
   section.signup-form-bucket.white-bg-section.padding-both
     .container
       .row
-        .col-md-6
+        .col-md-12
             :php
                 printf("<div class='wysiwyg-content'>%s</div>", get_field("page_content"));
-        .col-md-6
-          script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
-          #marketo-form-wrapper.blue-form
-            :php
-                printf("<form class='marketo-blue blue-form' id='mktoForm_%s'>", get_field("form_id"));
-            script.
-                var validateCorporateEmail = true;
-            :php
-                echo "</form>";
-          p.form-warning.warning
-            span.asterisk *
-            |  If a form doesn’t appear, please pause or disable your Ad Blocker in your browser and reload this page.
-          p.warning
-            span.asterisk *
-            |  all fields are required.
       :php
         foreach(get_field("testimonials") as $row) {
           printf("<div class='row partners-testimonial-entry'>
