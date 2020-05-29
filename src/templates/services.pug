@@ -20,9 +20,9 @@ block content
     if( have_posts() ){
      while( have_posts() ) {
       the_post();
-
     /* Write integrations logos */
     echo "<script>var pageData = {'logos':".json_encode(get_field("integrations_logos"),JSON_UNESCAPED_SLASHES)
+    .", 'testimonials':".json_encode(get_field('testimonials'),JSON_UNESCAPED_SLASHES)
     ."};</script>";
   section.hero-inner
       .container
@@ -69,6 +69,11 @@ block content
         :php
             printf("</div><div class='pp-val' data-counter-min='0' data-counter-max='%s' id='pp-val-%s'></div><p>%s</p></div></div>", $item["proof_point_value"],$key,$item["proof_point_description"]);
           }
+  section.services-testimonials
+    .container
+      .row
+        .col-md-12
+          #services-testimonial-carousel 
   section.services-integrations.centered.services-bucket
     .container
       .row
@@ -94,7 +99,7 @@ block content
               $slides = [];
               foreach(get_field("services_section_slides") as $key=>$slide) {
                 $new_tab = array("icon"=>$slide["slide_icon"],"title"=>$slide["slide_nav_title"]);
-                $new_slide = sprintf("<div class='services-slide ".($key == 0 ? "active" : "")."' id='services-slide-%s'><h2 class='white'>%s</h2><div class='content white'>%s</div></div>", $key,$slide["slide_header"],$slide["slide_content"]);
+                $new_slide = sprintf("<div class='services-slide ".($key == 0 ? "active" : "")."' id='services-slide-%s'><h2 class='white'>%s</h2><div class='content white'>%s<a class='button white' href='%s'>%s</a></div></div>", $key,$slide["slide_header"],$slide["slide_content"],$slide["cta_link"],$slide["cta_text"]);
                 array_push($tabs,$new_tab);
                 array_push($slides,$new_slide);   
               }
@@ -119,35 +124,6 @@ block content
             foreach($slides as $key=>$slide) {
               echo $slide;
             }
-  section.services-cs.services-bucket
-    .container
-      .row
-        .col-md-12.centered
-          h2
-            :php
-              echo get_field("cs_section_header");
-          h3.subhead
-            :php
-              echo get_field("cs_section_subhead");
-      .row
-        .col-md-12#services-cs-tabs
-          :php
-            $tabs = [];
-            $slides = [];
-            foreach(get_field("cs_section_slides") as $key=>$slide) {
-              $new_tab = sprintf("<a class='tab %s' id='tab-%s' data-tab-index='%s'><span class='label'>%s</span><span class='thingy'></span></a>",($key == 0 ? "active" : ""),$key,$key,$slide["nav_title"]);
-              $new_slide = sprintf("<div class='services-cs-slide %s' id='services-slide-%s'><h2>%s</h2><div class='user-content blog-content'>%s</div></div>", ($key == 0 ? "active" : ""),$key,$slide["slide_title"],$slide["slide_content"]);
-              array_push($tabs,$new_tab);
-              array_push($slides,$new_slide);   
-            }
-            foreach($tabs as $idx=>$tab) {
-              echo $tab;
-            }
-          .the-thin-blue-line
-          :php
-            foreach($slides as $key=>$slide) {
-              echo $slide;
-            }   
   section.services-community  
     :php
       printf("<div class='services-community-header' data-bg-array='%s'><h2 class='white'>%s</h2></div>",json_encode(get_field("community_section_header_image"),JSON_UNESCAPED_SLASHES),get_field("community_header_text"));
@@ -160,8 +136,8 @@ block content
     .container
       .row
         .col-md-12
-          p Learn more about how Dynamic Signal can help you grow your business by connecting, engaging & activating your workforce.
-          a.button.cta(href="/contact-us/") Contact Us
+          :php
+            printf("<p>%s</p><a class='button cta' href='%s'>%s</a>", get_field("bottom_cta_header"), get_field("bottom_cta_link"), get_field("bottom_cta_button_text"));
   :php
       
      }}

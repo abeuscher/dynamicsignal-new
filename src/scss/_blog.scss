@@ -61,8 +61,10 @@ section.blog-hero {
   }
   a {
     text-decoration: underline;
+    color:$header-blue;
     &.button,
     &.apply {
+      color:$white;
       text-decoration: none;
     }
   }

@@ -29,7 +29,7 @@ block content
       .row
         .col-md-6
             :php
-                printf("<div class='wysiwyg-content'>%s</div>", get_field("page_content"));
+                printf("<div class='blog-content'>%s</div>", get_field("page_content"));
         .col-md-6
           script(src='//app-ab04.marketo.com/js/forms2/js/forms2.min.js')
           #marketo-form-wrapper.blue-form
@@ -50,11 +50,13 @@ block content
           printf("<div class='row partners-testimonial-entry'>
                     <div class='col-md-12'>
                       <img class='testimonial-thumb' src='%s' alt='%s' />
-                      <div class='testimonial-body'>%s</div>
-                      <cite class='testimonial-speaker'>
-                        <span class='name'>%s</span>
-                        <span class='title'>%s</span>
-                      </cite>
+                      <div class='testimonial-body'>
+                        <p>%s</p>
+                        <cite class='testimonial-speaker'>
+                          <span class='name'>%s</span>
+                          <span class='title'>%s</span>
+                        </cite>
+                      </div>
                     </div>
                   </div>", $row["photo"]["url"],$row["photo"]["alt"],$row["testimonial"],$row["name"],$row["title"]);
         }

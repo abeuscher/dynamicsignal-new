@@ -80,5 +80,5 @@ block content
         .container
             .row
                 .col-md-12.centered
-                    p Contact us to learn more about our commitment to security
-                    a.button.cta.knockout(href="/contact-us/") Contact Us                         
+                    :php
+                        printf("<p>%s</p><a class='button cta knockout' href='%s'>%s</a>", get_field("bottom_cta_copy"), get_field("bottom_cta_url"), get_field("bottom_cta_button_text"));                    

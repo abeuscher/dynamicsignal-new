@@ -4,9 +4,9 @@
     "gdprCookie": "ds-gdpr",
     "sessionCookie": "ds-count",
     "ctaData": {
-        "content":"Coronavirus (COVID-19) Resources for Executives and Communicators",
+        "content":"What Our Customers Say About Using Dynamic Signal During a Crisis",
         "buttonText":"Learn More",
-        "buttonUrl":"https://dynamicsignal.com/coronavirus",
+        "buttonUrl":"https://dynamicsignal.com/covid-19-testimonials",
         "buttonTarget":"_blank"
     },
     "breakpoints": { // Site breakpoints.

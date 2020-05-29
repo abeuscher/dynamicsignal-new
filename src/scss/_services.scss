@@ -1,290 +1,325 @@
 section.services-header {
-    background-size:cover;
-    background-position:left top;
-    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: left top;
+    background-repeat: no-repeat;
     .services-header-content {
-        padding:$gutter-width*2 0 $gutter-width*3;
+        padding: $gutter-width * 2 0 $gutter-width * 3;
         .button {
-            margin-top:$gutter-width;
-            margin-left:60px;
-          }
+            margin-top: $gutter-width;
+            margin-left: 60px;
+        }
     }
 }
 section.services-integrations {
-    background:$light-gray;
+    background: $light-gray;
     #services-integrations-logos {
         .bucket {
-            width:100%;
-            display:flex;
+            width: 100%;
+            display: flex;
             flex-wrap: wrap;
         }
     }
     .logo-wrapper {
-        flex-basis:25%;
-        @include aspect-ratio(3,1);
-        padding:$gutter-width;
-        background-size:80%;
-        background-position:center center;
-        background-repeat:no-repeat;
+        flex-basis: 25%;
+        @include aspect-ratio(3, 1);
+        padding: $gutter-width;
+        background-size: 80%;
+        background-position: center center;
+        background-repeat: no-repeat;
     }
 }
 section.services-community {
-    padding-top:0;
+    padding-top: 0;
 }
 .services-community-header {
-    background-size:cover;
-    text-align:center;
+    background-size: cover;
+    text-align: center;
     h2 {
-        padding:$gutter-width*3;
+        padding: $gutter-width * 3;
     }
 }
-$checkmark-size:80px;
+$checkmark-size: 80px;
 .checkmark-bucket {
-    position:absolute;
-    background:$white;
-    padding:0 $gutter-width;
-    top:-$checkmark-size/2;
-    left:50%;
-    margin-left:- ($checkmark-size/2 + $gutter-width);
+    position: absolute;
+    background: $white;
+    padding: 0 $gutter-width;
+    top: -$checkmark-size/2;
+    left: 50%;
+    margin-left: -($checkmark-size/2 + $gutter-width);
     .checkmark {
-        width:$checkmark-size;
-        height:$checkmark-size;
+        width: $checkmark-size;
+        height: $checkmark-size;
         box-shadow: inset 0px 0px 0px $white;
-        stroke: $header-blue;;
+        stroke: $header-blue;
 
-        display:inline-block;
-        animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        display: inline-block;
+        animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
         .checkmark-check {
-          animation: stroke .3s $curve .8s forwards;
+            animation: stroke 0.3s $curve 0.8s forwards;
         }
         .checkmark-circle {
-          animation: stroke .6s $curve forwards;
-          fill:$white;
+            animation: stroke 0.6s $curve forwards;
+            fill: $white;
         }
     }
 }
 #services-mapbox {
-    @include aspect-ratio(1350,558);
-    background-size:contain;
-    background-position:center center;
-    transform:scale(.9);
+    @include aspect-ratio(1350, 558);
+    background-size: contain;
+    background-position: center center;
+    transform: scale(0.9);
     &.active {
-        animation:.5s ease-in popmap;
+        animation: 0.5s ease-in popmap;
         animation-fill-mode: forwards;
     }
     @keyframes popmap {
         0% {
-            transform:scale(.9);
+            transform: scale(0.9);
         }
         30% {
-            transform:scale(1.05);
+            transform: scale(1.05);
         }
         60% {
-            transform:scale(1);
+            transform: scale(1);
         }
         100% {
-            transform:sclae(1);
+            transform: sclae(1);
         }
     }
     .suffix {
-        display:none;
-        font-family:$header-font;
+        display: none;
+        font-family: $header-font;
         @include bp(s) {
-            width:70%;
-            left:15%;
-            display:block;
-            top:65%;
-            font-size:1.6em;
+            width: 70%;
+            left: 15%;
+            display: block;
+            top: 65%;
+            font-size: 1.6em;
         }
     }
     .mapbox-number {
-        $mb-height:150px;
-        width:$mb-height;
-        height:$mb-height;
-        background-color:rgba(2,109,201,.7);
+        $mb-height: 150px;
+        width: $mb-height;
+        height: $mb-height;
+        background-color: rgba(2, 109, 201, 0.7);
         background-blend-mode: multiply;
-        border-radius:50%;
-        top:50%;
-        left:50%;
-        margin-top:-$mb-height/2;
-        margin-left:-$mb-height/2;
-        text-align:center;
-        color:$white;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        margin-top: -$mb-height/2;
+        margin-left: -$mb-height/2;
+        text-align: center;
+        color: $white;
         p {
-            font-family:$header-font;
-            font-size:3.5em;
-            font-weight:700;
-            line-height:$mb-height;
-            margin:0;
-            padding:0;
+            font-family: $header-font;
+            font-size: 3.5em;
+            font-weight: 700;
+            line-height: $mb-height;
+            margin: 0;
+            padding: 0;
         }
     }
 }
 .suffix-mobile {
-    display:block;
-    font-family:$header-font;
+    display: block;
+    font-family: $header-font;
     @include bp(s) {
-        display:none;
+        display: none;
     }
 }
 .services-proof-points {
-    padding-top:$gutter-width*3;
+    padding-top: $gutter-width * 3;
     .svc-experience-box {
-        border:1px solid $menu-blue;
-        position:relative;
-        padding:$gutter-width+ $checkmark-size/2 $gutter-width $gutter-width;
+        border: 1px solid $menu-blue;
+        position: relative;
+        padding: $gutter-width + $checkmark-size/2 $gutter-width $gutter-width;
         text-align: center;
         //margin-bottom: $checkmark-size/2;
     }
     .pp-val {
-        font-family:$header-font;
-        font-size:3em;
-        color:$header-blue;
-        font-weight:700;
+        font-family: $header-font;
+        font-size: 3em;
+        color: $header-blue;
+        font-weight: 700;
     }
-
 }
 .services-tabs {
-    display:flex;
-    flex-wrap:nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+    @include bp(s) {
+        width: 60%;
+        margin: 0 auto;
+    }
+
     .tab {
-        display:none;
+        display: none;
         @include bp(s) {
-            display:block;
+            display: block;
         }
-        flex-basis:20%;
+        flex-basis: 33%;
         a {
-            display:block;
-            text-align:center;
+            display: block;
+            text-align: center;
             p {
-                font-size:1.2em;
-                color:$light-gray;
+                font-size: 1.2em;
+                color: $light-gray;
             }
             svg {
-                max-width:100px;
+                max-width: 100px;
             }
-            .stroke{
-                fill:$light-gray;
+            .stroke {
+                fill: $light-gray;
             }
-            .circle{
-                fill:none;
-                stroke:$light-gray;
-                stroke-width:2;
-                stroke-miterlimit:10;
+            .circle {
+                fill: none;
+                stroke: $light-gray;
+                stroke-width: 2;
+                stroke-miterlimit: 10;
                 stroke-dasharray: 300;
                 stroke-dashoffset: 300;
             }
-            &:hover, &.active {
-                .stroke{
-                  fill:$white;
+            &:hover,
+            &.active {
+                .stroke {
+                    fill: $white;
                 }
-                .circle{
-                    stroke:$white;
-                } 
+                .circle {
+                    stroke: $white;
+                }
                 p {
-                    color:$white;
-                    font-weight:700;
+                    color: $white;
+                    font-weight: 700;
                 }
             }
             &.active {
                 .circle {
-                    animation: stroke .3s $curve forwards;
-                }  
+                    animation: stroke 0.3s $curve forwards;
+                }
             }
         }
     }
 }
 #services-cs-tabs {
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     .the-thin-blue-line {
-        border-top:1px dotted $gray;
-        width:100%;
-        margin-top:-.75em;
-        z-index:0;
+        border-top: 1px dotted $gray;
+        width: 100%;
+        margin-top: -0.75em;
+        z-index: 0;
     }
     a {
-        flex-basis:20%;
-        display:none;
-        text-align:center;
-        color:$gray;
-        z-index:1;
+        flex-basis: 20%;
+        display: none;
+        text-align: center;
+        color: $gray;
+        z-index: 1;
         @include bp(s) {
-            display:block;
+            display: block;
         }
         .label {
-            display:block;
-            text-transform:lowercase;
+            display: block;
+            text-transform: lowercase;
             text-transform: capitalize;
         }
         .thingy {
-            border-radius:50% 50% 50% 50%;
-            transform:rotate(-45deg);
-            width:1em;
-            height:1em;
-            background:$gray;
-            display:inline-block;
+            border-radius: 50% 50% 50% 50%;
+            transform: rotate(-45deg);
+            width: 1em;
+            height: 1em;
+            background: $gray;
+            display: inline-block;
         }
-        &.active, &:hover {
-            color:$blue;
-            font-weight:700;
+        &.active,
+        &:hover {
+            color: $blue;
+            font-weight: 700;
             .thingy {
-                background:$blue;
+                background: $blue;
             }
         }
         &.active {
             .thingy {
-                animation:.1s ease-in divot;
+                animation: 0.1s ease-in divot;
                 animation-fill-mode: forwards;
             }
-
         }
     }
     .services-cs-slide {
-        flex-basis:100%;
-        flex-shrink:0;
+        flex-basis: 100%;
+        flex-shrink: 0;
     }
 }
 @keyframes divot {
     0% {
-        border-radius:50% 50% 50% 50%;
-      }
-      100% {
-        border-radius:50% 50% 50% 0;
-      }
-}
-.services-slide, .services-cs-slide {
-    @include bp(s) {
-        display:none;
+        border-radius: 50% 50% 50% 50%;
     }
-    
-    flex-basis:100%;
-    flex-wrap:nowrap;
-    flex-shrink:0;
+    100% {
+        border-radius: 50% 50% 50% 0;
+    }
+}
+.services-slide,
+.services-cs-slide {
+    @include bp(s) {
+        display: none;
+    }
+
+    flex-basis: 100%;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
     &.active {
-        display:block;
+        display: block;
     }
 }
 section.services-services {
-    background:$blue;
+    background: $blue;
 }
 .services-community-image {
-    @include aspect-ratio(4,3);
-    background-size:cover;
+    @include aspect-ratio(4, 3);
+    background-size: cover;
     background-position: center center;
-    border:1px solid $gray;
+    border: 1px solid $gray;
 }
 section.services-community {
     a {
-        text-decoration:underline;
+        text-decoration: underline;
         &:hover {
             text-decoration: none;
         }
     }
     .row {
-        margin-bottom:$gutter-width;
+        margin-bottom: $gutter-width;
     }
 }
 .services-bucket {
-    padding:$gutter-width*3 0;
+    padding: $gutter-width * 3 0;
+}
+section.services-testimonials {
+    padding-bottom:$gutter-width*3;
+    .flickity-button {
+        display:none;
+    }
+    p.quote {
+        padding:$gutter-width*2 0 0;
+        flex-basis: 100%;
+        text-align: center;
+        min-height:4em;
+    }
+    cite {
+        display: block;
+        font-size: 1.4em;
+        font-style: normal;
+    }
+    .slide {
+        flex-wrap: wrap;
+        margin-bottom: $gutter-width;
+    }
+    .logo-thumb {
+        @include aspect-ratio(4, 2);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        max-width:200px;
+        margin:-$gutter-width auto;
+    }
 }

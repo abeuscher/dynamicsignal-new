@@ -165,6 +165,13 @@ a {
     padding-top: 80px;
   }
 }
+.padding-top-oldpage {
+  padding-top: 120px;
+  @include bp(s) {
+    padding-top: 180px;
+  }
+}
+
 body.nav-short {
   .margin-top-header {
     margin-top: $nav-short;

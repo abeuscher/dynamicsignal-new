@@ -82,6 +82,10 @@ var siteActions = [{
   "element": "#customer-stories-carousel",
   "action": require("./widgets/customer-stories-carousel/")
 }, {
+},{
+  "element": "#services-testimonial-carousel",
+  "action": require("./widgets/services-testimonial-carousel/")
+}, {
   "element": "#platform-graph",
   "action": require("./widgets/el-platform-graph/")
 }, {

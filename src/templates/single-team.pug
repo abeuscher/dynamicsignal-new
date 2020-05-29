@@ -11,20 +11,10 @@ block nav
   include ./inc/header.pug
 block content
   :php
-    $breadcrumbs = [];
-    array_push($breadcrumbs,array(
-      "title"=>"Company",
-      "link"=>"/company/"
-    ));
-    array_push($breadcrumbs,array(
-      "title"=>"Team",
-      "link"=>"/team/"
-    ));
-  :php
     if( have_posts() ){
      while( have_posts() ) {
       the_post();
-  section.container.blog-content.padding-top-header
+  section.container.blog-content.padding-top-oldpage
     .row
       .col-md-12
         article.blog-post

@@ -2,18 +2,30 @@
   margin-bottom: $gutter-width;
   border-top: 1px solid $gray;
   padding: $gutter-width 0;
+  .col-md-12 {
+    text-align:center;
+    @include bp(m) {
+      text-align:left;
+      display:flex;
+      align-items:center;      
+    }
+
+  }
   .testimonial-thumb {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    float: left;
-    margin-right: $gutter-width * 2;
+    flex-basis:170px;
   }
   .testimonial-body {
     font-weight: 100;
     font-size: 17.5px;
     line-height: 1.25;
     margin-bottom: $gutter-width/2;
+    @include bp(m) {
+      padding-left:$gutter-width*2;
+    }
+    
   }
   .testimonial-speaker {
     font-style: normal;

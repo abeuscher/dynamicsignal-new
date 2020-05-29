@@ -35,11 +35,19 @@ block content
           printf("<div class='row partners-testimonial-entry'>
                     <div class='col-md-12'>
                       <img class='testimonial-thumb' src='%s' alt='%s' />
-                      <div class='testimonial-body'>%s</div>
-                      <cite class='testimonial-speaker'>
-                        <span class='name'>%s</span>
-                        <span class='title'>%s</span>
-                      </cite>
+                      <div class='testimonial-body'>
+                        <p>%s</p>
+                        <cite class='testimonial-speaker'>
+                          <span class='name'>%s</span>
+                          <span class='title'>%s</span>
+                        </cite>
+                      </div>
                     </div>
                   </div>", $row["photo"]["url"],$row["photo"]["alt"],$row["testimonial"],$row["name"],$row["title"]);
         }
+  section.bottom-cta.padding-both.double
+      .container
+          .row
+              .col-md-12
+                  :php
+                    printf("<p>%s</p><a class='button cta knockout' href='%s'>%s</a>", get_field("cta_content"),get_field("cta_url"),get_field("cta_button_text"))        
