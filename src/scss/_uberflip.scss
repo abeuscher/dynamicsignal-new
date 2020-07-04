@@ -90,6 +90,10 @@
   width: 100%;
   position: relative;
   display: block;
+  .page-width {
+    margin: 0;
+    padding-top:$cta-bar-short;
+  }  
   .top-nav {
     background: $lighter-gray;
     border-bottom: 1px solid $orange;
@@ -109,11 +113,11 @@
       background: transparent;
       border: none;
     }
+    .page-width {
+      padding-top:0;
+    }
   }
-  .page-width {
-    margin: 0;
-    padding-top:$cta-bar-short;
-  }
+
   .related {
     .carousel-nav {
       display: none !important;

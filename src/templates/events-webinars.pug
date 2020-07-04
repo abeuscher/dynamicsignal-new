@@ -11,7 +11,7 @@ block nav
 block content
   :php
     $override_title = "Webinars";
-  :php
+    $subhead = sprintf("<p class='white centered'>%s</p>",get_field("subhead_copy"));
     $all_events = [];
     $args = array(
           'post_type' => 'event',
@@ -67,6 +67,8 @@ block content
     .container
       .inner
         .text#events-header
+        :php
+          echo $subhead;
   section
     #hubs-container
       #top-header

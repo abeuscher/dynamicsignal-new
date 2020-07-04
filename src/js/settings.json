@@ -4,9 +4,9 @@
     "gdprCookie": "ds-gdpr",
     "sessionCookie": "ds-count",
     "ctaData": {
-        "content":"What Our Customers Say About Using Dynamic Signal During a Crisis",
+        "content":"Social Justice Resources for Executives and Communicators",
         "buttonText":"Learn More",
-        "buttonUrl":"https://dynamicsignal.com/covid-19-testimonials",
+        "buttonUrl":"https://resources.dynamicsignal.com/social-justice-resources-for-executives-and-communicators",
         "buttonTarget":"_blank"
     },
     "breakpoints": { // Site breakpoints.

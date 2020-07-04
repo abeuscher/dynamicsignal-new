@@ -3,7 +3,11 @@
   .col-md-12
     .event-thumb.no-gradient(data-bg=bg)
     .event-info
-      h3.bump!=locals.title
+      if locals.webinar_recording_link
+        a(href=locals.webinar_recording_link)
+          h3.bump!=locals.title
+      else
+        h3.bump!=locals.title
       p      
         span!=locals.start_month + " "
         span!=locals.start_day + ", "

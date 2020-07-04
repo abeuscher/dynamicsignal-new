@@ -1,7 +1,7 @@
 - var bg = locals.thumb ? locals.thumb.sizes.large : "";
 .row.event-listing
   .col-md-12
-    a.event-thumb(data-bg=bg,href=locals.url)
+    a.event-thumb(data-bg=bg,href=locals.url ? locals.url : locals.webinar_recording_link)
       span.month!=locals.start_month
       span.date!=locals.start_day
       if locals.start_time

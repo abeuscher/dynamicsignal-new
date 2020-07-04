@@ -2,7 +2,11 @@
   .col-md-12
     .inner
       p!=locals.start_month + " " + locals.start_day + ", " + locals.start_year
-      h3!=locals.title
+      if locals.webinar_recording_link
+        a(href=locals.webinar_recording_link)
+          h3.bump!=locals.title
+      else
+        h3.bump!=locals.title
       .buttons.narrow
         if locals.webinar_recording_link
           a.button(href=locals.webinar_recording_link) Full Recording
