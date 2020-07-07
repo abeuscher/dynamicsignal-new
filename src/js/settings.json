@@ -4,9 +4,9 @@
     "gdprCookie": "ds-gdpr",
     "sessionCookie": "ds-count",
     "ctaData": {
-        "content":"Social Justice Resources for Executives and Communicators",
+        "content":"COVID-19 Resources for Executives and Communicators",
         "buttonText":"Learn More",
-        "buttonUrl":"https://resources.dynamicsignal.com/social-justice-resources-for-executives-and-communicators",
+        "buttonUrl":"https://resources.dynamicsignal.com/covid-19-resources-for-executives-and-communicators",
         "buttonTarget":"_blank"
     },
     "breakpoints": { // Site breakpoints.

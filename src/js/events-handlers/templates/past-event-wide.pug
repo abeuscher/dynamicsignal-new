@@ -1,7 +1,11 @@
 - var bg = locals.thumb ? locals.thumb.sizes.large : "";
 .row.event-listing
   .col-md-12
-    .event-thumb.no-gradient(data-bg=bg)
+    if locals.webinar_recording_link
+      a(href=locals.webinar_recording_link)
+        .event-thumb.no-gradient(data-bg=bg)
+    else
+      .event-thumb.no-gradient(data-bg=bg)
     .event-info
       if locals.webinar_recording_link
         a(href=locals.webinar_recording_link)
