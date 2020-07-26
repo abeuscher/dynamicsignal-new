@@ -14,16 +14,23 @@ block content
       .inner
         .text
           h1.white The Value We Deliver
-  section.white-bg-section.padding-both
-    .container
-      .row
-        :php
-          foreach(get_field("sections") as $idx=>$section) {
-            printf("<div class='col-md-12'><h2>%s</h2></div>", $section["title"]);
-            foreach($section["thumbs"] as $key=>$thumb) {
-              printf("<div class='col-md-4 padding-bottom'><a class='story-tile-link' href='%s'><div class='featured-thumb' data-bg-array='%s'></div><h3>%s</h3></a></div>", $thumb["url"], json_encode($thumb["image"]), $thumb["title"]);
+  :php
+    foreach(get_field("panel") as $idx=>$section) {
+            $orientation = $section["orientation"];
+            
+            $img_bucket = sprintf("<div class='col-half image-col'><div class='features-image' data-bg-array='%s'></div></div>",json_encode($section["image"], JSON_UNESCAPED_SLASHES));
+            
+            $bullets = "";
+            
+            foreach($section["bullet_links"] as $i=>$bullet) {
+                $bullets .= sprintf("<li><span class='icon'></span><span class='text'><a href='%s'>%s</a></span></li>", $bullet["bullet_link"], $bullet["bullet_text"]);
             }
-          }
+            
+            $text_bucket = sprintf("<div class='col-half text-col'><div class='inner'><h3>%s</h3><p>%s</p><ul class='blue-bullets'>%s</ul></div></div>", $section["header"], $section["copy"], $bullets);
+            $content = $orientation == "left" ? $img_bucket.$text_bucket : $text_bucket.$img_bucket;
+            printf("<section class='features-section solutions-variant white-bg-section padding-both'><div class='container'><div class='bucket %s'>%s</div></div></section>", "image-".$orientation, $content);
+
+    }
   section.bottom-cta.padding-both.double
     .container
         .row

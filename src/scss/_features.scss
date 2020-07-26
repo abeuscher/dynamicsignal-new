@@ -186,6 +186,21 @@
     
     
   }
+  &.solutions-variant {
+    padding:$gutter-width 0;
+    @include bp(m) {
+      padding:$gutter-width*2 0;
+    }
+
+    .features-image {
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-position:center top;
+    }
+    .text-col .inner {
+      padding:$gutter-width;
+    }
+  }
 }
 .features-bottom-section {
   margin-top:$gutter-width*2;
