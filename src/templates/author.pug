@@ -5,7 +5,8 @@ block template
     Template Name: Author Article Listing
     */
     $override_title = "Author : " . get_author_name();
-    $override_description = get_the_author_meta('description');
+    $paged = (get_query_var('paged')) ? " Page " . get_query_var('paged') : "";
+    $override_description = get_the_author_meta('description').$paged;
 block nav
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug

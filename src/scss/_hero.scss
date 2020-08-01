@@ -167,7 +167,10 @@
     display: flex;
     align-items: center;
     p.author {
-      flex-basis: 80%;
+      flex-basis: 50%;
+      @include bp(m) {
+        flex-basis: 80%;
+      }
     }
     .social-share {
       float: right;

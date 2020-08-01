@@ -1,108 +1,129 @@
 .solutions-carousel {
-    margin-bottom:$gutter-width*2;
+    margin-bottom: $gutter-width * 2;
     .container {
-        width:100%;
+        width: 100%;
         h2 {
-            margin-top:0;
+            margin-top: 0;
         }
         span.blue {
-            color:$header-blue;
+            color: $header-blue;
         }
     }
 }
 
 .solutions-logo-bottom {
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center center;
-    @include aspect-ratio(4,3);
-    width:29%;
-    margin:0 2%;
-    display:inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    @include aspect-ratio(4, 3);
+    width: 29%;
+    margin: 0 2%;
+    display: inline-block;
     @include bp(m) {
-        width:12%
+        width: 12%;
     }
 }
 .slide-logo {
-    min-width:100%;
-    min-height:40px;
-    background-repeat:no-repeat;
-    background-size:contain;
-    background-position:center bottom;
+    min-width: 100%;
+    min-height: 40px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center bottom;
     @include bp(s) {
-        min-width:100px;
-        max-width:300px;
-        min-height:auto;
-        width:33%;
-        @include aspect-ratio(3,1);
-        background-position:left bottom;
+        min-width: 100px;
+        max-width: 300px;
+        min-height: auto;
+        width: 33%;
+        @include aspect-ratio(3, 1);
+        background-position: left bottom;
     }
 }
 .solutions-slide-image {
-    background-size:cover;
-    background-repeat:no-repeat;
-    @include aspect-ratio(4,3);
-    width:100%;
-    background-position:center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include aspect-ratio(4, 3);
+    width: 100%;
+    background-position: center center;
     &.tab-image {
-        background-size:contain;
+        background-size: contain;
     }
 }
 ul.tab-nav {
-    list-style:none;
-    display:flex;
-    flex-wrap:nowrap;
-    margin:0 0 1em;
-    padding:0;
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0 0 1em;
+    padding: 0;
     li {
-        flex-basis:31%;
-        margin-right:1%;
-        border-bottom:3px solid $light-gray;
-        padding:1em 0 .5em;
+        flex-basis: 31%;
+        margin-right: 1%;
+        border-bottom: 3px solid $light-gray;
+        padding: 1em 0 0.5em;
         &.active {
-            border-color:$header-blue;  
+            border-color: $header-blue;
             a {
-                color:$header-blue;
+                color: $header-blue;
             }
             position: relative;
             &:after {
-                content:'';
-                @include arrow(bottom,$header-blue,10px);
-                position:absolute;
-                left:50%;
-                margin-left:-10px;
-                bottom:-10px; 
+                content: "";
+                @include arrow(bottom, $header-blue, 10px);
+                position: absolute;
+                left: 50%;
+                margin-left: -10px;
+                bottom: -10px;
             }
         }
         a {
-            font-family:$header-font;
-            display:block;
-            font-size:.75em;
-            text-align:center;
-            text-decoration:none;
-            line-height:1.4;
-            margin:0;
+            font-family: $header-font;
+            display: block;
+            font-size: 0.75em;
+            text-align: center;
+            text-decoration: none;
+            line-height: 1.4;
+            margin: 0;
             @include bp(s) {
-                font-size:1.8em;
+                font-size: 1.8em;
             }
         }
         &:last-child {
-            margin-right:0;
+            margin-right: 0;
         }
     }
 }
 .tab-panel {
-    display:none;
+    display: none;
     &.active {
-        display:block;
+        display: block;
     }
 }
 section.tabs {
-    background:$lighter-gray;
+    background: $lighter-gray;
     .blog-content {
-        padding-bottom:0;
+        padding-bottom: 0;
     }
 }
 section.features-link {
-    padding-top:0;
+    padding-top: 0;
+}
+.solutions-variant {
+    .blue-bullets {
+        li {
+            padding-left: 0;
+            @include bp(m) {
+                padding-left: 30px;
+            }
+        }
+    }
+    .image-left {
+        .blue-bullets {
+            @include bp(m) {
+                display: flex;
+                flex-wrap: wrap;
+                li {
+                    flex-basis: 50%;
+                }
+            }
+        }
+    }
 }

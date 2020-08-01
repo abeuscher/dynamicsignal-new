@@ -5,14 +5,14 @@ block template
     Template Name: Blog View All
     */
     $override_title = "DySi Blog";
+    $paged = (get_query_var('paged')) ? " Page " . get_query_var('paged') : "";
+    $override_description = "View recent Dynamic Signal blogs about Employee Communication and Engagement.$paged";
 block nav
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
   :php
-    
-
     $featured_ids = [];
     $args = array(
       'posts_per_page' => 1,
