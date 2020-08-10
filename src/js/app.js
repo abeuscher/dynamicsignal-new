@@ -62,14 +62,17 @@ window.addEventListener("load", function () {
 
 
 var siteActions = [{
+  "element": ".blog-faq-block",
+  "action": require("./schema-tagger")
+}, {
   "element": "#cta-bar",
   "action": require("./hello-bar")
-},{
+}, {
   "element": "#demo-hover-box",
   "action": require("./widgets/el-demo-hover-box/")
-},{
+}, {
   "element": "#page-header",
-  "action": function(els) {
+  "action": function (els) {
     PageResizeHandler(siteSettings.breakpoints);
   }
 }, {
@@ -78,11 +81,11 @@ var siteActions = [{
 }, {
   "element": "#services-mapbox",
   "action": require("./widgets/el-services-map/")
-},{
+}, {
   "element": "#customer-stories-carousel",
   "action": require("./widgets/customer-stories-carousel/")
 }, {
-},{
+}, {
   "element": "#services-testimonial-carousel",
   "action": require("./widgets/services-testimonial-carousel/")
 }, {

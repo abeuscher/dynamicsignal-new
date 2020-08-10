@@ -13,7 +13,8 @@ block content
     .container
       .inner
         .text
-          h1.white The Value We Deliver
+          :php
+            printf("<h1 class='white'>%s</h1><p class='white'>%s</p>", get_field("header_title"), get_field("header_copy"));
   :php
     foreach(get_field("panel") as $idx=>$section) {
             $orientation = $section["orientation"];
