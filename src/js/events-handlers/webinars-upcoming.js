@@ -51,7 +51,7 @@ function WebinarsUpcoming(els) {
             header.classList.add("white");
             headerEl.append(header);
         }
-        header.innerHTML = "Past Webinars";
+        header.innerHTML = "Events & Webinars";
         for (i = 0; i < pastEvents.length; i++) {
             var thisEvent = pastEvents[i];
             pastBucket.append(parseHTML(templates.pastEventWide(thisEvent)));
