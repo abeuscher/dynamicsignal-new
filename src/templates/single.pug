@@ -19,6 +19,12 @@ block content
       $showcta = get_field("show_cta")[0];
       $start_date = get_the_date();
   :php
+    $popup = get_field("scrolling_popup");
+    if ($popup["headline"] && $popup["link"]) {
+      $thumb = $popup["image"] ? sprintf("<div class='thumb' data-bg-array='%s'></div>", json_encode($popup["image"],JSON_UNESCAPED_SLASHES)) : "";
+      $cta = $popup["cta_label"] ? sprintf("<div class='button knockout'>%s</div>",$popup["cta_label"]) : "";
+      printf("<div class='scrolling-popup' data-scroll-percentage='%s'><div class='close-button'>×</div><a href='%s'><h3>%s</h3><div class='inner'>%s<p>%s</p>%s</div></a></div>", $popup["reveal_at_page_percentage"],$popup["link"],$popup["headline"],$thumb,$popup["content"],$cta);
+    }
     printf("<article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'>",get_the_ID());
   meta(itemscope='itemscope',itemprop='mainEntityOfPage',itemType='https://schema.org/WebPage')
   section.hero-inner

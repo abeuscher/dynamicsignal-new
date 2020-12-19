@@ -212,6 +212,9 @@ var siteActions = [{
   "element": ".search-form",
   "action": require("./search-form-init/")
 }, {
+  "element": "[data-scroll-percentage]",
+  "action": require("./widgets/scrolling-popup/")
+}, {
   "element": "[data-counter-min]",
   "action": function () {
     new DigitCounter(siteSettings.scrollController);

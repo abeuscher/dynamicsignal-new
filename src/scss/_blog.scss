@@ -599,3 +599,65 @@ ul.social-share li i.fa-circle {
     }
   }
 }
+
+.scrolling-popup {
+  @include ds-transition();
+  transform:translateX(120%);
+  position:fixed;
+  bottom:100px;
+  right:0;
+  width:80%;
+  max-width:450px;
+  background-color: $white;
+  z-index:99;
+  border:2px solid $blue;
+  box-shadow:0 0 15px rgba(0,0,0,.75);
+  font-size:.8em;
+  .close-button {
+    @include ds-transition();
+    position:absolute;
+    top:-.75em;
+    left:-.75em;
+    font-size:2em;
+    color:$white;
+    background:$menu-blue;
+    border-radius:50%;
+    text-align: center;
+    height:1.25em;
+    width:1.25em;
+    &:hover {
+      background:lighten($menu-blue,10%);
+      cursor: pointer;
+    }
+  }
+  &.active {
+    transform:translateX(0);
+  }
+  &.closed {
+    display:none;
+  }
+  h3 {
+    margin:20px;
+  }
+  h3,p,a {
+    &:hover {
+      color:$black;
+    }
+  }
+  p {
+    font-size:14px;
+  }
+  .thumb {
+    width:150px;
+    float:left;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position:center top;
+    @include aspect-ratio(4,4);
+    margin:.5em $gutter-width/2 0 0;
+  }
+  .inner {
+    padding:0 $gutter-width/2 $gutter-width/2;
+
+  }
+}
