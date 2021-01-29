@@ -4,9 +4,9 @@
     "gdprCookie": "ds-gdpr",
     "sessionCookie": "ds-count",
     "ctaData": {
-        "content":"COVID-19 Resources for Executives and Communicators",
-        "buttonText":"Learn More",
-        "buttonUrl":"https://resources.dynamicsignal.com/covid-19-resources-for-executives-and-communicators",
+        "content":"Upcoming Webinar: Start the Year with a Comms Audit",
+        "buttonText":"Register Now",
+        "buttonUrl":"https://diycommsaudit.splashthat.com/2021",
         "buttonTarget":"_blank"
     },
     "breakpoints": { // Site breakpoints.

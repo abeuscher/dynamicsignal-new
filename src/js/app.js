@@ -65,9 +65,6 @@ var siteActions = [{
   "element": ".blog-faq-block",
   "action": require("./schema-tagger")
 }, {
-  "element": "#cta-bar",
-  "action": require("./hello-bar")
-}, {
   "element": "#demo-hover-box",
   "action": require("./widgets/el-demo-hover-box/")
 }, {
