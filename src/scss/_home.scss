@@ -20,9 +20,18 @@ section.homepage-partners {
     padding-bottom: 25vw;
   }
 }
+.phone-section {
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: normal;
+    padding-bottom: $gutter-width;
+  }
+}
 .vertical-carousel {
   position: relative;
   display: flex;
+
   .carousel-images {
     display: none;
     flex-basis: 50%;
@@ -42,7 +51,7 @@ section.homepage-partners {
       top: 0;
       right: 0;
       bottom: 0;
-      background: url($img-path+"iphoneframe.png") no-repeat center top;
+      background: url($img-path + "iphoneframe.png") no-repeat center top;
       background-repeat: no-repeat;
       background-size: contain;
     }
@@ -66,10 +75,13 @@ section.homepage-partners {
         transform: translateY(0.8%);
       }
       &.position-2 {
-        transform: translateY(-32.5%);
+        transform: translateY(-25%);
       }
       &.position-3 {
-        transform: translateY(-65.8%);
+        transform: translateY(-50%);
+      }
+      &.position-4 {
+        transform: translateY(-75%);
       }
     }
   }
@@ -195,7 +207,7 @@ body.modal-open {
     @include bp(m) {
       display: flex;
       align-content: space-between;
-      flex-wrap:wrap;
+      flex-wrap: wrap;
       .demo-video-bucket {
         flex-basis: 30%;
         .inner {
@@ -206,7 +218,7 @@ body.modal-open {
   }
 }
 .demo-videos {
-  background: url($img-path+"bg-home-bluetriangle.jpg") no-repeat center center;
+  background: url($img-path + "bg-home-bluetriangle.jpg") no-repeat center center;
   background-size: cover;
   position: relative;
   .demo-video-wrapper {
@@ -233,7 +245,7 @@ body.modal-open {
     @include bp(m) {
       display: flex;
       align-content: space-between;
-      flex-wrap:wrap;
+      flex-wrap: wrap;
       .demo-video-bucket {
         flex-basis: 33%;
         .button-wrapper {
@@ -311,7 +323,7 @@ section.home-featured-article {
 }
 .home-featured-ebook {
   position: relative;
-  background: url($img-path+"bg-home-orangecrush.jpg") no-repeat left center;
+  background: url($img-path + "bg-home-orangecrush.jpg") no-repeat left center;
   background-size: cover;
   padding: $gutter-width * 3 0;
   h3 {
@@ -365,11 +377,12 @@ section.home-featured-article {
     }
   }
 }
-section.customer-stories, section.services-testimonials {
+section.customer-stories,
+section.services-testimonials {
   .slide {
     width: 100%;
     display: flex;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     .thumb {
       @include aspect-ratio(16, 9);
       background-size: cover;
@@ -383,7 +396,7 @@ section.customer-stories, section.services-testimonials {
     }
     .content {
       flex-basis: 100%;
-      margin-top:$gutter-width;
+      margin-top: $gutter-width;
       @include bp(m) {
         flex-basis: 50%;
         margin: $gutter-width;
@@ -391,14 +404,14 @@ section.customer-stories, section.services-testimonials {
       }
     }
     @include bp(m) {
-      flex-wrap:nowrap;
+      flex-wrap: nowrap;
     }
   }
   .logo-slide {
     width: 16.75%;
     .logo-thumb {
       opacity: 0.4;
-      margin:0 $gutter-width;
+      margin: 0 $gutter-width;
       @include aspect-ratio(16, 9);
       background-size: contain;
       background-repeat: no-repeat;

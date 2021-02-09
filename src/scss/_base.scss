@@ -913,6 +913,11 @@ section.fullpic {
     }
   }
   &.homepage {
+    .inner .col-half.text {
+      @include bp(m) {
+        flex-basis:60%;
+      }
+    }
     .header-bg {
       background-position: top right;
     }

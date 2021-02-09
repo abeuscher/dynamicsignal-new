@@ -9,17 +9,17 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  section.video-page-title
+  section.hero-inner.text-only
     .container
-      .row
-        .col-md-12
-          h1
+      .inner
+        .text
+          h1.white
             :php
               the_title();
   :php
     $content = get_field("content_above_video");
     if ($content!="") {
-  section.no-padding
+  section.no-padding.white-bg-section
     .container
       .row
         .col-md-12.blog_content
@@ -27,7 +27,7 @@ block content
             printf("%s", $content);
   :php
     }
-  section
+  section.white-bg-section
     .container
       .row
         .col-md-12.blog-content
@@ -36,7 +36,7 @@ block content
   :php
     $content = get_field("content_below_video");
     if ($content!="") {  
-  section
+  section.white-bg-section
     .container
       .row
         .col-md-12.blog_content

@@ -89,7 +89,7 @@ function setMarketoPage() {
     theWrapper.parentNode.insertBefore(theHeader, theWrapper);
     document.body.appendChild(parseHTML(siteSettings.templates.sideNav(siteSettings)));
     document.body.appendChild(theOverlay);
-    document.body.appendChild(helloBar);
+    //document.body.appendChild(helloBar);
     theWrapper.appendChild(parseHTML(siteSettings.templates.footer(siteSettings)));
     theWrapper.classList.add("marketo-wrapper");
   }

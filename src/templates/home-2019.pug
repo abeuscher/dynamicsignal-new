@@ -36,6 +36,11 @@ block content
     .container
       .row
         .col-md-12
+          :php
+            $chead = get_field("carousel_headline");
+            if ($chead!=="") {
+              printf("<h2>%s</h2>",$chead);
+            }
           .vertical-carousel
             :php
               $images = "";
