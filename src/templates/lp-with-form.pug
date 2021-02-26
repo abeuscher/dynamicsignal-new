@@ -39,6 +39,7 @@ block content
                 var validateCorporateEmail = true;
             :php
                 echo "</form>";
+                printf("<script>var formRedirectUrl = '%s';</script>", get_field("form_override_url"));
           p.form-warning.warning
             span.asterisk *
             |  If a form doesn’t appear, please pause or disable your Ad Blocker in your browser and reload this page.

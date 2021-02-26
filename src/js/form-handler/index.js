@@ -166,7 +166,7 @@ FormHandler.prototype.fixForm = function () {
             }
           }
           if (parseInt(theID)!=1163) {
-            location.href = followUpUrl;
+            location.href = formRedirectUrl ? formRedirectUrl : followUpUrl;
           }
           return false;
         });
