@@ -48,7 +48,7 @@ function bundleFile(f) {
     .transform("uglifyify", { global: true })
     .bundle()
     .on('error', function (err) {
-      console.log("ERROR ON:" + f.name + "\nERROR:", err.stack);
+      console.log("ERROR ON:" + f.name + "\nERROR:", JSON.stringify(err));
       return false;
     })
     .pipe(

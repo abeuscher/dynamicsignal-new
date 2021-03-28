@@ -9,7 +9,7 @@
         "buttonUrl":"https://diycommsaudit.splashthat.com/2021",
         "buttonTarget":"_blank"
     },
-    "breakpoints": { // Site breakpoints.
+    "breakpoints": {
         "xs": 0,
         "s": 641,
         "m": 1025,

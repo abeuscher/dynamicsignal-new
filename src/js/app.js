@@ -1,6 +1,9 @@
+var gsap = require('gsap');
+var TweenMax = TweenMax || gsap.TweenMax;
+var TimelineMax = TimelineMax || gsap.TimelineMax;
+
 var ScrollMagic = require("scrollmagic");
 var smoothscroll = require("smoothscroll-polyfill");
-require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
 
 var FormHandler = require("./form-handler/");
 var VideoHandler = require("./video-handler/");

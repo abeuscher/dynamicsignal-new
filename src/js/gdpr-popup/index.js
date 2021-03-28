@@ -1,45 +1,15 @@
-var Cookies = require("js-cookie");
-
-var parseHTML = require("../utils/parse-html.js");
-
-var popup = require("./gdpr-popup.pug");
-
-function TriggerGDPR(siteSettings) {
-  var h = window.location.hostname;
-  var domains = ["dynamicsignal.com", "dynamicsignal.co.uk", "staging.dynamicsignal.flywheelsites.com", "ds.local","dynamicsignal.uberflip.com"];
-  var domain = "dynamicsignal.com";
-  for (i = 0; i < domains.length; i++) {
-    if (h.indexOf(domains[i]) > -1) {
-      domain = domains[i];
-    }
-  }
-  if (!Cookies.get(siteSettings.gdprCookie)) {
-    var warning = parseHTML(popup());
-    document.body.appendChild(warning);
-    document.body.classList.add("gdpr-popup");
-    var yesButton = document.getElementById("btn-yes");
-    window.addEventListener("click", startTheTracking);
-    function startTheTracking(e) {
-      Cookies.set(siteSettings.gdprCookie, "true", {
-        expires: 365,
-        domain: domain
-      });
-      triggerGA();
-      window.removeEventListener("click", startTheTracking);
-      if (e.target == yesButton) {
-        e.preventDefault();
-        warning.remove();
-        document.body.classList.remove("gdpr-popup");
-        return false;
-      }
-      else {
-        yesButton.addEventListener("click", startTheTracking);
-        return true;
-      }
-    }
-  } else {
-    triggerGA();
-  }
+function TriggerGDPR() {
+  let first = document.createElement('script');
+  first.type = "text/javascript";
+  first.src = "https://cdn.cookielaw.org/consent/941d0dfb-c6f7-43fd-a2c9-aaf96cc1ba25-test/OtAutoBlock.js";
+  var s = document.createElement('script');
+  s.type = "text/javascript";
+  s.setAttribute("data-domain-script", "941d0dfb-c6f7-43fd-a2c9-aaf96cc1ba25-test");
+  s.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+  var fs = document.getElementsByTagName('script')[0];  // Get the first script
+  fs.parentNode.insertBefore(first, fs);
+  fs.parentNode.insertBefore(s, fs);
+  s.addEventListener("load", () => { function OptanonWrapper() { } triggerGA() })
 }
 
 function triggerGA() {
