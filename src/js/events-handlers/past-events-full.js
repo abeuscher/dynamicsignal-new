@@ -1,4 +1,4 @@
-var parseHTML = require("../utils/parse-html/");
+var parseHTML = require("../utils/parse-html.js");
 
 var templates = {
     "pastEventWide": require("./templates/past-event-wide.pug"), // Past events full page layout

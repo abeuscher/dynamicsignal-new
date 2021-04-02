@@ -4,20 +4,14 @@ function JobFilter(opts) {
   var self = this;
   this.opts = opts;
   this.opts.container.appendChild(parseHTML(this.opts.template(this.opts.categories)));
-  var filterButtons = document.getElementsByClassName("filter-button");
-  for (i=0;i<filterButtons.length;i++) {
-    var thisButton = filterButtons[i];
-    thisButton.addEventListener("click", function(e) {
-      e.preventDefault();
-      markActive(this);
-      self.opts.jobList.sortList(0,false,JSON.parse(this.getAttribute("data-value")));
-      self.opts.jobList.writeList();
-      document.getElementById("jobs").scrollIntoView({behavior:"smooth"});
-    });
+  let HashCategory=false
+  if (location.hash!=="") {
+    HashCategory=decodeURI(location.hash.replace("#",""))
   }
-  function markActive(el) {
-    for (i=0;i<filterButtons.length;i++) {
-      var thisButton = filterButtons[i];
+  const filterButtons = document.getElementsByClassName("filter-button");
+  const markActive = (el) => {
+    for (let z=0;z<filterButtons.length;z++) {
+      const thisButton = filterButtons[z];
       if(thisButton==el) {
         thisButton.classList.add("active");
       }
@@ -28,6 +22,27 @@ function JobFilter(opts) {
       }
     }
   }
+  for (let i=0;i<filterButtons.length;i++) {
+    let thisButton = filterButtons[i];
+    let thisInfo = JSON.parse(thisButton.getAttribute("data-value"))
+    if (thisInfo) {
+      if (thisInfo.cat_name===HashCategory) {
+        markActive(thisButton)
+      }
+    }
+    thisButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      let thisInfo = JSON.parse(this.getAttribute("data-value"));
+      if (!thisInfo) {
+        location.hash="";
+      }
+      markActive(this);
+      self.opts.jobList.sortList(0,false,thisInfo);
+      self.opts.jobList.writeList();
+      document.getElementById("jobs").scrollIntoView({behavior:"smooth"});
+    });
+  }
+
 }
 
 module.exports = JobFilter;

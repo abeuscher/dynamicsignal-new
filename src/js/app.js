@@ -1,6 +1,7 @@
+let { gsap, TweenMax} = require('gsap');
 var ScrollMagic = require("scrollmagic");
+
 var smoothscroll = require("smoothscroll-polyfill");
-require('../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
 
 var FormHandler = require("./form-handler/");
 var VideoHandler = require("./video-handler/");

@@ -1,8 +1,0 @@
-.bread-crumbs
-	:php
-		$string = "";
-		array_push($breadcrumbs, isset($override_title) ? array("title"=>$override_title,"link"=>"") : array("title"=>get_the_title(),"link"=>""));
-		foreach ($breadcrumbs as $key=> $breadcrumb) {
-			$string .= $key == count($breadcrumbs)-1 ? sprintf("<span>%s</span>",$breadcrumb["title"]) : sprintf("<span><a href='%s'>%s</a></span><div class='separator'>»</div>",$breadcrumb["link"],$breadcrumb["title"]);
-		}
-		echo $string;

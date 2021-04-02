@@ -171,7 +171,9 @@ a {
     padding-top: 180px;
   }
 }
-
+.margin-right {
+  margin-right:$gutter-width;
+}
 body.nav-short {
   .margin-top-header {
     margin-top: $nav-short;

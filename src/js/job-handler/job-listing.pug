@@ -1,4 +1,4 @@
-article.container(class=locals.featured)
+article(class=locals.featured)
   .row
     .col-md-12.no-padding
       if (locals.featured=="yes")
@@ -8,7 +8,6 @@ article.container(class=locals.featured)
           span.fa.fa-star
       else
         h3=locals.post_title   
-      a.button.float-right(href=locals.jobvite_url,target='_blank') Apply
       .job-category-list
         - var categories = {"locations":[],"departments":[]}; //588 for location, 419 for category
         for category,key in locals.categories
@@ -27,5 +26,5 @@ article.container(class=locals.featured)
               span!=department.name      
   .row
     .col-md-12.job-listing-bottom
-      .job-description!=locals.post_content
-      a.job-link(href="/career/"+locals.post_name) Read more
+      a.button.margin-right(href="/career/"+locals.post_name) More
+      a.button(href=locals.jobvite_url,target='_blank') Apply Now

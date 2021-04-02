@@ -17,7 +17,6 @@ JobList.prototype.writeList = function() {
 };
 JobList.prototype.writeFeatured = function() {
   var featured = null;
-  console.log(this.opts.jobs);
   for (i in this.opts.jobs) {
     var thisJob = this.opts.jobs[i];
     if (thisJob.featured.length) {
@@ -31,7 +30,6 @@ JobList.prototype.writeFeatured = function() {
 JobList.prototype.sortList = function(startIndex, limit, category) {
   this.currentJobs = new Array();
   var currentJobs = new Array();
-
   if (category) {
     for (i = 0; i < this.opts.jobs.length; i++) {
       for (c=0;c<this.opts.jobs[i].categories.length;c++) {
@@ -40,8 +38,21 @@ JobList.prototype.sortList = function(startIndex, limit, category) {
         }
       }
     }
+    location.hash = encodeURI(category.cat_name);
   } else {
-    var currentJobs = this.opts.jobs;
+    if (location.hash!=="") {
+      for (i = 0; i < this.opts.jobs.length; i++) {
+        for (c=0;c<this.opts.jobs[i].categories.length;c++) {
+          if (this.opts.jobs[i].categories[c].cat_name===decodeURI(location.hash).replace("#","")) {
+            currentJobs.push(this.opts.jobs[i]);
+          }
+        }
+      }
+    }
+    else {
+      var currentJobs = this.opts.jobs;
+    }
+    
   }
   limit = limit ? limit : this.opts.jobs.length;
   this.currentJobs = currentJobs.slice(startIndex, limit);

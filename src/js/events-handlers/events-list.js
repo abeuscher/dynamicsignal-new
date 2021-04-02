@@ -38,6 +38,7 @@ function EventsList(els) {
       for (i = 0; i < currentEvents.length; i++) {
         bucket.append(parseHTML(templates.eventListing(currentEvents[i])));
       }
+      console.log(currntEvents)
     } else {
       bucket.append(parseHTML(templates.noEvents()))
     }

@@ -1,3 +1,4 @@
+let { TweenMax} = require('gsap');
 var ScrollMagic = require("scrollmagic");
 
 function PlatformSections(els, c) {
