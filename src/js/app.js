@@ -1,5 +1,8 @@
-let { gsap, TweenMax} = require('gsap');
-var ScrollMagic = require("scrollmagic");
+let ScrollMagic = require("scrollmagic");
+let { gsap } = require('gsap');
+let { ScrollMagicPluginGsap } = require("scrollmagic-plugin-gsap");
+
+ScrollMagicPluginGsap(ScrollMagic, gsap);
 
 var smoothscroll = require("smoothscroll-polyfill");
 

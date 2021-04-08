@@ -1,4 +1,4 @@
-let { TweenMax} = require('gsap');
+let { TweenMax, Linear } = require('gsap');
 var ScrollMagic = require("scrollmagic");
 
 function PlatformSections(els, c) {

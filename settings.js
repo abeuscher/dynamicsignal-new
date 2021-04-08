@@ -15,13 +15,13 @@ var assetsBuildDir = buildDir;
 var templateSrcDir = srcDir + "templates/";
 var templateBuildDir = buildDir;
 
-var ukBuildDir = "app/public/wp-content/themes/ds-uk/";
-var ukJsBuildDir = ukBuildDir + "js/";
+var videoScriptSrcDir = srcDir + "video-player-embed/";
+var videoScriptBuildDir = buildDir + "video-player-embed/"
 
 function siteSettings() {
   return {
     siteName: "dynamicsignal.com",
-    directories:[buildDir, jsBuildDir, ukBuildDir, ukJsBuildDir,buildDir + "embed/",buildDir + "uber-embed/",buildDir + "marketo-embed/"],
+    directories:[buildDir, jsBuildDir, buildDir + "embed/",buildDir + "uber-embed/",buildDir + "marketo-embed/",videoScriptBuildDir],
     jsFiles: [
       {
         name: "Main Bundle",
@@ -49,6 +49,13 @@ function siteSettings() {
         srcDir: srcDir + "marketo-embed/",
         srcFileName: "app.js",
         buildDir: buildDir + "marketo-embed/",
+        buildFileName: "bundle.js"
+      },
+      {
+        name: "Video Player Bundle",
+        srcDir: videoScriptSrcDir,
+        srcFileName: "app.js",
+        buildDir: videoScriptBuildDir,
         buildFileName: "bundle.js"
       }
     ],

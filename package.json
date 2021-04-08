@@ -36,6 +36,7 @@
     "youtube-player": "^5.5.0"
   },
   "dependencies": {
+    "scrollmagic-plugin-gsap": "^1.0.4",
     "yarn": "^1.13.0"
   },
   "browserslist": [
