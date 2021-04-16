@@ -30,7 +30,6 @@ function JobFilter(opts) {
     }
     let loc = locMenu.value;
     let dept = deptMenu.value;
-    console.log(loc);
     self.opts.jobList.sortList(0, false, [loc ? JSON.parse(loc) : false, dept ? JSON.parse(dept) : false]);
     self.opts.jobList.writeList();
   }

@@ -57,7 +57,6 @@ JobList.prototype.sortList = function (startIndex, limit, category) {
   var currentJobs = new Array();
   if (category[0] || category[1]) {
     currentJobs = this.opts.jobs.filter(job => { return checkCategory(job, category) });
-    console.log(currentJobs);
     location.hash = "|" + encodeURI(category[0].cat_name) + "|" + encodeURI(category[1].cat_name);
   } else {
     var currentJobs = this.opts.jobs;
