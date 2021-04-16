@@ -1,8 +1,9 @@
-var gsap = require('gsap');
-var TweenMax = TweenMax || gsap.TweenMax;
-var TimelineMax = TimelineMax || gsap.TimelineMax;
+let ScrollMagic = require("scrollmagic");
+let { gsap } = require('gsap');
+let { ScrollMagicPluginGsap } = require("scrollmagic-plugin-gsap");
 
-var ScrollMagic = require("scrollmagic");
+ScrollMagicPluginGsap(ScrollMagic, gsap);
+
 var smoothscroll = require("smoothscroll-polyfill");
 
 var FormHandler = require("./form-handler/");

@@ -2,15 +2,17 @@
 .row.event-listing
   .col-md-12
     a.event-thumb(data-bg=bg,href=locals.url ? locals.url : locals.webinar_recording_link)
-      span.month!=locals.start_month
-      span.date!=locals.start_day
-      if locals.start_time
-        span.time!=locals.start_time
-      if locals.event_time_zone
-        span.timezone!=" ("+locals.event_time_zone+")"
     .event-info
       h3
         a(href=locals.url)!=locals.title
+      p.date
+        span.day!=locals.start_dayname + " "
+        span.month!=locals.start_month + " "
+        span.date!=locals.start_day + ", "
+        if locals.start_time
+          span.time!=locals.start_time
+        if locals.event_time_zone
+          span.timezone!=" ("+locals.event_time_zone+")"
       p!=locals.excerpt
         a(href=locals.url)  read more
       a.button(href=locals.btn_url)!=btn_text

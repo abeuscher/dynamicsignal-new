@@ -27,5 +27,5 @@ article.container(class=locals.featured)
               span!=department.name      
   .row
     .col-md-12.job-listing-bottom
-      .job-description!=locals.post_content
-      a.job-link(href="/career/"+locals.post_name) Read more
+      a.button.margin-right(href="/career/"+locals.post_name) More
+      a.button(href=locals.jobvite_url,target='_blank') Apply Now

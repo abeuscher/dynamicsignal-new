@@ -13,7 +13,7 @@ function WebinarsUpcoming(els) {
     var pastBucket = document.getElementById("events-past");
     var currentEvents = new Array();
     var pastEvents = new Array();
-    var allEvents = collFilter(pageData.events, function (i) { return i.type == "webinar"; });
+    var allEvents = pageData.events;
     allEvents = sortBy(allEvents, function (i) {
         return i.start_date
     });
@@ -24,6 +24,7 @@ function WebinarsUpcoming(els) {
         rightNow.setDate(rightNow.getDate() - 1 /*days*/);
         var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
         if (startDate > rightNow) {
+            console.log(startDate, rightNow)
             currentEvents.push(thisEvent);
         } else {
             pastEvents.push(thisEvent);
@@ -32,7 +33,7 @@ function WebinarsUpcoming(els) {
     if (currentEvents.length > 0) {
         currentEvents.reverse();
         var header = document.createElement("h1");
-        header.innerHTML = "Upcoming Webinars";
+        header.innerHTML = "Events & Webinars";
         header.classList.add("white");
         headerEl.append(header);
         for (i = 0; i < currentEvents.length; i++) {
@@ -51,7 +52,7 @@ function WebinarsUpcoming(els) {
             header.classList.add("white");
             headerEl.append(header);
         }
-        header.innerHTML = "Events & Webinars";
+        header.innerHTML = "Past Events";
         for (i = 0; i < pastEvents.length; i++) {
             var thisEvent = pastEvents[i];
             pastBucket.append(parseHTML(templates.pastEventWide(thisEvent)));

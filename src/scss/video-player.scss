@@ -1,0 +1,16 @@
+@import "./_normalize.scss";
+@import "./_paths.scss";
+@import "./_variables.scss";
+@import "./_sass-mixins.scss";
+@import "./_base.scss";
+@import "./_blog.scss";
+@import "./_grid.scss";
+
+@import "./_modals.scss";
+@import "./_video-players.scss";
+
+.btn-play-video {
+    &:hover {
+        cursor:pointer;
+    }
+}

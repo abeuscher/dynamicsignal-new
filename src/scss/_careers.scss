@@ -87,12 +87,20 @@ section.career-target {
     .job-category-list {
       margin:0;
       span {
-        margin-right:1em;
-        display:inline-block;
+        display:block;
         color:$gray;
+        &:after {
+          content:",";
+        }
+        &:last-child {
+          &:after {
+            content:"";
+          }
+        }
         span {
+          padding-left:.25em;
           color:$blue;
-          display:block;
+          display:inline-block;
         }
       }
     }

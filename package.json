@@ -16,7 +16,7 @@
     "flickity": "^2.1.1",
     "flickity-as-nav-for": "^2.0.1",
     "font-awesome": "^4.7.0",
-    "gsap": "^3.6.0",
+    "gsap": "^3.6.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.0",
     "gulp-css": "^0.1.0",
@@ -36,6 +36,7 @@
     "youtube-player": "^5.5.0"
   },
   "dependencies": {
+    "scrollmagic-plugin-gsap": "^1.0.4",
     "yarn": "^1.13.0"
   },
   "browserslist": [

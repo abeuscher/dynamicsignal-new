@@ -47,7 +47,8 @@ block content
                         script.
                             var validateCorporateEmail = true;
                         :php
-                            echo "</form>"
+                            echo "</form>";
+                            printf("<script>var formRedirectUrl = '%s';</script>", get_field("form_override_url")!=="" ? get_field("form_override_url") : "/thank-you/");
         .container
             .row
                 .col-md-12
