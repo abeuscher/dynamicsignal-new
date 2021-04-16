@@ -8,3 +8,9 @@
 
 @import "./_modals.scss";
 @import "./_video-players.scss";
+
+.btn-play-video {
+    &:hover {
+        cursor:pointer;
+    }
+}

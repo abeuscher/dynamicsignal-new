@@ -1,48 +1,39 @@
 var parseHTML = require("../utils/parse-html.js");
+const GroupBy = require("lodash/groupBy");
 
 function JobFilter(opts) {
   var self = this;
   this.opts = opts;
-  this.opts.container.appendChild(parseHTML(this.opts.template(this.opts.categories)));
-  let HashCategory=false
-  if (location.hash!=="") {
-    HashCategory=decodeURI(location.hash.replace("#",""))
-  }
-  const filterButtons = document.getElementsByClassName("filter-button");
-  const markActive = (el) => {
-    for (let z=0;z<filterButtons.length;z++) {
-      const thisButton = filterButtons[z];
-      if(thisButton==el) {
-        thisButton.classList.add("active");
-      }
-      else {
-        if (thisButton.classList.item("active")) {
-          thisButton.classList.remove("active");
-        }
-      }
+  const splitCategories = GroupBy(this.opts.categories, 'category_parent');
+  const departments = splitCategories['419'];
+  const locations = splitCategories['588'];
+  let filterBox = document.getElementById("job-filter");
+  let currentLoc = false;
+  let currentDept = false;
+  if (location.hash !== "") {
+    let initCategories = location.hash.split("|");
+    if (initCategories[1] !== "undefined") {
+      currentLoc = locations.filter(loc => { return loc.cat_name === initCategories[1] })[0]
+    }
+    if (initCategories[2] !== "undefined") {
+      currentDept = departments.filter(loc => { return loc.cat_name === initCategories[2] })[0]
     }
   }
-  for (let i=0;i<filterButtons.length;i++) {
-    let thisButton = filterButtons[i];
-    let thisInfo = JSON.parse(thisButton.getAttribute("data-value"))
-    if (thisInfo) {
-      if (thisInfo.cat_name===HashCategory) {
-        markActive(thisButton)
-      }
-    }
-    thisButton.addEventListener("click", function(e) {
+  filterBox.appendChild(parseHTML(this.opts.template({ locations: locations, departments: departments, currentLoc: currentLoc, currentDept: currentDept })));
+  const locMenu = filterBox.querySelectorAll(".location-select")[0];
+  const deptMenu = filterBox.querySelectorAll(".dept-select")[0];
+  locMenu.addEventListener("change", sendCategories);
+  deptMenu.addEventListener("change", sendCategories);
+  function sendCategories(e) {
+    if (e) {
       e.preventDefault();
-      let thisInfo = JSON.parse(this.getAttribute("data-value"));
-      if (!thisInfo) {
-        location.hash="";
-      }
-      markActive(this);
-      self.opts.jobList.sortList(0,false,thisInfo);
-      self.opts.jobList.writeList();
-      document.getElementById("jobs").scrollIntoView({behavior:"smooth"});
-    });
+    }
+    let loc = locMenu.value;
+    let dept = deptMenu.value;
+    console.log(loc);
+    self.opts.jobList.sortList(0, false, [loc ? JSON.parse(loc) : false, dept ? JSON.parse(dept) : false]);
+    self.opts.jobList.writeList();
   }
-
+  sendCategories();
 }
-
 module.exports = JobFilter;

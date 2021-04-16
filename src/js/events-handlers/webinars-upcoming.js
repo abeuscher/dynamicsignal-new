@@ -24,6 +24,7 @@ function WebinarsUpcoming(els) {
         rightNow.setDate(rightNow.getDate() - 1 /*days*/);
         var startDate = new Date(thisEvent.start_date + "T00:00:00.000-08:00");
         if (startDate > rightNow) {
+            console.log(startDate, rightNow)
             currentEvents.push(thisEvent);
         } else {
             pastEvents.push(thisEvent);

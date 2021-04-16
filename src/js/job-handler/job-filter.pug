@@ -1,20 +1,13 @@
+mixin selectMenu(data,className,label,current)
+  select(class=className)
+    option(value="")=label 
+    for item in data 
+      option(value=JSON.stringify(item),selected=item===current)=item.cat_name
+
 .job-filter
   .row
     .col-md-12
-      a#show-all.filter-button.active(href="#",type="checkbox",value="showAll") Filter - All
-  .row
-    .col-md-12
-      h4 Location
-    - var locations = ["Boston","Chicago","San Bruno","London","Atlanta","Seattle","New York","East Coast","Belfast","West Coast","Remote","Austin","Washington D.C."];
-    for category in locals
-      if category.cat_name!="Careers" && category.cat_name!="Career Locations" && locations.includes(category.cat_name)
-        .col-md-12
-          a.filter-button(href="#",id=category.slug,type="checkbox",data-value=JSON.stringify(category))=category.cat_name
-            span.job-total=category.total_entries
-    .col-md-12
-      h4 Department
-    for category in locals
-      if category.cat_name!="Careers" && category.cat_name!="Career Locations" && !locations.includes(category.cat_name)
-        .col-md-12
-          a.filter-button(href="#",id=category.slug,type="checkbox",data-value=JSON.stringify(category))=category.cat_name
-            span.job-total=category.total_entries
+      label Location:
+        +selectMenu(locals.locations,"location-select","Select Location",locals.currentLoc)    
+      label Department: 
+        +selectMenu(locals.departments,"dept-select","Select Department",locals.currentDept)
