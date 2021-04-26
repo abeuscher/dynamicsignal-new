@@ -15,12 +15,6 @@ var assetsBuildDir = buildDir;
 var templateSrcDir = srcDir + "templates/";
 var templateBuildDir = buildDir;
 
-<<<<<<< HEAD
-function siteSettings() {
-  return {
-    siteName: "dynamicsignal.com",
-    directories:[buildDir, jsBuildDir, buildDir + "embed/",buildDir + "uber-embed/",buildDir + "marketo-embed/"],
-=======
 var videoScriptSrcDir = srcDir + "video-player-embed/";
 var videoScriptBuildDir = buildDir + "video-player-embed/"
 
@@ -28,7 +22,6 @@ function siteSettings() {
   return {
     siteName: "dynamicsignal.com",
     directories:[buildDir, jsBuildDir, buildDir + "embed/",buildDir + "uber-embed/",buildDir + "marketo-embed/",videoScriptBuildDir],
->>>>>>> dev
     jsFiles: [
       {
         name: "Main Bundle",

@@ -17,7 +17,10 @@ siteSettings.formHandler = new FormHandler();
 siteSettings.scrollController = new ScrollMagic.Controller({
   "loglevel": 0
 });
-
+if (window.location.pathname.indexOf("requestdemo")>-1) {
+  console.log("Demo page");
+  siteSettings.hidedemo=true;
+}
 window.addEventListener("load", function () {
   setMarketoPage();
 

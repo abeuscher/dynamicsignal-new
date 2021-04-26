@@ -81,7 +81,10 @@ header.page-header#page-header
           li
             a(href="https://dynamicsignal.com/events/") Events
       li.show-medium
-        a.request-demo.cta(href="https://dynamicsignal.com/requestdemo/") Request a Demo
+        if locals.hidedemo
+          p.button.cta.inactive-demo-request Request a Demo
+        else
+          a.request-demo.cta(href="https://dynamicsignal.com/requestdemo/") Request a Demo
       li.show-mobile.hide-large
         a.hamburger#toggle-side-nav(href="#",title="menu")
           .line.top
