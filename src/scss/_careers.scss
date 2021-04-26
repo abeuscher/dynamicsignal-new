@@ -73,6 +73,11 @@ section.career-target {
   @include bp(m) {
     padding-top:0;
   }
+  > p {
+    text-align: center;
+    padding-bottom:$gutter-width/2;
+    border-bottom:1px solid $blue;
+  }
   article {
     animation: fader .5s 1;
     @keyframes fader {
@@ -141,10 +146,12 @@ section.career-target {
   }
 }
 .job-filter {
-  background:$light-gray;
-  border:1px solid $classic-gray;
-  border-radius:3px;
-  padding:1em;
+  //background:$light-gray;
+  //border:1px solid $classic-gray;
+  //border-radius:3px;
+  //padding:1em;
+  margin:0 auto;
+  text-align: center;
   a, h4 {
     font-family:$nav-font;
   }

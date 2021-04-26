@@ -5,49 +5,57 @@ block template
     Template Name: Contact Page
     */
 block nav
-  - var header = "white";
   include ./inc/navbar-toggle.pug
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  section.contact-map#map-container.margin-top-header
-    iframe#the-contact-map.embed-responsive-item(src='https://www.google.com/maps/d/u/0/embed?mid=12UcD-a29LLoAjqT2Gbbfr0U3NEVNG69l', width='100%', height='450', frameborder='0', style='border:0', allowfullscreen='')
-  section.container.padding-bottom
-    .row
-      .col-md-offset-1.col-md-5.contact-details
-        p Looking for solutions?
+    section.hero-inner
+        .container
+            .inner
+                .text
+                    :php
+                        printf("<h1 class='white'>%s</h1><p class='white'>%s</p>", get_field("hero_headline"), get_field("hero_subhead"));
+    section.hero-media
+        .container
+            .inner-image.contain
+                :php
+                    printf("<div class='blog-thumb' data-bg-array='%s'></div>", json_encode(get_field("hero_image"), JSON_UNESCAPED_SLASHES));
+    section.container.padding-bottom
+      .row
+        .col-md-offset-1.col-md-5.contact-details
+          p Looking for solutions?
+              br
+              | Check our
+              a.click-here-tag(href='https://support.dynamicsignal.com/', target="_blank")!=" Knowledge Base"
+              | .
+          h2 Dynamic Signal HQ
+          p 851 Traeger Ave, Suite 200
             br
-            | Check our
-            a.click-here-tag(href='https://support.dynamicsignal.com/', target="_blank")!=" Knowledge Base"
-            | .
-        h2 Dynamic Signal HQ
-        p 851 Traeger Ave, Suite 200
-          br
-          | San Bruno, CA 94066
-        p 650.231.2550 tel
-        h2 Chicago:
-        p 20 N Wacker Drive
-          br
-          | Suite 2900
-          br
-          | Chicago, IL 60606
-        h2 Belfast:
-        p The Riverhouse
-          br
-          | 48-60 High St., Belfast
-          br
-          | United Kingdom
-      .col-md-6.contact-form
-        script(src='//app-ab04.marketo.com/js/forms2/js/forms2.js')
-        #marketo-form-wrapper.blue-form
-          form.marketo-blue#mktoForm_1064
-            script.
-              var formRedirectUrl = "/thank-you/";
-        p.warning.form-warning
-          span.asterisk *
-          |  If a form doesn’t appear above, please pause or disable your Ad Blocker in your browser and reload this page.
-        p.warning
-          span.asterisk *
-          |  all fields are required.
-        script.
-          var validateCorporateEmail = true;
+            | San Bruno, CA 94066
+          p 650.231.2550 tel
+          h2 Chicago:
+          p 20 N Wacker Drive
+            br
+            | Suite 2900
+            br
+            | Chicago, IL 60606
+          h2 Belfast:
+          p The Riverhouse
+            br
+            | 48-60 High St., Belfast
+            br
+            | United Kingdom
+        .col-md-6.contact-form
+          script(src='//app-ab04.marketo.com/js/forms2/js/forms2.js')
+          #marketo-form-wrapper.blue-form
+            form.marketo-blue#mktoForm_1064
+              script.
+                var formRedirectUrl = "/thank-you/";
+          p.warning.form-warning
+            span.asterisk *
+            |  If a form doesn’t appear above, please pause or disable your Ad Blocker in your browser and reload this page.
+          p.warning
+            span.asterisk *
+            |  all fields are required.
+          script.
+            var validateCorporateEmail = true;
