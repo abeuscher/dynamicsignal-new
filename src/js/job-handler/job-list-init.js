@@ -11,7 +11,7 @@ var templates = {
 
 function InitJobList(els) {
     var jobs = sortBy(pageData.jobs, function (i) {
-        return i.cat_name
+        return i.post_date
     });
     var categories = sortBy(pageData.categories, function (i) {
         return i.cat_name

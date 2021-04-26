@@ -1,48 +1,4 @@
-var Cookies = require("js-cookie");
-
-var parseHTML = require("../utils/parse-html.js");
-
-var popup = require("./gdpr-popup.pug");
-
-function TriggerGDPR(siteSettings) {
-  var h = window.location.hostname;
-  var domains = ["dynamicsignal.com", "dynamicsignal.co.uk", "staging.dynamicsignal.flywheelsites.com", "ds.local","dynamicsignal.uberflip.com"];
-  var domain = "dynamicsignal.com";
-  for (i = 0; i < domains.length; i++) {
-    if (h.indexOf(domains[i]) > -1) {
-      domain = domains[i];
-    }
-  }
-  if (!Cookies.get(siteSettings.gdprCookie)) {
-    var warning = parseHTML(popup());
-    document.body.appendChild(warning);
-    document.body.classList.add("gdpr-popup");
-    var yesButton = document.getElementById("btn-yes");
-    window.addEventListener("click", startTheTracking);
-    function startTheTracking(e) {
-      Cookies.set(siteSettings.gdprCookie, "true", {
-        expires: 365,
-        domain: domain
-      });
-      triggerGA();
-      window.removeEventListener("click", startTheTracking);
-      if (e.target == yesButton) {
-        e.preventDefault();
-        warning.remove();
-        document.body.classList.remove("gdpr-popup");
-        return false;
-      }
-      else {
-        yesButton.addEventListener("click", startTheTracking);
-        return true;
-      }
-    }
-  } else {
-    triggerGA();
-  }
-}
-
-function triggerGA() {
+function TriggerGDPR() {
   (function (w, d, s, l, i) {
     w[l] = w[l] || [];
     w[l].push({
@@ -56,6 +12,7 @@ function triggerGA() {
     j.src =
       '//www.googletagmanager.com/gtm.js?id=' + i + dl;
     f.parentNode.insertBefore(j, f);
-  })(window, document, 'script', 'dataLayer', 'GTM-MQKZ8M');
+  })(window, document, 'script', 'dataLayer', 'GTM-WTJD9TJ');// MQKZ8M
 }
+
 module.exports = TriggerGDPR;
