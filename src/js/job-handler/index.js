@@ -1,4 +1,5 @@
 var orderBy = require("lodash/orderBy");
+var groupBy = require("lodash/groupBy");
 var parseHTML = require("../utils/parse-html.js");
 
 function JobList(opts) {
@@ -13,11 +14,19 @@ JobList.prototype.writeList = function () {
   heading.classList.add("search-description");
   heading.innerHTML = this.heading;
   this.opts.container.appendChild(heading);
-  for (i in this.currentJobs) {
-    var thisJob = parseHTML(this.opts.template(this.currentJobs[i]));
-    this.opts.container.appendChild(thisJob);
-    thisJob.classList.add("fade-in");
-  }
+  console.log(this.currentJobs)
+  let groupedJobs = groupBy(this.currentJobs,job=>{ let splitJobs = job.categories.filter(category=>{return category.category_parent===419}); return splitJobs.length ? splitJobs[0].name : null});
+  Object.keys(groupedJobs).map(key=>{
+    let thisHeader = document.createElement("h3");
+    thisHeader.innerHTML = key == "null" ? "No Department Assigned" : key;
+    this.opts.container.appendChild(thisHeader);
+    for (i in groupedJobs[key]) {
+      let thisJob = parseHTML(this.opts.template(groupedJobs[key][i]));
+      this.opts.container.appendChild(thisJob);
+      thisJob.classList.add("fade-in");      
+    }
+  })
+
 
 };
 JobList.prototype.writeFeatured = function () {

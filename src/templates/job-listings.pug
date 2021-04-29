@@ -41,5 +41,9 @@ block content
     .",'categories':".json_encode($categories,JSON_UNESCAPED_SLASHES)
     ."};</script>";
   section.white-bg-section.padding-both.double
-    #job-filter.container
-    #job-list.container
+    .container 
+      .row 
+        .col-md-12 
+          #job-filter
+        .col-md-8.col-md-offset-2
+          #job-list

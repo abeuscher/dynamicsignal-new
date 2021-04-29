@@ -1,30 +1,17 @@
-article(class=locals.featured)
-  .row
-    .col-md-6.col-md-offset-3.no-padding
-      if (locals.featured=="yes")
-        h3
-          span.fa.fa-star
-          span!="&nbsp;FEATURED : " + locals.post_title + "&nbsp;"
-          span.fa.fa-star
-      else
-        h3=locals.post_title   
-      .job-category-list
-        - var categories = {"locations":[],"departments":[]}; //588 for location, 419 for category
-        for category,key in locals.categories
-          if category.cat_name!="Careers"
-            if category.category_parent==588
-              - categories.locations.push(category);
-            if category.category_parent==419
-              - categories.departments.push(category);
-        if (categories.locations.length)
-          span.label!=categories.locations.length>1 ? "Locations:" : "Location:"
-            for location in categories.locations
-              span!=location.name
-        if (categories.departments.length)
-          span.label!=categories.departments.length>1 ? "Departments:" : "Department:"
-            for department in categories.departments
-              span!=department.name      
-  .row
-    .col-md-6.col-md-offset-3.job-listing-bottom
-      a.button.margin-right(href="/career/"+locals.post_name) More
-      a.button(href=locals.jobvite_url,target='_blank') Apply Now
+a(href="/career/"+locals.post_name)
+ - var categories = {"locations":[],"departments":[]}; //588 for location, 419 for category
+  for category,key in locals.categories
+    if category.cat_name!="Careers"
+      if category.category_parent==588
+        - categories.locations.push(category);
+  if (locals.featured=="yes")
+    h4
+      span.fa.fa-star
+      span!="&nbsp;FEATURED : " + locals.post_title + "&nbsp;"
+      span.fa.fa-star
+  else
+    h4=locals.post_title   
+    if (categories.locations.length)
+        span.locations
+          for location in categories.locations
+            span!=location.name 
