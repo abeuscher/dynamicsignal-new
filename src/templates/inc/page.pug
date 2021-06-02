@@ -13,6 +13,10 @@ html
     meta(name="twitter:site",content="@Dynamic_Signal")
     link(rel='shortcut icon', href=themeDir + 'images/favicon.ico?v=2') 
     :php
+      $args = array( 'post_type' => 'ctabar', 'posts_per_page' => 1 );
+      $ctabar = get_posts( $args );
+      printf('<script>var ctaData = {"active":%s,"text":%s,"cta_link":%s,"cta_label":%s};</script>',json_encode($ctabar[0]->show_cta_bar),json_encode($ctabar[0]->cta_bar_text),json_encode($ctabar[0]->cta_bar_link_url),json_encode($ctabar[0]->cta_bar_link_text));
+
       global $wp_query;
       $postid = $wp_query->post->ID;
       if ($override_title!="") {

@@ -9,18 +9,33 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-  section.hero-inner
+  section.hero-inner.text-only
       .container
           .inner    
               .text
                   h1.white
                       :php
                             echo get_field("page_title");
-  section.hero-media
-    .container
-        .inner-image
+  :php
+    if (count(get_field("header_proof_points")) > 0) {
+  section.hero-case-study
+    .container.no-padding
+        .col-md-6.no-padding
             :php
-                printf("<div class='blog-thumb' data-bg-array='%s'></div>", json_encode(get_field("header_bg"),JSON_UNESCAPED_SLASHES))
+              printf("<div class='hero-thumb' data-bg-array='%s'></div>", json_encode(get_field("header_bg"),JSON_UNESCAPED_SLASHES));
+
+        .col-md-6.padding-both
+            :php
+              if (get_field("header_logo")) {
+                printf("<div class='logo-header' data-bg-array='%s'></div>", json_encode(get_field("header_logo"),JSON_UNESCAPED_SLASHES));
+              }
+              if (count(get_field("header_proof_points")) > 0) {
+                foreach (get_field("header_proof_points") as $point) {
+                  printf("<p><span class='blue-number'>%s</span><span class='text'>%s</span></p>", $point["number"],$point["text"]);
+                }                
+              }
+  :php
+    }
   section
     .container
       .row.case-study-stats
@@ -46,6 +61,16 @@ block content
                 else {
                     printf("<a href='%s'>%s</a>", get_field("solutions")[0]["link"],get_field("solutions")[0]["name"]);
                 }
+  :php
+    if (get_field("pull_quote")) {
+  section.case-study-pull-quote.padding-both 
+    .container 
+      .row 
+        .col-md-12 
+          :php
+            printf("<div class='quote'>%s</div>", get_field("pull_quote"));
+  :php
+    }
   section.case-study-content-block.padding-both
     .container
         .row

@@ -3,9 +3,11 @@ var ctaTemplate = require("./cta-bar-template.pug");
 var siteSettings = require("../settings.json");
 
 function writeCTA(el) {
-    document.body.classList.add("has-cta");
-    el[0].classList.add("active");
-    el[0].appendChild(parseHTML(ctaTemplate(siteSettings.ctaData)));
+    if (ctaData.active!=="0") {
+        document.body.classList.add("has-cta");
+        el[0].classList.add("active");
+        el[0].appendChild(parseHTML(ctaTemplate(ctaData)));        
+    }
 }
 
 module.exports = writeCTA;

@@ -72,6 +72,9 @@ var siteActions = [{
   "element": "#demo-hover-box",
   "action": require("./widgets/el-demo-hover-box/")
 }, {
+  "element": "#cta-bar",
+  "action": require("./hello-bar/")
+}, {
   "element": "#page-header",
   "action": function (els) {
     PageResizeHandler(siteSettings.breakpoints);
