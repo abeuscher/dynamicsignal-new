@@ -12,6 +12,7 @@ html
     meta(name="twitter:card",content="summary")
     meta(name="twitter:site",content="@Dynamic_Signal")
     link(rel='shortcut icon', href=themeDir + 'images/favicon.ico?v=2') 
+    include ./json-ld.pug
     :php
       $args = array( 'post_type' => 'ctabar', 'posts_per_page' => 1 );
       $ctabar = get_posts( $args );
