@@ -31,21 +31,21 @@ block content
         .col-md-12
           include ./inc/breadcrumbs.pug
   :php
-    printf("<article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'><meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>",get_the_ID());
+    printf("<article id='%s' role='article'>",get_the_ID());
   section.blog-hero
     :php
-      echo '<div class="blog-header"><div class="blog-thumb" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject"><img width="1280" height="320" src="https://dynamicsignal.com/wp-content/uploads/2018/07/BlogImg4.jpg" class="img-responsive wp-post-image" alt="" srcset="https://dynamicsignal.com/wp-content/uploads/2018/07/BlogImg4.jpg 1280w, https://dynamicsignal.com/wp-content/uploads/2018/07/BlogImg4-300x75.jpg 300w, https://dynamicsignal.com/wp-content/uploads/2018/07/BlogImg4-768x192.jpg 768w, https://dynamicsignal.com/wp-content/uploads/2018/07/BlogImg4-1024x256.jpg 1024w" sizes="(max-width: 1280px) 100vw, 1280px"></div>';
+      echo '<div class="blog-header"><div class="blog-thumb"><img width="1280" height="320" src="https://dynamicsignal.com/wp-content/uploads/2018/07/BlogImg4.jpg" class="img-responsive wp-post-image" alt="" srcset="https://dynamicsignal.com/wp-content/uploads/2018/07/BlogImg4.jpg 1280w, https://dynamicsignal.com/wp-content/uploads/2018/07/BlogImg4-300x75.jpg 300w, https://dynamicsignal.com/wp-content/uploads/2018/07/BlogImg4-768x192.jpg 768w, https://dynamicsignal.com/wp-content/uploads/2018/07/BlogImg4-1024x256.jpg 1024w" sizes="(max-width: 1280px) 100vw, 1280px"></div>';
     .inner
       .container
         .row
           .col-md-12
-            h1.blog-title(itemprop="headline")
+            h1.blog-title
               :php
                 echo get_the_title();
             p.author By
               :php
                 $authorslug = get_userdata(get_the_author_id())->user_nicename;
-                echo " <a class='author-link' href=\"/author/$authorslug\" itemprop='author' itemscope itemtype='https://schema.org/Person'><span itemprop='name'>".get_author_name() . "</span></a>" ;
+                echo " <a class='author-link' href=\"/author/$authorslug\"><span>".get_author_name() . "</span></a>" ;
             ul.social-share
               li
                 :php
@@ -72,13 +72,13 @@ block content
                 :php
                   echo "</a>";
             :php
-              printf("<span class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</span>",get_the_time('c'),get_the_time('c'),get_the_date());
+              printf("<span class='blog-date' datetime='%s' content='%s'>%s</span>",get_the_time('c'),get_the_time('c'),get_the_date());
     :php
       echo "</div>";
   section.container.blog-content
     .container
       .row
-        .col-md-9.blog-content(itemprop="articleBody")
+        .col-md-9.blog-content
           :php
             the_content();
         .col-md-3.related-posts

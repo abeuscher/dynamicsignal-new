@@ -83,7 +83,7 @@ block content
               $p = $post["blog_entry"];
               $c = $post["category"];
               $thumb = get_the_post_thumbnail_url($p);
-              printf("<div class='col-3'><a class='category-link-title' href='%s'><h3>%s<span class='view-button'>View All<span class='divot'>»</span></span></h3></a><a class='story-tile-link' href='%s' itemprop='url'><article id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article' class='blog-featured-bucket'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Featured</li></ul><h3 itemprop='title'>%s</h3></article></a></div>","/category/".$c[0]->slug,$c[0]->name,$p->post_name,get_the_ID(), $thumb, $p->post_title);  
+              printf("<div class='col-3'><a class='category-link-title' href='%s'><h3>%s<span class='view-button'>View All<span class='divot'>»</span></span></h3></a><a class='story-tile-link' href='%s'><article id='%s' class='blog-featured-bucket'><div class='featured-thumb' data-bg='%s'></div><ul class='post-meta hmenu'><li><span class='fa fa-star'></span>Featured</li></ul><h3>%s</h3></article></a></div>","/category/".$c[0]->slug,$c[0]->name,$p->post_name,get_the_ID(), $thumb, $p->post_title);  
               }
   section.padding-bottom
     .container
@@ -110,18 +110,17 @@ block content
                     $authorname = get_the_author_meta('display_name',get_the_author_id());
                     $email =  get_the_author_meta('email',get_the_author_id());
                     $authormeta = get_avatar($email);
-                    printf("<article class='blog-roll-bucket flicker-in' id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'>
-                              <meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>
+                    printf("<article class='blog-roll-bucket flicker-in' id='%s'>
                               <div class='blog-tile-wide'>
                                 <div class='description'>
                                   <div class='author-block'>
                                     <div class='small-author-thumb'>%s</div>
                                     <p class='name'>%s</p>
                                   </div>
-                                  <a href='%s' itemprop='url'><h3 itemprop='headline'>%s</h3></a>
+                                  <a href='%s'><h3>%s</h3></a>
                                   <div class='tag-cloud'>%s</div>
                                 </div>
-                                <a href='%s' itemprop='url'>
+                                <a href='%s'>
                                   <div class='thumb' data-bg='%s'></div>
                                 </a> 
                               </div>  

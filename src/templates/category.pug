@@ -45,20 +45,19 @@ block content
                     $email =  get_the_author_meta('email',get_the_author_id());
                     $authormeta = get_avatar($email);
                     $thumb = get_field("social_share_image") ? get_field("social_share_image") : get_the_post_thumbnail_url();
-                    printf("<article class='blog-roll-bucket flicker-in' id='%s' role='article' itemprop='haspart' itemscope='' itemtype='http://schema.org/Article'>
-                              <meta itemscope='itemscope' itemprop='mainEntityOfPage' itemType='https://schema.org/WebPage'/>
+                    printf("<article class='blog-roll-bucket flicker-in' id='%s'>
                               <div class='blog-tile-wide'>
                                 <div class='description'>
                                   <div class='author-block'>
                                     <div class='small-author-thumb'>%s</div>
                                     <p class='name'>%s</p>
-                                    <p class='blog-date' datetime='%s' itemprop='datePublished' content='%s'>%s</p>
+                                    <p class='blog-date' datetime='%s' content='%s'>%s</p>
                                   </div>
-                                  <a href='%s' itemprop='url'><h3 itemprop='headline'>%s</h3></a>
+                                  <a href='%s'><h3>%s</h3></a>
                                   <p class='excerpt'>%s</p>
                                   <div class='tag-cloud'>%s</div>
                                 </div>
-                                <a href='%s' itemprop='url'>
+                                <a href='%s'>
                                   <div class='thumb' data-bg='%s'></div>
                                 </a> 
                               </div>  

@@ -12,7 +12,6 @@ html
     meta(name="twitter:card",content="summary")
     meta(name="twitter:site",content="@Dynamic_Signal")
     link(rel='shortcut icon', href=themeDir + 'images/favicon.ico?v=2') 
-    include ./json-ld.pug
     :php
       $args = array( 'post_type' => 'ctabar', 'posts_per_page' => 1 );
       $ctabar = get_posts( $args );
@@ -60,6 +59,82 @@ html
       echo "<meta name='twitter:image' content='$featured_image' />";
       $slink = get_template_directory_uri() . "/style.css?v=" . filemtime( get_stylesheet_directory() . '/style.css');
       echo "<link href='$slink' rel='stylesheet' />";
+    script(type="application/ld+json")
+      :php
+          // JSON-LD for WordPress
+
+          function get_post_data() {
+              global $post;
+              return $post;
+          }
+
+          $post_data = get_post_data();
+
+          $jsonld[0] = [
+              "@context" => "http://schema.org/",
+              "@type" => "Article",
+              "url" => $link,
+              "headline" => $title,
+              "Publisher" => "Dynamic Signal",
+              "ArticleSection" => $description,
+              "image" => [
+                "@type" => "ImageObject",
+                "url" => $featured_image
+              ]
+          ];
+
+          if (is_single()) {
+
+            $author = get_userdata($post_data->post_author);
+            $category = get_the_category();
+
+            $jsonld[0]["ArticleSection"] = $category[0]->cat_name;
+            $jsonld[0]["author"] = [
+                "@type" => "Person", 
+                "name" => $author->display_name
+              ];
+
+          }
+
+          $jsonld[1] = [
+            "@context"=>"http://schema.org",
+            "@type"=>"WebSite",
+            "url"=>"https://dynamicsignal.com/",
+            "potentialAction"=>[
+              "@type" => "SearchAction",
+              "query-input" => "required name=search_term",
+              "url" => "http://dynamicsignal.com/search/",
+              "target" => "http://dynamicsignal.com/search/#q={search_term}",
+            ]
+          ];
+
+
+          if (is_front_page()) {
+
+            $jsonld[2] = [
+              "@context"=>"http://schema.org/",
+              "@type"=>"Organization",
+              "name"=>"Dynamic Signal",
+              "logo"=>[
+                "@type" => "ImageObject",
+                "url" => "https://dynamicsignal.com.com/wp-content/themes/ds-new/images/logo-header.png"
+              ],
+              "url"=>"https://dynamicsignal.com/",
+              "sameAs"=>[
+                "https://twitter.com/dynamic_signal",
+                "https://www.facebook.com/dynamicsignal",
+                "https://www.linkedin.com/company/dynamic-signal"
+              ],
+              "contactPoint"=>[
+                "@type" => "ContactPoint",
+                "telephone" => "+11 650 231 2550",
+                "email" => "sales@dynamicsignal.com",
+                "contactType" => "sales"
+              ]
+            ];
+          }
+
+          printf("%s",json_encode($jsonld, JSON_UNESCAPED_SLASHES));
   body
     #overlay
     #cta-bar

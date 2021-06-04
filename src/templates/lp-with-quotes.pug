@@ -23,7 +23,7 @@ block content
     .container.centered
         .inner-image.contain
             :php
-                printf("<div class='blog-thumb' itemprop='image' data-bg-array='%s'></div>", json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
+                printf("<div class='blog-thumb' data-bg-array='%s'></div>", json_encode(get_field("header_bg"), JSON_UNESCAPED_SLASHES));
   section.signup-form-bucket.white-bg-section.padding-both
     .container
       .row
