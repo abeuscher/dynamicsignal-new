@@ -70,33 +70,32 @@ html
 
           $post_data = get_post_data();
 
-          $jsonld[0] = [
-              "@context" => "http://schema.org/",
-              "@type" => "Article",
-              "url" => $link,
-              "headline" => $title,
-              "Publisher" => "Dynamic Signal",
-              "ArticleSection" => $description,
-              "image" => [
-                "@type" => "ImageObject",
-                "url" => $featured_image
-              ]
-          ];
+
 
           if (is_single()) {
 
             $author = get_userdata($post_data->post_author);
             $category = get_the_category();
-
-            $jsonld[0]["ArticleSection"] = $category[0]->cat_name;
-            $jsonld[0]["author"] = [
+          $jsonld[] = [
+              "@context" => "http://schema.org/",
+              "@type" => "Article",
+              "url" => $link,
+              "headline" => $title,
+              "Publisher" => "Dynamic Signal",
+              "ArticleSection" => $category[0]->cat_name,
+              "image" => [
+                "@type" => "ImageObject",
+                "url" => $featured_image
+              ],
+              "author" => [
                 "@type" => "Person", 
                 "name" => $author->display_name
-              ];
+              ]
+          ];
 
           }
 
-          $jsonld[1] = [
+          $jsonld[] = [
             "@context"=>"http://schema.org",
             "@type"=>"WebSite",
             "url"=>"https://dynamicsignal.com/",
@@ -111,7 +110,7 @@ html
 
           if (is_front_page()) {
 
-            $jsonld[2] = [
+            $jsonld[] = [
               "@context"=>"http://schema.org/",
               "@type"=>"Organization",
               "name"=>"Dynamic Signal",

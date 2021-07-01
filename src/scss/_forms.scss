@@ -23,6 +23,8 @@ $mf-focus-color: #337ab7 !default;
 $mf-error-color: #d9534f !default; // Animation
 $mf-transition-speed: 0.28s !default;
 
+
+
 #marketo-form-wrapper {
   position: relative;
   margin: 0;
@@ -51,6 +53,28 @@ $mf-transition-speed: 0.28s !default;
     }
     background: $white;
     color: $black;
+    &::before {
+      display: none;
+    }
+    &:hover::before {
+      transform: none;
+    }
+  }
+  .mktoForm.unsubscribe-form {
+    padding: 0;
+    display: block!important;
+    form {
+      padding: 0  0 $gutter-width !important;
+    }
+  
+    background: $blue;
+    color: $white;
+    .mktoLabel {
+      font-family: $header-font;
+      font-weight: 300;
+      color: $white;
+      padding-bottom:6px!important;
+    }
     &::before {
       display: none;
     }
@@ -588,24 +612,24 @@ $mf-transition-speed: 0.28s !default;
   }
 }
 .mktoForm label.mktoLabel[for="Marketing_Opt_in__c"] {
-    margin-left: 50px;
-    width: 420px !important;
-    line-height: 1.4;
-    & ~ .mktoLogicalField {
-      width: 50px !important;
-      margin-top: -50px !important;
-    }
-    a {
-      color: $white;
-      text-decoration: underline;
-    }
+  margin-left: 50px;
+  width: 420px !important;
+  line-height: 1.4;
+  & ~ .mktoLogicalField {
+    width: 50px !important;
+    margin-top: -50px !important;
+  }
+  a {
+    color: $white;
+    text-decoration: underline;
+  }
 }
 .bw-form {
   .mktoForm label.mktoLabel[for="Marketing_Opt_in__c"] {
-    width:auto!important;
-    margin-left:50px;
+    width: auto !important;
+    margin-left: 50px;
     a {
-      color:$off-black!important;
+      color: $off-black !important;
     }
   }
 }
