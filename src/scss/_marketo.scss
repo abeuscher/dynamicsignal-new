@@ -573,3 +573,15 @@ section.video-gate-two-col {
   }
 
 }
+.unsubscribe-social-menu {
+  list-style:none;
+  margin:$gutter-width 0 0;
+  padding:0;
+  display:flex;
+  li {
+    padding:0 $gutter-width/4;
+    img {
+      max-width:50px;
+    }
+  }
+}
