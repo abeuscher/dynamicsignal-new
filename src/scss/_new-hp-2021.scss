@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css?family=Mulish:400,700&display=swap");
+
+$core-blue: #3f46ff;
+$dark-blue: #3039b0;
+$light-blue-1: #f3f7ff;
+$light-blue-2: #ebf1ff;
+$light-blue-3: #e0e9fe;
+
+$new-header-font: "Mulish", sans-serif;
+.new-homepage {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        font-family: $new-header-font;
+    }
+    font-family: $new-header-font;
+    h3 {
+        font-weight: 700;
+        font-size: 16px;
+    }
+    p {
+        font-size: 16px;
+    }
+}
+.hero-2021 {
+    margin: 150px 0 25px;
+    h1 {
+        font-size: 50px;
+        @include bp(l) {
+            white-space: nowrap;
+        }
+    }
+    .bold {
+        font-weight: 700;
+    }
+    .top-copy {
+        padding: 50px 0;
+    }
+    .new-hero-image {
+        @include aspect-ratio(4, 3);
+        width: 100%;
+        background-size: 125%;
+        background-repeat: no-repeat;
+        background-position: center top;
+        @include bp(m) {
+            width: 140%;
+        }
+    }
+    .logo-flipper {
+        .flipper-wrapper {
+            flex-basis: 33%;
+        }
+    }
+}
+.button-new {
+    background: $core-blue;
+    border-radius: 6px;
+    color: white;
+    line-height: 28px;
+    font-size: 14px;
+    padding: 0.5em 2em;
+    display: inline-block;
+    @include ds-transition();
+    &:hover {
+        background-color: lighten($core-blue, 5%);
+        color: $white;
+    }
+    &.knockout {
+        background: white;
+        color: $dark-blue;
+    }
+}
+.core-blue.curve-container {
+    width: 100%;
+    background: $dark-blue;
+    color: $white;
+    .row {
+        padding:25px 0;
+    }
+    @include bp(m) {
+        min-height: 600px;
+        background: linear-gradient(to bottom, $dark-blue 0, $dark-blue 100%) no-repeat top left,
+            linear-gradient(to top, $white 0, $white 74px, $dark-blue 75px, $dark-blue 100%) no-repeat bottom right;
+        background-size: 50% 100%, 50% 100%;
+    }
+}
+.light-blue.curve-container {
+    width: 100%;
+    background: $light-blue-1;
+    .row {
+        padding-top:25px;
+    }
+    @include bp(m) {
+        min-height: 600px;
+        background: linear-gradient(
+                    180deg,
+                    $light-blue-1 0,
+                    $light-blue-1 24px,
+                    $light-blue-2 25px,
+                    $light-blue-2 49px,
+                    $light-blue-3 50px,
+                    $light-blue-3 50%
+                )
+                no-repeat 0 95px,
+            linear-gradient(
+                    to top,
+                    $light-blue-1 0,
+                    $light-blue-1 20px,
+                    $light-blue-2 21px,
+                    $light-blue-2 40px,
+                    $light-blue-3 41px,
+                    $light-blue-3 50%
+                )
+                no-repeat 0 bottom,
+            linear-gradient(
+                    180deg,
+                    $light-blue-1 0,
+                    $light-blue-1 32px,
+                    $light-blue-2 33px,
+                    $light-blue-2 63px,
+                    $light-blue-3 64px,
+                    $light-blue-3 50%
+                )
+                no-repeat right top,
+            linear-gradient(
+                    to top,
+                    $dark-blue 0,
+                    $dark-blue 74px,
+                    $light-blue-1 75px,
+                    $light-blue-1 99px,
+                    $light-blue-2 100px,
+                    $light-blue-2 120px,
+                    $light-blue-3 121px,
+                    $light-blue-3 50%
+                )
+                no-repeat right bottom;
+        background-size: 50% 50%, 50% 50%, 50% 50%, 50% 50%;
+        .row {
+            padding-top: 180px;
+            padding-bottom: 180px;
+            .row {
+                padding-top: 0;
+                padding-bottom: 0px;
+            }
+        }
+    }
+}
+.home-phone-image {
+    width: 50%;
+    margin: 0 auto;
+    @include aspect-ratio(4, 5);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+    @include bp(m) {
+        width: 100%;
+    }
+}
+.has-curve {
+    @include bp(m) {
+        background: url("/wp-content/themes/ds-new/images/wave-triple-top.jpg") no-repeat center top,
+            url("/wp-content/themes/ds-new/images/wave-triple-bottom.jpg") no-repeat center bottom;
+        background-color: $light-blue-3;
+        min-height: 600px;
+        background-size: 100%;
+    }
+}
+.has-dark-curve {
+    @include bp(m) {
+        background: url("/wp-content/themes/ds-new/images/wave-dk-blue-bottom.jpg") no-repeat center bottom;
+        background-color: $dark-blue;
+        min-height: 600px;
+        background-size: 100%;
+    }
+}

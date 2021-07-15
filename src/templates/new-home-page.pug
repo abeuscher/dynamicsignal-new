@@ -2,7 +2,7 @@ extends inc/page.pug
 block template
   :php
     /*
-    Template Name: Home Page New 2019 Look
+    Template Name: Home Page New 2021
     */
 block nav
   - var homepage = true;    
@@ -10,4 +10,56 @@ block nav
   include ./inc/side-nav.pug
   include ./inc/header.pug
 block content
-    section.new-homepage.has-curve
+    :php
+        $hero = get_field("hero");
+        $platform = get_field("platform");
+        $cs = get_field("case_studies");
+        $videos = get_field("demo_videos");
+        $blog = get_field("blog_section");
+
+        echo "<script>var pageData = {'logos':".json_encode($hero["logos"],JSON_UNESCAPED_SLASHES)
+        ."}</script>";
+    section.hero-2021.new-homepage
+        .container 
+            .col-md-6 
+                .top-copy
+                    :php
+                        $header = "";
+                        foreach($hero["headlines"] as $headline) {
+                            $header .= $headline["make_it_bold"] ? sprintf("<span class='bold'>%s</span><br/>",$headline["line_of_text"]) : sprintf("%s<br/>",$headline["line_of_text"]);
+                        }
+                        printf("<h1>%s</h1><a class='button-new request-demo' href='#'>%s</a>",$header,$hero["cta_text"]);
+                .bottom-logo-flipper 
+                    :php
+                        printf("<p>%s</p>",$hero["logos_title"]);
+                    #logo-partners-grid    
+            .col-md-6.image-bucket
+                .new-hero-image(data-bg="home-hero-desktop.png")
+    section.light-blue.curve-container.new-homepage
+        .container.has-curve
+            .row 
+                .col-md-12.centered.padding-bottom 
+                    h2 A Place For Everyone
+                    p Modernize, measure, and streamline all your employee communications and content with one platform that reaches everyone.
+                .col-md-4
+                    .home-phone-image(data-bg="home-double-phone-graphic.png")
+                .col-md-8 
+                    .row 
+                        .col-md-6 
+                            h3 Communicate
+                            p Inclusion starts with information. Reach every employee to keep them informed, safe and happy.
+                            h3 Connect
+                            p Bring together all the tools and apps that cultivate the employee experience. Culture.
+                        .col-md-6
+                            h3 Campaign
+                            p Nurture your employees' journey and open the door to conversations that matter to them.
+                            h3 Analyze
+                            p We can always do better. Get the insights you need to help your employees stay healthy and engaged.
+                    a.button-new Learn More
+    section.core-blue.curve-container
+        .container.has-dark-curve
+            .row 
+                .col-md-12.centered
+                    #new-home-customer-carousel 
+                    :php
+                        printf("<a class='button-new knockout' href='%s'>%s</a>",$cs["cta_url"],$cs["cta_text"]);
