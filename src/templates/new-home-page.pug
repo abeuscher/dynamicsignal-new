@@ -18,6 +18,7 @@ block content
         $blog = get_field("blog_section");
 
         echo "<script>var pageData = {'logos':".json_encode($hero["logos"],JSON_UNESCAPED_SLASHES)
+        .",'customerSlides':".json_encode($cs["slides"],JSON_UNESCAPED_SLASHES)
         ."}</script>";
     section.hero-2021.new-homepage
         .container 
@@ -56,10 +57,30 @@ block content
                             h3 Analyze
                             p We can always do better. Get the insights you need to help your employees stay healthy and engaged.
                     a.button-new Learn More
-    section.core-blue.curve-container
+    section.core-blue.curve-container.new-homepage
         .container.has-dark-curve
             .row 
                 .col-md-12.centered
                     #new-home-customer-carousel 
                     :php
                         printf("<a class='button-new knockout' href='%s'>%s</a>",$cs["cta_url"],$cs["cta_text"]);
+    section.demo-videos-new-hp.new-homepage 
+        .container 
+            :php
+                foreach ($videos as $video) {
+                    $image_panel = sprintf("<div class='col-md-7'><div class='section-pic' data-bg-array='%s'></div></div>", json_encode($video["image"], JSON_UNESCAPED_SLASHES));
+                    $text_panel = sprintf("<div class='col-md-4 col-md-offset-1'><p class='category-title'>%s</p><h3>%s</h3><p>%s</p><a href='%s'>%s</a></div>", $video["category_title"],$video["header"],$video["copy"],$video["cta_url"],$video["cta_text"]);
+                    printf("<div class='row'>%s%s</div>", $video["image_position"]=="Right" ? $text_panel : $image_panel, $video["image_position"]=="Right" ? $image_panel : $text_panel);
+                }
+    section.new-blog-articles.new-homepage
+        .container
+            .row 
+                .col-md-12
+                    .even-height-wrapper 
+                        :php
+                            foreach($blog["blog_articles"] as $post) {
+                                $p = $post["article"];
+                                printf("<div class='col-3'><a class='blog-bucket-hp' href='%s'><div class='thumb' data-bg='%s'></div><p>%s</p><h4>%s</h4></a></div>",get_the_permalink($p->ID),get_the_post_thumbnail_url($p->ID),get_the_category( $p->ID )[0]->cat_name,$p->post_title);  
+                            }  
+    section.footer-new-top 
+        .container
